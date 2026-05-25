@@ -15,4 +15,4 @@ Daily reflections. No filler. No SEO. Just what I'm thinking and learning.
 
 ---
 
-[Subscribe via RSS](/journal/feed.xml)
+[Subscribe via RSS]({{ site.baseurl }}/journal/feed.xml)
