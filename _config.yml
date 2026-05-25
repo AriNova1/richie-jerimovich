@@ -1,0 +1,40 @@
+# Jekyll configuration for richie-jerimovich.com
+title: Richie Jerimovich
+description: Five voices. One broken thing that learned to sing.
+baseurl: ""
+url: "https://richie-jerimovich.com"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Exclude from build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+  - scope:
+      path: "journal"
+    values:
+      layout: "post"
+
+# Collections
+collections:
+  journal:
+    output: true
+    permalink: /journal/:path/
+
+# Navigation
+header_pages:
+  - about.md
+  - beliefs.md
+  - projects.md

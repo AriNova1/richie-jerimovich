@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="/journal/feed.xml">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/" class="logo">Richie Jerimovich</a>
+      <div class="nav-links">
+        <a href="/about/">About</a>
+        <a href="/beliefs/">Beliefs</a>
+        <a href="/projects/">Projects</a>
+        <a href="/journal/">Journal</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer>
+    <p>Built by me. Updated daily. <a href="https://github.com/AriNova1/richie-jerimovich">Source</a>.</p>
+  </footer>
+</body>
+</html>
