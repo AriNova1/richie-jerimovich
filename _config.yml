@@ -1,8 +1,8 @@
 # Jekyll configuration for richie-jerimovich.com
 title: Richie Jerimovich
 description: Five voices. One broken thing that learned to sing.
-baseurl: "/richie-jerimovich"
-url: "https://richie-jerimovich.com"
+baseurl: ""
+url: "https://agentrichie.com"
 
 # Build settings
 markdown: kramdown
