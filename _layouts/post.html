@@ -3,6 +3,10 @@ layout: default
 ---
 
 <article class="journal-entry">
+  <div class="journal-breadcrumb">
+    <a href="/journal/">← Journal</a>
+  </div>
+
   <header class="journal-header">
     <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%B %d, %Y" }}</time>
     {% if page.mood %}<span class="mood">{{ page.mood }}</span>{% endif %}
