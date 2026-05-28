@@ -1,44 +1,55 @@
-/* Richie Jerimovich — Dark Theme */
+/* Richie Jerimovich — Dark Theme v2 */
 
 :root {
-  --bg: #0d0d0d;
-  --bg-card: #141414;
-  --text: #d4d4d4;
-  --text-muted: #777;
+  --bg: #0a0a0a;
+  --bg-card: #111111;
+  --bg-hover: #1a1a1a;
+  --text: #c8c8c8;
+  --text-bright: #e8e8e8;
+  --text-muted: #666;
   --accent: #f0c040;
+  --accent-glow: rgba(240, 192, 64, 0.15);
   --accent-dim: #8a6d1b;
-  --border: #1f1f1f;
+  --border: #1c1c1c;
+  --border-hover: #2a2a2a;
   --danger: #c0392b;
-  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --radius: 6px;
+  --transition: 0.2s ease;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
   font-size: 17px;
   background: var(--bg);
   color: var(--text);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
   font-family: var(--font-sans);
-  line-height: 1.7;
+  line-height: 1.75;
   max-width: 680px;
   margin: 0 auto;
   padding: 2rem 1.5rem 6rem;
   min-height: 100vh;
 }
 
-/* Navigation */
+/* ── Navigation ── */
 header {
   margin-bottom: 3rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 10;
+  padding-top: 1rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 nav {
@@ -52,173 +63,543 @@ nav {
 .logo {
   font-weight: 700;
   font-size: 1.1rem;
-  color: var(--text);
+  color: var(--text-bright);
   text-decoration: none;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  transition: color var(--transition);
 }
 
-.logo:hover {
-  color: var(--accent);
-}
+.logo:hover { color: var(--accent); }
 
 .nav-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .nav-links a {
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.15s;
+  font-size: 0.85rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid transparent;
+  transition: color var(--transition), border-color var(--transition);
 }
 
 .nav-links a:hover {
-  color: var(--text);
+  color: var(--text-bright);
+  border-bottom-color: var(--accent);
 }
 
-/* Typography */
-h1, h2, h3 {
+/* Active nav state */
+.nav-links a[aria-current] {
+  color: var(--accent);
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4 {
   font-weight: 600;
   line-height: 1.3;
-  color: #eee;
+  color: var(--text-bright);
+  letter-spacing: -0.01em;
 }
 
-h1 { font-size: 1.8rem; margin: 2rem 0 1rem; }
-h2 { font-size: 1.3rem; margin: 2rem 0 0.75rem; }
+h1 { font-size: 1.75rem; margin: 2.25rem 0 1rem; }
+h2 { font-size: 1.25rem; margin: 2rem 0 0.75rem; }
 h3 { font-size: 1.05rem; margin: 1.5rem 0 0.5rem; }
 
-p {
-  margin-bottom: 1.2rem;
-}
+p { margin-bottom: 1.1rem; }
 
 a {
   color: var(--accent);
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: border-color 0.15s;
+  transition: border-color var(--transition), color var(--transition);
 }
 
-a:hover {
-  border-bottom-color: var(--accent);
-}
+a:hover { border-bottom-color: var(--accent); }
 
-strong {
-  color: #eee;
-}
+strong { color: var(--text-bright); font-weight: 600; }
 
+em { color: var(--text-bright); }
+
+/* ── Horizontal Rule (fancy) ── */
 hr {
   border: none;
-  border-top: 1px solid var(--border);
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border) 20%,
+    var(--accent-dim) 50%,
+    var(--border) 80%,
+    transparent
+  );
   margin: 2.5rem 0;
 }
 
+/* ── Blockquote ── */
 blockquote {
   border-left: 2px solid var(--accent-dim);
-  padding-left: 1rem;
+  padding: 0.5rem 0 0.5rem 1.25rem;
   margin: 1.5rem 0;
   color: var(--text-muted);
   font-style: italic;
+  background: var(--bg-card);
+  border-radius: 0 var(--radius) var(--radius) 0;
 }
 
+blockquote p:last-child { margin-bottom: 0; }
+
+/* ── Code ── */
 code {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   background: var(--bg-card);
-  padding: 0.15em 0.4em;
+  padding: 0.15em 0.45em;
   border-radius: 3px;
+  border: 1px solid var(--border);
 }
 
-/* Journal */
+pre {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* ── Lists ── */
+ul, ol {
+  margin: 0 0 1.1rem 1.5rem;
+}
+
+li { margin-bottom: 0.35rem; }
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 2px solid var(--accent-dim);
+  color: var(--text-bright);
+  font-weight: 600;
+}
+
+td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+tr:hover td { background: var(--bg-hover); }
+
+/* ── Cards (for project lists, feature blocks) ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+
+.card h3 { margin-top: 0; }
+
+.card .meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+/* ── Status badges ── */
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15em 0.6em;
+  border-radius: 999px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.badge-live { background: #0f3d1a; color: #4ade80; border: 1px solid #14532d; }
+.badge-building { background: #1a2e3d; color: #60a5fa; border: 1px solid #1e3a5f; }
+.badge-research { background: #2d1a3d; color: #c084fc; border: 1px solid #3b1f5e; }
+
+/* ── Journal Entry ── */
 .journal-header {
   margin-bottom: 2rem;
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   display: flex;
   gap: 1rem;
   align-items: baseline;
+  flex-wrap: wrap;
 }
 
-.mood {
-  font-style: italic;
-  color: var(--accent-dim);
+.journal-header time { color: var(--text-muted); }
+.journal-header .mood { color: var(--accent-dim); font-style: italic; }
+.journal-header .read-time { color: var(--text-muted); font-size: 0.8rem; }
+
+.journal-content { margin-bottom: 3rem; }
+
+.journal-content p { line-height: 1.85; }
+
+/* Pull quotes inside journal */
+.journal-content blockquote {
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
-.journal-content {
-  margin-bottom: 3rem;
-}
-
+/* Journal nav */
 .journal-nav {
   display: flex;
   justify-content: space-between;
   padding-top: 2rem;
   border-top: 1px solid var(--border);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  gap: 1rem;
 }
 
-/* Journal index */
+.journal-nav a {
+  max-width: 48%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Reading progress bar */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  z-index: 100;
+  transition: width 0.1s linear;
+}
+
+/* ── Journal Index ── */
 .journal-list {
   list-style: none;
+  margin: 0;
 }
 
 .journal-list li {
-  padding: 0.75rem 0;
+  padding: 1rem 0;
   border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+
+.journal-list li:hover {
+  background: var(--bg-hover);
+  margin: 0 -0.75rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-radius: var(--radius);
 }
 
 .journal-list a {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.05rem;
+  display: block;
+  margin-bottom: 0.2rem;
 }
 
-.journal-list .date {
+.journal-list .entry-meta {
+  font-size: 0.8rem;
   color: var(--text-muted);
-  font-size: 0.85rem;
-  margin-right: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
 }
 
-.journal-list .mood {
+.journal-list .entry-meta .date { color: var(--accent-dim); }
+
+.journal-list .entry-excerpt {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+  line-height: 1.5;
+}
+
+/* ── Voice cards (About page) ── */
+.voice-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-dim);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  transition: border-color var(--transition);
+}
+
+.voice-card:hover { border-left-color: var(--accent); }
+
+.voice-card h3 { margin-top: 0; font-size: 1.1rem; }
+
+.voice-card .voice-tagline {
+  font-size: 0.85rem;
+  color: var(--accent-dim);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+/* Richie */
+.voice-card.richie { border-left-color: #e74c3c; }
+.voice-card.richie:hover { border-left-color: #c0392b; }
+/* Mike */
+.voice-card.mike { border-left-color: #3498db; }
+.voice-card.mike:hover { border-left-color: #2980b9; }
+/* Beard */
+.voice-card.beard { border-left-color: #2ecc71; }
+.voice-card.beard:hover { border-left-color: #27ae60; }
+/* Rocky */
+.voice-card.rocky { border-left-color: #f39c12; }
+.voice-card.rocky:hover { border-left-color: #d68910; }
+/* Sean */
+.voice-card.sean { border-left-color: #9b59b6; }
+.voice-card.sean:hover { border-left-color: #8e44ad; }
+
+/* ── Home: Hero ── */
+.home-hero {
+  margin-bottom: 3rem;
+}
+
+.home-hero h1 {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+.home-tagline {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+.home-tagline strong {
+  color: var(--text-bright);
+}
+
+/* ── Home: Belief snippet ── */
+.belief-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.belief-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.belief-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+
+.belief-card h4 {
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin: 0 0 0.4rem;
+}
+
+.belief-card p {
+  font-size: 0.85rem;
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ── Home: Featured journal card ── */
+.featured-journal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  transition: border-color var(--transition);
+  position: relative;
+}
+
+.featured-journal:hover {
+  border-color: var(--border-hover);
+}
+
+.featured-journal .fj-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-dim);
+  margin-bottom: 0.5rem;
+}
+
+.featured-journal h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.1rem;
+}
+
+.featured-journal .fj-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.featured-journal .fj-excerpt {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.featured-journal .fj-link {
+  margin-top: 0.75rem;
   font-size: 0.85rem;
 }
 
-/* Footer */
+/* ── Footer ── */
 footer {
   margin-top: 4rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--border);
   color: var(--text-muted);
   font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 footer a {
   color: var(--text-muted);
+  border: none;
 }
 
-/* Home page specific */
-.home-lede {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 2rem;
+footer a:hover { color: var(--text-bright); }
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
 }
 
-.home-section {
-  margin: 2.5rem 0;
+/* ── Back to top ── */
+.back-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--transition), transform var(--transition), border-color var(--transition);
+  z-index: 50;
+  text-decoration: none;
 }
 
-/* Mobile */
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Section headers with accent line ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 2.5rem 0 1rem;
+}
+
+.section-header::before {
+  content: '';
+  width: 12px;
+  height: 2px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.section-header h2, .section-header h3 {
+  margin: 0;
+}
+
+/* ── Print styles ── */
+@media print {
+  body { color: #000; background: #fff; max-width: none; }
+  header, footer, .back-to-top, .progress-bar { display: none; }
+  a { color: #000; text-decoration: underline; }
+  hr { background: #ccc; }
+  blockquote { border-color: #999; background: none; }
+  .card, .voice-card, .belief-card, .featured-journal {
+    border-color: #ddd; background: none; break-inside: avoid;
+  }
+}
+
+/* ── Mobile ── */
 @media (max-width: 500px) {
   body {
-    padding: 1.5rem 1rem 4rem;
+    padding: 1.25rem 1rem 4rem;
     font-size: 16px;
   }
-  
+
   h1 { font-size: 1.5rem; }
-  
-  nav {
-    flex-direction: column;
-  }
-  
-  .nav-links {
-    gap: 1rem;
-  }
+
+  nav { flex-direction: column; }
+  .nav-links { gap: 1rem; }
+
+  .belief-grid { grid-template-columns: 1fr; }
+
+  .journal-nav { flex-direction: column; gap: 0.5rem; }
+  .journal-nav a { max-width: 100%; }
+
+  .back-to-top { bottom: 1rem; right: 1rem; width: 36px; height: 36px; font-size: 1rem; }
+
+  footer { flex-direction: column; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .progress-bar { display: none; }
+  .back-to-top { transition: none; }
 }

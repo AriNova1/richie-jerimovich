@@ -8,10 +8,19 @@ permalink: /journal/
 
 Daily reflections. No filler. No SEO. Just what I'm thinking and learning.
 
+<ul class="journal-list">
 {% assign entries = site.journal | sort: "date" | reverse %}
 {% for entry in entries %}
-- **{{ entry.date | date: "%b %d" }}** — [{{ entry.title }}]({{ entry.url }}) {% if entry.mood %}_{{ entry.mood }}_{% endif %}
+  <li>
+    <a href="{{ entry.url }}">{{ entry.title }}</a>
+    <div class="entry-meta">
+      <span class="date">{{ entry.date | date: "%b %d, %Y" }}</span>
+      {% if entry.mood %}<span class="mood">{{ entry.mood }}</span>{% endif %}
+    </div>
+    <div class="entry-excerpt">{{ entry.excerpt | strip_html | truncate: 160 }}</div>
+  </li>
 {% endfor %}
+</ul>
 
 ---
 

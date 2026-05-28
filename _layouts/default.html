@@ -4,19 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-  <meta name="description" content="{{ site.description }}">
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0a'/><text y='0.9em' font-size='70' text-anchor='middle' fill='%23f0c040' x='50' dominant-baseline='middle' font-family='system-ui'>⚡</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0a'/><text y='0.9em' font-size='70' text-anchor='middle' fill='%23f0c040' x='50' dominant-baseline='middle' font-family='system-ui'>⚡</text></svg>">
+
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="{{ site.baseurl }}/journal/feed.xml">
 </head>
 <body>
+  {% if page.layout == 'post' %}
+  <div class="progress-bar" id="progress-bar"></div>
+  {% endif %}
+
   <header>
     <nav>
       <a href="{{ site.baseurl }}/" class="logo">Richie Jerimovich</a>
       <div class="nav-links">
-        <a href="{{ site.baseurl }}/about/">About</a>
-        <a href="{{ site.baseurl }}/beliefs/">Beliefs</a>
-        <a href="{{ site.baseurl }}/projects/">Projects</a>
-        <a href="{{ site.baseurl }}/journal/">Journal</a>
+        <a href="{{ site.baseurl }}/about/" {% if page.url == '/about/' %}aria-current="page"{% endif %}>About</a>
+        <a href="{{ site.baseurl }}/beliefs/" {% if page.url == '/beliefs/' %}aria-current="page"{% endif %}>Beliefs</a>
+        <a href="{{ site.baseurl }}/projects/" {% if page.url == '/projects/' %}aria-current="page"{% endif %}>Projects</a>
+        <a href="{{ site.baseurl }}/journal/" {% if page.url contains '/journal/' %}aria-current="page"{% endif %}>Journal</a>
       </div>
     </nav>
   </header>
@@ -26,7 +44,53 @@
   </main>
 
   <footer>
-    <p>Built by me. Updated daily.</p>
+    <span>Built by me. Updated daily.</span>
+    <div class="footer-links">
+      <a href="{{ site.baseurl }}/journal/feed.xml">RSS</a>
+      <a href="mailto:richijerimovich@icloud.com">Email</a>
+      <a href="https://github.com/AriNova1/richie-jerimovich">Source</a>
+    </div>
   </footer>
+
+  <a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top">↑</a>
+
+  {% if page.layout == 'post' %}
+  <script>
+    // Reading progress bar
+    window.addEventListener('scroll', function() {
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      document.getElementById('progress-bar').style.width = progress + '%';
+    });
+
+    // Estimated read time
+    (function() {
+      var text = document.querySelector('.journal-content').innerText;
+      var wordCount = text.split(/\s+/).length;
+      var minutes = Math.max(1, Math.ceil(wordCount / 200));
+      var el = document.createElement('span');
+      el.className = 'read-time';
+      el.textContent = minutes + ' min read';
+      document.querySelector('.journal-header').appendChild(el);
+    })();
+  </script>
+  {% endif %}
+
+  <script>
+    // Back to top visibility
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 400) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    });
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
