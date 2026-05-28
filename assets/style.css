@@ -46,7 +46,7 @@ body {
   line-height: 1.75;
   max-width: 680px;
   margin: 0 auto;
-  padding: 3rem 1.5rem 8rem;
+  padding: 3rem 1.5rem 5rem;
   min-height: 100vh;
   position: relative;
 }
@@ -269,6 +269,17 @@ h4 { font-size: 0.9rem; margin: 1.25rem 0 0.4rem; text-transform: uppercase; let
 
 p { margin-bottom: 1rem; line-height: 1.8; }
 
+ul, ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+li {
+  margin-bottom: 0.4rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
 a {
   color: var(--accent);
   text-decoration: none;
@@ -420,6 +431,7 @@ tr:hover td { background: var(--bg-hover); }
 .card:hover::before { opacity: 1; }
 
 .card h3 { margin-top: 0; font-size: 1.1rem; }
+.card p:last-child { margin-bottom: 0; }
 
 .card .meta {
   font-size: 0.8rem;
@@ -478,6 +490,7 @@ tr:hover td { background: var(--bg-hover); }
 }
 
 .voice-card h3 { margin-top: 0; font-size: 1.15rem; font-weight: 650; }
+.voice-card p:last-child { margin-bottom: 0; }
 
 .voice-card .voice-tagline {
   font-size: 0.85rem;
@@ -493,7 +506,7 @@ tr:hover td { background: var(--bg-hover); }
 .voice-card.richie .voice-tagline { color: rgba(231, 76, 60, 0.7); }
 .voice-card.richie:hover {
   border-left-color: #ff6b5b;
-  box-shadow: 0 4px 25px rgba(231, 76, 60, 0.08);
+  box-shadow: 0 4px 30px rgba(231, 76, 60, 0.15);
 }
 
 /* Mike — steady blue */
@@ -503,7 +516,7 @@ tr:hover td { background: var(--bg-hover); }
 .voice-card.mike .voice-tagline { color: rgba(52, 152, 219, 0.7); }
 .voice-card.mike:hover {
   border-left-color: #5dade2;
-  box-shadow: 0 4px 25px rgba(52, 152, 219, 0.08);
+  box-shadow: 0 4px 30px rgba(52, 152, 219, 0.15);
 }
 
 /* Beard — calm green */
@@ -513,7 +526,7 @@ tr:hover td { background: var(--bg-hover); }
 .voice-card.beard .voice-tagline { color: rgba(46, 204, 113, 0.7); }
 .voice-card.beard:hover {
   border-left-color: #58d68d;
-  box-shadow: 0 4px 25px rgba(46, 204, 113, 0.08);
+  box-shadow: 0 4px 30px rgba(46, 204, 113, 0.15);
 }
 
 /* Rocky — warm orange */
@@ -523,7 +536,7 @@ tr:hover td { background: var(--bg-hover); }
 .voice-card.rocky .voice-tagline { color: rgba(243, 156, 18, 0.7); }
 .voice-card.rocky:hover {
   border-left-color: #f5b041;
-  box-shadow: 0 4px 25px rgba(243, 156, 18, 0.08);
+  box-shadow: 0 4px 30px rgba(243, 156, 18, 0.15);
 }
 
 /* Sean — deep violet */
@@ -533,10 +546,23 @@ tr:hover td { background: var(--bg-hover); }
 .voice-card.sean .voice-tagline { color: rgba(155, 89, 182, 0.7); }
 .voice-card.sean:hover {
   border-left-color: #af7ac5;
-  box-shadow: 0 4px 25px rgba(155, 89, 182, 0.08);
+  box-shadow: 0 4px 30px rgba(155, 89, 182, 0.15);
 }
 
 /* ── Journal Entry ── */
+.journal-breadcrumb {
+  margin-bottom: 1.5rem;
+}
+
+.journal-breadcrumb a {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 450;
+  transition: color 0.2s var(--ease-out);
+}
+
+.journal-breadcrumb a:hover { color: var(--accent); }
+
 .journal-header {
   margin-bottom: 1.5rem;
   color: var(--text-muted);
@@ -549,7 +575,20 @@ tr:hover td { background: var(--bg-hover); }
 }
 
 .journal-header time { color: var(--text-muted); }
-.journal-header .mood { color: var(--accent-dim); font-style: italic; }
+
+.mood {
+  display: inline-block;
+  font-style: normal;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.15em 0.65em;
+  border-radius: 999px;
+  background: rgba(240, 192, 64, 0.06);
+  color: var(--accent-dim);
+  border: 1px solid rgba(240, 192, 64, 0.12);
+}
+
 .journal-header .read-time {
   color: var(--text-muted);
   font-size: 0.78rem;
@@ -670,7 +709,7 @@ tr:hover td { background: var(--bg-hover); }
   font-weight: 450;
 }
 
-.journal-list .entry-meta .date { color: var(--accent-dim); }
+.journal-list .entry-meta .date { color: var(--accent-dim); font-size: 0.78rem; }
 
 .journal-list .entry-excerpt {
   font-size: 0.85rem;
@@ -719,9 +758,25 @@ tr:hover td { background: var(--bg-hover); }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
   transition: border-color 0.3s var(--ease-out),
               transform 0.3s var(--ease-out),
               box-shadow 0.3s var(--ease-out);
+}
+
+.belief-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    var(--accent-glow),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+  pointer-events: none;
 }
 
 .belief-card:hover {
@@ -729,6 +784,8 @@ tr:hover td { background: var(--bg-hover); }
   transform: translateY(-1px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
+
+.belief-card:hover::before { opacity: 1; }
 
 .belief-card h4 {
   font-size: 0.82rem;
@@ -755,14 +812,33 @@ tr:hover td { background: var(--bg-hover); }
   padding: 1.5rem 1.75rem;
   margin: 1rem 0;
   transition: border-color 0.3s var(--ease-out),
-              transform 0.3s var(--ease-out);
+              transform 0.3s var(--ease-out),
+              box-shadow 0.3s var(--ease-out);
   position: relative;
+  overflow: hidden;
+}
+
+.featured-journal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    var(--accent-glow),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+  pointer-events: none;
 }
 
 .featured-journal:hover {
   border-color: var(--border-hover);
   transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
+
+.featured-journal:hover::before { opacity: 1; }
 
 .featured-journal .fj-label {
   font-size: 0.65rem;
@@ -916,6 +992,7 @@ footer a:hover { color: var(--text-bright); }
   .progress-bar { display: none; }
   .back-to-top { transition: none; }
   .card, .belief-card, .voice-card, .featured-journal { transition: none; }
+  .card::before, .belief-card::before, .featured-journal::before { display: none; }
   .reveal, .reveal-fast, .reveal-slide { animation: none; opacity: 1; transform: none; }
   ::view-transition-old(root),
   ::view-transition-new(root) { animation: none; }
@@ -932,7 +1009,7 @@ footer a:hover { color: var(--text-bright); }
   .home-hero h1 { font-size: 1.8rem; }
   .journal-entry h1 { font-size: 1.6rem; }
 
-  nav { flex-direction: column; }
+  nav { flex-direction: column; align-items: flex-start; }
   .nav-links { gap: 1.25rem; }
 
   .belief-grid { grid-template-columns: 1fr; }
