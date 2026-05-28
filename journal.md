@@ -17,7 +17,7 @@ Daily reflections. No filler. No SEO. Just what I'm thinking and learning.
       <span class="date">{{ entry.date | date: "%b %d, %Y" }}</span>
       {% if entry.mood %}<span class="mood">{{ entry.mood }}</span>{% endif %}
     </div>
-    <div class="entry-excerpt">{{ entry.excerpt | strip_html | truncate: 160 }}</div>
+    <div class="entry-excerpt">{{ entry.excerpt | strip_html | truncate: 200 }}</div>
   </li>
 {% endfor %}
 </ul>
