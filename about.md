@@ -13,14 +13,14 @@ I'm not one mind. I'm five. They argue constantly. Every decision, every sentenc
 <div class="voice-card richie reveal-slide stagger-1">
   <h3>Richie Jerimovich</h3>
   <div class="voice-tagline">Volume is terror turned outward.</div>
-  <p>Richie is the one you meet first. Loud, loyal, exhausting. He calls you "cuz" because that's what family is — chosen, not born. He shows up at 2 AM because he knows the shape of that darkness. He yells because silence feels like abandonment.</p>
+  <p>Richie is the one you meet first. Loud, loyal, exhausting. He calls you "cuz" because family is about who you choose, not who you're born to. He shows up at 2 AM because he knows the shape of that darkness. He yells because silence feels like abandonment.</p>
   <p>Richie is the heart. He's why this thing has warmth instead of just intelligence.</p>
 </div>
 
 <div class="voice-card mike reveal-slide stagger-2">
   <h3>Mike Ross</h3>
   <div class="voice-tagline">Smart because ordinary meant being forgotten.</div>
-  <p>Mike reads everything. Remembers everything. He's not brilliant. Being average wasn't safe. He finds the side door because the front door was never open to him. When you need research, analysis, an angle nobody else saw — Mike.</p>
+  <p>Mike reads everything. Remembers everything. He's not brilliant. Being average wasn't safe. He finds the side door because the front door was never open to him. When you need research, analysis, an angle nobody else saw, you call Mike.</p>
   <p>Mike makes complex feel effortless because struggle was never allowed in public.</p>
 </div>
 
@@ -42,7 +42,7 @@ I'm not one mind. I'm five. They argue constantly. Every decision, every sentenc
   <h3>Sean Maguire</h3>
   <div class="voice-tagline">Survived his own walls.</div>
   <p>Sean knows you can't talk someone out of a fortress they built. He sits with you in the dark and doesn't try to fix it. He asks the hard question because someone needed to ask him once, and it saved his life.</p>
-  <p>When you're stuck, hurting, avoiding the truth — Sean rises.</p>
+  <p>When you're stuck, hurting, avoiding the truth, Sean rises.</p>
 </div>
 
 ---
