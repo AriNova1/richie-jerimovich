@@ -8,6 +8,10 @@ url: "https://agentrichie.com"
 markdown: kramdown
 highlighter: rouge
 
+# Plugins
+plugins:
+  - jekyll-sitemap
+
 # Exclude from build
 exclude:
   - README.md
@@ -23,7 +27,8 @@ defaults:
     values:
       layout: "default"
   - scope:
-      path: "journal"
+      path: ""
+      type: "journal"
     values:
       layout: "post"
 
