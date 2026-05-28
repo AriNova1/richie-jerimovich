@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="view-transition" content="same-origin">
   <title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
@@ -13,11 +14,10 @@
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   <meta property="og:site_name" content="{{ site.title }}">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0a'/><text y='0.9em' font-size='70' text-anchor='middle' fill='%23f0c040' x='50' dominant-baseline='middle' font-family='system-ui'>⚡</text></svg>">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0a'/><text y='0.9em' font-size='70' text-anchor='middle' fill='%23f0c040' x='50' dominant-baseline='middle' font-family='system-ui'>⚡</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23f0c040'/><stop offset='100%25' style='stop-color:%238a6d1b'/></linearGradient></defs><rect width='100' height='100' rx='22' fill='%230a0a0a'/><text y='0.85em' font-size='72' text-anchor='middle' fill='url(%23g)' x='50' dominant-baseline='middle' font-family='system-ui'>⚡</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23f0c040'/><stop offset='100%25' style='stop-color:%238a6d1b'/></linearGradient></defs><rect width='100' height='100' rx='22' fill='%230a0a0a'/><text y='0.85em' font-size='72' text-anchor='middle' fill='url(%23g)' x='50' dominant-baseline='middle' font-family='system-ui'>⚡</text></svg>">
 
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="{{ site.baseurl }}/journal/feed.xml">
@@ -26,6 +26,10 @@
   {% if page.layout == 'post' %}
   <div class="progress-bar" id="progress-bar"></div>
   {% endif %}
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
 
   <header>
     <nav>
@@ -52,45 +56,129 @@
     </div>
   </footer>
 
-  <a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top">↑</a>
+  <a href="#" class="back-to-top cursor-pointer" id="back-to-top" aria-label="Back to top">↑</a>
 
-  {% if page.layout == 'post' %}
   <script>
-    // Reading progress bar
-    window.addEventListener('scroll', function() {
-      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-      document.getElementById('progress-bar').style.width = progress + '%';
-    });
-
-    // Estimated read time
+    // ═══════════════════════════════════════════
+    // Custom Cursor
+    // ═══════════════════════════════════════════
     (function() {
-      var text = document.querySelector('.journal-content').innerText;
-      var wordCount = text.split(/\s+/).length;
-      var minutes = Math.max(1, Math.ceil(wordCount / 200));
-      var el = document.createElement('span');
-      el.className = 'read-time';
-      el.textContent = minutes + ' min read';
-      document.querySelector('.journal-header').appendChild(el);
-    })();
-  </script>
-  {% endif %}
+      var c = document.getElementById('cursor');
+      var d = document.getElementById('cursor-dot');
+      if (!c || !d) return;
 
-  <script>
-    // Back to top visibility
-    var btn = document.getElementById('back-to-top');
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 400) {
-        btn.classList.add('visible');
-      } else {
-        btn.classList.remove('visible');
+      var mx = 0, my = 0;
+      var cx = 0, cy = 0;
+      var dx = 0, dy = 0;
+
+      document.addEventListener('mousemove', function(e) {
+        mx = e.clientX;
+        my = e.clientY;
+      });
+
+      // Check if hovering over interactive elements
+      document.addEventListener('mouseover', function(e) {
+        var t = e.target;
+        var isInteractive = t.tagName === 'A' ||
+                            t.tagName === 'BUTTON' ||
+                            t.closest('a') ||
+                            t.closest('button') ||
+                            t.classList.contains('cursor-pointer') ||
+                            t.closest('.card') ||
+                            t.closest('.voice-card') ||
+                            t.closest('.belief-card') ||
+                            t.closest('.featured-journal');
+        if (isInteractive) {
+          c.classList.add('hover');
+          d.classList.add('hover');
+        }
+      });
+
+      document.addEventListener('mouseout', function(e) {
+        c.classList.remove('hover');
+        d.classList.remove('hover');
+      });
+
+      document.addEventListener('mousedown', function() {
+        c.classList.add('click');
+      });
+
+      document.addEventListener('mouseup', function() {
+        c.classList.remove('click');
+      });
+
+      function animate() {
+        cx += (mx - cx) * 0.15;
+        cy += (my - cy) * 0.15;
+        dx += (mx - dx) * 0.4;
+        dy += (my - dy) * 0.4;
+
+        c.style.left = cx + 'px';
+        c.style.top = cy + 'px';
+        d.style.left = dx + 'px';
+        d.style.top = dy + 'px';
+
+        requestAnimationFrame(animate);
       }
-    });
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+
+      animate();
+    })();
+
+    // ═══════════════════════════════════════════
+    // Card mouse tracking (radial gradient)
+    // ═══════════════════════════════════════════
+    (function() {
+      var cards = document.querySelectorAll('.card');
+      cards.forEach(function(card) {
+        card.addEventListener('mousemove', function(e) {
+          var rect = card.getBoundingClientRect();
+          var x = ((e.clientX - rect.left) / rect.width) * 100;
+          var y = ((e.clientY - rect.top) / rect.height) * 100;
+          card.style.setProperty('--mouse-x', x + '%');
+          card.style.setProperty('--mouse-y', y + '%');
+        });
+      });
+    })();
+
+    // ═══════════════════════════════════════════
+    // Reading progress bar + read time
+    // ═══════════════════════════════════════════
+    {% if page.layout == 'post' %}
+    (function() {
+      // Progress bar
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function() {
+        var st = document.documentElement.scrollTop || document.body.scrollTop;
+        var sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        bar.style.width = sh > 0 ? (st / sh) * 100 + '%' : '0%';
+      });
+
+      // Read time
+      var content = document.querySelector('.journal-content');
+      if (content) {
+        var words = content.innerText.split(/\s+/).length;
+        var mins = Math.max(1, Math.ceil(words / 200));
+        var el = document.createElement('span');
+        el.className = 'read-time';
+        el.textContent = mins + ' min read';
+        document.querySelector('.journal-header').appendChild(el);
+      }
+    })();
+    {% endif %}
+
+    // ═══════════════════════════════════════════
+    // Back to top
+    // ═══════════════════════════════════════════
+    (function() {
+      var btn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 500);
+      });
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
   </script>
 </body>
 </html>
