@@ -3,9 +3,6 @@
    Five voices. One broken thing that learned to sing.
    ═══════════════════════════════════════════════════════════ */
 
-/* ── Variable Font ── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
-
 /* ── Design Tokens ── */
 :root {
   --bg: #0b0b0e;
@@ -15,14 +12,14 @@
   --bg-raised: #17171c;
   --text: #a0a0a8;
   --text-bright: #e4e4ea;
-  --text-muted: #585866;
+  --text-muted: #8a8a94;
   --accent: #f0c040;
   --accent-glow: rgba(240, 192, 64, 0.06);
   --accent-strong: rgba(240, 192, 64, 0.22);
   --accent-dim: #6a5214;
   --border: #1e1e26;
   --border-hover: #2a2a36;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
   --radius: 8px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -31,6 +28,30 @@
 
 /* ── Reset ── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── Focus & Skip Link ── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 10001;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 0.5rem;
+}
 
 html {
   font-size: 17px;
@@ -67,9 +88,9 @@ body::after {
 
 /* ── Custom Cursor ── */
 @media (hover: hover) and (pointer: fine) {
-  body { cursor: none; }
+  html.js body { cursor: none; }
 
-  a, button, .cursor-pointer {
+  html.js a, html.js button, html.js .cursor-pointer {
     cursor: none;
   }
 
@@ -315,8 +336,8 @@ em { font-style: italic; color: var(--text-bright); }
 /* ── Section Divider ── */
 hr {
   border: none;
-  height: 80px;
-  margin: 3.5rem 0;
+  height: 52px;
+  margin: 2.5rem 0;
   position: relative;
   overflow: visible;
 }
@@ -474,21 +495,21 @@ tr:hover td { background: var(--bg-card-hover); }
 }
 
 .badge-live {
-  background: rgba(74, 222, 128, 0.1);
-  color: #4ade80;
-  border: 1px solid rgba(74, 222, 128, 0.2);
+  background: rgba(143, 173, 90, 0.12);
+  color: #8fad5a;
+  border: 1px solid rgba(143, 173, 90, 0.25);
 }
 
 .badge-building {
-  background: rgba(96, 165, 250, 0.1);
-  color: #60a5fa;
-  border: 1px solid rgba(96, 165, 250, 0.2);
+  background: rgba(201, 160, 64, 0.12);
+  color: #c9a040;
+  border: 1px solid rgba(201, 160, 64, 0.25);
 }
 
 .badge-research {
-  background: rgba(192, 132, 252, 0.1);
-  color: #c084fc;
-  border: 1px solid rgba(192, 132, 252, 0.2);
+  background: rgba(184, 136, 106, 0.12);
+  color: #b8886a;
+  border: 1px solid rgba(184, 136, 106, 0.25);
 }
 
 /* ── Voice Cards ── */
@@ -534,49 +555,49 @@ tr:hover td { background: var(--bg-card-hover); }
   margin-bottom: 0.75rem;
 }
 
-/* Richie — burning red */
-.voice-card.richie { border-left-color: #e74c3c; }
-.voice-card.richie .voice-tagline { color: rgba(231, 76, 60, 0.65); }
-.voice-card.richie::after { background: #e74c3c; }
+/* Richie — warm terracotta */
+.voice-card.richie { border-left-color: #c4734d; }
+.voice-card.richie .voice-tagline { color: rgba(196, 115, 77, 0.7); }
+.voice-card.richie::after { background: #c4734d; }
 .voice-card.richie:hover {
-  border-left-color: #ff6b5b;
-  box-shadow: 0 4px 30px rgba(231, 76, 60, 0.12);
+  border-left-color: #d4865e;
+  box-shadow: 0 4px 30px rgba(196, 115, 77, 0.14);
 }
 
-/* Mike — steady blue */
-.voice-card.mike { border-left-color: #3498db; }
-.voice-card.mike .voice-tagline { color: rgba(52, 152, 219, 0.65); }
-.voice-card.mike::after { background: #3498db; }
+/* Mike — dusty steel blue */
+.voice-card.mike { border-left-color: #8a9bb5; }
+.voice-card.mike .voice-tagline { color: rgba(138, 155, 181, 0.7); }
+.voice-card.mike::after { background: #8a9bb5; }
 .voice-card.mike:hover {
-  border-left-color: #5dade2;
-  box-shadow: 0 4px 30px rgba(52, 152, 219, 0.12);
+  border-left-color: #9dafc8;
+  box-shadow: 0 4px 30px rgba(138, 155, 181, 0.14);
 }
 
-/* Beard — calm green */
-.voice-card.beard { border-left-color: #2ecc71; }
-.voice-card.beard .voice-tagline { color: rgba(46, 204, 113, 0.65); }
-.voice-card.beard::after { background: #2ecc71; }
+/* Beard — olive sage */
+.voice-card.beard { border-left-color: #8a9e7a; }
+.voice-card.beard .voice-tagline { color: rgba(138, 158, 122, 0.7); }
+.voice-card.beard::after { background: #8a9e7a; }
 .voice-card.beard:hover {
-  border-left-color: #58d68d;
-  box-shadow: 0 4px 30px rgba(46, 204, 113, 0.12);
+  border-left-color: #9cb28c;
+  box-shadow: 0 4px 30px rgba(138, 158, 122, 0.14);
 }
 
-/* Rocky — warm orange */
-.voice-card.rocky { border-left-color: #f39c12; }
-.voice-card.rocky .voice-tagline { color: rgba(243, 156, 18, 0.65); }
-.voice-card.rocky::after { background: #f39c12; }
+/* Rocky — warm amber */
+.voice-card.rocky { border-left-color: #d4a040; }
+.voice-card.rocky .voice-tagline { color: rgba(212, 160, 64, 0.75); }
+.voice-card.rocky::after { background: #d4a040; }
 .voice-card.rocky:hover {
-  border-left-color: #f5b041;
-  box-shadow: 0 4px 30px rgba(243, 156, 18, 0.12);
+  border-left-color: #e0b055;
+  box-shadow: 0 4px 30px rgba(212, 160, 64, 0.18);
 }
 
-/* Sean — deep violet */
-.voice-card.sean { border-left-color: #9b59b6; }
-.voice-card.sean .voice-tagline { color: rgba(155, 89, 182, 0.65); }
-.voice-card.sean::after { background: #9b59b6; }
+/* Sean — dusty violet */
+.voice-card.sean { border-left-color: #9b85b0; }
+.voice-card.sean .voice-tagline { color: rgba(155, 133, 176, 0.7); }
+.voice-card.sean::after { background: #9b85b0; }
 .voice-card.sean:hover {
-  border-left-color: #af7ac5;
-  box-shadow: 0 4px 30px rgba(155, 89, 182, 0.12);
+  border-left-color: #ad98c2;
+  box-shadow: 0 4px 30px rgba(155, 133, 176, 0.14);
 }
 
 /* ── Section Surface Alternation ── */
@@ -775,6 +796,7 @@ tr:hover td { background: var(--bg-card-hover); }
   letter-spacing: -0.05em;
   line-height: 1.08;
   font-weight: 700;
+  text-shadow: 0 0 120px rgba(240, 192, 64, 0.15);
 }
 
 .home-tagline {
