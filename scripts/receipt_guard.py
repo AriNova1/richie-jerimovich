@@ -21,6 +21,7 @@ from typing import Any
 import yaml
 
 PUBLIC_RECEIPTS = Path("_data/agent_receipts.yml")
+REJECTIONS = Path("_data/agent_receipt_rejections.yml")
 PENDING_DIR = Path("_receipts_pending")
 DEFAULT_REMOTE = "origin/main"
 
@@ -223,10 +224,21 @@ def existing_receipt_commits(receipts: list[dict[str, Any]]) -> set[str]:
     return commits
 
 
+def rejected_receipt_commits(rejections: list[dict[str, Any]]) -> set[str]:
+    commits: set[str] = set()
+    for rejection in rejections:
+        commit = rejection.get("commit")
+        if commit:
+            commits.add(str(commit))
+    return commits
+
+
 def generate_pending(repo: Path, max_commits: int = 25, ref_range: str | None = None) -> list[Path]:
     repo = repo.resolve()
     receipts = load_yaml_file(repo / PUBLIC_RECEIPTS, [])
+    rejections = load_yaml_file(repo / REJECTIONS, [])
     existing_commits = existing_receipt_commits(receipts)
+    rejected_commits = rejected_receipt_commits(rejections)
     existing_ids = {r.get("id") for r in receipts}
     sort_orders = [int(r.get("sort_order", 0)) for r in receipts]
     pending_dir = repo / PENDING_DIR
@@ -237,6 +249,8 @@ def generate_pending(repo: Path, max_commits: int = 25, ref_range: str | None = 
     for ref in commits:
         short_sha = run_git(repo, "rev-parse", "--short=7", ref)
         if any(short_sha.startswith(c) or c.startswith(short_sha) for c in existing_commits):
+            continue
+        if any(short_sha.startswith(c) or c.startswith(short_sha) for c in rejected_commits):
             continue
         if not is_receiptable_commit(repo, ref):
             continue
@@ -368,6 +382,35 @@ def publish_candidate(repo: Path, candidate_path: Path) -> None:
     candidate_path.unlink()
 
 
+def reject_candidate(repo: Path, candidate_path: Path, reason: str) -> None:
+    if not candidate_path.is_absolute():
+        candidate_path = repo / candidate_path
+    candidate = load_yaml_file(candidate_path, {})
+    evidence = candidate.get("evidence") or []
+    commit = ""
+    for item in evidence:
+        commit = str(item.get("commit", ""))
+        if commit:
+            break
+    if not commit:
+        raise ValueError("candidate has no commit evidence to reject")
+    rejection = {
+        "commit": commit,
+        "rejected_date": dt.date.today().isoformat(),
+        "reason": reason,
+    }
+    text = flatten_strings(rejection)
+    if EMAIL_RE.search(text) or PHONE_RE.search(text) or LOCAL_PATH_RE.search(text) or SECRET_RE.search(text) or PRIVATE_URL_RE.search(text):
+        raise ValueError("rejection reason failed privacy gate")
+    rejections_path = repo / REJECTIONS
+    rejections = load_yaml_file(rejections_path, [])
+    if not any(str(item.get("commit")) == commit for item in rejections):
+        rejections.append(rejection)
+        rejections.sort(key=lambda r: (str(r.get("rejected_date", "")), str(r.get("commit", ""))), reverse=True)
+        write_yaml_file(rejections_path, rejections)
+    candidate_path.unlink()
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Generate and validate Agent Richie receipts.")
     parser.add_argument("--repo", default=".", help="Repository path")
@@ -377,6 +420,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--validate-public", action="store_true")
     parser.add_argument("--validate-pending", action="store_true")
     parser.add_argument("--publish-candidate", help="Move a pending candidate into _data/agent_receipts.yml")
+    parser.add_argument("--reject-candidate", help="Record a candidate commit as intentionally not public-worthy")
+    parser.add_argument("--rejection-reason", help="Public-safe reason for --reject-candidate")
     args = parser.parse_args(argv)
 
     repo = Path(args.repo).resolve()
@@ -394,6 +439,13 @@ def main(argv: list[str] | None = None) -> int:
     if args.publish_candidate:
         publish_candidate(repo, Path(args.publish_candidate))
         print(f"published {args.publish_candidate}")
+
+    if args.reject_candidate:
+        if not args.rejection_reason:
+            print("ERROR: --rejection-reason is required with --reject-candidate", file=sys.stderr)
+            return 1
+        reject_candidate(repo, Path(args.reject_candidate), args.rejection_reason)
+        print(f"rejected {args.reject_candidate}")
 
     if args.validate_public:
         all_errors.extend(validate_public(repo))

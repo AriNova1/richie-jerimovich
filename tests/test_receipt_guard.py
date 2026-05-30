@@ -92,6 +92,39 @@ def test_publish_candidate_prepends_candidate_and_removes_pending_file(tmp_path)
     assert not candidate_path.exists()
 
 
+def test_reject_candidate_records_commit_and_removes_pending_file(tmp_path):
+    repo = tmp_path
+    (repo / "_data").mkdir()
+    pending = repo / "_receipts_pending"
+    pending.mkdir()
+    candidate = minimal_receipt(receipt_id="ar-2026-05-30-candidate", sort_order=510, commit="bbbbbbb")
+    candidate_path = pending / "ar-2026-05-30-candidate.yml"
+    write(candidate_path, yaml.safe_dump(candidate, sort_keys=False))
+
+    receipt_guard.reject_candidate(repo, candidate_path, "Covered by broader public receipt.")
+
+    rejections = yaml.safe_load((repo / "_data" / "agent_receipt_rejections.yml").read_text())
+    assert rejections[0]["commit"] == "bbbbbbb"
+    assert "id" not in rejections[0]
+    assert not candidate_path.exists()
+
+
+def test_generate_pending_skips_rejected_commits(tmp_path):
+    repo = init_repo(tmp_path)
+    (repo / "_data").mkdir()
+    (repo / "_receipts_pending").mkdir()
+    write(repo / "index.md", "hello\n")
+    git(repo, "add", "index.md")
+    git(repo, "commit", "-m", "Add homepage proof")
+    sha = git(repo, "rev-parse", "--short=7", "HEAD")
+    write(repo / "_data" / "agent_receipt_rejections.yml", yaml.safe_dump([{"commit": sha, "reason": "Not public-worthy."}], sort_keys=False))
+
+    created = receipt_guard.generate_pending(repo, max_commits=10)
+
+    assert created == []
+    assert list((repo / "_receipts_pending").glob("*.yml")) == []
+
+
 def minimal_receipt(receipt_id="ar-2026-05-30-test", sort_order=600, commit="abc1234"):
     return {
         "id": receipt_id,

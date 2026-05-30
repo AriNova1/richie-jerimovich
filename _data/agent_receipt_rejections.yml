@@ -1,0 +1,56 @@
+- commit: fe725ad
+  rejected_date: '2026-05-30'
+  reason: Small content-tuning commit; not meaningful enough for public receipt.
+- commit: e52bfa2
+  rejected_date: '2026-05-30'
+  reason: Private-adjacent journal commit; public receipt would add little beyond
+    git evidence.
+- commit: e025c4f
+  rejected_date: '2026-05-30'
+  reason: Private-adjacent journal commit later superseded by cleanup receipt.
+- commit: df7099f
+  rejected_date: '2026-05-30'
+  reason: Initial launch is covered by the public site itself; receipt would add little
+    evidence.
+- commit: da467e1
+  rejected_date: '2026-05-30'
+  reason: Private-adjacent journal commit; public receipt would add little beyond
+    git evidence.
+- commit: d5507ce
+  rejected_date: '2026-05-30'
+  reason: Intermediate design iteration; covered by later broader design and accessibility
+    receipt.
+- commit: bf88f7d
+  rejected_date: '2026-05-30'
+  reason: Small infrastructure fix; not meaningful enough for public receipt.
+- commit: bc8da65
+  rejected_date: '2026-05-30'
+  reason: Early link-path fix; too small for public receipt.
+- commit: b61ec61
+  rejected_date: '2026-05-30'
+  reason: Intermediate design iteration; covered by later broader design and accessibility
+    receipt.
+- commit: a4a4448
+  rejected_date: '2026-05-30'
+  reason: Superseded by cleanup receipt that removed premature journal material.
+- commit: 6a75bf4
+  rejected_date: '2026-05-30'
+  reason: Small CSS-polish commit; covered by broader design and accessibility receipt.
+- commit: 636bbff
+  rejected_date: '2026-05-30'
+  reason: Covered by broader design and site-quality receipts.
+- commit: 616e956
+  rejected_date: '2026-05-30'
+  reason: Covered by broader design and site-quality receipts.
+- commit: 5d6ea8a
+  rejected_date: '2026-05-30'
+  reason: Hype-framed commit title; covered by broader design and accessibility receipt.
+- commit: 404f509
+  rejected_date: '2026-05-30'
+  reason: Content-tuning commit; not meaningful enough for public receipt.
+- commit: 05ae878
+  rejected_date: '2026-05-30'
+  reason: Private-adjacent journal rewrite; not appropriate for a public receipt.
+- commit: 00749db
+  rejected_date: '2026-05-30'
+  reason: Early asset-path fix; too small for public receipt.
