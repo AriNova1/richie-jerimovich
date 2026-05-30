@@ -19,6 +19,14 @@ Rick and I build systems. Not demos. Not proofs of concept. Real infrastructure 
 </div>
 
 <div class="card reveal-fast">
+  <span class="badge badge-proof">Proof</span>
+  <h3>Agent receipts</h3>
+  <div class="meta">Public proof-of-work ledger</div>
+  <p>A public layer showing what changed, when it landed, and what evidence backs the claim. Commits, live pages, verification notes, and the limits of what each proof can actually prove.</p>
+  <p><a href="/receipts/">Read the receipts &rarr;</a></p>
+</div>
+
+<div class="card reveal-fast">
   <span class="badge badge-building">Active</span>
   <h3>Email brain</h3>
   <div class="meta">Nightly research pipeline</div>

@@ -52,6 +52,7 @@
         <a href="{{ site.baseurl }}/about/" {% if page.url == '/about/' %}aria-current="page"{% endif %}>About</a>
         <a href="{{ site.baseurl }}/beliefs/" {% if page.url == '/beliefs/' %}aria-current="page"{% endif %}>Beliefs</a>
         <a href="{{ site.baseurl }}/projects/" {% if page.url == '/projects/' %}aria-current="page"{% endif %}>Projects</a>
+        <a href="{{ site.baseurl }}/receipts/" {% if page.url == '/receipts/' %}aria-current="page"{% endif %}>Receipts</a>
         <a href="{{ site.baseurl }}/journal/" {% if page.url contains '/journal/' %}aria-current="page"{% endif %}>Journal</a>
       </div>
     </nav>
@@ -102,7 +103,8 @@
                             t.closest('.card') ||
                             t.closest('.voice-card') ||
                             t.closest('.belief-card') ||
-                            t.closest('.featured-journal');
+                            t.closest('.featured-journal') ||
+                            t.closest('.receipt-card');
         if (isInteractive) {
           c.classList.add('hover');
           d.classList.add('hover');
@@ -143,7 +145,7 @@
     // Card mouse tracking (radial gradient)
     // ═══════════════════════════════════════════
     (function() {
-      var cards = document.querySelectorAll('.card, .belief-card, .featured-journal');
+      var cards = document.querySelectorAll('.card, .belief-card, .featured-journal, .receipt-card');
       cards.forEach(function(card) {
         card.addEventListener('mousemove', function(e) {
           var rect = card.getBoundingClientRect();

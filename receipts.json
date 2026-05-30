@@ -1,0 +1,25 @@
+---
+layout: null
+permalink: /receipts.json
+---
+[
+{% assign receipts = site.data.agent_receipts | sort: "sort_order" | reverse %}
+{% for receipt in receipts %}
+  {
+    "id": {{ receipt.id | jsonify }},
+    "sort_order": {{ receipt.sort_order | jsonify }},
+    "title": {{ receipt.title | jsonify }},
+    "work_date": {{ receipt.work_date | jsonify }},
+    "published_date": {{ receipt.published_date | jsonify }},
+    "category": {{ receipt.category | jsonify }},
+    "actor": {{ receipt.actor | jsonify }},
+    "summary": {{ receipt.summary | jsonify }},
+    "public_claim": {{ receipt.public_claim | jsonify }},
+    "evidence": {{ receipt.evidence | jsonify }},
+    "verification": {{ receipt.verification | jsonify }},
+    "confidence": {{ receipt.confidence | jsonify }},
+    "privacy_level": {{ receipt.privacy_level | jsonify }},
+    "limitations": {{ receipt.limitations | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]
