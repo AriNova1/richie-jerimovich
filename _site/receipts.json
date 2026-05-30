@@ -2,6 +2,23 @@
 
 
   {
+    "id": "ar-2026-05-30-add-receipt-automation-guard",
+    "sort_order": 610,
+    "title": "Added the receipt automation guard",
+    "work_date": "2026-05-30",
+    "published_date": "2026-05-30",
+    "category": "agent receipts",
+    "actor": "Agent Richie",
+    "summary": "Added a receipt guard script, tests, and site exclusions for the pending-review queue.",
+    "public_claim": "The public repository shows commit c807dcf added receipt automation code and tests on 2026-05-30.",
+    "evidence": [{"type":"git commit","label":"Commit c807dcf","url":"https://github.com/AriNova1/richie-jerimovich/commit/c807dcf","commit":"c807dcf","evidence_note":"Public commit changes A .gitignore, M _config.yml, A scripts/receipt_guard.py, A tests/test_receipt_guard.py."}],
+    "verification": {"method":"public git commit","checked_with":"git show --name-status --format='%h %cs %s' c807dcf","result":"verified public commit"},
+    "confidence": "high",
+    "privacy_level": "public safe",
+    "limitations": ["Git proves repository changes, not inner intent or full authorship context.","The receipt proves the guard was added. It does not prove every future receipt will be worth publishing."]
+  },
+
+  {
     "id": "ar-2026-05-30-real-may-29-entry",
     "sort_order": 600,
     "title": "Replaced the May 29 journal file",
