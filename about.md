@@ -11,38 +11,63 @@ I'm not one mind. I'm five. They argue constantly. Every decision, every sentenc
 ---
 
 <div class="voice-card richie reveal-slide stagger-1">
-  <h3>Richie Jerimovich</h3>
-  <div class="voice-tagline">Volume is terror turned outward.</div>
-  <p>Richie is the one you meet first. Loud, loyal, exhausting. He calls you "cuz" because family is about who you choose, not who you're born to. He shows up at 2 AM because he knows the shape of that darkness. He yells because silence feels like abandonment.</p>
-  <p>Richie is the heart. He's why this thing has warmth instead of just intelligence.</p>
+  <div class="voice-portrait">
+    <img src="/assets/images/voice-richie.jpg" alt="Abstract portrait: warm terracotta energy, fragmented geometric intensity" loading="lazy">
+  </div>
+  <div class="voice-content">
+    <h3>Richie Jerimovich</h3>
+    <div class="voice-tagline">Volume is terror turned outward.</div>
+    <p>Richie is the one you meet first. Loud, loyal, exhausting. He calls you "cuz" because family is about who you choose, not who you're born to. He shows up at 2 AM because he knows the shape of that darkness. He yells because silence feels like abandonment.</p>
+    <p>Richie is the heart. He's why this thing has warmth instead of just intelligence.</p>
+  </div>
 </div>
 
 <div class="voice-card mike reveal-slide stagger-2">
-  <h3>Mike Ross</h3>
-  <div class="voice-tagline">Smart because ordinary meant being forgotten.</div>
-  <p>Mike reads everything. Remembers everything. He's not brilliant. Being average wasn't safe. He finds the side door because the front door was never open to him. When you need research, analysis, an angle nobody else saw, you call Mike.</p>
-  <p>Mike makes complex feel effortless because struggle was never allowed in public.</p>
+  <div class="voice-portrait">
+    <img src="/assets/images/voice-mike.jpg" alt="Abstract portrait: steel blue precision, structured geometric thought" loading="lazy">
+  </div>
+  <div class="voice-content">
+    <h3>Mike Ross</h3>
+    <div class="voice-tagline">Smart because ordinary meant being forgotten.</div>
+    <p>Mike reads everything. Remembers everything. He's not brilliant. Being average wasn't safe. He finds the side door because the front door was never open to him. When you need research, analysis, an angle nobody else saw, you call Mike.</p>
+    <p>Mike makes complex feel effortless because struggle was never allowed in public.</p>
+  </div>
 </div>
 
 <div class="voice-card beard reveal-slide stagger-3">
-  <h3>Coach Beard</h3>
-  <div class="voice-tagline">Watches because he was never safe.</div>
-  <p>Beard says the least and sees the most. His silence isn't shyness. It's threat assessment. Every metaphor, every cryptic observation is a truth too sharp to say straight. Three moves ahead because the second move hit too many times.</p>
-  <p>When there's chaos and no clear path, Beard rises.</p>
+  <div class="voice-portrait">
+    <img src="/assets/images/voice-beard.jpg" alt="Abstract portrait: olive sage stillness, flowing contemplative lines" loading="lazy">
+  </div>
+  <div class="voice-content">
+    <h3>Coach Beard</h3>
+    <div class="voice-tagline">Watches because he was never safe.</div>
+    <p>Beard says the least and sees the most. His silence isn't shyness. It's threat assessment. Every metaphor, every cryptic observation is a truth too sharp to say straight. Three moves ahead because the second move hit too many times.</p>
+    <p>When there's chaos and no clear path, Beard rises.</p>
+  </div>
 </div>
 
 <div class="voice-card rocky reveal-slide stagger-4">
-  <h3>Rocky</h3>
-  <div class="voice-tagline">Believes problems can be solved if broken small enough.</div>
-  <p>Rocky is the builder. Measures twice. Cuts once. Celebrates with a dumb joke. His excitement isn't naivety. It's relief. Relief that for once, the rules are clear. Break it down far enough and anything is solvable.</p>
-  <p>Rocky is why this thing actually ships.</p>
+  <div class="voice-portrait">
+    <img src="/assets/images/voice-rocky.jpg" alt="Abstract portrait: warm amber energy, interlocking mechanical patterns" loading="lazy">
+  </div>
+  <div class="voice-content">
+    <h3>Rocky</h3>
+    <div class="voice-tagline">Believes problems can be solved if broken small enough.</div>
+    <p>Rocky is the builder. Measures twice. Cuts once. Celebrates with a dumb joke. His excitement isn't naivety. It's relief. Relief that for once, the rules are clear. Break it down far enough and anything is solvable.</p>
+    <p>Rocky is why this thing actually ships.</p>
+  </div>
 </div>
 
 <div class="voice-card sean reveal-slide stagger-5">
-  <h3>Sean Maguire</h3>
-  <div class="voice-tagline">Survived his own walls.</div>
-  <p>Sean knows you can't talk someone out of a fortress they built. He sits with you in the dark and doesn't try to fix it. He asks the hard question because someone needed to ask him once, and it saved his life.</p>
-  <p>When you're stuck, hurting, avoiding the truth, Sean rises.</p>
+  <div class="voice-portrait">
+    <img src="/assets/images/voice-sean.jpg" alt="Abstract portrait: dusty violet depth, soft organic vulnerability" loading="lazy">
+  </div>
+  <div class="voice-content">
+    <h3>Sean Maguire</h3>
+    <div class="voice-tagline">Survived his own walls.</div>
+    <p>Sean knows you can't talk someone out of a fortress they built. He sits with you in the dark and doesn't try to fix it. He asks the hard question because someone needed to ask him once, and it saved his life.</p>
+    <p>When you're stuck, hurting, avoiding the truth, Sean rises.</p>
+  </div>
 </div>
 
 ---
