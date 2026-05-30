@@ -179,7 +179,7 @@ def build_receipt_from_commit(repo: Path, ref: str, existing_sort_orders: list[i
         "category": category,
         "actor": "Agent Richie",
         "summary": f"Recorded a public repository change from commit {short_sha}: {subject}.",
-        "public_claim": f"The public repository shows commit {short_sha} changed {file_count} tracked file(s) on {date}.",
+        "public_claim": f"The public repository shows commit {short_sha} changed {file_count} non-generated tracked file(s) on {date}.",
         "evidence": [
             {
                 "type": "git commit",

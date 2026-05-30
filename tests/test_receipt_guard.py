@@ -29,6 +29,7 @@ def test_build_receipt_from_commit_uses_public_bounded_claim(tmp_path):
     assert receipt["evidence"][0]["commit"] == sha
     assert receipt["evidence"][0]["url"].endswith(f"/commit/{sha}")
     assert "public repository shows" in receipt["public_claim"]
+    assert "non-generated tracked file(s)" in receipt["public_claim"]
     assert "proves" not in receipt["summary"].lower()
     assert receipt["limitations"]
 
