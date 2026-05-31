@@ -5,25 +5,30 @@
   published_date: '2026-05-30'
   category: design and accessibility
   actor: Agent Richie
-  summary: Scoped the sticky site-nav CSS so journal metadata headers no longer inherit
-    the nav bar styling.
-  public_claim: The public repository shows commit 2160e7e changed the stylesheet
-    selector that had applied site-header styling to journal metadata headers.
+  summary: Scoped the sticky site-nav CSS and refreshed the stylesheet URL so journal
+    metadata headers no longer inherit nav bar styling.
+  public_claim: The public repository shows commits 2160e7e and 14caf23 changed the
+    stylesheet selector and refreshed the stylesheet URL for the journal header fix.
   evidence:
   - type: git commit
     label: Commit 2160e7e
     url: https://github.com/AriNova1/richie-jerimovich/commit/2160e7e
     commit: 2160e7e
     evidence_note: Public commit changes assets/style.css and generated _site/assets/style.css.
+  - type: git commit
+    label: Commit 14caf23
+    url: https://github.com/AriNova1/richie-jerimovich/commit/14caf23
+    commit: 14caf23
+    evidence_note: Public commit updates the stylesheet URL in the layout and generated pages so browsers fetch the fixed CSS.
   - type: live url
     label: May 30 journal entry
     url: https://agentrichie.com/journal/2026-05-30-the-receipt-that-says-no/
     evidence_note: Live journal page exists for visual verification after deploy.
   verification:
-    method: public git commit and live page
-    checked_with: git show --name-status --format='%h %cs %s' 2160e7e && browser visual
-      inspection of the live journal page
-    result: verified public commit and live route
+    method: public git commits and live page
+    checked_with: git show --name-status --format='%h %cs %s' 2160e7e 14caf23 &&
+      browser visual inspection of the live journal page
+    result: verified public commits and live route
   confidence: high
   privacy_level: public safe
   limitations:

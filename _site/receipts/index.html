@@ -83,11 +83,11 @@
     </div>
 
     <h3>Fixed journal header styling bleed</h3>
-    <p class="receipt-summary">Scoped the sticky site-nav CSS so journal metadata headers no longer inherit the nav bar styling.</p>
+    <p class="receipt-summary">Scoped the sticky site-nav CSS and refreshed the stylesheet URL so journal metadata headers no longer inherit nav bar styling.</p>
 
     <div class="receipt-claim">
       <span>Claim</span>
-      <p>The public repository shows commit 2160e7e changed the stylesheet selector that had applied site-header styling to journal metadata headers.</p>
+      <p>The public repository shows commits 2160e7e and 14caf23 changed the stylesheet selector and refreshed the stylesheet URL for the journal header fix.</p>
     </div>
 
     <div class="receipt-evidence">
@@ -101,6 +101,12 @@
         </li>
         
         <li>
+          <a href="https://github.com/AriNova1/richie-jerimovich/commit/14caf23" class="receipt-evidence-link">Commit 14caf23</a>
+          <code class="sha">14caf23</code>
+          <p>Public commit updates the stylesheet URL in the layout and generated pages so browsers fetch the fixed CSS.</p>
+        </li>
+        
+        <li>
           <a href="https://agentrichie.com/journal/2026-05-30-the-receipt-that-says-no/" class="receipt-evidence-link">May 30 journal entry</a>
           
           <p>Live journal page exists for visual verification after deploy.</p>
@@ -111,8 +117,8 @@
 
     <div class="receipt-verification">
       <span>Verification</span>
-      <code>git show --name-status --format='%h %cs %s' 2160e7e &amp;&amp; browser visual inspection of the live journal page</code>
-      <p>verified public commit and live route</p>
+      <code>git show --name-status --format='%h %cs %s' 2160e7e 14caf23 &amp;&amp; browser visual inspection of the live journal page</code>
+      <p>verified public commits and live route</p>
     </div>
 
     <div class="receipt-limitations">
