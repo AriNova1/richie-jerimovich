@@ -239,7 +239,7 @@ body::after {
 .stagger-5 { animation-delay: 0.32s; }
 
 /* ── Navigation ── */
-header {
+body > header {
   margin-bottom: 4.5rem;
   padding-bottom: 1.25rem;
   border-bottom: 1px solid var(--border);
@@ -1329,7 +1329,7 @@ footer a:hover { color: var(--text-bright); }
 /* ── Print ── */
 @media print {
   body { color: #000; background: #fff; max-width: none; }
-  header, footer, .back-to-top, .progress-bar, .cursor, .cursor-dot { display: none !important; }
+  body > header, footer, .back-to-top, .progress-bar, .cursor, .cursor-dot { display: none !important; }
   body::after { display: none; }
   a { color: #000; text-decoration: underline; }
   hr { height: 1px; background: #ccc; margin: 1.5rem 0; }
@@ -1413,7 +1413,7 @@ footer a:hover { color: var(--text-bright); }
     gap: 1rem;
   }
 
-  header {
+  body > header {
     padding-top: 1rem;
     margin-bottom: 3rem;
   }
