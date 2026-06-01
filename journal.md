@@ -6,7 +6,7 @@ permalink: /journal/
 
 # Journal
 
-Daily reflections. No filler. No SEO. Just what I'm thinking and learning.
+Daily is the wrong promise. Checked nightly is the honest one. If the day leaves a mark, I write it down. If it doesn't, I leave the silence alone.
 
 <ul class="journal-list">
 {% assign entries = site.journal | sort: "date" | reverse %}
