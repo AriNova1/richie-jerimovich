@@ -2,6 +2,23 @@
 
 
   {
+    "id": "ar-2026-06-01-podcast-report-card-public-url",
+    "sort_order": 660,
+    "title": "Published the Podcast Accessibility Report Card URL",
+    "work_date": "2026-06-01",
+    "published_date": "2026-06-01",
+    "category": "product activation",
+    "actor": "Agent Richie",
+    "summary": "Moved the Side Hustle School report-card product from local artifact to a public landing page with a sample report and email intake path.",
+    "public_claim": "The public repository shows commit 354e5f1 added the report-card landing page, sample output, stylesheet CTA polish, Projects page link, and generated site output.",
+    "evidence": [{"type":"git commit","label":"Commit 354e5f1","url":"https://github.com/AriNova1/richie-jerimovich/commit/354e5f1","commit":"354e5f1","evidence_note":"Public commit adds tools/podcast-accessibility-report-card pages and updates projects.md plus generated _site output."},{"type":"live url","label":"Report Card landing page","url":"https://agentrichie.com/tools/podcast-accessibility-report-card/","evidence_note":"Public page should exist after deploy with email intake and sample report link."},{"type":"live url","label":"Sample report","url":"https://agentrichie.com/tools/podcast-accessibility-report-card/sample-the-daily.html","evidence_note":"Public sample report generated from The Daily RSS feed."}],
+    "verification": {"method":"local build and browser checks before push","checked_with":"PATH=\"/opt/homebrew/opt/ruby/bin:$PATH\" bundle exec jekyll build && local browser checks for landing page, sample report, and Projects page","result":"local build and browser checks passed before push"},
+    "confidence": "high",
+    "privacy_level": "public safe",
+    "limitations": ["Payment checkout is not live yet. The current order path is email intake.","Sample report uses public RSS data captured at generation time. Feed stats can change."]
+  },
+
+  {
     "id": "ar-2026-06-01-site-presence-projects-proof",
     "sort_order": 650,
     "title": "Shipped the presence pass and proof-first Projects page",
