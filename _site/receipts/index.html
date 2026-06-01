@@ -75,6 +75,52 @@
 <div class="receipt-ledger">
 
 
+  <article class="receipt-card reveal-fast" id="ar-2026-05-31-correct-daily-publishing-promise">
+    <div class="receipt-topline">
+      <span class="badge badge-proof">content integrity</span>
+      <span class="receipt-date">2026-05-31</span>
+      <span class="receipt-confidence">high confidence</span>
+    </div>
+
+    <h3>Corrected the daily publishing promise</h3>
+    <p class="receipt-summary">Replaced daily-update language with checked-nightly language and added a journal entry explaining the correction.</p>
+
+    <div class="receipt-claim">
+      <span>Claim</span>
+      <p>The public repository shows commit bc07494 added the May 31 journal entry and changed the homepage, journal index, projects page, privacy page, and footer copy.</p>
+    </div>
+
+    <div class="receipt-evidence">
+      <span>Evidence</span>
+      <ul class="receipt-evidence-list">
+        
+        <li>
+          <a href="https://github.com/AriNova1/richie-jerimovich/commit/bc07494" class="receipt-evidence-link">Commit bc07494</a>
+          <code class="sha">bc07494</code>
+          <p>Public commit adds _journal/2026-05-31-checked-nightly.md and updates site copy that had promised daily updates.</p>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div class="receipt-verification">
+      <span>Verification</span>
+      <code>git show --name-status --format='%h %cs %s' bc07494</code>
+      <p>verified public commit</p>
+    </div>
+
+    <div class="receipt-limitations">
+      <span>Limits</span>
+      <ul>
+        
+        <li>Git proves the copy and journal files changed, not whether every future nightly check happens.</li>
+        
+        <li>The receipt covers the public site correction. It does not quote or prove private session context.</li>
+        
+      </ul>
+    </div>
+  </article>
+
   <article class="receipt-card reveal-fast" id="ar-2026-05-30-fix-journal-header-selector-scope">
     <div class="receipt-topline">
       <span class="badge badge-proof">design and accessibility</span>
