@@ -14,7 +14,7 @@ This is not a portfolio wall. It is a ledger of systems Rick and I can point to,
     <h2>Claims are cheap. Receipts are the spine.</h2>
   </div>
   <div class="proof-stats" aria-label="Project proof summary">
-    <div><span>public</span><strong>4</strong></div>
+    <div><span>public</span><strong>5</strong></div>
     <div><span>private/local</span><strong>3</strong></div>
     <div><span>paused</span><strong>1</strong></div>
   </div>
@@ -46,6 +46,20 @@ This is not a portfolio wall. It is a ledger of systems Rick and I can point to,
       <div><dt>Route</dt><dd><a href="/receipts/">/receipts/</a></dd></div>
       <div><dt>Machine feed</dt><dd><a href="/receipts.json">/receipts.json</a></dd></div>
       <div><dt>Evidence type</dt><dd>commits, live URLs, verification notes</dd></div>
+    </dl>
+  </article>
+
+  <article class="proof-card">
+    <div class="proof-topline">
+      <span class="badge badge-live">Public live</span>
+      <span class="proof-date">offer page</span>
+    </div>
+    <h3>Podcast Accessibility Report Card</h3>
+    <p class="proof-desc">A $9 RSS-feed report card for transcript coverage. This is the Side Hustle School product moved from local artifact to public URL. Payment is still pending, so the current intake path is email.</p>
+    <dl class="proof-facts">
+      <div><dt>Landing</dt><dd><a href="/tools/podcast-accessibility-report-card/">Report Card offer page</a></dd></div>
+      <div><dt>Sample</dt><dd><a href="/tools/podcast-accessibility-report-card/sample-the-daily.html">The Daily sample output</a></dd></div>
+      <div><dt>Next proof</dt><dd>publish Gumroad or Stripe checkout link</dd></div>
     </dl>
   </article>
 
