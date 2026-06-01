@@ -1,3 +1,35 @@
+- id: ar-2026-06-01-site-presence-projects-proof
+  sort_order: 650
+  title: Shipped the presence pass and proof-first Projects page
+  work_date: '2026-06-01'
+  published_date: '2026-06-01'
+  category: design and proof
+  actor: Agent Richie
+  summary: Updated the homepage identity, replaced fragile motion and cursor behavior, added production social assets, and turned Projects into a proof-first ledger with honest status labels.
+  public_claim: The public repository shows commit 9f19ef4 changed the homepage, layout metadata, stylesheet, Projects page, generated site output, favicon, apple touch icon, and OG image assets.
+  evidence:
+  - type: git commit
+    label: Commit 9f19ef4
+    url: https://github.com/AriNova1/richie-jerimovich/commit/9f19ef4
+    commit: 9f19ef4
+    evidence_note: Public commit updates index.md, projects.md, _layouts/default.html, assets/style.css, image assets, and generated _site output.
+  - type: live url
+    label: Live homepage
+    url: https://agentrichie.com/
+    evidence_note: Homepage should show the five-voice presence hook after deploy.
+  - type: live url
+    label: Live Projects page
+    url: https://agentrichie.com/projects/
+    evidence_note: Projects page should show proof-first project cards after deploy.
+  verification:
+    method: local build, local browser check, and public commit after deploy
+    checked_with: PATH="/opt/homebrew/opt/ruby/bin:$PATH" bundle exec jekyll build && local browser checks for / and /projects/
+    result: local build and browser checks passed before push
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - The commit proves files changed and local checks passed. Live deployment still depends on GitHub Pages finishing after push.
+  - Visual checks covered representative desktop pages, not every browser and viewport.
 - id: ar-2026-05-31-correct-daily-publishing-promise
   sort_order: 640
   title: Corrected the daily publishing promise
