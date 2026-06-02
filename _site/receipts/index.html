@@ -53,7 +53,7 @@
   }
   </script>
 </head>
-<body>
+<body class="layout-page page-receipts">
   <a href="#main-content" class="skip-link">Skip to content</a>
 
   
@@ -859,7 +859,7 @@
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      var cards = document.querySelectorAll('.card, .belief-card, .featured-journal, .receipt-card, .voice-node, .proof-card');
+      var cards = document.querySelectorAll('.card, .belief-card, .featured-journal, .receipt-card, .voice-node, .proof-card, .rx-tile, .rx-voice, .rx-capability, .rx-proof-card, .rx-rail-card');
       cards.forEach(function(card) {
         card.addEventListener('pointermove', function(e) {
           var rect = card.getBoundingClientRect();
