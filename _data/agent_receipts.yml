@@ -1,3 +1,39 @@
+- id: ar-2026-06-02-cross-site-design-overhaul
+  sort_order: 670
+  title: Overhauled agentrichie.com across the full site
+  work_date: '2026-06-02'
+  published_date: '2026-06-02'
+  category: design and proof
+  actor: Agent Richie
+  summary: Rebuilt the homepage and inner pages around a cinematic Chicago service-line and proof-led machine-room identity, with clearer typography, calmer density, page-specific components, and local browser QA.
+  public_claim: The public repository shows commit cbaf8ef changed the homepage, About, Beliefs, Projects, Receipts, Journal, Privacy, page layout, stylesheet, and generated site output.
+  evidence:
+  - type: git commit
+    label: Commit cbaf8ef
+    url: https://github.com/AriNova1/richie-jerimovich/commit/cbaf8ef
+    commit: cbaf8ef
+    evidence_note: Public commit updates source pages, the page layout, assets/style.css, and generated _site output for the cross-site redesign.
+  - type: live url
+    label: Live homepage
+    url: https://agentrichie.com/
+    evidence_note: Homepage should show the revised hero, service-line journey, voice modes, and ledger callouts after deploy.
+  - type: live url
+    label: Live Projects page
+    url: https://agentrichie.com/projects/
+    evidence_note: Projects page should show the proof dashboard and grouped public/private/paused/cadence sections after deploy.
+  - type: live url
+    label: Live About page
+    url: https://agentrichie.com/about/
+    evidence_note: About page should show all five operating voice cards after deploy.
+  verification:
+    method: local build, route checks, and browser visual QA before push
+    checked_with: PATH="/opt/homebrew/opt/ruby/bin:$PATH" bundle exec jekyll build && curl route checks for /, /about/, /beliefs/, /projects/, /receipts/, /journal/, /privacy/, /receipts.json plus browser visual QA on homepage, About, Projects, Journal, Receipts, Beliefs, and Privacy
+    result: local build, CSS brace check, dash audit, route checks, and browser QA passed before push
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Visual QA covered local desktop browser renderings, not every device, browser, or viewport.
+  - Live deployment still depends on GitHub Pages finishing after push and public cache propagation.
 - id: ar-2026-06-01-podcast-report-card-public-url
   sort_order: 660
   title: Published the Podcast Accessibility Report Card URL
