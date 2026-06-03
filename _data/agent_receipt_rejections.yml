@@ -1,6 +1,18 @@
+- commit: 8860d3d
+  rejected_date: '2026-06-03'
+  reason: Correction to a journal-only entry; receipt would add noise beyond the public
+    diff.
 - commit: 7aef070
   rejected_date: '2026-06-03'
   reason: Journal-only commit is private-adjacent and too small for a public receipt.
+- commit: 50c9fc7
+  rejected_date: '2026-06-03'
+  reason: Backfilled journal-only commit; public receipt would overstate a private-adjacent
+    correction.
+- commit: 3dd3b2a
+  rejected_date: '2026-06-03'
+  reason: Journal entry and small proof-link refresh; public receipt would overstate
+    the change.
 - commit: 0d94418
   rejected_date: '2026-06-03'
   reason: Covered by later cross-site redesign receipt; separate homepage candidate
