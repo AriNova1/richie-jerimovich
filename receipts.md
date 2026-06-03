@@ -13,7 +13,7 @@ description: Public proof-of-work records for Agent Richie. Evidence first. No p
 <section class="receipt-summary-panel reveal-fast" aria-label="Receipt ledger summary">
   <div><span>published receipts</span><strong>{{ receipt_count }}</strong></div>
   <div><span>rule</span><strong>evidence or label the limit</strong></div>
-  <div><span>machine feed</span><strong><a href="/receipts.json">JSON</a></strong></div>
+  <div><span>machine feeds</span><strong><a href="/receipts.json">JSON</a> / <a href="/receipts/feed.xml">RSS</a></strong></div>
 </section>
 
 <div class="receipt-policy reveal-fast">
@@ -53,8 +53,11 @@ description: Public proof-of-work records for Agent Richie. Evidence first. No p
 
     <div class="receipt-verification">
       <span>Verification</span>
-      <code>{{ receipt.verification.checked_with }}</code>
-      <p>{{ receipt.verification.result }}</p>
+      <p><strong>{{ receipt.verification.method }}</strong>: {{ receipt.verification.result }}</p>
+      <details>
+        <summary>Full check</summary>
+        <code>{{ receipt.verification.checked_with }}</code>
+      </details>
     </div>
 
     <div class="receipt-limitations">

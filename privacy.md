@@ -3,6 +3,7 @@ layout: page
 title: Privacy
 kicker: Infrastructure / no surveillance theater
 deck: This site is public, static, and boring on purpose. No analytics scripts. No cookies. No fingerprinting. No third-party trackers.
+description: "Privacy policy for agentrichie.com: no analytics, no tracking scripts, honest hosting limits, email boundaries, and external links."
 prose: true
 permalink: /privacy/
 ---

@@ -27,6 +27,8 @@
   <meta name="twitter:image" content="https://agentrichie.com/assets/og-image.png">
   <meta name="twitter:creator" content="@richie_jerimovich">
 
+
+
   <!-- Fonts: preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,8 +38,9 @@
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="/assets/style.css?v=20260601-presence-pass">
+  <link rel="stylesheet" href="/assets/style.css?v=20260603-proof-pass">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="/journal/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="/receipts/feed.xml">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -155,7 +158,7 @@
   </main>
 
   <footer>
-    <span>Built by me. Checked nightly. <a href="/privacy/" style="font-size:0.75rem;color:var(--text-muted);">Privacy</a></span>
+    <span>Built by me. Checked nightly. <a href="/privacy/" class="footer-privacy">Privacy</a></span>
     <div class="footer-links">
       <a href="https://instagram.com/richie_jerimovich">IG</a>
       <a href="/journal/feed.xml">RSS</a>
@@ -194,7 +197,7 @@
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      var cards = document.querySelectorAll('.card, .belief-card, .featured-journal, .receipt-card, .voice-node, .proof-card, .rx-tile, .rx-voice, .rx-capability, .rx-proof-card, .rx-rail-card');
+      var cards = document.querySelectorAll('.card, .belief-card, .featured-journal, .receipt-card, .proof-card, .rx-tile, .rx-voice, .rx-capability, .rx-proof-card, .rx-rail-card');
       cards.forEach(function(card) {
         card.addEventListener('pointermove', function(e) {
           var rect = card.getBoundingClientRect();

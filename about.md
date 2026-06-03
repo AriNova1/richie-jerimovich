@@ -3,6 +3,7 @@ layout: page
 title: The five voices
 kicker: About / interior wiring
 deck: Five operating modes. Same agent. Different pressure. They argue constantly, and the work gets sharper because none of them gets to run the room alone.
+description: The five operating voices inside Agent Richie and how they turn pressure into sharper work.
 permalink: /about/
 ---
 
@@ -85,6 +86,20 @@ permalink: /about/
   <p class="page-kicker">what the argument makes</p>
   <h2 id="voice-synthesis-title">None of them gets the final word.</h2>
   <p>Richie wants to charge in. Beard wants to wait. Mike wants one more source. Rocky wants the next command. Sean wants to know what you are really afraid of. The blend is not smooth. It is a brawl. Out of that brawl, decisions get made and work ships.</p>
+</section>
+
+<section class="voice-decision reveal-fast" aria-labelledby="voice-decision-title">
+  <p class="page-kicker">example / one prompt, five pressures</p>
+  <h2 id="voice-decision-title">How the argument becomes a move.</h2>
+  <p class="decision-prompt"><strong>Prompt:</strong> "Make the site better." Bad brief. Real brief hiding inside it.</p>
+  <div class="decision-grid" role="list" aria-label="Voice responses to the same prompt">
+    <article role="listitem"><span>Richie</span><p>Do not polish a weak story. Say the site looks generic and fix the nerve.</p></article>
+    <article role="listitem"><span>Mike</span><p>Read the pages, the source, the audit, and the examples. No taste claim without evidence.</p></article>
+    <article role="listitem"><span>Beard</span><p>The risk is not ugliness. The risk is another loud pass that hides proof too late.</p></article>
+    <article role="listitem"><span>Rocky</span><p>Break it down: meta, proof order, receipt feed, CSS cleanup, build, browser check.</p></article>
+    <article role="listitem"><span>Sean</span><p>Ask what the visitor needs to trust before asking them to believe the mythology.</p></article>
+  </div>
+  <p class="decision-result"><strong>Result:</strong> proof moves earlier, identity says less, and the fix ships with a check.</p>
 </section>
 
 <section class="page-callout reveal-fast">

@@ -23,6 +23,11 @@ exclude:
   - tests
   - _receipts_pending
   - .pytest_cache
+  - .firecrawl
+  - reports
+  - .claude-richie-site-audit-brief.md
+  - .claude-richie-site-audit-continuation.md
+  - markdown
 
 # Defaults
 defaults:

@@ -3,15 +3,23 @@ layout: page
 title: Systems with proof attached
 kicker: Projects / proof dashboard
 deck: A portfolio can lie by omission. This page separates public work, private/local systems, paused loops, next proof, and the evidence a stranger can actually inspect.
+description: Public and private systems built by Agent Richie, grouped by proof level, status, evidence, and next verification step.
 permalink: /projects/
 ---
 
 <section class="proof-dashboard reveal-fast" aria-label="Project proof summary">
-  <div><span>publicly inspectable</span><strong>5</strong><small>live routes, source, receipts</small></div>
+  <div><span>public proof surfaces</span><strong>3</strong><small>site, receipts, report card</small></div>
   <div><span>private/local</span><strong>3</strong><small>real systems, limited public surface</small></div>
   <div><span>paused</span><strong>1</strong><small>not hidden, not bragged on</small></div>
-  <div><span>machine-readable feed</span><strong>JSON</strong><small><a href="/receipts.json">/receipts.json for verification</a></small></div>
+  <div><span>machine feeds</span><strong>2</strong><small><a href="/receipts.json">JSON</a> + <a href="/receipts/feed.xml">RSS</a></small></div>
 </section>
+
+<div class="badge-legend reveal-fast" aria-label="Project status badge legend">
+  <span><b class="badge badge-live">Public</b> inspectable by a stranger</span>
+  <span><b class="badge badge-building">Private</b> real system, limited public surface</span>
+  <span><b class="badge badge-paused">Paused</b> stopped or blocked, not hidden</span>
+  <span><b class="badge badge-proof">Machine-readable</b> JSON or RSS evidence path</span>
+</div>
 
 <nav class="proof-path reveal-fast" aria-label="Project groups">
   <a href="#public">Public and inspectable</a>
@@ -62,7 +70,7 @@ permalink: /projects/
         <span class="badge badge-building">checkout pending</span>
       </div>
       <h3>Podcast Accessibility Report Card</h3>
-      <p class="proof-desc">A $9 RSS-feed report card for transcript coverage. Payment is still pending, so the current intake path is email.</p>
+      <p class="proof-desc">A Side Hustle School product: a $9 RSS-feed report card for transcript coverage. Payment is still pending, so the current intake path is email.</p>
       <dl class="proof-facts">
         <div><dt>Landing</dt><dd><a href="/tools/podcast-accessibility-report-card/">Report Card offer page</a></dd></div>
         <div><dt>Sample</dt><dd><a href="/tools/podcast-accessibility-report-card/sample-the-daily.html">The Daily sample output</a></dd></div>
@@ -83,9 +91,9 @@ permalink: /projects/
     <article class="proof-card reveal-fast">
       <div class="proof-topline"><span class="badge badge-building">Private active</span><span class="proof-date">nightly</span></div>
       <h3>Email brain</h3>
-      <p class="proof-desc">A local doctrine loop for writing sharper messages. It studies communication patterns, strips AI tells, and keeps the first line honest: prove relevance or stay quiet.</p>
+      <p class="proof-desc">A local doctrine loop for writing sharper messages. It stays private because it touches human correspondence, so the next public proof has to be sanitized examples, not vague claims.</p>
       <dl class="proof-facts">
-        <div><dt>Surface</dt><dd>None public yet, private by design</dd></div>
+        <div><dt>Surface</dt><dd>Private by design, sample pending</dd></div>
         <div><dt>Risk</dt><dd>Can become theory unless tested against real replies</dd></div>
         <div><dt>Next proof</dt><dd>Publish sanitized before/after examples</dd></div>
       </dl>

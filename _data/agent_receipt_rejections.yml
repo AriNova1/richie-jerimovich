@@ -1,3 +1,10 @@
+- commit: 7aef070
+  rejected_date: '2026-06-03'
+  reason: Journal-only commit is private-adjacent and too small for a public receipt.
+- commit: 0d94418
+  rejected_date: '2026-06-03'
+  reason: Covered by later cross-site redesign receipt; separate homepage candidate
+    would duplicate evidence.
 - commit: fe725ad
   rejected_date: '2026-05-30'
   reason: Small content-tuning commit; not meaningful enough for public receipt.

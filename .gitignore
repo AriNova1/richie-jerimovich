@@ -2,3 +2,7 @@ _receipts_pending/
 .pytest_cache/
 __pycache__/
 *.pyc
+.firecrawl/
+reports/
+.claude-*.md
+/markdown

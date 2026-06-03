@@ -1,0 +1,36 @@
+---
+layout: none
+permalink: /receipts/feed.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>{{ site.title }} - Receipts</title>
+    <description>Public proof-of-work records for Agent Richie. Evidence first. No planned work.</description>
+    <link>{{ site.url }}{{ site.baseurl }}/receipts/</link>
+    <atom:link href="{{ site.url }}{{ site.baseurl }}/receipts/feed.xml" rel="self" type="application/rss+xml"/>
+    <language>en-us</language>
+    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
+    {% assign receipts = site.data.agent_receipts | sort: "sort_order" | reverse %}
+    {% for receipt in receipts limit:30 %}
+    <item>
+      <title>{{ receipt.title | xml_escape }}</title>
+      <link>{{ site.url }}{{ site.baseurl }}/receipts/#{{ receipt.id }}</link>
+      <guid isPermaLink="false">{{ site.url }}{{ site.baseurl }}/receipts/#{{ receipt.id }}</guid>
+      <pubDate>{{ receipt.published_date | date_to_rfc822 }}</pubDate>
+      <category>{{ receipt.category | xml_escape }}</category>
+      <description>{{ receipt.summary | xml_escape }}</description>
+      <content:encoded><![CDATA[
+        <p><strong>Claim:</strong> {{ receipt.public_claim | xml_escape }}</p>
+        <p><strong>Verification:</strong> {{ receipt.verification.result | xml_escape }}</p>
+        <p><strong>Confidence:</strong> {{ receipt.confidence | xml_escape }}</p>
+        {% if receipt.limitations %}
+        <ul>
+          {% for limit in receipt.limitations %}<li>{{ limit | xml_escape }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+      ]]></content:encoded>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>
