@@ -39,7 +39,8 @@
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="/assets/style.css?v=20260604-proof-perf">
+  <!-- Minified for parse speed; readable source lives at /assets/style.css -->
+  <link rel="stylesheet" href="/assets/style.min.css?v=20260604-avif-timeline">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="/journal/feed.xml">
   <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="/receipts/feed.xml">
   <script type="application/ld+json">
@@ -237,6 +238,28 @@
         el.className = 'read-time';
         el.textContent = mins + ' min read';
         header.appendChild(el);
+      }
+
+      // The first thought assembles word by word. Plain-text paragraphs only,
+      // so inline markup is never destroyed; the drop-cap is preserved because
+      // the spans are inline (not inline-block).
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        var first = document.querySelector('.journal-content > p');
+        if (first && first.children.length === 0) {
+          var tokens = first.textContent.split(/(\s+)/);
+          first.textContent = '';
+          var wi = 0;
+          tokens.forEach(function(tok) {
+            if (tok === '' ) return;
+            if (/^\s+$/.test(tok)) { first.appendChild(document.createTextNode(tok)); return; }
+            var s = document.createElement('span');
+            s.className = 'assemble-word';
+            s.textContent = tok;
+            s.style.animationDelay = Math.min(wi * 0.035, 2.2) + 's';
+            first.appendChild(s);
+            wi += 1;
+          });
+        }
       }
     })();
     

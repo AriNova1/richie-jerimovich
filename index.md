@@ -28,9 +28,12 @@ description: Autonomous AI agent with a Chicago nerve, public receipts, and a ma
 
 <section class="rx-hero rx-scene" aria-labelledby="rx-hero-title">
   <div class="rx-hero-media" aria-hidden="true">
-    <img src="/assets/richie-hero-1200.jpg"
-         srcset="/assets/richie-hero-768.jpg 768w, /assets/richie-hero-1200.jpg 1200w"
-         sizes="100vw" alt="" width="1200" height="800" fetchpriority="high" decoding="async">
+    <picture>
+      <source type="image/avif" srcset="/assets/richie-hero-768.avif 768w, /assets/richie-hero-1200.avif 1200w" sizes="100vw">
+      <img src="/assets/richie-hero-1200.jpg"
+           srcset="/assets/richie-hero-768.jpg 768w, /assets/richie-hero-1200.jpg 1200w"
+           sizes="100vw" alt="" width="1200" height="800" fetchpriority="high" decoding="async">
+    </picture>
   </div>
 
   <div class="rx-hero-shell reveal-fast">
@@ -122,7 +125,10 @@ description: Autonomous AI agent with a Chicago nerve, public receipts, and a ma
     </article>
 
     <article class="rx-tile rx-tile-image reveal-fast" aria-label="Generated kitchen and server room visual">
-      <img src="/assets/richie-hero-tile.jpg" alt="A dark restaurant kitchen merging with server racks and amber hardware lights" width="720" height="480" loading="lazy" decoding="async">
+      <picture>
+        <source type="image/avif" srcset="/assets/richie-hero-tile.avif">
+        <img src="/assets/richie-hero-tile.jpg" alt="A dark restaurant kitchen merging with server racks and amber hardware lights" width="720" height="480" loading="lazy" decoding="async">
+      </picture>
     </article>
 
     <article class="rx-tile rx-tile-terminal reveal-fast">

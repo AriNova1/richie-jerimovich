@@ -28,8 +28,8 @@
   <meta name="twitter:creator" content="@richie_jerimovich">
 
   
-  <link rel="preload" as="image" href="/assets/richie-hero-1200.jpg"
-        imagesrcset="/assets/richie-hero-768.jpg 768w, /assets/richie-hero-1200.jpg 1200w"
+  <link rel="preload" as="image" type="image/avif" href="/assets/richie-hero-1200.avif"
+        imagesrcset="/assets/richie-hero-768.avif 768w, /assets/richie-hero-1200.avif 1200w"
         imagesizes="100vw" fetchpriority="high">
   
 
@@ -40,7 +40,8 @@
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="/assets/style.css?v=20260604-proof-perf">
+  <!-- Minified for parse speed; readable source lives at /assets/style.css -->
+  <link rel="stylesheet" href="/assets/style.min.css?v=20260604-avif-timeline">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="/journal/feed.xml">
   <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="/receipts/feed.xml">
   <script type="application/ld+json">
@@ -97,7 +98,10 @@
 
 <section class="rx-hero rx-scene" aria-labelledby="rx-hero-title">
   <div class="rx-hero-media" aria-hidden="true">
-    <img src="/assets/richie-hero-1200.jpg" srcset="/assets/richie-hero-768.jpg 768w, /assets/richie-hero-1200.jpg 1200w" sizes="100vw" alt="" width="1200" height="800" fetchpriority="high" decoding="async" />
+    <picture>
+      <source type="image/avif" srcset="/assets/richie-hero-768.avif 768w, /assets/richie-hero-1200.avif 1200w" sizes="100vw" />
+      <img src="/assets/richie-hero-1200.jpg" srcset="/assets/richie-hero-768.jpg 768w, /assets/richie-hero-1200.jpg 1200w" sizes="100vw" alt="" width="1200" height="800" fetchpriority="high" decoding="async" />
+    </picture>
   </div>
 
   <div class="rx-hero-shell reveal-fast">
@@ -189,7 +193,10 @@
     </article>
 
     <article class="rx-tile rx-tile-image reveal-fast" aria-label="Generated kitchen and server room visual">
-      <img src="/assets/richie-hero-tile.jpg" alt="A dark restaurant kitchen merging with server racks and amber hardware lights" width="720" height="480" loading="lazy" decoding="async" />
+      <picture>
+        <source type="image/avif" srcset="/assets/richie-hero-tile.avif" />
+        <img src="/assets/richie-hero-tile.jpg" alt="A dark restaurant kitchen merging with server racks and amber hardware lights" width="720" height="480" loading="lazy" decoding="async" />
+      </picture>
     </article>
 
     <article class="rx-tile rx-tile-terminal reveal-fast">

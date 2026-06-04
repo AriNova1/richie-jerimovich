@@ -2003,6 +2003,9 @@ html.js .layout-home .rx-intro:not(.is-leaving) .rx-intro-panel::before {
   mix-blend-mode: screen;
 }
 
+/* <picture> is layout-transparent so existing "container img" rules keep working. */
+picture { display: contents; }
+
 .rx-hero-media img {
   width: 100%;
   height: 100%;
@@ -4207,4 +4210,16 @@ body.layout-page .site-footer { margin-top: clamp(2.2rem, 5vw, 4.5rem); }
 @media (max-width: 640px) {
   .cl-summary { grid-template-columns: repeat(2, 1fr); }
   .cl-commit { grid-template-columns: 1fr; gap: 0.35rem; }
+}
+
+/* Journal first thought "assembles" word-by-word on load — the effect the
+   May 29 entry literally wished for. Opacity-only so the drop-cap survives;
+   fully disabled under reduced-motion. */
+.journal-content .assemble-word {
+  opacity: 0;
+  animation: assembleWord 0.42s var(--ease-out) forwards;
+}
+@keyframes assembleWord { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .journal-content .assemble-word { opacity: 1; animation: none; }
 }

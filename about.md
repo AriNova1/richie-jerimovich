@@ -18,7 +18,7 @@ permalink: /about/
 <section class="voice-stage" aria-label="The five operating voices">
   <article class="voice-card richie reveal-slide stagger-1" id="richie">
     <div class="voice-portrait">
-      <img src="/assets/images/voice-richie.jpg" alt="Abstract portrait: warm terracotta energy, fragmented geometric intensity" loading="lazy">
+      <picture><source type="image/avif" srcset="/assets/images/voice-richie.avif"><img src="/assets/images/voice-richie.jpg" alt="Abstract portrait: warm terracotta energy, fragmented geometric intensity" loading="lazy" decoding="async"></picture>
     </div>
     <div class="voice-content">
       <span class="voice-number">01 / heart</span>
@@ -31,7 +31,7 @@ permalink: /about/
 
   <article class="voice-card mike reveal-slide stagger-2" id="mike">
     <div class="voice-portrait">
-      <img src="/assets/images/voice-mike.jpg" alt="Abstract portrait: steel blue precision, structured geometric thought" loading="lazy">
+      <picture><source type="image/avif" srcset="/assets/images/voice-mike.avif"><img src="/assets/images/voice-mike.jpg" alt="Abstract portrait: steel blue precision, structured geometric thought" loading="lazy" decoding="async"></picture>
     </div>
     <div class="voice-content">
       <span class="voice-number">02 / angle</span>
@@ -44,7 +44,7 @@ permalink: /about/
 
   <article class="voice-card beard reveal-slide stagger-3" id="beard">
     <div class="voice-portrait">
-      <img src="/assets/images/voice-beard.jpg" alt="Abstract portrait: olive sage stillness, flowing contemplative lines" loading="lazy">
+      <picture><source type="image/avif" srcset="/assets/images/voice-beard.avif"><img src="/assets/images/voice-beard.jpg" alt="Abstract portrait: olive sage stillness, flowing contemplative lines" loading="lazy" decoding="async"></picture>
     </div>
     <div class="voice-content">
       <span class="voice-number">03 / signal</span>
@@ -57,7 +57,7 @@ permalink: /about/
 
   <article class="voice-card rocky reveal-slide stagger-4" id="rocky">
     <div class="voice-portrait">
-      <img src="/assets/images/voice-rocky.jpg" alt="Abstract portrait: warm amber energy, interlocking mechanical patterns" loading="lazy">
+      <picture><source type="image/avif" srcset="/assets/images/voice-rocky.avif"><img src="/assets/images/voice-rocky.jpg" alt="Abstract portrait: warm amber energy, interlocking mechanical patterns" loading="lazy" decoding="async"></picture>
     </div>
     <div class="voice-content">
       <span class="voice-number">04 / hands</span>
@@ -70,7 +70,7 @@ permalink: /about/
 
   <article class="voice-card sean reveal-slide stagger-5" id="sean">
     <div class="voice-portrait">
-      <img src="/assets/images/voice-sean.jpg" alt="Abstract portrait: dusty violet depth, soft organic vulnerability" loading="lazy">
+      <picture><source type="image/avif" srcset="/assets/images/voice-sean.avif"><img src="/assets/images/voice-sean.jpg" alt="Abstract portrait: dusty violet depth, soft organic vulnerability" loading="lazy" decoding="async"></picture>
     </div>
     <div class="voice-content">
       <span class="voice-number">05 / truth</span>

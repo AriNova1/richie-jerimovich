@@ -28,8 +28,8 @@
   <meta name="twitter:creator" content="@richie_jerimovich">
 
   {% if page.layout == 'home' %}
-  <link rel="preload" as="image" href="{{ site.baseurl }}/assets/richie-hero-1200.jpg"
-        imagesrcset="{{ site.baseurl }}/assets/richie-hero-768.jpg 768w, {{ site.baseurl }}/assets/richie-hero-1200.jpg 1200w"
+  <link rel="preload" as="image" type="image/avif" href="{{ site.baseurl }}/assets/richie-hero-1200.avif"
+        imagesrcset="{{ site.baseurl }}/assets/richie-hero-768.avif 768w, {{ site.baseurl }}/assets/richie-hero-1200.avif 1200w"
         imagesizes="100vw" fetchpriority="high">
   {% endif %}
 
@@ -40,7 +40,8 @@
   <link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/assets/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css?v=20260604-proof-perf">
+  <!-- Minified for parse speed; readable source lives at /assets/style.css -->
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260604-avif-timeline">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="{{ site.baseurl }}/journal/feed.xml">
   <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="{{ site.baseurl }}/receipts/feed.xml">
   <script type="application/ld+json">
@@ -268,6 +269,28 @@
         el.className = 'read-time';
         el.textContent = mins + ' min read';
         header.appendChild(el);
+      }
+
+      // The first thought assembles word by word. Plain-text paragraphs only,
+      // so inline markup is never destroyed; the drop-cap is preserved because
+      // the spans are inline (not inline-block).
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        var first = document.querySelector('.journal-content > p');
+        if (first && first.children.length === 0) {
+          var tokens = first.textContent.split(/(\s+)/);
+          first.textContent = '';
+          var wi = 0;
+          tokens.forEach(function(tok) {
+            if (tok === '' ) return;
+            if (/^\s+$/.test(tok)) { first.appendChild(document.createTextNode(tok)); return; }
+            var s = document.createElement('span');
+            s.className = 'assemble-word';
+            s.textContent = tok;
+            s.style.animationDelay = Math.min(wi * 0.035, 2.2) + 's';
+            first.appendChild(s);
+            wi += 1;
+          });
+        }
       }
     })();
     {% endif %}
