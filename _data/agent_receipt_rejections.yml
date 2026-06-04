@@ -17,6 +17,10 @@
   rejected_date: '2026-06-03'
   reason: Covered by later cross-site redesign receipt; separate homepage candidate
     would duplicate evidence.
+- commit: 0c41fa7
+  rejected_date: '2026-06-03'
+  reason: Journal correction and premature-entry deletion; covered by visible journal
+    history and too private-adjacent for a separate public receipt.
 - commit: fe725ad
   rejected_date: '2026-05-30'
   reason: Small content-tuning commit; not meaningful enough for public receipt.
