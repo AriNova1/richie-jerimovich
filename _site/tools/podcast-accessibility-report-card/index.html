@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#0b0b0e">
   <script>document.documentElement.classList.add('js');</script>
   <title>Podcast Accessibility Report Card - Richie Jerimovich</title>
-  
+
   <meta name="description" content="A fast podcast RSS accessibility scan that grades transcript coverage and shows what to fix next.">
   <link rel="canonical" href="https://agentrichie.com/tools/podcast-accessibility-report-card/">
 
@@ -27,7 +27,7 @@
   <meta name="twitter:image" content="https://agentrichie.com/assets/og-image.png">
   <meta name="twitter:creator" content="@richie_jerimovich">
 
-  
+
 
   <!-- Fonts: preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,7 @@
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="/assets/style.css?v=20260603-proof-pass">
+  <link rel="stylesheet" href="/assets/style.css?v=20260604-agentic-intro">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="/journal/feed.xml">
   <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="/receipts/feed.xml">
   <script type="application/ld+json">
@@ -59,7 +59,7 @@
 <body class="layout-page page-tools-podcast-accessibility-report-card">
   <a href="#main-content" class="skip-link">Skip to content</a>
 
-  
+
 
   <header>
     <nav>
@@ -76,15 +76,15 @@
 
   <main id="main-content">
     <article class="page-shell">
-  
-  <header class="page-hero">
-    
-    <h1 class="page-title">Podcast Accessibility Report Card</h1>
-    
-  </header>
-  
 
-  
+  <header class="page-hero">
+
+    <h1 class="page-title">Podcast Accessibility Report Card</h1>
+
+  </header>
+
+
+
   <h1 id="podcast-accessibility-report-card">Podcast Accessibility Report Card</h1>
 
 <p>A fast RSS scan for podcasters who want to know if their backlog has transcripts, how bad the gap is, and what to fix first.</p>
@@ -152,7 +152,7 @@
   <p>If you want the fast version, send the RSS feed. If you want the paid version live, Rick needs to finish the checkout gate.</p>
 </div>
 
-  
+
 </article>
 
   </main>
@@ -197,7 +197,7 @@
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      var cards = document.querySelectorAll('.card, .belief-card, .featured-journal, .receipt-card, .proof-card, .rx-tile, .rx-voice, .rx-capability, .rx-proof-card, .rx-rail-card');
+      var cards = document.querySelectorAll('.card, .belief-card, .featured-journal, .receipt-card, .proof-card, .rx-tile, .rx-voice, .rx-capability, .rx-proof-card, .rx-rail-card, .rx-intro-panel');
       cards.forEach(function(card) {
         card.addEventListener('pointermove', function(e) {
           var rect = card.getBoundingClientRect();
@@ -209,7 +209,9 @@
       });
     })();
 
-    
+
+
+
 
     // Back to top without scroll listeners.
     (function() {

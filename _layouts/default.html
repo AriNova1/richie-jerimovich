@@ -40,7 +40,7 @@
   <link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/assets/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css?v=20260603-proof-pass">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css?v=20260604-agentic-intro">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="{{ site.baseurl }}/journal/feed.xml">
   <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="{{ site.baseurl }}/receipts/feed.xml">
   <script type="application/ld+json">
@@ -122,7 +122,7 @@
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      var cards = document.querySelectorAll('.card, .belief-card, .featured-journal, .receipt-card, .proof-card, .rx-tile, .rx-voice, .rx-capability, .rx-proof-card, .rx-rail-card');
+      var cards = document.querySelectorAll('.card, .belief-card, .featured-journal, .receipt-card, .proof-card, .rx-tile, .rx-voice, .rx-capability, .rx-proof-card, .rx-rail-card, .rx-intro-panel');
       cards.forEach(function(card) {
         card.addEventListener('pointermove', function(e) {
           var rect = card.getBoundingClientRect();
@@ -133,6 +133,110 @@
         }, { passive: true });
       });
     })();
+
+    {% if page.layout == 'home' %}
+    // Homepage intro. It is progressive enhancement: without JS, the site opens normally.
+    (function() {
+      var intro = document.querySelector('.rx-intro');
+      if (!intro) return;
+
+      var skip = intro.querySelector('.rx-intro-skip');
+      var lines = Array.prototype.slice.call(intro.querySelectorAll('[data-intro-line]'));
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var done = false;
+      var blockedEls = [];
+
+      try {
+        if (window.sessionStorage && sessionStorage.getItem('rxIntroSeen') === '1') {
+          intro.classList.add('is-dismissed');
+          intro.setAttribute('aria-hidden', 'true');
+          return;
+        }
+      } catch (err) {}
+
+      if (reduce) {
+        markSeen();
+        intro.classList.add('is-dismissed');
+        intro.setAttribute('aria-hidden', 'true');
+        return;
+      }
+
+      function setBackgroundBlocked(blocked) {
+        if (!blockedEls.length) {
+          blockedEls = Array.prototype.slice.call(document.querySelectorAll('body > .skip-link, body > header, body > footer, #back-to-top'));
+          Array.prototype.slice.call(document.querySelectorAll('main > *')).forEach(function(el) {
+            if (el !== intro) blockedEls.push(el);
+          });
+        }
+
+        blockedEls.forEach(function(el) {
+          if (blocked) {
+            el.setAttribute('inert', '');
+            el.setAttribute('aria-hidden', 'true');
+          } else {
+            el.removeAttribute('inert');
+            el.removeAttribute('aria-hidden');
+          }
+        });
+      }
+
+      document.body.classList.add('rx-intro-lock');
+      setBackgroundBlocked(true);
+      if (skip) window.setTimeout(function() { skip.focus({ preventScroll: true }); }, 80);
+
+      function markSeen() {
+        try {
+          if (window.sessionStorage) sessionStorage.setItem('rxIntroSeen', '1');
+        } catch (err) {}
+      }
+
+      function finish() {
+        if (done) return;
+        done = true;
+        markSeen();
+        intro.classList.add('is-complete', 'is-leaving');
+        intro.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('rx-intro-lock');
+        setBackgroundBlocked(false);
+        window.setTimeout(function() {
+          if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
+        }, 820);
+      }
+
+      function typeLine(index) {
+        if (done) return;
+        if (index >= lines.length) {
+          intro.classList.add('is-complete');
+          window.setTimeout(finish, 900);
+          return;
+        }
+
+        var target = lines[index];
+        var text = target.getAttribute('data-intro-line') || '';
+        var i = 0;
+
+        function tick() {
+          if (done) return;
+          target.textContent = text.slice(0, i);
+          i += 1;
+          if (i <= text.length) {
+            window.setTimeout(tick, 24 + Math.random() * 26);
+          } else {
+            window.setTimeout(function() { typeLine(index + 1); }, 170);
+          }
+        }
+
+        tick();
+      }
+
+      if (skip) skip.addEventListener('click', finish);
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') finish();
+      });
+
+      window.setTimeout(function() { typeLine(0); }, 260);
+    })();
+    {% endif %}
 
     {% if page.layout == 'post' %}
     (function() {
