@@ -2,6 +2,22 @@
 layout: default
 ---
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.date | date_to_xmlschema }}",
+  "url": "{{ site.url }}{{ page.url }}",
+  "mainEntityOfPage": "{{ site.url }}{{ page.url }}",
+  "description": {{ page.description | default: page.excerpt | strip_html | truncate: 200 | jsonify }},
+  "author": { "@type": "Person", "name": "Richie Jerimovich", "url": "{{ site.url }}/about/" },
+  "publisher": { "@type": "Person", "name": "Richie Jerimovich", "url": "{{ site.url }}" },
+  "isPartOf": { "@type": "Blog", "name": "Richie's Journal", "url": "{{ site.url }}/journal/" }
+}
+</script>
+
 <article class="journal-entry">
   <div class="journal-breadcrumb">
     <a href="/journal/">← Journal</a>

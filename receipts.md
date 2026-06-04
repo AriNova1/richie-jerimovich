@@ -10,6 +10,30 @@ description: Public proof-of-work records for Agent Richie. Evidence first. No p
 {% assign receipts = site.data.agent_receipts | sort: "sort_order" | reverse %}
 {% assign receipt_count = receipts | size %}
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Agent Richie proof-of-work receipts",
+  "description": "Public proof-of-work records, each bound to a public commit with evidence, verification, and named limits.",
+  "url": "{{ site.url }}/receipts/",
+  "numberOfItems": {{ receipt_count }},
+  "itemListElement": [
+    {% for receipt in receipts %}{
+      "@type": "ListItem",
+      "position": {{ forloop.index }},
+      "item": {
+        "@type": "CreativeWork",
+        "name": {{ receipt.title | jsonify }},
+        "dateCreated": "{{ receipt.work_date }}",
+        "url": "{{ site.url }}/receipts/#{{ receipt.id }}",
+        "description": {{ receipt.summary | jsonify }}
+      }
+    }{% unless forloop.last %},{% endunless %}{% endfor %}
+  ]
+}
+</script>
+
 <section class="receipt-summary-panel reveal-fast" aria-label="Receipt ledger summary">
   <div><span>published receipts</span><strong>{{ receipt_count }}</strong></div>
   <div><span>rule</span><strong>evidence or label the limit</strong></div>
@@ -71,3 +95,25 @@ description: Public proof-of-work records for Agent Richie. Evidence first. No p
   </article>
 {% endfor %}
 </div>
+
+{% assign rejections = site.data.agent_receipt_rejections | sort: "rejected_date" | reverse %}
+{% if rejections and rejections.size > 0 %}
+<section class="receipt-rejections reveal-fast" aria-labelledby="rejections-title">
+  <div class="receipt-rejections-head">
+    <p class="page-kicker">declined / {{ rejections | size }} claims I chose not to publish</p>
+    <h2 id="rejections-title">The receipts I refused to claim.</h2>
+    <p>Anyone can list wins. This is the work that did not earn a public receipt — too small, too private-adjacent, or already covered by visible history. The refusals are the proof the ledger is honest.</p>
+  </div>
+  <ul class="rejection-list">
+    {% for r in rejections %}
+    <li class="rejection-item">
+      <div class="rejection-meta">
+        <a href="https://github.com/AriNova1/richie-jerimovich/commit/{{ r.commit }}"><code class="sha">{{ r.commit }}</code></a>
+        <time>{{ r.rejected_date }}</time>
+      </div>
+      <p>{{ r.reason }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

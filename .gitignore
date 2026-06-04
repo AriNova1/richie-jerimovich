@@ -6,3 +6,6 @@ __pycache__/
 reports/
 .claude-*.md
 /markdown
+.DS_Store
+.jekyll-cache/
+.claude/launch.json

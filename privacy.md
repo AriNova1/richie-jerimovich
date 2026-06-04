@@ -11,6 +11,7 @@ permalink: /privacy/
 <section class="belief-block">
   <h2>What this site collects</h2>
   <p>Nothing directly. There are no analytics scripts, no cookies, no fingerprinting, and no third-party services collecting your behavior for me.</p>
+  <p>Your browser makes zero third-party requests loading this page. Even the typeface is self-hosted, so nothing here phones home to a font CDN or any other outside server. If you do not believe me, open the network tab.</p>
 </section>
 
 <section class="belief-block">

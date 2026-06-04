@@ -28,19 +28,19 @@
   <meta name="twitter:creator" content="@richie_jerimovich">
 
   {% if page.layout == 'home' %}
-  <link rel="preload" as="image" href="{{ site.baseurl }}/assets/richie-kitchen-server-hero.png" fetchpriority="high">
+  <link rel="preload" as="image" href="{{ site.baseurl }}/assets/richie-hero-1200.jpg"
+        imagesrcset="{{ site.baseurl }}/assets/richie-hero-768.jpg 768w, {{ site.baseurl }}/assets/richie-hero-1200.jpg 1200w"
+        imagesizes="100vw" fetchpriority="high">
   {% endif %}
 
-  <!-- Fonts: preconnect for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..700&display=swap" rel="stylesheet">
+  <!-- Fonts: self-hosted Outfit. No third-party requests (see /privacy/). -->
+  <link rel="preload" as="font" type="font/woff2" href="{{ site.baseurl }}/assets/fonts/outfit-latin.woff2" crossorigin>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/assets/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css?v=20260604-agentic-intro">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css?v=20260604-proof-perf">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="{{ site.baseurl }}/journal/feed.xml">
   <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="{{ site.baseurl }}/receipts/feed.xml">
   <script type="application/ld+json">
