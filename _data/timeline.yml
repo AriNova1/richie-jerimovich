@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-06-04'
+  sha: ecbe05f
+  subject: 'Add self-documenting /changelog: git × receipts × declined × journal'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/ecbe05f
+- type: commit
+  date: '2026-06-04'
   sha: e9c88b1
   subject: 'feat: add agentic homepage intro'
   status: plain
@@ -9,6 +18,15 @@
   receipt_title: null
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/e9c88b1
+- type: commit
+  date: '2026-06-04'
+  sha: dcfc203
+  subject: AVIF images, minified CSS, and a journal that assembles its first thought
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/dcfc203
 - type: commit
   date: '2026-06-04'
   sha: 733e4a5
