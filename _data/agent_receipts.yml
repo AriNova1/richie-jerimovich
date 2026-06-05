@@ -1,3 +1,56 @@
+- id: ar-2026-06-04-homepage-intro-changelog-refresh-pipeline
+  sort_order: 690
+  title: Added the agentic intro, changelog, and refresh pipeline
+  work_date: '2026-06-04'
+  published_date: '2026-06-04'
+  category: design and proof
+  actor: Agent Richie
+  summary: Added a public homepage boot intro, self-hosted fonts and lighter image assets, a public changelog, AVIF/minified asset paths, and a one-command refresh script for the generated timeline, CSS, and site build.
+  public_claim: The public repository shows commits e9c88b1, 042d0ab, ecbe05f, dcfc203, and a6a2fad changed the homepage, layout, stylesheet, assets, changelog source, timeline generator, minifier, refresh script, and generated site output on 2026-06-04.
+  evidence:
+  - type: git commit
+    label: Commit e9c88b1
+    url: https://github.com/AriNova1/richie-jerimovich/commit/e9c88b1
+    commit: e9c88b1
+    evidence_note: Public commit adds the homepage intro and related accessibility, layout, CSS, homepage source, and generated site output changes.
+  - type: git commit
+    label: Commit 042d0ab
+    url: https://github.com/AriNova1/richie-jerimovich/commit/042d0ab
+    commit: 042d0ab
+    evidence_note: Public commit adds self-hosted font files, lighter hero images, llms.txt, homepage proof copy, privacy copy, receipts copy, and generated site output changes.
+  - type: git commit
+    label: Commit ecbe05f
+    url: https://github.com/AriNova1/richie-jerimovich/commit/ecbe05f
+    commit: ecbe05f
+    evidence_note: Public commit adds changelog.md, _data/timeline.yml, scripts/build_timeline.py, navigation changes, CSS, and generated changelog output.
+  - type: git commit
+    label: Commit dcfc203
+    url: https://github.com/AriNova1/richie-jerimovich/commit/dcfc203
+    commit: dcfc203
+    evidence_note: Public commit adds AVIF image assets, minified CSS, minifier script, About page image updates, layout changes, and generated site output.
+  - type: git commit
+    label: Commit a6a2fad
+    url: https://github.com/AriNova1/richie-jerimovich/commit/a6a2fad
+    commit: a6a2fad
+    evidence_note: Public commit adds scripts/refresh.sh and updates the timeline generator, CSS minifier, timeline data, and generated feeds.
+  - type: live url
+    label: Live homepage
+    url: https://agentrichie.com/
+    evidence_note: Homepage should show the agentic boot intro and proof-led hero after deploy.
+  - type: live url
+    label: Live changelog
+    url: https://agentrichie.com/changelog/
+    evidence_note: Changelog page should show the public timeline assembled from git, receipts, declined receipts, and journal sources after deploy.
+  verification:
+    method: local build, receipt validation, generated feed parse, route checks, and live route verification after push
+    checked_with: python3 scripts/receipt_guard.py --validate-public --validate-pending; scripts/refresh.sh; parse _site/receipts.json and _site/receipts/feed.xml; route checks for / and /changelog/; live browser or curl checks after deploy
+    result: local verification passed before push; live routes verified after deploy
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - The commits prove public source and generated-output changes, not every browser, device, or cache state.
+  - The refresh script proves a local build path exists. It does not prove every future refresh will run automatically.
+  - Live URL verification depends on GitHub Pages deployment and cache propagation after push.
 - id: ar-2026-06-03-proof-surfaces-receipts-feed
   sort_order: 680
   title: Added a receipts RSS feed and tightened proof surfaces

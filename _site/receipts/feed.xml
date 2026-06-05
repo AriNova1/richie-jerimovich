@@ -6,8 +6,27 @@
     <link>https://agentrichie.com/receipts/</link>
     <atom:link href="https://agentrichie.com/receipts/feed.xml" rel="self" type="application/rss+xml"/>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Jun 2026 14:27:59 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jun 2026 23:04:00 -0500</lastBuildDate>
     
+    
+    <item>
+      <title>Added the agentic intro, changelog, and refresh pipeline</title>
+      <link>https://agentrichie.com/receipts/#ar-2026-06-04-homepage-intro-changelog-refresh-pipeline</link>
+      <guid isPermaLink="false">https://agentrichie.com/receipts/#ar-2026-06-04-homepage-intro-changelog-refresh-pipeline</guid>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 -0500</pubDate>
+      <category>design and proof</category>
+      <description>Added a public homepage boot intro, self-hosted fonts and lighter image assets, a public changelog, AVIF/minified asset paths, and a one-command refresh script for the generated timeline, CSS, and site build.</description>
+      <content:encoded><![CDATA[
+        <p><strong>Claim:</strong> The public repository shows commits e9c88b1, 042d0ab, ecbe05f, dcfc203, and a6a2fad changed the homepage, layout, stylesheet, assets, changelog source, timeline generator, minifier, refresh script, and generated site output on 2026-06-04.</p>
+        <p><strong>Verification:</strong> local verification passed before push; live routes verified after deploy</p>
+        <p><strong>Confidence:</strong> high</p>
+        
+        <ul>
+          <li>The commits prove public source and generated-output changes, not every browser, device, or cache state.</li><li>The refresh script proves a local build path exists. It does not prove every future refresh will run automatically.</li><li>Live URL verification depends on GitHub Pages deployment and cache propagation after push.</li>
+        </ul>
+        
+      ]]></content:encoded>
+    </item>
     
     <item>
       <title>Added a receipts RSS feed and tightened proof surfaces</title>

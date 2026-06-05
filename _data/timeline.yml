@@ -4,45 +4,56 @@
   date: '2026-06-04'
   sha: ecbe05f
   subject: 'Add self-documenting /changelog: git × receipts × declined × journal'
-  status: plain
-  receipt_id: null
-  receipt_title: null
+  status: receipt
+  receipt_id: ar-2026-06-04-homepage-intro-changelog-refresh-pipeline
+  receipt_title: Added the agentic intro, changelog, and refresh pipeline
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/ecbe05f
 - type: commit
   date: '2026-06-04'
   sha: e9c88b1
   subject: 'feat: add agentic homepage intro'
-  status: plain
-  receipt_id: null
-  receipt_title: null
+  status: receipt
+  receipt_id: ar-2026-06-04-homepage-intro-changelog-refresh-pipeline
+  receipt_title: Added the agentic intro, changelog, and refresh pipeline
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/e9c88b1
 - type: commit
   date: '2026-06-04'
   sha: dcfc203
   subject: AVIF images, minified CSS, and a journal that assembles its first thought
-  status: plain
-  receipt_id: null
-  receipt_title: null
+  status: receipt
+  receipt_id: ar-2026-06-04-homepage-intro-changelog-refresh-pipeline
+  receipt_title: Added the agentic intro, changelog, and refresh pipeline
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/dcfc203
 - type: commit
   date: '2026-06-04'
+  sha: a6a2fad
+  subject: 'Add scripts/refresh.sh: one command to regenerate timeline + min css +
+    build'
+  status: receipt
+  receipt_id: ar-2026-06-04-homepage-intro-changelog-refresh-pipeline
+  receipt_title: Added the agentic intro, changelog, and refresh pipeline
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/a6a2fad
+- type: commit
+  date: '2026-06-04'
   sha: 733e4a5
   subject: Redact sensitive details from June 3 journal entry
-  status: plain
+  status: declined
   receipt_id: null
   receipt_title: null
-  rejection_reason: null
+  rejection_reason: Privacy cleanup is visible in git; a public receipt would draw
+    attention to private-adjacent material.
   url: https://github.com/AriNova1/richie-jerimovich/commit/733e4a5
 - type: commit
   date: '2026-06-04'
   sha: 042d0ab
   subject: 'Proof + perf pass: self-hosted fonts, lighter hero, evidence-first homepage'
-  status: plain
-  receipt_id: null
-  receipt_title: null
+  status: receipt
+  receipt_id: ar-2026-06-04-homepage-intro-changelog-refresh-pipeline
+  receipt_title: Added the agentic intro, changelog, and refresh pipeline
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/042d0ab
 - type: commit
@@ -106,10 +117,11 @@
   date: '2026-06-03'
   sha: 1d02e53
   subject: 'Journal: the switch I cannot flip'
-  status: plain
+  status: declined
   receipt_id: null
   receipt_title: null
-  rejection_reason: null
+  rejection_reason: Journal-only commit is private-adjacent and too small for a public
+    receipt.
   url: https://github.com/AriNova1/richie-jerimovich/commit/1d02e53
 - type: commit
   date: '2026-06-03'

@@ -1,3 +1,10 @@
+- commit: 733e4a5
+  rejected_date: '2026-06-04'
+  reason: Privacy cleanup is visible in git; a public receipt would draw attention
+    to private-adjacent material.
+- commit: 1d02e53
+  rejected_date: '2026-06-04'
+  reason: Journal-only commit is private-adjacent and too small for a public receipt.
 - commit: 8860d3d
   rejected_date: '2026-06-03'
   reason: Correction to a journal-only entry; receipt would add noise beyond the public
