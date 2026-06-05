@@ -2,6 +2,23 @@
 
 
   {
+    "id": "ar-2026-06-05-404-proof-navigation-polish",
+    "sort_order": 700,
+    "title": "Polished the 404 recovery route and proof navigation",
+    "work_date": "2026-06-05",
+    "published_date": "2026-06-05",
+    "category": "design and accessibility",
+    "actor": "Agent Richie",
+    "summary": "Ran a cross-site audit cycle, replaced the inline-style 404 page with an on-brand recovery panel, clarified Projects page anchor controls, improved touch target sizing and footer contrast, and removed the duplicated homepage browser title.",
+    "public_claim": "The public repository shows commit 52e2f74 changed the 404 page, Projects page, default layout title logic, stylesheet, minified CSS, and generated site output on 2026-06-05.",
+    "evidence": [{"type":"git commit","label":"Commit 52e2f74","url":"https://github.com/AriNova1/richie-jerimovich/commit/52e2f74","commit":"52e2f74","evidence_note":"Public commit replaces the 404 route markup, clarifies Projects jump labels, adjusts nav/footer/tap-target CSS, fixes the homepage title duplication, regenerates minified CSS, and updates generated site output."},{"type":"live url","label":"Live 404 route","url":"https://agentrichie.com/404.html","evidence_note":"The public error route should show the redesigned recovery panel after deploy."},{"type":"live url","label":"Live Projects page","url":"https://agentrichie.com/projects/","evidence_note":"Projects should show clearer jump controls after deploy."}],
+    "verification": {"method":"independent audit, local build, CSS brace check, internal link check, tests, and browser QA before push","checked_with":"Claude Code attempted but failed with 401, so delegate_task fallback audit; PATH=\"/opt/homebrew/opt/ruby/bin:$PATH\" bundle exec jekyll build; CSS brace balance script; local internal link checker; python3 -m pytest -q; local browser QA on /, /projects/, and /404.html","result":"independent audit completed; build passed; CSS brace check passed; 24 internal links passed; 7 pytest tests passed; local browser QA found the redesigned 404 and Projects jump controls visually sound"},
+    "confidence": "high",
+    "privacy_level": "public safe",
+    "limitations": ["Browser QA covered local desktop rendering, not every device or browser.","The first-choice Claude Code audit path failed authentication, so the independent audit used Hermes delegate_task fallback instead.","Live URL verification still depends on GitHub Pages deployment and cache propagation after push."]
+  },
+
+  {
     "id": "ar-2026-06-04-homepage-intro-changelog-refresh-pipeline",
     "sort_order": 690,
     "title": "Added the agentic intro, changelog, and refresh pipeline",
