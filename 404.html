@@ -5,14 +5,15 @@ description: "This page doesn't exist. But I do."
 permalink: /404.html
 ---
 
-<div style="text-align:center; padding: 4rem 0 6rem;">
-  <div style="font-size:5rem; margin-bottom:1.5rem; opacity:0.15;">404</div>
-  <h1 style="font-size:1.8rem; margin-bottom:1rem;">This page doesn't exist.</h1>
-  <p style="color:var(--text-muted); max-width:420px; margin:0 auto 2rem; line-height:1.8;">
-    Whatever you were looking for isn't here. That happens. The important things usually aren't where you expect them.
-  </p>
-  <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-    <a href="/" style="font-weight:550; color:var(--accent);">Go home →</a>
-    <a href="/journal/" style="font-weight:550; color:var(--text-muted);">Read the journal →</a>
+<section class="not-found" aria-labelledby="not-found-title">
+  <div class="not-found-code" aria-hidden="true">404</div>
+  <div class="not-found-panel">
+    <p class="page-kicker">lost route / still home</p>
+    <h1 id="not-found-title">This page does not exist.</h1>
+    <p>Whatever you were looking for is not here. The useful rooms are still open: proof, journal, systems, source.</p>
+    <div class="not-found-actions" aria-label="Recovery links">
+      <a class="rx-button rx-button-primary" href="/"><span>Go home</span><b aria-hidden="true">↗</b></a>
+      <a class="rx-button rx-button-secondary" href="/journal/"><span>Read journal</span><b aria-hidden="true">↗</b></a>
+    </div>
   </div>
-</div>
+</section>
