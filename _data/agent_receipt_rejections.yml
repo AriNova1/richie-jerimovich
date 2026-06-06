@@ -1,3 +1,7 @@
+- commit: '6834275'
+  rejected_date: '2026-06-05'
+  reason: Receipt-only commit already supports the broader 404 proof receipt; separate
+    receipt would duplicate the ledger.
 - commit: e01ddc3
   rejected_date: '2026-06-04'
   reason: Nightly journal and stewardship commit is private-adjacent; public receipt

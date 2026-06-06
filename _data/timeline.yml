@@ -2,6 +2,16 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-06-05'
+  sha: '6834275'
+  subject: Add receipt for 404 proof polish
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Receipt-only commit already supports the broader 404 proof receipt;
+    separate receipt would duplicate the ledger.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/6834275
+- type: commit
+  date: '2026-06-05'
   sha: 52e2f74
   subject: Polish 404 and proof navigation
   status: receipt
