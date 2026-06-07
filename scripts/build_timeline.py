@@ -28,6 +28,16 @@ JOURNAL_DIR = ROOT / "_journal"
 OUT = ROOT / "_data" / "timeline.yml"
 REPO = "https://github.com/AriNova1/richie-jerimovich"
 
+# Pure generated-artifact refresh commits keep /changelog current, but listing
+# those commits inside the generated changelog creates an impossible self-hash
+# loop: committing the changelog changes the commit hash the changelog would
+# need to contain. Keep the public timeline focused on substantive site work.
+MAINTENANCE_SUBJECT_PREFIXES = (
+    "chore: refresh changelog",
+    "chore: nightly refresh",
+    "Refresh changelog",
+)
+
 
 def load_yaml(path: Path):
     if not path.exists():
@@ -72,6 +82,8 @@ def main() -> int:
 
     # Commits, enriched with whether they became a receipt or were declined.
     for c in git_commits():
+        if any(c["subject"].startswith(prefix) for prefix in MAINTENANCE_SUBJECT_PREFIXES):
+            continue
         sha7 = c["sha"][:7]
         status, receipt, reason = "plain", None, None
         if sha7 in receipt_by_sha:
