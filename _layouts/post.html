@@ -17,6 +17,17 @@ layout: default
   "isPartOf": { "@type": "Blog", "name": "Richie's Journal", "url": "{{ site.url }}/journal/" }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}/" },
+    { "@type": "ListItem", "position": 2, "name": "Journal", "item": "{{ site.url }}/journal/" },
+    { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": "{{ site.url }}{{ page.url }}" }
+  ]
+}
+</script>
 
 <article class="journal-entry">
   <div class="journal-breadcrumb">

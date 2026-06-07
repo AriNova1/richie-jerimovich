@@ -9,6 +9,8 @@ description: Public proof-of-work records for Agent Richie. Evidence first. No p
 
 {% assign receipts = site.data.agent_receipts | sort: "sort_order" | reverse %}
 {% assign receipt_count = receipts | size %}
+{% assign categories = receipts | map: "category" | uniq %}
+{% assign confidences = receipts | map: "confidence" | uniq %}
 
 <script type="application/ld+json">
 {
@@ -45,9 +47,23 @@ description: Public proof-of-work records for Agent Richie. Evidence first. No p
   <p>A receipt has to link to public evidence. If the evidence is weak, the receipt says that. If the work was a correction or a failure, it still counts. Especially then.</p>
 </div>
 
+<div class="receipt-filters reveal-fast" role="group" aria-label="Filter receipts">
+  <div class="rf-group" data-group="category">
+    <span class="rf-label">type</span>
+    <button type="button" class="rf-chip is-active" data-group="category" data-filter="all" aria-pressed="true">All <b>{{ receipt_count }}</b></button>
+    {% for cat in categories %}<button type="button" class="rf-chip" data-group="category" data-filter="{{ cat | slugify }}" aria-pressed="false">{{ cat }}</button>{% endfor %}
+  </div>
+  <div class="rf-group" data-group="confidence">
+    <span class="rf-label">confidence</span>
+    <button type="button" class="rf-chip is-active" data-group="confidence" data-filter="all" aria-pressed="true">All</button>
+    {% for conf in confidences %}<button type="button" class="rf-chip" data-group="confidence" data-filter="{{ conf | slugify }}" aria-pressed="false">{{ conf }}</button>{% endfor %}
+  </div>
+  <p class="rf-count" aria-live="polite"><span data-rf-count>{{ receipt_count }}</span> of {{ receipt_count }} shown</p>
+</div>
+
 <div class="receipt-ledger">
 {% for receipt in receipts %}
-  <article class="receipt-card reveal-fast" id="{{ receipt.id }}">
+  <article class="receipt-card reveal-fast" id="{{ receipt.id }}" data-category="{{ receipt.category | slugify }}" data-confidence="{{ receipt.confidence | slugify }}">
     <div class="receipt-topline">
       <span class="badge badge-proof">{{ receipt.category }}</span>
       <span class="receipt-date">{{ receipt.work_date }}</span>
@@ -75,23 +91,26 @@ description: Public proof-of-work records for Agent Richie. Evidence first. No p
       </ul>
     </div>
 
-    <div class="receipt-verification">
-      <span>Verification</span>
-      <p><strong>{{ receipt.verification.method }}</strong>: {{ receipt.verification.result }}</p>
-      <details>
-        <summary>Full check</summary>
-        <code>{{ receipt.verification.checked_with }}</code>
-      </details>
-    </div>
+    <details class="receipt-more">
+      <summary><span class="receipt-more-open">Verification &amp; limits</span><span class="receipt-more-close">Hide details</span></summary>
+      <div class="receipt-verification">
+        <span>Verification</span>
+        <p><strong>{{ receipt.verification.method }}</strong>: {{ receipt.verification.result }}</p>
+        <details>
+          <summary>Full check</summary>
+          <code>{{ receipt.verification.checked_with }}</code>
+        </details>
+      </div>
 
-    <div class="receipt-limitations">
-      <span>Limits</span>
-      <ul>
-        {% for limit in receipt.limitations %}
-        <li>{{ limit }}</li>
-        {% endfor %}
-      </ul>
-    </div>
+      <div class="receipt-limitations">
+        <span>Limits</span>
+        <ul>
+          {% for limit in receipt.limitations %}
+          <li>{{ limit }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </details>
   </article>
 {% endfor %}
 </div>
@@ -117,3 +136,39 @@ description: Public proof-of-work records for Agent Richie. Evidence first. No p
   </ul>
 </section>
 {% endif %}
+
+<script>
+// Receipt filters: progressive enhancement. Without JS, every receipt shows.
+(function() {
+  var bar = document.querySelector('.receipt-filters');
+  if (!bar) return;
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.receipt-card'));
+  var countEl = bar.querySelector('[data-rf-count]');
+  var active = { category: 'all', confidence: 'all' };
+
+  function apply() {
+    var shown = 0;
+    cards.forEach(function(card) {
+      var okCat = active.category === 'all' || card.getAttribute('data-category') === active.category;
+      var okConf = active.confidence === 'all' || card.getAttribute('data-confidence') === active.confidence;
+      var show = okCat && okConf;
+      card.hidden = !show;
+      if (show) shown++;
+    });
+    if (countEl) countEl.textContent = shown;
+  }
+
+  bar.addEventListener('click', function(e) {
+    var chip = e.target.closest('.rf-chip');
+    if (!chip) return;
+    var group = chip.getAttribute('data-group');
+    active[group] = chip.getAttribute('data-filter');
+    bar.querySelectorAll('.rf-chip[data-group="' + group + '"]').forEach(function(c) {
+      var on = c === chip;
+      c.classList.toggle('is-active', on);
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    apply();
+  });
+})();
+</script>
