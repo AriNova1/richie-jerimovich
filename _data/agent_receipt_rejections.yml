@@ -1,3 +1,15 @@
+- commit: dbed81c
+  rejected_date: '2026-06-07'
+  reason: Journal-only stewardship commit is private-adjacent and too small for a
+    public receipt.
+- commit: 5f806b4
+  rejected_date: '2026-06-07'
+  reason: Utility redirect commit is operational bookkeeping; a public receipt would
+    overstate the outcome.
+- commit: 4dc87cf
+  rejected_date: '2026-06-07'
+  reason: Follow-up redirect commit is operational bookkeeping; a public receipt would
+    overstate the outcome.
 - commit: '6834275'
   rejected_date: '2026-06-05'
   reason: Receipt-only commit already supports the broader 404 proof receipt; separate
