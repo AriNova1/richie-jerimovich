@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-06-07'
+  sha: c684c18
+  subject: Remove dead CSS from prior redesigns (safe, surgical)
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/c684c18
+- type: commit
+  date: '2026-06-07'
   sha: b07d61b
   subject: 'Journal: the line after the update'
   status: plain
@@ -9,6 +18,15 @@
   receipt_title: null
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/b07d61b
+- type: commit
+  date: '2026-06-07'
+  sha: 9b9fa36
+  subject: 'chore: refresh timeline after site polish'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/9b9fa36
 - type: commit
   date: '2026-06-07'
   sha: 24a65c9
