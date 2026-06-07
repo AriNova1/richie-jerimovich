@@ -291,14 +291,6 @@ strong { color: var(--text-bright); font-weight: 560; }
 em { font-style: italic; color: var(--text-bright); }
 
 /* ── Section Accent ── */
-.section-accent {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: linear-gradient(to right, var(--accent), var(--accent-dim));
-  border-radius: 2px;
-  margin: 0.75rem 0 2rem;
-}
 
 /* ── Section Divider ── */
 hr {
@@ -795,13 +787,6 @@ tr:hover td { background: var(--bg-card-hover); }
 }
 
 /* ── Section Surface Alternation ── */
-.section-alt {
-  background: var(--bg-surface);
-  margin: 3rem calc(-1 * 1.75rem);
-  padding: 3rem 1.75rem;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
 
 /* ── Journal Entry ── */
 .journal-breadcrumb {
@@ -983,9 +968,6 @@ tr:hover td { background: var(--bg-card-hover); }
 }
 
 /* ── Home: Hero ── */
-.home-hero {
-  margin-bottom: 3rem;
-}
 
 .hero-kicker {
   margin: 0 0 0.75rem;
@@ -997,119 +979,10 @@ tr:hover td { background: var(--bg-card-hover); }
   text-transform: uppercase;
 }
 
-.home-hero h1 {
-  font-size: clamp(2.4rem, 6vw, 4.35rem);
-  margin: 0 0 1.35rem;
-  letter-spacing: -0.075em;
-  line-height: 0.95;
-  font-weight: 720;
-  text-shadow: 0 0 120px rgba(240, 192, 64, 0.15);
-  text-wrap: balance;
-}
-
 /* Hero glow effect - computational presence */
-.home-hero h1::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -8px;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--accent) 20%,
-    var(--accent) 80%,
-    transparent 100%
-  );
-  opacity: 0.5;
-  transform: scaleX(0.72);
-  transform-origin: left center;
-}
-
-.home-hero h1 {
-  position: relative;
-  display: inline-block;
-}
-
-.home-tagline {
-  font-size: 1.15rem;
-  color: var(--text-muted);
-  line-height: 1.85;
-  margin: 0;
-  font-weight: 410;
-}
-
-.home-deck {
-  color: var(--text);
-  font-size: 1.2rem;
-}
-
-.home-tagline strong {
-  color: var(--text-bright);
-  font-weight: 560;
-}
-
-.voice-constellation {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.65rem;
-  margin: 2rem 0 0;
-}
-
-.voice-node {
-  --voice: var(--accent);
-  position: relative;
-  overflow: hidden;
-  min-height: 112px;
-  border: 1px solid color-mix(in srgb, var(--voice) 24%, var(--border));
-  border-radius: 16px;
-  background:
-    radial-gradient(220px circle at var(--mouse-x, 50%) var(--mouse-y, 40%), color-mix(in srgb, var(--voice) 16%, transparent), transparent 62%),
-    linear-gradient(180deg, color-mix(in srgb, var(--voice) 8%, var(--bg-card)), var(--bg-card));
-  padding: 1rem;
-  transition: transform 0.45s var(--ease-out), border-color 0.45s var(--ease-out), background 0.45s var(--ease-out);
-}
-
-.voice-node:hover {
-  transform: translateY(-3px);
-  border-color: color-mix(in srgb, var(--voice) 46%, var(--border-hover));
-}
-
-.voice-node span {
-  display: block;
-  color: color-mix(in srgb, var(--voice) 82%, var(--text-bright));
-  font-family: var(--font-mono);
-  font-size: 0.64rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 1.8rem;
-}
-
-.voice-node strong {
-  display: block;
-  color: var(--text-bright);
-  font-size: 0.92rem;
-  font-weight: 620;
-  line-height: 1.18;
-  letter-spacing: -0.03em;
-}
-
-.voice-node.richie { --voice: #c4734d; }
-.voice-node.mike { --voice: #8a9bb5; }
-.voice-node.beard { --voice: #8a9e7a; }
-.voice-node.rocky { --voice: #d4a040; }
-.voice-node.sean { --voice: #9b85b0; }
 
 
 /* ── Home: Belief Grid ── */
-.belief-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.85rem;
-  margin: 0.75rem 0 1.25rem;
-}
 
 .belief-card {
   background: var(--bg-card);
@@ -1198,40 +1071,10 @@ tr:hover td { background: var(--bg-card-hover); }
 
 .featured-journal:hover::before { opacity: 1; }
 
-.featured-journal .fj-label {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent-dim);
-  margin-bottom: 0.6rem;
-  font-weight: 600;
-}
-
 .featured-journal h3 {
   margin: 0 0 0.3rem;
   font-size: 1.2rem;
   letter-spacing: -0.02em;
-}
-
-.featured-journal .fj-date {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-bottom: 0.7rem;
-  font-weight: 450;
-}
-
-.featured-journal .fj-excerpt {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  line-height: 1.7;
-  margin: 0;
-  font-weight: 410;
-}
-
-.featured-journal .fj-link {
-  margin-top: 0.85rem;
-  font-size: 0.85rem;
-  font-weight: 500;
 }
 
 /* ── Agent Receipts ── */
@@ -1367,8 +1210,6 @@ tr:hover td { background: var(--bg-card-hover); }
 
 .receipt-card:hover::before { opacity: 1; }
 
-.receipt-card-compact { margin: 1rem 0; }
-
 .receipt-topline {
   display: flex;
   align-items: center;
@@ -1382,16 +1223,14 @@ tr:hover td { background: var(--bg-card-hover); }
   font-size: 1.18rem;
 }
 
-.receipt-summary,
-.receipt-mini-proof {
+.receipt-summary {
   color: var(--text-muted);
   font-size: 0.92rem;
   line-height: 1.65;
 }
 
 .receipt-date,
-.receipt-confidence,
-.receipt-id {
+.receipt-confidence {
   font-family: var(--font-mono);
   font-size: 0.68rem;
   color: var(--text);
@@ -1522,23 +1361,6 @@ tr:hover td { background: var(--bg-card-hover); }
 }
 
 /* ── Section Headers ── */
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin: 2.5rem 0 0.85rem;
-}
-
-.section-header::before {
-  content: '';
-  width: 20px;
-  height: 2px;
-  background: var(--accent);
-  flex-shrink: 0;
-  border-radius: 2px;
-}
-
-.section-header h2, .section-header h3 { margin: 0; }
 
 /* ── Footer ── */
 footer {
@@ -1645,7 +1467,12 @@ footer a:hover { color: var(--text-bright); }
   html { scroll-behavior: auto; }
   .progress-bar { display: none; }
   .back-to-top { transition: none; }
-  .card, .belief-card, .voice-card, .featured-journal, .receipt-card, .voice-node, .proof-card { transition: none; }
+  .card,
+.belief-card,
+.voice-card,
+.featured-journal,
+.receipt-card,
+.proof-card { transition: none; }
   .card::before, .belief-card::before, .featured-journal::before, .receipt-card::before { display: none; }
   html.js .reveal, html.js .reveal-fast, html.js .reveal-slide, html.js .assemble-text, html.js .glow-on-view {
     opacity: 1;
@@ -1666,22 +1493,16 @@ footer a:hover { color: var(--text-bright); }
 
   h1 { font-size: 1.7rem; }
   h2 { font-size: 1.25rem; }
-  .home-hero h1 { font-size: 2rem; }
   .journal-entry h1 { font-size: 1.7rem; }
 
   nav { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
   .nav-links { gap: 1.25rem; }
-
-  .belief-grid { grid-template-columns: 1fr; gap: 0.65rem; }
   .proof-hero,
   .proof-grid { grid-template-columns: 1fr; }
   .proof-card,
   .proof-card-primary { grid-column: auto; }
   .proof-card-primary { min-height: 220px; }
   .proof-facts div { grid-template-columns: 1fr; gap: 0.2rem; }
-  .voice-constellation { grid-template-columns: 1fr 1fr; }
-  .voice-node { min-height: 96px; }
-  .voice-node:last-child { grid-column: 1 / -1; }
 
   .journal-nav { flex-direction: column; gap: 0.5rem; }
   .journal-nav a { max-width: 100%; }
@@ -1711,13 +1532,6 @@ footer a:hover { color: var(--text-bright); }
     padding: 1.35rem 0.5rem;
   }
 
-  .section-alt {
-    margin-left: -1.25rem;
-    margin-right: -1.25rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
   .card, .voice-card, .receipt-card, .receipt-policy, .proof-card {
     padding: 1.25rem 1.35rem;
   }
@@ -1738,8 +1552,6 @@ footer a:hover { color: var(--text-bright); }
   body {
     padding: 1.5rem 1rem 4rem;
   }
-
-  .home-hero h1 { font-size: 1.75rem; }
   .journal-entry h1 { font-size: 1.5rem; }
 
   .nav-links { gap: 1rem; }
@@ -1750,15 +1562,6 @@ footer a:hover { color: var(--text-bright); }
   }
 
   .voice-card { border-left-width: 2px; grid-template-columns: 80px 1fr; }
-  .voice-constellation { grid-template-columns: 1fr; }
-  .voice-node:last-child { grid-column: auto; }
-
-  .section-alt {
-    margin-left: -1rem;
-    margin-right: -1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
 
   .journal-list li:hover {
     margin: 0 -0.35rem;
@@ -3302,8 +3105,7 @@ body.layout-post > footer {
 }
 
 .receipt-confidence,
-.receipt-date,
-.receipt-id {
+.receipt-date {
   font-size: 0.7rem;
   color: rgba(244,240,231,0.55);
   letter-spacing: 0.08em;
