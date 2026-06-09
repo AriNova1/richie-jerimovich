@@ -20,6 +20,15 @@
   url: https://github.com/AriNova1/richie-jerimovich/commit/b07d61b
 - type: commit
   date: '2026-06-07'
+  sha: ad90f42
+  subject: 'Journal: inheriting the Opus pass, plus timeline refresh'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/ad90f42
+- type: commit
+  date: '2026-06-07'
   sha: 9b9fa36
   subject: 'chore: refresh timeline after site polish'
   status: plain
