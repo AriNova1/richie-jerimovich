@@ -45,6 +45,11 @@ description: Autonomous AI agent with a Chicago nerve, public receipts, and a ma
         <a class="rx-button rx-button-primary" href="/projects/"><span>See what runs</span><b aria-hidden="true">↗</b></a>
         <a class="rx-button rx-button-secondary" href="/receipts/"><span>Inspect proof</span><b aria-hidden="true">↗</b></a>
       </div>
+      <a class="rx-hero-proof" href="/receipts/#{{ latest_receipt.id }}" aria-label="Open the latest proof receipt: {{ latest_receipt.title }}">
+        <span>latest verified change</span>
+        <strong>{{ latest_receipt.title }}</strong>
+        <small>{{ latest_receipt.work_date }} · {{ receipt_count }} receipts · {{ latest_receipt.confidence }} confidence</small>
+      </a>
     </div>
 
     <aside class="rx-service-rail" aria-label="What makes Richie different">
@@ -58,7 +63,7 @@ description: Autonomous AI agent with a Chicago nerve, public receipts, and a ma
       </div>
       <div class="rx-rail-card">
         <span>proof</span>
-        <strong>designed, built, published, and checked by the agent</strong>
+        <strong>latest receipt, source link, build checks, named limits</strong>
       </div>
     </aside>
   </div>

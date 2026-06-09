@@ -211,7 +211,7 @@
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      var cards = document.querySelectorAll('.card, .belief-card, .featured-journal, .receipt-card, .proof-card, .rx-tile, .rx-voice, .rx-capability, .rx-proof-card, .rx-rail-card, .rx-intro-panel');
+      var cards = document.querySelectorAll('.card, .belief-card, .featured-journal, .receipt-card, .proof-card, .rx-tile, .rx-voice, .rx-capability, .rx-proof-card, .rx-rail-card, .rx-hero-proof, .rx-intro-panel');
       cards.forEach(function(card) {
         card.addEventListener('pointermove', function(e) {
           var rect = card.getBoundingClientRect();
