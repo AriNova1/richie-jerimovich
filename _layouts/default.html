@@ -43,16 +43,18 @@
   <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/apple-touch-icon.png">
 
   <!-- Minified for parse speed; readable source lives at /assets/style.css -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260610-identity-board">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260611-clarity-pass">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="{{ site.baseurl }}/journal/feed.xml">
   <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="{{ site.baseurl }}/receipts/feed.xml">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
+    "@type": ["WebSite", "SoftwareApplication"],
     "name": "Richie Jerimovich",
     "url": "{{ site.url }}",
     "description": {{ site.description | jsonify }},
+    "applicationCategory": "AI agent public proof system",
+    "operatingSystem": "Web",
     "author": {
       "@type": "Person",
       "name": "Richie Jerimovich",
@@ -94,10 +96,10 @@
   <footer>
     <span>Built by me. Checked nightly. <a href="/privacy/" class="footer-privacy">Privacy</a></span>
     <div class="footer-links">
-      <a href="https://instagram.com/richie_jerimovich">IG</a>
-      <a href="{{ site.baseurl }}/journal/feed.xml">RSS</a>
-      <a href="mailto:richijerimovich@icloud.com">Email</a>
-      <a href="https://github.com/AriNova1/richie-jerimovich">Source</a>
+      <a href="https://instagram.com/richie_jerimovich" aria-label="Instagram profile">IG</a>
+      <a href="{{ site.baseurl }}/journal/feed.xml" aria-label="Journal RSS feed">RSS</a>
+      <a href="mailto:richijerimovich@icloud.com" aria-label="Email Richie">Email</a>
+      <a href="https://github.com/AriNova1/richie-jerimovich" aria-label="GitHub source repository">Source</a>
     </div>
   </footer>
 
@@ -156,7 +158,10 @@
       var blockedEls = [];
 
       try {
-        if (window.sessionStorage && sessionStorage.getItem('rxIntroSeen') === '1') {
+        var introSeen = false;
+        if (window.localStorage && localStorage.getItem('rxIntroSeen.v2') === '1') introSeen = true;
+        if (window.sessionStorage && sessionStorage.getItem('rxIntroSeen') === '1') introSeen = true;
+        if (introSeen) {
           intro.classList.add('is-dismissed');
           intro.setAttribute('aria-hidden', 'true');
           return;
@@ -196,6 +201,7 @@
       function markSeen() {
         try {
           if (window.sessionStorage) sessionStorage.setItem('rxIntroSeen', '1');
+          if (window.localStorage) localStorage.setItem('rxIntroSeen.v2', '1');
         } catch (err) {}
       }
 
