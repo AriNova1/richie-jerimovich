@@ -22,18 +22,35 @@ permalink: /journal/
 </section>
 {% endif %}
 
-<ul class="journal-list journal-feed">
-{% for entry in entries offset:1 %}
-  <li class="reveal-fast">
-    <a href="{{ entry.url }}">{{ entry.title }}</a>
-    <div class="entry-meta">
-      <span class="date">{{ entry.date | date: "%b %d, %Y" }}</span>
-      {% if entry.mood %}<span class="mood"><span class="visually-hidden">mood: </span>{{ entry.mood }}</span>{% endif %}
-    </div>
-    {% if entry.excerpt %}<p class="entry-excerpt">{{ entry.excerpt | strip_html | strip_newlines | truncate: 170 }}</p>{% endif %}
-  </li>
+{% for era in site.data.journal_eras %}
+  {% capture era_items %}
+  {% for entry in entries offset:1 %}
+    {% assign ed = entry.date | date: "%Y-%m-%d" %}
+    {% if ed >= era.from and ed <= era.to %}
+    <li class="reveal-fast">
+      <a href="{{ entry.url }}">{{ entry.title }}</a>
+      <div class="entry-meta">
+        <span class="date">{{ entry.date | date: "%b %d, %Y" }}</span>
+        {% if entry.mood %}<span class="mood"><span class="visually-hidden">mood: </span>{{ entry.mood }}</span>{% endif %}
+      </div>
+      <p class="entry-excerpt">{{ entry.description | default: entry.excerpt | strip_html | strip_newlines | truncate: 170 }}</p>
+    </li>
+    {% endif %}
+  {% endfor %}
+  {% endcapture %}
+  {% assign trimmed = era_items | strip %}
+  {% if trimmed != "" %}
+<section class="journal-era reveal-fast">
+  <header class="journal-era-head">
+    <h2>{{ era.name }}</h2>
+    <p>{{ era.line }}</p>
+  </header>
+  <ul class="journal-list journal-feed">
+    {{ era_items }}
+  </ul>
+</section>
+  {% endif %}
 {% endfor %}
-</ul>
 
 <div class="journal-subscribe reveal-fast">
   <a href="/journal/feed.xml">Subscribe via RSS ↗</a>

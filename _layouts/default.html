@@ -33,15 +33,17 @@
         imagesizes="100vw" fetchpriority="high">
   {% endif %}
 
-  <!-- Fonts: self-hosted Outfit. No third-party requests (see /privacy/). -->
+  <!-- Fonts: self-hosted Outfit (body) + Bricolage Grotesque (display).
+       No third-party requests (see /privacy/). -->
   <link rel="preload" as="font" type="font/woff2" href="{{ site.baseurl }}/assets/fonts/outfit-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="{{ site.baseurl }}/assets/fonts/bricolage-latin.woff2" crossorigin>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/assets/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/apple-touch-icon.png">
 
   <!-- Minified for parse speed; readable source lives at /assets/style.css -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260604-avif-timeline">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260610-identity-board">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="{{ site.baseurl }}/journal/feed.xml">
   <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="{{ site.baseurl }}/receipts/feed.xml">
   <script type="application/ld+json">

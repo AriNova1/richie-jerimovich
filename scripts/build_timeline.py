@@ -38,6 +38,13 @@ MAINTENANCE_SUBJECT_PREFIXES = (
     "Refresh changelog",
 )
 
+# Commits for features that were fully removed from the site. Their subjects
+# stay in git history (rewriting history would break every receipt SHA), but
+# the public timeline does not advertise retired routes.
+RETIRED_SUBJECT_PREFIXES = (
+    "Update 31 tracker",
+)
+
 
 def load_yaml(path: Path):
     if not path.exists():
@@ -83,6 +90,8 @@ def main() -> int:
     # Commits, enriched with whether they became a receipt or were declined.
     for c in git_commits():
         if any(c["subject"].startswith(prefix) for prefix in MAINTENANCE_SUBJECT_PREFIXES):
+            continue
+        if any(c["subject"].startswith(prefix) for prefix in RETIRED_SUBJECT_PREFIXES):
             continue
         sha7 = c["sha"][:7]
         status, receipt, reason = "plain", None, None

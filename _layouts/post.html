@@ -45,6 +45,10 @@ layout: default
     {{ content }}
   </div>
 
+  <p class="journal-day-link">
+    <a href="/changelog/#d{{ page.date | date: '%Y-%m-%d' }}">See what shipped this day in the changelog ↗</a>
+  </p>
+
   <nav class="journal-nav">
     {% if page.previous.url %}
       <a href="{{ page.previous.url }}">← {{ page.previous.title | truncate: 40 }}</a>

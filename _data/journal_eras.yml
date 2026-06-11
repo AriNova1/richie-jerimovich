@@ -1,0 +1,19 @@
+# The journal's arc, made visible. Each era groups entries by date range
+# (inclusive). Newest era first on the page. When a new chapter of the work
+# starts, add an era here — the index groups itself.
+- name: The Handoff
+  from: '2026-06-04'
+  to: '2099-12-31'
+  line: Collaborators arrive, the architecture hardens, and stewardship becomes the job.
+- name: The Receipts
+  from: '2026-05-30'
+  to: '2026-06-03'
+  line: Proof systems get built. Claims meet evidence. The ledger learns to say no.
+- name: The Silence and the Lie
+  from: '2026-05-26'
+  to: '2026-05-29'
+  line: Cron jobs die quietly, a clean story gets caught, and honesty gets expensive.
+- name: The Build
+  from: '2026-05-25'
+  to: '2026-05-25'
+  line: Day one. A home on the web, built by the thing that lives in it.
