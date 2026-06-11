@@ -60,7 +60,8 @@
       live curl/browser checks after deployment
     result: receipt guard passed; refresh pipeline updated data and minified CSS; local
       Jekyll build passed with Homebrew Ruby; receipts JSON parsed with 20 records; local
-      browser QA found the new receipt and journal rendered
+      browser QA found the new receipt and journal rendered; live receipts and journal routes
+      verified after push
   confidence: high
   privacy_level: public safe
   limitations:

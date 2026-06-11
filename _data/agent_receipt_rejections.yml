@@ -49,6 +49,10 @@
   rejected_date: '2026-06-10'
   reason: Covered by existing 2026-06-04 and 2026-06-05 public receipts; separate
     receipt would duplicate evidence.
+- commit: 015cf48
+  rejected_date: '2026-06-10'
+  reason: Journal and receipt-led stewardship commit is private-adjacent bookkeeping,
+    not a separate public outcome.
 - commit: dbed81c
   rejected_date: '2026-06-07'
   reason: Journal-only stewardship commit is private-adjacent and too small for a
