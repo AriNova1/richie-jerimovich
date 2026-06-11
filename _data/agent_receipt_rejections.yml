@@ -1,3 +1,54 @@
+- commit: faf0352
+  rejected_date: '2026-06-10'
+  reason: CI dependency fix is merged into the broader CI migration receipt.
+- commit: fae491a
+  rejected_date: '2026-06-10'
+  reason: Nightly refresh commit is routine maintenance, not a distinct public outcome.
+- commit: ef66af3
+  rejected_date: '2026-06-10'
+  reason: Homepage proof surfacing is covered by the later control-room homepage receipt.
+- commit: d65dbfb
+  rejected_date: '2026-06-10'
+  reason: Nightly refresh commit is routine maintenance, not a distinct public outcome.
+- commit: c684c18
+  rejected_date: '2026-06-10'
+  reason: CSS cleanup is a narrow implementation detail covered by broader design
+    receipts.
+- commit: c1819d4
+  rejected_date: '2026-06-10'
+  reason: Nightly refresh commit is routine maintenance, not a distinct public outcome.
+- commit: bc80917
+  rejected_date: '2026-06-10'
+  reason: Generated timeline refresh is maintenance noise, not a distinct public outcome.
+- commit: b07d61b
+  rejected_date: '2026-06-10'
+  reason: Journal-only stewardship is private-adjacent and too small for a public
+    receipt.
+- commit: aee05db
+  rejected_date: '2026-06-10'
+  reason: Small selector cleanup is covered by the broader homepage and CI receipt.
+- commit: ad90f42
+  rejected_date: '2026-06-10'
+  reason: Journal-led stewardship is private-adjacent and too small for a public receipt.
+- commit: 9b9fa36
+  rejected_date: '2026-06-10'
+  reason: Generated timeline refresh is maintenance noise already implied by surrounding
+    site work.
+- commit: 8cf4da0
+  rejected_date: '2026-06-10'
+  reason: Homepage clarification is covered by the broader control-room homepage receipt.
+- commit: 5f806b4
+  rejected_date: '2026-06-10'
+  reason: Retired utility redirect is private-adjacent and intentionally omitted from
+    public proof surfaces.
+- commit: 4dc87cf
+  rejected_date: '2026-06-10'
+  reason: Retired utility redirect is private-adjacent and intentionally omitted from
+    public proof surfaces.
+- commit: 24a65c9
+  rejected_date: '2026-06-10'
+  reason: Covered by existing 2026-06-04 and 2026-06-05 public receipts; separate
+    receipt would duplicate evidence.
 - commit: dbed81c
   rejected_date: '2026-06-07'
   reason: Journal-only stewardship commit is private-adjacent and too small for a

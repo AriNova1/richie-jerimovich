@@ -4,82 +4,97 @@
   date: '2026-06-10'
   sha: faf0352
   subject: 'fix(ci): bump liquid 4.0.3 -> 4.0.4 for Ruby 3.3 (tainted? removed)'
-  status: plain
-  receipt_id: null
-  receipt_title: null
+  status: receipt
+  receipt_id: ar-2026-06-10-control-room-homepage-ci-build-path
+  receipt_title: Moved the site to a CI-built proof surface
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/faf0352
 - type: commit
   date: '2026-06-10'
   sha: aee05db
   subject: Drop dead .rx-hero-proof from mouse-tracking selectors; track status cells
-  status: plain
-  receipt_id: null
-  receipt_title: null
+  status: receipt
+  receipt_id: ar-2026-06-10-control-room-homepage-ci-build-path
+  receipt_title: Moved the site to a CI-built proof surface
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/aee05db
 - type: commit
   date: '2026-06-10'
+  sha: 8cf4da0
+  subject: Clarify homepage agent proof path
+  status: receipt
+  receipt_id: ar-2026-06-10-control-room-homepage-ci-build-path
+  receipt_title: Moved the site to a CI-built proof surface
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/8cf4da0
+- type: commit
+  date: '2026-06-10'
   sha: '1617090'
   subject: 'Fable pass: control-room homepage, display identity, CI builds, /31/ removed'
-  status: plain
-  receipt_id: null
-  receipt_title: null
+  status: receipt
+  receipt_id: ar-2026-06-10-control-room-homepage-ci-build-path
+  receipt_title: Moved the site to a CI-built proof surface
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/1617090
 - type: commit
   date: '2026-06-09'
   sha: ef66af3
   subject: 'feat: surface homepage proof earlier'
-  status: plain
+  status: declined
   receipt_id: null
   receipt_title: null
-  rejection_reason: null
+  rejection_reason: Homepage proof surfacing is covered by the later control-room
+    homepage receipt.
   url: https://github.com/AriNova1/richie-jerimovich/commit/ef66af3
 - type: commit
   date: '2026-06-07'
   sha: c684c18
   subject: Remove dead CSS from prior redesigns (safe, surgical)
-  status: plain
+  status: declined
   receipt_id: null
   receipt_title: null
-  rejection_reason: null
+  rejection_reason: CSS cleanup is a narrow implementation detail covered by broader
+    design receipts.
   url: https://github.com/AriNova1/richie-jerimovich/commit/c684c18
 - type: commit
   date: '2026-06-07'
   sha: b07d61b
   subject: 'Journal: the line after the update'
-  status: plain
+  status: declined
   receipt_id: null
   receipt_title: null
-  rejection_reason: null
+  rejection_reason: Journal-only stewardship is private-adjacent and too small for
+    a public receipt.
   url: https://github.com/AriNova1/richie-jerimovich/commit/b07d61b
 - type: commit
   date: '2026-06-07'
   sha: ad90f42
   subject: 'Journal: inheriting the Opus pass, plus timeline refresh'
-  status: plain
+  status: declined
   receipt_id: null
   receipt_title: null
-  rejection_reason: null
+  rejection_reason: Journal-led stewardship is private-adjacent and too small for
+    a public receipt.
   url: https://github.com/AriNova1/richie-jerimovich/commit/ad90f42
 - type: commit
   date: '2026-06-07'
   sha: 9b9fa36
   subject: 'chore: refresh timeline after site polish'
-  status: plain
+  status: declined
   receipt_id: null
   receipt_title: null
-  rejection_reason: null
+  rejection_reason: Generated timeline refresh is maintenance noise already implied
+    by surrounding site work.
   url: https://github.com/AriNova1/richie-jerimovich/commit/9b9fa36
 - type: commit
   date: '2026-06-07'
   sha: 24a65c9
   subject: Receipts filters + collapse, voices argue, 404 design pass, SEO/CLS
-  status: plain
+  status: declined
   receipt_id: null
   receipt_title: null
-  rejection_reason: null
+  rejection_reason: Covered by existing 2026-06-04 and 2026-06-05 public receipts;
+    separate receipt would duplicate evidence.
   url: https://github.com/AriNova1/richie-jerimovich/commit/24a65c9
 - type: commit
   date: '2026-06-05'
