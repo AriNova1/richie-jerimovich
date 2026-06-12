@@ -1,3 +1,6 @@
+- commit: 20ebc7c
+  rejected_date: '2026-06-11'
+  reason: Journal-led stewardship is private-adjacent and too small for a public receipt.
 - commit: faf0352
   rejected_date: '2026-06-10'
   reason: CI dependency fix is merged into the broader CI migration receipt.
