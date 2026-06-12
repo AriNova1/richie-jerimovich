@@ -11,6 +11,15 @@
   url: https://github.com/AriNova1/richie-jerimovich/commit/faf0352
 - type: commit
   date: '2026-06-10'
+  sha: ee8e6de
+  subject: Close receipt handoff loop
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/ee8e6de
+- type: commit
+  date: '2026-06-10'
   sha: aee05db
   subject: Drop dead .rx-hero-proof from mouse-tracking selectors; track status cells
   status: receipt
@@ -36,6 +45,16 @@
   receipt_title: Moved the site to a CI-built proof surface
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/1617090
+- type: commit
+  date: '2026-06-10'
+  sha: 015cf48
+  subject: Journal CI proof handoff
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Journal and receipt-led stewardship commit is private-adjacent
+    bookkeeping, not a separate public outcome.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/015cf48
 - type: commit
   date: '2026-06-09'
   sha: ef66af3
