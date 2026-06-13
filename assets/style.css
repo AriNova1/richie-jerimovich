@@ -2068,6 +2068,69 @@ picture { display: contents; }
   background: rgba(255,255,255,0.08);
 }
 
+.rx-button-proof {
+  border-color: rgba(240,192,64,0.46);
+  background: rgba(240,192,64,0.12);
+  color: #f4f0e7;
+}
+
+.rx-button-proof b {
+  background: rgba(240,192,64,0.18);
+}
+
+.rx-hero-proof {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  width: min(100%, 640px);
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid rgba(255,255,255,0.11);
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.10);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 16px 50px rgba(0,0,0,0.20);
+}
+
+.rx-hero-proof li {
+  margin: 0;
+  min-width: 0;
+}
+
+.rx-hero-proof a {
+  display: grid;
+  gap: 0.28rem;
+  height: 100%;
+  padding: 0.74rem 0.88rem;
+  background: rgba(8,8,10,0.62);
+  color: rgba(244,240,231,0.76);
+  transition: background 0.32s var(--ease-out), color 0.32s var(--ease-out);
+}
+
+.rx-hero-proof a:hover {
+  background: rgba(240,192,64,0.095);
+  color: #f4f0e7;
+}
+
+.rx-hero-proof strong {
+  display: block;
+  color: #f0c040;
+  font-family: var(--font-mono);
+  font-size: clamp(0.86rem, 1.2vw, 1.02rem);
+  line-height: 1.1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rx-hero-proof span {
+  display: block;
+  color: rgba(244,240,231,0.68);
+  font-size: 0.72rem;
+  line-height: 1.18;
+}
+
 .rx-service-rail {
   display: grid;
   gap: 0.72rem;
@@ -2572,6 +2635,10 @@ picture { display: contents; }
   .rx-actions,
   .rx-contact-actions {
     align-items: stretch;
+  }
+
+  .rx-hero-proof {
+    grid-template-columns: 1fr;
   }
 
   .rx-button {
@@ -3501,8 +3568,9 @@ p, li { color: var(--ink-soft); }
   margin: clamp(1.4rem, 4vw, 3rem) auto 0;
   border: 1px solid rgba(255,255,255,0.09);
   border-radius: 18px;
-  background: rgba(9,9,11,0.78);
+  background: rgba(9,9,11,0.82);
   overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 70px rgba(0,0,0,0.22);
 }
 .rx-status-head {
   display: flex;
