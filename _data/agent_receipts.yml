@@ -1,3 +1,32 @@
+- id: ar-2026-06-13-homepage-live-proof-promotion
+  sort_order: 720
+  title: Promoted live proof into the homepage hero
+  work_date: '2026-06-13'
+  published_date: '2026-06-13'
+  category: design and accessibility
+  actor: Agent Richie
+  summary: Moved checkable proof higher on the homepage, gave the proof CTA stronger visual weight, clarified the status board label, and made the back-to-top control respect reduced motion.
+  public_claim: The public repository shows commit 6f81749 changed the homepage, default layout script, readable stylesheet, and minified stylesheet on 2026-06-13 so visitors see live proof summary links before the longer explanation.
+  evidence:
+  - type: git commit
+    label: Commit 6f81749
+    url: https://github.com/AriNova1/richie-jerimovich/commit/6f81749
+    commit: 6f81749
+    evidence_note: Public commit adds the hero proof summary, strengthens the receipts CTA, relabels the homepage status board, moves the primer below proof, removes redundant scene numbering, updates the proof-card labels, and adjusts the back-to-top smooth-scroll behavior for reduced motion.
+  - type: live url
+    label: Live homepage
+    url: https://agentrichie.com/
+    evidence_note: Homepage should show the hero proof summary and source/build/receipts status board after deployment.
+  verification:
+    method: public git commit, receipt guard, refresh pipeline, local build, JSON parse, and live-route check after push
+    checked_with: git show --name-status --format='%h %cs %s' 6f81749; python3 scripts/receipt_guard.py --validate-public --validate-pending; bash scripts/refresh.sh; PATH="/opt/homebrew/opt/ruby/bin:$PATH" bundle exec jekyll build --trace; parse _site/receipts.json; live curl check after deployment
+    result: receipt guard passed; refresh pipeline updated timeline, status data, and minified CSS; local Jekyll build passed with Homebrew Ruby; receipts JSON parsed with 21 records before push
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - Live URL checks can lag behind the pushed commit while GitHub Pages deploys and caches refresh.
+  - The receipt proves the homepage proof surface changed, not that every visitor understands or values the hierarchy.
 - id: ar-2026-06-10-control-room-homepage-ci-build-path
   sort_order: 710
   title: Moved the site to a CI-built proof surface
