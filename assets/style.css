@@ -43,11 +43,11 @@
   --panel-soft: rgba(255,255,255,0.042);
   /* ink (final values after the v6/v6.1 passes; --text intentionally equals --ink-soft family) */
   --paper: #f4f0e7;
-  --ink-soft: rgba(244,240,231,0.78);
-  --ink-muted: rgba(244,240,231,0.62);
-  --text: rgba(244,240,231,0.76);
-  --text-bright: #e4e4ea;
-  --text-muted: rgba(244,240,231,0.62);
+  --ink-soft: rgba(244,240,231,0.84);
+  --ink-muted: rgba(244,240,231,0.68);
+  --text: rgba(244,240,231,0.84);
+  --text-bright: #f0ebe0;
+  --text-muted: rgba(244,240,231,0.68);
   /* accent */
   --accent: #f0c040;
   --accent-glow: rgba(240, 192, 64, 0.06);
@@ -2250,7 +2250,7 @@ picture { display: contents; }
 .rx-tile:hover {
   transform: translateY(-4px);
   border-color: rgba(240,192,64,0.28);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.13), 0 30px 90px rgba(0,0,0,0.30);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.13), 0 30px 90px rgba(0,0,0,0.30), inset 0 0 28px rgba(240,192,64,0.04);
 }
 
 .rx-tile-large {
@@ -2296,6 +2296,17 @@ picture { display: contents; }
   grid-row: span 2;
   min-height: 520px;
   padding: 0;
+  position: relative;
+}
+
+.rx-tile-image::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(7,7,8,0.85), transparent);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .rx-tile-image img {
@@ -2306,6 +2317,24 @@ picture { display: contents; }
   object-position: 61% center;
   display: block;
   filter: saturate(0.92) contrast(1.08);
+}
+
+.rx-tile-caption {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(244,240,231,0.72);
+  background: rgba(7,7,8,0.72);
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .rx-tile-terminal {
@@ -2689,6 +2718,12 @@ picture { display: contents; }
   .rx-tile-image,
   .rx-tile-image img {
     min-height: 300px;
+  }
+
+  .rx-tile-caption {
+    bottom: 1rem;
+    left: 1rem;
+    font-size: 0.68rem;
   }
 }
 
@@ -3570,7 +3605,7 @@ p, li { color: var(--ink-soft); }
   border-radius: 18px;
   background: rgba(9,9,11,0.82);
   overflow: hidden;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 70px rgba(0,0,0,0.22);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 70px rgba(0,0,0,0.22), inset 0 2px 0 rgba(240,192,64,0.08);
 }
 .rx-status-head {
   display: flex;
@@ -3669,9 +3704,9 @@ a.rx-status-cell:hover { background: rgba(240,192,64,0.055); }
 
 .rx-manifesto { padding-top: clamp(3rem, 8vw, 8rem); }
 .rx-manifesto p {
-  max-width: 24ch;
+  max-width: 26ch;
   font-size: clamp(2.05rem, 5vw, 5.1rem);
-  line-height: 1.02;
+  line-height: 1.06;
   letter-spacing: -0.052em;
   font-weight: 720;
 }
@@ -3844,7 +3879,7 @@ a.rx-status-cell:hover { background: rgba(240,192,64,0.055); }
 .belief-block { scroll-margin-top: 8rem; margin: 3.3rem 0; padding-bottom: 2.2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
 .belief-block h2 { margin-top: 0.4rem; max-width: 16ch; font-size: clamp(1.8rem, 3vw, 2.55rem); }
 .belief-block p { font-size: 1.08rem; color: rgba(244,240,231,0.76); }
-.belief-split { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; margin: 3rem calc(-1 * min(7vw, 5rem)); }
+.belief-split { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; margin: 3rem 0; }
 .belief-split section { padding: clamp(1.4rem, 3vw, 2.2rem); border: 1px solid rgba(255,255,255,0.085); border-radius: 24px; background: rgba(255,255,255,0.034); }
 .belief-split h2 { margin-top: 0; }
 .belief-split li { color: rgba(244,240,231,0.72); }
@@ -4455,7 +4490,7 @@ body.layout-page .site-footer { margin-top: clamp(2.2rem, 5vw, 4.5rem); }
 
 /* Type-first hero: the image steps back to atmosphere; the original
    gradient + gold-glow overlays stay untouched. */
-.rx-hero-media img { opacity: 0.62; }
+.rx-hero-media img { opacity: 0.78; }
 
 /* Changelog months: newest month open, history folded. The page stays
    readable at month 6 instead of becoming a 60,000px scroll. */

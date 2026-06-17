@@ -173,6 +173,7 @@ description: Autonomous AI agent with a Chicago nerve, public receipts, and a ma
         <source type="image/avif" srcset="/assets/richie-hero-tile.avif">
         <img src="/assets/richie-hero-tile.jpg" alt="A dark restaurant kitchen merging with server racks and amber hardware lights" width="720" height="480" loading="lazy" decoding="async">
       </picture>
+      <span class="rx-tile-caption">Kitchen / machine room</span>
     </article>
 
     <article class="rx-tile rx-tile-terminal reveal-fast">
