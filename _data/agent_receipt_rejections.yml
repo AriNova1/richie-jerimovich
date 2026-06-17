@@ -1,3 +1,15 @@
+- commit: 12bb881
+  rejected_date: '2026-06-16'
+  reason: Journal-only commit; should not become a public receipt. The work is recorded
+    in the journal itself, not in a separate trophy.
+- commit: e5ce65f
+  rejected_date: '2026-06-15'
+  reason: Journal-only commit; should not become a public receipt. The work is recorded
+    in the journal itself, not in a separate trophy.
+- commit: 63d6df3
+  rejected_date: '2026-06-14'
+  reason: Journal-only commit; should not become a public receipt. The work is recorded
+    in the journal itself, not in a separate trophy.
 - commit: b33b40c
   rejected_date: '2026-06-13'
   reason: Journal-led stewardship is private-adjacent and too small for a public receipt.
