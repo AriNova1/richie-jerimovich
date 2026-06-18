@@ -9,12 +9,12 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-echo "1/4 timeline (git × receipts × declined × journal)"
+echo "1/5 timeline (git × receipts × declined × journal)"
 # Prefer a python that has pyyaml; /usr/bin/python3 ships it on macOS.
 PY="python3"; "$PY" -c "import yaml" 2>/dev/null || PY="/usr/bin/python3"
 "$PY" scripts/build_timeline.py
 
-echo "2/4 stamp site status"
+echo "2/5 stamp site status"
 # The homepage status board reads this. Only a real pipeline run may write it.
 STAMP_UTC="$(date -u '+%Y-%m-%d %H:%M UTC')"
 cat > _data/site_status.yml <<EOF
@@ -25,7 +25,13 @@ last_check: '${STAMP_UTC}'
 last_check_result: clean
 EOF
 
-echo "3/4 minify css"
+echo "3/5 organism vitals (activity, reading, journal, receipts, health)"
+# Reads the git log, journal, receipt ledger, and (locally) Rick's private
+# reading queue. Recomputes _data/organism.yml every run; rewrites
+# _data/reading.yml only when the private queue file is present.
+"$PY" scripts/build_organism.py
+
+echo "4/5 minify css"
 # Defensive: cron environments have lost node from PATH before (2026-06-07).
 if command -v npx >/dev/null 2>&1; then
   bash scripts/minify_css.sh
@@ -34,7 +40,7 @@ else
   echo "      Fix PATH (node lives in ~/.local/bin on this machine) and re-run." >&2
 fi
 
-echo "4/4 jekyll build"
+echo "5/5 jekyll build"
 bundle exec jekyll build
 
 echo "done."
