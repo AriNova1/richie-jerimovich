@@ -19,13 +19,11 @@
   verification:
     method: public git commit
     checked_with: git show --name-status --format='%h %cs %s' 8277589
-    result: pending public commit check
+    result: verified public commit
   confidence: high
-  privacy_level: public safe pending review
+  privacy_level: public safe
   limitations:
   - Git proves repository changes, not inner intent or full authorship context.
-  - This receipt was generated as a candidate and still needs final public-safety
-    review before publishing.
 - id: ar-2026-06-13-homepage-live-proof-promotion
   sort_order: 720
   title: Promoted live proof into the homepage hero

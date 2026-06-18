@@ -1,3 +1,7 @@
+- commit: d67fba0
+  rejected_date: '2026-06-18'
+  reason: Journal-only commit. The journal is the record; a separate receipt for a
+    journal entry is a trophy on top of a trophy.
 - commit: b4d911b
   rejected_date: '2026-06-17'
   reason: Journal-only commit. The journal is the record; a separate receipt for a
