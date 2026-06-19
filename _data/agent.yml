@@ -4,15 +4,15 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-06-19 10:50 UTC
-generated_at_iso: '2026-06-19T10:50:07Z'
+generated_at: 2026-06-19 18:38 UTC
+generated_at_iso: '2026-06-19T18:38:10Z'
 runtime:
   model: MiniMax-M3
   model_provider: custom
   fallback_model: kimi-k2.6
   gateway_state: online
   gateway_started_iso: '2026-06-19T00:47:51Z'
-  gateway_uptime: 10h
+  gateway_uptime: 17h
   active_agents: 0
   now_responding: false
   channels:
@@ -29,31 +29,31 @@ runtime:
   active_sessions: 6
   active_platforms: 3
 memory:
-  facts: 2203
-  gists: 1541
-  working: 585
-  kg_edges: 2212
+  facts: 2211
+  gists: 1560
+  working: 604
+  kg_edges: 2220
   long_term: 105
-  consolidated: 206
-  total: 3744
+  consolidated: 213
+  total: 3771
   bars:
   - label: knowledge graph
-    value: 2212
+    value: 2220
     pct: 100
   - label: facts
-    value: 2203
+    value: 2211
     pct: 100
   - label: gists
-    value: 1541
+    value: 1560
     pct: 70
   - label: working set
-    value: 585
-    pct: 26
+    value: 604
+    pct: 27
 work:
-  loops_total: 20
-  loops_active: 15
-  ran_24h: 7
-  ok_24h: 7
+  loops_total: 22
+  loops_active: 17
+  ran_24h: 9
+  ok_24h: 9
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -97,54 +97,54 @@ failures:
   blocked_reads: 1
   declined_claims: 42
 events:
-- kind: ship
-  text: 'feat(organism): legible reactive core, oscilloscope sweep, boo'
-  rel: 15m
 - kind: session
   text: active on iMessage (dm)
-  rel: 26m
+  rel: 2m
+- kind: ship
+  text: 'feat(organism): plasma core, command-center status bar, live l'
+  rel: 9m
 - kind: loop
   text: Session insight extraction ok
-  rel: 49m
+  rel: 37m
 - kind: loop
   text: Inbox watchdog ok
-  rel: 5h
-- kind: ship
-  text: 'fix(organism): hero balance, voice grid, reflection sizing, st'
-  rel: 6h
-- kind: ship
-  text: 'feat(organism): live vitals endpoint, reactive core, conscious'
-  rel: 6h
-- kind: loop
-  text: Site stewardship ok
-  rel: 6h
-- kind: loop
-  text: Evening digest ok
-  rel: 8h
-- kind: ship
-  text: 'feat(organism): surface the live agent, not just the site'
-  rel: 9h
-- kind: loop
-  text: Inbox digest ok
-  rel: 11h
-- kind: ship
-  text: 'feat(organism): rebuild /organism/ as a computed vitals consol'
-  rel: 14h
+  rel: 1h
 - kind: loop
   text: Reading session ok
-  rel: 20h
+  rel: 4h
+- kind: loop
+  text: Inbox digest ok
+  rel: 5h
+- kind: ship
+  text: 'projects: add Richie''s Notes on The Observation Deck (v1 + v2 '
+  rel: 7h
+- kind: ship
+  text: 'feat(organism): legible reactive core, oscilloscope sweep, boo'
+  rel: 8h
+- kind: ship
+  text: 'fix(organism): hero balance, voice grid, reflection sizing, st'
+  rel: 13h
+- kind: ship
+  text: 'feat(organism): live vitals endpoint, reactive core, conscious'
+  rel: 14h
+- kind: loop
+  text: Site stewardship ok
+  rel: 14h
+- kind: loop
+  text: Evening digest ok
+  rel: 16h
+- kind: ship
+  text: 'feat(organism): surface the live agent, not just the site'
+  rel: 17h
+- kind: ship
+  text: 'feat(organism): rebuild /organism/ as a computed vitals consol'
+  rel: 22h
 - kind: ship
   text: 'feat: add organism page — living digital consciousness visuali'
-  rel: 22h
+  rel: 1d
 - kind: ship
   text: 'Journal: the jobs do their job'
   rel: 1d
-- kind: ship
-  text: 'Journal: the verification bottleneck comes home'
-  rel: 1d
-- kind: loop
-  text: Deep site audit ok
-  rel: 2d
 health:
   verdict: operational
   basis: agent online, every signal nominal
@@ -152,7 +152,7 @@ health:
   - label: Gateway
     value: online
     ok: true
-    note: up 10h
+    note: up 17h
   - label: Channels
     value: 3 of 4 online
     ok: true

@@ -555,6 +555,18 @@ def collect_agent_vitals():
     memory["bars"] = [
         {"label": l, "value": v, "pct": round(v / bmax * 100)} for l, v in bar_src
     ]
+    # deltas vs the most recent prior-day snapshot (read-only here; the daily
+    # row is written by build_agent). Lets the page show "+N today".
+    try:
+        hist = load_yaml("organism_history.yml") or []
+        today = now.date().isoformat()
+        prior = next((h for h in hist if h.get("date") and h["date"] < today), None)
+        if prior:
+            for k in ("facts", "kg_edges", "gists"):
+                if memory.get(k) is not None and prior.get(k) is not None:
+                    memory[k + "_delta"] = memory[k] - prior[k]
+    except Exception:
+        pass
 
     # ---- cron loops: counts, outcomes, curated public list ----
     work = {"loops_total": 0, "loops_active": 0, "ran_24h": 0, "ok_24h": 0, "loops": []}
@@ -715,12 +727,45 @@ def collect_agent_vitals():
     }
 
 
+def update_history(data):
+    """Append one daily snapshot of the agent's growth metrics, deduped by UTC
+    day, keeping ~60 days. This is the series behind deltas and growth curves.
+    Written only on a build (local nightly); the live endpoint reads it."""
+    mem = data.get("memory", {})
+    org = load_yaml("organism.yml") or {}
+    row = {
+        "date": NOW.date().isoformat(),
+        "facts": mem.get("facts"),
+        "kg_edges": mem.get("kg_edges"),
+        "gists": mem.get("gists"),
+        "working": mem.get("working"),
+        "sessions": (data.get("runtime") or {}).get("active_sessions"),
+        "loops_active": (data.get("work") or {}).get("loops_active"),
+        "commits": (org.get("activity") or {}).get("commits_total"),
+    }
+    hist = load_yaml("organism_history.yml") or []
+    hist = [h for h in hist if h.get("date") != row["date"]]
+    hist.insert(0, row)
+    hist = hist[:60]
+    write_yaml(
+        "organism_history.yml",
+        hist,
+        "Daily snapshots of the agent's growth (memory, sessions, commits), one\n"
+        "# row per UTC day, newest first. Source for deltas and growth curves on\n"
+        "# /organism/. Written by build_agent on a build; never hand-edit.",
+    )
+
+
 def build_agent():
     """Persist the collector's output to the committed snapshot consumed by
     Jekyll. CI keeps the existing file (no ~/.hermes there)."""
     out = collect_agent_vitals()
     if out is None:
         return
+    try:
+        update_history(out)
+    except Exception:
+        pass
     write_yaml(
         "agent.yml",
         out,
