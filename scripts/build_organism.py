@@ -33,10 +33,37 @@ except ImportError:
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "_data")
 JOURNAL = os.path.join(ROOT, "_journal")
-READING_SRC = os.path.expanduser("~/.hermes/reading-queue.md")
+HERMES = os.path.expanduser("~/.hermes")
+READING_SRC = os.path.join(HERMES, "reading-queue.md")
 NOW = datetime.now(timezone.utc)
 TODAY = NOW.date()
 WINDOW = 30  # days of activity history to chart
+
+# Cron loops whose names reveal private accounts, side businesses, or personal
+# targets are never listed publicly. Matched as case-insensitive substrings.
+LOOP_DENYLIST = ("instagram", "rickosmic", "side hustle", "nyc-spot", "nyc spot")
+# Clean public display names + plain-language cadence for the loops we do show.
+LOOP_DISPLAY = {
+    "daily-reading-session": ("Reading session", "daily"),
+    "nightly-richie-site-stewardship": ("Site stewardship", "nightly"),
+    "richie-site-four-day-jawdrop-audit": ("Deep site audit", "every 4 days"),
+    "weekly-communication-doctrine": ("Communication doctrine", "weekly"),
+    "Self-Evolution Weekly Optimization": ("Self-evolution", "weekly"),
+    "session-insight-extractor": ("Session insight extraction", "hourly"),
+    "weekly-wiki-synthesis": ("Wiki synthesis", "weekly"),
+    "contradiction-detector": ("Contradiction detector", "weekly"),
+    "Unified Evening Digest (fixed delivery)": ("Evening digest", "daily"),
+    "email-watchdog": ("Inbox watchdog", "every 6h"),
+    "email-digest": ("Inbox digest", "twice daily"),
+    "second-shift-deep-writing-workshop": ("Deep writing workshop", "weekly"),
+}
+PLATFORM_NAMES = {
+    "bluebubbles": "iMessage",
+    "telegram": "Telegram",
+    "discord": "Discord",
+    "api_server": "API",
+    "photon": "Web",
+}
 
 
 # --------------------------------------------------------------------------- #
@@ -366,6 +393,249 @@ def build_organism():
     )
 
 
+# --------------------------------------------------------------------------- #
+# agent introspection -> _data/agent.yml
+#
+# Reads the live agent home at ~/.hermes (only present on Rick's machine) and
+# emits a hard-sanitized snapshot: runtime model, gateway uptime, channels,
+# memory-store sizes, cron loops, and failure counts. Never publishes secrets,
+# message contents, raw error text, file paths, phone numbers, or private
+# account/job names. Regenerated only when ~/.hermes is present; CI keeps the
+# committed snapshot, so figures are honest "as of last refresh".
+# --------------------------------------------------------------------------- #
+def _sql_count(db, table):
+    import sqlite3
+    try:
+        con = sqlite3.connect(f"file:{db}?mode=ro", uri=True, timeout=5)
+        n = con.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
+        con.close()
+        return int(n)
+    except Exception:
+        return None
+
+
+def _gateway_uptime(pid):
+    """Real process start time for the gateway pid, as ISO + human age."""
+    try:
+        out = subprocess.run(
+            ["ps", "-o", "lstart=", "-p", str(pid)], capture_output=True, text=True
+        ).stdout.strip()
+        if not out:
+            return None, None
+        started = datetime.strptime(out, "%a %b %d %H:%M:%S %Y").replace(
+            tzinfo=timezone.utc
+        )
+        return started.strftime("%Y-%m-%dT%H:%M:%SZ"), rel_age(started)
+    except Exception:
+        return None, None
+
+
+def build_agent():
+    if not os.path.isdir(HERMES):
+        return  # CI / no access: keep the committed snapshot
+
+    import json
+
+    def load_json(rel):
+        try:
+            with open(os.path.join(HERMES, rel), encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return None
+
+    # ---- runtime: model + gateway + channels + active sessions ----
+    runtime = {}
+    try:
+        with open(os.path.join(HERMES, "config.yaml"), encoding="utf-8") as f:
+            cfg = yaml.safe_load(f)
+        primary = cfg.get("model") or {}
+        runtime["model"] = primary.get("default") if isinstance(primary, dict) else None
+        prov = primary.get("provider", "") if isinstance(primary, dict) else ""
+        runtime["model_provider"] = "xAI" if "xai" in prov.lower() else (prov or None)
+        fb = cfg.get("fallback_providers") or []
+        fb = [x for x in fb if isinstance(x, dict) and x.get("model")]
+        runtime["fallback_model"] = fb[0]["model"] if fb else None
+    except Exception:
+        pass
+
+    gw = load_json("gateway_state.json") or {}
+    gw_running = gw.get("gateway_state") == "running"
+    started_iso, uptime_h = (None, None)
+    if gw.get("pid"):
+        started_iso, uptime_h = _gateway_uptime(gw["pid"])
+    runtime["gateway_state"] = "online" if gw_running else "offline"
+    runtime["gateway_started_iso"] = started_iso
+    runtime["gateway_uptime"] = uptime_h
+    channels = []
+    for raw, info in (gw.get("platforms") or {}).items():
+        channels.append(
+            {"name": PLATFORM_NAMES.get(raw, raw.title()), "state": info.get("state")}
+        )
+    runtime["channels"] = channels
+    runtime["channels_online"] = sum(1 for c in channels if c["state"] == "connected")
+    runtime["channels_total"] = len(channels)
+
+    sessions = load_json("sessions/sessions.json") or {}
+    svals = list(sessions.values()) if isinstance(sessions, dict) else []
+    runtime["active_sessions"] = len(svals)
+    runtime["active_platforms"] = len(
+        {PLATFORM_NAMES.get(s.get("platform"), s.get("platform")) for s in svals}
+    )
+
+    # ---- memory store sizes (mnemosyne) ----
+    mdb = os.path.join(HERMES, "mnemosyne/data/mnemosyne.db")
+    memory = {
+        "facts": _sql_count(mdb, "facts"),
+        "gists": _sql_count(mdb, "gists"),
+        "working": _sql_count(mdb, "working_memory"),
+        "kg_edges": _sql_count(mdb, "graph_edges"),
+        "long_term": _sql_count(mdb, "memories"),
+        "consolidated": _sql_count(mdb, "consolidated_facts"),
+    }
+    memory = {k: v for k, v in memory.items() if v is not None}
+    # precompute bar geometry for the four headline stores (avoids Liquid math)
+    bar_src = [
+        ("knowledge graph", memory.get("kg_edges")),
+        ("facts", memory.get("facts")),
+        ("gists", memory.get("gists")),
+        ("working set", memory.get("working")),
+    ]
+    bar_src = [(l, v) for l, v in bar_src if v]
+    bmax = max((v for _, v in bar_src), default=1)
+    memory["total"] = (memory.get("facts", 0) or 0) + (memory.get("gists", 0) or 0)
+    memory["bars"] = [
+        {"label": l, "value": v, "pct": round(v / bmax * 100)} for l, v in bar_src
+    ]
+
+    # ---- cron loops: counts, outcomes, curated public list ----
+    work = {"loops_total": 0, "loops_active": 0, "ran_24h": 0, "ok_24h": 0, "loops": []}
+    jobs_raw = load_json("cron/jobs.json")
+    jobs = (
+        jobs_raw
+        if isinstance(jobs_raw, list)
+        else (jobs_raw.get("jobs") or list(jobs_raw.values()))
+        if isinstance(jobs_raw, dict)
+        else []
+    )
+    for j in jobs:
+        if not isinstance(j, dict):
+            continue
+        work["loops_total"] += 1
+        enabled = j.get("enabled", j.get("state") not in ("paused", "disabled"))
+        if enabled:
+            work["loops_active"] += 1
+        lr = j.get("last_run_at")
+        if lr:
+            try:
+                lrd = datetime.fromisoformat(lr.replace("Z", "+00:00"))
+                if (NOW - lrd.astimezone(timezone.utc)).total_seconds() <= 86400:
+                    work["ran_24h"] += 1
+                    if str(j.get("last_status", "")).lower() in ("ok", "success", "done", "completed"):
+                        work["ok_24h"] += 1
+            except Exception:
+                pass
+        name = j.get("name", "")
+        low = name.lower()
+        if not enabled or any(d in low for d in LOOP_DENYLIST):
+            continue
+        disp = LOOP_DISPLAY.get(name)
+        if not disp:
+            continue  # only show loops we have a vetted public label for
+        work["loops"].append(
+            {
+                "name": disp[0],
+                "cadence": disp[1],
+                "status": str(j.get("last_status") or "scheduled").lower(),
+            }
+        )
+
+    # ---- failures: 24h error count + category, blocked reads ----
+    failures = {"errors_24h": 0, "errors_top": None, "blocked_reads": 0}
+    elog = os.path.join(HERMES, "logs/errors.log")
+    if os.path.exists(elog):
+        cut = NOW.replace(tzinfo=None) - timedelta(hours=24)
+        mods = {}
+        try:
+            with open(elog, errors="ignore") as f:
+                for line in f:
+                    m = re.match(r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})", line)
+                    if not m or " ERROR " not in line:
+                        continue
+                    try:
+                        ts = datetime.strptime(m.group(1), "%Y-%m-%d %H:%M:%S")
+                    except ValueError:
+                        continue
+                    if ts >= cut:
+                        failures["errors_24h"] += 1
+                        mm = re.search(r"\] ([\w.]+):", line)
+                        if mm:
+                            k = mm.group(1).split(".")[0]
+                            mods[k] = mods.get(k, 0) + 1
+        except Exception:
+            pass
+        if mods:
+            failures["errors_top"] = max(mods, key=mods.get)
+    if os.path.exists(READING_SRC):
+        try:
+            failures["blocked_reads"] = sum(
+                1 for ln in open(READING_SRC, encoding="utf-8") if "ACCESS ISSUE" in ln
+            )
+        except Exception:
+            pass
+    # declined claims come from the receipt ledger (also shown on the site side)
+    timeline = load_yaml("timeline.yml") or []
+    failures["declined_claims"] = sum(1 for t in timeline if t.get("status") == "declined")
+
+    # ---- combined health verdict: agent signals + site signals ----
+    org = load_yaml("organism.yml") or {}
+    site_checks = (org.get("health") or {}).get("checks", [])
+    checks = [
+        {
+            "label": "Gateway",
+            "value": runtime["gateway_state"],
+            "ok": gw_running,
+            "note": f"up {uptime_h}" if uptime_h else "process state",
+        },
+        {
+            "label": "Channels",
+            "value": f"{runtime['channels_online']} of {runtime['channels_total']} online",
+            "ok": runtime["channels_online"] >= 2,
+            "note": "messaging surfaces connected",
+        },
+        {
+            "label": "Error rate",
+            "value": f"{failures['errors_24h']} in 24h",
+            "ok": failures["errors_24h"] < 25,
+            "note": f"top source {failures['errors_top']}" if failures["errors_top"] else "logged errors",
+        },
+    ]
+    all_checks = checks + site_checks
+    n_fail = sum(1 for c in all_checks if not c.get("ok"))
+    if gw_running and n_fail == 0:
+        verdict, basis = "operational", "agent online, every signal nominal"
+    elif gw_running:
+        verdict, basis = "stable", "agent online, soft signals to watch"
+    else:
+        verdict, basis = "degraded", "a core signal is offline or failing"
+
+    out = {
+        "generated_at": NOW.strftime("%Y-%m-%d %H:%M UTC"),
+        "runtime": runtime,
+        "memory": memory,
+        "work": work,
+        "failures": failures,
+        "health": {"verdict": verdict, "basis": basis, "checks": checks},
+    }
+    write_yaml(
+        "agent.yml",
+        out,
+        "Sanitized snapshot of the live agent at ~/.hermes (runtime model, gateway\n"
+        "# uptime, channels, memory-store sizes, cron loops, failure counts). No\n"
+        "# secrets, message contents, raw errors, paths, or private job names.\n"
+        "# Regenerated only when ~/.hermes is present; CI keeps the committed file.",
+    )
+
+
 def write_yaml(name, data, header):
     path = os.path.join(DATA, name)
     with open(path, "w", encoding="utf-8") as f:
@@ -377,3 +647,4 @@ def write_yaml(name, data, header):
 if __name__ == "__main__":
     build_reading()
     build_organism()
+    build_agent()
