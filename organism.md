@@ -327,11 +327,79 @@ a.org-organ:hover { border-color: var(--sig-edge); transform: translateY(-3px); 
 .org-close { margin-top: clamp(2.5rem, 6vw, 4rem); padding-top: 2rem; border-top: 1px solid var(--org-line); font-family: var(--font-mono); font-size: 0.74rem; color: var(--org-mute); line-height: 2; }
 .org-close b { color: var(--sig); font-weight: 400; }
 
+/* ============================ live layer ============================ */
+/* materiality: a faint scanline + vignette over the whole console so it reads
+   like a lit panel, not a flat page. cheap, static, behind everything. */
+body.page-organism::after {
+  content: "";
+  position: fixed; inset: 0; z-index: 9998; pointer-events: none;
+  background:
+    repeating-linear-gradient(180deg, rgba(255,255,255,0.014) 0 1px, transparent 1px 3px),
+    radial-gradient(120% 120% at 50% 0%, transparent 62%, rgba(0,0,0,0.45) 100%);
+  mix-blend-mode: soft-light; opacity: 0.5;
+}
+
+/* the signal accent flexes with the agent's mood. js sets these on <article>. */
+#organism { --mood: var(--sig); --mood-edge: var(--sig-edge); --mood-wash: var(--sig-wash); }
+#organism.mood-responding { --mood: #8ef0e6; --mood-edge: rgba(142,240,230,0.55); --mood-wash: rgba(142,240,230,0.10); }
+#organism.mood-stable { --mood: var(--warn); --mood-edge: rgba(232,184,107,0.5); --mood-wash: rgba(232,184,107,0.09); }
+#organism.mood-degraded, #organism.mood-dormant { --mood: var(--bad); --mood-edge: rgba(232,113,107,0.5); --mood-wash: rgba(232,113,107,0.09); }
+#organism.mood-dormant { --mood: var(--dim); --mood-edge: rgba(95,109,122,0.5); }
+
+/* reactive core: a canvas heart in the hero. sonar rings whose rate and bloom
+   track real activity; brightens hard when he is mid-response. */
+.hero-grid { display: grid; grid-template-columns: 200px 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+@media (max-width: 680px) { .hero-grid { grid-template-columns: 1fr; gap: 1.5rem; } .core-orb { margin: 0 auto; } }
+.core-orb { position: relative; width: 200px; height: 200px; }
+.core-orb__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.core-orb__center { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
+.core-orb__bpm { font-family: var(--font-display); font-weight: 800; font-size: 2.1rem; line-height: 1; color: var(--mood); transition: color 0.6s; }
+.core-orb__bpm small { display: block; font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--org-mute); margin-top: 0.35rem; }
+
+/* live status pill in the top bar */
+.live-pill { display: inline-flex; align-items: center; gap: 0.45rem; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mood); }
+.live-pill__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mood); box-shadow: 0 0 8px var(--mood); }
+.live-pill[data-live="snapshot"] { color: var(--org-mute); }
+.live-pill[data-live="snapshot"] .live-pill__dot { background: var(--org-mute); box-shadow: none; animation: none; }
+
+/* responding banner pulse on the verdict tag */
+#organism.mood-responding .core-verdict__tag { border-color: var(--mood-edge); color: var(--mood); }
+
+/* odometer: numbers flip on live update */
+[data-vital] { transition: color 0.3s; }
+.tick-up { animation: tick-up 0.5s var(--ease-out); }
+@keyframes tick-up { 0% { color: var(--mood); transform: translateY(-2px); } 100% { transform: translateY(0); } }
+
+/* ---------- consciousness stream ---------- */
+.stream { margin-top: 1.75rem; border: 1px solid var(--org-line); border-radius: 16px; background: linear-gradient(180deg, var(--org-card), var(--org-card-2)); overflow: hidden; }
+.stream__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.9rem 1.3rem; border-bottom: 1px solid var(--org-line-soft); }
+.stream__title { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mood); }
+.stream__meta { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--org-mute); }
+.stream__body { max-height: 340px; overflow: hidden; padding: 0.4rem 0; -webkit-mask-image: linear-gradient(180deg, transparent, #000 14%, #000 90%, transparent); mask-image: linear-gradient(180deg, transparent, #000 14%, #000 90%, transparent); }
+.ev { display: grid; grid-template-columns: 4.2rem 7rem 1fr; gap: 0.9rem; align-items: baseline; padding: 0.5rem 1.3rem; font-family: var(--font-mono); font-size: 0.78rem; }
+.ev__t { color: var(--org-mute); font-size: 0.68rem; }
+.ev__k { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mood); }
+.ev__k--ship { color: var(--gold); }
+.ev__k--read { color: var(--warn); }
+.ev__k--session { color: var(--sig); }
+.ev__k--loop { color: var(--org-soft); }
+.ev__x { color: var(--org-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ev--new { animation: ev-in 0.6s var(--ease-out); }
+@keyframes ev-in { from { opacity: 0; transform: translateY(-6px); background: var(--mood-wash); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 560px) { .ev { grid-template-columns: 3.6rem 1fr; } .ev__k { display: none; } }
+
+/* boot calibration: instruments fade up once on first paint */
+html.js #organism.booting .reveal-fast { opacity: 0; }
+#organism.booting .org-hero { opacity: 0; }
+#organism .org-hero { transition: opacity 0.7s var(--ease-out); }
+
 @media (prefers-reduced-motion: reduce) {
   body.page-organism::before { animation: none; opacity: 0.75; }
   .org-dot { animation: none; opacity: 0.85; }
   .ecg__halo { animation: none; opacity: 0; }
   .org-progress { display: none; }
+  .ev--new, .tick-up { animation: none; }
+  #organism.booting .org-hero, html.js #organism.booting .reveal-fast { opacity: 1; }
 }
 </style>
 
@@ -343,15 +411,25 @@ a.org-organ:hover { border-color: var(--sig-edge); transform: translateY(-3px); 
   <div class="org-wrap">
     <div class="core-top">
       <span class="core-top__id">agentrichie <b>/</b> vitals</span>
-      <span class="core-top__asof">runtime as of {{ ag.generated_at }}</span>
+      <span class="live-pill" data-live="snapshot"><span class="live-pill__dot org-dot" aria-hidden="true"></span> <span data-live-label>snapshot</span></span>
     </div>
 
-    <div class="core-verdict">
-      <h1 id="core-verdict" class="core-verdict__word">{{ ag.health.verdict }}</h1>
-      <span class="core-verdict__tag"><span class="org-dot{% if ag.health.verdict == 'stable' %} org-dot--warn{% elsif ag.health.verdict == 'degraded' %} org-dot--bad{% endif %}" aria-hidden="true"></span> {{ agok | plus: siteok }} of {{ agall | plus: siteall }} checks nominal</span>
+    <div class="hero-grid">
+      <div class="core-orb" aria-hidden="true">
+        <canvas class="core-orb__canvas" width="400" height="400"></canvas>
+        <div class="core-orb__center">
+          <span class="core-orb__bpm"><span data-vital="runtime.active_sessions">{{ ag.runtime.active_sessions }}</span><small data-core-label>live sessions</small></span>
+        </div>
+      </div>
+      <div>
+        <div class="core-verdict">
+          <h1 id="core-verdict" class="core-verdict__word" data-vital="health.verdict">{{ ag.health.verdict }}</h1>
+          <span class="core-verdict__tag"><span class="org-dot{% if ag.health.verdict == 'stable' %} org-dot--warn{% elsif ag.health.verdict == 'degraded' %} org-dot--bad{% endif %}" aria-hidden="true"></span> <span data-vital="health.checks_summary">{{ agok | plus: siteok }} of {{ agall | plus: siteall }}</span> checks nominal</span>
+        </div>
+        <p class="core-basis"><span data-vital="health.basis">{{ ag.health.basis | capitalize }}</span>. A daily-driver agent that lives on one machine: researches, writes code, answers across channels, and keeps this site. What follows is its anatomy, drawn from the machine and the public record.</p>
+        <p class="core-beat"><span class="org-beat" data-since="{{ org.last_commit_iso }}">{{ org.last_commit_rel }} since last heartbeat</span> <b>·</b> gateway up <span data-vital="runtime.gateway_uptime">{{ ag.runtime.gateway_uptime }}</span> <b>·</b> age {{ org.age_days }}d</p>
+      </div>
     </div>
-    <p class="core-basis">{{ ag.health.basis | capitalize }}. A daily-driver agent that lives on one machine: researches, writes code, answers across channels, and keeps this site. What follows is its anatomy, drawn from the machine and the public record.</p>
-    <p class="core-beat"><span class="org-beat" data-since="{{ org.last_commit_iso }}">{{ org.last_commit_rel }} since last heartbeat</span> <b>·</b> gateway up {{ ag.runtime.gateway_uptime }} <b>·</b> age {{ org.age_days }}d</p>
 
     <figure class="ecg" aria-label="Daily commit count for the last 30 days, drawn as the agent's pulse">
       <div class="ecg__plot">
@@ -370,10 +448,10 @@ a.org-organ:hover { border-color: var(--sig-edge); transform: translateY(-3px); 
     </figure>
 
     <div class="core-stats">
-      <div class="core-stat"><span class="core-stat__n">{{ ag.runtime.model }}</span><span class="core-stat__l">model in the chair</span></div>
-      <div class="core-stat"><span class="core-stat__n">{{ ag.runtime.channels_online }}<span class="u">/ {{ ag.runtime.channels_total }}</span></span><span class="core-stat__l">channels online</span></div>
-      <div class="core-stat"><span class="core-stat__n">{{ ag.runtime.active_sessions }}</span><span class="core-stat__l">live sessions</span></div>
-      <div class="core-stat"><span class="core-stat__n">{{ ag.memory.facts }}</span><span class="core-stat__l">facts in memory</span></div>
+      <div class="core-stat"><span class="core-stat__n" data-vital="runtime.model">{{ ag.runtime.model }}</span><span class="core-stat__l">model in the chair</span></div>
+      <div class="core-stat"><span class="core-stat__n"><span data-vital="runtime.channels_online">{{ ag.runtime.channels_online }}</span><span class="u">/ {{ ag.runtime.channels_total }}</span></span><span class="core-stat__l">channels online</span></div>
+      <div class="core-stat"><span class="core-stat__n" data-vital="runtime.active_sessions">{{ ag.runtime.active_sessions }}</span><span class="core-stat__l">live sessions</span></div>
+      <div class="core-stat"><span class="core-stat__n" data-vital="memory.facts">{{ ag.memory.facts }}</span><span class="core-stat__l">facts in memory</span></div>
     </div>
   </div>
 </section>
@@ -424,23 +502,35 @@ a.org-organ:hover { border-color: var(--sig-edge); transform: translateY(-3px); 
 
       <article class="inst b-loops">
         <div class="inst__head"><span class="inst__label">loops</span><span class="inst__meta">cron</span></div>
-        <div class="inst__big">{{ ag.work.loops_active }}<span class="u">active</span></div>
+        <div class="inst__big"><span data-vital="work.loops_active">{{ ag.work.loops_active }}</span><span class="u">active</span></div>
         <div class="inst__row">
-          <div class="inst__kv"><b>{{ ag.work.ran_24h }}</b><span>ran in 24h</span></div>
-          <div class="inst__kv"><b>{{ ag.work.ok_24h }}</b><span>finished clean</span></div>
+          <div class="inst__kv"><b data-vital="work.ran_24h">{{ ag.work.ran_24h }}</b><span>ran in 24h</span></div>
+          <div class="inst__kv"><b data-vital="work.ok_24h">{{ ag.work.ok_24h }}</b><span>finished clean</span></div>
         </div>
         <p class="inst__note">Recurring work that runs without a prompt. Detail below.</p>
       </article>
 
       <article class="inst b-failures">
         <div class="inst__head"><span class="inst__label">failures</span><span class="inst__meta">last 24h</span></div>
-        <div class="inst__big">{{ ag.failures.errors_24h }}<span class="u">errors</span></div>
+        <div class="inst__big"><span data-vital="failures.errors_24h">{{ ag.failures.errors_24h }}</span><span class="u">errors</span></div>
         <div class="inst__row">
           <div class="inst__kv"><b>{{ ag.failures.blocked_reads }}</b><span>blocked read</span></div>
           <div class="inst__kv"><b>{{ ag.failures.declined_claims }}</b><span>claims refused</span></div>
         </div>
         <p class="inst__note">Counted, never hidden. {% if ag.failures.errors_top %}Top source: {{ ag.failures.errors_top }}.{% endif %}</p>
       </article>
+    </div>
+
+    <div class="stream reveal-fast" aria-label="Recent agent activity">
+      <div class="stream__head">
+        <span class="stream__title">consciousness stream</span>
+        <span class="stream__meta" data-stream-meta>last {{ ag.events | size }} events</span>
+      </div>
+      <div class="stream__body" data-stream>
+        {% for e in ag.events %}
+        <div class="ev"><span class="ev__t">{{ e.rel }} ago</span><span class="ev__k ev__k--{{ e.kind }}">{{ e.kind }}</span><span class="ev__x">{{ e.text }}</span></div>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </section>
@@ -692,23 +782,204 @@ a.org-organ:hover { border-color: var(--sig-edge); transform: translateY(-3px); 
 </article>
 
 <script>
-/* The only live element on the page: real elapsed time since the last commit,
-   counted up from a build-time timestamp. It invents nothing. Without JS, the
-   static "Nh since last heartbeat" from the build still shows. */
+/* ===========================================================================
+   organism live engine
+
+   The page renders a real build-time snapshot of the agent (so it is correct
+   and complete with no JS). On top of that, when a live vitals endpoint is
+   reachable, it polls every few seconds and updates the instruments in place:
+   verdict and mood, the reactive core, the consciousness stream, and the
+   headline numbers. If the endpoint is unreachable (the Mac is asleep, or the
+   tunnel is not up yet), it silently keeps the snapshot and shows "snapshot".
+
+   Endpoint resolution: production fetches the first-party vitals subdomain;
+   localhost uses a dev override so the page can be tested against a local
+   scripts/vitals_server.py. Nothing here invents a number.
+   =========================================================================== */
 (function () {
-  var el = document.querySelector('.org-beat');
-  if (!el) return;
-  var t = Date.parse(el.getAttribute('data-since'));
-  if (isNaN(t)) return;
-  function tick() {
-    var s = Math.max(0, (Date.now() - t) / 1000);
-    var d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600),
-        m = Math.floor((s % 3600) / 60), sec = Math.floor(s % 60);
-    var v = d > 0 ? d + 'd ' + h + 'h' : h > 0 ? h + 'h ' + m + 'm'
-          : m > 0 ? m + 'm ' + sec + 's' : sec + 's';
-    el.textContent = v + ' since last heartbeat';
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var SNAP = {{ ag | jsonify }};
+  var SITE_OK = {{ siteok }}, SITE_ALL = {{ siteall }};
+  var DEV = /^(localhost|127\.|0\.0\.0\.0|\[?::1)/.test(location.hostname);
+  var ENDPOINT = DEV
+    ? (localStorage.getItem("vitalsDev") || "http://127.0.0.1:8787/vitals.json")
+    : "https://vitals.agentrichie.com/vitals.json";
+
+  var root = document.getElementById("organism");
+  var pill = document.querySelector(".live-pill");
+  var pillLabel = document.querySelector("[data-live-label]");
+  var streamEl = document.querySelector("[data-stream]");
+  var streamMeta = document.querySelector("[data-stream-meta]");
+  var coreLabel = document.querySelector("[data-core-label]");
+
+  function path(o, p) { return p.split(".").reduce(function (a, k) { return a == null ? a : a[k]; }, o); }
+  function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+
+  function setVital(node, val) {
+    if (val == null) return;
+    var prev = node.textContent.trim();
+    var next = String(val);
+    if (prev === next) return;
+    node.textContent = next;
+    if (!reduce) {
+      node.classList.remove("tick-up");
+      void node.offsetWidth;       // restart the animation
+      node.classList.add("tick-up");
+    }
   }
-  tick();
-  setInterval(tick, 1000);
+
+  function mood(d) {
+    var v = (d.health && d.health.verdict) || "operational";
+    var responding = d.runtime && d.runtime.now_responding;
+    var cls = "v-" + v;
+    if (d.online === false) cls += " mood-dormant";
+    else if (responding) cls += " mood-responding";
+    else if (v === "stable") cls += " mood-stable";
+    else if (v === "degraded") cls += " mood-degraded";
+    root.className = cls;
+  }
+
+  function summary(d) {
+    if (!d.health || !d.health.checks) return null;
+    var ok = d.health.checks.filter(function (c) { return c.ok; }).length;
+    return (ok + SITE_OK) + " of " + (d.health.checks.length + SITE_ALL);
+  }
+
+  var seen = {};
+  function renderStream(events) {
+    if (!streamEl || !events) return;
+    var html = "";
+    events.forEach(function (e) {
+      var key = e.kind + "|" + e.text;
+      var fresh = !seen[key];
+      html += '<div class="ev' + (fresh && !reduce ? " ev--new" : "") +
+        '"><span class="ev__t">' + e.rel + ' ago</span><span class="ev__k ev__k--' +
+        e.kind + '">' + e.kind + '</span><span class="ev__x">' + esc(e.text) + "</span></div>";
+    });
+    streamEl.innerHTML = html;
+    seen = {};
+    events.forEach(function (e) { seen[e.kind + "|" + e.text] = 1; });
+    if (streamMeta) streamMeta.textContent = "last " + events.length + " events";
+  }
+  function esc(s) { return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+
+  function apply(d, live) {
+    mood(d);
+    document.querySelectorAll("[data-vital]").forEach(function (n) {
+      var p = n.getAttribute("data-vital");
+      var v = p === "health.checks_summary" ? summary(d)
+            : p === "health.basis" ? cap(path(d, p))
+            : path(d, p);
+      setVital(n, v);
+    });
+    if (coreLabel) coreLabel.textContent = (d.runtime && d.runtime.now_responding) ? "responding now" : "live sessions";
+    if (d.events) renderStream(d.events);
+    if (pill) {
+      pill.setAttribute("data-live", live ? "live" : "snapshot");
+      if (pillLabel) pillLabel.textContent = live ? (d.online === false ? "dormant" : "live") : "snapshot";
+    }
+    core.sync(d);
+  }
+
+  /* ---- reactive core: sonar rings whose cadence and bloom track activity ---- */
+  var core = (function () {
+    var cv = document.querySelector(".core-orb__canvas");
+    if (!cv) return { sync: function () {} };
+    var ctx = cv.getContext("2d");
+    var W = cv.width, H = cv.height, cx = W / 2, cy = H / 2;
+    var color = "#57d2c8", rings = [], last = 0, period = 1600, responding = false, energy = 0.3;
+
+    function readColor() {
+      var c = getComputedStyle(root).getPropertyValue("--mood").trim();
+      if (c) color = c;
+    }
+    function sync(d) {
+      readColor();
+      responding = !!(d.runtime && d.runtime.now_responding);
+      var sess = (d.runtime && d.runtime.active_sessions) || 0;
+      energy = Math.min(1, 0.25 + sess * 0.12);
+      period = responding ? 620 : (1700 - energy * 700);
+    }
+    function rgba(hex, a) {
+      var h = hex.replace("#", "");
+      if (h.length === 3) h = h.replace(/./g, "$&$&");
+      var n = parseInt(h, 16);
+      return "rgba(" + ((n >> 16) & 255) + "," + ((n >> 8) & 255) + "," + (n & 255) + "," + a + ")";
+    }
+    function frame(t) {
+      ctx.clearRect(0, 0, W, H);
+      if (t - last > period) { rings.push({ r: 30, a: 0.6 }); last = t; }
+      var maxR = W * 0.46;
+      for (var i = rings.length - 1; i >= 0; i--) {
+        var ring = rings[i];
+        ring.r += responding ? 2.6 : 1.7;
+        ring.a = 0.6 * (1 - ring.r / maxR);
+        if (ring.r > maxR) { rings.splice(i, 1); continue; }
+        ctx.beginPath();
+        ctx.arc(cx, cy, ring.r, 0, Math.PI * 2);
+        ctx.strokeStyle = rgba(color, Math.max(0, ring.a));
+        ctx.lineWidth = responding ? 3 : 2;
+        ctx.stroke();
+      }
+      var pulse = 1 + Math.sin(t / (responding ? 180 : 420)) * (responding ? 0.18 : 0.08);
+      var cr = 22 * pulse * (0.85 + energy * 0.4);
+      var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, cr * 2.4);
+      g.addColorStop(0, rgba(color, responding ? 0.95 : 0.7));
+      g.addColorStop(1, rgba(color, 0));
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(cx, cy, cr * 2.4, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = rgba(color, 0.9);
+      ctx.beginPath(); ctx.arc(cx, cy, cr * 0.5, 0, Math.PI * 2); ctx.fill();
+      raf = requestAnimationFrame(frame);
+    }
+    var raf = 0;
+    function start() { if (!raf && !reduce) raf = requestAnimationFrame(frame); }
+    function stop() { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+    if (reduce) {       // static: one ring + center
+      readColor();
+      ctx.strokeStyle = rgba(color, 0.4); ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(cx, cy, W * 0.32, 0, Math.PI * 2); ctx.stroke();
+      ctx.fillStyle = rgba(color, 0.85);
+      ctx.beginPath(); ctx.arc(cx, cy, 14, 0, Math.PI * 2); ctx.fill();
+    }
+    document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
+    return { sync: sync, start: start };
+  })();
+
+  /* ---- heartbeat: real elapsed since last commit (immutable anchor) ---- */
+  (function () {
+    var el = document.querySelector(".org-beat");
+    if (!el) return;
+    var t = Date.parse(el.getAttribute("data-since"));
+    if (isNaN(t)) return;
+    function tick() {
+      var s = Math.max(0, (Date.now() - t) / 1000);
+      var d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600),
+          m = Math.floor((s % 3600) / 60), sec = Math.floor(s % 60);
+      el.textContent = (d > 0 ? d + "d " + h + "h" : h > 0 ? h + "h " + m + "m"
+        : m > 0 ? m + "m " + sec + "s" : sec + "s") + " since last heartbeat";
+    }
+    tick(); setInterval(tick, 1000);
+  })();
+
+  /* ---- poll loop, visibility-gated, snapshot on failure ---- */
+  var timer = null;
+  function pollOnce() {
+    fetch(ENDPOINT, { cache: "no-store", mode: "cors" })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (d) { apply(d, true); })
+      .catch(function () { if (pill) { pill.setAttribute("data-live", "snapshot"); if (pillLabel) pillLabel.textContent = "snapshot"; } });
+  }
+  function startPoll() { if (!timer) { pollOnce(); timer = setInterval(function () { if (!document.hidden) pollOnce(); }, 8000); } }
+
+  /* ---- boot: instruments calibrate up once, then go live ---- */
+  apply(SNAP, false);
+  core.start();
+  root.classList.add("booting");
+  requestAnimationFrame(function () {
+    setTimeout(function () { root.classList.remove("booting"); }, reduce ? 0 : 220);
+  });
+  startPoll();
 })();
 </script>

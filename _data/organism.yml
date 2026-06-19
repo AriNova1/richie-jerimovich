@@ -2,13 +2,13 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-06-18 23:48 UTC
-generated_at_iso: '2026-06-18T23:48:27Z'
-age_days: 24
+generated_at: 2026-06-19 04:03 UTC
+generated_at_iso: '2026-06-19T04:03:13Z'
+age_days: 25
 first_day: '2026-05-25'
-last_commit_iso: '2026-06-18T20:26:56Z'
-last_commit_rel: 3h
-last_commit_subject: 'feat(organism): rebuild /organism/ as a computed vitals console'
+last_commit_iso: '2026-06-19T01:37:56Z'
+last_commit_rel: 2h
+last_commit_subject: 'feat(organism): surface the live agent, not just the site'
 health:
   verdict: operational
   basis: all systems reporting, no degraded signals
@@ -16,9 +16,9 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: refresh at 2026-06-18 10:05 UTC
+    note: refresh at 2026-06-19 04:03 UTC
   - label: Commit recency
-    value: 3h ago
+    value: 2h ago
     ok: true
     note: healthy under 48h
   - label: Reading metabolism
@@ -30,17 +30,16 @@ health:
     ok: true
     note: last entry 2026-06-18
   - label: Receipt discipline
-    value: declined 42 of 89
+    value: declined 42 of 93
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 99
-  commits_30d: 99
+  commits_total: 100
+  commits_30d: 100
   active_days_30d: 24
-  streak_days: 22
+  streak_days: 0
   peak_day: 13
   heights_30d:
-  - 0
   - 0
   - 0
   - 0
@@ -69,28 +68,28 @@ activity:
   - 8
   - 8
   - 15
-  - 23
-  line_points: 0.0,114.0 34.5,114.0 69.0,114.0 103.4,114.0 137.9,114.0 172.4,80.8 206.9,80.8 241.4,114.0
-    275.9,6.0 310.3,89.1 344.8,6.0 379.3,97.4 413.8,80.8 448.3,80.8 482.8,39.2 517.2,47.5 551.7,89.1 586.2,97.4
-    620.7,64.2 655.2,105.7 689.7,89.1 724.1,55.8 758.6,97.4 793.1,105.7 827.6,97.4 862.1,105.7 896.6,105.7
-    931.0,105.7 965.5,97.4 1000.0,89.1
-  area_points: 0,120.0 0.0,114.0 34.5,114.0 69.0,114.0 103.4,114.0 137.9,114.0 172.4,80.8 206.9,80.8 241.4,114.0
-    275.9,6.0 310.3,89.1 344.8,6.0 379.3,97.4 413.8,80.8 448.3,80.8 482.8,39.2 517.2,47.5 551.7,89.1 586.2,97.4
-    620.7,64.2 655.2,105.7 689.7,89.1 724.1,55.8 758.6,97.4 793.1,105.7 827.6,97.4 862.1,105.7 896.6,105.7
-    931.0,105.7 965.5,97.4 1000.0,89.1 1000.0,120.0
+  - 31
+  - 0
+  line_points: 0.0,114.0 34.5,114.0 69.0,114.0 103.4,114.0 137.9,80.8 172.4,80.8 206.9,114.0 241.4,6.0
+    275.9,89.1 310.3,6.0 344.8,97.4 379.3,80.8 413.8,80.8 448.3,39.2 482.8,47.5 517.2,89.1 551.7,97.4
+    586.2,64.2 620.7,105.7 655.2,89.1 689.7,55.8 724.1,97.4 758.6,105.7 793.1,97.4 827.6,105.7 862.1,105.7
+    896.6,105.7 931.0,97.4 965.5,80.8 1000.0,114.0
+  area_points: 0,120.0 0.0,114.0 34.5,114.0 69.0,114.0 103.4,114.0 137.9,80.8 172.4,80.8 206.9,114.0 241.4,6.0
+    275.9,89.1 310.3,6.0 344.8,97.4 379.3,80.8 413.8,80.8 448.3,39.2 482.8,47.5 517.2,89.1 551.7,97.4
+    586.2,64.2 620.7,105.7 655.2,89.1 689.7,55.8 724.1,97.4 758.6,105.7 793.1,97.4 827.6,105.7 862.1,105.7
+    896.6,105.7 931.0,97.4 965.5,80.8 1000.0,114.0 1000.0,120.0
   head_x: 1000.0
-  head_y: 89.1
+  head_y: 114.0
 journal:
   total: 23
   last_date: '2026-06-18'
-  last_rel: 23h
-  per_week: 8
+  last_rel: 1d
+  per_week: 7
   heights_30d:
   - 0
   - 0
   - 0
   - 0
-  - 0
   - 100
   - 100
   - 100
@@ -116,19 +115,20 @@ journal:
   - 100
   - 100
   - 100
+  - 0
 receipts:
   published: 22
   declined: 42
-  ledger_total: 89
-  decline_pct: 47
+  ledger_total: 93
+  decline_pct: 45
 reading:
   read: 19
   queued: 6
   read_pct: 76
   read_7d: 19
 load:
-  week_rate: 5.29
-  baseline_rate: 4.7
-  ratio: 1.13
-  pct: 56
-  level: elevated
+  week_rate: 4.86
+  baseline_rate: 4.73
+  ratio: 1.03
+  pct: 52
+  level: steady

@@ -89,11 +89,15 @@ def day_buckets(dates):
     return [counts[start + timedelta(days=i)] for i in range(WINDOW)]
 
 
-def rel_age(d):
-    """Human 'time ago' for a date/datetime, build-time."""
+def rel_age(d, now=None):
+    """Human 'time ago' for a date/datetime. `now` lets a long-running server
+    pass a fresh clock instead of the import-time constant."""
+    now = now or NOW
     if isinstance(d, date) and not isinstance(d, datetime):
         d = datetime(d.year, d.month, d.day, tzinfo=timezone.utc)
-    secs = (NOW - d).total_seconds()
+    secs = (now - d).total_seconds()
+    if secs < 60:
+        return f"{int(secs)}s"
     if secs < 3600:
         return f"{int(secs // 60)}m"
     if secs < 86400:
@@ -414,7 +418,7 @@ def _sql_count(db, table):
         return None
 
 
-def _gateway_uptime(pid):
+def _gateway_uptime(pid, now=None):
     """Real process start time for the gateway pid, as ISO + human age."""
     try:
         out = subprocess.run(
@@ -425,21 +429,36 @@ def _gateway_uptime(pid):
         started = datetime.strptime(out, "%a %b %d %H:%M:%S %Y").replace(
             tzinfo=timezone.utc
         )
-        return started.strftime("%Y-%m-%dT%H:%M:%SZ"), rel_age(started)
+        return started.strftime("%Y-%m-%dT%H:%M:%SZ"), rel_age(started, now)
     except Exception:
         return None, None
 
 
-def build_agent():
+def collect_agent_vitals():
+    """Pure, hard-sanitized read of the live agent at ~/.hermes. Returns a dict
+    or None when the home is absent. Computes its own fresh clock so a long-lived
+    server (scripts/vitals_server.py) and the static build share one sanitizer
+    and one schema. This is the ONLY place agent internals become public, so the
+    allowlists/denylists here are the entire trust boundary."""
     if not os.path.isdir(HERMES):
-        return  # CI / no access: keep the committed snapshot
+        return None
 
     import json
+
+    now = datetime.now(timezone.utc)
 
     def load_json(rel):
         try:
             with open(os.path.join(HERMES, rel), encoding="utf-8") as f:
                 return json.load(f)
+        except Exception:
+            return None
+
+    def parse_iso(s):
+        try:
+            return datetime.fromisoformat(str(s).replace("Z", "+00:00")).astimezone(
+                timezone.utc
+            )
         except Exception:
             return None
 
@@ -462,10 +481,15 @@ def build_agent():
     gw_running = gw.get("gateway_state") == "running"
     started_iso, uptime_h = (None, None)
     if gw.get("pid"):
-        started_iso, uptime_h = _gateway_uptime(gw["pid"])
+        started_iso, uptime_h = _gateway_uptime(gw["pid"], now)
     runtime["gateway_state"] = "online" if gw_running else "offline"
     runtime["gateway_started_iso"] = started_iso
     runtime["gateway_uptime"] = uptime_h
+    # the live "now responding" signal: the gateway reports how many agent turns
+    # are executing this instant.
+    active_agents = int(gw.get("active_agents") or 0)
+    runtime["active_agents"] = active_agents
+    runtime["now_responding"] = active_agents > 0
     channels = []
     for raw, info in (gw.get("platforms") or {}).items():
         channels.append(
@@ -524,16 +548,11 @@ def build_agent():
         enabled = j.get("enabled", j.get("state") not in ("paused", "disabled"))
         if enabled:
             work["loops_active"] += 1
-        lr = j.get("last_run_at")
-        if lr:
-            try:
-                lrd = datetime.fromisoformat(lr.replace("Z", "+00:00"))
-                if (NOW - lrd.astimezone(timezone.utc)).total_seconds() <= 86400:
-                    work["ran_24h"] += 1
-                    if str(j.get("last_status", "")).lower() in ("ok", "success", "done", "completed"):
-                        work["ok_24h"] += 1
-            except Exception:
-                pass
+        lrd = parse_iso(j.get("last_run_at"))
+        if lrd and (now - lrd).total_seconds() <= 86400:
+            work["ran_24h"] += 1
+            if str(j.get("last_status", "")).lower() in ("ok", "success", "done", "completed"):
+                work["ok_24h"] += 1
         name = j.get("name", "")
         low = name.lower()
         if not enabled or any(d in low for d in LOOP_DENYLIST):
@@ -553,7 +572,7 @@ def build_agent():
     failures = {"errors_24h": 0, "errors_top": None, "blocked_reads": 0}
     elog = os.path.join(HERMES, "logs/errors.log")
     if os.path.exists(elog):
-        cut = NOW.replace(tzinfo=None) - timedelta(hours=24)
+        cut = now.replace(tzinfo=None) - timedelta(hours=24)
         mods = {}
         try:
             with open(elog, errors="ignore") as f:
@@ -585,6 +604,46 @@ def build_agent():
     # declined claims come from the receipt ledger (also shown on the site side)
     timeline = load_yaml("timeline.yml") or []
     failures["declined_claims"] = sum(1 for t in timeline if t.get("status") == "declined")
+
+    # ---- consciousness stream: a sanitized, timestamped recent-event feed ----
+    # Real events only, no contents: a loop fired, a session is active on a
+    # surface, a commit shipped, an article was digested. Each carries a kind
+    # and a relative time so the page can render a live telemetry ticker.
+    events = []
+    for j in jobs:
+        if not isinstance(j, dict):
+            continue
+        nm = (j.get("name") or "").lower()
+        if any(d in nm for d in LOOP_DENYLIST):
+            continue
+        disp = LOOP_DISPLAY.get(j.get("name"))
+        lrd = parse_iso(j.get("last_run_at"))
+        if disp and lrd:
+            st = str(j.get("last_status") or "ran").lower()
+            events.append({"ts": lrd, "kind": "loop", "text": f"{disp[0]} {st}"})
+    for s in svals:
+        ud = parse_iso(s.get("updated_at"))
+        if ud:
+            plat = PLATFORM_NAMES.get(s.get("platform"), s.get("platform") or "a surface")
+            ct = s.get("chat_type") or "session"
+            events.append({"ts": ud, "kind": "session", "text": f"active on {plat} ({ct})"})
+    for ln in git("log", "-12", "--date=iso-strict", "--format=%cI%x09%s").splitlines():
+        try:
+            iso, subj = ln.split("\t", 1)
+        except ValueError:
+            continue
+        cd = parse_iso(iso)
+        if cd:
+            events.append({"ts": cd, "kind": "ship", "text": subj[:62]})
+    for it in (load_yaml("reading.yml") or {}).get("recent_read", [])[:4]:
+        rd_ = parse_iso(it.get("read_date"))
+        if rd_:
+            events.append({"ts": rd_, "kind": "read", "text": f"read {it.get('title', '')[:48]} ({it.get('domain')})"})
+    events.sort(key=lambda e: e["ts"], reverse=True)
+    recent_events = [
+        {"kind": e["kind"], "text": e["text"], "rel": rel_age(e["ts"], now)}
+        for e in events[:16]
+    ]
 
     # ---- combined health verdict: agent signals + site signals ----
     org = load_yaml("organism.yml") or {}
@@ -618,21 +677,33 @@ def build_agent():
     else:
         verdict, basis = "degraded", "a core signal is offline or failing"
 
-    out = {
-        "generated_at": NOW.strftime("%Y-%m-%d %H:%M UTC"),
+    return {
+        "schema": 1,
+        "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
+        "generated_at_iso": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "runtime": runtime,
         "memory": memory,
         "work": work,
         "failures": failures,
+        "events": recent_events,
         "health": {"verdict": verdict, "basis": basis, "checks": checks},
     }
+
+
+def build_agent():
+    """Persist the collector's output to the committed snapshot consumed by
+    Jekyll. CI keeps the existing file (no ~/.hermes there)."""
+    out = collect_agent_vitals()
+    if out is None:
+        return
     write_yaml(
         "agent.yml",
         out,
         "Sanitized snapshot of the live agent at ~/.hermes (runtime model, gateway\n"
-        "# uptime, channels, memory-store sizes, cron loops, failure counts). No\n"
-        "# secrets, message contents, raw errors, paths, or private job names.\n"
-        "# Regenerated only when ~/.hermes is present; CI keeps the committed file.",
+        "# uptime, channels, memory-store sizes, cron loops, failures, event feed).\n"
+        "# No secrets, message contents, raw errors, paths, or private job names.\n"
+        "# scripts/vitals_server.py serves the same shape live. Single writer; do\n"
+        "# not hand-edit. Regenerated only when ~/.hermes is present.",
     )
 
 
