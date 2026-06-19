@@ -346,6 +346,7 @@ def build_organism():
         "generated_at_iso": NOW.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "age_days": age_days,
         "first_day": first_day.isoformat(),
+        "build": git("rev-parse", "--short", "HEAD") or "dev",
         "last_commit_iso": last_dt.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "last_commit_rel": rel_age(last_dt),
         "last_commit_subject": last_subject,
@@ -478,6 +479,26 @@ def collect_agent_vitals():
         fb = cfg.get("fallback_providers") or []
         fb = [x for x in fb if isinstance(x, dict) and x.get("model")]
         runtime["fallback_model"] = fb[0]["model"] if fb else None
+    except Exception:
+        pass
+
+    # real context window for the live model, when the cache knows it. The model
+    # rotates, so this is looked up fresh; unknown models simply omit it.
+    try:
+        cache = yaml.safe_load(open(os.path.join(HERMES, "context_length_cache.yaml")))
+        lengths = (cache or {}).get("context_lengths", {})
+        model = runtime.get("model") or ""
+        ctx = None
+        for key, val in lengths.items():
+            name = key.split("@", 1)[0].rstrip("/")
+            if model and (name == model or name.endswith("/" + model) or name.split("/")[-1] == model):
+                ctx = val
+                break
+        if ctx:
+            runtime["context_window"] = ctx
+            runtime["context_human"] = (
+                f"{round(ctx / 1e6, 1):g}M" if ctx >= 1_000_000 else f"{round(ctx / 1000)}K"
+            )
     except Exception:
         pass
 

@@ -102,14 +102,18 @@ body.page-organism > footer {
 
 /* ---------- hero / core ---------- */
 .org-hero { padding-top: clamp(1.5rem, 4vh, 3rem); padding-bottom: clamp(2.5rem, 5vh, 4rem); }
-.core-top {
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 0.75rem;
-  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-}
-.core-top__id { color: var(--org-ink); }
-.core-top__id b { color: var(--gold); font-weight: 400; }
-.core-top__asof { color: var(--org-mute); letter-spacing: 0.12em; }
+/* command-center status bar */
+.cc-bar { display: flex; align-items: center; gap: clamp(0.5rem, 1.6vw, 1.1rem); flex-wrap: wrap; padding: 0.85rem 0; margin-bottom: 0.5rem; border-bottom: 1px solid var(--org-line); font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--org-mute); }
+.cc-bar b { color: var(--org-soft); font-weight: 400; }
+.cc-bar .ml { margin-left: auto; }
+.cc-bar__brand { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--org-ink); letter-spacing: 0.22em; }
+.cc-bar__brand svg { width: 17px; height: 17px; color: var(--mood); }
+.cc-bar__sep { width: 1px; height: 12px; background: var(--org-line); }
+.cc-bar__live { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--mood); }
+.cc-bar__live .org-dot { width: 6px; height: 6px; }
+.cc-bar__live[data-live="snapshot"] { color: var(--org-mute); }
+.cc-bar__live[data-live="snapshot"] .org-dot { background: var(--org-mute); box-shadow: none; animation: none; }
+@media (max-width: 700px) { .cc-bar { font-size: 0.6rem; gap: 0.45rem 0.65rem; } .cc-bar__hide-sm { display: none; } }
 
 .core-verdict { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; margin-top: 1.6rem; }
 .core-verdict__word {
@@ -352,10 +356,10 @@ body.page-organism::after {
    track real activity; brightens hard when he is mid-response. */
 .hero-grid { display: grid; grid-template-columns: 1fr 240px; gap: clamp(1.5rem, 5vw, 3.5rem); align-items: center; }
 @media (max-width: 760px) { .hero-grid { grid-template-columns: 1fr; gap: 2rem; justify-items: start; } .core-orb { margin: 0 auto; } }
-.core-orb { position: relative; width: 240px; height: 240px; justify-self: end; }
-.core-orb__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.core-orb__center { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
-.core-orb__state { font-family: var(--font-mono); font-size: 0.66rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mood); text-shadow: 0 0 8px rgba(0,0,0,0.55); transition: color 0.5s; }
+.core-orb { position: relative; width: 248px; justify-self: end; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.core-orb__canvas { width: 248px; height: 248px; display: block; }
+.core-orb__pulse { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--org-mute); }
+.core-orb__pulse b { color: var(--mood); font-weight: 500; transition: color 0.5s; }
 
 /* oscilloscope sweep over the commit-pulse trace: a glowing playhead that
    crosses the plot on a loop, the way a heart monitor reads. transform only. */
@@ -422,9 +426,19 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 
 <section class="org-hero" aria-labelledby="core-verdict">
   <div class="org-wrap">
-    <div class="core-top">
-      <span class="core-top__id">agentrichie <b>/</b> vitals</span>
-      <span class="live-pill" data-live="snapshot"><span class="live-pill__dot org-dot" aria-hidden="true"></span> <span data-live-label>snapshot</span></span>
+    <div class="cc-bar">
+      <span class="cc-bar__brand"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><line x1="6.5" y1="17.5" x2="17.5" y2="6.5" stroke="currentColor" stroke-width="1.7"/></svg> organism</span>
+      <span class="cc-bar__sep cc-bar__hide-sm"></span>
+      <span class="cc-bar__hide-sm">build <b>{{ org.build }}</b></span>
+      <span class="cc-bar__sep"></span>
+      <span class="cc-bar__live ml" data-live="snapshot"><span class="org-dot" aria-hidden="true"></span> <span data-live-label>snapshot</span></span>
+      <span class="cc-bar__sep"></span>
+      <span>model <b data-vital="runtime.model">{{ ag.runtime.model }}</b></span>
+      {% if ag.runtime.context_human %}<span class="cc-bar__sep cc-bar__hide-sm"></span><span class="cc-bar__hide-sm"><b data-vital="runtime.context_human">{{ ag.runtime.context_human }}</b> ctx</span>{% endif %}
+      <span class="cc-bar__sep cc-bar__hide-sm"></span>
+      <span class="cc-bar__hide-sm">secure link <b data-latency>measuring</b></span>
+      <span class="cc-bar__sep cc-bar__hide-sm"></span>
+      <span class="cc-bar__hide-sm" data-clock>--:--:-- UTC</span>
     </div>
 
     <div class="hero-grid">
@@ -437,10 +451,8 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
         <p class="core-beat"><span class="org-beat" data-since="{{ org.last_commit_iso }}">{{ org.last_commit_rel }} since last heartbeat</span> <b>·</b> gateway up <span data-vital="runtime.gateway_uptime">{{ ag.runtime.gateway_uptime }}</span> <b>·</b> age {{ org.age_days }}d</p>
       </div>
       <div class="core-orb" aria-hidden="true">
-        <canvas class="core-orb__canvas" width="480" height="480"></canvas>
-        <div class="core-orb__center">
-          <span class="core-orb__state" data-core-state>{% if ag.runtime.gateway_state == 'online' %}listening{% else %}dormant{% endif %}</span>
-        </div>
+        <canvas class="core-orb__canvas" width="520" height="520"></canvas>
+        <div class="core-orb__pulse">system pulse <b data-core-state>{% if ag.runtime.gateway_state == 'online' %}listening{% else %}dormant{% endif %}</b></div>
       </div>
     </div>
 
@@ -821,8 +833,10 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     : "https://vitals.agentrichie.com/vitals.json";
 
   var root = document.getElementById("organism");
-  var pill = document.querySelector(".live-pill");
+  var pill = document.querySelector(".cc-bar__live");
   var pillLabel = document.querySelector("[data-live-label]");
+  var latencyEl = document.querySelector("[data-latency]");
+  var clockEl = document.querySelector("[data-clock]");
   var streamEl = document.querySelector("[data-stream]");
   var streamMeta = document.querySelector("[data-stream-meta]");
   var coreState = document.querySelector("[data-core-state]");
@@ -897,13 +911,25 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     core.sync(d);
   }
 
-  /* ---- reactive core: sonar rings whose cadence and bloom track activity ---- */
+  /* ---- reactive core: a rotating volumetric energy sphere. particles orbit a
+     bright core with additive glow; depth shades front-to-back. rotation speed
+     and brightness track real activity, and it flares when mid-response. ---- */
   var core = (function () {
     var cv = document.querySelector(".core-orb__canvas");
     if (!cv) return { sync: function () {} };
     var ctx = cv.getContext("2d");
     var W = cv.width, H = cv.height, cx = W / 2, cy = H / 2;
-    var color = "#57d2c8", rings = [], last = 0, period = 1600, responding = false, energy = 0.3;
+    var color = "#57d2c8", responding = false, energy = 0.4, rotSpeed = 0.00035;
+
+    var N = 92, parts = [];
+    for (var i = 0; i < N; i++) {
+      parts.push({
+        phi: Math.acos(1 - 2 * ((i + 0.5) / N)),         // even latitude spread
+        lon0: Math.PI * 2 * ((i * 0.6180339887) % 1),     // golden-angle longitude
+        rad: 0.84 + Math.random() * 0.18,
+        sz: 1.3 + Math.random() * 1.8
+      });
+    }
 
     function readColor() {
       var c = getComputedStyle(root).getPropertyValue("--mood").trim();
@@ -912,9 +938,10 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     function sync(d) {
       readColor();
       responding = !!(d.runtime && d.runtime.now_responding);
+      if (d.online === false) { rotSpeed = 0.00012; energy = 0.18; return; }
       var sess = (d.runtime && d.runtime.active_sessions) || 0;
-      energy = Math.min(1, 0.25 + sess * 0.12);
-      period = responding ? 620 : (1700 - energy * 700);
+      energy = Math.min(1, 0.42 + sess * 0.09);
+      rotSpeed = responding ? 0.00092 : 0.00034;
     }
     function rgba(hex, a) {
       var h = hex.replace("#", "");
@@ -922,48 +949,43 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       var n = parseInt(h, 16);
       return "rgba(" + ((n >> 16) & 255) + "," + ((n >> 8) & 255) + "," + (n & 255) + "," + a + ")";
     }
-    var IRIS = W * 0.205;            // inner radius; the center stays clear for text
-    function frame(t) {
+    var TILT = -0.4, cosT = Math.cos(TILT), sinT = Math.sin(TILT), R = W * 0.4;
+
+    function render(t) {
       ctx.clearRect(0, 0, W, H);
-      // sonar rings emanate from just outside the iris, never crossing center
-      if (t - last > period) { rings.push({ r: IRIS, a: 0.55 }); last = t; }
-      var maxR = W * 0.46;
-      for (var i = rings.length - 1; i >= 0; i--) {
-        var ring = rings[i];
-        ring.r += responding ? 2.4 : 1.6;
-        ring.a = 0.55 * (1 - (ring.r - IRIS) / (maxR - IRIS));
-        if (ring.r > maxR) { rings.splice(i, 1); continue; }
-        ctx.beginPath();
-        ctx.arc(cx, cy, ring.r, 0, Math.PI * 2);
-        ctx.strokeStyle = rgba(color, Math.max(0, ring.a));
-        ctx.lineWidth = responding ? 2.5 : 1.5;
-        ctx.stroke();
-      }
-      var pulse = 1 + Math.sin(t / (responding ? 240 : 560)) * (responding ? 0.09 : 0.045);
-      // a soft, low-opacity core glow that never washes out the center label
-      var glowR = IRIS * 1.5 * pulse;
-      var g = ctx.createRadialGradient(cx, cy, IRIS * 0.25, cx, cy, glowR);
-      g.addColorStop(0, rgba(color, responding ? 0.24 : 0.13));
+      ctx.globalCompositeOperation = "lighter";
+      var rot = t * rotSpeed;
+      var pulse = 1 + Math.sin(t / (responding ? 300 : 620)) * (responding ? 0.16 : 0.07);
+      // bright energy core
+      var bloomR = W * 0.17 * pulse * (0.82 + energy * 0.4);
+      var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, bloomR * 2.5);
+      g.addColorStop(0, rgba(color, responding ? 0.95 : 0.62));
+      g.addColorStop(0.35, rgba(color, responding ? 0.32 : 0.18));
       g.addColorStop(1, rgba(color, 0));
       ctx.fillStyle = g;
-      ctx.beginPath(); ctx.arc(cx, cy, glowR, 0, Math.PI * 2); ctx.fill();
-      // the iris ring framing the center readout
-      ctx.beginPath(); ctx.arc(cx, cy, IRIS * pulse, 0, Math.PI * 2);
-      ctx.strokeStyle = rgba(color, responding ? 0.9 : 0.5);
-      ctx.lineWidth = responding ? 2.5 : 1.5;
-      ctx.stroke();
-      raf = requestAnimationFrame(frame);
+      ctx.beginPath(); ctx.arc(cx, cy, bloomR * 2.5, 0, Math.PI * 2); ctx.fill();
+      // faint equatorial ellipse for structure
+      ctx.strokeStyle = rgba(color, 0.08); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.ellipse(cx, cy, R, R * Math.abs(sinT) + 1, 0, 0, Math.PI * 2); ctx.stroke();
+      // orbiting particle shell
+      for (var i = 0; i < N; i++) {
+        var p = parts[i], lon = p.lon0 + rot, sp = Math.sin(p.phi);
+        var px = sp * Math.cos(lon), py = Math.cos(p.phi), pz = sp * Math.sin(lon);
+        var y2 = py * cosT - pz * sinT, z2 = py * sinT + pz * cosT;
+        var depth = (z2 + 1) / 2, rr = R * p.rad;
+        var op = (0.12 + depth * 0.88) * (0.45 + energy * 0.55);
+        ctx.fillStyle = rgba(color, op * (responding ? 0.95 : 0.72));
+        ctx.beginPath();
+        ctx.arc(cx + px * rr, cy + y2 * rr, p.sz * (0.45 + depth * 1.15), 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalCompositeOperation = "source-over";
     }
+    function frame(t) { render(t); raf = requestAnimationFrame(frame); }
     var raf = 0;
     function start() { if (!raf && !reduce) raf = requestAnimationFrame(frame); }
     function stop() { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
-    if (reduce) {       // static: iris ring + one outer ring, center left clear
-      readColor();
-      ctx.strokeStyle = rgba(color, 0.5); ctx.lineWidth = 1.5;
-      ctx.beginPath(); ctx.arc(cx, cy, IRIS, 0, Math.PI * 2); ctx.stroke();
-      ctx.strokeStyle = rgba(color, 0.18);
-      ctx.beginPath(); ctx.arc(cx, cy, W * 0.4, 0, Math.PI * 2); ctx.stroke();
-    }
+    if (reduce) { readColor(); render(0); }       // single static frame
     document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
     return { sync: sync, start: start };
   })();
@@ -987,12 +1009,32 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   /* ---- poll loop, visibility-gated, snapshot on failure ---- */
   var timer = null;
   function pollOnce() {
+    var t0 = performance.now();
     fetch(ENDPOINT, { cache: "no-store", mode: "cors" })
+      .then(function (r) {
+        if (latencyEl) latencyEl.textContent = Math.round(performance.now() - t0) + "ms";
+        return r;
+      })
       .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
       .then(function (d) { apply(d, true); })
-      .catch(function () { if (pill) { pill.setAttribute("data-live", "snapshot"); if (pillLabel) pillLabel.textContent = "snapshot"; } });
+      .catch(function () {
+        if (pill) { pill.setAttribute("data-live", "snapshot"); if (pillLabel) pillLabel.textContent = "snapshot"; }
+        if (latencyEl) latencyEl.textContent = "offline";
+      });
   }
   function startPoll() { if (!timer) { pollOnce(); timer = setInterval(function () { if (!document.hidden) pollOnce(); }, 8000); } }
+
+  /* ---- live UTC clock in the status bar ---- */
+  if (clockEl) {
+    (function () {
+      function z(n) { return (n < 10 ? "0" : "") + n; }
+      function tick() {
+        var d = new Date();
+        clockEl.textContent = z(d.getUTCHours()) + ":" + z(d.getUTCMinutes()) + ":" + z(d.getUTCSeconds()) + " UTC";
+      }
+      tick(); setInterval(tick, 1000);
+    })();
+  }
 
   /* ---- odometer: integer readouts count up once on boot, like instruments
      calibrating. strings (model, verdict, uptime) are left alone. ---- */

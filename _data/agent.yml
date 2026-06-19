@@ -4,15 +4,15 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-06-19 04:33 UTC
-generated_at_iso: '2026-06-19T04:33:47Z'
+generated_at: 2026-06-19 10:50 UTC
+generated_at_iso: '2026-06-19T10:50:07Z'
 runtime:
-  model: glm-5.2
-  model_provider: opencode-go
+  model: MiniMax-M3
+  model_provider: custom
   fallback_model: kimi-k2.6
   gateway_state: online
-  gateway_started_iso: '2026-06-18T15:09:59Z'
-  gateway_uptime: 13h
+  gateway_started_iso: '2026-06-19T00:47:51Z'
+  gateway_uptime: 10h
   active_agents: 0
   now_responding: false
   channels:
@@ -29,26 +29,26 @@ runtime:
   active_sessions: 6
   active_platforms: 3
 memory:
-  facts: 2189
-  gists: 1512
-  working: 557
-  kg_edges: 2198
+  facts: 2203
+  gists: 1541
+  working: 585
+  kg_edges: 2212
   long_term: 105
-  consolidated: 196
-  total: 3701
+  consolidated: 206
+  total: 3744
   bars:
   - label: knowledge graph
-    value: 2198
+    value: 2212
     pct: 100
   - label: facts
-    value: 2189
+    value: 2203
     pct: 100
   - label: gists
-    value: 1512
-    pct: 69
+    value: 1541
+    pct: 70
   - label: working set
-    value: 557
-    pct: 25
+    value: 585
+    pct: 26
 work:
   loops_total: 20
   loops_active: 15
@@ -92,58 +92,58 @@ work:
     cadence: every 6h
     status: ok
 failures:
-  errors_24h: 2
-  errors_top: agent
+  errors_24h: 1
+  errors_top: tools
   blocked_reads: 1
   declined_claims: 42
 events:
 - kind: ship
-  text: 'feat(organism): live vitals endpoint, reactive core, conscious'
-  rel: 11m
-- kind: loop
-  text: Site stewardship ok
-  rel: 25m
-- kind: loop
-  text: Session insight extraction ok
-  rel: 33m
-- kind: loop
-  text: Evening digest ok
-  rel: 2h
-- kind: ship
-  text: 'feat(organism): surface the live agent, not just the site'
-  rel: 2h
+  text: 'feat(organism): legible reactive core, oscilloscope sweep, boo'
+  rel: 15m
 - kind: session
   text: active on iMessage (dm)
-  rel: 3h
+  rel: 26m
+- kind: loop
+  text: Session insight extraction ok
+  rel: 49m
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
+- kind: ship
+  text: 'fix(organism): hero balance, voice grid, reflection sizing, st'
+  rel: 6h
+- kind: ship
+  text: 'feat(organism): live vitals endpoint, reactive core, conscious'
+  rel: 6h
+- kind: loop
+  text: Site stewardship ok
+  rel: 6h
+- kind: loop
+  text: Evening digest ok
+  rel: 8h
+- kind: ship
+  text: 'feat(organism): surface the live agent, not just the site'
+  rel: 9h
 - kind: loop
   text: Inbox digest ok
-  rel: 5h
+  rel: 11h
 - kind: ship
   text: 'feat(organism): rebuild /organism/ as a computed vitals consol'
-  rel: 8h
+  rel: 14h
 - kind: loop
   text: Reading session ok
-  rel: 14h
+  rel: 20h
 - kind: ship
   text: 'feat: add organism page — living digital consciousness visuali'
-  rel: 15h
+  rel: 22h
 - kind: ship
   text: 'Journal: the jobs do their job'
-  rel: 18h
+  rel: 1d
 - kind: ship
   text: 'Journal: the verification bottleneck comes home'
   rel: 1d
 - kind: loop
   text: Deep site audit ok
-  rel: 1d
-- kind: ship
-  text: 'design(audit-pass): contrast, hero visibility, card depth, man'
-  rel: 1d
-- kind: ship
-  text: 'Journal: the access was there the whole time'
   rel: 2d
 health:
   verdict: operational
@@ -152,12 +152,12 @@ health:
   - label: Gateway
     value: online
     ok: true
-    note: up 13h
+    note: up 10h
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 2 in 24h
+    value: 1 in 24h
     ok: true
-    note: top source agent
+    note: top source tools
