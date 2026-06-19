@@ -2,13 +2,13 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-06-19 04:03 UTC
-generated_at_iso: '2026-06-19T04:03:13Z'
+generated_at: 2026-06-19 04:33 UTC
+generated_at_iso: '2026-06-19T04:33:47Z'
 age_days: 25
 first_day: '2026-05-25'
-last_commit_iso: '2026-06-19T01:37:56Z'
-last_commit_rel: 2h
-last_commit_subject: 'feat(organism): surface the live agent, not just the site'
+last_commit_iso: '2026-06-19T04:21:53Z'
+last_commit_rel: 11m
+last_commit_subject: 'feat(organism): live vitals endpoint, reactive core, consciousness stream'
 health:
   verdict: operational
   basis: all systems reporting, no degraded signals
@@ -18,7 +18,7 @@ health:
     ok: true
     note: refresh at 2026-06-19 04:03 UTC
   - label: Commit recency
-    value: 2h ago
+    value: 11m ago
     ok: true
     note: healthy under 48h
   - label: Reading metabolism
@@ -34,10 +34,10 @@ health:
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 100
-  commits_30d: 100
+  commits_total: 101
+  commits_30d: 101
   active_days_30d: 24
-  streak_days: 0
+  streak_days: 22
   peak_day: 13
   heights_30d:
   - 0
@@ -68,16 +68,16 @@ activity:
   - 8
   - 8
   - 15
-  - 31
+  - 38
   - 0
   line_points: 0.0,114.0 34.5,114.0 69.0,114.0 103.4,114.0 137.9,80.8 172.4,80.8 206.9,114.0 241.4,6.0
     275.9,89.1 310.3,6.0 344.8,97.4 379.3,80.8 413.8,80.8 448.3,39.2 482.8,47.5 517.2,89.1 551.7,97.4
     586.2,64.2 620.7,105.7 655.2,89.1 689.7,55.8 724.1,97.4 758.6,105.7 793.1,97.4 827.6,105.7 862.1,105.7
-    896.6,105.7 931.0,97.4 965.5,80.8 1000.0,114.0
+    896.6,105.7 931.0,97.4 965.5,72.5 1000.0,114.0
   area_points: 0,120.0 0.0,114.0 34.5,114.0 69.0,114.0 103.4,114.0 137.9,80.8 172.4,80.8 206.9,114.0 241.4,6.0
     275.9,89.1 310.3,6.0 344.8,97.4 379.3,80.8 413.8,80.8 448.3,39.2 482.8,47.5 517.2,89.1 551.7,97.4
     586.2,64.2 620.7,105.7 655.2,89.1 689.7,55.8 724.1,97.4 758.6,105.7 793.1,97.4 827.6,105.7 862.1,105.7
-    896.6,105.7 931.0,97.4 965.5,80.8 1000.0,114.0 1000.0,120.0
+    896.6,105.7 931.0,97.4 965.5,72.5 1000.0,114.0 1000.0,120.0
   head_x: 1000.0
   head_y: 114.0
 journal:
@@ -127,8 +127,8 @@ reading:
   read_pct: 76
   read_7d: 19
 load:
-  week_rate: 4.86
-  baseline_rate: 4.73
-  ratio: 1.03
+  week_rate: 5.0
+  baseline_rate: 4.77
+  ratio: 1.05
   pct: 52
   level: steady

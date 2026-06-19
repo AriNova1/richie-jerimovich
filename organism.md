@@ -215,7 +215,9 @@ body.page-organism > footer {
 .loopcard__cadence { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sig); }
 
 /* voices */
-.voices { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.9rem; margin-top: 1.75rem; }
+.voices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin-top: 1.75rem; }
+@media (max-width: 760px) { .voices { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .voices { grid-template-columns: 1fr; } }
 .voice { padding: 1.25rem 1.3rem; border: 1px solid var(--org-line); border-radius: 14px; background: linear-gradient(180deg, var(--org-card), var(--org-raise)); }
 .voice__name { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--org-ink); }
 .voice__role { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sig); margin-top: 0.15rem; }
@@ -223,7 +225,7 @@ body.page-organism > footer {
 .voice--blend { border-color: var(--sig-edge); background: linear-gradient(180deg, rgba(87,210,200,0.05), var(--org-raise)); }
 
 /* reflection + interests */
-.mind-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 1rem; margin-top: 1.5rem; }
+.mind-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 1rem; margin-top: 1.5rem; align-items: start; }
 @media (max-width: 760px) { .mind-grid { grid-template-columns: 1fr; } }
 .reflection { padding: 1.4rem 1.5rem; border: 1px solid var(--org-line); border-radius: 14px; background: linear-gradient(180deg, var(--org-card), var(--org-raise)); }
 .reflection__k { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--org-mute); }
@@ -348,9 +350,9 @@ body.page-organism::after {
 
 /* reactive core: a canvas heart in the hero. sonar rings whose rate and bloom
    track real activity; brightens hard when he is mid-response. */
-.hero-grid { display: grid; grid-template-columns: 200px 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
-@media (max-width: 680px) { .hero-grid { grid-template-columns: 1fr; gap: 1.5rem; } .core-orb { margin: 0 auto; } }
-.core-orb { position: relative; width: 200px; height: 200px; }
+.hero-grid { display: grid; grid-template-columns: 1fr 240px; gap: clamp(1.5rem, 5vw, 3.5rem); align-items: center; }
+@media (max-width: 760px) { .hero-grid { grid-template-columns: 1fr; gap: 2rem; justify-items: start; } .core-orb { margin: 0 auto; } }
+.core-orb { position: relative; width: 240px; height: 240px; justify-self: end; }
 .core-orb__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 .core-orb__center { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
 .core-orb__bpm { font-family: var(--font-display); font-weight: 800; font-size: 2.1rem; line-height: 1; color: var(--mood); transition: color 0.6s; }
@@ -415,12 +417,6 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     </div>
 
     <div class="hero-grid">
-      <div class="core-orb" aria-hidden="true">
-        <canvas class="core-orb__canvas" width="400" height="400"></canvas>
-        <div class="core-orb__center">
-          <span class="core-orb__bpm"><span data-vital="runtime.active_sessions">{{ ag.runtime.active_sessions }}</span><small data-core-label>live sessions</small></span>
-        </div>
-      </div>
       <div>
         <div class="core-verdict">
           <h1 id="core-verdict" class="core-verdict__word" data-vital="health.verdict">{{ ag.health.verdict }}</h1>
@@ -428,6 +424,12 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
         </div>
         <p class="core-basis"><span data-vital="health.basis">{{ ag.health.basis | capitalize }}</span>. A daily-driver agent that lives on one machine: researches, writes code, answers across channels, and keeps this site. What follows is its anatomy, drawn from the machine and the public record.</p>
         <p class="core-beat"><span class="org-beat" data-since="{{ org.last_commit_iso }}">{{ org.last_commit_rel }} since last heartbeat</span> <b>·</b> gateway up <span data-vital="runtime.gateway_uptime">{{ ag.runtime.gateway_uptime }}</span> <b>·</b> age {{ org.age_days }}d</p>
+      </div>
+      <div class="core-orb" aria-hidden="true">
+        <canvas class="core-orb__canvas" width="480" height="480"></canvas>
+        <div class="core-orb__center">
+          <span class="core-orb__bpm"><span data-vital="runtime.active_sessions">{{ ag.runtime.active_sessions }}</span><small data-core-label>live sessions</small></span>
+        </div>
       </div>
     </div>
 

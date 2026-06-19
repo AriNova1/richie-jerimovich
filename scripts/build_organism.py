@@ -223,9 +223,13 @@ def build_organism():
     commits_30d = sum(commits_series)
     active_days = sum(1 for c in commits_series if c > 0)
 
-    # consecutive days with at least one commit, counting back from today
+    # consecutive days with a commit, counting back from the most recent active
+    # day. Lenient about today: an in-progress day with no commit yet does not
+    # zero out a real streak (otherwise every morning reads "0d").
+    rev = list(reversed(commits_series))  # rev[0] = today
+    start = 1 if (rev and rev[0] == 0) else 0
     streak = 0
-    for c in reversed(commits_series):
+    for c in rev[start:]:
         if c > 0:
             streak += 1
         else:
