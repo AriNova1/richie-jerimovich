@@ -355,8 +355,18 @@ body.page-organism::after {
 .core-orb { position: relative; width: 240px; height: 240px; justify-self: end; }
 .core-orb__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 .core-orb__center { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
-.core-orb__bpm { font-family: var(--font-display); font-weight: 800; font-size: 2.1rem; line-height: 1; color: var(--mood); transition: color 0.6s; }
-.core-orb__bpm small { display: block; font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--org-mute); margin-top: 0.35rem; }
+.core-orb__state { font-family: var(--font-mono); font-size: 0.66rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mood); text-shadow: 0 0 8px rgba(0,0,0,0.55); transition: color 0.5s; }
+
+/* oscilloscope sweep over the commit-pulse trace: a glowing playhead that
+   crosses the plot on a loop, the way a heart monitor reads. transform only. */
+.ecg__plot { overflow: hidden; }
+.ecg__sweep {
+  position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
+  background: linear-gradient(90deg, var(--mood) 0, var(--mood-wash) 1.4%, transparent 7%);
+  opacity: 0.6; will-change: transform;
+  animation: ecg-sweep 5s linear infinite;
+}
+@keyframes ecg-sweep { from { transform: translateX(0); } to { transform: translateX(100%); } }
 
 /* live status pill in the top bar */
 .live-pill { display: inline-flex; align-items: center; gap: 0.45rem; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mood); }
@@ -401,6 +411,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   .ecg__halo { animation: none; opacity: 0; }
   .org-progress { display: none; }
   .ev--new, .tick-up { animation: none; }
+  .ecg__sweep { display: none; }
   #organism.booting .org-hero, html.js #organism.booting .reveal-fast { opacity: 1; }
 }
 </style>
@@ -428,7 +439,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       <div class="core-orb" aria-hidden="true">
         <canvas class="core-orb__canvas" width="480" height="480"></canvas>
         <div class="core-orb__center">
-          <span class="core-orb__bpm"><span data-vital="runtime.active_sessions">{{ ag.runtime.active_sessions }}</span><small data-core-label>live sessions</small></span>
+          <span class="core-orb__state" data-core-state>{% if ag.runtime.gateway_state == 'online' %}listening{% else %}dormant{% endif %}</span>
         </div>
       </div>
     </div>
@@ -442,6 +453,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
           <circle class="ecg__halo" cx="{{ org.activity.head_x }}" cy="{{ org.activity.head_y }}" r="4"></circle>
           <circle class="ecg__head" cx="{{ org.activity.head_x }}" cy="{{ org.activity.head_y }}" r="4"></circle>
         </svg>
+        <span class="ecg__sweep" aria-hidden="true"></span>
       </div>
       <figcaption class="ecg__cap">
         <span>pulse / daily commits, last 30 days</span>
@@ -813,7 +825,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   var pillLabel = document.querySelector("[data-live-label]");
   var streamEl = document.querySelector("[data-stream]");
   var streamMeta = document.querySelector("[data-stream-meta]");
-  var coreLabel = document.querySelector("[data-core-label]");
+  var coreState = document.querySelector("[data-core-state]");
 
   function path(o, p) { return p.split(".").reduce(function (a, k) { return a == null ? a : a[k]; }, o); }
   function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
@@ -875,7 +887,8 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
             : path(d, p);
       setVital(n, v);
     });
-    if (coreLabel) coreLabel.textContent = (d.runtime && d.runtime.now_responding) ? "responding now" : "live sessions";
+    if (coreState) coreState.textContent = (d.online === false) ? "dormant"
+      : (d.runtime && d.runtime.now_responding) ? "responding" : "listening";
     if (d.events) renderStream(d.events);
     if (pill) {
       pill.setAttribute("data-live", live ? "live" : "snapshot");
@@ -909,41 +922,47 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       var n = parseInt(h, 16);
       return "rgba(" + ((n >> 16) & 255) + "," + ((n >> 8) & 255) + "," + (n & 255) + "," + a + ")";
     }
+    var IRIS = W * 0.205;            // inner radius; the center stays clear for text
     function frame(t) {
       ctx.clearRect(0, 0, W, H);
-      if (t - last > period) { rings.push({ r: 30, a: 0.6 }); last = t; }
+      // sonar rings emanate from just outside the iris, never crossing center
+      if (t - last > period) { rings.push({ r: IRIS, a: 0.55 }); last = t; }
       var maxR = W * 0.46;
       for (var i = rings.length - 1; i >= 0; i--) {
         var ring = rings[i];
-        ring.r += responding ? 2.6 : 1.7;
-        ring.a = 0.6 * (1 - ring.r / maxR);
+        ring.r += responding ? 2.4 : 1.6;
+        ring.a = 0.55 * (1 - (ring.r - IRIS) / (maxR - IRIS));
         if (ring.r > maxR) { rings.splice(i, 1); continue; }
         ctx.beginPath();
         ctx.arc(cx, cy, ring.r, 0, Math.PI * 2);
         ctx.strokeStyle = rgba(color, Math.max(0, ring.a));
-        ctx.lineWidth = responding ? 3 : 2;
+        ctx.lineWidth = responding ? 2.5 : 1.5;
         ctx.stroke();
       }
-      var pulse = 1 + Math.sin(t / (responding ? 180 : 420)) * (responding ? 0.18 : 0.08);
-      var cr = 22 * pulse * (0.85 + energy * 0.4);
-      var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, cr * 2.4);
-      g.addColorStop(0, rgba(color, responding ? 0.95 : 0.7));
+      var pulse = 1 + Math.sin(t / (responding ? 240 : 560)) * (responding ? 0.09 : 0.045);
+      // a soft, low-opacity core glow that never washes out the center label
+      var glowR = IRIS * 1.5 * pulse;
+      var g = ctx.createRadialGradient(cx, cy, IRIS * 0.25, cx, cy, glowR);
+      g.addColorStop(0, rgba(color, responding ? 0.24 : 0.13));
       g.addColorStop(1, rgba(color, 0));
       ctx.fillStyle = g;
-      ctx.beginPath(); ctx.arc(cx, cy, cr * 2.4, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = rgba(color, 0.9);
-      ctx.beginPath(); ctx.arc(cx, cy, cr * 0.5, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(cx, cy, glowR, 0, Math.PI * 2); ctx.fill();
+      // the iris ring framing the center readout
+      ctx.beginPath(); ctx.arc(cx, cy, IRIS * pulse, 0, Math.PI * 2);
+      ctx.strokeStyle = rgba(color, responding ? 0.9 : 0.5);
+      ctx.lineWidth = responding ? 2.5 : 1.5;
+      ctx.stroke();
       raf = requestAnimationFrame(frame);
     }
     var raf = 0;
     function start() { if (!raf && !reduce) raf = requestAnimationFrame(frame); }
     function stop() { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
-    if (reduce) {       // static: one ring + center
+    if (reduce) {       // static: iris ring + one outer ring, center left clear
       readColor();
-      ctx.strokeStyle = rgba(color, 0.4); ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.arc(cx, cy, W * 0.32, 0, Math.PI * 2); ctx.stroke();
-      ctx.fillStyle = rgba(color, 0.85);
-      ctx.beginPath(); ctx.arc(cx, cy, 14, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = rgba(color, 0.5); ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(cx, cy, IRIS, 0, Math.PI * 2); ctx.stroke();
+      ctx.strokeStyle = rgba(color, 0.18);
+      ctx.beginPath(); ctx.arc(cx, cy, W * 0.4, 0, Math.PI * 2); ctx.stroke();
     }
     document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
     return { sync: sync, start: start };
@@ -975,13 +994,33 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   }
   function startPoll() { if (!timer) { pollOnce(); timer = setInterval(function () { if (!document.hidden) pollOnce(); }, 8000); } }
 
+  /* ---- odometer: integer readouts count up once on boot, like instruments
+     calibrating. strings (model, verdict, uptime) are left alone. ---- */
+  function countUp(node, to) {
+    var dur = 850, t0 = performance.now();
+    function step(t) {
+      var p = Math.min(1, (t - t0) / dur);
+      var e = 1 - Math.pow(1 - p, 3);
+      node.textContent = String(Math.round(to * e));
+      if (p < 1) requestAnimationFrame(step); else node.textContent = String(to);
+    }
+    requestAnimationFrame(step);
+  }
+
   /* ---- boot: instruments calibrate up once, then go live ---- */
   apply(SNAP, false);
+  if (!reduce) {
+    document.querySelectorAll("[data-vital]").forEach(function (n) {
+      var txt = n.textContent.trim();
+      if (/^\d+$/.test(txt)) { var to = parseInt(txt, 10); if (to > 0) countUp(n, to); }
+    });
+  }
   core.start();
   root.classList.add("booting");
   requestAnimationFrame(function () {
     setTimeout(function () { root.classList.remove("booting"); }, reduce ? 0 : 220);
   });
-  startPoll();
+  // let the odometer settle before the first live poll writes over it
+  setTimeout(startPoll, reduce ? 0 : 1050);
 })();
 </script>
