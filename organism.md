@@ -431,10 +431,13 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 .stream { backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
 
 /* ---------- mission-control 3-column command grid ---------- */
-.cc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.75rem; align-items: start; }
+.cc-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-areas: "vitals voices ops"; gap: 1rem; margin-top: 1.75rem; align-items: start; }
 .cc-col { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
-@media (max-width: 1000px) { .cc-grid { grid-template-columns: 1fr 1fr; } .cc-col--voices { grid-column: 1 / -1; } }
-@media (max-width: 620px) { .cc-grid { grid-template-columns: 1fr; } }
+.cc-col--vitals { grid-area: vitals; }
+.cc-col--voices { grid-area: voices; }
+.cc-col--ops { grid-area: ops; }
+@media (max-width: 1000px) { .cc-grid { grid-template-columns: 1fr 1fr; grid-template-areas: "vitals ops" "voices voices"; } }
+@media (max-width: 620px) { .cc-grid { grid-template-columns: 1fr; grid-template-areas: "vitals" "voices" "ops"; } }
 .cc-coltitle { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--org-mute); display: flex; align-items: center; gap: 0.6rem; }
 .cc-coltitle::after { content: ""; flex: 1; height: 1px; background: var(--org-line); }
 .cc-voices { display: flex; flex-direction: column; }
@@ -990,15 +993,20 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
         "mix(dot(h3(i+vec3(0.,1.,1.)),f-vec3(0.,1.,1.)),dot(h3(i+vec3(1.,1.,1.)),f-vec3(1.,1.,1.)),u.x),u.y),u.z);}",
         "float fbm(vec3 p){float a=0.5,s=0.0;for(int i=0;i<5;i++){s+=a*gn(p);p*=2.02;a*=0.5;}return s;}",
         "void main(){",
-        "vec2 uv=(gl_FragCoord.xy*2.0-uRes)/min(uRes.x,uRes.y);float d=length(uv);float R=0.82;",
-        "vec3 col=vec3(0.0);float al=0.0;float tt=uTime*(0.18+uResp*0.22);",
-        "if(d<R){float z=sqrt(R*R-d*d);vec3 n=vec3(uv,z)/R;vec3 q=n*2.3;",
-        "float w=fbm(q+vec3(0.0,tt*0.65,tt*0.4));float f=fbm(q+w*1.1+vec3(tt*0.3,tt*0.12,tt*0.5));f=f*0.5+0.5;f=pow(f,1.5);",
-        "float fr=pow(1.0-z/R,1.7);float fc=pow(z/R,1.0);float su=0.13+f*1.45;",
-        "float b=su*fc+fr*1.55;b*=(0.55+uEnergy*0.82);col+=uColor*b;al=clamp(b*0.92,0.0,1.0);}",
-        "float outer=exp(-max(d-R,0.0)*3.2);col+=uColor*outer*(0.5+uEnergy*0.55);",
-        "float hot=exp(-d*4.0);col+=uColor*hot*(1.05+uResp*1.05);",
-        "al=max(al,outer*0.55);al=max(al,hot*0.85);col=col/(col+vec3(0.65));",
+        "vec2 uv=(gl_FragCoord.xy*2.0-uRes)/min(uRes.x,uRes.y);float d=length(uv);float R=0.66;",
+        "vec3 col=vec3(0.0);float al=0.0;float tt=uTime*(0.22+uResp*0.3);",
+        "vec3 hotc=mix(uColor,vec3(1.0),0.5);",
+        "if(d<R){float z=sqrt(R*R-d*d);vec3 n=vec3(uv,z)/R;vec3 q=n*2.6;",
+        "float w=fbm(q+vec3(0.0,tt*0.7,tt*0.4));",
+        "float f=fbm(q*1.4+w*1.3+vec3(tt*0.35,tt*0.15,tt*0.55));",
+        "f=pow(1.0-abs(f),2.4);",
+        "float fr=pow(1.0-z/R,1.6);float fc=pow(z/R,0.7);float veins=f*fc;",
+        "float b=(veins*1.7+fr*1.05)*(0.7+uEnergy*0.9);",
+        "col+=mix(uColor,hotc,clamp(veins*0.85,0.0,1.0))*b;al=clamp(b*0.95,0.0,1.0);}",
+        "float corona=exp(-max(d-R,0.0)*2.7);col+=uColor*corona*(0.55+uEnergy*0.6);",
+        "float hot=exp(-d*5.5);col+=hotc*hot*(1.45+uResp*1.3);",
+        "al=max(al,corona*0.6);al=max(al,hot*0.95);col=vec3(1.0)-exp(-col*1.55);",
+        "float edge=smoothstep(0.99,0.66,d);col*=edge;al*=edge;",
         "gl_FragColor=vec4(col,clamp(al,0.0,1.0));}"
       ].join("\n");
       var sh = function (ty, src) { var s = gl.createShader(ty); gl.shaderSource(s, src); gl.compileShader(s); return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null; };
