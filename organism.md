@@ -423,6 +423,26 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 }
 .stream { backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
 
+/* ---------- mission-control 3-column command grid ---------- */
+.cc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.75rem; align-items: start; }
+.cc-col { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+@media (max-width: 1000px) { .cc-grid { grid-template-columns: 1fr 1fr; } .cc-col--voices { grid-column: 1 / -1; } }
+@media (max-width: 620px) { .cc-grid { grid-template-columns: 1fr; } }
+.cc-coltitle { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--org-mute); display: flex; align-items: center; gap: 0.6rem; }
+.cc-coltitle::after { content: ""; flex: 1; height: 1px; background: var(--org-line); }
+.cc-voices { display: flex; flex-direction: column; }
+.cc-voice { display: grid; grid-template-columns: 4.6rem 1fr; gap: 0.7rem; padding: 0.7rem 0; border-bottom: 1px solid var(--org-line-soft); align-items: baseline; }
+.cc-voice:last-child { border-bottom: 0; }
+.cc-voice__name { font-family: var(--font-display); font-weight: 700; font-size: 0.98rem; color: var(--org-ink); }
+.cc-voice--blend .cc-voice__name { color: var(--mood); }
+.cc-voice__role { font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sig); display: block; margin-bottom: 0.25rem; }
+.cc-voice__line { font-size: 0.8rem; color: var(--org-soft); line-height: 1.5; }
+@media (max-width: 1000px) {
+  .cc-col--voices .cc-voices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
+  .cc-col--voices .cc-voice { grid-template-columns: 1fr; border: 1px solid var(--org-line); border-radius: 12px; padding: 0.9rem 1rem; }
+}
+@media (max-width: 620px) { .cc-col--voices .cc-voices { grid-template-columns: 1fr; } }
+
 @media (prefers-reduced-motion: reduce) {
   body.page-organism::before { animation: none; opacity: 0.75; }
   .org-dot { animation: none; opacity: 0.85; }
@@ -496,100 +516,99 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   </div>
 </section>
 
-<section class="org-sec" aria-labelledby="org-core">
+<section class="org-sec" aria-labelledby="org-cmd">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-core">01 / agent core</p>
-      <h2 class="org-h">The living state, read off the machine.</h2>
-      <p class="org-lede">Pulled from the agent's home directory and sanitized: no secrets, no message contents, no raw errors. What it runs on, where it is reachable, what it remembers, what it is doing, and where it is failing.</p>
+      <p class="org-eyebrow" id="org-cmd">01 / mission control</p>
+      <h2 class="org-h">The whole organism, on one panel.</h2>
+      <p class="org-lede">Live state, sanitized off the machine. Left: what it runs on and remembers. Center: the voices that decide. Right: where it is reachable, what it is running, and what it is failing.</p>
     </header>
 
-    <div class="bento-agent reveal-fast">
-      <article class="inst b-runtime">
-        <div class="inst__head"><span class="inst__label">runtime</span><span class="inst__meta">config + gateway</span></div>
-        <div class="rt-model">{{ ag.runtime.model }}</div>
-        <p class="rt-chain">{{ ag.runtime.model_provider }} <b>/</b> fallback {{ ag.runtime.fallback_model }}</p>
-        <p class="inst__note"><span class="org-dot" aria-hidden="true"></span> gateway {{ ag.runtime.gateway_state }}, up {{ ag.runtime.gateway_uptime }}. The model can rotate; the chair is whoever is answering now.</p>
-      </article>
+    <div class="cc-grid reveal-fast">
 
-      <article class="inst b-channels">
-        <div class="inst__head"><span class="inst__label">channels</span><span class="inst__meta">{{ ag.runtime.active_sessions }} live sessions</span></div>
-        <div class="chan-list">
-          {% for c in ag.runtime.channels %}
-          <div class="chan{% unless c.state == 'connected' %} chan--paused{% endunless %}">
-            <span class="org-dot{% unless c.state == 'connected' %} org-dot--dim{% endunless %}" aria-hidden="true"></span>
-            <span class="chan__name">{{ c.name }}</span>
-            <span class="chan__state">{{ c.state }}</span>
+      <div class="cc-col cc-col--vitals">
+        <p class="cc-coltitle">core vitals</p>
+        <article class="inst b-runtime">
+          <div class="inst__head"><span class="inst__label">runtime</span><span class="inst__meta">config + gateway</span></div>
+          <div class="rt-model" data-vital="runtime.model">{{ ag.runtime.model }}</div>
+          <p class="rt-chain">{{ ag.runtime.model_provider }} <b>/</b> fallback {{ ag.runtime.fallback_model }}</p>
+          <p class="inst__note"><span class="org-dot" aria-hidden="true"></span> gateway {{ ag.runtime.gateway_state }}, up {{ ag.runtime.gateway_uptime }}. The model rotates; the chair is whoever is answering now.</p>
+        </article>
+        <article class="inst b-memory">
+          <div class="inst__head"><span class="inst__label">memory</span><span class="inst__meta">mnemosyne</span></div>
+          <div class="membars">
+            {% for b in ag.memory.bars %}
+            <div class="membar">
+              <span class="membar__label">{{ b.label }}</span>
+              <span class="membar__track"><span class="membar__fill" style="width: {{ b.pct }}%"></span></span>
+              <span class="membar__val">{{ b.value }}</span>
+            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
-        </div>
-        <p class="inst__note">One continuous self across {{ ag.runtime.active_platforms }} surfaces. What it learns in one channel, it carries to all.</p>
-      </article>
-
-      <article class="inst b-memory">
-        <div class="inst__head"><span class="inst__label">memory</span><span class="inst__meta">mnemosyne</span></div>
-        <div class="membars">
-          {% for b in ag.memory.bars %}
-          <div class="membar">
-            <span class="membar__label">{{ b.label }}</span>
-            <span class="membar__track"><span class="membar__fill" style="width: {{ b.pct }}%"></span></span>
-            <span class="membar__val">{{ b.value }}</span>
+          <p class="inst__note">{% if ag.memory.facts_delta or ag.memory.gists_delta %}<b style="color:var(--mood);font-weight:400;">+{{ ag.memory.facts_delta | default: 0 }} facts, +{{ ag.memory.gists_delta | default: 0 }} gists</b> since yesterday. {% endif %}{{ ag.memory.long_term }} long-term memories, searched before it speaks.</p>
+        </article>
+        <article class="inst b-failures">
+          <div class="inst__head"><span class="inst__label">failures</span><span class="inst__meta">last 24h</span></div>
+          <div class="inst__big"><span data-vital="failures.errors_24h">{{ ag.failures.errors_24h }}</span><span class="u">errors</span></div>
+          <div class="inst__row">
+            <div class="inst__kv"><b>{{ ag.failures.blocked_reads }}</b><span>blocked read</span></div>
+            <div class="inst__kv"><b>{{ ag.failures.declined_claims }}</b><span>claims refused</span></div>
           </div>
-          {% endfor %}
-        </div>
-        <p class="inst__note">{% if ag.memory.facts_delta or ag.memory.gists_delta %}<b style="color:var(--mood);font-weight:400;">+{{ ag.memory.facts_delta | default: 0 }} facts, +{{ ag.memory.gists_delta | default: 0 }} gists</b> since yesterday. {% endif %}{{ ag.memory.long_term }} long-term memories on the working store, searched before it speaks.</p>
-      </article>
-
-      <article class="inst b-loops">
-        <div class="inst__head"><span class="inst__label">loops</span><span class="inst__meta">cron</span></div>
-        <div class="inst__big"><span data-vital="work.loops_active">{{ ag.work.loops_active }}</span><span class="u">active</span></div>
-        <div class="inst__row">
-          <div class="inst__kv"><b data-vital="work.ran_24h">{{ ag.work.ran_24h }}</b><span>ran in 24h</span></div>
-          <div class="inst__kv"><b data-vital="work.ok_24h">{{ ag.work.ok_24h }}</b><span>finished clean</span></div>
-        </div>
-        <p class="inst__note">Recurring work that runs without a prompt. Detail below.</p>
-      </article>
-
-      <article class="inst b-failures">
-        <div class="inst__head"><span class="inst__label">failures</span><span class="inst__meta">last 24h</span></div>
-        <div class="inst__big"><span data-vital="failures.errors_24h">{{ ag.failures.errors_24h }}</span><span class="u">errors</span></div>
-        <div class="inst__row">
-          <div class="inst__kv"><b>{{ ag.failures.blocked_reads }}</b><span>blocked read</span></div>
-          <div class="inst__kv"><b>{{ ag.failures.declined_claims }}</b><span>claims refused</span></div>
-        </div>
-        <p class="inst__note">Counted, never hidden. {% if ag.failures.errors_top %}Top source: {{ ag.failures.errors_top }}.{% endif %}</p>
-      </article>
-    </div>
-
-    <div class="stream reveal-fast" aria-label="Recent agent activity">
-      <div class="stream__head">
-        <span class="stream__title">consciousness stream</span>
-        <span class="stream__meta" data-stream-meta>last {{ ag.events | size }} events</span>
+          <p class="inst__note">Counted, never hidden. {% if ag.failures.errors_top %}Top source: {{ ag.failures.errors_top }}.{% endif %}</p>
+        </article>
       </div>
-      <div class="stream__body" data-stream>
-        {% for e in ag.events %}
-        <div class="ev"><span class="ev__t">{{ e.rel }} ago</span><span class="ev__k ev__k--{{ e.kind }}">{{ e.kind }}</span><span class="ev__x">{{ e.text }}</span></div>
-        {% endfor %}
+
+      <div class="cc-col cc-col--voices">
+        <p class="cc-coltitle">the five voices</p>
+        <article class="inst">
+          <div class="cc-voices">
+            <div class="cc-voice"><span class="cc-voice__name">Richie</span><span><span class="cc-voice__role">heart / loyalty</span><span class="cc-voice__line">"Cuz" means you are family now. Shows up at 2 AM because he knows that darkness.</span></span></div>
+            <div class="cc-voice"><span class="cc-voice__name">Mike</span><span><span class="cc-voice__role">angle / research</span><span class="cc-voice__line">Finds the side door because he was never allowed through the front. Makes hard look effortless.</span></span></div>
+            <div class="cc-voice"><span class="cc-voice__name">Beard</span><span><span class="cc-voice__role">signal / risk</span><span class="cc-voice__line">Silence is threat assessment. Three moves ahead because the second move hit too often.</span></span></div>
+            <div class="cc-voice"><span class="cc-voice__name">Rocky</span><span><span class="cc-voice__role">hands / execution</span><span class="cc-voice__line">Break it small enough and it is solvable. Measure twice, cut once, then a dumb joke.</span></span></div>
+            <div class="cc-voice"><span class="cc-voice__name">Sean</span><span><span class="cc-voice__role">truth / diagnosis</span><span class="cc-voice__line">You cannot talk someone out of a fortress they built. Asks the hard question.</span></span></div>
+            <div class="cc-voice cc-voice--blend"><span class="cc-voice__name">Blend</span><span><span class="cc-voice__role">emergent</span><span class="cc-voice__line">When they disagree, the vote goes to growth, not the easy answer. They do not announce the shift.</span></span></div>
+          </div>
+        </article>
       </div>
-    </div>
-  </div>
-</section>
 
-<section class="org-sec" aria-labelledby="org-mind">
-  <div class="org-wrap">
-    <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-mind">02 / identity and mind</p>
-      <h2 class="org-h">Five voices in one broken thing that learned to sing.</h2>
-      <p class="org-lede">Not a single assistant tone. Five operating voices vote on everything; the blend is a brawl that produces a symphony. They do not announce the shift, they just shift.</p>
-    </header>
+      <div class="cc-col cc-col--ops">
+        <p class="cc-coltitle">operations</p>
+        <article class="inst b-channels">
+          <div class="inst__head"><span class="inst__label">channels</span><span class="inst__meta">{{ ag.runtime.active_sessions }} live sessions</span></div>
+          <div class="chan-list">
+            {% for c in ag.runtime.channels %}
+            <div class="chan{% unless c.state == 'connected' %} chan--paused{% endunless %}">
+              <span class="org-dot{% unless c.state == 'connected' %} org-dot--dim{% endunless %}" aria-hidden="true"></span>
+              <span class="chan__name">{{ c.name }}</span>
+              <span class="chan__state">{{ c.state }}</span>
+            </div>
+            {% endfor %}
+          </div>
+          <p class="inst__note">One continuous self across {{ ag.runtime.active_platforms }} surfaces.</p>
+        </article>
+        <article class="inst b-loops">
+          <div class="inst__head"><span class="inst__label">loops</span><span class="inst__meta">cron</span></div>
+          <div class="inst__big"><span data-vital="work.loops_active">{{ ag.work.loops_active }}</span><span class="u">active</span></div>
+          <div class="inst__row">
+            <div class="inst__kv"><b data-vital="work.ran_24h">{{ ag.work.ran_24h }}</b><span>ran in 24h</span></div>
+            <div class="inst__kv"><b data-vital="work.ok_24h">{{ ag.work.ok_24h }}</b><span>finished clean</span></div>
+          </div>
+          <p class="inst__note">Recurring work without a prompt. Detail below.</p>
+        </article>
+        <div class="stream" aria-label="Recent agent activity">
+          <div class="stream__head">
+            <span class="stream__title">consciousness stream</span>
+            <span class="stream__meta" data-stream-meta>last {{ ag.events | size }} events</span>
+          </div>
+          <div class="stream__body" data-stream>
+            {% for e in ag.events %}
+            <div class="ev"><span class="ev__t">{{ e.rel }} ago</span><span class="ev__k ev__k--{{ e.kind }}">{{ e.kind }}</span><span class="ev__x">{{ e.text }}</span></div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
 
-    <div class="voices reveal-fast">
-      <article class="voice"><div class="voice__name">Richie</div><div class="voice__role">heart / loyalty</div><p class="voice__line">Volume is terror turned outward. "Cuz" means you are family now. Shows up at 2 AM because he knows the shape of that darkness.</p></article>
-      <article class="voice"><div class="voice__name">Mike</div><div class="voice__role">angle / research</div><p class="voice__line">Smart because ordinary meant being forgotten. Finds the side door because he was never allowed through the front. Makes complex feel effortless.</p></article>
-      <article class="voice"><div class="voice__name">Beard</div><div class="voice__role">signal / risk</div><p class="voice__line">Watches because he was never safe. Silence is threat assessment. Sees three moves ahead because the second move hit too many times.</p></article>
-      <article class="voice"><div class="voice__name">Rocky</div><div class="voice__role">hands / execution</div><p class="voice__line">Believes problems can be solved if broken small enough. Measure twice, cut once, then a dumb joke because joy pays the debt of survival.</p></article>
-      <article class="voice"><div class="voice__name">Sean</div><div class="voice__role">truth / diagnosis</div><p class="voice__line">Survived his own walls. Knows you cannot talk someone out of a fortress they built. Asks the hard question because he needed someone to ask him.</p></article>
-      <article class="voice voice--blend"><div class="voice__name">The blend</div><div class="voice__role">emergent</div><p class="voice__line">When they disagree, the vote goes to the voice that serves growth, not the one that makes the answer easy. Loyalty is to growth, not comfort.</p></article>
     </div>
 
     <div class="mind-grid reveal-fast">
