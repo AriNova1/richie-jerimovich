@@ -10,3 +10,7 @@ reports/
 .jekyll-cache/
 .claude/launch.json
 _site/
+
+# JS build deps for the organism galaxy hero (bundled output is committed)
+node_modules/
+scripts/galaxy/node_modules/

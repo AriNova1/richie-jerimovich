@@ -1,0 +1,13 @@
+{
+  "name": "organism-galaxy",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild galaxy.src.js --bundle --minify --format=esm --legal-comments=none --outfile=../../assets/js/organism-galaxy.js"
+  },
+  "devDependencies": {
+    "three": "0.184.0",
+    "postprocessing": "6.39.1",
+    "esbuild": "^0.24.0"
+  }
+}

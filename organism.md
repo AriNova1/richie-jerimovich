@@ -30,19 +30,19 @@ permalink: /organism/
 
 body.page-organism {
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", "Cascadia Code", monospace;
-  --org-bg: #07090c;
-  --org-raise: #0e131b;
-  --org-card: #10151d;
-  --org-card-2: #0c1118;
+  --org-bg: #0a0806;
+  --org-raise: #14110b;
+  --org-card: #15120b;
+  --org-card-2: #100d07;
   --org-ink: rgba(244, 240, 231, 0.94);
   --org-soft: rgba(244, 240, 231, 0.60);
   --org-mute: rgba(244, 240, 231, 0.40);
   --org-faint: rgba(244, 240, 231, 0.22);
-  --org-line: rgba(150, 196, 206, 0.13);
-  --org-line-soft: rgba(150, 196, 206, 0.06);
-  --sig: #57d2c8;
-  --sig-edge: rgba(87, 210, 200, 0.42);
-  --sig-wash: rgba(87, 210, 200, 0.07);
+  --org-line: rgba(214, 182, 130, 0.14);
+  --org-line-soft: rgba(214, 182, 130, 0.055);
+  --sig: #eaa83c;
+  --sig-edge: rgba(234, 168, 60, 0.42);
+  --sig-wash: rgba(234, 168, 60, 0.08);
   --gold: #f0c040;
   --warn: #e8b86b;
   --bad: #e8716b;
@@ -50,8 +50,8 @@ body.page-organism {
   max-width: none;
   padding: 0;
   background:
-    radial-gradient(125% 80% at 50% -14%, rgba(87, 210, 200, 0.075), transparent 60%),
-    radial-gradient(90% 60% at 92% 114%, rgba(240, 192, 64, 0.04), transparent 55%),
+    radial-gradient(125% 80% at 50% -14%, rgba(234, 168, 60, 0.06), transparent 60%),
+    radial-gradient(90% 60% at 92% 114%, rgba(216, 138, 44, 0.05), transparent 55%),
     var(--org-bg);
   color: var(--org-ink);
 }
@@ -61,7 +61,7 @@ body.page-organism::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(46% 36% at 50% 14%, rgba(87, 210, 200, 0.10), transparent 72%);
+  background: radial-gradient(46% 36% at 50% 14%, rgba(234, 168, 60, 0.09), transparent 72%);
   animation: org-breath 12s ease-in-out infinite alternate;
 }
 @keyframes org-breath { from { opacity: 0.5; } to { opacity: 1; } }
@@ -354,17 +354,17 @@ body.page-organism::after {
 
 /* the signal accent flexes with the agent's mood. js sets these on <article>. */
 #organism { --mood: var(--sig); --mood-edge: var(--sig-edge); --mood-wash: var(--sig-wash); }
-#organism.mood-responding { --mood: #8ef0e6; --mood-edge: rgba(142,240,230,0.55); --mood-wash: rgba(142,240,230,0.10); }
+#organism.mood-responding { --mood: #ffd98a; --mood-edge: rgba(255,217,138,0.55); --mood-wash: rgba(255,217,138,0.10); }
 #organism.mood-stable { --mood: var(--warn); --mood-edge: rgba(232,184,107,0.5); --mood-wash: rgba(232,184,107,0.09); }
 #organism.mood-degraded, #organism.mood-dormant { --mood: var(--bad); --mood-edge: rgba(232,113,107,0.5); --mood-wash: rgba(232,113,107,0.09); }
 #organism.mood-dormant { --mood: var(--dim); --mood-edge: rgba(95,109,122,0.5); }
 
 /* reactive core: a canvas heart in the hero. sonar rings whose rate and bloom
    track real activity; brightens hard when he is mid-response. */
-.hero-grid { display: grid; grid-template-columns: 1fr 240px; gap: clamp(1.5rem, 5vw, 3.5rem); align-items: center; }
-@media (max-width: 760px) { .hero-grid { grid-template-columns: 1fr; gap: 2rem; justify-items: start; } .core-orb { margin: 0 auto; } }
-.core-orb { position: relative; width: 248px; justify-self: end; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-.core-orb__canvas { width: 248px; height: 248px; display: block; }
+.hero-grid { display: grid; grid-template-columns: 1fr 380px; gap: clamp(1.5rem, 5vw, 3rem); align-items: center; }
+@media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; gap: 1.5rem; justify-items: start; } .core-orb { margin: 0 auto; } }
+.core-orb { position: relative; width: min(380px, 100%); justify-self: end; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+.core-orb__canvas { width: 100%; aspect-ratio: 1; display: block; }
 .core-orb__pulse { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--org-mute); }
 .core-orb__pulse b { color: var(--mood); font-weight: 500; transition: color 0.5s; }
 
@@ -495,7 +495,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
         <p class="core-beat"><span class="org-beat" data-since="{{ org.last_commit_iso }}">{{ org.last_commit_rel }} since last heartbeat</span> <b>·</b> gateway up <span data-vital="runtime.gateway_uptime">{{ ag.runtime.gateway_uptime }}</span> <b>·</b> age {{ org.age_days }}d</p>
       </div>
       <div class="core-orb" aria-hidden="true">
-        <canvas class="core-orb__canvas" width="520" height="520"></canvas>
+        <canvas class="core-orb__canvas"></canvas>
         <div class="core-orb__pulse">system pulse <b data-core-state>{% if ag.runtime.gateway_state == 'online' %}listening{% else %}dormant{% endif %}</b></div>
       </div>
     </div>
@@ -954,84 +954,13 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     core.sync(d);
   }
 
-  /* ---- reactive core: a slow particle-drift field over a soft breathing glow.
-     a quiet living cloud, not a sphere. density, speed, and brightness track
-     real activity; it lifts a little mid-response and dims when dormant. the
-     field is edge-faded so it reads as a soft cloud, never a square. ---- */
-  var core = (function () {
-    var cv = document.querySelector(".core-orb__canvas");
-    if (!cv) return { sync: function () {}, start: function () {} };
-    var ctx = cv.getContext("2d");
-    var W = cv.width, cx = W / 2, cy = W / 2;
-    var rgb = [87, 210, 200], responding = 0, energy = 0.42;
-
-    var sprite = document.createElement("canvas"); sprite.width = sprite.height = 32;
-    var sctx = sprite.getContext("2d");
-    function buildSprite() {
-      sctx.clearRect(0, 0, 32, 32);
-      var sg = sctx.createRadialGradient(16, 16, 0, 16, 16, 16);
-      sg.addColorStop(0, "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ",1)");
-      sg.addColorStop(1, "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ",0)");
-      sctx.fillStyle = sg; sctx.fillRect(0, 0, 32, 32);
-    }
-    function readColor() {
-      var c = getComputedStyle(root).getPropertyValue("--mood").trim(), h = c.replace("#", "");
-      if (h.length === 3) h = h.replace(/./g, "$&$&");
-      if (h.length >= 6) { var n = parseInt(h, 16); rgb = [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
-      buildSprite();
-    }
-    function sync(d) {
-      readColor();
-      responding = (d.runtime && d.runtime.now_responding) ? 1 : 0;
-      if (d.online === false) { energy = 0.12; return; }
-      var sess = (d.runtime && d.runtime.active_sessions) || 0;
-      energy = Math.min(1, 0.4 + sess * 0.09);
-    }
-    function tg(a) { return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + Math.max(0, a) + ")"; }
-
-    var FIELD = W * 0.46, N = 115, motes = [], clouds = [];
-    for (var i = 0; i < N; i++) motes.push({ x: cx + (Math.random() - 0.5) * FIELD * 1.9, y: cy + (Math.random() - 0.5) * FIELD * 1.9, r: 1.0 + Math.random() * 2.0, sp: 0.08 + Math.random() * 0.16, ph: Math.random() * 6.28, sway: 4 + Math.random() * 8 });
-    for (var j = 0; j < 3; j++) clouds.push({ px: Math.random() * 6.28, py: Math.random() * 6.28, rad: FIELD * (0.5 + Math.random() * 0.3), a: 0.05 + Math.random() * 0.035 });
-
-    function render(t) {
-      ctx.clearRect(0, 0, W, W);
-      ctx.globalCompositeOperation = "lighter";
-      var breath = 0.82 + 0.18 * Math.sin(t * 0.0006) + responding * 0.1;
-      var spd = (0.55 + energy * 0.7) * (responding ? 1.6 : 1.0);
-      var g0 = ctx.createRadialGradient(cx, cy, 0, cx, cy, FIELD * 0.95);
-      g0.addColorStop(0, tg(0.10 * breath * (0.6 + energy * 0.5))); g0.addColorStop(1, tg(0));
-      ctx.fillStyle = g0; ctx.beginPath(); ctx.arc(cx, cy, FIELD * 0.95, 0, 6.2832); ctx.fill();
-      for (var c = 0; c < clouds.length; c++) {
-        var cl = clouds[c], bx = cx + Math.sin(t * 0.00016 + cl.px) * FIELD * 0.4, by = cy + Math.cos(t * 0.00013 + cl.py) * FIELD * 0.35;
-        var gc = ctx.createRadialGradient(bx, by, 0, bx, by, cl.rad);
-        gc.addColorStop(0, tg(cl.a * breath)); gc.addColorStop(1, tg(0));
-        ctx.fillStyle = gc; ctx.beginPath(); ctx.arc(bx, by, cl.rad, 0, 6.2832); ctx.fill();
-      }
-      for (var k = 0; k < N; k++) {
-        var p = motes[k];
-        p.y -= p.sp * spd;
-        if (p.y < cy - FIELD) { p.y = cy + FIELD; p.x = cx + (Math.random() - 0.5) * FIELD * 1.9; }
-        var x = p.x + Math.sin(t * 0.0005 + p.ph) * p.sway;
-        var dx = x - cx, dy = p.y - cy, dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist >= FIELD) continue;
-        var ef = 1 - dist / FIELD; ef = ef * ef;
-        var a = (0.18 + 0.13 * Math.sin(t * 0.0011 + p.ph)) * ef * (0.55 + energy * 0.6) * (responding ? 1.3 : 1.0);
-        var size = p.r * (0.9 + energy * 0.4) * 7;
-        ctx.globalAlpha = Math.max(0, a);
-        ctx.drawImage(sprite, x - size / 2, p.y - size / 2, size, size);
-      }
-      ctx.globalAlpha = 1;
-      ctx.globalCompositeOperation = "source-over";
-    }
-    var raf = 0;
-    function frame(t) { render(t); raf = requestAnimationFrame(frame); }
-    function start() { if (!raf && !reduce) raf = requestAnimationFrame(frame); }
-    function stop() { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
-    readColor();
-    if (reduce) render(2000);
-    document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
-    return { sync: sync, start: start };
-  })();
+  /* ---- reactive core: the WebGL galaxy hero (assets/js/organism-galaxy.js)
+     owns the canvas and registers window.OrganismCore. This proxy forwards live
+     state to it once it has loaded; until then the calls are no-ops. ---- */
+  var core = {
+    sync: function (d) { if (window.OrganismCore) window.OrganismCore.sync(d); },
+    start: function () { if (window.OrganismCore) window.OrganismCore.start(); },
+  };
 
   /* ---- heartbeat: real elapsed since last commit (immutable anchor) ---- */
   (function () {
@@ -1109,3 +1038,8 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   setTimeout(startPoll, reduce ? 0 : 1050);
 })();
 </script>
+
+<!-- Cinematic galaxy hero: self-hosted Three.js + bloom, bundled by esbuild
+     (scripts/galaxy). Owns the core canvas; the engine above forwards live state
+     to window.OrganismCore. No third-party request. -->
+<script type="module" src="{{ site.baseurl }}/assets/js/organism-galaxy.js?v=20260620"></script>
