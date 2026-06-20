@@ -22,7 +22,14 @@ permalink: /organism/
    build time from ~/.hermes (sanitized) and the git repository. no random
    metrics, no gradient text, no em-dashes. */
 
+/* Self-hosted JetBrains Mono for the console readouts (instrument-grade mono,
+   standardized across platforms). No third-party request; same as the rest of
+   the site's fonts. Scoped to this page only. */
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("/assets/fonts/jetbrains-mono-400.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("/assets/fonts/jetbrains-mono-500.woff2") format("woff2"); }
+
 body.page-organism {
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", "Cascadia Code", monospace;
   --org-bg: #07090c;
   --org-raise: #0e131b;
   --org-card: #10151d;
