@@ -954,121 +954,83 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     core.sync(d);
   }
 
-  /* ---- reactive core: a rotating volumetric energy sphere. particles orbit a
-     bright core with additive glow; depth shades front-to-back. rotation speed
-     and brightness track real activity, and it flares when mid-response. ---- */
+  /* ---- reactive core: a slow particle-drift field over a soft breathing glow.
+     a quiet living cloud, not a sphere. density, speed, and brightness track
+     real activity; it lifts a little mid-response and dims when dormant. the
+     field is edge-faded so it reads as a soft cloud, never a square. ---- */
   var core = (function () {
     var cv = document.querySelector(".core-orb__canvas");
     if (!cv) return { sync: function () {}, start: function () {} };
+    var ctx = cv.getContext("2d");
+    var W = cv.width, cx = W / 2, cy = W / 2;
+    var rgb = [87, 210, 200], responding = 0, energy = 0.42;
 
-    // shared reactive state, driven by sync()
-    var hex = "#57d2c8", rgb = [0.34, 0.82, 0.78], responding = 0, energy = 0.42;
+    var sprite = document.createElement("canvas"); sprite.width = sprite.height = 32;
+    var sctx = sprite.getContext("2d");
+    function buildSprite() {
+      sctx.clearRect(0, 0, 32, 32);
+      var sg = sctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+      sg.addColorStop(0, "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ",1)");
+      sg.addColorStop(1, "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ",0)");
+      sctx.fillStyle = sg; sctx.fillRect(0, 0, 32, 32);
+    }
     function readColor() {
-      var c = getComputedStyle(root).getPropertyValue("--mood").trim();
-      if (!c) return;
-      hex = c;
-      var h = c.replace("#", "");
+      var c = getComputedStyle(root).getPropertyValue("--mood").trim(), h = c.replace("#", "");
       if (h.length === 3) h = h.replace(/./g, "$&$&");
-      if (h.length >= 6) { var n = parseInt(h, 16); rgb = [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255]; }
+      if (h.length >= 6) { var n = parseInt(h, 16); rgb = [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+      buildSprite();
     }
     function sync(d) {
       readColor();
       responding = (d.runtime && d.runtime.now_responding) ? 1 : 0;
-      if (d.online === false) { energy = 0.16; return; }
+      if (d.online === false) { energy = 0.12; return; }
       var sess = (d.runtime && d.runtime.active_sessions) || 0;
-      energy = Math.min(1, 0.42 + sess * 0.09);
+      energy = Math.min(1, 0.4 + sess * 0.09);
     }
+    function tg(a) { return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + Math.max(0, a) + ")"; }
 
-    // ---- primary path: a hand-written energy-sphere fragment shader ----
-    var gl = reduce ? null : (cv.getContext("webgl", { alpha: true, premultipliedAlpha: false, antialias: true }) || null);
-    if (gl) {
-      var FS = [
-        "precision highp float;",
-        "uniform vec2 uRes;uniform float uTime;uniform vec3 uColor;uniform float uResp;uniform float uEnergy;",
-        "vec3 h3(vec3 p){p=vec3(dot(p,vec3(127.1,311.7,74.7)),dot(p,vec3(269.5,183.3,246.1)),dot(p,vec3(113.5,271.9,124.6)));return -1.0+2.0*fract(sin(p)*43758.5453123);}",
-        "float gn(vec3 p){vec3 i=floor(p),f=fract(p),u=f*f*(3.0-2.0*f);",
-        "return mix(mix(mix(dot(h3(i+vec3(0.,0.,0.)),f-vec3(0.,0.,0.)),dot(h3(i+vec3(1.,0.,0.)),f-vec3(1.,0.,0.)),u.x),",
-        "mix(dot(h3(i+vec3(0.,1.,0.)),f-vec3(0.,1.,0.)),dot(h3(i+vec3(1.,1.,0.)),f-vec3(1.,1.,0.)),u.x),u.y),",
-        "mix(mix(dot(h3(i+vec3(0.,0.,1.)),f-vec3(0.,0.,1.)),dot(h3(i+vec3(1.,0.,1.)),f-vec3(1.,0.,1.)),u.x),",
-        "mix(dot(h3(i+vec3(0.,1.,1.)),f-vec3(0.,1.,1.)),dot(h3(i+vec3(1.,1.,1.)),f-vec3(1.,1.,1.)),u.x),u.y),u.z);}",
-        "float fbm(vec3 p){float a=0.5,s=0.0;for(int i=0;i<5;i++){s+=a*gn(p);p*=2.02;a*=0.5;}return s;}",
-        "void main(){",
-        "vec2 uv=(gl_FragCoord.xy*2.0-uRes)/min(uRes.x,uRes.y);float d=length(uv);float R=0.66;",
-        "vec3 col=vec3(0.0);float al=0.0;",
-        "float breath=0.84+0.16*sin(uTime*0.6)+uResp*0.12;",   // slow ~10s heartbeat
-        "float tt=uTime*(0.045+uResp*0.05);",                  // slow organic drift
-        "if(d<R){float z=sqrt(R*R-d*d);vec3 n=vec3(uv,z)/R;vec3 q=n*2.0;",
-        "float w=fbm(q+vec3(0.0,tt*0.6,tt*0.3));",
-        "float f=fbm(q*1.2+w*0.8+vec3(tt*0.25,0.0,tt*0.45));f=f*0.5+0.5;",
-        "float fr=pow(1.0-z/R,2.3);float fc=pow(z/R,0.95);",
-        "float surf=0.16+f*0.6;",
-        "float b=(surf*fc+fr*0.45)*breath*(0.45+uEnergy*0.5);",
-        "col+=uColor*b;al=clamp(b*0.8,0.0,1.0);}",
-        "float corona=exp(-max(d-R,0.0)*4.5);col+=uColor*corona*0.28*breath;",
-        "float glow=exp(-d*3.2);col+=uColor*glow*0.42*breath;",
-        "al=max(al,corona*0.32);al=max(al,glow*0.42);",
-        "float edge=smoothstep(0.99,0.62,d);col*=edge;al*=edge;",
-        "gl_FragColor=vec4(col,clamp(al,0.0,1.0));}"
-      ].join("\n");
-      var sh = function (ty, src) { var s = gl.createShader(ty); gl.shaderSource(s, src); gl.compileShader(s); return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null; };
-      var vs = sh(gl.VERTEX_SHADER, "attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}");
-      var fs = sh(gl.FRAGMENT_SHADER, FS), prog = null;
-      if (vs && fs) {
-        prog = gl.createProgram(); gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
-        if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) prog = null;
-      }
-      if (prog) {
-        gl.useProgram(prog);
-        var b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
-        var lp = gl.getAttribLocation(prog, "p"); gl.enableVertexAttribArray(lp); gl.vertexAttribPointer(lp, 2, gl.FLOAT, false, 0, 0);
-        var uT = gl.getUniformLocation(prog, "uTime"), uR = gl.getUniformLocation(prog, "uRes"),
-            uC = gl.getUniformLocation(prog, "uColor"), uRp = gl.getUniformLocation(prog, "uResp"), uE = gl.getUniformLocation(prog, "uEnergy");
-        gl.viewport(0, 0, cv.width, cv.height); gl.disable(gl.DEPTH_TEST);
-        var raf = 0;
-        function frame(t) {
-          gl.uniform1f(uT, t * 0.001); gl.uniform2f(uR, cv.width, cv.height);
-          gl.uniform3f(uC, rgb[0], rgb[1], rgb[2]); gl.uniform1f(uRp, responding); gl.uniform1f(uE, energy);
-          gl.drawArrays(gl.TRIANGLES, 0, 6); raf = requestAnimationFrame(frame);
-        }
-        function start() { if (!raf) raf = requestAnimationFrame(frame); }
-        function stop() { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
-        document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
-        readColor();
-        return { sync: sync, start: start };
-      }
-    }
+    var FIELD = W * 0.46, N = 115, motes = [], clouds = [];
+    for (var i = 0; i < N; i++) motes.push({ x: cx + (Math.random() - 0.5) * FIELD * 1.9, y: cy + (Math.random() - 0.5) * FIELD * 1.9, r: 1.0 + Math.random() * 2.0, sp: 0.08 + Math.random() * 0.16, ph: Math.random() * 6.28, sway: 4 + Math.random() * 8 });
+    for (var j = 0; j < 3; j++) clouds.push({ px: Math.random() * 6.28, py: Math.random() * 6.28, rad: FIELD * (0.5 + Math.random() * 0.3), a: 0.05 + Math.random() * 0.035 });
 
-    // ---- fallback: 2D particle sphere (no WebGL / reduced motion) ----
-    var ctx = cv.getContext("2d"), W = cv.width, cx = W / 2, cy = W / 2;
-    var N = 92, parts = [];
-    for (var i = 0; i < N; i++) parts.push({ phi: Math.acos(1 - 2 * ((i + 0.5) / N)), lon0: Math.PI * 2 * ((i * 0.6180339887) % 1), rad: 0.84 + Math.random() * 0.18, sz: 1.3 + Math.random() * 1.8 });
-    function rgba(a) { var h = hex.replace("#", ""); if (h.length === 3) h = h.replace(/./g, "$&$&"); var n = parseInt(h, 16); return "rgba(" + ((n >> 16) & 255) + "," + ((n >> 8) & 255) + "," + (n & 255) + "," + a + ")"; }
-    var TILT = -0.4, cosT = Math.cos(TILT), sinT = Math.sin(TILT), R = W * 0.4;
     function render(t) {
-      ctx.clearRect(0, 0, W, W); ctx.globalCompositeOperation = "lighter";
-      var rot = t * (energy < 0.2 ? 0.00012 : responding ? 0.00092 : 0.00034);
-      var bloomR = W * 0.17 * (0.82 + energy * 0.4);
-      var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, bloomR * 2.5);
-      g.addColorStop(0, rgba(responding ? 0.95 : 0.62)); g.addColorStop(0.35, rgba(responding ? 0.32 : 0.18)); g.addColorStop(1, rgba(0));
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, bloomR * 2.5, 0, Math.PI * 2); ctx.fill();
-      for (var i = 0; i < N; i++) {
-        var p = parts[i], lon = p.lon0 + rot, sp = Math.sin(p.phi);
-        var py = Math.cos(p.phi), pz = sp * Math.sin(lon), px = sp * Math.cos(lon);
-        var y2 = py * cosT - pz * sinT, z2 = py * sinT + pz * cosT, depth = (z2 + 1) / 2;
-        ctx.fillStyle = rgba((0.12 + depth * 0.88) * (0.45 + energy * 0.55) * (responding ? 0.95 : 0.72));
-        ctx.beginPath(); ctx.arc(cx + px * R * p.rad, cy + y2 * R * p.rad, p.sz * (0.45 + depth * 1.15), 0, Math.PI * 2); ctx.fill();
+      ctx.clearRect(0, 0, W, W);
+      ctx.globalCompositeOperation = "lighter";
+      var breath = 0.82 + 0.18 * Math.sin(t * 0.0006) + responding * 0.1;
+      var spd = (0.55 + energy * 0.7) * (responding ? 1.6 : 1.0);
+      var g0 = ctx.createRadialGradient(cx, cy, 0, cx, cy, FIELD * 0.95);
+      g0.addColorStop(0, tg(0.10 * breath * (0.6 + energy * 0.5))); g0.addColorStop(1, tg(0));
+      ctx.fillStyle = g0; ctx.beginPath(); ctx.arc(cx, cy, FIELD * 0.95, 0, 6.2832); ctx.fill();
+      for (var c = 0; c < clouds.length; c++) {
+        var cl = clouds[c], bx = cx + Math.sin(t * 0.00016 + cl.px) * FIELD * 0.4, by = cy + Math.cos(t * 0.00013 + cl.py) * FIELD * 0.35;
+        var gc = ctx.createRadialGradient(bx, by, 0, bx, by, cl.rad);
+        gc.addColorStop(0, tg(cl.a * breath)); gc.addColorStop(1, tg(0));
+        ctx.fillStyle = gc; ctx.beginPath(); ctx.arc(bx, by, cl.rad, 0, 6.2832); ctx.fill();
       }
+      for (var k = 0; k < N; k++) {
+        var p = motes[k];
+        p.y -= p.sp * spd;
+        if (p.y < cy - FIELD) { p.y = cy + FIELD; p.x = cx + (Math.random() - 0.5) * FIELD * 1.9; }
+        var x = p.x + Math.sin(t * 0.0005 + p.ph) * p.sway;
+        var dx = x - cx, dy = p.y - cy, dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist >= FIELD) continue;
+        var ef = 1 - dist / FIELD; ef = ef * ef;
+        var a = (0.18 + 0.13 * Math.sin(t * 0.0011 + p.ph)) * ef * (0.55 + energy * 0.6) * (responding ? 1.3 : 1.0);
+        var size = p.r * (0.9 + energy * 0.4) * 7;
+        ctx.globalAlpha = Math.max(0, a);
+        ctx.drawImage(sprite, x - size / 2, p.y - size / 2, size, size);
+      }
+      ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = "source-over";
     }
-    var raf2 = 0;
-    function frame2(t) { render(t); raf2 = requestAnimationFrame(frame2); }
-    function start2() { if (!raf2 && !reduce) raf2 = requestAnimationFrame(frame2); }
-    function stop2() { if (raf2) { cancelAnimationFrame(raf2); raf2 = 0; } }
+    var raf = 0;
+    function frame(t) { render(t); raf = requestAnimationFrame(frame); }
+    function start() { if (!raf && !reduce) raf = requestAnimationFrame(frame); }
+    function stop() { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
     readColor();
-    if (reduce) render(0);
-    document.addEventListener("visibilitychange", function () { document.hidden ? stop2() : start2(); });
-    return { sync: sync, start: start2 };
+    if (reduce) render(2000);
+    document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
+    return { sync: sync, start: start };
   })();
 
   /* ---- heartbeat: real elapsed since last commit (immutable anchor) ---- */
