@@ -409,6 +409,20 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 #organism.booting .org-hero { opacity: 0; }
 #organism .org-hero { transition: opacity 0.7s var(--ease-out); }
 
+/* ---------- premium panel depth (glassmorphism-adjacent) ----------
+   a lit gradient stroke on the instruments, plus a top inner-highlight and a
+   soft elevation shadow across the panels, so they read as layered glass. */
+.inst {
+  border-color: transparent;
+  background:
+    linear-gradient(180deg, var(--org-card), var(--org-card-2)) padding-box,
+    linear-gradient(180deg, rgba(170,215,220,0.30), rgba(170,215,220,0.05) 55%, rgba(170,215,220,0.13)) border-box;
+}
+.inst, .org-organ, .loopcard, .voice, .reflection, .interests, .org-ledger, .diag, .stream {
+  box-shadow: inset 0 1px 0 rgba(195,235,240,0.06), 0 18px 44px -26px rgba(0,0,0,0.92);
+}
+.stream { backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
+
 @media (prefers-reduced-motion: reduce) {
   body.page-organism::before { animation: none; opacity: 0.75; }
   .org-dot { animation: none; opacity: 0.85; }
@@ -523,7 +537,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
           </div>
           {% endfor %}
         </div>
-        <p class="inst__note">{{ ag.memory.long_term }} long-term memories on top of the working store. Searched before it speaks, written after it learns.</p>
+        <p class="inst__note">{% if ag.memory.facts_delta or ag.memory.gists_delta %}<b style="color:var(--mood);font-weight:400;">+{{ ag.memory.facts_delta | default: 0 }} facts, +{{ ag.memory.gists_delta | default: 0 }} gists</b> since yesterday. {% endif %}{{ ag.memory.long_term }} long-term memories on the working store, searched before it speaks.</p>
       </article>
 
       <article class="inst b-loops">
@@ -916,78 +930,110 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
      and brightness track real activity, and it flares when mid-response. ---- */
   var core = (function () {
     var cv = document.querySelector(".core-orb__canvas");
-    if (!cv) return { sync: function () {} };
-    var ctx = cv.getContext("2d");
-    var W = cv.width, H = cv.height, cx = W / 2, cy = H / 2;
-    var color = "#57d2c8", responding = false, energy = 0.4, rotSpeed = 0.00035;
+    if (!cv) return { sync: function () {}, start: function () {} };
 
-    var N = 92, parts = [];
-    for (var i = 0; i < N; i++) {
-      parts.push({
-        phi: Math.acos(1 - 2 * ((i + 0.5) / N)),         // even latitude spread
-        lon0: Math.PI * 2 * ((i * 0.6180339887) % 1),     // golden-angle longitude
-        rad: 0.84 + Math.random() * 0.18,
-        sz: 1.3 + Math.random() * 1.8
-      });
-    }
-
+    // shared reactive state, driven by sync()
+    var hex = "#57d2c8", rgb = [0.34, 0.82, 0.78], responding = 0, energy = 0.42;
     function readColor() {
       var c = getComputedStyle(root).getPropertyValue("--mood").trim();
-      if (c) color = c;
+      if (!c) return;
+      hex = c;
+      var h = c.replace("#", "");
+      if (h.length === 3) h = h.replace(/./g, "$&$&");
+      if (h.length >= 6) { var n = parseInt(h, 16); rgb = [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255]; }
     }
     function sync(d) {
       readColor();
-      responding = !!(d.runtime && d.runtime.now_responding);
-      if (d.online === false) { rotSpeed = 0.00012; energy = 0.18; return; }
+      responding = (d.runtime && d.runtime.now_responding) ? 1 : 0;
+      if (d.online === false) { energy = 0.16; return; }
       var sess = (d.runtime && d.runtime.active_sessions) || 0;
       energy = Math.min(1, 0.42 + sess * 0.09);
-      rotSpeed = responding ? 0.00092 : 0.00034;
     }
-    function rgba(hex, a) {
-      var h = hex.replace("#", "");
-      if (h.length === 3) h = h.replace(/./g, "$&$&");
-      var n = parseInt(h, 16);
-      return "rgba(" + ((n >> 16) & 255) + "," + ((n >> 8) & 255) + "," + (n & 255) + "," + a + ")";
-    }
-    var TILT = -0.4, cosT = Math.cos(TILT), sinT = Math.sin(TILT), R = W * 0.4;
 
+    // ---- primary path: a hand-written energy-sphere fragment shader ----
+    var gl = reduce ? null : (cv.getContext("webgl", { alpha: true, premultipliedAlpha: false, antialias: true }) || null);
+    if (gl) {
+      var FS = [
+        "precision highp float;",
+        "uniform vec2 uRes;uniform float uTime;uniform vec3 uColor;uniform float uResp;uniform float uEnergy;",
+        "vec3 h3(vec3 p){p=vec3(dot(p,vec3(127.1,311.7,74.7)),dot(p,vec3(269.5,183.3,246.1)),dot(p,vec3(113.5,271.9,124.6)));return -1.0+2.0*fract(sin(p)*43758.5453123);}",
+        "float gn(vec3 p){vec3 i=floor(p),f=fract(p),u=f*f*(3.0-2.0*f);",
+        "return mix(mix(mix(dot(h3(i+vec3(0.,0.,0.)),f-vec3(0.,0.,0.)),dot(h3(i+vec3(1.,0.,0.)),f-vec3(1.,0.,0.)),u.x),",
+        "mix(dot(h3(i+vec3(0.,1.,0.)),f-vec3(0.,1.,0.)),dot(h3(i+vec3(1.,1.,0.)),f-vec3(1.,1.,0.)),u.x),u.y),",
+        "mix(mix(dot(h3(i+vec3(0.,0.,1.)),f-vec3(0.,0.,1.)),dot(h3(i+vec3(1.,0.,1.)),f-vec3(1.,0.,1.)),u.x),",
+        "mix(dot(h3(i+vec3(0.,1.,1.)),f-vec3(0.,1.,1.)),dot(h3(i+vec3(1.,1.,1.)),f-vec3(1.,1.,1.)),u.x),u.y),u.z);}",
+        "float fbm(vec3 p){float a=0.5,s=0.0;for(int i=0;i<5;i++){s+=a*gn(p);p*=2.02;a*=0.5;}return s;}",
+        "void main(){",
+        "vec2 uv=(gl_FragCoord.xy*2.0-uRes)/min(uRes.x,uRes.y);float d=length(uv);float R=0.82;",
+        "vec3 col=vec3(0.0);float al=0.0;float tt=uTime*(0.18+uResp*0.22);",
+        "if(d<R){float z=sqrt(R*R-d*d);vec3 n=vec3(uv,z)/R;vec3 q=n*2.3;",
+        "float w=fbm(q+vec3(0.0,tt*0.65,tt*0.4));float f=fbm(q+w*1.1+vec3(tt*0.3,tt*0.12,tt*0.5));f=f*0.5+0.5;f=pow(f,1.5);",
+        "float fr=pow(1.0-z/R,1.7);float fc=pow(z/R,1.0);float su=0.13+f*1.45;",
+        "float b=su*fc+fr*1.55;b*=(0.55+uEnergy*0.82);col+=uColor*b;al=clamp(b*0.92,0.0,1.0);}",
+        "float outer=exp(-max(d-R,0.0)*3.2);col+=uColor*outer*(0.5+uEnergy*0.55);",
+        "float hot=exp(-d*4.0);col+=uColor*hot*(1.05+uResp*1.05);",
+        "al=max(al,outer*0.55);al=max(al,hot*0.85);col=col/(col+vec3(0.65));",
+        "gl_FragColor=vec4(col,clamp(al,0.0,1.0));}"
+      ].join("\n");
+      var sh = function (ty, src) { var s = gl.createShader(ty); gl.shaderSource(s, src); gl.compileShader(s); return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null; };
+      var vs = sh(gl.VERTEX_SHADER, "attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}");
+      var fs = sh(gl.FRAGMENT_SHADER, FS), prog = null;
+      if (vs && fs) {
+        prog = gl.createProgram(); gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+        if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) prog = null;
+      }
+      if (prog) {
+        gl.useProgram(prog);
+        var b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+        var lp = gl.getAttribLocation(prog, "p"); gl.enableVertexAttribArray(lp); gl.vertexAttribPointer(lp, 2, gl.FLOAT, false, 0, 0);
+        var uT = gl.getUniformLocation(prog, "uTime"), uR = gl.getUniformLocation(prog, "uRes"),
+            uC = gl.getUniformLocation(prog, "uColor"), uRp = gl.getUniformLocation(prog, "uResp"), uE = gl.getUniformLocation(prog, "uEnergy");
+        gl.viewport(0, 0, cv.width, cv.height); gl.disable(gl.DEPTH_TEST);
+        var raf = 0;
+        function frame(t) {
+          gl.uniform1f(uT, t * 0.001); gl.uniform2f(uR, cv.width, cv.height);
+          gl.uniform3f(uC, rgb[0], rgb[1], rgb[2]); gl.uniform1f(uRp, responding); gl.uniform1f(uE, energy);
+          gl.drawArrays(gl.TRIANGLES, 0, 6); raf = requestAnimationFrame(frame);
+        }
+        function start() { if (!raf) raf = requestAnimationFrame(frame); }
+        function stop() { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+        document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
+        readColor();
+        return { sync: sync, start: start };
+      }
+    }
+
+    // ---- fallback: 2D particle sphere (no WebGL / reduced motion) ----
+    var ctx = cv.getContext("2d"), W = cv.width, cx = W / 2, cy = W / 2;
+    var N = 92, parts = [];
+    for (var i = 0; i < N; i++) parts.push({ phi: Math.acos(1 - 2 * ((i + 0.5) / N)), lon0: Math.PI * 2 * ((i * 0.6180339887) % 1), rad: 0.84 + Math.random() * 0.18, sz: 1.3 + Math.random() * 1.8 });
+    function rgba(a) { var h = hex.replace("#", ""); if (h.length === 3) h = h.replace(/./g, "$&$&"); var n = parseInt(h, 16); return "rgba(" + ((n >> 16) & 255) + "," + ((n >> 8) & 255) + "," + (n & 255) + "," + a + ")"; }
+    var TILT = -0.4, cosT = Math.cos(TILT), sinT = Math.sin(TILT), R = W * 0.4;
     function render(t) {
-      ctx.clearRect(0, 0, W, H);
-      ctx.globalCompositeOperation = "lighter";
-      var rot = t * rotSpeed;
-      var pulse = 1 + Math.sin(t / (responding ? 300 : 620)) * (responding ? 0.16 : 0.07);
-      // bright energy core
-      var bloomR = W * 0.17 * pulse * (0.82 + energy * 0.4);
+      ctx.clearRect(0, 0, W, W); ctx.globalCompositeOperation = "lighter";
+      var rot = t * (energy < 0.2 ? 0.00012 : responding ? 0.00092 : 0.00034);
+      var bloomR = W * 0.17 * (0.82 + energy * 0.4);
       var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, bloomR * 2.5);
-      g.addColorStop(0, rgba(color, responding ? 0.95 : 0.62));
-      g.addColorStop(0.35, rgba(color, responding ? 0.32 : 0.18));
-      g.addColorStop(1, rgba(color, 0));
-      ctx.fillStyle = g;
-      ctx.beginPath(); ctx.arc(cx, cy, bloomR * 2.5, 0, Math.PI * 2); ctx.fill();
-      // faint equatorial ellipse for structure
-      ctx.strokeStyle = rgba(color, 0.08); ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.ellipse(cx, cy, R, R * Math.abs(sinT) + 1, 0, 0, Math.PI * 2); ctx.stroke();
-      // orbiting particle shell
+      g.addColorStop(0, rgba(responding ? 0.95 : 0.62)); g.addColorStop(0.35, rgba(responding ? 0.32 : 0.18)); g.addColorStop(1, rgba(0));
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, bloomR * 2.5, 0, Math.PI * 2); ctx.fill();
       for (var i = 0; i < N; i++) {
         var p = parts[i], lon = p.lon0 + rot, sp = Math.sin(p.phi);
-        var px = sp * Math.cos(lon), py = Math.cos(p.phi), pz = sp * Math.sin(lon);
-        var y2 = py * cosT - pz * sinT, z2 = py * sinT + pz * cosT;
-        var depth = (z2 + 1) / 2, rr = R * p.rad;
-        var op = (0.12 + depth * 0.88) * (0.45 + energy * 0.55);
-        ctx.fillStyle = rgba(color, op * (responding ? 0.95 : 0.72));
-        ctx.beginPath();
-        ctx.arc(cx + px * rr, cy + y2 * rr, p.sz * (0.45 + depth * 1.15), 0, Math.PI * 2);
-        ctx.fill();
+        var py = Math.cos(p.phi), pz = sp * Math.sin(lon), px = sp * Math.cos(lon);
+        var y2 = py * cosT - pz * sinT, z2 = py * sinT + pz * cosT, depth = (z2 + 1) / 2;
+        ctx.fillStyle = rgba((0.12 + depth * 0.88) * (0.45 + energy * 0.55) * (responding ? 0.95 : 0.72));
+        ctx.beginPath(); ctx.arc(cx + px * R * p.rad, cy + y2 * R * p.rad, p.sz * (0.45 + depth * 1.15), 0, Math.PI * 2); ctx.fill();
       }
       ctx.globalCompositeOperation = "source-over";
     }
-    function frame(t) { render(t); raf = requestAnimationFrame(frame); }
-    var raf = 0;
-    function start() { if (!raf && !reduce) raf = requestAnimationFrame(frame); }
-    function stop() { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
-    if (reduce) { readColor(); render(0); }       // single static frame
-    document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
-    return { sync: sync, start: start };
+    var raf2 = 0;
+    function frame2(t) { render(t); raf2 = requestAnimationFrame(frame2); }
+    function start2() { if (!raf2 && !reduce) raf2 = requestAnimationFrame(frame2); }
+    function stop2() { if (raf2) { cancelAnimationFrame(raf2); raf2 = 0; } }
+    readColor();
+    if (reduce) render(0);
+    document.addEventListener("visibilitychange", function () { document.hidden ? stop2() : start2(); });
+    return { sync: sync, start: start2 };
   })();
 
   /* ---- heartbeat: real elapsed since last commit (immutable anchor) ---- */
