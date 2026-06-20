@@ -1,9 +1,9 @@
 // Cinematic galaxy/organism hero for /organism/. Self-hosted, bundled by esbuild
 // into assets/js/organism-galaxy.js (no third-party runtime request). A glowing
-// orbital particle field with a hot core and additive bloom, rotating in the
-// vertex shader (free per frame). Reactive to real agent state via
-// window.OrganismCore.sync(d): density-feel, rotation speed, and core brightness
-// rise with active sessions and lift when mid-response; it dims when dormant.
+// spiral particle disc seen FACE-ON (a circle facing the viewer, not a flat
+// overhead ellipse), with a hot bloomed core, rotating in-plane. It is faded out
+// radially well before the canvas edge, so it floats as a circle with no box.
+// Reactive to real agent state via window.OrganismCore.sync(d).
 import * as THREE from "three";
 import { EffectComposer, RenderPass, EffectPass, BloomEffect } from "postprocessing";
 
@@ -12,7 +12,6 @@ import { EffectComposer, RenderPass, EffectPass, BloomEffect } from "postprocess
   if (!canvas) return;
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // graceful no-WebGL bail (CSS/label remain)
   var gl;
   try { gl = canvas.getContext("webgl2") || canvas.getContext("webgl"); } catch (e) {}
   if (!gl) { window.OrganismCore = { sync: function () {}, start: function () {} }; return; }
@@ -26,29 +25,29 @@ import { EffectComposer, RenderPass, EffectPass, BloomEffect } from "postprocess
 
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
-  camera.position.set(0, 1.7, 4.2);
+  camera.position.set(0, 0, 4.4);
   camera.lookAt(0, 0, 0);
 
-  // ---- galaxy geometry: orbital rings, hot core -> warm rim ----
+  // ---- disc in the XY plane (faces the camera), hot core -> warm rim ----
+  var MAXR = 1.7;
   var positions = new Float32Array(COUNT * 3);
   var colors = new Float32Array(COUNT * 3);
   var scales = new Float32Array(COUNT);
   var seeds = new Float32Array(COUNT);
-  var inside = new THREE.Color(0xfff1d4);   // warm white core
-  var outside = new THREE.Color(0xd2872c);  // amber rim
-  var maxR = 2.2;
+  var inside = new THREE.Color(0xfff1d4);
+  var outside = new THREE.Color(0xd2872c);
   for (var i = 0; i < COUNT; i++) {
     var i3 = i * 3;
-    var t = Math.pow(Math.random(), 0.7);
-    var radius = 0.18 + t * maxR;
-    var ring = radius + (Math.random() - 0.5) * 0.18;        // soft banding
+    var t = Math.pow(Math.random(), 0.65);
+    var radius = 0.1 + t * MAXR;
+    var ring = radius + (Math.random() - 0.5) * 0.12;
     var angle = Math.random() * Math.PI * 2;
-    var spin = radius * 0.45;
-    var spread = Math.pow(Math.random(), 3) * (Math.random() < 0.5 ? 1 : -1) * 0.45 * radius;
+    var spin = radius * 0.5;
+    var spread = Math.pow(Math.random(), 3) * (Math.random() < 0.5 ? 1 : -1) * 0.4 * radius;
     positions[i3] = Math.cos(angle + spin) * ring + spread;
-    positions[i3 + 1] = (Math.random() - 0.5) * 0.12 * (0.4 + radius * 0.3) + spread * 0.18;
-    positions[i3 + 2] = Math.sin(angle + spin) * ring + spread;
-    var c = inside.clone().lerp(outside, Math.min(1, radius / maxR));
+    positions[i3 + 1] = Math.sin(angle + spin) * ring + spread;
+    positions[i3 + 2] = (Math.random() - 0.5) * 0.09 * (0.4 + radius * 0.2);   // thin depth
+    var c = inside.clone().lerp(outside, Math.min(1, radius / MAXR));
     colors[i3] = c.r; colors[i3 + 1] = c.g; colors[i3 + 2] = c.b;
     scales[i] = 0.4 + Math.random() * 0.9;
     seeds[i] = Math.random();
@@ -72,35 +71,38 @@ import { EffectComposer, RenderPass, EffectPass, BloomEffect } from "postprocess
     uniforms: uniforms,
     vertexShader: [
       "uniform float uTime;uniform float uSize;uniform float uEnergy;uniform float uResp;",
-      "attribute float aScale;attribute float aSeed;varying vec3 vColor;varying float vTwinkle;",
+      "attribute float aScale;attribute float aSeed;",
+      "varying vec3 vColor;varying float vTwinkle;varying float vEdge;",
       "void main(){",
-      "vec4 mp=modelMatrix*vec4(position,1.0);",
-      "float dc=length(mp.xz);",
-      "float ang=atan(mp.x,mp.z)+(1.0/(dc+0.4))*uTime*(0.16+uResp*0.18);",
-      "mp.x=cos(ang)*dc;mp.z=sin(ang)*dc;",
-      "mp.y+=sin(uTime*0.5+aSeed*6.28)*0.015;",
-      "vec4 vp=viewMatrix*mp;gl_Position=projectionMatrix*vp;",
+      "float dc=length(position.xy);",
+      "float ang=atan(position.y,position.x)+(1.0/(dc+0.4))*uTime*(0.14+uResp*0.16);",
+      "vec3 p=vec3(cos(ang)*dc,sin(ang)*dc,position.z);",
+      "p.z+=sin(uTime*0.5+aSeed*6.28)*0.01;",
+      "vec4 mp=modelMatrix*vec4(p,1.0);vec4 vp=viewMatrix*mp;",
+      "gl_Position=projectionMatrix*vp;",
       "vTwinkle=0.7+0.3*sin(uTime*1.4+aSeed*20.0);",
       "gl_PointSize=uSize*aScale*(0.7+uEnergy*0.6)*vTwinkle;",
       "gl_PointSize*=(1.0/-vp.z);",
-      "vColor=color;}",
+      "vColor=color;",
+      "vEdge=1.0-smoothstep(" + (MAXR * 0.6).toFixed(2) + "," + MAXR.toFixed(2) + ",dc);",
+      "}",
     ].join("\n"),
     fragmentShader: [
-      "varying vec3 vColor;varying float vTwinkle;",
+      "varying vec3 vColor;varying float vTwinkle;varying float vEdge;",
       "void main(){",
       "float d=distance(gl_PointCoord,vec2(0.5));",
-      "float s=pow(max(0.0,1.0-d*2.0),2.4);",
+      "float s=pow(max(0.0,1.0-d*2.0),2.4)*vEdge;",
       "if(s<0.01)discard;",
       "gl_FragColor=vec4(vColor*(0.6+vTwinkle*0.6),s);}",
     ].join("\n"),
   });
   var points = new THREE.Points(geo, mat);
+  points.rotation.x = -0.16;   // a hint of tilt, still clearly circular/face-on
   scene.add(points);
 
-  // ---- bloom (only the bright core + hottest stars) ----
   var composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
-  var bloom = new BloomEffect({ intensity: 1.25, luminanceThreshold: 0.62, luminanceSmoothing: 0.3, mipmapBlur: true, radius: 0.7 });
+  var bloom = new BloomEffect({ intensity: 1.2, luminanceThreshold: 0.6, luminanceSmoothing: 0.32, mipmapBlur: true, radius: 0.72 });
   composer.addPass(new EffectPass(camera, bloom));
 
   function resize() {
@@ -112,7 +114,6 @@ import { EffectComposer, RenderPass, EffectPass, BloomEffect } from "postprocess
   resize();
   window.addEventListener("resize", resize);
 
-  // ---- reactive state ----
   var energy = 0.45, responding = 0;
   window.OrganismCore = {
     sync: function (d) {
@@ -132,19 +133,18 @@ import { EffectComposer, RenderPass, EffectPass, BloomEffect } from "postprocess
     uniforms.uTime.value += dt;
     uniforms.uEnergy.value += (energy - uniforms.uEnergy.value) * 0.04;
     uniforms.uResp.value += (responding - uniforms.uResp.value) * 0.06;
-    bloom.intensity = 1.0 + uniforms.uEnergy.value * 0.6 + uniforms.uResp.value * 0.6;
+    bloom.intensity = 1.0 + uniforms.uEnergy.value * 0.5 + uniforms.uResp.value * 0.6;
     composer.render();
     raf = requestAnimationFrame(frame);
   }
   function start() { if (!running && !reduce) { running = true; clock.start(); raf = requestAnimationFrame(frame); } }
   function stop() { if (running) { running = false; cancelAnimationFrame(raf); } }
 
-  if (reduce) { uniforms.uTime.value = 8; composer.render(); }   // single static frame
+  if (reduce) { uniforms.uTime.value = 8; composer.render(); }
   else start();
 
   document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
   if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (es) { es[0].isIntersecting ? start() : stop(); }, { threshold: 0.01 })
-      .observe(canvas);
+    new IntersectionObserver(function (es) { es[0].isIntersecting ? start() : stop(); }, { threshold: 0.01 }).observe(canvas);
   }
 })();

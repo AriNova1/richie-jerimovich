@@ -364,7 +364,7 @@ body.page-organism::after {
 .hero-grid { display: grid; grid-template-columns: 1fr 380px; gap: clamp(1.5rem, 5vw, 3rem); align-items: center; }
 @media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; gap: 1.5rem; justify-items: start; } .core-orb { margin: 0 auto; } }
 .core-orb { position: relative; width: min(380px, 100%); justify-self: end; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
-.core-orb__canvas { width: 100%; aspect-ratio: 1; display: block; }
+.core-orb__canvas { width: 100%; aspect-ratio: 1; display: block; -webkit-mask-image: radial-gradient(closest-side, #000 66%, transparent 100%); mask-image: radial-gradient(closest-side, #000 66%, transparent 100%); }
 .core-orb__pulse { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--org-mute); }
 .core-orb__pulse b { color: var(--mood); font-weight: 500; transition: color 0.5s; }
 
