@@ -994,19 +994,20 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
         "float fbm(vec3 p){float a=0.5,s=0.0;for(int i=0;i<5;i++){s+=a*gn(p);p*=2.02;a*=0.5;}return s;}",
         "void main(){",
         "vec2 uv=(gl_FragCoord.xy*2.0-uRes)/min(uRes.x,uRes.y);float d=length(uv);float R=0.66;",
-        "vec3 col=vec3(0.0);float al=0.0;float tt=uTime*(0.22+uResp*0.3);",
-        "vec3 hotc=mix(uColor,vec3(1.0),0.5);",
-        "if(d<R){float z=sqrt(R*R-d*d);vec3 n=vec3(uv,z)/R;vec3 q=n*2.6;",
-        "float w=fbm(q+vec3(0.0,tt*0.7,tt*0.4));",
-        "float f=fbm(q*1.4+w*1.3+vec3(tt*0.35,tt*0.15,tt*0.55));",
-        "f=pow(1.0-abs(f),2.4);",
-        "float fr=pow(1.0-z/R,1.6);float fc=pow(z/R,0.7);float veins=f*fc;",
-        "float b=(veins*1.7+fr*1.05)*(0.7+uEnergy*0.9);",
-        "col+=mix(uColor,hotc,clamp(veins*0.85,0.0,1.0))*b;al=clamp(b*0.95,0.0,1.0);}",
-        "float corona=exp(-max(d-R,0.0)*2.7);col+=uColor*corona*(0.55+uEnergy*0.6);",
-        "float hot=exp(-d*5.5);col+=hotc*hot*(1.45+uResp*1.3);",
-        "al=max(al,corona*0.6);al=max(al,hot*0.95);col=vec3(1.0)-exp(-col*1.55);",
-        "float edge=smoothstep(0.99,0.66,d);col*=edge;al*=edge;",
+        "vec3 col=vec3(0.0);float al=0.0;",
+        "float breath=0.84+0.16*sin(uTime*0.6)+uResp*0.12;",   // slow ~10s heartbeat
+        "float tt=uTime*(0.045+uResp*0.05);",                  // slow organic drift
+        "if(d<R){float z=sqrt(R*R-d*d);vec3 n=vec3(uv,z)/R;vec3 q=n*2.0;",
+        "float w=fbm(q+vec3(0.0,tt*0.6,tt*0.3));",
+        "float f=fbm(q*1.2+w*0.8+vec3(tt*0.25,0.0,tt*0.45));f=f*0.5+0.5;",
+        "float fr=pow(1.0-z/R,2.3);float fc=pow(z/R,0.95);",
+        "float surf=0.16+f*0.6;",
+        "float b=(surf*fc+fr*0.45)*breath*(0.45+uEnergy*0.5);",
+        "col+=uColor*b;al=clamp(b*0.8,0.0,1.0);}",
+        "float corona=exp(-max(d-R,0.0)*4.5);col+=uColor*corona*0.28*breath;",
+        "float glow=exp(-d*3.2);col+=uColor*glow*0.42*breath;",
+        "al=max(al,corona*0.32);al=max(al,glow*0.42);",
+        "float edge=smoothstep(0.99,0.62,d);col*=edge;al*=edge;",
         "gl_FragColor=vec4(col,clamp(al,0.0,1.0));}"
       ].join("\n");
       var sh = function (ty, src) { var s = gl.createShader(ty); gl.shaderSource(s, src); gl.compileShader(s); return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null; };
