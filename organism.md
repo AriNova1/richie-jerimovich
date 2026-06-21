@@ -93,6 +93,7 @@ body.page-organism > footer {
   text-transform: uppercase; color: var(--sig);
 }
 .org-eyebrow::before { content: ""; width: 26px; height: 1px; background: linear-gradient(90deg, var(--sig), transparent); }
+.org-eyebrow::after { content: ""; flex: 1; height: 1px; min-width: 1.5rem; background: linear-gradient(90deg, var(--org-line), var(--org-line-soft) 70%, transparent); }
 .org-h {
   font-family: var(--font-display); font-weight: 700;
   font-size: clamp(1.45rem, 3.1vw, 2.2rem); letter-spacing: -0.02em;
@@ -109,6 +110,33 @@ body.page-organism > footer {
 
 /* ---------- hero / core ---------- */
 .org-hero { padding-top: clamp(1.5rem, 4vh, 3rem); padding-bottom: clamp(2.5rem, 5vh, 4rem); }
+/* the console viewport: the hero framed as one instrument the galaxy floats in */
+.console {
+  position: relative;
+  margin-top: 1rem;
+  padding: clamp(1.3rem, 2.8vw, 2.2rem) clamp(1.2rem, 2.8vw, 2.2rem) clamp(1.5rem, 3vw, 2.1rem);
+  border: 1px solid var(--org-line);
+  border-radius: 12px;
+  background:
+    radial-gradient(130% 100% at 50% 0%, rgba(234, 168, 60, 0.045), transparent 58%),
+    linear-gradient(180deg, var(--org-card), var(--org-card-2));
+  box-shadow: 0 50px 100px -55px rgba(0, 0, 0, 0.92), inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+/* inset HUD corner brackets, drawn as eight hairline segments on one layer */
+.hud-corners::after {
+  content: ""; position: absolute; inset: 9px; pointer-events: none; z-index: 1;
+  --c: var(--mood-edge); --l: 15px; --t: 1px;
+  background:
+    linear-gradient(var(--c), var(--c)) 0 0 / var(--l) var(--t) no-repeat,
+    linear-gradient(var(--c), var(--c)) 0 0 / var(--t) var(--l) no-repeat,
+    linear-gradient(var(--c), var(--c)) 100% 0 / var(--l) var(--t) no-repeat,
+    linear-gradient(var(--c), var(--c)) 100% 0 / var(--t) var(--l) no-repeat,
+    linear-gradient(var(--c), var(--c)) 0 100% / var(--l) var(--t) no-repeat,
+    linear-gradient(var(--c), var(--c)) 0 100% / var(--t) var(--l) no-repeat,
+    linear-gradient(var(--c), var(--c)) 100% 100% / var(--l) var(--t) no-repeat,
+    linear-gradient(var(--c), var(--c)) 100% 100% / var(--t) var(--l) no-repeat;
+  transition: background 0.6s var(--ease-out);
+}
 /* command-center status bar */
 .cc-bar { display: flex; align-items: center; gap: clamp(0.5rem, 1.6vw, 1.1rem); flex-wrap: wrap; padding: 0.85rem 0; margin-bottom: 0.5rem; border-bottom: 1px solid var(--org-line); font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--org-mute); }
 .cc-bar b { color: var(--org-soft); font-weight: 400; }
@@ -496,6 +524,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       <span class="cc-bar__hide-sm" data-clock>--:--:-- UTC</span>
     </div>
 
+    <div class="console hud-corners">
     <div class="hero-grid">
       <div>
         <div class="core-verdict">
@@ -533,6 +562,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       <div class="core-stat"><span class="core-stat__n"><span data-vital="runtime.channels_online">{{ ag.runtime.channels_online }}</span><span class="u">/ {{ ag.runtime.channels_total }}</span></span><span class="core-stat__l">channels online</span></div>
       <div class="core-stat"><span class="core-stat__n" data-vital="runtime.active_sessions">{{ ag.runtime.active_sessions }}</span><span class="core-stat__l">live sessions</span></div>
       <div class="core-stat"><span class="core-stat__n" data-vital="memory.facts">{{ ag.memory.facts }}</span><span class="core-stat__l">facts in memory</span></div>
+    </div>
     </div>
   </div>
 </section>
