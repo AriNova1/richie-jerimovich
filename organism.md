@@ -262,6 +262,17 @@ a.reflection__title:hover { color: var(--sig); }
 .gauge__pct { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--org-ink); line-height: 1; }
 .gauge__pct .u { font-size: 0.5em; color: var(--org-mute); }
 .gauge__cap { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--org-mute); margin-top: 0.2rem; }
+.mgauges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-top: 0.2rem; }
+.mgauge { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; }
+.mgauge__face { position: relative; width: 100%; max-width: 92px; aspect-ratio: 1; }
+.mgauge__svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.mgauge__track { fill: none; stroke: rgba(255,255,255,0.07); stroke-width: 7; }
+.mgauge__val { fill: none; stroke: var(--sig); stroke-width: 7; stroke-linecap: round; transition: stroke-dasharray 0.7s cubic-bezier(0.4,0,0.2,1); filter: drop-shadow(0 0 4px var(--sig-edge)); }
+.mgauge__num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; color: var(--org-ink); line-height: 1; }
+.mgauge__num .u { font-size: 0.5em; color: var(--org-mute); margin-left: 0.05em; align-self: flex-start; margin-top: 0.35em; }
+.mgauge__cap { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--org-ink); margin-top: 0.55rem; }
+.mgauge__sub { font-family: var(--font-mono); font-size: 0.56rem; color: var(--org-mute); margin-top: 0.15rem; white-space: nowrap; }
+.mgauge__sub b { color: var(--sig); font-weight: 400; }
 .ratio { display: flex; height: 12px; border-radius: 999px; overflow: hidden; border: 1px solid var(--org-line); margin-top: 0.2rem; }
 .ratio__a { background: linear-gradient(90deg, var(--sig-edge), var(--sig)); }
 .ratio__b { background: rgba(255,255,255,0.08); }
@@ -538,6 +549,47 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 
       <div class="cc-col cc-col--vitals">
         <p class="cc-coltitle">core vitals</p>
+        {% if ag.system %}
+        <article class="inst b-machine">
+          <div class="inst__head"><span class="inst__label">machine</span><span class="inst__meta">the body it runs in</span></div>
+          <div class="mgauges">
+            <div class="mgauge">
+              <div class="mgauge__face">
+                <svg class="mgauge__svg" viewBox="0 0 100 100" aria-hidden="true">
+                  <circle class="mgauge__track" cx="50" cy="50" r="42"></circle>
+                  <circle class="mgauge__val" cx="50" cy="50" r="42" data-gauge="system.load_pct" stroke-dasharray="{{ ag.system.load_pct | times: 264 | divided_by: 100 }} 264"></circle>
+                </svg>
+                <div class="mgauge__num"><span data-vital="system.load_pct">{{ ag.system.load_pct }}</span><span class="u">%</span></div>
+              </div>
+              <div class="mgauge__cap">cpu load</div>
+              <div class="mgauge__sub">{{ ag.system.load_1m }} avg <b>·</b> {{ ag.system.cores }} cores</div>
+            </div>
+            <div class="mgauge">
+              <div class="mgauge__face">
+                <svg class="mgauge__svg" viewBox="0 0 100 100" aria-hidden="true">
+                  <circle class="mgauge__track" cx="50" cy="50" r="42"></circle>
+                  <circle class="mgauge__val" cx="50" cy="50" r="42" data-gauge="system.mem_pct" stroke-dasharray="{{ ag.system.mem_pct | times: 264 | divided_by: 100 }} 264"></circle>
+                </svg>
+                <div class="mgauge__num"><span data-vital="system.mem_pct">{{ ag.system.mem_pct }}</span><span class="u">%</span></div>
+              </div>
+              <div class="mgauge__cap">memory</div>
+              <div class="mgauge__sub">{{ ag.system.mem_used_gb }} / {{ ag.system.mem_total_gb }} GB</div>
+            </div>
+            <div class="mgauge">
+              <div class="mgauge__face">
+                <svg class="mgauge__svg" viewBox="0 0 100 100" aria-hidden="true">
+                  <circle class="mgauge__track" cx="50" cy="50" r="42"></circle>
+                  <circle class="mgauge__val" cx="50" cy="50" r="42" data-gauge="system.disk_pct" stroke-dasharray="{{ ag.system.disk_pct | times: 264 | divided_by: 100 }} 264"></circle>
+                </svg>
+                <div class="mgauge__num"><span data-vital="system.disk_pct">{{ ag.system.disk_pct }}</span><span class="u">%</span></div>
+              </div>
+              <div class="mgauge__cap">disk</div>
+              <div class="mgauge__sub">{{ ag.system.disk_used_gb }} / {{ ag.system.disk_total_gb }} GB</div>
+            </div>
+          </div>
+          <p class="inst__note">Read live off the Mac it lives on: CPU load across {{ ag.system.cores }} cores, memory in use, and disk. Real readings, never simulated.</p>
+        </article>
+        {% endif %}
         <article class="inst b-runtime">
           <div class="inst__head"><span class="inst__label">runtime</span><span class="inst__meta">config + gateway</span></div>
           <div class="rt-model" data-vital="runtime.model">{{ ag.runtime.model }}</div>
@@ -943,6 +995,11 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
             : p === "health.basis" ? cap(path(d, p))
             : path(d, p);
       setVital(n, v);
+    });
+    document.querySelectorAll("[data-gauge]").forEach(function (n) {
+      var pct = path(d, n.getAttribute("data-gauge"));
+      if (pct == null) return;
+      n.setAttribute("stroke-dasharray", (Math.max(0, Math.min(100, pct)) * 264 / 100).toFixed(1) + " 264");
     });
     if (coreState) coreState.textContent = (d.online === false) ? "dormant"
       : (d.runtime && d.runtime.now_responding) ? "responding" : "listening";

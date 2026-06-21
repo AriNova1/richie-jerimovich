@@ -439,6 +439,63 @@ def _gateway_uptime(pid, now=None):
         return None, None
 
 
+def _machine_vitals():
+    """Live vitals for the machine the agent runs on: CPU load, memory, disk.
+    Stdlib-only (os.getloadavg + vm_stat/df/sysctl) so it works under the system
+    python the launchd endpoint uses, with no third-party dependency. Aggregate
+    percentages and rounded gigabytes only, never paths or identifiers. Every
+    figure is a real reading; anything unreadable is omitted, not faked."""
+
+    def _sh(cmd):
+        return subprocess.run(cmd, capture_output=True, text=True, timeout=4).stdout
+
+    mv = {}
+
+    # CPU load: instant, no sampling. Load average over the core count.
+    try:
+        cores = os.cpu_count() or 1
+        load1 = os.getloadavg()[0]
+        mv["cores"] = cores
+        mv["load_1m"] = round(load1, 2)
+        mv["load_pct"] = max(0, min(100, round(load1 / cores * 100)))
+    except Exception:
+        pass
+
+    # Memory: used = (active + wired + compressed) pages, vs hw.memsize.
+    try:
+        page = int(_sh(["sysctl", "-n", "hw.pagesize"]).strip())
+        total = int(_sh(["sysctl", "-n", "hw.memsize"]).strip())
+        vm = _sh(["vm_stat"])
+
+        def _pages(label):
+            m = re.search(re.escape(label) + r":\s+(\d+)\.", vm)
+            return int(m.group(1)) if m else 0
+
+        used = (
+            _pages("Pages active")
+            + _pages("Pages wired down")
+            + _pages("Pages occupied by compressor")
+        ) * page
+        mv["mem_total_gb"] = round(total / 1024 ** 3, 1)
+        mv["mem_used_gb"] = round(used / 1024 ** 3, 1)
+        mv["mem_pct"] = max(0, min(100, round(used / total * 100)))
+    except Exception:
+        pass
+
+    # Disk: macOS-authoritative Capacity% from df; container size for the total.
+    try:
+        cols = _sh(["df", "-k", "/"]).strip().splitlines()[-1].split()
+        size_gb = int(cols[1]) / 1024 ** 2
+        cap = int(cols[4].rstrip("%"))
+        mv["disk_total_gb"] = round(size_gb)
+        mv["disk_pct"] = max(0, min(100, cap))
+        mv["disk_used_gb"] = round(size_gb * cap / 100)
+    except Exception:
+        pass
+
+    return mv
+
+
 def collect_agent_vitals():
     """Pure, hard-sanitized read of the live agent at ~/.hermes. Returns a dict
     or None when the home is absent. Computes its own fresh clock so a long-lived
@@ -719,6 +776,7 @@ def collect_agent_vitals():
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
         "generated_at_iso": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "runtime": runtime,
+        "system": _machine_vitals(),
         "memory": memory,
         "work": work,
         "failures": failures,
