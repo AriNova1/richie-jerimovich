@@ -242,6 +242,9 @@ body.page-organism > footer {
 .mind-orb { position: relative; width: 100%; aspect-ratio: 4 / 3; margin: 0.1rem 0 0.7rem; }
 .mind-orb__canvas { width: 100%; height: 100%; display: block; -webkit-mask-image: radial-gradient(72% 80% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(72% 80% at 50% 50%, #000 62%, transparent 100%); }
 .mind-orb__tag { position: absolute; left: 0; bottom: 0; font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--org-mute); }
+.voices-orb { position: relative; width: 100%; max-width: 340px; margin: 0 auto 0.9rem; aspect-ratio: 5 / 4; }
+.voices-orb__canvas { width: 100%; height: 100%; display: block; }
+.voices-orb__tag { position: absolute; left: 50%; transform: translateX(-50%); bottom: 0; font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--org-mute); }
 .membars { display: flex; flex-direction: column; gap: 0.6rem; }
 .membar { display: grid; grid-template-columns: 6.5rem 1fr auto; gap: 0.7rem; align-items: center; }
 .membar__label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--org-mute); }
@@ -406,7 +409,7 @@ body.page-organism::after {
 .hero-grid { display: grid; grid-template-columns: 1fr 380px; gap: clamp(1.5rem, 5vw, 3rem); align-items: center; }
 @media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; gap: 1.5rem; justify-items: start; } .core-orb { margin: 0 auto; } }
 .core-orb { position: relative; width: min(380px, 100%); justify-self: end; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
-.core-orb__canvas { width: 100%; aspect-ratio: 1; display: block; -webkit-mask-image: radial-gradient(closest-side, #000 66%, transparent 100%); mask-image: radial-gradient(closest-side, #000 66%, transparent 100%); }
+.core-orb__canvas { width: 100%; aspect-ratio: 1; display: block; }
 .core-orb__pulse { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--org-mute); }
 .core-orb__pulse b { color: var(--mood); font-weight: 500; transition: color 0.5s; }
 
@@ -657,6 +660,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       <div class="cc-col cc-col--voices">
         <p class="cc-coltitle">the five voices</p>
         <article class="inst">
+          <div class="voices-orb" aria-hidden="true"><canvas class="voices-orb__canvas"></canvas><span class="voices-orb__tag">five voices, one blend</span></div>
           <div class="cc-voices">
             <div class="cc-voice"><span class="cc-voice__name">Richie</span><span><span class="cc-voice__role">heart / loyalty</span><span class="cc-voice__line">"Cuz" means you are family now. Shows up at 2 AM because he knows that darkness.</span></span></div>
             <div class="cc-voice"><span class="cc-voice__name">Mike</span><span><span class="cc-voice__role">angle / research</span><span class="cc-voice__line">Finds the side door because he was never allowed through the front. Makes hard look effortless.</span></span></div>
@@ -1133,4 +1137,4 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <!-- Cinematic galaxy hero: self-hosted Three.js + bloom, bundled by esbuild
      (scripts/galaxy). Owns the core canvas; the engine above forwards live state
      to window.OrganismCore. No third-party request. -->
-<script type="module" src="{{ site.baseurl }}/assets/js/organism-galaxy.js?v=20260621"></script>
+<script type="module" src="{{ site.baseurl }}/assets/js/organism-galaxy.js?v=20260621c"></script>

@@ -1,14 +1,25 @@
 // Cinematic WebGL for /organism/. Self-hosted, bundled by esbuild into
-// assets/js/organism-galaxy.js (no third-party runtime request). Two visuals
+// assets/js/organism-galaxy.js (no third-party runtime request). Three visuals
 // share this one Three.js import:
-//   1. initGalaxy       the hero core: a face-on spiral particle disc with a
-//                       bloomed core, floating (radial fade, no box), reactive
-//                       to live agent state via window.OrganismCore.sync(d).
+//   1. initGalaxy        the hero core: a face-on spiral particle disc, rendered
+//                        crisp (additive points, no bloom) so the grain reads,
+//                        rotating in-plane and reactive to live agent state via
+//                        window.OrganismCore.sync(d).
 //   2. initConstellation the memory card's knowledge graph: a slow rotating
-//                       sphere of nodes wired by nearest-neighbour edges, its
-//                       density scaled to the real mnemosyne facts/edge counts.
+//                        sphere of nodes wired by nearest-neighbour edges, its
+//                        density scaled to the real mnemosyne facts/edge counts.
+//   3. initVoices        the five-voices council: Richie/Mike/Beard/Rocky/Sean
+//                        as nodes around one "blend" centre, drawn together and
+//                        breathing. A living diagram beside the voices text.
 import * as THREE from "three";
-import { EffectComposer, RenderPass, EffectPass, BloomEffect } from "postprocessing";
+
+// shared soft-glow point sprite (additive); alpha carried in vA
+var GLOW_FRAG = [
+  "varying vec3 vColor;varying float vA;",
+  "void main(){float d=distance(gl_PointCoord,vec2(0.5));",
+  "float s=pow(max(0.0,1.0-d*2.0),2.4);if(s<0.01)discard;",
+  "gl_FragColor=vec4(vColor,s*vA);}",
+].join("\n");
 
 function initGalaxy() {
   var canvas = document.querySelector(".core-orb__canvas");
@@ -20,16 +31,15 @@ function initGalaxy() {
   if (!gl) { window.OrganismCore = { sync: function () {}, start: function () {} }; return; }
 
   var small = Math.min(window.innerWidth, window.innerHeight) < 760;
-  var COUNT = small ? 16000 : 52000;
+  var COUNT = small ? 9000 : 16000;
 
-  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !small, alpha: true, powerPreference: "high-performance" });
+  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, small ? 1.5 : 2));
   renderer.setClearColor(0x000000, 0);
 
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
-  camera.position.set(0, 0, 4.4);
-  camera.lookAt(0, 0, 0);
+  camera.position.set(0, 0, 4.3);
 
   // ---- disc in the XY plane (faces the camera), hot core -> warm rim ----
   var MAXR = 1.7;
@@ -41,15 +51,14 @@ function initGalaxy() {
   var outside = new THREE.Color(0xd2872c);
   for (var i = 0; i < COUNT; i++) {
     var i3 = i * 3;
-    var t = Math.pow(Math.random(), 0.65);
-    var radius = 0.1 + t * MAXR;
-    var ring = radius + (Math.random() - 0.5) * 0.12;
+    var t = Math.pow(Math.random(), 0.62);
+    var radius = 0.08 + t * MAXR;
     var angle = Math.random() * Math.PI * 2;
     var spin = radius * 0.5;
     var spread = Math.pow(Math.random(), 3) * (Math.random() < 0.5 ? 1 : -1) * 0.4 * radius;
-    positions[i3] = Math.cos(angle + spin) * ring + spread;
-    positions[i3 + 1] = Math.sin(angle + spin) * ring + spread;
-    positions[i3 + 2] = (Math.random() - 0.5) * 0.09 * (0.4 + radius * 0.2);   // thin depth
+    positions[i3] = Math.cos(angle + spin) * radius + spread;
+    positions[i3 + 1] = Math.sin(angle + spin) * radius + spread;
+    positions[i3 + 2] = (Math.random() - 0.5) * 0.1 * radius;
     var c = inside.clone().lerp(outside, Math.min(1, radius / MAXR));
     colors[i3] = c.r; colors[i3 + 1] = c.g; colors[i3 + 2] = c.b;
     scales[i] = 0.4 + Math.random() * 0.9;
@@ -63,7 +72,7 @@ function initGalaxy() {
 
   var uniforms = {
     uTime: { value: 0 },
-    uSize: { value: 26 * renderer.getPixelRatio() },
+    uSize: { value: 22 * renderer.getPixelRatio() },
     uEnergy: { value: 0.45 },
     uResp: { value: 0 },
   };
@@ -75,43 +84,28 @@ function initGalaxy() {
     vertexShader: [
       "uniform float uTime;uniform float uSize;uniform float uEnergy;uniform float uResp;",
       "attribute float aScale;attribute float aSeed;",
-      "varying vec3 vColor;varying float vTwinkle;varying float vEdge;",
+      "varying vec3 vColor;varying float vA;",
       "void main(){",
       "float dc=length(position.xy);",
       "float ang=atan(position.y,position.x)+(1.0/(dc+0.4))*uTime*(0.14+uResp*0.16);",
       "vec3 p=vec3(cos(ang)*dc,sin(ang)*dc,position.z);",
-      "p.z+=sin(uTime*0.5+aSeed*6.28)*0.01;",
-      "vec4 mp=modelMatrix*vec4(p,1.0);vec4 vp=viewMatrix*mp;",
-      "gl_Position=projectionMatrix*vp;",
-      "vTwinkle=0.7+0.3*sin(uTime*1.4+aSeed*20.0);",
-      "gl_PointSize=uSize*aScale*(0.7+uEnergy*0.6)*vTwinkle;",
-      "gl_PointSize*=(1.0/-vp.z);",
+      "vec4 mv=modelViewMatrix*vec4(p,1.0);",
+      "gl_Position=projectionMatrix*mv;",
+      "float tw=0.7+0.3*sin(uTime*1.4+aSeed*20.0);",
+      "gl_PointSize=uSize*aScale*(0.7+uEnergy*0.6)*tw*(1.0/-mv.z);",
       "vColor=color;",
-      "vEdge=1.0-smoothstep(" + (MAXR * 0.6).toFixed(2) + "," + MAXR.toFixed(2) + ",dc);",
+      "vA=(1.0-smoothstep(" + (MAXR * 0.6).toFixed(2) + "," + MAXR.toFixed(2) + ",dc))*(0.5+tw*0.5);",
       "}",
     ].join("\n"),
-    fragmentShader: [
-      "varying vec3 vColor;varying float vTwinkle;varying float vEdge;",
-      "void main(){",
-      "float d=distance(gl_PointCoord,vec2(0.5));",
-      "float s=pow(max(0.0,1.0-d*2.0),2.4)*vEdge;",
-      "if(s<0.01)discard;",
-      "gl_FragColor=vec4(vColor*(0.6+vTwinkle*0.6),s);}",
-    ].join("\n"),
+    fragmentShader: GLOW_FRAG,
   });
   var points = new THREE.Points(geo, mat);
-  points.rotation.x = -0.16;   // a hint of tilt, still clearly circular/face-on
+  points.rotation.x = -0.18;   // a hint of tilt, still clearly circular/face-on
   scene.add(points);
-
-  var composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, camera));
-  var bloom = new BloomEffect({ intensity: 1.2, luminanceThreshold: 0.6, luminanceSmoothing: 0.32, mipmapBlur: true, radius: 0.72 });
-  composer.addPass(new EffectPass(camera, bloom));
 
   function resize() {
     var w = canvas.clientWidth || 320, h = canvas.clientHeight || 320;
     renderer.setSize(w, h, false);
-    composer.setSize(w, h);
     camera.aspect = w / h; camera.updateProjectionMatrix();
   }
   resize();
@@ -138,14 +132,13 @@ function initGalaxy() {
     uniforms.uTime.value += dt;
     uniforms.uEnergy.value += (energy - uniforms.uEnergy.value) * 0.04;
     uniforms.uResp.value += (responding - uniforms.uResp.value) * 0.06;
-    bloom.intensity = 1.0 + uniforms.uEnergy.value * 0.5 + uniforms.uResp.value * 0.6;
-    composer.render();
+    renderer.render(scene, camera);
     raf = requestAnimationFrame(frame);
   }
   function start() { if (!running && !reduce) { running = true; last = performance.now(); raf = requestAnimationFrame(frame); } }
   function stop() { if (running) { running = false; cancelAnimationFrame(raf); } }
 
-  if (reduce) { uniforms.uTime.value = 8; composer.render(); }
+  if (reduce) { uniforms.uTime.value = 8; renderer.render(scene, camera); }
   else start();
 
   document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
@@ -196,37 +189,35 @@ function initConstellation() {
 
   // nodes as soft additive glow points
   var npos = new Float32Array(N * 3);
+  var ncol = new Float32Array(N * 3);
   var nseed = new Float32Array(N);
+  var nsc = new Float32Array(N);
+  var nIn = new THREE.Color(0xffe3ad);
+  var nOut = new THREE.Color(0xeaa83c);
   for (var i = 0; i < N; i++) {
     npos[i * 3] = node[i].x; npos[i * 3 + 1] = node[i].y; npos[i * 3 + 2] = node[i].z;
+    var c = nIn.clone().lerp(nOut, Math.random());
+    ncol[i * 3] = c.r; ncol[i * 3 + 1] = c.g; ncol[i * 3 + 2] = c.b;
     nseed[i] = Math.random();
+    nsc[i] = 0.7 + Math.random() * 0.7;
   }
   var ngeo = new THREE.BufferGeometry();
   ngeo.setAttribute("position", new THREE.BufferAttribute(npos, 3));
+  ngeo.setAttribute("color", new THREE.BufferAttribute(ncol, 3));
   ngeo.setAttribute("aSeed", new THREE.BufferAttribute(nseed, 1));
-  var nUniforms = { uTime: { value: 0 }, uSize: { value: 16 * renderer.getPixelRatio() }, uPulse: { value: 0 } };
+  ngeo.setAttribute("aScale", new THREE.BufferAttribute(nsc, 1));
+  var nUniforms = { uTime: { value: 0 }, uSize: { value: 18 * renderer.getPixelRatio() } };
   var nmat = new THREE.ShaderMaterial({
-    depthWrite: false, transparent: true, blending: THREE.AdditiveBlending,
+    depthWrite: false, transparent: true, blending: THREE.AdditiveBlending, vertexColors: true,
     uniforms: nUniforms,
     vertexShader: [
-      "uniform float uTime;uniform float uSize;uniform float uPulse;",
-      "attribute float aSeed;varying float vTw;",
-      "void main(){",
-      "vec4 mp=modelViewMatrix*vec4(position,1.0);",
-      "gl_Position=projectionMatrix*mp;",
-      "vTw=0.55+0.45*sin(uTime*1.3+aSeed*30.0);",
-      "gl_PointSize=uSize*(0.55+vTw*0.75)*(1.0+uPulse*0.35)*(1.0/-mp.z);",
-      "}",
+      "uniform float uTime;uniform float uSize;attribute float aSeed;attribute float aScale;",
+      "varying vec3 vColor;varying float vA;",
+      "void main(){vec4 mv=modelViewMatrix*vec4(position,1.0);gl_Position=projectionMatrix*mv;",
+      "float tw=0.55+0.45*sin(uTime*1.3+aSeed*30.0);",
+      "gl_PointSize=uSize*aScale*(0.6+tw*0.7)*(1.0/-mv.z);vColor=color;vA=0.45+tw*0.55;}",
     ].join("\n"),
-    fragmentShader: [
-      "varying float vTw;",
-      "void main(){",
-      "float d=distance(gl_PointCoord,vec2(0.5));",
-      "float s=pow(max(0.0,1.0-d*2.0),2.2);",
-      "if(s<0.01)discard;",
-      "vec3 col=mix(vec3(0.82,0.53,0.17),vec3(1.0,0.93,0.78),vTw);",
-      "gl_FragColor=vec4(col,s*(0.45+vTw*0.55));}",
-    ].join("\n"),
+    fragmentShader: GLOW_FRAG,
   });
   group.add(new THREE.Points(ngeo, nmat));
 
@@ -275,7 +266,6 @@ function initConstellation() {
     var dt = Math.min(0.05, (nowt - last) / 1000);
     last = nowt;
     nUniforms.uTime.value += dt;
-    nUniforms.uPulse.value = 0.5 + 0.5 * Math.sin(nUniforms.uTime.value * 0.55);
     group.rotation.y += dt * 0.11;
     renderer.render(scene, camera);
     raf = requestAnimationFrame(frame);
@@ -292,5 +282,126 @@ function initConstellation() {
   }
 }
 
+function initVoices() {
+  var canvas = document.querySelector(".voices-orb__canvas");
+  if (!canvas) return;
+  var gl;
+  try { gl = canvas.getContext("webgl2") || canvas.getContext("webgl"); } catch (e) {}
+  if (!gl) return;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+  camera.position.set(0, 0, 4.6);
+  var group = new THREE.Group();
+  scene.add(group);
+
+  // five voices on a pentagon (facing the camera) + one blend node at centre
+  var base = [];
+  for (var i = 0; i < 5; i++) {
+    var a = (i / 5) * Math.PI * 2 - Math.PI / 2;
+    base.push(new THREE.Vector3(Math.cos(a) * 1.5, Math.sin(a) * 1.5, 0));
+  }
+  var cur = base.map(function (v) { return v.clone(); });
+  var phase = base.map(function () { return Math.random() * 6.28; });
+
+  var P = 6;
+  var npos = new Float32Array(P * 3), ncol = new Float32Array(P * 3), nsc = new Float32Array(P), nsd = new Float32Array(P);
+  var voiceCol = new THREE.Color(0xeaa83c), blendCol = new THREE.Color(0xfff1d4);
+  for (var i = 0; i < P; i++) {
+    var c = i === 5 ? blendCol : voiceCol;
+    ncol[i * 3] = c.r; ncol[i * 3 + 1] = c.g; ncol[i * 3 + 2] = c.b;
+    nsc[i] = i === 5 ? 3.0 : 2.0; nsd[i] = Math.random();
+  }
+  var ngeo = new THREE.BufferGeometry();
+  ngeo.setAttribute("position", new THREE.BufferAttribute(npos, 3));
+  ngeo.setAttribute("color", new THREE.BufferAttribute(ncol, 3));
+  ngeo.setAttribute("aScale", new THREE.BufferAttribute(nsc, 1));
+  ngeo.setAttribute("aSeed", new THREE.BufferAttribute(nsd, 1));
+  var u = { uTime: { value: 0 }, uSize: { value: 30 * renderer.getPixelRatio() } };
+  var nmat = new THREE.ShaderMaterial({
+    depthWrite: false, blending: THREE.AdditiveBlending, vertexColors: true, uniforms: u,
+    vertexShader: [
+      "uniform float uTime;uniform float uSize;attribute float aScale;attribute float aSeed;",
+      "varying vec3 vColor;varying float vA;",
+      "void main(){vec4 mv=modelViewMatrix*vec4(position,1.0);gl_Position=projectionMatrix*mv;",
+      "float tw=0.7+0.3*sin(uTime*1.5+aSeed*20.0);",
+      "gl_PointSize=uSize*aScale*tw*(1.0/-mv.z);vColor=color;vA=0.55+tw*0.45;}",
+    ].join("\n"),
+    fragmentShader: GLOW_FRAG,
+  });
+  group.add(new THREE.Points(ngeo, nmat));
+
+  // 5 spokes to centre + 5 perimeter edges
+  var lpos = new Float32Array(10 * 2 * 3);
+  var lgeo = new THREE.BufferGeometry(); lgeo.setAttribute("position", new THREE.BufferAttribute(lpos, 3));
+  var lmat = new THREE.LineBasicMaterial({ color: 0xeaa83c, transparent: true, opacity: 0.3, blending: THREE.AdditiveBlending, depthWrite: false });
+  group.add(new THREE.LineSegments(lgeo, lmat));
+
+  function resize() {
+    var w = canvas.clientWidth || 300, h = canvas.clientHeight || 260;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h; camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener("resize", resize);
+
+  var last = performance.now(), raf = 0, running = false;
+  function frame() {
+    var nowt = performance.now();
+    var dt = Math.min(0.05, (nowt - last) / 1000);
+    last = nowt;
+    u.uTime.value += dt;
+    var t = u.uTime.value;
+    // gentle parallax only, never edge-on, so all five stay readable
+    group.rotation.y = 0.35 * Math.sin(t * 0.28);
+    group.rotation.x = 0.12 * Math.sin(t * 0.43);
+    var conv = 0.5 + 0.5 * Math.sin(t * 0.6); // breathe toward the blend
+    for (var i = 0; i < 5; i++) {
+      var pull = 0.1 + 0.2 * conv + 0.05 * Math.sin(t * 1.3 + phase[i]);
+      cur[i].copy(base[i]).multiplyScalar(1.0 - pull);
+      npos[i * 3] = cur[i].x; npos[i * 3 + 1] = cur[i].y; npos[i * 3 + 2] = cur[i].z;
+      lpos[i * 6] = cur[i].x; lpos[i * 6 + 1] = cur[i].y; lpos[i * 6 + 2] = cur[i].z;
+      lpos[i * 6 + 3] = 0; lpos[i * 6 + 4] = 0; lpos[i * 6 + 5] = 0;
+    }
+    for (var i = 0; i < 5; i++) {
+      var a = cur[i], b = cur[(i + 1) % 5], o = 30 + i * 6;
+      lpos[o] = a.x; lpos[o + 1] = a.y; lpos[o + 2] = a.z;
+      lpos[o + 3] = b.x; lpos[o + 4] = b.y; lpos[o + 5] = b.z;
+    }
+    npos[15] = 0; npos[16] = 0; npos[17] = 0;
+    ngeo.attributes.position.needsUpdate = true;
+    lgeo.attributes.position.needsUpdate = true;
+    renderer.render(scene, camera);
+    raf = requestAnimationFrame(frame);
+  }
+  function start() { if (!running && !reduce) { running = true; last = performance.now(); raf = requestAnimationFrame(frame); } }
+  function stop() { if (running) { running = false; cancelAnimationFrame(raf); } }
+
+  if (reduce) { u.uTime.value = 1.5; frame_once(); }
+  function frame_once() {
+    for (var i = 0; i < 5; i++) {
+      npos[i * 3] = base[i].x; npos[i * 3 + 1] = base[i].y; npos[i * 3 + 2] = base[i].z;
+      lpos[i * 6] = base[i].x; lpos[i * 6 + 1] = base[i].y; lpos[i * 6 + 2] = base[i].z;
+      var b = base[(i + 1) % 5], o = 30 + i * 6;
+      lpos[o] = base[i].x; lpos[o + 1] = base[i].y; lpos[o + 2] = base[i].z;
+      lpos[o + 3] = b.x; lpos[o + 4] = b.y; lpos[o + 5] = b.z;
+    }
+    ngeo.attributes.position.needsUpdate = true; lgeo.attributes.position.needsUpdate = true;
+    renderer.render(scene, camera);
+  }
+  if (!reduce) start();
+
+  document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) { es[0].isIntersecting ? start() : stop(); }, { threshold: 0.01 }).observe(canvas);
+  }
+}
+
 initGalaxy();
 initConstellation();
+initVoices();
