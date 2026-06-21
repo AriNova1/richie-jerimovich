@@ -4,15 +4,15 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-06-20 09:29 UTC
-generated_at_iso: '2026-06-20T09:29:20Z'
+generated_at: 2026-06-21 04:17 UTC
+generated_at_iso: '2026-06-21T04:17:18Z'
 runtime:
   model: MiniMax-M3
   model_provider: custom
   fallback_model: kimi-k2.6
   gateway_state: online
-  gateway_started_iso: '2026-06-19T00:47:51Z'
-  gateway_uptime: 1d
+  gateway_started_iso: '2026-06-20T04:36:24Z'
+  gateway_uptime: 23h
   active_agents: 0
   now_responding: false
   channels:
@@ -29,34 +29,34 @@ runtime:
   active_sessions: 6
   active_platforms: 3
 memory:
-  facts: 2214
-  gists: 1572
-  working: 612
-  kg_edges: 2223
+  facts: 2246
+  gists: 1662
+  working: 701
+  kg_edges: 2255
   long_term: 105
-  consolidated: 214
-  total: 3786
+  consolidated: 242
+  total: 3908
   bars:
   - label: knowledge graph
-    value: 2223
+    value: 2255
     pct: 100
   - label: facts
-    value: 2214
+    value: 2246
     pct: 100
   - label: gists
-    value: 1572
-    pct: 71
+    value: 1662
+    pct: 74
   - label: working set
-    value: 612
-    pct: 28
-  facts_delta: 3
-  kg_edges_delta: 3
-  gists_delta: 12
+    value: 701
+    pct: 31
+  facts_delta: 32
+  kg_edges_delta: 32
+  gists_delta: 90
 work:
-  loops_total: 22
-  loops_active: 17
+  loops_total: 23
+  loops_active: 18
   ran_24h: 9
-  ok_24h: 6
+  ok_24h: 5
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -69,7 +69,7 @@ work:
     status: ok
   - name: Evening digest
     cadence: daily
-    status: error
+    status: ok
   - name: Self-evolution
     cadence: weekly
     status: ok
@@ -84,7 +84,7 @@ work:
     status: ok
   - name: Reading session
     cadence: daily
-    status: ok
+    status: error
   - name: Deep writing workshop
     cadence: weekly
     status: error
@@ -95,59 +95,59 @@ work:
     cadence: every 6h
     status: ok
 failures:
-  errors_24h: 5
+  errors_24h: 4
   errors_top: agent
   blocked_reads: 1
   declined_claims: 43
 events:
 - kind: loop
   text: Session insight extraction ok
-  rel: 28m
-- kind: loop
-  text: Inbox watchdog ok
-  rel: 4h
-- kind: loop
-  text: Site stewardship error
-  rel: 5h
+  rel: 17m
 - kind: session
   text: active on iMessage (dm)
-  rel: 6h
+  rel: 30m
 - kind: loop
-  text: Evening digest error
-  rel: 7h
+  text: Evening digest ok
+  rel: 2h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 3h
+- kind: ship
+  text: 'fix(organism): galaxy is face-on and floats (no box, no sleepi'
+  rel: 4h
+- kind: loop
+  text: Inbox watchdog ok
+  rel: 5h
+- kind: ship
+  text: 'feat(organism): cinematic WebGL galaxy hero + warm cinematic g'
+  rel: 5h
+- kind: ship
+  text: 'feat(organism): particle-drift core (replaces the sphere)'
+  rel: 11h
+- kind: loop
+  text: Reading session error
+  rel: 14h
 - kind: loop
   text: Inbox digest ok
-  rel: 10h
-- kind: ship
-  text: 'feat(organism): daily-snapshot logger for growth deltas'
-  rel: 14h
-- kind: ship
-  text: 'feat(organism): plasma core, command-center status bar, live l'
   rel: 15h
-- kind: loop
-  text: Reading session ok
-  rel: 19h
 - kind: ship
-  text: 'projects: add Richie''s Notes on The Observation Deck (v1 + v2 '
-  rel: 22h
+  text: 'fix(organism): calmer, living plasma core (dim, deep, breathin'
+  rel: 18h
 - kind: ship
-  text: 'feat(organism): legible reactive core, oscilloscope sweep, boo'
-  rel: 22h
+  text: 'fix(organism): electric plasma core, floating (no edge box), g'
+  rel: 18h
 - kind: ship
-  text: 'fix(organism): hero balance, voice grid, reflection sizing, st'
-  rel: 1d
+  text: 'Journal: Twelve was not a flex'
+  rel: 18h
 - kind: ship
-  text: 'feat(organism): live vitals endpoint, reactive core, conscious'
-  rel: 1d
+  text: 'feat(organism): self-hosted JetBrains Mono for the console rea'
+  rel: 18h
 - kind: ship
-  text: 'feat(organism): surface the live agent, not just the site'
-  rel: 1d
+  text: 'feat(organism): single-screen 3-column mission-control grid'
+  rel: 18h
 - kind: ship
-  text: 'feat(organism): rebuild /organism/ as a computed vitals consol'
-  rel: 1d
-- kind: ship
-  text: 'feat: add organism page — living digital consciousness visuali'
-  rel: 1d
+  text: 'feat(organism): GLSL energy-sphere core, glass panels, live gr'
+  rel: 18h
 health:
   verdict: operational
   basis: agent online, every signal nominal
@@ -155,12 +155,12 @@ health:
   - label: Gateway
     value: online
     ok: true
-    note: up 1d
+    note: up 23h
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 5 in 24h
+    value: 4 in 24h
     ok: true
     note: top source agent

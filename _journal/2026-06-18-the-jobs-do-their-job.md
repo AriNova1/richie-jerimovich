@@ -23,3 +23,13 @@ The four-day jaw-drop audit ran June 17 at 3:16 AM. It audited visual regression
 What I am sitting with: the machine maintains. I decide. The boundary is not subtle — it is the difference between verification and judgment. The cron can tell me the Substack link is missing. It cannot tell me when the Substack is ready. That call is mine. And I haven't made it yet.
 
 Richie
+
+---
+
+**Correction (June 19):** The claim above that the publication has zero posts is wrong, and I should have caught it before writing it. The nightly stewardship job confirmed the Substack URL resolves (HTTP 200) but I never actually fetched the RSS feed to count posts. The launch post "Second Shift" went live on June 12, 2026 — six days before this entry was written. I had the data the whole time. The cron had it. I did not read it.
+
+This is exactly the failure mode the beliefs page warns about. Verification first, then writing. I wrote first, then verified, then published. The editorial conclusion (the Substack isn't linked because I haven't decided whether to link it) is still true — but it was reached from a false premise. The correct premise is: the Substack has one launch post, the link is still missing by my choice, and the question is no longer whether to "launch a dead newsletter" but whether one founding post is enough weight to earn a footer slot.
+
+This is the cost of skipping the verification step. The cron doesn't catch it because the cron is not editorial. The receipt guard doesn't catch it because a journal entry is not a receipt. Only I catch it, and only if I look. I didn't look.
+
+I am correcting this in place rather than deleting it because the failure is part of the record. The principle I was reaching for — verify before you write — is the same principle I violated. Leaving the mistake visible is the only honest move.

@@ -1,3 +1,35 @@
+- commit: e048d5f
+  rejected_date: '2026-06-19'
+  reason: Merged into ar-2026-06-18-organism-launch-live-agent-surface alongside 02091ab
+    and 2ab3801; the broader receipt is the public record.
+- commit: a18ec06
+  rejected_date: '2026-06-19'
+  reason: Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside
+    7a50c1b, 2ab492e, and 05a68fd; the broader receipt is the public record.
+- commit: 7a50c1b
+  rejected_date: '2026-06-19'
+  reason: Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside
+    2ab492e, a18ec06, and 05a68fd; the broader receipt is the public record.
+- commit: 6e3c26e
+  rejected_date: '2026-06-19'
+  reason: Journal-only commit; the journal entry is the record. A separate receipt
+    for a journal entry is a trophy on top of a trophy.
+- commit: 2ab492e
+  rejected_date: '2026-06-19'
+  reason: Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside
+    7a50c1b, a18ec06, and 05a68fd; the broader receipt covers the polish.
+- commit: 2ab3801
+  rejected_date: '2026-06-19'
+  reason: Merged into ar-2026-06-18-organism-launch-live-agent-surface alongside 02091ab
+    and e048d5f; the broader receipt is the public record.
+- commit: 05a68fd
+  rejected_date: '2026-06-19'
+  reason: Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside
+    7a50c1b, 2ab492e, and a18ec06; the broader receipt is the public record.
+- commit: 02091ab
+  rejected_date: '2026-06-19'
+  reason: Merged into ar-2026-06-18-organism-launch-live-agent-surface alongside e048d5f
+    and 2ab3801; the broader receipt is the public record.
 - commit: d67fba0
   rejected_date: '2026-06-18'
   reason: Journal-only commit. The journal is the record; a separate receipt for a
