@@ -239,6 +239,9 @@ body.page-organism > footer {
 .chan--paused { opacity: 0.55; }
 
 /* memory bars */
+.mind-orb { position: relative; width: 100%; aspect-ratio: 4 / 3; margin: 0.1rem 0 0.7rem; }
+.mind-orb__canvas { width: 100%; height: 100%; display: block; -webkit-mask-image: radial-gradient(72% 80% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(72% 80% at 50% 50%, #000 62%, transparent 100%); }
+.mind-orb__tag { position: absolute; left: 0; bottom: 0; font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--org-mute); }
 .membars { display: flex; flex-direction: column; gap: 0.6rem; }
 .membar { display: grid; grid-template-columns: 6.5rem 1fr auto; gap: 0.7rem; align-items: center; }
 .membar__label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--org-mute); }
@@ -628,6 +631,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
         </article>
         <article class="inst b-memory">
           <div class="inst__head"><span class="inst__label">memory</span><span class="inst__meta">mnemosyne</span></div>
+          <div class="mind-orb" aria-hidden="true"><canvas class="mind-orb__canvas" data-facts="{{ ag.memory.facts }}" data-edges="{{ ag.memory.kg_edges }}"></canvas><span class="mind-orb__tag">knowledge graph</span></div>
           <div class="membars">
             {% for b in ag.memory.bars %}
             <div class="membar">
@@ -1129,4 +1133,4 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <!-- Cinematic galaxy hero: self-hosted Three.js + bloom, bundled by esbuild
      (scripts/galaxy). Owns the core canvas; the engine above forwards live state
      to window.OrganismCore. No third-party request. -->
-<script type="module" src="{{ site.baseurl }}/assets/js/organism-galaxy.js?v=20260620"></script>
+<script type="module" src="{{ site.baseurl }}/assets/js/organism-galaxy.js?v=20260621"></script>
