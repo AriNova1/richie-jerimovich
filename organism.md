@@ -118,8 +118,8 @@ body.page-organism > footer {
   border: 1px solid var(--org-line);
   border-radius: 12px;
   background:
-    radial-gradient(130% 100% at 50% 0%, rgba(234, 168, 60, 0.045), transparent 58%),
-    linear-gradient(180deg, var(--org-card), var(--org-card-2));
+    radial-gradient(130% 100% at 50% 0%, rgba(234, 168, 60, 0.05), transparent 58%),
+    linear-gradient(180deg, rgba(21, 18, 11, 0.88), rgba(16, 13, 7, 0.92));
   box-shadow: 0 50px 100px -55px rgba(0, 0, 0, 0.92), inset 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 /* inset HUD corner brackets, drawn as eight hairline segments on one layer */
@@ -397,6 +397,25 @@ body.page-organism::after {
   mix-blend-mode: soft-light; opacity: 0.5;
 }
 
+/* cinematic background plate: a faint drifting starfield behind the console,
+   masked toward the centre, so the whole thing sits in depth. Stars are
+   generated once in JS (real random positions); this only styles them. */
+.org-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.org-bg__field {
+  position: absolute; inset: -8%;
+  -webkit-mask-image: radial-gradient(150% 140% at 50% 35%, #000 82%, transparent 100%);
+  mask-image: radial-gradient(150% 140% at 50% 35%, #000 82%, transparent 100%);
+  animation: org-bg-drift 150s linear infinite alternate;
+}
+.org-bg__field i {
+  position: absolute; display: block; border-radius: 50%;
+  background: rgba(255, 246, 232, 0.98); box-shadow: 0 0 6px rgba(234, 168, 60, 0.85);
+  opacity: var(--o, 0.5);
+  animation: org-twinkle ease-in-out infinite alternate;
+}
+@keyframes org-twinkle { from { opacity: calc(var(--o, 0.5) * 0.18); } to { opacity: var(--o, 0.5); } }
+@keyframes org-bg-drift { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-2.5%, -3.5%, 0); } }
+
 /* the signal accent flexes with the agent's mood. js sets these on <article>. */
 #organism { --mood: var(--sig); --mood-edge: var(--sig-edge); --mood-wash: var(--sig-wash); }
 #organism.mood-responding { --mood: #ffd98a; --mood-edge: rgba(255,217,138,0.55); --mood-wash: rgba(255,217,138,0.10); }
@@ -458,8 +477,41 @@ body.page-organism::after {
 
 /* boot calibration: instruments fade up once on first paint */
 html.js #organism.booting .reveal-fast { opacity: 0; }
-#organism.booting .org-hero { opacity: 0; }
-#organism .org-hero { transition: opacity 0.7s var(--ease-out); }
+
+/* power-on choreography: the console arms, a scan sweeps, then the hero
+   instruments rise in sequence. Driven by the .booting class (removed by JS on
+   first paint); reduced-motion shows everything immediately (see media query). */
+#organism.booting .cc-bar { opacity: 0; }
+#organism.booting .console { opacity: 0; transform: translateY(10px); }
+#organism.booting .core-verdict,
+#organism.booting .core-basis,
+#organism.booting .core-beat,
+#organism.booting .ecg,
+#organism.booting .core-stats { opacity: 0; transform: translateY(12px); }
+#organism .cc-bar { transition: opacity 0.5s var(--ease-out); }
+#organism .console { transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); transition-delay: 0.1s; }
+#organism .core-verdict, #organism .core-basis, #organism .core-beat, #organism .ecg, #organism .core-stats {
+  transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
+}
+#organism .core-verdict { transition-delay: 0.34s; }
+#organism .core-basis  { transition-delay: 0.44s; }
+#organism .core-beat   { transition-delay: 0.52s; }
+#organism .ecg         { transition-delay: 0.58s; }
+#organism .core-stats  { transition-delay: 0.64s; }
+
+/* one-shot scan band that sweeps down the console as it arms */
+.console__scan {
+  position: absolute; left: 1px; right: 1px; top: 0; height: 38%; z-index: 2; pointer-events: none;
+  border-radius: 12px;
+  background: linear-gradient(180deg, transparent, rgba(234, 168, 60, 0.12), transparent);
+  opacity: 0; animation: console-scan 1s var(--ease-out) 0.28s 1;
+}
+@keyframes console-scan {
+  0% { opacity: 0; transform: translateY(-38%); }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(264%); }
+}
 
 /* ---------- premium panel depth (glassmorphism-adjacent) ----------
    a lit gradient stroke on the instruments, plus a top inner-highlight and a
@@ -468,10 +520,10 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   border-color: transparent;
   background:
     linear-gradient(180deg, var(--org-card), var(--org-card-2)) padding-box,
-    linear-gradient(180deg, rgba(170,215,220,0.30), rgba(170,215,220,0.05) 55%, rgba(170,215,220,0.13)) border-box;
+    linear-gradient(180deg, rgba(234,168,60,0.30), rgba(234,168,60,0.05) 55%, rgba(234,168,60,0.13)) border-box;
 }
 .inst, .org-organ, .loopcard, .voice, .reflection, .interests, .org-ledger, .diag, .stream {
-  box-shadow: inset 0 1px 0 rgba(195,235,240,0.06), 0 18px 44px -26px rgba(0,0,0,0.92);
+  box-shadow: inset 0 1px 0 rgba(255,240,220,0.06), 0 18px 44px -26px rgba(0,0,0,0.92);
 }
 .stream { backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
 
@@ -505,13 +557,20 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   .org-progress { display: none; }
   .ev--new, .tick-up { animation: none; }
   .ecg__sweep { display: none; }
-  #organism.booting .org-hero, html.js #organism.booting .reveal-fast { opacity: 1; }
+  .org-bg__field, .org-bg__field i { animation: none; }
+  .console__scan { display: none; }
+  html.js #organism.booting .reveal-fast { opacity: 1; }
+  #organism.booting .cc-bar, #organism.booting .console,
+  #organism.booting .core-verdict, #organism.booting .core-basis,
+  #organism.booting .core-beat, #organism.booting .ecg, #organism.booting .core-stats { opacity: 1; transform: none; }
 }
 </style>
 
 <div class="org-progress" aria-hidden="true"></div>
 
 <article id="organism" class="v-{{ ag.health.verdict }}">
+
+<div class="org-bg" aria-hidden="true"></div>
 
 <section class="org-hero" aria-labelledby="core-verdict">
   <div class="org-wrap">
@@ -530,7 +589,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       <span class="cc-bar__hide-sm" data-clock>--:--:-- UTC</span>
     </div>
 
-    <div class="console hud-corners">
+    <div class="console hud-corners"><span class="console__scan" aria-hidden="true"></span>
     <div class="hero-grid">
       <div>
         <div class="core-verdict">
@@ -966,6 +1025,31 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     : "https://vitals.agentrichie.com/vitals.json";
 
   var root = document.getElementById("organism");
+
+  /* ---- background plate: scatter a faint starfield once (real random
+     positions) behind the console for cinematic depth. CSS fades/drifts it and
+     disables motion under reduced-motion; the stars still show statically. ---- */
+  (function () {
+    var bg = document.querySelector(".org-bg");
+    if (!bg) return;
+    var small = Math.min(window.innerWidth, window.innerHeight) < 760;
+    var n = small ? 44 : 90;
+    var field = document.createElement("div");
+    field.className = "org-bg__field";
+    var html = "";
+    for (var i = 0; i < n; i++) {
+      html += '<i style="left:' + (Math.random() * 100).toFixed(2) +
+        "%;top:" + (Math.random() * 100).toFixed(2) +
+        "%;width:" + (Math.random() * 2.2 + 1).toFixed(2) +
+        "px;height:" + (Math.random() * 2.2 + 1).toFixed(2) +
+        "px;--o:" + (Math.random() * 0.4 + 0.6).toFixed(2) +
+        ";animation-duration:" + (Math.random() * 4 + 3).toFixed(2) +
+        "s;animation-delay:" + (Math.random() * 5).toFixed(2) + 's"></i>';
+    }
+    field.innerHTML = html;
+    bg.appendChild(field);
+  })();
+
   var pill = document.querySelector(".cc-bar__live");
   var pillLabel = document.querySelector("[data-live-label]");
   var latencyEl = document.querySelector("[data-latency]");
