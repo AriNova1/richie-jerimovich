@@ -4,16 +4,16 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-06-22 18:54 UTC
-generated_at_iso: '2026-06-22T18:54:51Z'
-last_commit_iso: '2026-06-22T18:12:23Z'
+generated_at: 2026-06-22 20:50 UTC
+generated_at_iso: '2026-06-22T20:50:19Z'
+last_commit_iso: '2026-06-22T20:27:56Z'
 runtime:
-  model: MiniMax-M3
-  model_provider: custom
+  model: glm-5.2
+  model_provider: opencode-go
   fallback_model: kimi-k2.6
   gateway_state: online
   gateway_started_iso: '2026-06-22T00:04:05Z'
-  gateway_uptime: 18h
+  gateway_uptime: 20h
   active_agents: 0
   now_responding: false
   channels:
@@ -31,22 +31,22 @@ runtime:
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 3.87
-  load_pct: 39
+  load_1m: 1.03
+  load_pct: 10
   mem_total_gb: 16.0
-  mem_used_gb: 12.5
-  mem_pct: 78
+  mem_used_gb: 12.6
+  mem_pct: 79
   disk_total_gb: 228
-  disk_used_gb: 216
+  disk_used_gb: 217
   disk_pct: 95
 memory:
   facts: 2262
-  gists: 1721
+  gists: 1722
   working: 760
   kg_edges: 2271
   long_term: 106
   consolidated: 258
-  total: 3983
+  total: 3984
   bars:
   - label: knowledge graph
     value: 2271
@@ -55,19 +55,19 @@ memory:
     value: 2262
     pct: 100
   - label: gists
-    value: 1721
+    value: 1722
     pct: 76
   - label: working set
     value: 760
     pct: 33
   facts_delta: 16
   kg_edges_delta: 16
-  gists_delta: 58
+  gists_delta: 59
 work:
   loops_total: 23
   loops_active: 18
-  ran_24h: 13
-  ok_24h: 10
+  ran_24h: 12
+  ok_24h: 9
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -112,53 +112,53 @@ failures:
   declined_claims: 45
 events:
 - kind: ship
-  text: 'fix(organism): gauge percent sign was detached from the number'
-  rel: 42m
-- kind: ship
-  text: 'fix(organism): type-hierarchy + lead with the plain pitch'
-  rel: 50m
+  text: 'fix(organism): rebalance mission control — kill the ragged 3-c'
+  rel: 22m
 - kind: loop
   text: Session insight extraction ok
-  rel: 54m
-- kind: loop
-  text: Inbox watchdog ok
+  rel: 49m
+- kind: ship
+  text: 'feat(organism): growth curve — the agent''s knowledge climbing '
   rel: 1h
 - kind: ship
-  text: 'fix(organism): audit remediation — correctness, a11y, responsi'
+  text: 'fix(organism): gauge percent sign was detached from the number'
+  rel: 2h
+- kind: ship
+  text: 'fix(organism): type-hierarchy + lead with the plain pitch'
+  rel: 2h
+- kind: loop
+  text: Inbox watchdog ok
   rel: 3h
+- kind: ship
+  text: 'fix(organism): audit remediation — correctness, a11y, responsi'
+  rel: 5h
 - kind: loop
   text: Reading session error
-  rel: 4h
+  rel: 6h
 - kind: loop
   text: Contradiction detector ok
-  rel: 4h
+  rel: 6h
 - kind: loop
   text: Inbox digest ok
-  rel: 5h
+  rel: 7h
 - kind: session
   text: active on iMessage (dm)
-  rel: 10h
+  rel: 12h
 - kind: session
   text: active on Telegram (dm)
-  rel: 10h
+  rel: 12h
 - kind: loop
   text: Site stewardship ok
-  rel: 14h
+  rel: 16h
 - kind: ship
   text: 'stewardship: nightly refresh (Jun 21) + 2 merged organism rece'
-  rel: 14h
+  rel: 16h
 - kind: loop
   text: Evening digest ok
-  rel: 16h
+  rel: 18h
 - kind: loop
   text: Wiki synthesis ok
-  rel: 16h
-- kind: ship
-  text: 'feat(organism): cinematic background plate + power-on boot seq'
-  rel: 20h
-- kind: ship
-  text: 'feat(organism): crisp galaxy + a living five-voices council'
-  rel: 22h
+  rel: 18h
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -166,7 +166,7 @@ health:
   - label: Gateway
     value: online
     ok: true
-    note: up 18h
+    note: up 20h
   - label: Channels
     value: 3 of 4 online
     ok: true
