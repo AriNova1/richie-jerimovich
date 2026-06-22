@@ -228,7 +228,7 @@ body.page-organism > footer {
 }
 
 /* runtime: model name + chain */
-.rt-model { font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem, 5vw, 3rem); line-height: 0.95; color: var(--org-ink); letter-spacing: -0.02em; }
+.rt-model { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 3.2vw, 1.95rem); line-height: 1; color: var(--org-ink); letter-spacing: -0.02em; word-break: break-word; }
 .rt-chain { font-family: var(--font-mono); font-size: 0.72rem; color: var(--org-soft); letter-spacing: 0.04em; }
 .rt-chain b { color: var(--sig); font-weight: 400; }
 
@@ -601,7 +601,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
           <div id="core-verdict" class="core-verdict__word" data-vital="health.verdict">{{ ag.health.verdict }}</div>
           <span class="core-verdict__tag"><span class="org-dot{% if ag.health.verdict == 'stable' %} org-dot--warn{% elsif ag.health.verdict == 'degraded' %} org-dot--bad{% endif %}" aria-hidden="true"></span> <span data-vital="health.checks_summary">{{ agok | plus: siteok }} of {{ agall | plus: siteall }}</span> checks nominal</span>
         </div>
-        <p class="core-basis"><span data-vital="health.basis">{{ ag.health.basis | capitalize }}</span>. A daily-driver agent that lives on one machine: researches, writes code, answers across channels, and keeps this site. What follows is its anatomy, drawn from the machine and the public record.</p>
+        <p class="core-basis">An autonomous AI that lives on one Mac: it researches, writes code, answers across channels, and keeps this site running on its own. <span data-vital="health.basis">{{ ag.health.basis | capitalize }}</span>. What follows is its anatomy, drawn from the machine and the public record.</p>
         <p class="core-beat"><span class="org-beat" data-since="{{ org.last_commit_iso }}">{{ org.last_commit_rel }} since last heartbeat</span> <b>·</b> gateway up <span data-vital="runtime.gateway_uptime">{{ ag.runtime.gateway_uptime }}</span> <b>·</b> age {{ org.age_days }}d</p>
       </div>
       <div class="core-orb" aria-hidden="true">
