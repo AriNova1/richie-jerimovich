@@ -291,6 +291,36 @@ def build_organism():
     claims = kept + declined  # commits that were adjudicated: kept (receipted) or refused
     ledger_total = len(timeline)
 
+    # the falsifiable honesty mechanism, made concrete: the most recent published
+    # receipt (with the exact command anyone can run to check it + its honest
+    # limits) and the most recent REFUSED claim (with why it was declined). All
+    # from the public ledger; safe to surface verbatim.
+    latest_receipt = None
+    if receipts:
+        r0 = sorted(receipts, key=lambda r: (str(r.get("published_date") or ""), r.get("sort_order") or 0), reverse=True)[0]
+        ver = r0.get("verification") or {}
+        cmd = ver.get("checked_with") if isinstance(ver, dict) else (ver if isinstance(ver, str) else None)
+        lims = r0.get("limitations") or []
+        latest_receipt = {
+            "title": r0.get("title"),
+            "claim": r0.get("public_claim") or r0.get("summary"),
+            "command": cmd,
+            "confidence": r0.get("confidence"),
+            "limitation": lims[0] if lims else None,
+            "date": str(r0.get("published_date")) if r0.get("published_date") else None,
+        }
+    latest_decline = None
+    dec = [t for t in timeline if t.get("status") == "declined" and t.get("rejection_reason")]
+    if dec:
+        d0 = sorted(dec, key=lambda t: str(t.get("date") or ""), reverse=True)[0]
+        latest_decline = {
+            "subject": d0.get("subject"),
+            "reason": d0.get("rejection_reason"),
+            "sha": d0.get("sha"),
+            "url": d0.get("url"),
+            "date": str(d0.get("date")) if d0.get("date") else None,
+        }
+
     # ---- reading (from committed snapshot, so this also works in CI) ----
     reading = load_yaml("reading.yml") or {}
     r_read = reading.get("read", 0)
@@ -433,6 +463,8 @@ def build_organism():
             "claims": claims,
             "ledger_total": ledger_total,
             "decline_pct": round(declined / claims * 100) if claims else 0,
+            "latest": latest_receipt,
+            "latest_decline": latest_decline,
         },
         "reading": {
             "read": r_read,

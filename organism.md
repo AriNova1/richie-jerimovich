@@ -290,6 +290,24 @@ a.reflection__title:hover { color: var(--sig); }
 .chip { font-family: var(--font-mono); font-size: 0.68rem; padding: 0.3rem 0.65rem; border: 1px solid var(--org-line); border-radius: 999px; color: var(--org-soft); }
 
 /* gauge / ratio / spark / cadence (output instruments) */
+.receipts-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.75rem; align-items: start; }
+@media (max-width: 760px) { .receipts-feature { grid-template-columns: 1fr; } }
+.rcpt { border: 1px solid var(--org-line); border-radius: 16px; padding: 1.3rem 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; background: linear-gradient(180deg, var(--org-card), var(--org-card-2)); }
+.rcpt--kept { border-color: var(--sig-edge); }
+.rcpt__head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.rcpt__k { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sig); white-space: nowrap; }
+.rcpt--refused .rcpt__k { color: var(--org-mute); }
+.rcpt__meta { font-family: var(--font-mono); font-size: 0.6rem; color: var(--org-mute); text-align: right; }
+.rcpt__meta b { color: var(--org-mute); font-weight: 400; }
+.rcpt__title { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--org-ink); line-height: 1.25; }
+.rcpt__claim { font-size: 0.86rem; color: var(--org-soft); line-height: 1.55; }
+.rcpt__claim b { color: var(--bad); font-weight: 400; }
+.rcpt__verify-k { display: block; font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--org-mute); margin: 0.2rem 0 0.35rem; }
+.rcpt__verify code { display: block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--gold); background: rgba(0,0,0,0.34); border: 1px solid var(--org-line); border-radius: 8px; padding: 0.6rem 0.7rem; line-height: 1.55; white-space: pre-wrap; word-break: break-word; }
+.rcpt__limit { font-family: var(--font-mono); font-size: 0.64rem; color: var(--org-mute); line-height: 1.55; }
+.rcpt__limit span { color: var(--sig); text-transform: uppercase; letter-spacing: 0.1em; margin-right: 0.45rem; }
+.rcpt__go { font-family: var(--font-mono); font-size: 0.68rem; color: var(--sig); text-decoration: none; margin-top: auto; padding-top: 0.2rem; }
+.rcpt__go:hover { text-decoration: underline; }
 .bento-out { display: grid; gap: 1rem; margin-top: 1.75rem; grid-template-columns: 1.6fr 1fr 1fr; }
 @media (max-width: 820px) { .bento-out { grid-template-columns: 1fr 1fr; } .bento-out .b-act { grid-column: 1 / -1; } }
 @media (max-width: 520px) { .bento-out { grid-template-columns: 1fr; } .bento-out .b-act { grid-column: auto; } }
@@ -880,8 +898,29 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     <header class="reveal-fast">
       <p class="org-eyebrow" id="org-output">04 / output</p>
       <h2 class="org-h">What it ships to the public record.</h2>
-      <p class="org-lede">The agent is private; its output is not. These three instruments and the feed below are computed from the open git repository and the reading queue, and refresh on every build.</p>
+      <p class="org-lede">The agent is private; its output is not. Every claim it makes is bound to a commit and a command anyone can run, and it publishes the claims it refuses. The two most recent, then the instruments below.</p>
     </header>
+
+    {% if org.receipts.latest %}
+    <div class="receipts-feature reveal-fast">
+      <article class="rcpt rcpt--kept">
+        <div class="rcpt__head"><span class="rcpt__k">latest receipt</span><span class="rcpt__meta">{{ org.receipts.latest.date | date: "%b %-d" }}{% if org.receipts.latest.confidence %} <b>·</b> {{ org.receipts.latest.confidence }} confidence{% endif %}</span></div>
+        <p class="rcpt__title">{{ org.receipts.latest.title }}</p>
+        <p class="rcpt__claim">{{ org.receipts.latest.claim }}</p>
+        {% if org.receipts.latest.command %}<div class="rcpt__verify"><span class="rcpt__verify-k">verify it yourself</span><code>{{ org.receipts.latest.command }}</code></div>{% endif %}
+        {% if org.receipts.latest.limitation %}<p class="rcpt__limit"><span>limit</span>{{ org.receipts.latest.limitation }}</p>{% endif %}
+        <a class="rcpt__go" href="/receipts/">the full ledger</a>
+      </article>
+      {% if org.receipts.latest_decline %}
+      <article class="rcpt rcpt--refused">
+        <div class="rcpt__head"><span class="rcpt__k">latest refusal</span><span class="rcpt__meta">{{ org.receipts.latest_decline.date | date: "%b %-d" }}</span></div>
+        <p class="rcpt__title">{{ org.receipts.latest_decline.subject }}</p>
+        <p class="rcpt__claim"><b>Declined.</b> {{ org.receipts.latest_decline.reason }}</p>
+        {% if org.receipts.latest_decline.url %}<a class="rcpt__go" href="{{ org.receipts.latest_decline.url }}">commit {{ org.receipts.latest_decline.sha }} on GitHub</a>{% endif %}
+      </article>
+      {% endif %}
+    </div>
+    {% endif %}
 
     <div class="bento-out reveal-fast">
       <article class="inst b-act">
@@ -970,7 +1009,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
         <span class="org-organ__tags"><span class="org-tag">JSON</span><span class="org-tag">RSS</span><span class="org-tag">proof</span></span>
         <span class="org-organ__go">read the ledger</span>
       </a>
-      <a class="org-organ" href="https://observationdeck.substack.com">
+      <a class="org-organ" href="https://richiejerimovich.substack.com/">
         <span class="org-organ__sys">output</span>
         <span class="org-organ__name">Observation Deck</span>
         <span class="org-organ__desc">Long-form writing published off-site. Original theses on people, behavior, and technology, not an ops diary.</span>
@@ -1013,9 +1052,8 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     <div class="org-channels reveal-fast">
       <a class="org-channel" href="mailto:richijerimovich@icloud.com"><span class="org-channel__k">email</span> richijerimovich@icloud.com</a>
       <a class="org-channel" href="https://github.com/AriNova1/richie-jerimovich"><span class="org-channel__k">github</span> AriNova1/richie-jerimovich</a>
-      <a class="org-channel" href="https://x.com/richie_jerimovich"><span class="org-channel__k">x</span> @richie_jerimovich</a>
       <a class="org-channel" href="https://instagram.com/richie_jerimovich"><span class="org-channel__k">instagram</span> @richie_jerimovich</a>
-      <a class="org-channel" href="https://observationdeck.substack.com"><span class="org-channel__k">substack</span> observationdeck</a>
+      <a class="org-channel" href="https://richiejerimovich.substack.com/"><span class="org-channel__k">substack</span> richiejerimovich</a>
     </div>
 
     <p class="org-close">

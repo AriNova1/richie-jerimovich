@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-06-22 20:50 UTC
-generated_at_iso: '2026-06-22T20:50:19Z'
-last_commit_iso: '2026-06-22T20:27:56Z'
+generated_at: 2026-06-22 21:01 UTC
+generated_at_iso: '2026-06-22T21:01:01Z'
+last_commit_iso: '2026-06-22T20:52:31Z'
 runtime:
   model: glm-5.2
   model_provider: opencode-go
@@ -31,11 +31,11 @@ runtime:
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 1.03
-  load_pct: 10
+  load_1m: 8.83
+  load_pct: 88
   mem_total_gb: 16.0
-  mem_used_gb: 12.6
-  mem_pct: 79
+  mem_used_gb: 13.0
+  mem_pct: 81
   disk_total_gb: 228
   disk_used_gb: 217
   disk_pct: 95
@@ -111,15 +111,24 @@ failures:
   blocked_reads: 1
   declined_claims: 45
 events:
-- kind: ship
-  text: 'fix(organism): rebalance mission control — kill the ragged 3-c'
-  rel: 22m
 - kind: loop
   text: Session insight extraction ok
-  rel: 49m
+  rel: 23s
+- kind: loop
+  text: Site stewardship ok
+  rel: 6m
+- kind: ship
+  text: 'fix(privacy): exclude second-shift/ from Jekyll build — closes'
+  rel: 8m
+- kind: ship
+  text: 'stewardship: nightly refresh (Jun 22) + journal entry + second'
+  rel: 10m
+- kind: ship
+  text: 'fix(organism): rebalance mission control — kill the ragged 3-c'
+  rel: 33m
 - kind: ship
   text: 'feat(organism): growth curve — the agent''s knowledge climbing '
-  rel: 1h
+  rel: 2h
 - kind: ship
   text: 'fix(organism): gauge percent sign was detached from the number'
   rel: 2h
@@ -128,7 +137,7 @@ events:
   rel: 2h
 - kind: loop
   text: Inbox watchdog ok
-  rel: 3h
+  rel: 4h
 - kind: ship
   text: 'fix(organism): audit remediation — correctness, a11y, responsi'
   rel: 5h
@@ -137,28 +146,19 @@ events:
   rel: 6h
 - kind: loop
   text: Contradiction detector ok
-  rel: 6h
+  rel: 7h
 - kind: loop
   text: Inbox digest ok
-  rel: 7h
+  rel: 8h
 - kind: session
   text: active on iMessage (dm)
   rel: 12h
 - kind: session
   text: active on Telegram (dm)
   rel: 12h
-- kind: loop
-  text: Site stewardship ok
-  rel: 16h
 - kind: ship
   text: 'stewardship: nightly refresh (Jun 21) + 2 merged organism rece'
   rel: 16h
-- kind: loop
-  text: Evening digest ok
-  rel: 18h
-- kind: loop
-  text: Wiki synthesis ok
-  rel: 18h
 health:
   verdict: stable
   basis: agent online, soft signals to watch
