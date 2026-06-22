@@ -4,15 +4,15 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-06-21 18:03 UTC
-generated_at_iso: '2026-06-21T18:03:19Z'
+generated_at: 2026-06-22 04:13 UTC
+generated_at_iso: '2026-06-22T04:13:08Z'
 runtime:
   model: MiniMax-M3
   model_provider: custom
   fallback_model: kimi-k2.6
   gateway_state: online
-  gateway_started_iso: '2026-06-20T04:36:24Z'
-  gateway_uptime: 1d
+  gateway_started_iso: '2026-06-21T19:04:05Z'
+  gateway_uptime: 9h
   active_agents: 0
   now_responding: false
   channels:
@@ -30,43 +30,43 @@ runtime:
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 1.34
-  load_pct: 13
+  load_1m: 1.39
+  load_pct: 14
   mem_total_gb: 16.0
-  mem_used_gb: 12.6
-  mem_pct: 79
+  mem_used_gb: 12.2
+  mem_pct: 76
   disk_total_gb: 228
-  disk_pct: 45
-  disk_used_gb: 103
+  disk_pct: 54
+  disk_used_gb: 123
 memory:
-  facts: 2246
-  gists: 1663
-  working: 702
-  kg_edges: 2255
+  facts: 2251
+  gists: 1672
+  working: 711
+  kg_edges: 2260
   long_term: 106
-  consolidated: 242
-  total: 3909
+  consolidated: 247
+  total: 3923
   bars:
   - label: knowledge graph
-    value: 2255
+    value: 2260
     pct: 100
   - label: facts
-    value: 2246
+    value: 2251
     pct: 100
   - label: gists
-    value: 1663
+    value: 1672
     pct: 74
   - label: working set
-    value: 702
+    value: 711
     pct: 31
-  facts_delta: 32
-  kg_edges_delta: 32
-  gists_delta: 91
+  facts_delta: 5
+  kg_edges_delta: 5
+  gists_delta: 9
 work:
   loops_total: 23
   loops_active: 18
-  ran_24h: 12
-  ok_24h: 11
+  ran_24h: 14
+  ok_24h: 13
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -97,7 +97,7 @@ work:
     status: ok
   - name: Deep writing workshop
     cadence: weekly
-    status: error
+    status: ok
   - name: Inbox digest
     cadence: twice daily
     status: ok
@@ -105,72 +105,72 @@ work:
     cadence: every 6h
     status: ok
 failures:
-  errors_24h: 2
-  errors_top: null
+  errors_24h: 4
+  errors_top: agent
   blocked_reads: 1
-  declined_claims: 43
+  declined_claims: 45
 events:
 - kind: loop
   text: Session insight extraction ok
-  rel: 2m
-- kind: loop
-  text: Inbox watchdog ok
+  rel: 12m
+- kind: session
+  text: active on iMessage (dm)
   rel: 1h
 - kind: loop
+  text: Evening digest ok
+  rel: 2h
+- kind: loop
+  text: Wiki synthesis ok
+  rel: 2h
+- kind: loop
+  text: Inbox watchdog ok
+  rel: 5h
+- kind: ship
+  text: 'feat(organism): cinematic background plate + power-on boot seq'
+  rel: 5h
+- kind: ship
+  text: 'feat(organism): crisp galaxy + a living five-voices council'
+  rel: 7h
+- kind: loop
+  text: Deep writing workshop ok
+  rel: 7h
+- kind: ship
+  text: 'feat(organism): knowledge-graph constellation in the memory ca'
+  rel: 9h
+- kind: ship
+  text: 'feat(organism): frame the hero as a console viewport + module-'
+  rel: 9h
+- kind: ship
+  text: 'feat(organism): live machine vitals (CPU load, memory, disk ga'
+  rel: 10h
+- kind: loop
   text: Reading session ok
-  rel: 3h
+  rel: 13h
 - kind: loop
   text: Inbox digest ok
-  rel: 5h
+  rel: 15h
 - kind: loop
   text: Communication doctrine ok
-  rel: 8h
+  rel: 18h
 - kind: loop
   text: Deep site audit error
-  rel: 9h
+  rel: 19h
 - kind: loop
   text: Self-evolution ok
-  rel: 9h
-- kind: loop
-  text: Site stewardship ok
-  rel: 13h
-- kind: ship
-  text: 'stewardship: nightly refresh (Jun 20) + 4 merged receipts + 8 '
-  rel: 13h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 14h
-- kind: loop
-  text: Evening digest ok
-  rel: 15h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 16h
-- kind: ship
-  text: 'fix(organism): galaxy is face-on and floats (no box, no sleepi'
-  rel: 18h
-- kind: ship
-  text: 'feat(organism): cinematic WebGL galaxy hero + warm cinematic g'
   rel: 19h
-- kind: ship
-  text: 'feat(organism): particle-drift core (replaces the sphere)'
-  rel: 1d
-- kind: ship
-  text: 'fix(organism): calmer, living plasma core (dim, deep, breathin'
-  rel: 1d
 health:
-  verdict: operational
-  basis: agent online, every signal nominal
+  verdict: stable
+  basis: agent online, soft signals to watch
   checks:
   - label: Gateway
     value: online
     ok: true
-    note: up 1d
+    note: up 9h
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 2 in 24h
+    value: 4 in 24h
     ok: true
-    note: logged errors
+    note: top source agent
