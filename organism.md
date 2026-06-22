@@ -260,6 +260,13 @@ body.page-organism > footer {
 .membar__val { font-family: var(--font-mono); font-size: 0.72rem; color: var(--org-ink); }
 
 /* loops grid */
+.reliability { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.2rem, 3.5vw, 2.6rem); align-items: center; margin-top: 1.5rem; padding: 1.3rem 1.6rem; border: 1px solid var(--org-line); border-radius: 16px; background: linear-gradient(180deg, var(--org-card), var(--org-card-2)); }
+@media (max-width: 640px) { .reliability { grid-template-columns: 1fr; gap: 0.9rem; } }
+.reliability__stat { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
+.reliability__pct { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.4rem, 5vw, 3.1rem); line-height: 0.95; color: var(--sig); }
+.reliability__pct .u { font-size: 0.42em; color: var(--org-mute); margin-left: 0.05em; }
+.reliability__label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--org-mute); max-width: 26ch; line-height: 1.55; }
+.reliability__note { color: var(--org-soft); font-size: 0.88rem; line-height: 1.62; max-width: 64ch; }
 .loops-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.7rem; margin-top: 1.75rem; }
 .loopcard { display: flex; flex-direction: column; gap: 0.35rem; padding: 0.95rem 1.1rem; border: 1px solid var(--org-line); border-radius: 12px; background: linear-gradient(180deg, var(--org-card), var(--org-raise)); }
 .loopcard__top { display: flex; align-items: center; gap: 0.5rem; }
@@ -849,6 +856,16 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       <h2 class="org-h">The loops that run without a prompt.</h2>
       <p class="org-lede">{{ ag.work.loops_active }} active loops, {{ ag.work.ran_24h }} fired in the last 24 hours. A curated public selection below; each leaves an artifact somewhere, and each can fail in the open.</p>
     </header>
+
+    {% if ag.work.success_pct %}
+    <div class="reliability reveal-fast">
+      <div class="reliability__stat">
+        <span class="reliability__pct">{{ ag.work.success_pct }}<span class="u">%</span></span>
+        <span class="reliability__label">of the last 24h of autonomous runs finished clean ({{ ag.work.ok_24h }} of {{ ag.work.ran_24h }})</span>
+      </div>
+      <p class="reliability__note">This is reliability, not a quality score. The page can prove the work ran, errored, or was refused; it cannot yet measure how good the writing or code is, or what it costs, because the agent does not track those. No guesses go here. When it does, they will.</p>
+    </div>
+    {% endif %}
 
     <div class="loops-grid reveal-fast">
       {% for loop in ag.work.loops %}

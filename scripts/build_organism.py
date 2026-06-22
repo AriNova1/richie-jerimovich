@@ -757,6 +757,11 @@ def collect_agent_vitals():
                 "status": str(j.get("last_status") or "scheduled").lower(),
             }
         )
+    # reliability: share of the last 24h of autonomous runs that finished clean.
+    # Honest (not a vanity 100); the rest surface in the failures panel.
+    work["success_pct"] = (
+        round(work["ok_24h"] / work["ran_24h"] * 100) if work["ran_24h"] else None
+    )
 
     # ---- failures: 24h error count + category, blocked reads ----
     failures = {"errors_24h": 0, "errors_top": None, "blocked_reads": 0}
@@ -908,6 +913,8 @@ def update_history(data):
         "working": mem.get("working"),
         "sessions": (data.get("runtime") or {}).get("active_sessions"),
         "loops_active": (data.get("work") or {}).get("loops_active"),
+        "ran_24h": (data.get("work") or {}).get("ran_24h"),
+        "ok_24h": (data.get("work") or {}).get("ok_24h"),
         "commits": (org.get("activity") or {}).get("commits_total"),
     }
     hist = load_yaml("organism_history.yml") or []

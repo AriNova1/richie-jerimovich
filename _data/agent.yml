@@ -4,16 +4,16 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-06-22 21:01 UTC
-generated_at_iso: '2026-06-22T21:01:01Z'
-last_commit_iso: '2026-06-22T20:52:31Z'
+generated_at: 2026-06-22 21:13 UTC
+generated_at_iso: '2026-06-22T21:13:26Z'
+last_commit_iso: '2026-06-22T21:05:31Z'
 runtime:
   model: glm-5.2
   model_provider: opencode-go
   fallback_model: kimi-k2.6
   gateway_state: online
   gateway_started_iso: '2026-06-22T00:04:05Z'
-  gateway_uptime: 20h
+  gateway_uptime: 21h
   active_agents: 0
   now_responding: false
   channels:
@@ -31,8 +31,8 @@ runtime:
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 8.83
-  load_pct: 88
+  load_1m: 2.45
+  load_pct: 24
   mem_total_gb: 16.0
   mem_used_gb: 13.0
   mem_pct: 81
@@ -40,34 +40,34 @@ system:
   disk_used_gb: 217
   disk_pct: 95
 memory:
-  facts: 2262
-  gists: 1722
-  working: 760
-  kg_edges: 2271
+  facts: 2263
+  gists: 1726
+  working: 764
+  kg_edges: 2272
   long_term: 106
-  consolidated: 258
-  total: 3984
+  consolidated: 259
+  total: 3989
   bars:
   - label: knowledge graph
-    value: 2271
+    value: 2272
     pct: 100
   - label: facts
-    value: 2262
+    value: 2263
     pct: 100
   - label: gists
-    value: 1722
+    value: 1726
     pct: 76
   - label: working set
-    value: 760
-    pct: 33
-  facts_delta: 16
-  kg_edges_delta: 16
-  gists_delta: 59
+    value: 764
+    pct: 34
+  facts_delta: 17
+  kg_edges_delta: 17
+  gists_delta: 63
 work:
   loops_total: 23
   loops_active: 18
   ran_24h: 12
-  ok_24h: 9
+  ok_24h: 10
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -95,7 +95,7 @@ work:
     status: error
   - name: Reading session
     cadence: daily
-    status: error
+    status: ok
   - name: Deep writing workshop
     cadence: weekly
     status: ok
@@ -105,45 +105,49 @@ work:
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
+  success_pct: 83
 failures:
-  errors_24h: 14
+  errors_24h: 15
   errors_top: agent
   blocked_reads: 1
   declined_claims: 45
 events:
 - kind: loop
+  text: Reading session ok
+  rel: 4m
+- kind: ship
+  text: 'feat(organism): lead with a live receipt + fix external links'
+  rel: 7m
+- kind: loop
   text: Session insight extraction ok
-  rel: 23s
+  rel: 12m
 - kind: loop
   text: Site stewardship ok
-  rel: 6m
+  rel: 18m
 - kind: ship
   text: 'fix(privacy): exclude second-shift/ from Jekyll build — closes'
-  rel: 8m
+  rel: 20m
 - kind: ship
   text: 'stewardship: nightly refresh (Jun 22) + journal entry + second'
-  rel: 10m
+  rel: 22m
 - kind: ship
   text: 'fix(organism): rebalance mission control — kill the ragged 3-c'
-  rel: 33m
+  rel: 45m
 - kind: ship
   text: 'feat(organism): growth curve — the agent''s knowledge climbing '
   rel: 2h
 - kind: ship
   text: 'fix(organism): gauge percent sign was detached from the number'
-  rel: 2h
+  rel: 3h
 - kind: ship
   text: 'fix(organism): type-hierarchy + lead with the plain pitch'
-  rel: 2h
+  rel: 3h
 - kind: loop
   text: Inbox watchdog ok
   rel: 4h
 - kind: ship
   text: 'fix(organism): audit remediation — correctness, a11y, responsi'
   rel: 5h
-- kind: loop
-  text: Reading session error
-  rel: 6h
 - kind: loop
   text: Contradiction detector ok
   rel: 7h
@@ -156,22 +160,19 @@ events:
 - kind: session
   text: active on Telegram (dm)
   rel: 12h
-- kind: ship
-  text: 'stewardship: nightly refresh (Jun 21) + 2 merged organism rece'
-  rel: 16h
 health:
-  verdict: stable
-  basis: agent online, soft signals to watch
+  verdict: operational
+  basis: agent online, every signal nominal
   checks:
   - label: Gateway
     value: online
     ok: true
-    note: up 20h
+    note: up 21h
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 14 in 24h
+    value: 15 in 24h
     ok: true
     note: top source agent
