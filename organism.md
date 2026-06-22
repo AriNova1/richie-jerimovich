@@ -538,27 +538,33 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 .stream { backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
 
 /* ---------- mission-control 3-column command grid ---------- */
-.cc-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-areas: "vitals voices ops"; gap: 1rem; margin-top: 1.75rem; align-items: start; }
+.cc-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "vitals ops" "voices voices"; gap: 1rem; margin-top: 1.75rem; align-items: start; }
 .cc-col { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
 .cc-col--vitals { grid-area: vitals; }
 .cc-col--voices { grid-area: voices; }
 .cc-col--ops { grid-area: ops; }
-@media (max-width: 1000px) { .cc-grid { grid-template-columns: 1fr 1fr; grid-template-areas: "vitals ops" "voices voices"; } }
 @media (max-width: 620px) { .cc-grid { grid-template-columns: 1fr; grid-template-areas: "vitals" "voices" "ops"; } }
 .cc-coltitle { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--org-mute); display: flex; align-items: center; gap: 0.6rem; }
 .cc-coltitle::after { content: ""; flex: 1; height: 1px; background: var(--org-line); }
-.cc-voices { display: flex; flex-direction: column; }
-.cc-voice { display: grid; grid-template-columns: 4.6rem 1fr; gap: 0.7rem; padding: 0.7rem 0; border-bottom: 1px solid var(--org-line-soft); align-items: baseline; }
-.cc-voice:last-child { border-bottom: 0; }
+/* the council reads as one full-width band: the orb on the left, the five
+   voices as cards on the right. No tall slab, no floating-orb dead space. */
+.cc-council { display: grid; grid-template-columns: minmax(0, 300px) 1fr; gap: clamp(1.2rem, 3vw, 2.4rem); align-items: center; }
+.cc-council__viz { display: flex; flex-direction: column; gap: 0.7rem; min-width: 0; }
+.cc-council__viz .voices-orb { max-width: none; width: 100%; margin: 0; aspect-ratio: 1 / 1; }
+.cc-council__viz .inst__note { margin: 0; }
+.cc-voices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
+.cc-voice { display: flex; flex-direction: column; gap: 0.25rem; border: 1px solid var(--org-line); border-radius: 12px; padding: 0.85rem 1rem; }
 .cc-voice__name { font-family: var(--font-display); font-weight: 700; font-size: 0.98rem; color: var(--org-ink); }
+.cc-voice--blend { border-color: var(--mood-edge); }
 .cc-voice--blend .cc-voice__name { color: var(--mood); }
-.cc-voice__role { font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sig); display: block; margin-bottom: 0.25rem; }
+.cc-voice__role { font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sig); display: block; }
 .cc-voice__line { font-size: 0.8rem; color: var(--org-soft); line-height: 1.5; }
-@media (max-width: 1000px) {
-  .cc-col--voices .cc-voices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
-  .cc-col--voices .cc-voice { grid-template-columns: 1fr; border: 1px solid var(--org-line); border-radius: 12px; padding: 0.9rem 1rem; }
+@media (max-width: 860px) { .cc-voices { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 700px) {
+  .cc-council { grid-template-columns: 1fr; }
+  .cc-council__viz .voices-orb { max-width: 300px; margin: 0 auto; }
 }
-@media (max-width: 620px) { .cc-col--voices .cc-voices { grid-template-columns: 1fr; } }
+@media (max-width: 460px) { .cc-voices { grid-template-columns: 1fr; } }
 
 @media (prefers-reduced-motion: reduce) {
   body.page-organism::before { animation: none; opacity: 0.75; }
@@ -725,21 +731,15 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
           {% endif %}
           <p class="inst__note">{% if ag.memory.facts_delta or ag.memory.gists_delta %}<b style="color:var(--mood);font-weight:400;">+{{ ag.memory.facts_delta | default: 0 }} facts, +{{ ag.memory.gists_delta | default: 0 }} gists</b> since yesterday. {% endif %}{{ ag.memory.long_term }} long-term memories it can draw on.{% if org.growth %} Knowledge mass {{ org.growth.knowledge_now }} and climbing.{% endif %}</p>
         </article>
-        <article class="inst b-failures">
-          <div class="inst__head"><span class="inst__label">failures</span><span class="inst__meta">last 24h</span></div>
-          <div class="inst__big"><span data-vital="failures.errors_24h">{{ ag.failures.errors_24h }}</span><span class="u">errors</span></div>
-          <div class="inst__row">
-            <div class="inst__kv"><b>{{ ag.failures.blocked_reads }}</b><span>blocked read</span></div>
-            <div class="inst__kv"><b>{{ ag.failures.declined_claims }}</b><span>claims refused</span></div>
-          </div>
-          <p class="inst__note">Counted, never hidden. {% if ag.failures.errors_top %}Top source: {{ ag.failures.errors_top }}.{% endif %}</p>
-        </article>
       </div>
 
       <div class="cc-col cc-col--voices">
         <p class="cc-coltitle">the five voices</p>
-        <article class="inst">
-          <div class="voices-orb" aria-hidden="true"><canvas class="voices-orb__canvas"></canvas><span class="voices-orb__tag">five voices, one blend</span></div>
+        <article class="inst cc-council">
+          <div class="cc-council__viz">
+            <div class="voices-orb" aria-hidden="true"><canvas class="voices-orb__canvas"></canvas><span class="voices-orb__tag">five voices, one blend</span></div>
+            <p class="inst__note">A persona framework in the agent's prompt, not five separate models.</p>
+          </div>
           <div class="cc-voices">
             <div class="cc-voice"><span class="cc-voice__name">Richie</span><span><span class="cc-voice__role">heart / loyalty</span><span class="cc-voice__line">"Cuz" means you are family now. Shows up at 2 AM because he knows that darkness.</span></span></div>
             <div class="cc-voice"><span class="cc-voice__name">Mike</span><span><span class="cc-voice__role">angle / research</span><span class="cc-voice__line">Finds the side door because he was never allowed through the front. Makes hard look effortless.</span></span></div>
@@ -748,7 +748,6 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
             <div class="cc-voice"><span class="cc-voice__name">Sean</span><span><span class="cc-voice__role">truth / diagnosis</span><span class="cc-voice__line">You cannot talk someone out of a fortress they built. Asks the hard question.</span></span></div>
             <div class="cc-voice cc-voice--blend"><span class="cc-voice__name">Blend</span><span><span class="cc-voice__role">emergent</span><span class="cc-voice__line">When they disagree, the vote goes to growth, not the easy answer. They do not announce the shift.</span></span></div>
           </div>
-          <p class="inst__note">A persona framework in the agent's prompt, not five separate models.</p>
         </article>
       </div>
 
@@ -775,6 +774,15 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
             <div class="inst__kv"><b data-vital="work.ok_24h">{{ ag.work.ok_24h }}</b><span>finished clean</span></div>
           </div>
           <p class="inst__note">Recurring work without a prompt. Detail below.</p>
+        </article>
+        <article class="inst b-failures">
+          <div class="inst__head"><span class="inst__label">failures</span><span class="inst__meta">last 24h</span></div>
+          <div class="inst__big"><span data-vital="failures.errors_24h">{{ ag.failures.errors_24h }}</span><span class="u">errors</span></div>
+          <div class="inst__row">
+            <div class="inst__kv"><b>{{ ag.failures.blocked_reads }}</b><span>blocked read</span></div>
+            <div class="inst__kv"><b>{{ ag.failures.declined_claims }}</b><span>claims refused</span></div>
+          </div>
+          <p class="inst__note">Counted, never hidden. {% if ag.failures.errors_top %}Top source: {{ ag.failures.errors_top }}.{% endif %}</p>
         </article>
         <div class="stream" aria-label="Recent agent activity">
           <div class="stream__head">
