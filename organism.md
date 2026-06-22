@@ -304,7 +304,7 @@ a.reflection__title:hover { color: var(--sig); }
 .mgauge__track { fill: none; stroke: rgba(255,255,255,0.07); stroke-width: 7; }
 .mgauge__val { fill: none; stroke: var(--sig); stroke-width: 7; stroke-linecap: round; transition: stroke-dasharray 0.7s cubic-bezier(0.4,0,0.2,1); filter: drop-shadow(0 0 4px var(--sig-edge)); }
 .mgauge__num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; color: var(--org-ink); line-height: 1; }
-.mgauge__num .u { font-size: 0.5em; color: var(--org-mute); margin-left: 0.05em; align-self: flex-start; margin-top: 0.35em; }
+.mgauge__num .u { font-size: 0.5em; color: var(--org-mute); margin-left: 0.06em; transform: translateY(-0.5em); }
 .mgauge__cap { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--org-ink); margin-top: 0.55rem; }
 .mgauge__sub { font-family: var(--font-mono); font-size: 0.56rem; color: var(--org-mute); margin-top: 0.15rem; text-align: center; }
 .mgauge__sub b { color: var(--sig); font-weight: 400; }
