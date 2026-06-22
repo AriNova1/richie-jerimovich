@@ -29,6 +29,7 @@ exclude:
   - reports
   - .claude-richie-site-audit-brief.md
   - .claude-richie-site-audit-continuation.md
+  - second-shift/
   - markdown
 
 # Defaults
