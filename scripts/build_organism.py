@@ -214,9 +214,12 @@ def build_organism():
     # ---- activity (git) ----
     commit_total = int(git("rev-list", "--count", "HEAD") or 0)
     since = (TODAY - timedelta(days=WINDOW)).isoformat()
+    # Bucket commits by UTC calendar day (%cI carries the offset), so the series
+    # and streak share one timezone with last_commit / recency / the heartbeat.
+    # Using local %cd here desynced the latest bar from "since last heartbeat".
     commit_days = [
-        parse_day(s)
-        for s in git("log", f"--since={since}", "--date=short", "--format=%cd").splitlines()
+        datetime.fromisoformat(s).astimezone(timezone.utc).date()
+        for s in git("log", f"--since={since}", "--format=%cI").splitlines()
         if s
     ]
     commits_series = day_buckets(commit_days)
@@ -239,8 +242,11 @@ def build_organism():
     last_dt = datetime.fromisoformat(last_iso) if last_iso else NOW
     last_dt = last_dt.astimezone(timezone.utc)
     last_subject = git("log", "-1", "--format=%s")
-    first_day = git("log", "--max-parents=0", "--date=short", "--format=%cd").splitlines()
-    first_day = parse_day(first_day[-1]) if first_day else TODAY
+    first_iso = git("log", "--max-parents=0", "--format=%cI").splitlines()
+    first_day = (
+        datetime.fromisoformat(first_iso[-1]).astimezone(timezone.utc).date()
+        if first_iso else TODAY
+    )
     age_days = (TODAY - first_day).days
 
     line, area, heights, head_x, head_y = spark_geometry(commits_series)
@@ -262,6 +268,8 @@ def build_organism():
     timeline = load_yaml("timeline.yml") or []
     published = len(receipts)
     declined = sum(1 for t in timeline if t.get("status") == "declined")
+    kept = sum(1 for t in timeline if t.get("status") == "receipt")
+    claims = kept + declined  # commits that were adjudicated: kept (receipted) or refused
     ledger_total = len(timeline)
 
     # ---- reading (from committed snapshot, so this also works in CI) ----
@@ -328,7 +336,7 @@ def build_organism():
         },
         {
             "label": "Receipt discipline",
-            "value": f"declined {declined} of {ledger_total}",
+            "value": f"declined {declined} of {claims}",
             "ok": discipline_ok,
             "note": "publishes its refusals",
         },
@@ -372,9 +380,11 @@ def build_organism():
         },
         "receipts": {
             "published": published,
+            "kept": kept,
             "declined": declined,
+            "claims": claims,
             "ledger_total": ledger_total,
-            "decline_pct": round(declined / ledger_total * 100) if ledger_total else 0,
+            "decline_pct": round(declined / claims * 100) if claims else 0,
         },
         "reading": {
             "read": r_read,
@@ -431,9 +441,10 @@ def _gateway_uptime(pid, now=None):
         ).stdout.strip()
         if not out:
             return None, None
-        started = datetime.strptime(out, "%a %b %d %H:%M:%S %Y").replace(
-            tzinfo=timezone.utc
-        )
+        # ps -o lstart prints LOCAL time with no offset; interpret it as local
+        # (astimezone on a naive dt assumes the system tz) and convert to real
+        # UTC, so both the published ISO and the uptime are correct.
+        started = datetime.strptime(out, "%a %b %d %H:%M:%S %Y").astimezone(timezone.utc)
         return started.strftime("%Y-%m-%dT%H:%M:%SZ"), rel_age(started, now)
     except Exception:
         return None, None
@@ -482,14 +493,18 @@ def _machine_vitals():
     except Exception:
         pass
 
-    # Disk: macOS-authoritative Capacity% from df; container size for the total.
+    # Disk: real container fullness. `df /` on macOS reads the sealed read-only
+    # system volume (~half empty and misleading); the machine's real free space
+    # lives on the shared APFS Data volume, so read that and report used as
+    # size - available (how full the disk actually is), not a fabricated figure.
     try:
-        cols = _sh(["df", "-k", "/"]).strip().splitlines()[-1].split()
-        size_gb = int(cols[1]) / 1024 ** 2
-        cap = int(cols[4].rstrip("%"))
-        mv["disk_total_gb"] = round(size_gb)
-        mv["disk_pct"] = max(0, min(100, cap))
-        mv["disk_used_gb"] = round(size_gb * cap / 100)
+        cols = _sh(["df", "-k", "/System/Volumes/Data"]).strip().splitlines()[-1].split()
+        size_kb = int(cols[1])
+        avail_kb = int(cols[3])
+        used_kb = max(0, size_kb - avail_kb)
+        mv["disk_total_gb"] = round(size_kb / 1024 ** 2)
+        mv["disk_used_gb"] = round(used_kb / 1024 ** 2)
+        mv["disk_pct"] = max(0, min(100, round(used_kb / size_kb * 100)))
     except Exception:
         pass
 
@@ -666,7 +681,7 @@ def collect_agent_vitals():
     failures = {"errors_24h": 0, "errors_top": None, "blocked_reads": 0}
     elog = os.path.join(HERMES, "logs/errors.log")
     if os.path.exists(elog):
-        cut = now.replace(tzinfo=None) - timedelta(hours=24)
+        cut = now - timedelta(hours=24)   # now is UTC-aware
         mods = {}
         try:
             with open(elog, errors="ignore") as f:
@@ -675,12 +690,16 @@ def collect_agent_vitals():
                     if not m or " ERROR " not in line:
                         continue
                     try:
-                        ts = datetime.strptime(m.group(1), "%Y-%m-%d %H:%M:%S")
+                        # log timestamps are naive LOCAL; make them UTC-aware so
+                        # the 24h window is not skewed by the tz offset.
+                        ts = datetime.strptime(m.group(1), "%Y-%m-%d %H:%M:%S").astimezone(timezone.utc)
                     except ValueError:
                         continue
                     if ts >= cut:
                         failures["errors_24h"] += 1
-                        mm = re.search(r"\] ([\w.]+):", line)
+                        # module may follow a [bracket] or sit right after ERROR
+                        # (e.g. "ERROR cron.scheduler:") — match both forms.
+                        mm = re.search(r"ERROR (?:\[[^\]]*\] )?([\w.]+):", line)
                         if mm:
                             k = mm.group(1).split(".")[0]
                             mods[k] = mods.get(k, 0) + 1
@@ -771,10 +790,19 @@ def collect_agent_vitals():
     else:
         verdict, basis = "degraded", "a core signal is offline or failing"
 
+    # last commit (UTC) so the heartbeat counter can re-anchor on the live poll
+    # instead of counting up forever from the build-time value.
+    _lc = git("log", "-1", "--format=%cI")
+    try:
+        last_commit_iso = datetime.fromisoformat(_lc).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ") if _lc else None
+    except Exception:
+        last_commit_iso = None
+
     return {
         "schema": 1,
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
         "generated_at_iso": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "last_commit_iso": last_commit_iso,
         "runtime": runtime,
         "system": _machine_vitals(),
         "memory": memory,
