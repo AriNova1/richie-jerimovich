@@ -4,16 +4,16 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-06-22 06:05 UTC
-generated_at_iso: '2026-06-22T06:05:29Z'
-last_commit_iso: '2026-06-22T04:16:24Z'
+generated_at: 2026-06-22 18:54 UTC
+generated_at_iso: '2026-06-22T18:54:51Z'
+last_commit_iso: '2026-06-22T18:12:23Z'
 runtime:
   model: MiniMax-M3
   model_provider: custom
   fallback_model: kimi-k2.6
   gateway_state: online
   gateway_started_iso: '2026-06-22T00:04:05Z'
-  gateway_uptime: 6h
+  gateway_uptime: 18h
   active_agents: 0
   now_responding: false
   channels:
@@ -31,43 +31,43 @@ runtime:
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 1.57
-  load_pct: 16
+  load_1m: 3.87
+  load_pct: 39
   mem_total_gb: 16.0
-  mem_used_gb: 12.6
-  mem_pct: 79
+  mem_used_gb: 12.5
+  mem_pct: 78
   disk_total_gb: 228
   disk_used_gb: 216
   disk_pct: 95
 memory:
-  facts: 2251
-  gists: 1678
-  working: 717
-  kg_edges: 2260
+  facts: 2262
+  gists: 1721
+  working: 760
+  kg_edges: 2271
   long_term: 106
-  consolidated: 247
-  total: 3929
+  consolidated: 258
+  total: 3983
   bars:
   - label: knowledge graph
-    value: 2260
+    value: 2271
     pct: 100
   - label: facts
-    value: 2251
+    value: 2262
     pct: 100
   - label: gists
-    value: 1678
-    pct: 74
+    value: 1721
+    pct: 76
   - label: working set
-    value: 717
-    pct: 32
-  facts_delta: 5
-  kg_edges_delta: 5
-  gists_delta: 15
+    value: 760
+    pct: 33
+  facts_delta: 16
+  kg_edges_delta: 16
+  gists_delta: 58
 work:
   loops_total: 23
   loops_active: 18
-  ran_24h: 14
-  ok_24h: 13
+  ran_24h: 13
+  ok_24h: 10
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -95,7 +95,7 @@ work:
     status: error
   - name: Reading session
     cadence: daily
-    status: ok
+    status: error
   - name: Deep writing workshop
     cadence: weekly
     status: ok
@@ -106,59 +106,59 @@ work:
     cadence: every 6h
     status: ok
 failures:
-  errors_24h: 8
-  errors_top: cron
+  errors_24h: 14
+  errors_top: agent
   blocked_reads: 1
   declined_claims: 45
 events:
+- kind: ship
+  text: 'fix(organism): gauge percent sign was detached from the number'
+  rel: 42m
+- kind: ship
+  text: 'fix(organism): type-hierarchy + lead with the plain pitch'
+  rel: 50m
 - kind: loop
   text: Session insight extraction ok
-  rel: 5m
-- kind: loop
-  text: Reading session ok
-  rel: 29m
+  rel: 54m
 - kind: loop
   text: Inbox watchdog ok
   rel: 1h
-- kind: loop
-  text: Site stewardship ok
-  rel: 1h
 - kind: ship
-  text: 'stewardship: nightly refresh (Jun 21) + 2 merged organism rece'
-  rel: 1h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 2h
+  text: 'fix(organism): audit remediation — correctness, a11y, responsi'
+  rel: 3h
 - kind: loop
-  text: Evening digest ok
+  text: Reading session error
   rel: 4h
 - kind: loop
-  text: Wiki synthesis ok
+  text: Contradiction detector ok
   rel: 4h
-- kind: ship
-  text: 'feat(organism): cinematic background plate + power-on boot seq'
-  rel: 7h
-- kind: ship
-  text: 'feat(organism): crisp galaxy + a living five-voices council'
-  rel: 9h
-- kind: loop
-  text: Deep writing workshop ok
-  rel: 9h
-- kind: ship
-  text: 'feat(organism): knowledge-graph constellation in the memory ca'
-  rel: 11h
-- kind: ship
-  text: 'feat(organism): frame the hero as a console viewport + module-'
-  rel: 11h
-- kind: ship
-  text: 'feat(organism): live machine vitals (CPU load, memory, disk ga'
-  rel: 11h
 - kind: loop
   text: Inbox digest ok
-  rel: 17h
+  rel: 5h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 10h
+- kind: session
+  text: active on Telegram (dm)
+  rel: 10h
 - kind: loop
-  text: Communication doctrine ok
+  text: Site stewardship ok
+  rel: 14h
+- kind: ship
+  text: 'stewardship: nightly refresh (Jun 21) + 2 merged organism rece'
+  rel: 14h
+- kind: loop
+  text: Evening digest ok
+  rel: 16h
+- kind: loop
+  text: Wiki synthesis ok
+  rel: 16h
+- kind: ship
+  text: 'feat(organism): cinematic background plate + power-on boot seq'
   rel: 20h
+- kind: ship
+  text: 'feat(organism): crisp galaxy + a living five-voices council'
+  rel: 22h
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -166,12 +166,12 @@ health:
   - label: Gateway
     value: online
     ok: true
-    note: up 6h
+    note: up 18h
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 8 in 24h
+    value: 14 in 24h
     ok: true
-    note: top source cron
+    note: top source agent

@@ -246,6 +246,12 @@ body.page-organism > footer {
 .voices-orb { position: relative; width: 100%; max-width: 340px; margin: 0 auto 0.9rem; aspect-ratio: 5 / 4; }
 .voices-orb__canvas { width: 100%; height: 100%; display: block; }
 .voices-orb__tag { position: absolute; left: 50%; transform: translateX(-50%); bottom: 0; font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--org-mute); }
+.grow { margin-top: 0.85rem; }
+.grow__head { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--org-mute); margin-bottom: 0.35rem; }
+.grow__head b { color: var(--sig); font-weight: 400; }
+.grow__plot { width: 100%; height: 40px; display: block; }
+.grow__area { fill: var(--sig-wash); }
+.grow__line { fill: none; stroke: var(--sig); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 4px var(--sig-edge)); }
 .membars { display: flex; flex-direction: column; gap: 0.6rem; }
 .membar { display: grid; grid-template-columns: 6.5rem 1fr auto; gap: 0.7rem; align-items: center; }
 .membar__label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--org-mute); }
@@ -708,7 +714,16 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
             </div>
             {% endfor %}
           </div>
-          <p class="inst__note">{% if ag.memory.facts_delta or ag.memory.gists_delta %}<b style="color:var(--mood);font-weight:400;">+{{ ag.memory.facts_delta | default: 0 }} facts, +{{ ag.memory.gists_delta | default: 0 }} gists</b> since yesterday. {% endif %}{{ ag.memory.long_term }} long-term memories it can draw on.</p>
+          {% if org.growth %}
+          <div class="grow">
+            <div class="grow__head"><span>knowledge, growing</span><span><b>+{{ org.growth.knowledge_gain }}</b> since {{ org.growth.start_date | date: "%b %-d" }}</span></div>
+            <svg class="grow__plot" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+              <polygon class="grow__area" points="{{ org.growth.area_points }}"></polygon>
+              <polyline class="grow__line" points="{{ org.growth.line_points }}"></polyline>
+            </svg>
+          </div>
+          {% endif %}
+          <p class="inst__note">{% if ag.memory.facts_delta or ag.memory.gists_delta %}<b style="color:var(--mood);font-weight:400;">+{{ ag.memory.facts_delta | default: 0 }} facts, +{{ ag.memory.gists_delta | default: 0 }} gists</b> since yesterday. {% endif %}{{ ag.memory.long_term }} long-term memories it can draw on.{% if org.growth %} Knowledge mass {{ org.growth.knowledge_now }} and climbing.{% endif %}</p>
         </article>
         <article class="inst b-failures">
           <div class="inst__head"><span class="inst__label">failures</span><span class="inst__meta">last 24h</span></div>

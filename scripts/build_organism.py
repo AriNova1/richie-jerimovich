@@ -202,6 +202,25 @@ def spark_geometry(series, w=1000.0, h=120.0, pad=6.0):
     return line, area, heights, head_x, head_y
 
 
+def growth_geometry(series, w=1000.0, h=120.0, pad=8.0):
+    """Polyline + area for a growth curve, scaled to the series' own min..max so
+    the rise fills the frame. Memory counts are large in absolute terms; what
+    reads as 'becoming' is the change, so we zoom the y-axis to the change."""
+    n = len(series)
+    lo, hi = min(series), max(series)
+    rng = (hi - lo) or 1
+    step = w / (n - 1) if n > 1 else w
+    pts = [
+        f"{round(i * step, 1)},{round(h - pad - ((v - lo) / rng) * (h - 2 * pad), 1)}"
+        for i, v in enumerate(series)
+    ]
+    line = " ".join(pts)
+    area = f"0,{h} " + line + f" {round((n - 1) * step, 1)},{h}"
+    head_x = round((n - 1) * step, 1)
+    head_y = round(h - pad - ((series[-1] - lo) / rng) * (h - 2 * pad), 1)
+    return line, area, head_x, head_y
+
+
 def load_yaml(name):
     p = os.path.join(DATA, name)
     if not os.path.exists(p):
@@ -349,6 +368,35 @@ def build_organism():
     else:
         verdict, basis = "degraded", "a core signal is stale or failing"
 
+    # ---- growth: the agent's knowledge mass (facts + graph edges) climbing
+    # over time, from the daily history snapshots. Sparse at first (history began
+    # 2026-06-19) and compounds; the page frames it honestly as "since tracking
+    # began". None until there are >=2 points to draw a line. ----
+    hist = sorted(
+        [h for h in (load_yaml("organism_history.yml") or []) if h.get("date")],
+        key=lambda r: r["date"],
+    )
+    km = [
+        (r.get("facts") or 0) + (r.get("kg_edges") or 0)
+        for r in hist
+        if r.get("facts") is not None and r.get("kg_edges") is not None
+    ]
+    fseries = [r["facts"] for r in hist if r.get("facts") is not None]
+    growth = None
+    if len(km) >= 2:
+        g_line, g_area, g_hx, g_hy = growth_geometry(km)
+        growth = {
+            "line_points": g_line,
+            "area_points": g_area,
+            "head_x": g_hx,
+            "head_y": g_hy,
+            "days": len(km),
+            "start_date": hist[0]["date"],
+            "knowledge_now": km[-1],
+            "knowledge_gain": km[-1] - km[0],
+            "facts_gain": (fseries[-1] - fseries[0]) if len(fseries) >= 2 else 0,
+        }
+
     out = {
         "generated_at": NOW.strftime("%Y-%m-%d %H:%M UTC"),
         "generated_at_iso": NOW.strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -401,6 +449,7 @@ def build_organism():
             "pct": load_pct,
             "level": load_level,
         },
+        "growth": growth,
     }
     write_yaml(
         "organism.yml",

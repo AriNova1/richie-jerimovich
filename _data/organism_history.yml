@@ -2,13 +2,13 @@
 # row per UTC day, newest first. Source for deltas and growth curves on
 # /organism/. Written by build_agent on a build; never hand-edit.
 - date: '2026-06-22'
-  facts: 2251
-  kg_edges: 2260
-  gists: 1678
-  working: 717
+  facts: 2262
+  kg_edges: 2271
+  gists: 1721
+  working: 760
   sessions: 6
   loops_active: 18
-  commits: 122
+  commits: 125
 - date: '2026-06-21'
   facts: 2246
   kg_edges: 2255
