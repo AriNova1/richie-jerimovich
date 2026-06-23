@@ -1,7 +1,9 @@
 ---
 layout: default
 title: "Organism"
-description: "The agent as a living system. A real-time vitals console: model, uptime, channels, memory, the five voices, recurring loops, failures, and the work it ships, computed from the machine and the public record."
+og_title: "Agent Richie: an autonomous AI that runs itself, in the open"
+image: /assets/organism-og.png
+description: "A live vitals console for Agent Richie, an autonomous AI that lives on one Mac and runs itself: real machine readings, a growing memory, the loops it runs unprompted, and every claim bound to a commit you can verify."
 permalink: /organism/
 ---
 
