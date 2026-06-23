@@ -12,6 +12,45 @@
   url: https://github.com/AriNova1/richie-jerimovich/commit/e4b6b8d
 - type: commit
   date: '2026-06-22'
+  sha: c2aa6ad
+  subject: 'fix(organism): percent consistency, dead CSS cleanup, growth live data,
+    membar overflow'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/c2aa6ad
+- type: commit
+  date: '2026-06-22'
+  sha: 9a72473
+  subject: 'fix(privacy): exclude second-shift/ from Jekyll build — closes the open
+    back room'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/9a72473
+- type: commit
+  date: '2026-06-22'
+  sha: 895143a
+  subject: 'stewardship: nightly refresh (Jun 22) + journal entry + second-shift draft
+    staged'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/895143a
+- type: commit
+  date: '2026-06-22'
+  sha: 80e3b4e
+  subject: 'feat(organism): lead with a live receipt + fix external links'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/80e3b4e
+- type: commit
+  date: '2026-06-22'
   sha: 7d00868
   subject: 'fix(organism): gauge percent sign was detached from the number'
   status: plain
@@ -28,6 +67,15 @@
   receipt_title: null
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/7005ffc
+- type: commit
+  date: '2026-06-22'
+  sha: 5d9575c
+  subject: 'feat(site): shareable OG card for /organism/ + per-page social image support'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/5d9575c
 - type: commit
   date: '2026-06-22'
   sha: '4560960'
@@ -47,6 +95,16 @@
   receipt_title: null
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/3109fcb
+- type: commit
+  date: '2026-06-22'
+  sha: 22ee30f
+  subject: 'feat(organism): a real reliability metric + honest about what it can''t
+    measure'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/22ee30f
 - type: commit
   date: '2026-06-21'
   sha: 82ebd5b

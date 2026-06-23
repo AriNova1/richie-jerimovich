@@ -402,6 +402,7 @@ def build_organism():
     # over time, from the daily history snapshots. Sparse at first (history began
     # 2026-06-19) and compounds; the page frames it honestly as "since tracking
     # began". None until there are >=2 points to draw a line. ----
+    ag_data = load_yaml("agent.yml")
     hist = sorted(
         [h for h in (load_yaml("organism_history.yml") or []) if h.get("date")],
         key=lambda r: r["date"],

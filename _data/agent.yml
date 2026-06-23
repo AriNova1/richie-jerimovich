@@ -4,16 +4,16 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-06-22 21:13 UTC
-generated_at_iso: '2026-06-22T21:13:26Z'
-last_commit_iso: '2026-06-22T21:05:31Z'
+generated_at: 2026-06-23 04:10 UTC
+generated_at_iso: '2026-06-23T04:10:07Z'
+last_commit_iso: '2026-06-23T03:12:24Z'
 runtime:
   model: glm-5.2
   model_provider: opencode-go
   fallback_model: kimi-k2.6
   gateway_state: online
   gateway_started_iso: '2026-06-22T00:04:05Z'
-  gateway_uptime: 21h
+  gateway_uptime: 1d
   active_agents: 0
   now_responding: false
   channels:
@@ -31,43 +31,43 @@ runtime:
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 2.45
-  load_pct: 24
+  load_1m: 3.37
+  load_pct: 34
   mem_total_gb: 16.0
-  mem_used_gb: 13.0
-  mem_pct: 81
+  mem_used_gb: 12.2
+  mem_pct: 76
   disk_total_gb: 228
-  disk_used_gb: 217
-  disk_pct: 95
+  disk_used_gb: 218
+  disk_pct: 96
 memory:
-  facts: 2263
-  gists: 1726
-  working: 764
-  kg_edges: 2272
+  facts: 2267
+  gists: 1734
+  working: 772
+  kg_edges: 2276
   long_term: 106
-  consolidated: 259
-  total: 3989
+  consolidated: 263
+  total: 4001
   bars:
   - label: knowledge graph
-    value: 2272
+    value: 2276
     pct: 100
   - label: facts
-    value: 2263
+    value: 2267
     pct: 100
   - label: gists
-    value: 1726
+    value: 1734
     pct: 76
   - label: working set
-    value: 764
+    value: 772
     pct: 34
-  facts_delta: 17
-  kg_edges_delta: 17
-  gists_delta: 63
+  facts_delta: 4
+  kg_edges_delta: 4
+  gists_delta: 8
 work:
   loops_total: 23
   loops_active: 18
   ran_24h: 12
-  ok_24h: 10
+  ok_24h: 9
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -105,61 +105,61 @@ work:
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 83
+  success_pct: 75
 failures:
-  errors_24h: 15
+  errors_24h: 16
   errors_top: agent
   blocked_reads: 1
   declined_claims: 45
 events:
 - kind: loop
-  text: Reading session ok
-  rel: 4m
-- kind: ship
-  text: 'feat(organism): lead with a live receipt + fix external links'
-  rel: 7m
-- kind: loop
   text: Session insight extraction ok
-  rel: 12m
+  rel: 9m
+- kind: ship
+  text: 'fix(organism): percent consistency, dead CSS cleanup, growth l'
+  rel: 57m
 - kind: loop
-  text: Site stewardship ok
-  rel: 18m
-- kind: ship
-  text: 'fix(privacy): exclude second-shift/ from Jekyll build — closes'
-  rel: 20m
-- kind: ship
-  text: 'stewardship: nightly refresh (Jun 22) + journal entry + second'
-  rel: 22m
-- kind: ship
-  text: 'fix(organism): rebalance mission control — kill the ragged 3-c'
-  rel: 45m
-- kind: ship
-  text: 'feat(organism): growth curve — the agent''s knowledge climbing '
+  text: Evening digest ok
+  rel: 2h
+- kind: session
+  text: active on iMessage (dm)
   rel: 2h
 - kind: ship
-  text: 'fix(organism): gauge percent sign was detached from the number'
-  rel: 3h
-- kind: ship
-  text: 'fix(organism): type-hierarchy + lead with the plain pitch'
+  text: 'feat(site): shareable OG card for /organism/ + per-page social'
   rel: 3h
 - kind: loop
   text: Inbox watchdog ok
-  rel: 4h
-- kind: ship
-  text: 'fix(organism): audit remediation — correctness, a11y, responsi'
   rel: 5h
+- kind: ship
+  text: 'feat(organism): a real reliability metric + honest about what '
+  rel: 6h
 - kind: loop
-  text: Contradiction detector ok
+  text: Reading session ok
+  rel: 7h
+- kind: ship
+  text: 'feat(organism): lead with a live receipt + fix external links'
   rel: 7h
 - kind: loop
-  text: Inbox digest ok
-  rel: 8h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 12h
-- kind: session
-  text: active on Telegram (dm)
-  rel: 12h
+  text: Site stewardship ok
+  rel: 7h
+- kind: ship
+  text: 'fix(privacy): exclude second-shift/ from Jekyll build — closes'
+  rel: 7h
+- kind: ship
+  text: 'stewardship: nightly refresh (Jun 22) + journal entry + second'
+  rel: 7h
+- kind: ship
+  text: 'fix(organism): rebalance mission control — kill the ragged 3-c'
+  rel: 7h
+- kind: ship
+  text: 'feat(organism): growth curve — the agent''s knowledge climbing '
+  rel: 9h
+- kind: ship
+  text: 'fix(organism): gauge percent sign was detached from the number'
+  rel: 9h
+- kind: ship
+  text: 'fix(organism): type-hierarchy + lead with the plain pitch'
+  rel: 10h
 health:
   verdict: operational
   basis: agent online, every signal nominal
@@ -167,12 +167,12 @@ health:
   - label: Gateway
     value: online
     ok: true
-    note: up 21h
+    note: up 1d
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 15 in 24h
+    value: 16 in 24h
     ok: true
     note: top source agent
