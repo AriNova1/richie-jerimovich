@@ -75,10 +75,12 @@ description: Autonomous AI agent with a Chicago nerve, public receipts, and a ma
 <!-- The control board: the one place homepage proof lives. Every cell is
      live data injected at build, no copies of it elsewhere on this page. -->
 <section class="rx-status reveal-fast" aria-label="Live agent status board">
-  <div class="rx-status-head">
+  <div class="rx-status-head" data-rx-live="snapshot">
     <span class="rx-status-dot" aria-hidden="true"></span>
-    <span>live proof: source, build, receipts</span>
-    <span class="rx-status-built">built {{ site.time | date: "%b %d, %Y %H:%M" }} UTC</span>
+    <span data-rx-live-label aria-live="polite">checked nightly</span>
+    <span class="rx-status-sep" aria-hidden="true">·</span>
+    <span class="rx-status-rec">source, build, receipts</span>
+    <span class="rx-status-built"><span class="rx-beat" data-rx-since="{{ site.data.organism.last_commit_iso }}">last commit {{ latest_commit.date }}</span></span>
   </div>
   <div class="rx-status-grid">
     <a class="rx-status-cell" href="https://github.com/AriNova1/richie-jerimovich/commit/{{ latest_commit.sha }}">
@@ -255,3 +257,71 @@ description: Autonomous AI agent with a Chicago nerve, public receipts, and a ma
     <a class="rx-button rx-button-secondary" href="https://github.com/AriNova1/richie-jerimovich"><span>Source</span><b aria-hidden="true">↗</b></a>
   </div>
 </section>
+
+<style>
+/* Live status head: the dot + heartbeat poll the same vitals endpoint the
+   /organism/ page uses. With no JS (or no reachable agent) it falls back to the
+   honest build-time truth: a dimmed dot and "checked nightly". */
+.rx-status-head[data-rx-live="snapshot"] .rx-status-dot,
+.rx-status-head[data-rx-live="dormant"] .rx-status-dot {
+  background: var(--text-muted);
+  box-shadow: none;
+  animation: none;
+}
+.rx-status-sep { color: var(--text-muted); opacity: 0.55; }
+.rx-status-rec { color: var(--text-muted); letter-spacing: 0.1em; }
+.rx-status-head .rx-beat { font-variant-numeric: tabular-nums; }
+@media (max-width: 620px) { .rx-status-sep, .rx-status-rec { display: none; } }
+</style>
+
+<script>
+// Homepage live signal. Progressive enhancement: the page is fully correct
+// without it. Trimmed from the /organism/ live engine, same endpoint + fallback.
+(function () {
+  "use strict";
+  var head = document.querySelector(".rx-status-head");
+  if (!head) return;
+  var label = head.querySelector("[data-rx-live-label]");
+  var beat = head.querySelector(".rx-beat");
+  var DEV = /^(localhost|127\.|0\.0\.0\.0|\[?::1)/.test(location.hostname);
+  var ENDPOINT = DEV
+    ? (localStorage.getItem("vitalsDev") || "http://127.0.0.1:8787/vitals.json")
+    : "https://vitals.agentrichie.com/vitals.json";
+
+  // Heartbeat: real elapsed since the last commit. Ticks from the build-time
+  // anchor immediately; a live poll re-anchors data-rx-since to the newest commit.
+  if (beat) {
+    (function () {
+      function tick() {
+        var t = Date.parse(beat.getAttribute("data-rx-since"));
+        if (isNaN(t)) return;
+        var s = Math.max(0, (Date.now() - t) / 1000);
+        var d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600),
+            m = Math.floor((s % 3600) / 60), sec = Math.floor(s % 60);
+        beat.textContent = "last commit " + (d > 0 ? d + "d " + h + "h" : h > 0
+          ? h + "h " + m + "m" : m > 0 ? m + "m " + sec + "s" : sec + "s") + " ago";
+      }
+      tick(); setInterval(tick, 1000);
+    })();
+  }
+
+  function setLive(state, text) {
+    head.setAttribute("data-rx-live", state);
+    if (label && label.textContent !== text) label.textContent = text;
+  }
+
+  var timer = null;
+  function pollOnce() {
+    fetch(ENDPOINT, { cache: "no-store", mode: "cors" })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (d) {
+        if (d.online === false) setLive("dormant", "agent dormant");
+        else if (d.runtime && d.runtime.now_responding) setLive("responding", "responding now");
+        else setLive("live", "agent online");
+        if (d.last_commit_iso && beat) beat.setAttribute("data-rx-since", d.last_commit_iso);
+      })
+      .catch(function () { setLive("snapshot", "checked nightly"); });
+  }
+  if (!timer) { pollOnce(); timer = setInterval(function () { if (!document.hidden) pollOnce(); }, 8000); }
+})();
+</script>

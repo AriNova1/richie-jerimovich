@@ -390,6 +390,17 @@ a.org-organ:hover { border-color: var(--sig-edge); transform: translateY(-3px); 
 .org-close { margin-top: clamp(2.5rem, 6vw, 4rem); padding-top: 2rem; border-top: 1px solid var(--org-line); font-family: var(--font-mono); font-size: 0.74rem; color: var(--org-mute); line-height: 2; }
 .org-close b { color: var(--sig); font-weight: 400; }
 
+/* closing signature: the takeaway beat + the return hook (a live clock makes
+   "it will have moved" literally true, not a slogan) */
+.org-signoff .org-wrap { max-width: 760px; }
+.signoff { text-align: center; }
+.signoff__eyebrow { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sig); }
+.signoff__big { font-family: var(--font-display); font-size: clamp(1.55rem, 1rem + 2.6vw, 2.5rem); line-height: 1.18; letter-spacing: -0.015em; color: var(--org-ink); margin-top: 0.9rem; text-wrap: balance; }
+.signoff__big b { color: var(--sig); font-weight: 800; }
+.signoff__sub { max-width: 56ch; margin: 1.1rem auto 0; color: var(--org-mute); font-size: 0.98rem; line-height: 1.66; }
+.signoff__hook { margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.02em; line-height: 1.75; color: var(--org-soft); }
+.signoff__beat { color: var(--sig); font-variant-numeric: tabular-nums; }
+
 /* ============================ live layer ============================ */
 /* materiality: a faint scanline + vignette over the whole console so it reads
    like a lit panel, not a flat page. cheap, static, behind everything. */
@@ -1024,6 +1035,17 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   </div>
 </section>
 
+<section class="org-sec org-signoff" aria-labelledby="org-signoff-h">
+  <div class="org-wrap">
+    <div class="signoff reveal-fast">
+      <p class="signoff__eyebrow">the takeaway</p>
+      <p class="signoff__big" id="org-signoff-h">It refused a public receipt on <b>{{ org.receipts.decline_pct }}%</b> of its own claims.</p>
+      <p class="signoff__sub">Most systems show you only their wins. This one publishes what it would not let itself claim. Everything above was read off one Mac, live, while it kept working: {{ ag.runtime.channels_online }} of {{ ag.runtime.channels_total }} channels open, {{ ag.memory.facts }} facts in memory.</p>
+      <p class="signoff__hook">Bookmark it. <span class="org-beat signoff__beat" data-since="{{ org.last_commit_iso }}" data-beat-tpl="It last moved {t} ago">It last moved moments ago</span>, and it will have moved again before you come back.</p>
+    </div>
+  </div>
+</section>
+
 <section class="org-sec" aria-labelledby="org-channels">
   <div class="org-wrap">
     <header class="reveal-fast">
@@ -1181,8 +1203,9 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       if (pillLabel) pillLabel.textContent = live ? (d.online === false ? "dormant" : "live") : "snapshot";
     }
     if (live && d.last_commit_iso) {
-      var beat = document.querySelector(".org-beat");
-      if (beat) beat.setAttribute("data-since", d.last_commit_iso);   // re-anchor heartbeat on live poll
+      document.querySelectorAll(".org-beat").forEach(function (b) {
+        b.setAttribute("data-since", d.last_commit_iso);   // re-anchor every heartbeat readout on live poll
+      });
     }
     core.sync(d);
   }
@@ -1195,18 +1218,26 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     start: function () { if (window.OrganismCore) window.OrganismCore.start(); },
   };
 
-  /* ---- heartbeat: real elapsed since last commit (immutable anchor) ---- */
+  /* ---- heartbeat: real elapsed since last commit (immutable anchor). Any
+     number of readouts can subscribe via .org-beat; an optional data-beat-tpl
+     supplies custom phrasing ("{t}" is the elapsed time), else the hero wording. ---- */
   (function () {
-    var el = document.querySelector(".org-beat");
-    if (!el) return;
-    function tick() {
-      var t = Date.parse(el.getAttribute("data-since"));   // re-read so a live poll can re-anchor it
-      if (isNaN(t)) return;
-      var s = Math.max(0, (Date.now() - t) / 1000);
+    var els = document.querySelectorAll(".org-beat");
+    if (!els.length) return;
+    function fmt(s) {
       var d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600),
           m = Math.floor((s % 3600) / 60), sec = Math.floor(s % 60);
-      el.textContent = (d > 0 ? d + "d " + h + "h" : h > 0 ? h + "h " + m + "m"
-        : m > 0 ? m + "m " + sec + "s" : sec + "s") + " since last heartbeat";
+      return d > 0 ? d + "d " + h + "h" : h > 0 ? h + "h " + m + "m"
+        : m > 0 ? m + "m " + sec + "s" : sec + "s";
+    }
+    function tick() {
+      els.forEach(function (el) {
+        var t = Date.parse(el.getAttribute("data-since"));   // re-read so a live poll can re-anchor it
+        if (isNaN(t)) return;
+        var e = fmt(Math.max(0, (Date.now() - t) / 1000));
+        var tpl = el.getAttribute("data-beat-tpl");
+        el.textContent = tpl ? tpl.replace("{t}", e) : e + " since last heartbeat";
+      });
     }
     tick(); setInterval(tick, 1000);
   })();
