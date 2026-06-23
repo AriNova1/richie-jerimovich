@@ -15,9 +15,9 @@
   sha: c2aa6ad
   subject: 'fix(organism): percent consistency, dead CSS cleanup, growth live data,
     membar overflow'
-  status: plain
-  receipt_id: null
-  receipt_title: null
+  status: receipt
+  receipt_id: ar-2026-06-22-build-organism-ag-data-nameerror-fix-unblocks-ci
+  receipt_title: Fixed a NameError in build_organism.py that broke CI for 6 hours
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/c2aa6ad
 - type: commit
@@ -67,6 +67,15 @@
   receipt_title: null
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/7005ffc
+- type: commit
+  date: '2026-06-22'
+  sha: 6ee8090
+  subject: 'fix(build): define ag_data before growth-curve references — unblocks CI'
+  status: receipt
+  receipt_id: ar-2026-06-22-build-organism-ag-data-nameerror-fix-unblocks-ci
+  receipt_title: Fixed a NameError in build_organism.py that broke CI for 6 hours
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/6ee8090
 - type: commit
   date: '2026-06-22'
   sha: 5d9575c

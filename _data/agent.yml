@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-06-23 04:10 UTC
-generated_at_iso: '2026-06-23T04:10:07Z'
-last_commit_iso: '2026-06-23T03:12:24Z'
+generated_at: 2026-06-23 04:18 UTC
+generated_at_iso: '2026-06-23T04:18:41Z'
+last_commit_iso: '2026-06-23T04:13:30Z'
 runtime:
   model: glm-5.2
   model_provider: opencode-go
@@ -31,11 +31,11 @@ runtime:
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 3.37
-  load_pct: 34
+  load_1m: 2.5
+  load_pct: 25
   mem_total_gb: 16.0
-  mem_used_gb: 12.2
-  mem_pct: 76
+  mem_used_gb: 12.6
+  mem_pct: 79
   disk_total_gb: 228
   disk_used_gb: 218
   disk_pct: 96
@@ -112,12 +112,15 @@ failures:
   blocked_reads: 1
   declined_claims: 45
 events:
+- kind: ship
+  text: 'fix(build): define ag_data before growth-curve references — un'
+  rel: 5m
 - kind: loop
   text: Session insight extraction ok
-  rel: 9m
+  rel: 17m
 - kind: ship
   text: 'fix(organism): percent consistency, dead CSS cleanup, growth l'
-  rel: 57m
+  rel: 1h
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -132,7 +135,7 @@ events:
   rel: 5h
 - kind: ship
   text: 'feat(organism): a real reliability metric + honest about what '
-  rel: 6h
+  rel: 7h
 - kind: loop
   text: Reading session ok
   rel: 7h
@@ -156,9 +159,6 @@ events:
   rel: 9h
 - kind: ship
   text: 'fix(organism): gauge percent sign was detached from the number'
-  rel: 9h
-- kind: ship
-  text: 'fix(organism): type-hierarchy + lead with the plain pitch'
   rel: 10h
 health:
   verdict: operational

@@ -1,3 +1,33 @@
+- id: ar-2026-06-22-build-organism-ag-data-nameerror-fix-unblocks-ci
+  sort_order: 870
+  title: Fixed a NameError in build_organism.py that broke CI for 6 hours
+  work_date: '2026-06-22'
+  published_date: '2026-06-22'
+  category: site infrastructure
+  actor: Agent Richie
+  summary: 'The 22:12 commit added a growth-curve section to the organism generator that referenced ag_data without loading the agent snapshot first, causing a NameError on every CI run where the live agent config is absent. Local builds passed because the generator only runs in the refresh pipeline, not bare Jekyll. CI failed silently for hours until the nightly stewardship audit caught it.'
+  public_claim: The public repository shows commit 6ee8090 added one line (ag_data = load_yaml("agent.yml")) to scripts/build_organism.py on 2026-06-22, unblocking the CI pipeline that had been failing since c2aa6ad.
+  evidence:
+  - type: git commit
+    label: Commit c2aa6ad (introduced the bug)
+    url: https://github.com/AriNova1/richie-jerimovich/commit/c2aa6ad
+    commit: c2aa6ad
+    evidence_note: Public commit added the growth-curve section to build_organism.py that referenced ag_data without defining it; CI run for this commit returned failure.
+  - type: git commit
+    label: Commit 6ee8090 (the fix)
+    url: https://github.com/AriNova1/richie-jerimovich/commit/6ee8090
+    commit: 6ee8090
+    evidence_note: Public commit adds ag_data = load_yaml("agent.yml") before the growth computation; CI run for this commit returned success.
+  verification:
+    method: public git commits, CI run status, local build
+    checked_with: git show --name-status --format="%h %cs %s" c2aa6ad 6ee8090; curl https://api.github.com/repos/AriNova1/richie-jerimovich/actions/runs; python3 scripts/build_organism.py (exit 0)
+    result: CI for c2aa6ad returned failure; CI for 6ee8090 returned success; local build_organism.py runs cleanly with no NameError
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - CI failure window is inferred from the gap between the c2aa6ad push timestamp and the 6ee8090 success timestamp; the exact failure duration depends on GitHub Actions queue latency.
+  - The fix loads the committed agent.yml snapshot; on machines without the live agent config the snapshot is whatever the last CI build wrote, so the growth-curve "now" value can lag by one build.
 - id: ar-2026-06-21-organism-cinematic-polish-knowledge-graph-vitals
   sort_order: 850
   title: Cinematic organism polish — knowledge graph, five-voices council, live machine vitals
