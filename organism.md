@@ -209,26 +209,6 @@ body.page-organism > footer {
 .inst__kv span { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--org-mute); }
 .inst__note { font-family: var(--font-mono); font-size: 0.66rem; color: var(--org-soft); line-height: 1.5; margin-top: auto; }
 
-/* agent bento */
-.bento-agent {
-  display: grid; gap: 1rem; margin-top: 2rem;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-areas:
-    "runtime runtime channels channels"
-    "memory  memory  loops    failures";
-}
-.b-runtime { grid-area: runtime; }
-.b-channels { grid-area: channels; }
-.b-memory { grid-area: memory; }
-.b-loops { grid-area: loops; }
-.b-failures { grid-area: failures; }
-@media (max-width: 880px) {
-  .bento-agent { grid-template-columns: repeat(2, 1fr); grid-template-areas: "runtime runtime" "channels channels" "memory memory" "loops failures"; }
-}
-@media (max-width: 560px) {
-  .bento-agent { grid-template-columns: 1fr; grid-template-areas: "runtime" "channels" "memory" "loops" "failures"; }
-}
-
 /* runtime: model name + chain */
 .rt-model { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 3.2vw, 1.95rem); line-height: 1; color: var(--org-ink); letter-spacing: -0.02em; word-break: break-word; }
 .rt-chain { font-family: var(--font-mono); font-size: 0.72rem; color: var(--org-soft); letter-spacing: 0.04em; }
@@ -256,7 +236,7 @@ body.page-organism > footer {
 .grow__line { fill: none; stroke: var(--sig); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 4px var(--sig-edge)); }
 .membars { display: flex; flex-direction: column; gap: 0.6rem; }
 .membar { display: grid; grid-template-columns: 6.5rem 1fr auto; gap: 0.7rem; align-items: center; }
-.membar__label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--org-mute); }
+.membar__label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--org-mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .membar__track { height: 7px; border-radius: 999px; background: rgba(255,255,255,0.05); overflow: hidden; }
 .membar__fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--sig-edge), var(--sig)); }
 .membar__val { font-family: var(--font-mono); font-size: 0.72rem; color: var(--org-ink); }
@@ -274,16 +254,6 @@ body.page-organism > footer {
 .loopcard__top { display: flex; align-items: center; gap: 0.5rem; }
 .loopcard__name { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; color: var(--org-ink); }
 .loopcard__cadence { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sig); }
-
-/* voices */
-.voices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin-top: 1.75rem; }
-@media (max-width: 760px) { .voices { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 460px) { .voices { grid-template-columns: 1fr; } }
-.voice { padding: 1.25rem 1.3rem; border: 1px solid var(--org-line); border-radius: 14px; background: linear-gradient(180deg, var(--org-card), var(--org-raise)); }
-.voice__name { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--org-ink); }
-.voice__role { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sig); margin-top: 0.15rem; }
-.voice__line { color: var(--org-soft); font-size: 0.86rem; line-height: 1.55; margin-top: 0.6rem; }
-.voice--blend { border-color: var(--sig-edge); background: linear-gradient(180deg, rgba(87,210,200,0.05), var(--org-raise)); }
 
 /* reflection + interests */
 .mind-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 1rem; margin-top: 1.5rem; align-items: start; }
@@ -328,7 +298,7 @@ a.reflection__title:hover { color: var(--sig); }
 .gauge__track { fill: none; stroke: rgba(255,255,255,0.08); stroke-width: 9; }
 .gauge__val { fill: none; stroke: var(--sig); stroke-width: 9; stroke-linecap: round; }
 .gauge__pct { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--org-ink); line-height: 1; }
-.gauge__pct .u { font-size: 0.5em; color: var(--org-mute); }
+.gauge__pct .u { font-size: 0.5em; color: var(--org-mute); transform: translateY(-0.5em); margin-left: 0.06em; }
 .gauge__cap { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--org-mute); margin-top: 0.2rem; }
 .mgauges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-top: 0.2rem; }
 .mgauge { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; }
@@ -478,12 +448,6 @@ body.page-organism::after {
 }
 @keyframes ecg-sweep { from { transform: translateX(0); } to { transform: translateX(100%); } }
 
-/* live status pill in the top bar */
-.live-pill { display: inline-flex; align-items: center; gap: 0.45rem; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mood); }
-.live-pill__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mood); box-shadow: 0 0 8px var(--mood); }
-.live-pill[data-live="snapshot"] { color: var(--org-mute); }
-.live-pill[data-live="snapshot"] .live-pill__dot { background: var(--org-mute); box-shadow: none; animation: none; }
-
 /* responding banner pulse on the verdict tag */
 #organism.mood-responding .core-verdict__tag { border-color: var(--mood-edge); color: var(--mood); }
 
@@ -559,7 +523,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     linear-gradient(180deg, var(--org-card), var(--org-card-2)) padding-box,
     linear-gradient(180deg, rgba(234,168,60,0.30), rgba(234,168,60,0.05) 55%, rgba(234,168,60,0.13)) border-box;
 }
-.inst, .org-organ, .loopcard, .voice, .reflection, .interests, .org-ledger, .diag, .stream {
+.inst, .org-organ, .loopcard, .reflection, .interests, .org-ledger, .diag, .stream {
   box-shadow: inset 0 1px 0 rgba(255,240,220,0.06), 0 18px 44px -26px rgba(0,0,0,0.92);
 }
 .stream { backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }

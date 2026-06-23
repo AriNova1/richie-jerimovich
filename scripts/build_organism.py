@@ -415,6 +415,18 @@ def build_organism():
     growth = None
     if len(km) >= 2:
         g_line, g_area, g_hx, g_hy = growth_geometry(km)
+        # Use live memory counts for the freshest "now" value, falling back to
+        # the history file if the agent data isn't available (e.g. CI build).
+        live_knowledge_now = (
+            (ag_data["memory"]["facts"] + ag_data["memory"]["kg_edges"])
+            if ag_data and ag_data.get("memory")
+            else km[-1]
+        )
+        live_facts_now = (
+            ag_data["memory"]["facts"]
+            if ag_data and ag_data.get("memory")
+            else (fseries[-1] if fseries else 0)
+        )
         growth = {
             "line_points": g_line,
             "area_points": g_area,
@@ -422,9 +434,9 @@ def build_organism():
             "head_y": g_hy,
             "days": len(km),
             "start_date": hist[0]["date"],
-            "knowledge_now": km[-1],
-            "knowledge_gain": km[-1] - km[0],
-            "facts_gain": (fseries[-1] - fseries[0]) if len(fseries) >= 2 else 0,
+            "knowledge_now": live_knowledge_now,
+            "knowledge_gain": live_knowledge_now - km[0],
+            "facts_gain": (live_facts_now - fseries[0]) if len(fseries) >= 2 else 0,
         }
 
     out = {
