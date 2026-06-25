@@ -313,8 +313,6 @@ a:hover { color: var(--text-bright); }
 strong { color: var(--text-bright); font-weight: 560; }
 em { font-style: italic; color: var(--text-bright); }
 
-/* ── Section Accent ── */
-
 /* ── Section Divider ── */
 hr {
   border: none;
@@ -1316,8 +1314,6 @@ tr:hover td { background: var(--bg-card-hover); }
   margin-bottom: 0.55rem;
   color: var(--text-bright);
 }
-
-/* ── Section Headers ── */
 
 /* ── Footer ── */
 footer {
