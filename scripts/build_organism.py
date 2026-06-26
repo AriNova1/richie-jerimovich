@@ -691,7 +691,7 @@ def collect_agent_vitals():
     runtime["channels_total"] = len(channels)
 
     sessions = load_json("sessions/sessions.json") or {}
-    svals = list(sessions.values()) if isinstance(sessions, dict) else []
+    svals = [v for v in sessions.values() if isinstance(v, dict)] if isinstance(sessions, dict) else []
     runtime["active_sessions"] = len(svals)
     runtime["active_platforms"] = len(
         {PLATFORM_NAMES.get(s.get("platform"), s.get("platform")) for s in svals}
