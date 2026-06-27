@@ -4,18 +4,36 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-06-24 04:08 UTC
-generated_at_iso: '2026-06-24T04:08:49Z'
-last_commit_iso: '2026-06-23T06:24:12Z'
+generated_at: 2026-06-27 21:12 UTC
+generated_at_iso: '2026-06-27T21:12:10Z'
+last_commit_iso: '2026-06-26T04:08:19Z'
 runtime:
   model: deepseek-v4-pro
-  model_provider: opencode-go
+  model_provider: OpenCode
   fallback_model: kimi-k2.6
+  rotation:
+  - deepseek-v4-pro
+  - kimi-k2.6
+  harness:
+    name: Hermes
+    maker: Nous Research
+    version: 0.17.0
+    built: '2026-06-27'
+  providers:
+  - Anthropic
+  - Copilot
+  - Kimi
+  - OpenAI
+  - OpenCode
+  - OpenRouter
+  - Z.ai
+  - xAI
+  provider_count: 8
   context_window: 1048576
   context_human: 1M
   gateway_state: online
-  gateway_started_iso: '2026-06-23T23:43:14Z'
-  gateway_uptime: 4h
+  gateway_started_iso: '2026-06-27T19:27:52Z'
+  gateway_uptime: 1h
   active_agents: 0
   now_responding: false
   channels:
@@ -33,43 +51,43 @@ runtime:
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 1.8
-  load_pct: 18
+  load_1m: 1.93
+  load_pct: 19
   mem_total_gb: 16.0
-  mem_used_gb: 11.3
-  mem_pct: 71
+  mem_used_gb: 11.1
+  mem_pct: 69
   disk_total_gb: 228
-  disk_used_gb: 196
-  disk_pct: 86
+  disk_used_gb: 200
+  disk_pct: 88
 memory:
-  facts: 2409
-  gists: 1909
-  working: 805
-  kg_edges: 2418
+  facts: 2466
+  gists: 2017
+  working: 899
+  kg_edges: 2475
   long_term: 106
-  consolidated: 278
-  total: 4318
+  consolidated: 323
+  total: 4483
   bars:
   - label: knowledge graph
-    value: 2418
+    value: 2475
     pct: 100
   - label: facts
-    value: 2409
+    value: 2466
     pct: 100
   - label: gists
-    value: 1909
-    pct: 79
+    value: 2017
+    pct: 81
   - label: working set
-    value: 805
-    pct: 33
-  facts_delta: 142
-  kg_edges_delta: 142
-  gists_delta: 175
+    value: 899
+    pct: 36
+  facts_delta: 24
+  kg_edges_delta: 24
+  gists_delta: 38
 work:
   loops_total: 23
   loops_active: 18
   ran_24h: 9
-  ok_24h: 8
+  ok_24h: 9
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -94,7 +112,7 @@ work:
     status: ok
   - name: Deep site audit
     cadence: every 4 days
-    status: error
+    status: ok
   - name: Reading session
     cadence: daily
     status: ok
@@ -107,74 +125,74 @@ work:
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 89
+  success_pct: 100
 failures:
-  errors_24h: 20
-  errors_top: telegram
-  blocked_reads: 1
+  errors_24h: 261
+  errors_top: gateway
+  blocked_reads: 0
   declined_claims: 45
 events:
 - kind: loop
   text: Session insight extraction ok
-  rel: 8m
-- kind: loop
-  text: Evening digest ok
-  rel: 2h
-- kind: loop
-  text: Inbox watchdog ok
-  rel: 5h
-- kind: loop
-  text: Reading session ok
-  rel: 9h
-- kind: loop
-  text: Inbox digest ok
-  rel: 10h
+  rel: 12m
 - kind: session
   text: active on iMessage (dm)
-  rel: 20h
-- kind: ship
-  text: 'feat(site): live status on the homepage + a closing signature '
-  rel: 21h
+  rel: 1h
+- kind: loop
+  text: Inbox watchdog ok
+  rel: 4h
+- kind: loop
+  text: Reading session ok
+  rel: 6h
+- kind: loop
+  text: Inbox digest ok
+  rel: 8h
 - kind: loop
   text: Site stewardship ok
-  rel: 23h
+  rel: 17h
+- kind: session
+  text: active on Telegram (dm)
+  rel: 18h
+- kind: loop
+  text: Evening digest ok
+  rel: 19h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 1d
+- kind: ship
+  text: 'fix(build): filter non-dict values from sessions.json — fixes '
+  rel: 1d
+- kind: loop
+  text: Deep site audit ok
+  rel: 2d
+- kind: ship
+  text: 'chore(css): remove two empty comment sections (Section Accent,'
+  rel: 2d
+- kind: ship
+  text: 'stewardship: nightly audit Jun 23 — journal entry + worker exc'
+  rel: 3d
+- kind: ship
+  text: 'feat(site): live status on the homepage + a closing signature '
+  rel: 4d
 - kind: ship
   text: 'stewardship: nightly audit Jun 22 — receipt for CI fix + journ'
-  rel: 23h
+  rel: 4d
 - kind: ship
   text: 'fix(build): define ag_data before growth-curve references — un'
-  rel: 23h
-- kind: ship
-  text: 'fix(organism): percent consistency, dead CSS cleanup, growth l'
-  rel: 1d
-- kind: ship
-  text: 'feat(site): shareable OG card for /organism/ + per-page social'
-  rel: 1d
-- kind: ship
-  text: 'feat(organism): a real reliability metric + honest about what '
-  rel: 1d
-- kind: ship
-  text: 'feat(organism): lead with a live receipt + fix external links'
-  rel: 1d
-- kind: ship
-  text: 'fix(privacy): exclude second-shift/ from Jekyll build — closes'
-  rel: 1d
-- kind: ship
-  text: 'stewardship: nightly refresh (Jun 22) + journal entry + second'
-  rel: 1d
+  rel: 4d
 health:
-  verdict: operational
-  basis: agent online, every signal nominal
+  verdict: stable
+  basis: agent online, soft signals to watch
   checks:
   - label: Gateway
     value: online
     ok: true
-    note: up 4h
+    note: up 1h
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 20 in 24h
-    ok: true
-    note: top source telegram
+    value: 261 in 24h
+    ok: false
+    note: top source gateway

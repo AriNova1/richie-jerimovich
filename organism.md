@@ -213,6 +213,14 @@ body.page-organism > footer {
 .rt-model { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 3.2vw, 1.95rem); line-height: 1; color: var(--org-ink); letter-spacing: -0.02em; word-break: break-word; }
 .rt-chain { font-family: var(--font-mono); font-size: 0.72rem; color: var(--org-soft); letter-spacing: 0.04em; }
 .rt-chain b { color: var(--sig); font-weight: 400; }
+.rt-harness { margin-top: 0.7rem; font-family: var(--font-mono); font-size: 0.72rem; color: var(--org-soft); letter-spacing: 0.03em; }
+.rt-harness b { color: var(--sig); font-weight: 400; }
+.rt-k { color: var(--org-mute); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; margin-right: 0.45rem; }
+.rt-by { color: var(--org-mute); }
+.rt-rot { margin-top: 0.65rem; }
+.rt-rot__chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.4rem; }
+.rt-chip { font-family: var(--font-mono); font-size: 0.66rem; color: var(--org-soft); background: var(--sig-wash); border: 1px solid var(--org-line); border-radius: 999px; padding: 0.18rem 0.52rem; letter-spacing: 0.02em; }
+.rt-chip--now { color: var(--org-bg); background: var(--sig); border-color: var(--sig); font-weight: 600; }
 
 /* channels list */
 .chan-list { display: flex; flex-direction: column; gap: 0.55rem; }
@@ -705,10 +713,21 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
         </article>
         {% endif %}
         <article class="inst b-runtime">
-          <div class="inst__head"><span class="inst__label">runtime</span><span class="inst__meta">config + gateway</span></div>
+          <div class="inst__head"><span class="inst__label">runtime</span><span class="inst__meta">harness + rotation</span></div>
           <div class="rt-model" data-vital="runtime.model">{{ ag.runtime.model }}</div>
-          <p class="rt-chain">{{ ag.runtime.model_provider }} <b>/</b> fallback {{ ag.runtime.fallback_model }}</p>
-          <p class="inst__note"><span class="org-dot" aria-hidden="true"></span> gateway {{ ag.runtime.gateway_state }}, up {{ ag.runtime.gateway_uptime }}. The model rotates; the chair is whoever is answering now.</p>
+          <p class="rt-chain"><span data-vital="runtime.model_provider">{{ ag.runtime.model_provider }}</span> <b>·</b> in the chair right now</p>
+          {% if ag.runtime.harness %}
+          <p class="rt-harness"><span class="rt-k">harness</span> {{ ag.runtime.harness.name }}{% if ag.runtime.harness.version %} <b>v{{ ag.runtime.harness.version }}</b>{% endif %} <span class="rt-by">{{ ag.runtime.harness.maker }}</span></p>
+          {% endif %}
+          {% if ag.runtime.rotation and ag.runtime.rotation.size > 1 %}
+          <div class="rt-rot">
+            <span class="rt-k">rotation</span>
+            <div class="rt-rot__chips">
+              {% for m in ag.runtime.rotation %}<span class="rt-chip{% if forloop.first %} rt-chip--now{% endif %}">{{ m }}</span>{% endfor %}
+            </div>
+          </div>
+          {% endif %}
+          <p class="inst__note"><span class="org-dot" aria-hidden="true"></span> {% if ag.runtime.provider_count %}Routed through {{ ag.runtime.provider_count }} providers ({{ ag.runtime.providers | join: ", " }}). {% endif %}The model rotates; the chair is whoever is answering now. Gateway {{ ag.runtime.gateway_state }}, up {{ ag.runtime.gateway_uptime }}.</p>
         </article>
         <article class="inst b-memory">
           <div class="inst__head"><span class="inst__label">memory</span><span class="inst__meta">mnemosyne</span></div>

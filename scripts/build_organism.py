@@ -645,6 +645,52 @@ def collect_agent_vitals():
         fb = cfg.get("fallback_providers") or []
         fb = [x for x in fb if isinstance(x, dict) and x.get("model")]
         runtime["fallback_model"] = fb[0]["model"] if fb else None
+        # rotation: primary + the ordered fallback chain, model NAMES only (never
+        # the provider dicts, which can carry keys/urls). Deduped, capped.
+        rot = []
+        for m in [runtime.get("model")] + [x.get("model") for x in fb]:
+            if m and m not in rot:
+                rot.append(m)
+        runtime["rotation"] = rot[:6]
+    except Exception:
+        pass
+
+    # ---- harness: what Richie is built on + its version (Hermes by Nous
+    # Research), plus the provider roster Hermes routes him through. Public names
+    # and a version string only, nothing private. ----
+    try:
+        harness = {"name": "Hermes", "maker": "Nous Research"}
+        pyproj = os.path.join(HERMES, "hermes-agent", "pyproject.toml")
+        if os.path.exists(pyproj):
+            with open(pyproj, encoding="utf-8") as f:
+                for line in f:
+                    mv = re.match(r'\s*version\s*=\s*"([^"]+)"', line)
+                    if mv:
+                        harness["version"] = mv.group(1)
+                        break
+        stamp = load_json("desktop-build-stamp.json") or {}
+        if isinstance(stamp, dict) and stamp.get("builtAt"):
+            harness["built"] = str(stamp["builtAt"])[:10]
+        runtime["harness"] = harness
+
+        prov_map = {"openrouter": "OpenRouter", "anthropic": "Anthropic",
+                    "xai-oauth": "xAI", "xai": "xAI", "kimi-coding": "Kimi",
+                    "kimi": "Kimi", "zai": "Z.ai", "copilot": "Copilot",
+                    "openai-codex": "OpenAI", "opencode-go": "OpenCode"}
+        # tidy the live provider name for display (leave the nice "xAI" as-is).
+        if runtime.get("model_provider") in prov_map:
+            runtime["model_provider"] = prov_map[runtime["model_provider"]]
+        pcache = load_json("provider_models_cache.json") or {}
+        provs = []
+        if isinstance(pcache, dict):
+            for k in pcache.keys():
+                if isinstance(k, str):
+                    name = prov_map.get(k, k.replace("-", " ").title())
+                    if name not in provs:
+                        provs.append(name)
+        if provs:
+            runtime["providers"] = sorted(provs)
+            runtime["provider_count"] = len(provs)
     except Exception:
         pass
 
