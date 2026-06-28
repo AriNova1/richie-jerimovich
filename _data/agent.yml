@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-06-27 21:12 UTC
-generated_at_iso: '2026-06-27T21:12:10Z'
-last_commit_iso: '2026-06-26T04:08:19Z'
+generated_at: 2026-06-28 04:07 UTC
+generated_at_iso: '2026-06-28T04:07:47Z'
+last_commit_iso: '2026-06-27T22:06:18Z'
 runtime:
   model: deepseek-v4-pro
   model_provider: OpenCode
@@ -33,7 +33,7 @@ runtime:
   context_human: 1M
   gateway_state: online
   gateway_started_iso: '2026-06-27T19:27:52Z'
-  gateway_uptime: 1h
+  gateway_uptime: 8h
   active_agents: 0
   now_responding: false
   channels:
@@ -51,13 +51,13 @@ runtime:
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 1.93
-  load_pct: 19
+  load_1m: 1.81
+  load_pct: 18
   mem_total_gb: 16.0
-  mem_used_gb: 11.1
-  mem_pct: 69
+  mem_used_gb: 12.0
+  mem_pct: 75
   disk_total_gb: 228
-  disk_used_gb: 200
+  disk_used_gb: 201
   disk_pct: 88
 memory:
   facts: 2466
@@ -80,9 +80,9 @@ memory:
   - label: working set
     value: 899
     pct: 36
-  facts_delta: 24
-  kg_edges_delta: 24
-  gists_delta: 38
+  facts_delta: 0
+  kg_edges_delta: 0
+  gists_delta: 0
 work:
   loops_total: 23
   loops_active: 18
@@ -127,35 +127,38 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 261
+  errors_24h: 195
   errors_top: gateway
   blocked_reads: 0
   declined_claims: 45
 events:
 - kind: loop
   text: Session insight extraction ok
-  rel: 12m
-- kind: session
-  text: active on iMessage (dm)
+  rel: 7m
+- kind: loop
+  text: Evening digest ok
   rel: 1h
 - kind: loop
   text: Inbox watchdog ok
-  rel: 4h
-- kind: loop
-  text: Reading session ok
+  rel: 5h
+- kind: ship
+  text: 'feat(organism): show the harness (Hermes) + version + model ro'
   rel: 6h
-- kind: loop
-  text: Inbox digest ok
+- kind: session
+  text: active on iMessage (dm)
   rel: 8h
 - kind: loop
+  text: Reading session ok
+  rel: 13h
+- kind: loop
+  text: Inbox digest ok
+  rel: 15h
+- kind: loop
   text: Site stewardship ok
-  rel: 17h
+  rel: 23h
 - kind: session
   text: active on Telegram (dm)
-  rel: 18h
-- kind: loop
-  text: Evening digest ok
-  rel: 19h
+  rel: 1d
 - kind: session
   text: active on iMessage (dm)
   rel: 1d
@@ -177,9 +180,6 @@ events:
 - kind: ship
   text: 'stewardship: nightly audit Jun 22 — receipt for CI fix + journ'
   rel: 4d
-- kind: ship
-  text: 'fix(build): define ag_data before growth-curve references — un'
-  rel: 4d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -187,12 +187,12 @@ health:
   - label: Gateway
     value: online
     ok: true
-    note: up 1h
+    note: up 8h
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 261 in 24h
+    value: 195 in 24h
     ok: false
     note: top source gateway

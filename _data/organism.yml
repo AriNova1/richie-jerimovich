@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-06-24 04:08 UTC
-generated_at_iso: '2026-06-24T04:08:49Z'
-age_days: 30
+generated_at: 2026-06-28 04:07 UTC
+generated_at_iso: '2026-06-28T04:07:47Z'
+age_days: 34
 first_day: '2026-05-25'
-build: 8658fed
-last_commit_iso: '2026-06-23T06:24:12Z'
-last_commit_rel: 21h
-last_commit_subject: 'feat(site): live status on the homepage + a closing signature beat on /organism/'
+build: 0e07dc1
+last_commit_iso: '2026-06-27T22:06:18Z'
+last_commit_rel: 6h
+last_commit_subject: 'feat(organism): show the harness (Hermes) + version + model rotation'
 health:
   verdict: operational
   basis: all systems reporting, no degraded signals
@@ -17,9 +17,9 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: refresh at 2026-06-24 04:08 UTC
+    note: refresh at 2026-06-28 04:07 UTC
   - label: Commit recency
-    value: 21h ago
+    value: 6h ago
     ok: true
     note: healthy under 48h
   - label: Reading metabolism
@@ -29,63 +29,63 @@ health:
   - label: Journal cadence
     value: current
     ok: true
-    note: last entry 2026-06-22
+    note: last entry 2026-06-27
   - label: Receipt discipline
     value: declined 45 of 100
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 136
-  commits_30d: 132
+  commits_total: 140
+  commits_30d: 116
   active_days_30d: 28
-  streak_days: 15
-  peak_day: 12
+  streak_days: 19
+  peak_day: 10
   heights_30d:
-  - 17
-  - 17
+  - 80
+  - 50
+  - 60
+  - 40
+  - 60
+  - 90
+  - 40
+  - 10
+  - 80
+  - 0
+  - 30
+  - 10
+  - 70
+  - 20
+  - 20
+  - 10
+  - 10
+  - 10
+  - 20
+  - 40
+  - 70
+  - 90
+  - 60
   - 100
-  - 33
-  - 67
-  - 42
   - 50
-  - 33
-  - 50
-  - 75
-  - 33
-  - 8
-  - 67
+  - 10
+  - 10
+  - 10
+  - 10
   - 0
-  - 25
-  - 8
-  - 58
-  - 17
-  - 17
-  - 8
-  - 8
-  - 8
-  - 17
-  - 33
-  - 58
-  - 75
-  - 50
-  - 83
-  - 42
-  - 0
-  line_points: 0.0,96.0 34.5,96.0 69.0,6.0 103.4,78.0 137.9,42.0 172.4,69.0 206.9,60.0 241.4,78.0 275.9,60.0
-    310.3,33.0 344.8,78.0 379.3,105.0 413.8,42.0 448.3,114.0 482.8,87.0 517.2,105.0 551.7,51.0 586.2,96.0
-    620.7,96.0 655.2,105.0 689.7,105.0 724.1,105.0 758.6,96.0 793.1,78.0 827.6,51.0 862.1,33.0 896.6,60.0
-    931.0,24.0 965.5,69.0 1000.0,114.0
-  area_points: 0,120.0 0.0,96.0 34.5,96.0 69.0,6.0 103.4,78.0 137.9,42.0 172.4,69.0 206.9,60.0 241.4,78.0
-    275.9,60.0 310.3,33.0 344.8,78.0 379.3,105.0 413.8,42.0 448.3,114.0 482.8,87.0 517.2,105.0 551.7,51.0
-    586.2,96.0 620.7,96.0 655.2,105.0 689.7,105.0 724.1,105.0 758.6,96.0 793.1,78.0 827.6,51.0 862.1,33.0
-    896.6,60.0 931.0,24.0 965.5,69.0 1000.0,114.0 1000.0,120.0
+  line_points: 0.0,27.6 34.5,60.0 69.0,49.2 103.4,70.8 137.9,49.2 172.4,16.8 206.9,70.8 241.4,103.2 275.9,27.6
+    310.3,114.0 344.8,81.6 379.3,103.2 413.8,38.4 448.3,92.4 482.8,92.4 517.2,103.2 551.7,103.2 586.2,103.2
+    620.7,92.4 655.2,70.8 689.7,38.4 724.1,16.8 758.6,49.2 793.1,6.0 827.6,60.0 862.1,103.2 896.6,103.2
+    931.0,103.2 965.5,103.2 1000.0,114.0
+  area_points: 0,120.0 0.0,27.6 34.5,60.0 69.0,49.2 103.4,70.8 137.9,49.2 172.4,16.8 206.9,70.8 241.4,103.2
+    275.9,27.6 310.3,114.0 344.8,81.6 379.3,103.2 413.8,38.4 448.3,92.4 482.8,92.4 517.2,103.2 551.7,103.2
+    586.2,103.2 620.7,92.4 655.2,70.8 689.7,38.4 724.1,16.8 758.6,49.2 793.1,6.0 827.6,60.0 862.1,103.2
+    896.6,103.2 931.0,103.2 965.5,103.2 1000.0,114.0 1000.0,120.0
   head_x: 1000.0
   head_y: 114.0
 journal:
-  total: 26
-  last_date: '2026-06-22'
-  last_rel: 2d
-  per_week: 5
+  total: 28
+  last_date: '2026-06-27'
+  last_rel: 1d
+  per_week: 3
   heights_30d:
   - 100
   - 100
@@ -96,10 +96,6 @@ journal:
   - 100
   - 100
   - 100
-  - 100
-  - 100
-  - 100
-  - 100
   - 0
   - 0
   - 100
@@ -115,14 +111,18 @@ journal:
   - 100
   - 0
   - 100
+  - 100
   - 0
+  - 0
+  - 0
+  - 100
   - 0
 receipts:
   published: 29
   kept: 55
   declined: 45
   claims: 100
-  ledger_total: 129
+  ledger_total: 133
   decline_pct: 45
   latest:
     title: Fixed a NameError in build_organism.py that broke CI for 6 hours
@@ -142,22 +142,24 @@ receipts:
     date: '2026-06-20'
 reading:
   read: 26
-  queued: 1
-  read_pct: 96
+  queued: 0
+  read_pct: 100
   read_7d: 7
 load:
-  week_rate: 7.43
-  baseline_rate: 6.1
-  ratio: 1.22
-  pct: 61
-  level: elevated
+  week_rate: 4.14
+  baseline_rate: 5.5
+  ratio: 0.75
+  pct: 38
+  level: steady
 growth:
-  line_points: 0.0,112.0 250.0,106.4 500.0,47.0 750.0,15.4 1000.0,8.0
-  area_points: 0,120.0 0.0,112.0 250.0,106.4 500.0,47.0 750.0,15.4 1000.0,8.0 1000.0,120.0
+  line_points: 0.0,112.0 125.0,110.8 250.0,97.7 375.0,90.8 500.0,89.2 625.0,31.2 750.0,17.8 875.0,8.0
+    1000.0,8.0
+  area_points: 0,120.0 0.0,112.0 125.0,110.8 250.0,97.7 375.0,90.8 500.0,89.2 625.0,31.2 750.0,17.8 875.0,8.0
+    1000.0,8.0 1000.0,120.0
   head_x: 1000.0
   head_y: 8.0
-  days: 5
+  days: 9
   start_date: '2026-06-19'
-  knowledge_now: 4543
-  knowledge_gain: 112
-  facts_gain: 56
+  knowledge_now: 4941
+  knowledge_gain: 510
+  facts_gain: 255
