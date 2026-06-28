@@ -989,12 +989,95 @@ def update_history(data):
     )
 
 
+def _human_tokens(n):
+    n = float(n or 0)
+    if n >= 1_000_000:
+        return f"{n / 1_000_000:.1f}M"
+    if n >= 1_000:
+        return f"{round(n / 1_000)}K"
+    return str(int(n))
+
+
+def collect_usage(window_days=30, top_n=6):
+    """Fleet usage from ~/.hermes/state.db sessions: token totals, the daily
+    series, and the real model ranking by token volume. Reads ONLY aggregate
+    numeric columns and the model name, never the private columns (user_id,
+    system_prompt, title, cwd, git paths, billing urls). Read-only connection."""
+    import sqlite3
+    db = os.path.join(HERMES, "state.db")
+    if not os.path.exists(db):
+        return None
+    win = f"-{int(window_days)} days"
+    try:
+        con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+        cur = con.cursor()
+        cur.execute(
+            "SELECT COUNT(*), COALESCE(SUM(api_call_count),0), "
+            "COALESCE(SUM(input_tokens),0), COALESCE(SUM(output_tokens),0), "
+            "COALESCE(SUM(estimated_cost_usd),0) FROM sessions "
+            "WHERE started_at >= strftime('%s','now',?)",
+            (win,),
+        )
+        sess, calls, tin, tout, cost = cur.fetchone()
+        tin, tout = int(tin or 0), int(tout or 0)
+        total = tin + tout
+        cur.execute(
+            "SELECT model, SUM(input_tokens+output_tokens) t, COUNT(*) "
+            "FROM sessions WHERE started_at >= strftime('%s','now',?) "
+            "AND model IS NOT NULL AND model != '' GROUP BY model "
+            "ORDER BY t DESC LIMIT ?",
+            (win, int(top_n)),
+        )
+        models = []
+        for m, t, n in cur.fetchall():
+            t = int(t or 0)
+            models.append({
+                "model": str(m),
+                "tokens": t,
+                "tokens_human": _human_tokens(t),
+                "share": round(t / total * 100) if total else 0,
+                "sessions": int(n or 0),
+            })
+        cur.execute(
+            "SELECT date(started_at,'unixepoch'), SUM(input_tokens+output_tokens) "
+            "FROM sessions WHERE started_at >= strftime('%s','now',?) "
+            "GROUP BY 1 ORDER BY 1",
+            (win,),
+        )
+        daily = [(d, int(t or 0)) for d, t in cur.fetchall()]
+        con.close()
+    except Exception:
+        return None
+    usage = {
+        "window_days": int(window_days),
+        "sessions": int(sess or 0),
+        "api_calls": int(calls or 0),
+        "tokens_in_human": _human_tokens(tin),
+        "tokens_out_human": _human_tokens(tout),
+        "tokens_total_human": _human_tokens(total),
+        "cost_usd": round(float(cost or 0), 2),
+        "cost_tracked": float(cost or 0) > 0,
+        "top_models": models,
+    }
+    vals = [t for _, t in daily]
+    mx = max(vals) if vals else 0
+    if mx:
+        usage["daily_bars"] = [max(3, round(v / mx * 100)) for v in vals]
+        usage["daily_from"] = daily[0][0]
+        usage["daily_to"] = daily[-1][0]
+    return usage
+
+
 def build_agent():
     """Persist the collector's output to the committed snapshot consumed by
     Jekyll. CI keeps the existing file (no ~/.hermes there)."""
     out = collect_agent_vitals()
     if out is None:
         return
+    try:
+        out["usage"] = collect_usage()
+    except Exception:
+        pass
     try:
         update_history(out)
     except Exception:

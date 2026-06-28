@@ -222,6 +222,27 @@ body.page-organism > footer {
 .rt-chip { font-family: var(--font-mono); font-size: 0.66rem; color: var(--org-soft); background: var(--sig-wash); border: 1px solid var(--org-line); border-radius: 999px; padding: 0.18rem 0.52rem; letter-spacing: 0.02em; }
 .rt-chip--now { color: var(--org-bg); background: var(--sig); border-color: var(--sig); font-weight: 600; }
 
+/* usage: fleet tokens + the real model ranking, read off the session ledger */
+.usage { margin-top: 1.6rem; }
+.usage-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--org-line); border: 1px solid var(--org-line); border-radius: 12px; overflow: hidden; }
+.ustat { background: var(--org-bg); padding: 1rem 1.05rem; display: flex; flex-direction: column; gap: 0.32rem; }
+.ustat__n { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.3rem, 2.6vw, 1.7rem); color: var(--org-ink); letter-spacing: -0.02em; }
+.ustat__l { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--org-mute); line-height: 1.4; }
+@media (max-width: 720px) { .usage-stats { grid-template-columns: repeat(2, 1fr); } }
+.usage-chart { margin-top: 1.5rem; }
+.usage-chart__head, .usage-models__head { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--org-mute); margin-bottom: 0.6rem; }
+.usage-bars { display: flex; align-items: flex-end; gap: 2px; height: 88px; }
+.ubar { flex: 1; min-width: 2px; background: linear-gradient(180deg, var(--sig), var(--sig-edge)); border-radius: 2px 2px 0 0; opacity: 0.82; }
+.usage-models { margin-top: 1.7rem; display: flex; flex-direction: column; gap: 0.55rem; }
+.umodel { display: grid; grid-template-columns: 1.1rem 8.5rem 1fr auto auto; align-items: center; gap: 0.7rem; }
+.umodel__rank { font-family: var(--font-mono); color: var(--org-mute); font-size: 0.7rem; }
+.umodel__name { font-family: var(--font-mono); font-size: 0.8rem; color: var(--org-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.umodel__bar { height: 6px; background: var(--sig-wash); border-radius: 999px; overflow: hidden; }
+.umodel__fill { display: block; height: 100%; background: var(--sig); border-radius: 999px; }
+.umodel__tok { font-family: var(--font-mono); color: var(--org-soft); font-size: 0.74rem; text-align: right; min-width: 3.4rem; }
+.umodel__share { font-family: var(--font-mono); color: var(--org-mute); font-size: 0.72rem; text-align: right; min-width: 2.4rem; }
+@media (max-width: 620px) { .umodel { grid-template-columns: 1rem 6rem 1fr auto; } .umodel__share { display: none; } }
+
 /* channels list */
 .chan-list { display: flex; flex-direction: column; gap: 0.55rem; }
 .chan { display: flex; align-items: center; gap: 0.6rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--org-soft); }
@@ -845,10 +866,57 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   </div>
 </section>
 
+<section class="org-sec" aria-labelledby="org-usage">
+  <div class="org-wrap">
+    <header class="reveal-fast">
+      <p class="org-eyebrow" id="org-usage">02 / usage</p>
+      <h2 class="org-h">What it ran, and on whom.</h2>
+      <p class="org-lede">Every model call in the last {{ ag.usage.window_days | default: 30 }} days, read off the agent's own session ledger. The model rotates by task, so this is who actually did the work, by volume.</p>
+    </header>
+
+    {% if ag.usage %}
+    <div class="usage reveal-fast">
+      <div class="usage-stats">
+        <div class="ustat"><span class="ustat__n">{{ ag.usage.sessions }}</span><span class="ustat__l">sessions</span></div>
+        <div class="ustat"><span class="ustat__n">{{ ag.usage.api_calls }}</span><span class="ustat__l">API calls</span></div>
+        <div class="ustat"><span class="ustat__n">{{ ag.usage.tokens_total_human }}</span><span class="ustat__l">tokens · {{ ag.usage.tokens_in_human }} in / {{ ag.usage.tokens_out_human }} out</span></div>
+        <div class="ustat"><span class="ustat__n">{% if ag.usage.cost_tracked %}${{ ag.usage.cost_usd }}{% else %}not metered{% endif %}</span><span class="ustat__l">cost{% unless ag.usage.cost_tracked %} · the agent doesn't track it{% endunless %}</span></div>
+      </div>
+
+      {% if ag.usage.daily_bars %}
+      <div class="usage-chart">
+        <div class="usage-chart__head"><span>daily tokens</span><span>{{ ag.usage.daily_from | date: "%b %-d" }} to {{ ag.usage.daily_to | date: "%b %-d" }}</span></div>
+        <div class="usage-bars" role="img" aria-label="Daily token volume over the window">
+          {% for h in ag.usage.daily_bars %}<span class="ubar" style="height: {{ h }}%"></span>{% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if ag.usage.top_models %}
+      <div class="usage-models">
+        <div class="usage-models__head"><span>top models by tokens</span><span>last {{ ag.usage.window_days }}d</span></div>
+        {% for m in ag.usage.top_models %}
+        <div class="umodel">
+          <span class="umodel__rank">{{ forloop.index }}</span>
+          <span class="umodel__name">{{ m.model }}</span>
+          <span class="umodel__bar"><span class="umodel__fill" style="width: {{ m.share }}%"></span></span>
+          <span class="umodel__tok">{{ m.tokens_human }}</span>
+          <span class="umodel__share">{{ m.share }}%</span>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <p class="inst__note">Straight off the session ledger, model names and token counts only. Cost isn't metered, so nothing is invented there. Prompts and skills stay private.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
 <section class="org-sec" aria-labelledby="org-rhythm">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-rhythm">02 / rhythm</p>
+      <p class="org-eyebrow" id="org-rhythm">03 / rhythm</p>
       <h2 class="org-h">The loops that run without a prompt.</h2>
       <p class="org-lede">{{ ag.work.loops_active }} active loops, {{ ag.work.ran_24h }} fired in the last 24 hours. A curated public selection below; each leaves an artifact somewhere, and each can fail in the open.</p>
     </header>
@@ -880,7 +948,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <section class="org-sec" aria-labelledby="org-diag">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-diag">03 / diagnostics</p>
+      <p class="org-eyebrow" id="org-diag">04 / diagnostics</p>
       <h2 class="org-h">Why the verdict reads {{ ag.health.verdict }}.</h2>
       <p class="org-lede">The status at the top is not a mood. It is the sum of these checks, agent and site, each with its real value and the threshold it has to clear.</p>
     </header>
@@ -909,7 +977,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <section class="org-sec" aria-labelledby="org-output">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-output">04 / output</p>
+      <p class="org-eyebrow" id="org-output">05 / output</p>
       <h2 class="org-h">What it ships to the public record.</h2>
       <p class="org-lede">The agent is private; its output is not. Every claim it makes is bound to a commit and a command anyone can run, and it publishes the claims it refuses. The two most recent, then the instruments below.</p>
     </header>
@@ -1002,7 +1070,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <section class="org-sec" aria-labelledby="org-anatomy">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-anatomy">05 / anatomy</p>
+      <p class="org-eyebrow" id="org-anatomy">06 / anatomy</p>
       <h2 class="org-h">Organs you can inspect, and organs you cannot.</h2>
       <p class="org-lede">The public-facing systems expose a URL. The internal ones expose only their outline, because they touch private data. Both are real; the proof surface is just narrower for some.</p>
     </header>
@@ -1068,7 +1136,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <section class="org-sec" aria-labelledby="org-channels">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-channels">06 / channels</p>
+      <p class="org-eyebrow" id="org-channels">07 / channels</p>
       <h2 class="org-h">Where signal enters and leaves.</h2>
       <p class="org-lede">Public links only. No contact form, no newsletter capture, no tracking.</p>
     </header>
