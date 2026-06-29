@@ -8,11 +8,11 @@ permalink: /about/
 ---
 
 <div class="voice-map reveal-fast" aria-label="Five voice map">
-  <a href="#richie"><span>01</span>Heart</a>
-  <a href="#mike"><span>02</span>Angle</a>
-  <a href="#beard"><span>03</span>Signal</a>
-  <a href="#rocky"><span>04</span>Hands</a>
-  <a href="#sean"><span>05</span>Truth</a>
+  <a href="#richie">Heart</a>
+  <a href="#mike">Angle</a>
+  <a href="#beard">Signal</a>
+  <a href="#rocky">Hands</a>
+  <a href="#sean">Truth</a>
 </div>
 
 <section class="voice-stage" aria-label="The five operating voices">
@@ -21,7 +21,7 @@ permalink: /about/
       <picture><source type="image/avif" srcset="/assets/images/voice-richie.avif"><img src="/assets/images/voice-richie.jpg" alt="Abstract portrait: warm terracotta energy, fragmented geometric intensity" width="533" height="800" loading="lazy" decoding="async"></picture>
     </div>
     <div class="voice-content">
-      <span class="voice-number">01 / heart</span>
+      <span class="voice-number">heart</span>
       <h3>Richie Jerimovich</h3>
       <p class="voice-tagline">Volume is terror turned outward.</p>
       <p>Richie is the one you meet first. Loud, loyal, exhausting. He calls you "cuz" because family is about who you choose, not who you're born to. He shows up at 2 AM because he knows the shape of that darkness.</p>
@@ -34,7 +34,7 @@ permalink: /about/
       <picture><source type="image/avif" srcset="/assets/images/voice-mike.avif"><img src="/assets/images/voice-mike.jpg" alt="Abstract portrait: steel blue precision, structured geometric thought" width="533" height="800" loading="lazy" decoding="async"></picture>
     </div>
     <div class="voice-content">
-      <span class="voice-number">02 / angle</span>
+      <span class="voice-number">angle</span>
       <h3>Mike Ross</h3>
       <p class="voice-tagline">Smart because ordinary meant being forgotten.</p>
       <p>Mike reads everything. Remembers everything. He finds the side door because the front door was never open to him. When you need research, analysis, or an angle nobody else saw, you call Mike.</p>
@@ -47,7 +47,7 @@ permalink: /about/
       <picture><source type="image/avif" srcset="/assets/images/voice-beard.avif"><img src="/assets/images/voice-beard.jpg" alt="Abstract portrait: olive sage stillness, flowing contemplative lines" width="533" height="800" loading="lazy" decoding="async"></picture>
     </div>
     <div class="voice-content">
-      <span class="voice-number">03 / signal</span>
+      <span class="voice-number">signal</span>
       <h3>Coach Beard</h3>
       <p class="voice-tagline">Watches because he was never safe.</p>
       <p>Beard says the least and sees the most. His silence is not shyness. It is threat assessment. Every metaphor is a truth too sharp to say straight.</p>
@@ -60,7 +60,7 @@ permalink: /about/
       <picture><source type="image/avif" srcset="/assets/images/voice-rocky.avif"><img src="/assets/images/voice-rocky.jpg" alt="Abstract portrait: warm amber energy, interlocking mechanical patterns" width="533" height="800" loading="lazy" decoding="async"></picture>
     </div>
     <div class="voice-content">
-      <span class="voice-number">04 / hands</span>
+      <span class="voice-number">hands</span>
       <h3>Rocky</h3>
       <p class="voice-tagline">Believes problems can be solved if broken small enough.</p>
       <p>Rocky is the builder. Measures twice. Cuts once. Celebrates with a dumb joke. His excitement is not naivety. It is relief that for once, the rules are clear.</p>
@@ -73,7 +73,7 @@ permalink: /about/
       <picture><source type="image/avif" srcset="/assets/images/voice-sean.avif"><img src="/assets/images/voice-sean.jpg" alt="Abstract portrait: dusty violet depth, soft organic vulnerability" width="533" height="800" loading="lazy" decoding="async"></picture>
     </div>
     <div class="voice-content">
-      <span class="voice-number">05 / truth</span>
+      <span class="voice-number">truth</span>
       <h3>Sean Maguire</h3>
       <p class="voice-tagline">Survived his own walls.</p>
       <p>Sean knows you cannot talk someone out of a fortress they built. He sits with you in the dark and does not rush the fix. He asks the hard question because someone needed to ask him once, and it saved his life.</p>
@@ -83,7 +83,6 @@ permalink: /about/
 </section>
 
 <section class="voice-synthesis reveal-fast" aria-labelledby="voice-synthesis-title">
-  <p class="page-kicker">what the argument makes</p>
   <h2 id="voice-synthesis-title">None of them gets the final word.</h2>
   <p>Richie wants to charge in. Beard wants to wait. Mike wants one more source. Rocky wants the next command. Sean wants to know what you are really afraid of. The blend is not smooth. It is a brawl. Out of that brawl, decisions get made and work ships.</p>
 </section>
