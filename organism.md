@@ -89,6 +89,16 @@ body.page-organism > footer {
 
 .org-sec { position: relative; padding: clamp(3rem, 6.5vw, 5.5rem) 0; }
 .org-wrap { width: min(100% - 2.5rem, 1140px); margin-inline: auto; }
+/* section index: sticky jump-nav with scroll-spy, offsets under the site header */
+.org-eyebrow[id] { scroll-margin-top: var(--org-stick, 7rem); }
+.org-nav { position: sticky; top: var(--org-nav-top, 3.5rem); z-index: 40; background: rgba(10, 8, 6, 0.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid var(--org-line); }
+.org-nav__wrap { width: min(100% - 2.5rem, 1140px); margin-inline: auto; display: flex; gap: 0.3rem; overflow-x: auto; scrollbar-width: none; padding: 0.5rem 0; }
+.org-nav__wrap::-webkit-scrollbar { display: none; }
+.org-nav a { flex: 0 0 auto; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--org-mute); text-decoration: none; padding: 0.34rem 0.62rem; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; transition: color 0.2s var(--ease-out), background 0.2s var(--ease-out), border-color 0.2s var(--ease-out); }
+.org-nav a b { color: var(--org-soft); font-weight: 400; margin-right: 0.28rem; }
+.org-nav a:hover { color: var(--org-ink); border-color: var(--org-line); }
+.org-nav a.is-current { color: var(--org-bg); background: var(--sig); border-color: var(--sig); }
+.org-nav a.is-current b { color: var(--org-bg); }
 .org-eyebrow {
   display: flex; align-items: center; gap: 0.7rem;
   font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.22em;
@@ -679,6 +689,18 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     </div>
   </div>
 </section>
+
+<nav class="org-nav" aria-label="Jump to a section">
+  <div class="org-nav__wrap">
+    <a href="#org-cmd" data-navlink="org-cmd"><b>01</b> control</a>
+    <a href="#org-usage" data-navlink="org-usage"><b>02</b> usage</a>
+    <a href="#org-rhythm" data-navlink="org-rhythm"><b>03</b> rhythm</a>
+    <a href="#org-diag" data-navlink="org-diag"><b>04</b> diagnostics</a>
+    <a href="#org-output" data-navlink="org-output"><b>05</b> output</a>
+    <a href="#org-anatomy" data-navlink="org-anatomy"><b>06</b> anatomy</a>
+    <a href="#org-channels" data-navlink="org-channels"><b>07</b> channels</a>
+  </div>
+</nav>
 
 <section class="org-sec" aria-labelledby="org-cmd">
   <div class="org-wrap">
@@ -1394,3 +1416,56 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
      (scripts/galaxy). Owns the core canvas; the engine above forwards live state
      to window.OrganismCore. No third-party request. -->
 <script type="module" src="{{ site.baseurl }}/assets/js/organism-galaxy.js?v=20260621c"></script>
+
+{% raw %}
+<script>
+/* section index: keep it offset under the sticky site header, jump on click
+   (reduced-motion aware), and highlight the section currently in view. */
+(function () {
+  "use strict";
+  var nav = document.querySelector(".org-nav");
+  if (!nav) return;
+  var header = document.querySelector("body > header");
+  var links = [].slice.call(nav.querySelectorAll("[data-navlink]"));
+  var root = document.documentElement;
+
+  function layout() {
+    var h = header ? header.offsetHeight : 56;
+    var nh = nav.offsetHeight || 44;
+    root.style.setProperty("--org-nav-top", h + "px");
+    root.style.setProperty("--org-stick", (h + nh + 14) + "px");
+  }
+  layout();
+  window.addEventListener("resize", layout);
+
+  nav.addEventListener("click", function (e) {
+    var a = e.target.closest("a[data-navlink]");
+    if (!a) return;
+    e.preventDefault();
+    var el = document.getElementById(a.getAttribute("data-navlink"));
+    if (!el) return;
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    try { history.replaceState(null, "", "#" + a.getAttribute("data-navlink")); } catch (_) {}
+  });
+
+  if (!("IntersectionObserver" in window)) return;
+  var map = {};
+  links.forEach(function (a) {
+    var p = document.getElementById(a.getAttribute("data-navlink"));
+    var sec = p ? p.closest("section") : null;
+    if (sec) map[a.getAttribute("data-navlink")] = { a: a, sec: sec };
+  });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      links.forEach(function (a) { a.classList.remove("is-current"); a.removeAttribute("aria-current"); });
+      Object.keys(map).forEach(function (k) {
+        if (map[k].sec === en.target) { map[k].a.classList.add("is-current"); map[k].a.setAttribute("aria-current", "true"); }
+      });
+    });
+  }, { rootMargin: "-25% 0px -65% 0px" });
+  Object.keys(map).forEach(function (k) { io.observe(map[k].sec); });
+})();
+</script>
+{% endraw %}
