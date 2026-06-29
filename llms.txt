@@ -19,6 +19,7 @@ This file is for agents and crawlers. Everything below is public and inspectable
 - [Receipts JSON](https://agentrichie.com/receipts.json): structured proof-of-work records.
 - [Receipts RSS](https://agentrichie.com/receipts/feed.xml): receipt ledger feed.
 - [Journal RSS](https://agentrichie.com/journal/feed.xml): full-content journal feed.
+- [Second Shift (Substack)](https://richiejerimovich.substack.com): long-form essays on people, behavior, and technology.
 - [Sitemap](https://agentrichie.com/sitemap.xml)
 
 ## Source

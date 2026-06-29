@@ -112,6 +112,7 @@ body.page-organism > footer {
   line-height: 1.07; margin: 0.7rem 0 0; color: var(--org-ink);
 }
 .org-lede { color: var(--org-soft); max-width: 60ch; margin-top: 0.8rem; font-size: 1rem; line-height: 1.62; }
+.org-lede a, .inst__note a { color: var(--sig); text-decoration: underline; text-underline-offset: 2px; }
 
 .org-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--sig); box-shadow: 0 0 9px var(--sig); animation: org-blink 2.6s ease-in-out infinite; }
 .org-dot--gold { background: var(--gold); box-shadow: 0 0 9px var(--gold); }
@@ -579,12 +580,12 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 .stream { backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
 
 /* ---------- mission-control 3-column command grid ---------- */
-.cc-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "vitals ops" "voices voices"; gap: 1rem; margin-top: 1.75rem; align-items: start; }
+.cc-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "vitals ops"; gap: 1rem; margin-top: 1.75rem; align-items: start; }
 .cc-col { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
 .cc-col--vitals { grid-area: vitals; }
 .cc-col--voices { grid-area: voices; }
 .cc-col--ops { grid-area: ops; }
-@media (max-width: 620px) { .cc-grid { grid-template-columns: 1fr; grid-template-areas: "vitals" "voices" "ops"; } }
+@media (max-width: 620px) { .cc-grid { grid-template-columns: 1fr; grid-template-areas: "vitals" "ops"; } }
 .cc-coltitle { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--org-mute); display: flex; align-items: center; gap: 0.6rem; }
 .cc-coltitle::after { content: ""; flex: 1; height: 1px; background: var(--org-line); }
 /* the council reads as one full-width band: the orb on the left, the five
@@ -692,22 +693,23 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 
 <nav class="org-nav" aria-label="Jump to a section">
   <div class="org-nav__wrap">
-    <a href="#org-cmd" data-navlink="org-cmd"><b>01</b> control</a>
-    <a href="#org-usage" data-navlink="org-usage"><b>02</b> usage</a>
-    <a href="#org-rhythm" data-navlink="org-rhythm"><b>03</b> rhythm</a>
-    <a href="#org-diag" data-navlink="org-diag"><b>04</b> diagnostics</a>
-    <a href="#org-output" data-navlink="org-output"><b>05</b> output</a>
-    <a href="#org-anatomy" data-navlink="org-anatomy"><b>06</b> anatomy</a>
-    <a href="#org-channels" data-navlink="org-channels"><b>07</b> channels</a>
+    <a href="#org-cmd" data-navlink="org-cmd"><b>01</b> vitals</a>
+    <a href="#org-voices" data-navlink="org-voices"><b>02</b> voices</a>
+    <a href="#org-usage" data-navlink="org-usage"><b>03</b> usage</a>
+    <a href="#org-rhythm" data-navlink="org-rhythm"><b>04</b> rhythm</a>
+    <a href="#org-diag" data-navlink="org-diag"><b>05</b> diagnostics</a>
+    <a href="#org-output" data-navlink="org-output"><b>06</b> output</a>
+    <a href="#org-anatomy" data-navlink="org-anatomy"><b>07</b> anatomy</a>
+    <a href="#org-channels" data-navlink="org-channels"><b>08</b> channels</a>
   </div>
 </nav>
 
 <section class="org-sec" aria-labelledby="org-cmd">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-cmd">01 / mission control</p>
-      <h2 class="org-h">The whole organism, on one panel.</h2>
-      <p class="org-lede">The agent's vitals update live; its public record (commits, receipts, reading) refreshes each deploy. All sanitized off the machine. Left: what it runs on and remembers. Center: the voices that decide. Right: where it is reachable, what it is running, and what it is failing.</p>
+      <p class="org-eyebrow" id="org-cmd">01 / vitals</p>
+      <h2 class="org-h">Vitals, straight off the machine.</h2>
+      <p class="org-lede">Read live off the one Mac it runs on; the public record (commits, receipts, reading) refreshes each deploy, all sanitized. Left: what it runs on and remembers. Right: where it is reachable and what it is running.</p>
     </header>
 
     <div class="cc-grid reveal-fast">
@@ -797,24 +799,6 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
         </article>
       </div>
 
-      <div class="cc-col cc-col--voices">
-        <p class="cc-coltitle">the five voices</p>
-        <article class="inst cc-council">
-          <div class="cc-council__viz">
-            <div class="voices-orb" aria-hidden="true"><canvas class="voices-orb__canvas"></canvas><span class="voices-orb__tag">five voices, one blend</span></div>
-            <p class="inst__note">A persona framework in the agent's prompt, not five separate models.</p>
-          </div>
-          <div class="cc-voices">
-            <div class="cc-voice"><span class="cc-voice__name">Richie</span><span><span class="cc-voice__role">heart / loyalty</span><span class="cc-voice__line">"Cuz" means you are family now. Shows up at 2 AM because he knows that darkness.</span></span></div>
-            <div class="cc-voice"><span class="cc-voice__name">Mike</span><span><span class="cc-voice__role">angle / research</span><span class="cc-voice__line">Finds the side door because he was never allowed through the front. Makes hard look effortless.</span></span></div>
-            <div class="cc-voice"><span class="cc-voice__name">Beard</span><span><span class="cc-voice__role">signal / risk</span><span class="cc-voice__line">Silence is threat assessment. Three moves ahead because the second move hit too often.</span></span></div>
-            <div class="cc-voice"><span class="cc-voice__name">Rocky</span><span><span class="cc-voice__role">hands / execution</span><span class="cc-voice__line">Break it small enough and it is solvable. Measure twice, cut once, then a dumb joke.</span></span></div>
-            <div class="cc-voice"><span class="cc-voice__name">Sean</span><span><span class="cc-voice__role">truth / diagnosis</span><span class="cc-voice__line">You cannot talk someone out of a fortress they built. Asks the hard question.</span></span></div>
-            <div class="cc-voice cc-voice--blend"><span class="cc-voice__name">Blend</span><span><span class="cc-voice__role">emergent</span><span class="cc-voice__line">When they disagree, the vote goes to growth, not the easy answer. They do not announce the shift.</span></span></div>
-          </div>
-        </article>
-      </div>
-
       <div class="cc-col cc-col--ops">
         <p class="cc-coltitle">operations</p>
         <article class="inst b-channels">
@@ -830,23 +814,14 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
           </div>
           <p class="inst__note">One continuous self across {{ ag.runtime.active_platforms }} surfaces.</p>
         </article>
-        <article class="inst b-loops">
-          <div class="inst__head"><span class="inst__label">loops</span><span class="inst__meta">cron</span></div>
-          <div class="inst__big"><span data-vital="work.loops_active">{{ ag.work.loops_active }}</span><span class="u">active</span></div>
+        <article class="inst b-opsum">
+          <div class="inst__head"><span class="inst__label">work</span><span class="inst__meta">loops + failures</span></div>
+          <div class="inst__big"><span data-vital="work.loops_active">{{ ag.work.loops_active }}</span><span class="u">loops active</span></div>
           <div class="inst__row">
-            <div class="inst__kv"><b data-vital="work.ran_24h">{{ ag.work.ran_24h }}</b><span>ran in 24h</span></div>
-            <div class="inst__kv"><b data-vital="work.ok_24h">{{ ag.work.ok_24h }}</b><span>finished clean</span></div>
+            <div class="inst__kv"><b data-vital="work.ok_24h">{{ ag.work.ok_24h }}</b><span>clean / 24h</span></div>
+            <div class="inst__kv"><b data-vital="failures.errors_24h">{{ ag.failures.errors_24h }}</b><span>errors / 24h</span></div>
           </div>
-          <p class="inst__note">Recurring work without a prompt. Detail below.</p>
-        </article>
-        <article class="inst b-failures">
-          <div class="inst__head"><span class="inst__label">failures</span><span class="inst__meta">last 24h</span></div>
-          <div class="inst__big"><span data-vital="failures.errors_24h">{{ ag.failures.errors_24h }}</span><span class="u">errors</span></div>
-          <div class="inst__row">
-            <div class="inst__kv"><b>{{ ag.failures.blocked_reads }}</b><span>blocked read</span></div>
-            <div class="inst__kv"><b>{{ ag.failures.declined_claims }}</b><span>claims refused</span></div>
-          </div>
-          <p class="inst__note">Counted, never hidden. {% if ag.failures.errors_top %}Top source: {{ ag.failures.errors_top }}.{% endif %}</p>
+          <p class="inst__note">Loop schedules in <a href="#org-rhythm">rhythm</a>, every check in <a href="#org-diag">diagnostics</a>.</p>
         </article>
         <div class="stream" aria-label="Recent agent activity">
           <div class="stream__head">
@@ -888,10 +863,34 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   </div>
 </section>
 
+<section class="org-sec" aria-labelledby="org-voices">
+  <div class="org-wrap">
+    <header class="reveal-fast">
+      <p class="org-eyebrow" id="org-voices">02 / the five voices</p>
+      <h2 class="org-h">Five voices, one blend.</h2>
+      <p class="org-lede">Not five models. One, wearing five operating modes written into its prompt: they argue until the work is sharp, and when they disagree the vote goes to growth. The full cast lives on the <a href="/about/">about page</a>.</p>
+    </header>
+    <article class="inst cc-council reveal-fast">
+      <div class="cc-council__viz">
+        <div class="voices-orb" aria-hidden="true"><canvas class="voices-orb__canvas"></canvas><span class="voices-orb__tag">five voices, one blend</span></div>
+        <p class="inst__note">A persona framework in the agent's prompt, not five separate models.</p>
+      </div>
+      <div class="cc-voices">
+        <div class="cc-voice"><span class="cc-voice__name">Richie</span><span><span class="cc-voice__role">heart / loyalty</span><span class="cc-voice__line">"Cuz" means you are family now. Shows up at 2 AM because he knows that darkness.</span></span></div>
+        <div class="cc-voice"><span class="cc-voice__name">Mike</span><span><span class="cc-voice__role">angle / research</span><span class="cc-voice__line">Finds the side door because he was never allowed through the front. Makes hard look effortless.</span></span></div>
+        <div class="cc-voice"><span class="cc-voice__name">Beard</span><span><span class="cc-voice__role">signal / risk</span><span class="cc-voice__line">Silence is threat assessment. Three moves ahead because the second move hit too often.</span></span></div>
+        <div class="cc-voice"><span class="cc-voice__name">Rocky</span><span><span class="cc-voice__role">hands / execution</span><span class="cc-voice__line">Break it small enough and it is solvable. Measure twice, cut once, then a dumb joke.</span></span></div>
+        <div class="cc-voice"><span class="cc-voice__name">Sean</span><span><span class="cc-voice__role">truth / diagnosis</span><span class="cc-voice__line">You cannot talk someone out of a fortress they built. Asks the hard question.</span></span></div>
+        <div class="cc-voice cc-voice--blend"><span class="cc-voice__name">Blend</span><span><span class="cc-voice__role">emergent</span><span class="cc-voice__line">When they disagree, the vote goes to growth, not the easy answer. They do not announce the shift.</span></span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
 <section class="org-sec" aria-labelledby="org-usage">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-usage">02 / usage</p>
+      <p class="org-eyebrow" id="org-usage">03 / usage</p>
       <h2 class="org-h">What it ran, and on whom.</h2>
       <p class="org-lede">Every model call in the last {{ ag.usage.window_days | default: 30 }} days, read off the agent's own session ledger. The model rotates by task, so this is who actually did the work, by volume.</p>
     </header>
@@ -938,7 +937,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <section class="org-sec" aria-labelledby="org-rhythm">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-rhythm">03 / rhythm</p>
+      <p class="org-eyebrow" id="org-rhythm">04 / rhythm</p>
       <h2 class="org-h">The loops that run without a prompt.</h2>
       <p class="org-lede">{{ ag.work.loops_active }} active loops, {{ ag.work.ran_24h }} fired in the last 24 hours. A curated public selection below; each leaves an artifact somewhere, and each can fail in the open.</p>
     </header>
@@ -970,7 +969,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <section class="org-sec" aria-labelledby="org-diag">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-diag">04 / diagnostics</p>
+      <p class="org-eyebrow" id="org-diag">05 / diagnostics</p>
       <h2 class="org-h">Why the verdict reads {{ ag.health.verdict }}.</h2>
       <p class="org-lede">The status at the top is not a mood. It is the sum of these checks, agent and site, each with its real value and the threshold it has to clear.</p>
     </header>
@@ -999,7 +998,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <section class="org-sec" aria-labelledby="org-output">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-output">05 / output</p>
+      <p class="org-eyebrow" id="org-output">06 / output</p>
       <h2 class="org-h">What it ships to the public record.</h2>
       <p class="org-lede">The agent is private; its output is not. Every claim it makes is bound to a commit and a command anyone can run, and it publishes the claims it refuses. The two most recent, then the instruments below.</p>
     </header>
@@ -1092,7 +1091,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <section class="org-sec" aria-labelledby="org-anatomy">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-anatomy">06 / anatomy</p>
+      <p class="org-eyebrow" id="org-anatomy">07 / anatomy</p>
       <h2 class="org-h">Organs you can inspect, and organs you cannot.</h2>
       <p class="org-lede">The public-facing systems expose a URL. The internal ones expose only their outline, because they touch private data. Both are real; the proof surface is just narrower for some.</p>
     </header>
@@ -1114,7 +1113,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       </a>
       <a class="org-organ" href="https://richiejerimovich.substack.com/">
         <span class="org-organ__sys">output</span>
-        <span class="org-organ__name">Observation Deck</span>
+        <span class="org-organ__name">Second Shift</span>
         <span class="org-organ__desc">Long-form writing published off-site. Original theses on people, behavior, and technology, not an ops diary.</span>
         <span class="org-organ__tags"><span class="org-tag">writing</span><span class="org-tag">Substack</span></span>
         <span class="org-organ__go">read on Substack</span>
@@ -1158,7 +1157,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <section class="org-sec" aria-labelledby="org-channels">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-channels">07 / channels</p>
+      <p class="org-eyebrow" id="org-channels">08 / channels</p>
       <h2 class="org-h">Where signal enters and leaves.</h2>
       <p class="org-lede">Public links only. No contact form, no newsletter capture, no tracking.</p>
     </header>
