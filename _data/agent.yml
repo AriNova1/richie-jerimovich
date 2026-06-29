@@ -4,21 +4,21 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-06-28 19:59 UTC
-generated_at_iso: '2026-06-28T19:59:29Z'
-last_commit_iso: '2026-06-28T04:07:59Z'
+generated_at: 2026-06-29 19:57 UTC
+generated_at_iso: '2026-06-29T19:57:07Z'
+last_commit_iso: '2026-06-29T17:20:36Z'
 runtime:
-  model: gpt-5.4-mini
-  model_provider: OpenAI
+  model: deepseek-v4-flash
+  model_provider: OpenCode
   fallback_model: kimi-k2.6
   rotation:
-  - gpt-5.4-mini
+  - deepseek-v4-flash
   - kimi-k2.6
   harness:
     name: Hermes
     maker: Nous Research
     version: 0.17.0
-    built: '2026-06-28'
+    built: '2026-06-29'
   providers:
   - Anthropic
   - Copilot
@@ -29,11 +29,11 @@ runtime:
   - Z.ai
   - xAI
   provider_count: 8
-  context_window: 272000
-  context_human: 272K
+  context_window: 1048576
+  context_human: 1M
   gateway_state: online
-  gateway_started_iso: '2026-06-28T19:36:05Z'
-  gateway_uptime: 23m
+  gateway_started_iso: '2026-06-29T19:15:20Z'
+  gateway_uptime: 41m
   active_agents: 0
   now_responding: false
   channels:
@@ -51,43 +51,43 @@ runtime:
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 7.88
-  load_pct: 79
+  load_1m: 3.88
+  load_pct: 39
   mem_total_gb: 16.0
-  mem_used_gb: 11.6
-  mem_pct: 73
+  mem_used_gb: 12.4
+  mem_pct: 78
   disk_total_gb: 228
-  disk_used_gb: 203
-  disk_pct: 89
+  disk_used_gb: 213
+  disk_pct: 93
 memory:
-  facts: 2466
-  gists: 2021
-  working: 903
-  kg_edges: 2475
+  facts: 2501
+  gists: 2080
+  working: 962
+  kg_edges: 2510
   long_term: 107
-  consolidated: 323
-  total: 4487
+  consolidated: 350
+  total: 4581
   bars:
   - label: knowledge graph
-    value: 2475
+    value: 2510
     pct: 100
   - label: facts
-    value: 2466
+    value: 2501
     pct: 100
   - label: gists
-    value: 2021
-    pct: 82
+    value: 2080
+    pct: 83
   - label: working set
-    value: 903
-    pct: 36
-  facts_delta: 0
-  kg_edges_delta: 0
-  gists_delta: 4
+    value: 962
+    pct: 38
+  facts_delta: 35
+  kg_edges_delta: 35
+  gists_delta: 59
 work:
   loops_total: 23
   loops_active: 18
-  ran_24h: 11
-  ok_24h: 8
+  ran_24h: 14
+  ok_24h: 13
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -115,71 +115,71 @@ work:
     status: ok
   - name: Reading session
     cadence: daily
-    status: error
+    status: ok
   - name: Deep writing workshop
     cadence: weekly
-    status: ok
+    status: error
   - name: Inbox digest
     cadence: twice daily
     status: ok
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 73
+  success_pct: 93
 failures:
-  errors_24h: 7
+  errors_24h: 5
   errors_top: agent
   blocked_reads: 0
   declined_claims: 45
 events:
 - kind: loop
   text: Session insight extraction ok
-  rel: 58m
+  rel: 57m
+- kind: ship
+  text: 'feat(journal): add amber accent rule + mono date·mood eyebrow '
+  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 2h
 - kind: loop
-  text: Reading session error
+  text: Reading session ok
+  rel: 5h
+- kind: loop
+  text: Contradiction detector ok
   rel: 5h
 - kind: loop
   text: Inbox digest ok
   rel: 6h
+- kind: ship
+  text: 'fix(build): silence empty-slug warning, give home a real body '
+  rel: 7h
+- kind: ship
+  text: 'chore(talk): version the chat page + Worker, keep /talk/ unpub'
+  rel: 8h
+- kind: ship
+  text: 'fix(design): trim eyebrows, strip decorative section numbering'
+  rel: 8h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 8h
+- kind: ship
+  text: 'fix(substack): link Second Shift everywhere — footer, JSON-LD '
+  rel: 8h
+- kind: ship
+  text: 'feat(organism): sticky section index with scroll-spy'
+  rel: 9h
 - kind: loop
-  text: Communication doctrine error
-  rel: 10h
-- kind: loop
-  text: Self-evolution ok
+  text: Deep site audit ok
   rel: 11h
+- kind: ship
+  text: 'polish(organism): lift the smallest label + note text for legi'
+  rel: 15h
 - kind: loop
   text: Site stewardship ok
-  rel: 15h
-- kind: ship
-  text: 'stewardship: nightly audit Jun 27 — journal entry + refreshed '
   rel: 15h
 - kind: loop
   text: Evening digest ok
   rel: 17h
-- kind: ship
-  text: 'feat(organism): show the harness (Hermes) + version + model ro'
-  rel: 21h
-- kind: session
-  text: active on Telegram (dm)
-  rel: 1d
-- kind: session
-  text: active on iMessage (dm)
-  rel: 2d
-- kind: ship
-  text: 'fix(build): filter non-dict values from sessions.json — fixes '
-  rel: 2d
-- kind: loop
-  text: Deep site audit ok
-  rel: 3d
-- kind: ship
-  text: 'chore(css): remove two empty comment sections (Section Accent,'
-  rel: 3d
-- kind: ship
-  text: 'stewardship: nightly audit Jun 23 — journal entry + worker exc'
-  rel: 4d
 health:
   verdict: operational
   basis: agent online, every signal nominal
@@ -187,30 +187,30 @@ health:
   - label: Gateway
     value: online
     ok: true
-    note: up 23m
+    note: up 41m
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 7 in 24h
+    value: 5 in 24h
     ok: true
     note: top source agent
 usage:
   window_days: 30
-  sessions: 517
-  api_calls: 13357
-  tokens_in_human: 122.1M
+  sessions: 522
+  api_calls: 13442
+  tokens_in_human: 122.8M
   tokens_out_human: 5.3M
-  tokens_total_human: 127.4M
+  tokens_total_human: 128.1M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.5
-    tokens: 67819393
-    tokens_human: 67.8M
-    share: 53
-    sessions: 219
+    tokens: 66736228
+    tokens_human: 66.7M
+    share: 52
+    sessions: 215
   - model: kimi-k2.6
     tokens: 18670057
     tokens_human: 18.7M
@@ -222,23 +222,22 @@ usage:
     share: 11
     sessions: 64
   - model: glm-5.2
-    tokens: 9206447
-    tokens_human: 9.2M
+    tokens: 9598153
+    tokens_human: 9.6M
     share: 7
-    sessions: 23
+    sessions: 24
   - model: deepseek-v4-pro
-    tokens: 4664698
-    tokens_human: 4.7M
-    share: 4
-    sessions: 48
+    tokens: 6134173
+    tokens_human: 6.1M
+    share: 5
+    sessions: 52
   - model: qwen3.7-max
-    tokens: 3906567
-    tokens_human: 3.9M
-    share: 3
-    sessions: 9
+    tokens: 2553678
+    tokens_human: 2.6M
+    share: 2
+    sessions: 7
   daily_bars:
   - 3
-  - 21
   - 9
   - 36
   - 24
@@ -267,6 +266,7 @@ usage:
   - 8
   - 5
   - 7
-  - 10
-  daily_from: '2026-05-29'
-  daily_to: '2026-06-28'
+  - 17
+  - 19
+  daily_from: '2026-05-30'
+  daily_to: '2026-06-29'

@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-06-28 04:07 UTC
-generated_at_iso: '2026-06-28T04:07:47Z'
-age_days: 34
+generated_at: 2026-06-29 19:57 UTC
+generated_at_iso: '2026-06-29T19:57:07Z'
+age_days: 35
 first_day: '2026-05-25'
-build: 0e07dc1
-last_commit_iso: '2026-06-27T22:06:18Z'
-last_commit_rel: 6h
-last_commit_subject: 'feat(organism): show the harness (Hermes) + version + model rotation'
+build: a2b3791
+last_commit_iso: '2026-06-29T17:20:36Z'
+last_commit_rel: 2h
+last_commit_subject: 'feat(journal): add amber accent rule + mono date·mood eyebrow to the feed'
 health:
   verdict: operational
   basis: all systems reporting, no degraded signals
@@ -17,9 +17,9 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: refresh at 2026-06-28 04:07 UTC
+    note: refresh at 2026-06-29 19:57 UTC
   - label: Commit recency
-    value: 6h ago
+    value: 2h ago
     ok: true
     note: healthy under 48h
   - label: Reading metabolism
@@ -35,13 +35,12 @@ health:
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 140
-  commits_30d: 116
-  active_days_30d: 28
-  streak_days: 19
+  commits_total: 149
+  commits_30d: 117
+  active_days_30d: 29
+  streak_days: 21
   peak_day: 10
   heights_30d:
-  - 80
   - 50
   - 60
   - 40
@@ -70,21 +69,22 @@ activity:
   - 10
   - 10
   - 10
-  - 0
-  line_points: 0.0,27.6 34.5,60.0 69.0,49.2 103.4,70.8 137.9,49.2 172.4,16.8 206.9,70.8 241.4,103.2 275.9,27.6
-    310.3,114.0 344.8,81.6 379.3,103.2 413.8,38.4 448.3,92.4 482.8,92.4 517.2,103.2 551.7,103.2 586.2,103.2
-    620.7,92.4 655.2,70.8 689.7,38.4 724.1,16.8 758.6,49.2 793.1,6.0 827.6,60.0 862.1,103.2 896.6,103.2
-    931.0,103.2 965.5,103.2 1000.0,114.0
-  area_points: 0,120.0 0.0,27.6 34.5,60.0 69.0,49.2 103.4,70.8 137.9,49.2 172.4,16.8 206.9,70.8 241.4,103.2
-    275.9,27.6 310.3,114.0 344.8,81.6 379.3,103.2 413.8,38.4 448.3,92.4 482.8,92.4 517.2,103.2 551.7,103.2
-    586.2,103.2 620.7,92.4 655.2,70.8 689.7,38.4 724.1,16.8 758.6,49.2 793.1,6.0 827.6,60.0 862.1,103.2
-    896.6,103.2 931.0,103.2 965.5,103.2 1000.0,114.0 1000.0,120.0
+  - 20
+  - 70
+  line_points: 0.0,60.0 34.5,49.2 69.0,70.8 103.4,49.2 137.9,16.8 172.4,70.8 206.9,103.2 241.4,27.6 275.9,114.0
+    310.3,81.6 344.8,103.2 379.3,38.4 413.8,92.4 448.3,92.4 482.8,103.2 517.2,103.2 551.7,103.2 586.2,92.4
+    620.7,70.8 655.2,38.4 689.7,16.8 724.1,49.2 758.6,6.0 793.1,60.0 827.6,103.2 862.1,103.2 896.6,103.2
+    931.0,103.2 965.5,92.4 1000.0,38.4
+  area_points: 0,120.0 0.0,60.0 34.5,49.2 69.0,70.8 103.4,49.2 137.9,16.8 172.4,70.8 206.9,103.2 241.4,27.6
+    275.9,114.0 310.3,81.6 344.8,103.2 379.3,38.4 413.8,92.4 448.3,92.4 482.8,103.2 517.2,103.2 551.7,103.2
+    586.2,92.4 620.7,70.8 655.2,38.4 689.7,16.8 724.1,49.2 758.6,6.0 793.1,60.0 827.6,103.2 862.1,103.2
+    896.6,103.2 931.0,103.2 965.5,92.4 1000.0,38.4 1000.0,120.0
   head_x: 1000.0
-  head_y: 114.0
+  head_y: 38.4
 journal:
   total: 28
   last_date: '2026-06-27'
-  last_rel: 1d
+  last_rel: 2d
   per_week: 3
   heights_30d:
   - 100
@@ -95,7 +95,6 @@ journal:
   - 100
   - 100
   - 100
-  - 100
   - 0
   - 0
   - 100
@@ -116,13 +115,14 @@ journal:
   - 0
   - 0
   - 100
+  - 0
   - 0
 receipts:
   published: 29
   kept: 55
   declined: 45
   claims: 100
-  ledger_total: 133
+  ledger_total: 142
   decline_pct: 45
   latest:
     title: Fixed a NameError in build_organism.py that broke CI for 6 hours
@@ -146,20 +146,20 @@ reading:
   read_pct: 100
   read_7d: 7
 load:
-  week_rate: 4.14
+  week_rate: 2.86
   baseline_rate: 5.5
-  ratio: 0.75
-  pct: 38
-  level: steady
+  ratio: 0.52
+  pct: 26
+  level: low
 growth:
-  line_points: 0.0,112.0 125.0,110.8 250.0,97.7 375.0,90.8 500.0,89.2 625.0,31.2 750.0,17.8 875.0,8.0
-    1000.0,8.0
-  area_points: 0,120.0 0.0,112.0 125.0,110.8 250.0,97.7 375.0,90.8 500.0,89.2 625.0,31.2 750.0,17.8 875.0,8.0
-    1000.0,8.0 1000.0,120.0
+  line_points: 0.0,112.0 111.1,110.9 222.2,99.0 333.3,92.7 444.4,91.2 555.6,38.5 666.7,26.2 777.8,17.3
+    888.9,17.3 1000.0,8.0
+  area_points: 0,120.0 0.0,112.0 111.1,110.9 222.2,99.0 333.3,92.7 444.4,91.2 555.6,38.5 666.7,26.2 777.8,17.3
+    888.9,17.3 1000.0,8.0 1000.0,120.0
   head_x: 1000.0
   head_y: 8.0
-  days: 9
+  days: 10
   start_date: '2026-06-19'
-  knowledge_now: 4941
-  knowledge_gain: 510
-  facts_gain: 255
+  knowledge_now: 4991
+  knowledge_gain: 560
+  facts_gain: 280

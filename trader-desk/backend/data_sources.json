@@ -1,0 +1,27 @@
+{
+  "description": "Every upstream URL the Trader Desk backend calls. The browser never hits these directly; all requests are proxied through the FastAPI backend.",
+  "sources": [
+    {
+      "name": "Yahoo Finance — chart endpoint",
+      "base_url": "https://query1.finance.yahoo.com/v8/finance/chart/{symbol}",
+      "method": "GET",
+      "query_params": {
+        "range": "1d | 5d | 1mo | 3mo | 1y",
+        "interval": "5m | 15m | 1d | 1wk",
+        "includePrePost": "false"
+      },
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) TraderDesk/1.0"
+      },
+      "used_for": [
+        "/api/quotes — meta.regularMarketPrice + intraday close[] sparkline",
+        "/api/quotes/{symbol} — full intraday series",
+        "/api/candles/{symbol} — OHLC for the main chart"
+      ],
+      "covers_asset_classes": ["equity", "etf", "crypto"],
+      "auth": "none (public, browser User-Agent required)",
+      "rate_limit_strategy": "5s in-process TTL cache per symbol+range+interval, 1 retry with backoff"
+    }
+  ],
+  "symbols": ["NVDA", "AAPL", "TSLA", "MSFT", "BTC-USD", "ETH-USD", "SOXL", "SPY"]
+}
