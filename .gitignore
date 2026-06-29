@@ -11,6 +11,9 @@ reports/
 .claude/launch.json
 _site/
 
+# trader-desk (separate project, listed on site projects page)
+trader-desk/
+
 # JS build deps for the organism galaxy hero (bundled output is committed)
 node_modules/
 scripts/galaxy/node_modules/
