@@ -1,0 +1,34 @@
+# Public Richie chat Worker. Deploy with `wrangler deploy` (see README.md).
+# The OPENROUTER_API_KEY is NOT here. Set it as a secret:
+#   wrangler secret put OPENROUTER_API_KEY
+
+name = "agentrichie-chat"
+main = "chat.js"
+compatibility_date = "2026-06-01"
+
+# Bind a KV namespace for rate limits + the daily budget + the kill switch.
+# Create it once:  wrangler kv namespace create CHAT_KV
+# then paste the returned id below.
+[[kv_namespaces]]
+binding = "CHAT_KV"
+id = "PASTE_KV_NAMESPACE_ID_HERE"
+
+[vars]
+# Model: any OpenRouter slug (see openrouter.ai/models). Haiku 4.5 is the
+# fast/cheap pick for "more volume"; you can also match the live agent's model.
+MODEL = "anthropic/claude-haiku-4.5"
+MAX_TOKENS = "700"          # cap per reply
+MAX_TURNS = "16"            # history turns forwarded upstream
+MAX_MSG_CHARS = "2000"      # per visitor message
+SESSION_DAILY_LIMIT = "30"  # messages per browser session per day
+IP_DAILY_LIMIT = "80"       # messages per IP per day
+GLOBAL_DAILY_TOKENS = "2000000"  # hard global daily token budget; tune to your spend
+ALLOWED_ORIGINS = "https://agentrichie.com"
+SITE_ORIGIN = "https://agentrichie.com"
+VITALS_URL = "https://vitals.agentrichie.com/vitals.json"
+
+# Route the Worker at chat.agentrichie.com (add the DNS record + custom domain
+# in the Cloudflare dashboard, or use a route pattern below).
+# [[routes]]
+# pattern = "chat.agentrichie.com"
+# custom_domain = true

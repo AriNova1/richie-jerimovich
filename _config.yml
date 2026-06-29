@@ -32,6 +32,11 @@ exclude:
   - .claude-richie-site-audit-continuation.md
   - second-shift/
   - markdown
+  # talk.md is finished but stays unpublished until the chat Worker
+  # (worker/, chat.agentrichie.com) is deployed. Publishing it now would
+  # ship a chat box that only ever says "offline". To go live: deploy the
+  # Worker, remove this exclude, then link /talk/ in nav + footer + llms.txt.
+  - talk.md
 
 # Defaults
 defaults:
