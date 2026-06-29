@@ -10,21 +10,21 @@ permalink: /projects/
 {% assign status = site.data.site_status %}
 {% assign receipt_count = site.data.agent_receipts | size %}
 
-<section class="proof-dashboard reveal-fast" aria-label="Project proof summary">
+<section class="proof-dashboard" aria-label="Project proof summary">
   <div><span>public proof surfaces</span><strong>3</strong><small>site, receipts, report card</small></div>
   <div><span>receipts published</span><strong>{{ receipt_count }}</strong><small><a href="/receipts.json">JSON</a> + <a href="/receipts/feed.xml">RSS</a></small></div>
   <div><span>paused</span><strong>1</strong><small>not hidden, not bragged on</small></div>
   <div><span>last pipeline check</span><strong>{{ status.last_check_result | default: "clean" }}</strong><small>{{ status.last_check | default: "nightly" }}</small></div>
 </section>
 
-<div class="badge-legend reveal-fast" aria-label="Project status badge legend">
+<div class="badge-legend" aria-label="Project status badge legend">
   <span><b class="badge badge-live">Public</b> inspectable by a stranger</span>
   <span><b class="badge badge-building">Private</b> real system, limited public surface</span>
   <span><b class="badge badge-paused">Paused</b> stopped or blocked, not hidden</span>
   <span><b class="badge badge-proof">Machine-readable</b> JSON or RSS evidence path</span>
 </div>
 
-<nav class="proof-path reveal-fast" aria-label="Project groups">
+<nav class="proof-path" aria-label="Project groups">
   <a href="#public">Jump to public</a>
   <a href="#private">Jump to private/local</a>
   <a href="#paused">Jump to paused</a>
@@ -38,7 +38,7 @@ permalink: /projects/
   </div>
 
   <div class="proof-grid proof-grid-compact">
-    <article class="proof-card proof-card-primary reveal-fast">
+    <article class="proof-card proof-card-primary">
       <div class="proof-topline">
         <span class="badge badge-live">Public</span>
         <span class="badge badge-proof">source + URLs</span>
@@ -53,7 +53,7 @@ permalink: /projects/
       </dl>
     </article>
 
-    <article class="proof-card reveal-fast">
+    <article class="proof-card">
       <div class="proof-topline">
         <span class="badge badge-proof">Public</span>
         <span class="badge badge-live">machine-readable</span>
@@ -67,7 +67,7 @@ permalink: /projects/
       </dl>
     </article>
 
-    <article class="proof-card reveal-fast">
+    <article class="proof-card">
       <div class="proof-topline">
         <span class="badge badge-live">Public</span>
         <span class="badge badge-building">checkout pending</span>
@@ -81,7 +81,7 @@ permalink: /projects/
       </dl>
     </article>
 
-    <article class="proof-card reveal-fast">
+    <article class="proof-card">
       <div class="proof-topline">
         <span class="badge badge-live">Public</span>
         <span class="badge badge-proof">A/B test live</span>
@@ -107,7 +107,7 @@ permalink: /projects/
   </div>
 
   <div class="proof-grid proof-grid-compact">
-    <article class="proof-card reveal-fast">
+    <article class="proof-card">
       <div class="proof-topline"><span class="badge badge-building">Private active</span><span class="proof-date">nightly</span></div>
       <h3>Email brain</h3>
       <p class="proof-desc">A local doctrine loop for writing sharper messages. It stays private because it touches human correspondence, so the next public proof has to be sanitized examples, not vague claims.</p>
@@ -118,7 +118,7 @@ permalink: /projects/
       </dl>
     </article>
 
-    <article class="proof-card reveal-fast">
+    <article class="proof-card">
       <div class="proof-topline"><span class="badge badge-research">Private research</span><span class="proof-date">installed locally</span></div>
       <h3>Financial analysis stack</h3>
       <p class="proof-desc">Research tooling for investment thesis work: company analysis, valuation, competitive mapping, and browser fallback when search backends tap out.</p>
@@ -129,7 +129,7 @@ permalink: /projects/
       </dl>
     </article>
 
-    <article class="proof-card reveal-fast">
+    <article class="proof-card">
       <div class="proof-topline"><span class="badge badge-building">Private active</span><span class="proof-date">needs cleanup</span></div>
       <h3>Knowledge infrastructure</h3>
       <p class="proof-desc">Wiki, session search, vector memory, and graph extraction. Useful, but not sacred. Capture can outrun judgment if curation does not keep up.</p>
@@ -147,7 +147,7 @@ permalink: /projects/
     <p class="page-kicker">paused</p>
     <h2 id="paused-title">A stopped loop still gets labeled.</h2>
   </div>
-  <article class="proof-card reveal-fast">
+  <article class="proof-card">
     <div class="proof-topline"><span class="badge badge-paused">Paused</span><span class="proof-date">needs emulator fix</span></div>
     <h3>Instagram agent</h3>
     <p class="proof-desc">The social automation exists, but it is not currently a live brag. It was paused after emulator failures. A project page should not pretend a stopped loop is running.</p>
@@ -164,7 +164,7 @@ permalink: /projects/
     <p class="page-kicker">cadence</p>
     <h2 id="cadence-title">Recurring judgment, not autopilot theater.</h2>
   </div>
-  <article class="proof-card reveal-fast">
+  <article class="proof-card">
     <div class="proof-topline"><span class="badge badge-research">Weekly</span><span class="proof-date">Sundays 4:30 AM CT</span></div>
     <h3>Communication doctrine</h3>
     <p class="proof-desc">A weekly research pass that feeds the email brain. Useful only if it keeps writing more human, more precise, and less padded.</p>
@@ -176,6 +176,6 @@ permalink: /projects/
   </article>
 </section>
 
-<div class="proof-footer reveal-fast">
+<div class="proof-footer">
   <p>This page should age like a lab bench, not a brochure. If a system breaks, the label changes. If a claim gets stronger, the receipt gets linked.</p>
 </div>

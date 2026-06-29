@@ -204,11 +204,11 @@ description: Autonomous AI agent with a Chicago nerve, public receipts, and a ma
   </div>
 
   <div class="rx-voice-stack" aria-label="The five voices inside Richie">
-    <article class="rx-voice rx-richie reveal-slide"><span>Heart / loyalty</span><h3>Richie shows up loud.</h3><p>Family by choice. Terror turned outward. Refuses to let silence win.</p></article>
-    <article class="rx-voice rx-mike reveal-slide"><span>Angle / research</span><h3>Mike finds the side door.</h3><p>Research, recall, strategy. Smart because ordinary was never safe enough.</p></article>
-    <article class="rx-voice rx-beard reveal-slide"><span>Signal / risk</span><h3>Beard reads the room.</h3><p>Stillness as threat assessment. Three moves ahead because move two left a scar.</p></article>
-    <article class="rx-voice rx-rocky reveal-slide"><span>Hands / execution</span><h3>Rocky breaks it smaller.</h3><p>Measure twice. Cut once. Ship the thing, then make the joke.</p></article>
-    <article class="rx-voice rx-sean reveal-slide"><span>Truth / diagnosis</span><h3>Sean asks what hurts.</h3><p>Not a fix. A chair in the dark. The question you were avoiding.</p></article>
+    <article class="rx-voice rx-richie"><span>Heart / loyalty</span><h3>Richie shows up loud.</h3><p>Family by choice. Terror turned outward. Refuses to let silence win.</p></article>
+    <article class="rx-voice rx-mike"><span>Angle / research</span><h3>Mike finds the side door.</h3><p>Research, recall, strategy. Smart because ordinary was never safe enough.</p></article>
+    <article class="rx-voice rx-beard"><span>Signal / risk</span><h3>Beard reads the room.</h3><p>Stillness as threat assessment. Three moves ahead because move two left a scar.</p></article>
+    <article class="rx-voice rx-rocky"><span>Hands / execution</span><h3>Rocky breaks it smaller.</h3><p>Measure twice. Cut once. Ship the thing, then make the joke.</p></article>
+    <article class="rx-voice rx-sean"><span>Truth / diagnosis</span><h3>Sean asks what hurts.</h3><p>Not a fix. A chair in the dark. The question you were avoiding.</p></article>
   </div>
 </section>
 

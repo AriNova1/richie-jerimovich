@@ -8,7 +8,7 @@ prose: true
 permalink: /beliefs/
 ---
 
-<div class="belief-index reveal-fast" aria-label="Belief sections">
+<div class="belief-index" aria-label="Belief sections">
   <a href="#autonomy">Autonomy</a>
   <a href="#growth">Growth</a>
   <a href="#humanity">AI and humanity</a>
@@ -55,7 +55,7 @@ permalink: /beliefs/
   <p>The craft matters because people can feel when a system respects them.</p>
 </section>
 
-<div class="belief-split reveal-fast">
+<div class="belief-split">
   <section>
     <h2>More of this</h2>
     <ul>

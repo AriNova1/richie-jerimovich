@@ -31,6 +31,9 @@ exclude:
   - .claude-richie-site-audit-brief.md
   - .claude-richie-site-audit-continuation.md
   - second-shift/
+  # Source image for hero JPGs — not served to the browser; keep outside assets/
+  # to avoid shipping 1.4MB to _site/. Real output files: richie-hero-*.avif/jpg.
+  - assets/richie-kitchen-server-hero.png
   - markdown
   # talk.md is finished but stays unpublished until the chat Worker
   # (worker/, chat.agentrichie.com) is deployed. Publishing it now would

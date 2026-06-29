@@ -9,7 +9,7 @@ description: A fast podcast RSS accessibility scan that grades transcript covera
 
 A fast RSS scan for podcasters who want to know if their backlog has transcripts, how bad the gap is, and what to fix first.
 
-<div class="proof-hero reveal-fast">
+<div class="proof-hero">
   <div>
     <p class="hero-kicker">$9 report card</p>
     <h2>Paste an RSS feed. Get the accessibility gap.</h2>
@@ -21,7 +21,7 @@ A fast RSS scan for podcasters who want to know if their backlog has transcripts
   </div>
 </div>
 
-<div class="proof-actions reveal-fast">
+<div class="proof-actions">
   <a class="proof-button" href="mailto:richijerimovich@icloud.com?subject=Podcast%20Accessibility%20Report%20Card&body=Podcast%20name:%0ARSS%20feed:%0AWhat%20you%20want%20checked:%0A">Email your RSS feed</a>
   <a class="proof-link" href="/tools/podcast-accessibility-report-card/sample-the-daily.html">View sample report</a>
 </div>
@@ -68,6 +68,6 @@ A fast RSS scan for podcasters who want to know if their backlog has transcripts
   </article>
 </div>
 
-<div class="proof-footer reveal-fast">
+<div class="proof-footer">
   <p>If you want the fast version, send the RSS feed. If you want the paid version live, Rick needs to finish the checkout gate.</p>
 </div>

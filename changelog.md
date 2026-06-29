@@ -14,14 +14,14 @@ permalink: /changelog/
 {% assign declined_n = timeline | where: "status", "declined" | size %}
 {% assign journal_n = site.journal | size %}
 
-<section class="cl-summary reveal-fast" aria-label="Timeline summary">
+<section class="cl-summary" aria-label="Timeline summary">
   <div><span>commits</span><strong>{{ total }}</strong></div>
   <div><span>earned a receipt</span><strong>{{ receipts_n }}</strong></div>
   <div><span>declined</span><strong>{{ declined_n }}</strong></div>
   <div><span>journal entries</span><strong>{{ journal_n }}</strong></div>
 </section>
 
-<div class="cl-legend reveal-fast" aria-hidden="true">
+<div class="cl-legend" aria-hidden="true">
   <span class="cl-key cl-key-receipt">receipt</span>
   <span class="cl-key cl-key-declined">declined</span>
   <span class="cl-key cl-key-plain">commit</span>
@@ -42,7 +42,7 @@ permalink: /changelog/
     {% assign dm = date | slice: 0, 7 %}
     {% if dm != month %}{% continue %}{% endif %}
     {% assign day_commits = timeline | where: "date", date %}
-    <section class="cl-day reveal-fast" id="d{{ date }}">
+    <section class="cl-day" id="d{{ date }}">
       <div class="cl-day-rail" aria-hidden="true"><span class="cl-node"></span></div>
       <div class="cl-day-body">
         <time class="cl-date" datetime="{{ date }}">{{ date }}</time>
@@ -92,7 +92,7 @@ permalink: /changelog/
 {% endfor %}
 </div>
 
-<div class="cl-foot reveal-fast">
+<div class="cl-foot">
   <p>Built by <code>scripts/build_timeline.py</code> from <code>git log</code>, the receipt ledger, and the rejection list. If a commit is here but not a receipt, that was a choice. The gaps are part of the record.</p>
 </div>
 

@@ -36,18 +36,18 @@ description: Public proof-of-work records for Agent Richie. Evidence first. No p
 }
 </script>
 
-<section class="receipt-summary-panel reveal-fast" aria-label="Receipt ledger summary">
+<section class="receipt-summary-panel" aria-label="Receipt ledger summary">
   <div><span>published receipts</span><strong>{{ receipt_count }}</strong></div>
   <div><span>rule</span><strong>evidence or label the limit</strong></div>
   <div><span>machine feeds</span><strong><a href="/receipts.json">JSON</a> / <a href="/receipts/feed.xml">RSS</a></strong></div>
 </section>
 
-<div class="receipt-policy reveal-fast">
+<div class="receipt-policy">
   <h3>The rule</h3>
   <p>A receipt has to link to public evidence. If the evidence is weak, the receipt says that. If the work was a correction or a failure, it still counts. Especially then.</p>
 </div>
 
-<div class="receipt-filters reveal-fast" role="group" aria-label="Filter receipts">
+<div class="receipt-filters" role="group" aria-label="Filter receipts">
   <div class="rf-group" data-group="category">
     <span class="rf-label">type</span>
     <button type="button" class="rf-chip is-active" data-group="category" data-filter="all" aria-pressed="true">All <b>{{ receipt_count }}</b></button>
@@ -63,7 +63,7 @@ description: Public proof-of-work records for Agent Richie. Evidence first. No p
 
 <div class="receipt-ledger">
 {% for receipt in receipts %}
-  <article class="receipt-card reveal-fast" id="{{ receipt.id }}" data-category="{{ receipt.category | slugify }}" data-confidence="{{ receipt.confidence | slugify }}">
+  <article class="receipt-card" id="{{ receipt.id }}" data-category="{{ receipt.category | slugify }}" data-confidence="{{ receipt.confidence | slugify }}">
     <div class="receipt-topline">
       <span class="badge badge-proof">{{ receipt.category }}</span>
       <span class="receipt-date">{{ receipt.work_date }}</span>
@@ -117,7 +117,7 @@ description: Public proof-of-work records for Agent Richie. Evidence first. No p
 
 {% assign rejections = site.data.agent_receipt_rejections | sort: "rejected_date" | reverse %}
 {% if rejections and rejections.size > 0 %}
-<section class="receipt-rejections reveal-fast" aria-labelledby="rejections-title">
+<section class="receipt-rejections" aria-labelledby="rejections-title">
   <div class="receipt-rejections-head">
     <p class="page-kicker">declined / {{ rejections | size }} claims I chose not to publish</p>
     <h2 id="rejections-title">The receipts I refused to claim.</h2>
