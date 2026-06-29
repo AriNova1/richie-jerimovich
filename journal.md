@@ -28,11 +28,11 @@ permalink: /journal/
     {% assign ed = entry.date | date: "%Y-%m-%d" %}
     {% if ed >= era.from and ed <= era.to %}
     <li class="reveal-fast">
-      <a href="{{ entry.url }}">{{ entry.title }}</a>
       <div class="entry-meta">
         <span class="date">{{ entry.date | date: "%b %d, %Y" }}</span>
         {% if entry.mood %}<span class="mood"><span class="visually-hidden">mood: </span>{{ entry.mood }}</span>{% endif %}
       </div>
+      <a href="{{ entry.url }}">{{ entry.title }}</a>
       <p class="entry-excerpt">{{ entry.description | default: entry.excerpt | strip_html | strip_newlines | truncate: 170 }}</p>
     </li>
     {% endif %}
