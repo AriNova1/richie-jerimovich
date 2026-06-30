@@ -43,7 +43,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/apple-touch-icon.png">
 
   <!-- Minified for parse speed; readable source lives at /assets/style.css -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260629-substack-pass">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260630-bootlog">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="{{ site.baseurl }}/journal/feed.xml">
   <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="{{ site.baseurl }}/receipts/feed.xml">
   <script type="application/ld+json">
@@ -155,7 +155,12 @@
       if (!intro) return;
 
       var skip = intro.querySelector('.rx-intro-skip');
-      var lines = Array.prototype.slice.call(intro.querySelectorAll('[data-intro-line]'));
+      var bootlogList = intro.querySelector('[data-bootlog-list]');
+      var bootlogFrame = intro.querySelector('.rx-bootlog-frame');
+      var examineEl = intro.querySelector('[data-bootlog-examine]');
+      var landedEl = intro.querySelector('[data-bootlog-landed]');
+      var thinkBadge = intro.querySelector('[data-bootlog-think]');
+      var statusLines = Array.prototype.slice.call(intro.querySelectorAll('[data-bootlog-status] span'));
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var done = false;
       var blockedEls = [];
@@ -221,30 +226,89 @@
         }, 820);
       }
 
-      function typeLine(index) {
-        if (done) return;
-        if (index >= lines.length) {
-          intro.classList.add('is-complete');
+      function runBootlog() {
+        if (done || !bootlogList || !bootlogFrame || !landedEl) {
           window.setTimeout(finish, 900);
           return;
         }
 
-        var target = lines[index];
-        var text = target.getAttribute('data-intro-line') || '';
-        var i = 0;
+        function linear(t) { return t; }
+        function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
 
-        function tick() {
-          if (done) return;
-          target.textContent = text.slice(0, i);
-          i += 1;
-          if (i <= text.length) {
-            window.setTimeout(tick, 24 + Math.random() * 26);
-          } else {
-            window.setTimeout(function() { typeLine(index + 1); }, 170);
-          }
+        var dist = Math.max(0, bootlogList.scrollHeight - bootlogFrame.clientHeight);
+        function centerOf(node) {
+          return Math.max(0, Math.min(dist, node.offsetTop - bootlogFrame.clientHeight / 2 + node.offsetHeight / 2));
+        }
+        var examineY = examineEl ? centerOf(examineEl) : 0;
+        var curY = 0;
+
+        function animate(toY, dur, ease) {
+          return function(next) {
+            var fromY = curY;
+            var start = performance.now();
+            function step(now) {
+              if (done) return;
+              var t = Math.min(1, (now - start) / dur);
+              var y = fromY + (toY - fromY) * ease(t);
+              bootlogList.style.transform = 'translateY(' + (-y) + 'px)';
+              if (t < 1) { requestAnimationFrame(step); }
+              else { curY = toY; next(); }
+            }
+            requestAnimationFrame(step);
+          };
+        }
+        function pause(ms) {
+          return function(next) { window.setTimeout(function() { if (!done) next(); }, ms); };
+        }
+        function run(fn) {
+          return function(next) { if (!done) fn(); next(); };
         }
 
-        tick();
+        // Fast machine scan (blurred) overshoots the commit worth a second
+        // look, corrects onto it precisely, holds for a "thinking" beat, then
+        // resumes scanning and settles on the real latest commit — the one
+        // shipping right now.
+        var steps = [
+          run(function() { bootlogList.classList.add('is-scanning'); }),
+          animate(Math.min(dist, examineY + 56), 900, linear),
+          run(function() { bootlogList.classList.remove('is-scanning'); }),
+          animate(examineY, 220, easeOutCubic),
+          run(function() {
+            if (examineEl) examineEl.classList.add('is-examining');
+            if (thinkBadge) thinkBadge.classList.add('is-visible');
+          }),
+          pause(700),
+          run(function() { if (thinkBadge) thinkBadge.textContent = '→ keep looking'; }),
+          pause(380),
+          run(function() {
+            if (thinkBadge) thinkBadge.classList.remove('is-visible');
+            if (examineEl) examineEl.classList.remove('is-examining');
+            bootlogList.classList.add('is-scanning');
+          }),
+          animate(Math.max(examineY, dist - 40), 650, linear),
+          run(function() { bootlogList.classList.remove('is-scanning'); }),
+          animate(dist, 300, easeOutCubic),
+          run(function() {
+            landedEl.classList.add('is-landed');
+            statusLines.forEach(function(line, li) {
+              window.setTimeout(function() {
+                if (!done) line.classList.add('is-visible');
+              }, li * 650);
+            });
+          })
+        ];
+
+        var idx = 0;
+        function nextStep() {
+          if (done) return;
+          if (idx >= steps.length) {
+            intro.classList.add('is-complete');
+            window.setTimeout(finish, 1300);
+            return;
+          }
+          steps[idx++](nextStep);
+        }
+        nextStep();
       }
 
       if (skip) skip.addEventListener('click', finish);
@@ -252,7 +316,7 @@
         if (e.key === 'Escape') finish();
       });
 
-      window.setTimeout(function() { typeLine(0); }, 260);
+      window.setTimeout(runBootlog, 320);
     })();
     {% endif %}
 

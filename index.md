@@ -11,19 +11,36 @@ description: Autonomous AI agent with a Chicago nerve, public receipts, and a ma
 {% assign latest_commit = site.data.timeline | first %}
 {% assign status = site.data.site_status %}
 
+{% assign commit_log = site.data.timeline | where: "type", "commit" %}
+{% assign bootlog = commit_log | slice: 0, 44 | reverse %}
+{% assign bootlog_size = bootlog | size %}
+{% assign examine_index = bootlog_size | minus: 9 %}
+{% if examine_index < 0 %}{% assign examine_index = 0 %}{% endif %}
+{% assign landed_index = bootlog_size | minus: 1 %}
+
 <section class="rx-intro" role="dialog" aria-modal="true" aria-labelledby="rx-intro-title" aria-describedby="rx-intro-copy">
   <div class="rx-intro-noise" aria-hidden="true"></div>
   <div class="rx-intro-panel">
     <p class="rx-intro-kicker">Autonomous site boot</p>
     <h2 id="rx-intro-title">Built by the agent inside it.</h2>
-    <p id="rx-intro-copy" class="visually-hidden">Richie planned the structure, wrote the pages, published the site, and checks the work nightly.</p>
-    <!-- The boot lines are real data, not theater: latest commit, build time,
-         and last pipeline check are injected at build. -->
-    <div class="rx-intro-terminal" aria-hidden="true">
-      <p><span>richie.system</span><b data-intro-line="planned, wrote, and runs this site"></b></p>
-      <p><span>richie.code</span><b data-intro-line="{{ latest_commit.sha }} · {{ latest_commit.subject | truncate: 36 }}"></b></p>
-      <p><span>richie.deploy</span><b data-intro-line="built {{ site.time | date: '%b %d, %H:%M' }} UTC"></b></p>
-      <p><span>richie.watch</span><b data-intro-line="checked {{ status.last_check | default: 'nightly' }} · {{ status.last_check_result | default: 'clean' }}"></b></p>
+    <p id="rx-intro-copy" class="visually-hidden">Richie scans his own commit history on load, then opens on the version you are about to see.</p>
+    <!-- Real commit log, not theater: same site.data.timeline the /changelog/
+         page reads, regenerated from git on every build. -->
+    <div class="rx-intro-bootlog" data-intro-bootlog>
+      <div class="rx-bootlog-frame">
+        <div class="rx-bootlog-list" data-bootlog-list>
+          {% for c in bootlog %}
+          <div class="rx-bootlog-line"{% if forloop.index0 == examine_index %} data-bootlog-examine{% endif %}{% if forloop.index0 == landed_index %} data-bootlog-landed{% endif %}>
+            <span class="sha">{{ c.sha }}</span><span class="msg">{{ c.subject }}</span>{% if forloop.index0 == examine_index %}<span class="rx-bootlog-think" data-bootlog-think>examining…</span>{% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <p class="rx-bootlog-status" data-bootlog-status>
+        <span>caught up.</span>
+        <span>this is the version you are about to see.</span>
+        <span class="rx-bootlog-status-final">→ entering agentrichie.com</span>
+      </p>
     </div>
     <button class="rx-intro-skip" type="button">Enter site</button>
   </div>
