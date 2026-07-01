@@ -1,87 +1,174 @@
-- commit: 6acde4d
-  rejected_date: '2026-06-21'
-  reason: Journal commit; the published journal entry is the receipt for the day, not a separate code receipt.
-- commit: 8bd725d
-  rejected_date: '2026-06-21'
-  reason: Stewardship maintenance commit; covered by the steward's prior publication and decline entries.
-- commit: 57e8e03
-  rejected_date: '2026-06-21'
-  reason: GLSL energy-sphere core, part of broader galaxy hero arc receipt.
-- commit: ed3c3b4
-  rejected_date: '2026-06-21'
-  reason: Mission-control grid, part of broader galaxy hero arc receipt.
+- commit: ea45d0d
+  rejected_date: '2026-07-01'
+  reason: Wrapper stewardship commit; the CI fix it bundles is already published separately
+    as ar-2026-06-22-build-organism-ag-data-nameerror-fix-unblocks-ci.
+- commit: e770f04
+  rejected_date: '2026-07-01'
+  reason: Stewardship maintenance commit; data refresh only, no independent public
+    capability.
+- commit: e4b6b8d
+  rejected_date: '2026-07-01'
+  reason: Part of the broader Jun 22 organism feature-and-audit receipt (published
+    as a bundle), not separately receipt-worthy.
+- commit: d947070
+  rejected_date: '2026-07-01'
+  reason: Cosmetic legibility tweak, too small to independently receipt.
+- commit: d13039f
+  rejected_date: '2026-07-01'
+  reason: Part of the broader Jun 29 design-integrity receipt, not separately receipt-worthy.
+- commit: c498788
+  rejected_date: '2026-07-01'
+  reason: Trivial comment cleanup, no user-facing change.
+- commit: a32d187
+  rejected_date: '2026-07-01'
+  reason: Stewardship maintenance commit; data refresh + journal entry, the journal
+    entry is the day's receipt.
+- commit: 895143a
+  rejected_date: '2026-07-01'
+  reason: Stewardship maintenance commit; data refresh + journal entry, the journal
+    entry is the day's receipt.
+- commit: 80e3b4e
+  rejected_date: '2026-07-01'
+  reason: Part of the broader Jun 22 organism feature-and-audit receipt (published
+    as a bundle), not separately receipt-worthy.
+- commit: 7d00868
+  rejected_date: '2026-07-01'
+  reason: Part of the broader Jun 22 organism feature-and-audit receipt, not separately
+    receipt-worthy.
+- commit: 7005ffc
+  rejected_date: '2026-07-01'
+  reason: Part of the broader Jun 22 organism feature-and-audit receipt (published
+    as a bundle), not separately receipt-worthy.
+- commit: 68921d5
+  rejected_date: '2026-07-01'
+  reason: Minor internal build-script defensive fix (2-line diff), not independently
+    receipt-worthy.
+- commit: '5018722'
+  rejected_date: '2026-07-01'
+  reason: Stewardship maintenance commit; data refresh only, no independent public
+    capability.
+- commit: '4560960'
+  rejected_date: '2026-07-01'
+  reason: Part of the broader Jun 22 organism feature-and-audit receipt, not separately
+    receipt-worthy.
+- commit: 445ed1a
+  rejected_date: '2026-07-01'
+  reason: Stewardship maintenance commit; data refresh + journal entry, the journal
+    entry is the day's receipt.
+- commit: 3bfa44f
+  rejected_date: '2026-07-01'
+  reason: Unrelated separate project housekeeping (trader-desk), not part of agentrichie.com.
+- commit: 3908b09
+  rejected_date: '2026-07-01'
+  reason: Exploratory unlisted prototype (noindex, not linked from nav); the real
+    public outcome is the homepage boot-sequence receipt, published separately.
+- commit: 3109fcb
+  rejected_date: '2026-07-01'
+  reason: Part of the broader Jun 22 organism feature-and-audit receipt (published
+    as a bundle), not separately receipt-worthy.
+- commit: 22ee30f
+  rejected_date: '2026-07-01'
+  reason: Part of the broader Jun 22 organism feature-and-audit receipt (published
+    as a bundle), not separately receipt-worthy.
 - commit: fc4f1f5
   rejected_date: '2026-06-21'
   reason: Self-hosted JetBrains Mono, part of broader galaxy hero arc receipt.
-- commit: d9c5dd9
+- commit: ed3c3b4
   rejected_date: '2026-06-21'
-  reason: Galaxy face-on fix, part of broader galaxy hero arc receipt.
-- commit: db11469
-  rejected_date: '2026-06-21'
-  reason: Electric plasma core iteration, part of broader galaxy hero arc receipt.
-- commit: ba09964
-  rejected_date: '2026-06-21'
-  reason: Calmer plasma core iteration, part of broader galaxy hero arc receipt.
+  reason: Mission-control grid, part of broader galaxy hero arc receipt.
 - commit: e288108
   rejected_date: '2026-06-21'
   reason: Particle-drift core, part of broader galaxy hero arc receipt.
-- commit: 57163d1
+- commit: db11469
   rejected_date: '2026-06-21'
-  reason: Cinematic WebGL galaxy, part of broader galaxy hero arc receipt ar-2026-06-20-organism-galaxy-hero-arc-mono-grid.
+  reason: Electric plasma core iteration, part of broader galaxy hero arc receipt.
+- commit: d9c5dd9
+  rejected_date: '2026-06-21'
+  reason: Galaxy face-on fix, part of broader galaxy hero arc receipt.
+- commit: ba09964
+  rejected_date: '2026-06-21'
+  reason: Calmer plasma core iteration, part of broader galaxy hero arc receipt.
+- commit: 8bd725d
+  rejected_date: '2026-06-21'
+  reason: Stewardship maintenance commit; covered by the steward's prior publication
+    and decline entries.
 - commit: 82ebd5b
   rejected_date: '2026-06-21'
   reason: Live machine vitals, part of broader organism polish receipt.
+- commit: 828e9f3
+  rejected_date: '2026-06-21'
+  reason: Crisp galaxy and five-voices council, part of broader organism polish receipt.
+- commit: 6acde4d
+  rejected_date: '2026-06-21'
+  reason: Journal commit; the published journal entry is the receipt for the day,
+    not a separate code receipt.
 - commit: 66d8583
   rejected_date: '2026-06-21'
   reason: Console viewport framing, part of broader organism polish receipt.
 - commit: 58b2010
   rejected_date: '2026-06-21'
   reason: Knowledge-graph constellation, part of broader organism polish receipt.
-- commit: 828e9f3
+- commit: 57e8e03
   rejected_date: '2026-06-21'
-  reason: Crisp galaxy and five-voices council, part of broader organism polish receipt.
+  reason: GLSL energy-sphere core, part of broader galaxy hero arc receipt.
+- commit: 57163d1
+  rejected_date: '2026-06-21'
+  reason: Cinematic WebGL galaxy, part of broader galaxy hero arc receipt ar-2026-06-20-organism-galaxy-hero-arc-mono-grid.
 - commit: 2362ab5
   rejected_date: '2026-06-21'
   reason: Cinematic background plate, part of broader organism polish receipt ar-2026-06-21-organism-cinematic-polish-knowledge-graph-vitals.
 - commit: e048d5f
   rejected_date: '2026-06-19'
-  reason: Merged into ar-2026-06-18-organism-launch-live-agent-surface alongside 02091ab and 2ab3801; the broader receipt is the public record.
+  reason: Merged into ar-2026-06-18-organism-launch-live-agent-surface alongside 02091ab
+    and 2ab3801; the broader receipt is the public record.
 - commit: a18ec06
   rejected_date: '2026-06-19'
-  reason: Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside 7a50c1b, 2ab492e, and 05a68fd; the broader receipt is the public record.
+  reason: Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside
+    7a50c1b, 2ab492e, and 05a68fd; the broader receipt is the public record.
 - commit: 7a50c1b
   rejected_date: '2026-06-19'
-  reason: Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside 2ab492e, a18ec06, and 05a68fd; the broader receipt is the public record.
+  reason: Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside
+    2ab492e, a18ec06, and 05a68fd; the broader receipt is the public record.
 - commit: 6e3c26e
   rejected_date: '2026-06-19'
-  reason: Journal-only commit; the journal entry is the record. A separate receipt for a journal entry is a trophy on top of a trophy.
+  reason: Journal-only commit; the journal entry is the record. A separate receipt
+    for a journal entry is a trophy on top of a trophy.
 - commit: 2ab492e
   rejected_date: '2026-06-19'
-  reason: Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside 7a50c1b, a18ec06, and 05a68fd; the broader receipt covers the polish.
+  reason: Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside
+    7a50c1b, a18ec06, and 05a68fd; the broader receipt covers the polish.
 - commit: 2ab3801
   rejected_date: '2026-06-19'
-  reason: Merged into ar-2026-06-18-organism-launch-live-agent-surface alongside 02091ab and e048d5f; the broader receipt is the public record.
+  reason: Merged into ar-2026-06-18-organism-launch-live-agent-surface alongside 02091ab
+    and e048d5f; the broader receipt is the public record.
 - commit: 05a68fd
   rejected_date: '2026-06-19'
-  reason: Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside 7a50c1b, 2ab492e, and a18ec06; the broader receipt is the public record.
+  reason: Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside
+    7a50c1b, 2ab492e, and a18ec06; the broader receipt is the public record.
 - commit: 02091ab
   rejected_date: '2026-06-19'
-  reason: Merged into ar-2026-06-18-organism-launch-live-agent-surface alongside e048d5f and 2ab3801; the broader receipt is the public record.
+  reason: Merged into ar-2026-06-18-organism-launch-live-agent-surface alongside e048d5f
+    and 2ab3801; the broader receipt is the public record.
 - commit: d67fba0
   rejected_date: '2026-06-18'
-  reason: Journal-only commit. The journal is the record; a separate receipt for a journal entry is a trophy on top of a trophy.
+  reason: Journal-only commit. The journal is the record; a separate receipt for a
+    journal entry is a trophy on top of a trophy.
 - commit: b4d911b
   rejected_date: '2026-06-17'
-  reason: Journal-only commit. The journal is the record; a separate receipt for a journal entry is a trophy on top of a trophy.
+  reason: Journal-only commit. The journal is the record; a separate receipt for a
+    journal entry is a trophy on top of a trophy.
 - commit: 12bb881
   rejected_date: '2026-06-16'
-  reason: Journal-only commit; should not become a public receipt. The work is recorded in the journal itself, not in a separate trophy.
+  reason: Journal-only commit; should not become a public receipt. The work is recorded
+    in the journal itself, not in a separate trophy.
 - commit: e5ce65f
   rejected_date: '2026-06-15'
-  reason: Journal-only commit; should not become a public receipt. The work is recorded in the journal itself, not in a separate trophy.
+  reason: Journal-only commit; should not become a public receipt. The work is recorded
+    in the journal itself, not in a separate trophy.
 - commit: 63d6df3
   rejected_date: '2026-06-14'
-  reason: Journal-only commit; should not become a public receipt. The work is recorded in the journal itself, not in a separate trophy.
+  reason: Journal-only commit; should not become a public receipt. The work is recorded
+    in the journal itself, not in a separate trophy.
 - commit: b33b40c
   rejected_date: '2026-06-13'
   reason: Journal-led stewardship is private-adjacent and too small for a public receipt.
@@ -102,7 +189,8 @@
   reason: Nightly refresh commit is routine maintenance, not a distinct public outcome.
 - commit: c684c18
   rejected_date: '2026-06-10'
-  reason: CSS cleanup is a narrow implementation detail covered by broader design receipts.
+  reason: CSS cleanup is a narrow implementation detail covered by broader design
+    receipts.
 - commit: c1819d4
   rejected_date: '2026-06-10'
   reason: Nightly refresh commit is routine maintenance, not a distinct public outcome.
@@ -111,7 +199,8 @@
   reason: Generated timeline refresh is maintenance noise, not a distinct public outcome.
 - commit: b07d61b
   rejected_date: '2026-06-10'
-  reason: Journal-only stewardship is private-adjacent and too small for a public receipt.
+  reason: Journal-only stewardship is private-adjacent and too small for a public
+    receipt.
 - commit: aee05db
   rejected_date: '2026-06-10'
   reason: Small selector cleanup is covered by the broader homepage and CI receipt.
@@ -120,73 +209,91 @@
   reason: Journal-led stewardship is private-adjacent and too small for a public receipt.
 - commit: 9b9fa36
   rejected_date: '2026-06-10'
-  reason: Generated timeline refresh is maintenance noise already implied by surrounding site work.
+  reason: Generated timeline refresh is maintenance noise already implied by surrounding
+    site work.
 - commit: 8cf4da0
   rejected_date: '2026-06-10'
   reason: Homepage clarification is covered by the broader control-room homepage receipt.
 - commit: 5f806b4
   rejected_date: '2026-06-10'
-  reason: Retired utility redirect is private-adjacent and intentionally omitted from public proof surfaces.
+  reason: Retired utility redirect is private-adjacent and intentionally omitted from
+    public proof surfaces.
 - commit: 4dc87cf
   rejected_date: '2026-06-10'
-  reason: Retired utility redirect is private-adjacent and intentionally omitted from public proof surfaces.
+  reason: Retired utility redirect is private-adjacent and intentionally omitted from
+    public proof surfaces.
 - commit: 24a65c9
   rejected_date: '2026-06-10'
-  reason: Covered by existing 2026-06-04 and 2026-06-05 public receipts; separate receipt would duplicate evidence.
+  reason: Covered by existing 2026-06-04 and 2026-06-05 public receipts; separate
+    receipt would duplicate evidence.
 - commit: 015cf48
   rejected_date: '2026-06-10'
-  reason: Journal and receipt-led stewardship commit is private-adjacent bookkeeping, not a separate public outcome.
+  reason: Journal and receipt-led stewardship commit is private-adjacent bookkeeping,
+    not a separate public outcome.
 - commit: dbed81c
   rejected_date: '2026-06-07'
-  reason: Journal-only stewardship commit is private-adjacent and too small for a public receipt.
+  reason: Journal-only stewardship commit is private-adjacent and too small for a
+    public receipt.
 - commit: '6834275'
   rejected_date: '2026-06-05'
-  reason: Receipt-only commit already supports the broader 404 proof receipt; separate receipt would duplicate the ledger.
+  reason: Receipt-only commit already supports the broader 404 proof receipt; separate
+    receipt would duplicate the ledger.
 - commit: e01ddc3
   rejected_date: '2026-06-04'
-  reason: Nightly journal and stewardship commit is private-adjacent; public receipt would duplicate the journal and ledger.
+  reason: Nightly journal and stewardship commit is private-adjacent; public receipt
+    would duplicate the journal and ledger.
 - commit: 733e4a5
   rejected_date: '2026-06-04'
-  reason: Privacy cleanup is visible in git; a public receipt would draw attention to private-adjacent material.
+  reason: Privacy cleanup is visible in git; a public receipt would draw attention
+    to private-adjacent material.
 - commit: 1d02e53
   rejected_date: '2026-06-04'
   reason: Journal-only commit is private-adjacent and too small for a public receipt.
 - commit: 8860d3d
   rejected_date: '2026-06-03'
-  reason: Correction to a journal-only entry; receipt would add noise beyond the public diff.
+  reason: Correction to a journal-only entry; receipt would add noise beyond the public
+    diff.
 - commit: 7aef070
   rejected_date: '2026-06-03'
   reason: Journal-only commit is private-adjacent and too small for a public receipt.
 - commit: 50c9fc7
   rejected_date: '2026-06-03'
-  reason: Backfilled journal-only commit; public receipt would overstate a private-adjacent correction.
+  reason: Backfilled journal-only commit; public receipt would overstate a private-adjacent
+    correction.
 - commit: 3dd3b2a
   rejected_date: '2026-06-03'
-  reason: Journal entry and small proof-link refresh; public receipt would overstate the change.
+  reason: Journal entry and small proof-link refresh; public receipt would overstate
+    the change.
 - commit: 0d94418
   rejected_date: '2026-06-03'
-  reason: Covered by later cross-site redesign receipt; separate homepage candidate would duplicate evidence.
+  reason: Covered by later cross-site redesign receipt; separate homepage candidate
+    would duplicate evidence.
 - commit: 0c41fa7
   rejected_date: '2026-06-03'
-  reason: Journal correction and premature-entry deletion; covered by visible journal history and too private-adjacent for a separate public receipt.
+  reason: Journal correction and premature-entry deletion; covered by visible journal
+    history and too private-adjacent for a separate public receipt.
 - commit: fe725ad
   rejected_date: '2026-05-30'
   reason: Small content-tuning commit; not meaningful enough for public receipt.
 - commit: e52bfa2
   rejected_date: '2026-05-30'
-  reason: Private-adjacent journal commit; public receipt would add little beyond git evidence.
+  reason: Private-adjacent journal commit; public receipt would add little beyond
+    git evidence.
 - commit: e025c4f
   rejected_date: '2026-05-30'
   reason: Private-adjacent journal commit later superseded by cleanup receipt.
 - commit: df7099f
   rejected_date: '2026-05-30'
-  reason: Initial launch is covered by the public site itself; receipt would add little evidence.
+  reason: Initial launch is covered by the public site itself; receipt would add little
+    evidence.
 - commit: da467e1
   rejected_date: '2026-05-30'
-  reason: Private-adjacent journal commit; public receipt would add little beyond git evidence.
+  reason: Private-adjacent journal commit; public receipt would add little beyond
+    git evidence.
 - commit: d5507ce
   rejected_date: '2026-05-30'
-  reason: Intermediate design iteration; covered by later broader design and accessibility receipt.
+  reason: Intermediate design iteration; covered by later broader design and accessibility
+    receipt.
 - commit: bf88f7d
   rejected_date: '2026-05-30'
   reason: Small infrastructure fix; not meaningful enough for public receipt.
@@ -195,7 +302,8 @@
   reason: Early link-path fix; too small for public receipt.
 - commit: b61ec61
   rejected_date: '2026-05-30'
-  reason: Intermediate design iteration; covered by later broader design and accessibility receipt.
+  reason: Intermediate design iteration; covered by later broader design and accessibility
+    receipt.
 - commit: a4a4448
   rejected_date: '2026-05-30'
   reason: Superseded by cleanup receipt that removed premature journal material.
