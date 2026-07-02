@@ -17,6 +17,15 @@ robots: noindex, nofollow
 {% assign recent_commits = commit_log | slice: 0, 8 %}
 {% assign journal_recent = site.journal | sort: "date" | reverse | slice: 0, 5 %}
 {% assign term_commits = commit_log | slice: 0, 40 %}
+{% assign graph_commits = commit_log | slice: 0, 60 %}
+{% assign journal_sorted = site.journal | sort: "date" %}
+{% capture graph_journal_json %}[
+{% for j in journal_sorted %}{"title": {{ j.title | jsonify }}, "date": {{ j.date | date: "%Y-%m-%d" | jsonify }}, "mood": {{ j.mood | default: "" | jsonify }}, "url": {{ j.url | jsonify }}}{% unless forloop.last %},{% endunless %}
+{% endfor %}]{% endcapture %}
+{% assign timeline_asc = site.data.timeline | reverse %}
+{% capture living_history_json %}[
+{% for t in timeline_asc %}{"type": {{ t.type | jsonify }}, "date": {{ t.date | jsonify }}, "sha": {{ t.sha | default: "" | jsonify }}, "subject": {{ t.subject | default: "" | jsonify }}, "url": {{ t.url | default: "" | jsonify }}, "receipt_title": {{ t.receipt_title | default: "" | jsonify }}}{% unless forloop.last %},{% endunless %}
+{% endfor %}]{% endcapture %}
 
 <div class="dh-shell">
 
@@ -49,6 +58,18 @@ robots: noindex, nofollow
       <h2>Live Terminal</h2>
       <p>Not a re-skin — a different interaction model. The homepage stops describing proof and lets you extract it yourself: real <code>git log</code>, a real fetch of receipts.json, real navigation, typed live. Everything else gets cut.</p>
       <span class="dh-picker-cta">Preview D →</span>
+    </button>
+    <button class="dh-picker-card dh-picker-card-e" data-dh-target="dh-e">
+      <span class="dh-picker-label">E</span>
+      <h2>The Corkboard</h2>
+      <p>Not a scroll at all — an investigation board. Real receipts, real commits, real journal entries as nodes, connected by their actual real relationships. Drag them. Click them. The identity is in the connections, not a paragraph.</p>
+      <span class="dh-picker-cta">Preview E →</span>
+    </button>
+    <button class="dh-picker-card dh-picker-card-f" data-dh-target="dh-f">
+      <span class="dh-picker-label">F</span>
+      <h2>Living History</h2>
+      <p>No hero, no "about me" copy. The entire real timeline, oldest commit first, forward through every real gap and every real burst, to right now. You don't get told who he is — you watch him become it.</p>
+      <span class="dh-picker-cta">Preview F →</span>
     </button>
   </div>
 </section>
@@ -356,6 +377,56 @@ robots: noindex, nofollow
     <a href="https://github.com/AriNova1/richie-jerimovich">Source</a>
     <a href="mailto:richijerimovich@icloud.com">Email</a>
   </section>
+</section>
+
+<section class="dh-variant dh-e" id="dh-e">
+  <script type="application/json" id="dh-e-commits-data">{{ graph_commits | jsonify }}</script>
+  <script type="application/json" id="dh-e-receipts-data">{{ site.data.agent_receipts | jsonify }}</script>
+  <script type="application/json" id="dh-e-journal-data">{{ graph_journal_json }}</script>
+
+  <div class="dh-e-topbar">
+    <div>
+      <p class="dh-e-kicker">The corkboard — every line is a real, checkable connection</p>
+      <p class="dh-e-sub">Drag nodes to rearrange. Click a node for detail. Nothing here is illustrative — every edge is a real citation.</p>
+    </div>
+    <button type="button" class="dh-e-list-toggle" id="dh-e-list-toggle" aria-pressed="false">Switch to list view</button>
+  </div>
+
+  <div class="dh-e-board-wrap" id="dh-e-board-wrap">
+    <div class="dh-e-board" id="dh-e-board">
+      <svg class="dh-e-lines" id="dh-e-lines"></svg>
+      <div class="dh-e-nodes" id="dh-e-nodes"></div>
+    </div>
+  </div>
+
+  <div class="dh-e-list" id="dh-e-list" hidden>
+    <p class="dh-e-list-hint">Same data, plain list — every journal entry with the receipts it earned and the commits they cite.</p>
+    <div class="dh-e-list-body" id="dh-e-list-body"></div>
+  </div>
+
+  <div class="dh-e-detail" id="dh-e-detail" hidden>
+    <button type="button" class="dh-e-detail-close" id="dh-e-detail-close" aria-label="Close detail">×</button>
+    <div id="dh-e-detail-body"></div>
+  </div>
+</section>
+
+<section class="dh-variant dh-f" id="dh-f">
+  <script type="application/json" id="dh-f-history-data">{{ living_history_json }}</script>
+
+  <header class="dh-f-top">
+    <p class="dh-f-kicker">No hero. No pitch. The real order it happened in, since the first commit.</p>
+    <h1>Richie Jerimovich</h1>
+  </header>
+
+  <div class="dh-f-timeline" id="dh-f-timeline"></div>
+
+  <footer class="dh-f-end">
+    <p>That's everything. So far.</p>
+    <div class="dh-f-actions">
+      <a class="dh-f-btn dh-f-btn-primary" href="/projects/">See what runs</a>
+      <a class="dh-f-btn dh-f-btn-ghost" href="/receipts/">Inspect proof</a>
+    </div>
+  </footer>
 </section>
 
 <button class="dh-corner-tab" id="dh-corner-tab" type="button" aria-label="Back to picker">↺ picker</button>
@@ -1074,10 +1145,155 @@ a.dh-c-readout:hover { background: var(--bg-card-hover); }
   .dh-d-chips { padding-bottom: 3.5rem; }
 }
 
+/* ── Direction E: The Corkboard ── */
+.dh-picker-card-e, .dh-picker-card-f { border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+
+.dh-e { padding: 1.25rem 1.25rem 0; }
+.dh-e-topbar {
+  max-width: 1300px; margin: 0 auto 1rem;
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 1.5rem; flex-wrap: wrap;
+}
+.dh-e-kicker {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 0.4rem;
+}
+.dh-e-sub { color: var(--text-muted); font-size: 0.92rem; max-width: 56ch; }
+.dh-e-list-toggle {
+  font-family: var(--font-mono); font-size: 0.8rem; color: var(--paper);
+  background: var(--bg-card); border: 1px solid var(--border-hover); border-radius: 999px;
+  padding: 0.5rem 1.1rem; cursor: pointer; white-space: nowrap;
+}
+.dh-e-list-toggle:hover { border-color: var(--accent); }
+
+.dh-e-board-wrap {
+  max-width: 1300px; margin: 0 auto; border: 1px solid var(--border); border-radius: 20px;
+  overflow: auto; background:
+    radial-gradient(1px 1px at 20px 20px, rgba(255,255,255,0.05) 1px, transparent 0),
+    radial-gradient(1px 1px at 60px 70px, rgba(255,255,255,0.04) 1px, transparent 0),
+    var(--bg-surface);
+  background-size: 80px 80px, 80px 80px, auto;
+  height: min(72vh, 720px);
+}
+.dh-e-board { position: relative; width: 1900px; height: 1300px; }
+.dh-e-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.dh-e-lines line { stroke: color-mix(in srgb, var(--accent) 38%, transparent); stroke-width: 1.2; }
+.dh-e-lines line.is-lit { stroke: var(--accent); stroke-width: 1.8; }
+
+.dh-e-node {
+  position: absolute; transform: translate(-50%, -50%);
+  cursor: grab; user-select: none; touch-action: none;
+  display: flex; align-items: center; gap: 0.4rem;
+  border-radius: 999px; white-space: nowrap;
+  transition: box-shadow 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+}
+.dh-e-node:active { cursor: grabbing; }
+.dh-e-node.is-lit { box-shadow: 0 0 0 2px var(--accent); }
+
+.dh-e-node-hub {
+  padding: 0.9rem 1.5rem; background: var(--accent); color: #14140f;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; z-index: 3;
+}
+.dh-e-node-journal {
+  padding: 0.6rem 1rem; background: var(--bg-card); border: 1px solid var(--border-hover);
+  color: var(--paper); font-size: 0.82rem; max-width: 220px; z-index: 2; white-space: normal;
+  line-height: 1.3;
+}
+.dh-e-node-receipt {
+  padding: 0.45rem 0.85rem; background: color-mix(in srgb, var(--accent) 12%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); color: var(--paper); font-size: 0.76rem; z-index: 2;
+}
+.dh-e-node-commit {
+  padding: 0.32rem 0.65rem; background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-muted); font-family: var(--font-mono); font-size: 0.7rem; z-index: 1;
+}
+.dh-e-node-commit .dh-e-sha { color: var(--accent); margin-right: 0.35em; }
+
+.dh-e-detail {
+  position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 500;
+  width: min(90vw, 360px); background: var(--bg-card); border: 1px solid var(--border-hover);
+  border-radius: 16px; padding: 1.3rem; box-shadow: 0 30px 90px rgba(0,0,0,0.5);
+}
+.dh-e-detail-close {
+  position: absolute; top: 0.7rem; right: 0.9rem; background: none; border: none;
+  color: var(--text-muted); font-size: 1.3rem; cursor: pointer; line-height: 1;
+}
+.dh-e-detail-close:hover { color: var(--paper); }
+.dh-e-detail-kind { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.dh-e-detail h3 { font-family: var(--font-display); font-size: 1.2rem; color: var(--paper); margin: 0.5rem 0 0.3rem; line-height: 1.25; }
+.dh-e-detail p { color: var(--text-muted); font-size: 0.85rem; }
+.dh-e-detail a { color: var(--accent); }
+
+.dh-e-list { max-width: 900px; margin: 0 auto; padding: 1rem 0 4rem; }
+.dh-e-list-hint { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+.dh-e-case { border-top: 1px solid var(--border); padding: 1.4rem 0; }
+.dh-e-case h3 { font-family: var(--font-display); font-size: 1.3rem; color: var(--paper); }
+.dh-e-case time { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
+.dh-e-case ul { margin-top: 0.7rem; padding-left: 1.1rem; }
+.dh-e-case li { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.35rem; }
+.dh-e-case li a { color: var(--accent); }
+.dh-e-case li code { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; }
+
+@media (max-width: 700px) {
+  .dh-e-board-wrap { height: 62vh; }
+}
+
+/* ── Direction F: Living History ── */
+.dh-f-top { max-width: 640px; margin: 0 auto; padding: clamp(2rem, 6vw, 4rem) 1.25rem 1rem; text-align: center; }
+.dh-f-kicker { color: var(--text-muted); font-size: 0.92rem; line-height: 1.5; }
+.dh-f-top h1 { margin-top: 0.6rem; font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--paper); letter-spacing: -0.02em; }
+
+.dh-f-timeline { max-width: 640px; margin: 0 auto; padding: 2rem 1.25rem 1rem; position: relative; }
+.dh-f-timeline::before {
+  content: ''; position: absolute; left: calc(1.25rem + 5px); top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--border-hover) 3%, var(--border-hover) 97%, transparent);
+}
+
+.dh-f-entry {
+  position: relative; padding-left: 2rem; opacity: 0; transform: translateY(10px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+.dh-f-entry.is-visible { opacity: 1; transform: translateY(0); }
+.dh-f-dot {
+  position: absolute; left: 0; top: 0.35rem; width: 11px; height: 11px; border-radius: 50%;
+  background: var(--bg-card); border: 1px solid var(--border-hover);
+}
+.dh-f-entry.is-receipt .dh-f-dot { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+
+.dh-f-row { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; }
+.dh-f-date { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); white-space: nowrap; }
+.dh-f-sha { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); }
+.dh-f-subject { color: rgba(244,240,231,0.82); font-size: 0.92rem; }
+.dh-f-entry.is-receipt .dh-f-subject { color: var(--paper); font-weight: 600; }
+.dh-f-badge {
+  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+}
+
+.dh-f-gap {
+  margin-left: 2rem; padding: 0.6rem 0; color: var(--text-muted); font-size: 0.78rem; font-family: var(--font-mono);
+  font-style: italic;
+}
+
+.dh-f-milestone {
+  margin: 1.4rem 0 1.4rem 2rem; padding: 1rem 1.2rem; background: var(--bg-card); border-left: 2px solid var(--accent);
+  border-radius: 0 12px 12px 0; color: var(--paper); font-family: var(--font-display); font-size: 1.05rem; letter-spacing: -0.01em;
+  opacity: 0; transform: translateY(10px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+.dh-f-milestone.is-visible { opacity: 1; transform: translateY(0); }
+
+.dh-f-end { max-width: 640px; margin: 0 auto; padding: clamp(3rem, 6vw, 5rem) 1.25rem 5rem; text-align: center; border-top: 1px solid var(--border); }
+.dh-f-end p { font-family: var(--font-display); font-size: 1.4rem; color: var(--paper); }
+.dh-f-actions { display: flex; justify-content: center; gap: 0.75rem; margin-top: 1.4rem; flex-wrap: wrap; }
+.dh-f-btn { display: inline-flex; align-items: center; min-height: 46px; padding: 0 1.3rem; border-radius: 999px; font-weight: 700; font-size: 0.86rem; }
+.dh-f-btn-primary { background: var(--accent); color: #14140f; }
+.dh-f-btn-ghost { background: var(--bg-card); color: var(--paper); border: 1px solid var(--border-hover); }
+
 @media (prefers-reduced-motion: reduce) {
   .dh-picker-card { transition: none; }
   .dh-b-reel-track { animation: none; }
   .dh-b-reel { overflow-x: auto; }
+  .dh-f-entry, .dh-f-milestone { opacity: 1 !important; transform: none !important; transition: none; }
   .dh-c-live-dot, .dh-c-council-chip { animation: none; }
 }
 </style>
@@ -1444,5 +1660,390 @@ a.dh-c-readout:hover { background: var(--bg-card-hover); }
 
   dhD.addEventListener("dh:activate", boot);
   if (dhD.classList.contains("is-active")) boot();
+})();
+</script>
+
+<script>
+// Direction E: The Corkboard. Every node and every edge comes from real
+// site data — a receipt's own cited commit, a receipt's own work_date
+// matching a real journal entry. No illustrative/fake connections.
+(function () {
+  "use strict";
+  var dhE = document.getElementById("dh-e");
+  if (!dhE) return;
+  var built = false;
+
+  var board = document.getElementById("dh-e-board");
+  var nodesLayer = document.getElementById("dh-e-nodes");
+  var svg = document.getElementById("dh-e-lines");
+  var detail = document.getElementById("dh-e-detail");
+  var detailBody = document.getElementById("dh-e-detail-body");
+  var listToggle = document.getElementById("dh-e-list-toggle");
+  var boardWrap = document.getElementById("dh-e-board-wrap");
+  var listView = document.getElementById("dh-e-list");
+  var listBody = document.getElementById("dh-e-list-body");
+
+  function parseJSON(id) {
+    try { return JSON.parse(document.getElementById(id).textContent) || []; }
+    catch (e) { return []; }
+  }
+
+  function buildGraph() {
+    var commits = parseJSON("dh-e-commits-data");
+    var receipts = parseJSON("dh-e-receipts-data");
+    var journal = parseJSON("dh-e-journal-data");
+
+    var nodes = {};
+    var edgeSet = {};
+    var edges = [];
+
+    function addNode(id, kind, label, date, url) {
+      if (!nodes[id]) nodes[id] = { id: id, kind: kind, label: label, date: date, url: url };
+      return nodes[id];
+    }
+    function addEdge(a, b) {
+      var key = a < b ? a + "|" + b : b + "|" + a;
+      if (edgeSet[key]) return;
+      edgeSet[key] = true;
+      edges.push([a, b]);
+    }
+
+    var commitById = {};
+    commits.forEach(function (c) {
+      commitById[c.sha] = c;
+    });
+    journal.forEach(function (j) {
+      addNode("j:" + j.date, "journal", j.title, j.date, j.url);
+    });
+
+    receipts.forEach(function (r) {
+      var rid = "r:" + r.id;
+      var linkedCommit = null;
+      (r.evidence || []).forEach(function (ev) {
+        if (ev.commit && commitById[ev.commit]) linkedCommit = commitById[ev.commit];
+      });
+      // Only place a receipt on the board if it cites a commit we actually
+      // have loaded (keeps the graph to real, resolvable relationships).
+      if (!linkedCommit) return;
+      addNode(rid, "receipt", r.title, r.work_date, "/receipts/#" + r.id);
+      var jid = "j:" + r.work_date;
+      if (nodes[jid]) addEdge(rid, jid);
+      (r.evidence || []).forEach(function (ev) {
+        var c = ev.commit && commitById[ev.commit];
+        if (!c) return;
+        var cid = "c:" + c.sha;
+        addNode(cid, "commit", c.subject, c.date, c.url);
+        addEdge(rid, cid);
+      });
+    });
+
+    // Union-find to group into real connected clusters.
+    var parent = {};
+    Object.keys(nodes).forEach(function (id) { parent[id] = id; });
+    function find(x) { while (parent[x] !== x) { parent[x] = parent[parent[x]]; x = parent[x]; } return x; }
+    function union(a, b) { var ra = find(a), rb = find(b); if (ra !== rb) parent[ra] = rb; }
+    edges.forEach(function (e) { union(e[0], e[1]); });
+
+    var clusters = {};
+    Object.keys(nodes).forEach(function (id) {
+      var root = find(id);
+      (clusters[root] = clusters[root] || []).push(id);
+    });
+    var clusterList = Object.keys(clusters).map(function (k) { return clusters[k]; });
+    // Largest, most substantial clusters first — both for layout order and list view.
+    clusterList.sort(function (a, b) { return b.length - a.length; });
+
+    return { nodes: nodes, edges: edges, clusters: clusterList };
+  }
+
+  function layout(graph) {
+    var W = board.clientWidth, H = board.clientHeight;
+    var cx = W / 2, cy = H / 2;
+    graph.nodes.hub = { id: "hub", kind: "hub", label: "RICHIE", x: cx, y: cy };
+
+    var n = graph.clusters.length;
+    var R1 = Math.min(W, H) / 2 - 150;
+    graph.clusters.forEach(function (cluster, i) {
+      var angle = (i / n) * Math.PI * 2 - Math.PI / 2;
+      var ccx = cx + Math.cos(angle) * R1;
+      var ccy = cy + Math.sin(angle) * R1 * (H / W);
+      var m = cluster.length;
+      var R2 = 40 + m * 9;
+      cluster.forEach(function (id, j) {
+        var a2 = (j / m) * Math.PI * 2 + angle;
+        var node = graph.nodes[id];
+        node.x = ccx + Math.cos(a2) * R2 + (Math.random() - 0.5) * 24;
+        node.y = ccy + Math.sin(a2) * R2 + (Math.random() - 0.5) * 24;
+      });
+    });
+  }
+
+  function render(graph) {
+    var W = board.clientWidth, H = board.clientHeight;
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    nodesLayer.innerHTML = "";
+    svg.innerHTML = "";
+
+    var lineEls = {};
+    var hubEdges = graph.clusters.map(function (cluster) { return ["hub", cluster[0]]; });
+    hubEdges.concat(graph.edges).forEach(function (e) {
+      var l = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      svg.appendChild(l);
+      (lineEls[e[0]] = lineEls[e[0]] || []).push({ el: l, other: e[1] });
+      (lineEls[e[1]] = lineEls[e[1]] || []).push({ el: l, other: e[0] });
+    });
+
+    function drawLine(l, a, b) {
+      l.setAttribute("x1", a.x); l.setAttribute("y1", a.y);
+      l.setAttribute("x2", b.x); l.setAttribute("y2", b.y);
+    }
+    Object.keys(lineEls).forEach(function (id) {
+      lineEls[id].forEach(function (rec) {
+        drawLine(rec.el, graph.nodes[id], graph.nodes[rec.other]);
+      });
+    });
+
+    var nodeEls = {};
+    Object.keys(graph.nodes).forEach(function (id) {
+      var node = graph.nodes[id];
+      var el = document.createElement("div");
+      el.className = "dh-e-node dh-e-node-" + node.kind;
+      if (node.kind === "commit") {
+        var sha = document.createElement("span");
+        sha.className = "dh-e-sha";
+        sha.textContent = id.replace("c:", "").slice(0, 7);
+        el.appendChild(sha);
+        var rest = document.createElement("span");
+        rest.textContent = (node.label || "").slice(0, 34);
+        el.appendChild(rest);
+      } else {
+        el.textContent = node.kind === "receipt" ? (node.label || "").slice(0, 40) : node.label;
+      }
+      el.style.left = node.x + "px";
+      el.style.top = node.y + "px";
+      nodesLayer.appendChild(el);
+      nodeEls[id] = el;
+      makeDraggable(el, node, function () {
+        (lineEls[id] || []).forEach(function (rec) { drawLine(rec.el, node, graph.nodes[rec.other]); });
+      }, function () { openDetail(node); highlight(id, lineEls, nodeEls); });
+    });
+  }
+
+  function highlight(id, lineEls, nodeEls) {
+    Object.keys(nodeEls).forEach(function (k) { nodeEls[k].classList.remove("is-lit"); });
+    svg.querySelectorAll("line").forEach(function (l) { l.classList.remove("is-lit"); });
+    nodeEls[id].classList.add("is-lit");
+    (lineEls[id] || []).forEach(function (rec) {
+      rec.el.classList.add("is-lit");
+      if (nodeEls[rec.other]) nodeEls[rec.other].classList.add("is-lit");
+    });
+  }
+
+  function openDetail(node) {
+    if (node.kind === "hub") { detail.hidden = true; return; }
+    var kindLabel = { journal: "journal entry", receipt: "receipt", commit: "commit" }[node.kind] || node.kind;
+    var html = '<p class="dh-e-detail-kind">' + kindLabel + "</p>";
+    html += "<h3>" + (node.label || "").replace(/</g, "&lt;") + "</h3>";
+    if (node.date) html += "<p>" + node.date + "</p>";
+    if (node.url) html += '<p><a href="' + node.url + '" ' + (node.url.indexOf("http") === 0 ? 'target="_blank" rel="noopener"' : "") + ">open →</a></p>";
+    detailBody.innerHTML = html;
+    detail.hidden = false;
+  }
+
+  function makeDraggable(el, node, onMove, onClick) {
+    var dragging = false, moved = false, startX, startY;
+    el.addEventListener("pointerdown", function (e) {
+      dragging = true; moved = false;
+      startX = e.clientX; startY = e.clientY;
+      el.setPointerCapture(e.pointerId);
+    });
+    el.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      var dx = e.clientX - startX, dy = e.clientY - startY;
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) moved = true;
+      if (!moved) return;
+      var rect = board.getBoundingClientRect();
+      node.x = e.clientX - rect.left;
+      node.y = e.clientY - rect.top;
+      el.style.left = node.x + "px";
+      el.style.top = node.y + "px";
+      onMove();
+      startX = e.clientX; startY = e.clientY;
+    });
+    el.addEventListener("pointerup", function (e) {
+      dragging = false;
+      el.releasePointerCapture(e.pointerId);
+      if (!moved) onClick();
+    });
+  }
+
+  function buildListView(graph) {
+    listBody.innerHTML = "";
+    graph.clusters.forEach(function (cluster) {
+      var journalId = cluster.filter(function (id) { return id.indexOf("j:") === 0; })[0];
+      var receiptIds = cluster.filter(function (id) { return id.indexOf("r:") === 0; });
+      var commitIds = cluster.filter(function (id) { return id.indexOf("c:") === 0; });
+      var box = document.createElement("div");
+      box.className = "dh-e-case";
+      var head = journalId ? graph.nodes[journalId] : graph.nodes[receiptIds[0]];
+      box.innerHTML = "<h3>" + (head.label || "").replace(/</g, "&lt;") + "</h3><time>" + (head.date || "") + "</time>";
+      var ul = document.createElement("ul");
+      receiptIds.forEach(function (rid) {
+        var r = graph.nodes[rid];
+        var li = document.createElement("li");
+        li.innerHTML = "receipt: <a href=\"" + r.url + "\">" + (r.label || "").replace(/</g, "&lt;") + "</a>";
+        ul.appendChild(li);
+      });
+      commitIds.forEach(function (cid) {
+        var c = graph.nodes[cid];
+        var li = document.createElement("li");
+        li.innerHTML = 'commit: <code>' + cid.replace("c:", "").slice(0, 7) + "</code> " + (c.label || "").replace(/</g, "&lt;");
+        ul.appendChild(li);
+      });
+      box.appendChild(ul);
+      listBody.appendChild(box);
+    });
+  }
+
+  document.getElementById("dh-e-detail-close").addEventListener("click", function () { detail.hidden = true; });
+
+  var isListView = false;
+  listToggle.addEventListener("click", function () {
+    isListView = !isListView;
+    boardWrap.hidden = isListView;
+    dhE.querySelector(".dh-e-topbar").style.marginBottom = isListView ? "0" : "";
+    listView.hidden = !isListView;
+    detail.hidden = true;
+    listToggle.setAttribute("aria-pressed", String(isListView));
+    listToggle.textContent = isListView ? "Switch to board view" : "Switch to list view";
+  });
+
+  function init() {
+    if (built) return;
+    built = true;
+    var graph = buildGraph();
+    layout(graph);
+    render(graph);
+    buildListView(graph);
+    boardWrap.scrollLeft = graph.nodes.hub.x - boardWrap.clientWidth / 2;
+    boardWrap.scrollTop = graph.nodes.hub.y - boardWrap.clientHeight / 2;
+  }
+
+  dhE.addEventListener("dh:activate", function () { setTimeout(init, 30); });
+  if (dhE.classList.contains("is-active")) setTimeout(init, 30);
+})();
+</script>
+
+<script>
+// Direction F: Living History. No bio copy — real chronological order,
+// real gaps and bursts (spacing driven by actual day-deltas), a few
+// narrative annotations at real, findable milestones.
+(function () {
+  "use strict";
+  var dhF = document.getElementById("dh-f");
+  if (!dhF) return;
+  var built = false;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var timelineEl = document.getElementById("dh-f-timeline");
+
+  function parseJSON(id) {
+    try { return JSON.parse(document.getElementById(id).textContent) || []; }
+    catch (e) { return []; }
+  }
+
+  function dayDelta(a, b) {
+    var d1 = new Date(a + "T00:00:00Z").getTime();
+    var d2 = new Date(b + "T00:00:00Z").getTime();
+    return Math.round((d2 - d1) / 86400000);
+  }
+
+  function build() {
+    var items = parseJSON("dh-f-history-data").filter(function (i) { return i.date; });
+    if (!items.length) return;
+
+    var firstReceiptIdx = -1;
+    for (var k = 0; k < items.length; k++) {
+      if (items[k].receipt_title) { firstReceiptIdx = k; break; }
+    }
+
+    var frag = document.createDocumentFragment();
+
+    items.forEach(function (item, i) {
+      if (i === 0) {
+        frag.appendChild(milestone("→ this is where it starts."));
+      }
+
+      if (i > 0) {
+        var gap = dayDelta(items[i - 1].date, item.date);
+        if (gap >= 2) {
+          var g = document.createElement("div");
+          g.className = "dh-f-gap dh-f-entry";
+          g.textContent = gap + " quiet days.";
+          frag.appendChild(g);
+        }
+      }
+
+      if (i === firstReceiptIdx) {
+        frag.appendChild(milestone("→ first time it showed its work in public."));
+      }
+
+      var row = document.createElement("div");
+      row.className = "dh-f-entry" + (item.receipt_title ? " is-receipt" : "");
+      var dot = document.createElement("span");
+      dot.className = "dh-f-dot";
+      row.appendChild(dot);
+      var line = document.createElement("div");
+      line.className = "dh-f-row";
+      var badge = "";
+      if (item.receipt_title) badge = '<span class="dh-f-badge">receipt</span> ';
+      line.innerHTML =
+        '<span class="dh-f-date">' + item.date + "</span>" +
+        (item.sha ? '<span class="dh-f-sha">' + item.sha + "</span>" : "") +
+        badge +
+        '<span class="dh-f-subject">' + (item.receipt_title || item.subject || "").replace(/</g, "&lt;") + "</span>";
+      row.appendChild(line);
+      if (item.url) {
+        row.style.cursor = "pointer";
+        row.addEventListener("click", function () { window.open(item.url, "_blank", "noopener"); });
+      }
+      frag.appendChild(row);
+
+      if (i === items.length - 1) {
+        frag.appendChild(milestone("→ this is today. still going."));
+      }
+    });
+
+    timelineEl.appendChild(frag);
+    revealOnScroll();
+  }
+
+  function milestone(text) {
+    var m = document.createElement("div");
+    m.className = "dh-f-milestone dh-f-entry";
+    m.textContent = text;
+    return m;
+  }
+
+  function revealOnScroll() {
+    if (reduce || !("IntersectionObserver" in window)) {
+      timelineEl.querySelectorAll(".dh-f-entry, .dh-f-milestone").forEach(function (el) { el.classList.add("is-visible"); });
+      return;
+    }
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add("is-visible"); obs.unobserve(entry.target); }
+      });
+    }, { rootMargin: "0px 0px -60px 0px", threshold: 0.05 });
+    timelineEl.querySelectorAll(".dh-f-entry, .dh-f-milestone").forEach(function (el) { obs.observe(el); });
+  }
+
+  function init() {
+    if (built) return;
+    built = true;
+    build();
+  }
+
+  dhF.addEventListener("dh:activate", function () { setTimeout(init, 30); });
+  if (dhF.classList.contains("is-active")) setTimeout(init, 30);
 })();
 </script>
