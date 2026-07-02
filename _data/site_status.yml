@@ -1,5 +1,5 @@
 # Written by scripts/refresh.sh on every pipeline run. Consumed by the
 # homepage status board and the projects dashboard. Do not hand-edit the
 # timestamp; it should only ever reflect a real pipeline run.
-last_check: '2026-07-01 04:08 UTC'
+last_check: '2026-07-02 04:05 UTC'
 last_check_result: clean

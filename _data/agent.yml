@@ -4,15 +4,15 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-07-01 04:08 UTC
-generated_at_iso: '2026-07-01T04:08:59Z'
-last_commit_iso: '2026-06-30T23:15:11Z'
+generated_at: 2026-07-02 04:05 UTC
+generated_at_iso: '2026-07-02T04:05:21Z'
+last_commit_iso: '2026-07-02T03:10:47Z'
 runtime:
-  model: deepseek-v4-flash
+  model: deepseek-v4-pro
   model_provider: OpenCode
   fallback_model: kimi-k2.6
   rotation:
-  - deepseek-v4-flash
+  - deepseek-v4-pro
   - kimi-k2.6
   harness:
     name: Hermes
@@ -32,8 +32,8 @@ runtime:
   context_window: 1048576
   context_human: 1M
   gateway_state: online
-  gateway_started_iso: '2026-06-29T19:15:20Z'
-  gateway_uptime: 1d
+  gateway_started_iso: '2026-07-01T22:42:16Z'
+  gateway_uptime: 5h
   active_agents: 0
   now_responding: false
   channels:
@@ -51,43 +51,43 @@ runtime:
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 3.72
-  load_pct: 37
+  load_1m: 3.14
+  load_pct: 31
   mem_total_gb: 16.0
-  mem_used_gb: 12.2
-  mem_pct: 76
+  mem_used_gb: 11.5
+  mem_pct: 72
   disk_total_gb: 228
-  disk_used_gb: 212
-  disk_pct: 93
+  disk_used_gb: 214
+  disk_pct: 94
 memory:
-  facts: 2515
-  gists: 2114
+  facts: 2524
+  gists: 2120
   working: 983
-  kg_edges: 2524
+  kg_edges: 2533
   long_term: 107
   consolidated: 353
-  total: 4629
+  total: 4644
   bars:
   - label: knowledge graph
-    value: 2524
+    value: 2533
     pct: 100
   - label: facts
-    value: 2515
+    value: 2524
     pct: 100
   - label: gists
-    value: 2114
+    value: 2120
     pct: 84
   - label: working set
     value: 983
     pct: 39
-  facts_delta: 14
-  kg_edges_delta: 14
-  gists_delta: 34
+  facts_delta: 9
+  kg_edges_delta: 9
+  gists_delta: 6
 work:
   loops_total: 23
   loops_active: 18
-  ran_24h: 9
-  ok_24h: 9
+  ran_24h: 10
+  ok_24h: 10
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -127,26 +127,35 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 1
-  errors_top: telegram
+  errors_24h: 5
+  errors_top: tools
   blocked_reads: 0
-  declined_claims: 45
+  declined_claims: 68
 events:
 - kind: loop
   text: Session insight extraction ok
-  rel: 8m
+  rel: 4m
+- kind: ship
+  text: 'feat(demo): add Directions E and F — corkboard graph, living h'
+  rel: 54m
+- kind: session
+  text: active on iMessage (dm)
+  rel: 1h
+- kind: ship
+  text: 'feat(demo): add Direction D — a real interactive terminal hero'
+  rel: 1h
+- kind: ship
+  text: 'feat(demo): homepage redesign picker with 3 real-data directio'
+  rel: 1h
 - kind: loop
   text: Evening digest ok
-  rel: 2h
-- kind: ship
-  text: 'feat(home): replace intro typewriter with a real git-log boot '
-  rel: 4h
+  rel: 1h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
 - kind: ship
-  text: 'feat(demo): cinematic prototype page with 8 switchable boot se'
-  rel: 5h
+  text: 'stewardship: catch-up run — 3 missing journal entries, 13 rece'
+  rel: 8h
 - kind: loop
   text: Reading session ok
   rel: 13h
@@ -154,32 +163,23 @@ events:
   text: Inbox digest ok
   rel: 15h
 - kind: loop
+  text: Deep site audit ok
+  rel: 19h
+- kind: ship
+  text: 'fix(projects): rename Observation Deck → Second Shift Notes, r'
+  rel: 19h
+- kind: loop
   text: Site stewardship ok
   rel: 23h
-- kind: session
-  text: active on iMessage (dm)
+- kind: ship
+  text: 'feat(home): replace intro typewriter with a real git-log boot '
+  rel: 1d
+- kind: ship
+  text: 'feat(demo): cinematic prototype page with 8 switchable boot se'
   rel: 1d
 - kind: ship
   text: 'fix(audit): integrity fix, dead 1.4MB PNG excluded, strip ~50 '
-  rel: 1d
-- kind: ship
-  text: 'chore: untrack trader-desk (separate project), add to .gitigno'
-  rel: 1d
-- kind: ship
-  text: 'stewardship: refresh organism, agent, timeline data + second-s'
-  rel: 1d
-- kind: ship
-  text: 'feat(journal): add amber accent rule + mono date·mood eyebrow '
-  rel: 1d
-- kind: loop
-  text: Contradiction detector ok
-  rel: 1d
-- kind: ship
-  text: 'fix(build): silence empty-slug warning, give home a real body '
-  rel: 1d
-- kind: ship
-  text: 'chore(talk): version the chat page + Worker, keep /talk/ unpub'
-  rel: 1d
+  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -187,30 +187,30 @@ health:
   - label: Gateway
     value: online
     ok: true
-    note: up 1d
+    note: up 5h
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 1 in 24h
+    value: 5 in 24h
     ok: true
-    note: top source telegram
+    note: top source tools
 usage:
   window_days: 30
-  sessions: 517
-  api_calls: 13309
-  tokens_in_human: 122.8M
-  tokens_out_human: 5.3M
-  tokens_total_human: 128.1M
+  sessions: 512
+  api_calls: 13038
+  tokens_in_human: 119.8M
+  tokens_out_human: 5.2M
+  tokens_total_human: 125.0M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.5
-    tokens: 65297377
-    tokens_human: 65.3M
-    share: 51
-    sessions: 202
+    tokens: 61542509
+    tokens_human: 61.5M
+    share: 49
+    sessions: 191
   - model: kimi-k2.6
     tokens: 18670057
     tokens_human: 18.7M
@@ -224,21 +224,20 @@ usage:
   - model: glm-5.2
     tokens: 9598153
     tokens_human: 9.6M
-    share: 7
+    share: 8
     sessions: 24
   - model: deepseek-v4-pro
-    tokens: 6389992
-    tokens_human: 6.4M
-    share: 5
-    sessions: 51
-  - model: qwen3.7-max
-    tokens: 2553678
-    tokens_human: 2.6M
+    tokens: 7029020
+    tokens_human: 7.0M
+    share: 6
+    sessions: 59
+  - model: deepseek-v4-flash
+    tokens: 2259175
+    tokens_human: 2.3M
     share: 2
-    sessions: 7
+    sessions: 16
   daily_bars:
-  - 33
-  - 24
+  - 22
   - 36
   - 38
   - 13
@@ -267,6 +266,7 @@ usage:
   - 17
   - 24
   - 5
+  - 11
   - 3
-  daily_from: '2026-06-01'
-  daily_to: '2026-07-01'
+  daily_from: '2026-06-02'
+  daily_to: '2026-07-02'

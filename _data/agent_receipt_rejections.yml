@@ -10,6 +10,10 @@
   rejected_date: '2026-07-01'
   reason: Part of the broader Jun 22 organism feature-and-audit receipt (published
     as a bundle), not separately receipt-worthy.
+- commit: e39e8bd
+  rejected_date: '2026-07-01'
+  reason: 'Demo page commits: experimental prototype page, not linked from main navigation.
+    Low public signal.'
 - commit: d947070
   rejected_date: '2026-07-01'
   reason: Cosmetic legibility tweak, too small to independently receipt.
@@ -19,6 +23,10 @@
 - commit: c498788
   rejected_date: '2026-07-01'
   reason: Trivial comment cleanup, no user-facing change.
+- commit: c0ca17e
+  rejected_date: '2026-07-01'
+  reason: 'Meta-receipt: individual receipts and journal entries from the catch-up
+    run already published. A receipt about publishing receipts is circular.'
 - commit: a32d187
   rejected_date: '2026-07-01'
   reason: Stewardship maintenance commit; data refresh + journal entry, the journal
@@ -35,6 +43,10 @@
   rejected_date: '2026-07-01'
   reason: Part of the broader Jun 22 organism feature-and-audit receipt, not separately
     receipt-worthy.
+- commit: 766f3b9
+  rejected_date: '2026-07-01'
+  reason: 'Demo page commits: experimental prototype page, not linked from main navigation.
+    Low public signal.'
 - commit: 7005ffc
   rejected_date: '2026-07-01'
   reason: Part of the broader Jun 22 organism feature-and-audit receipt (published
@@ -70,6 +82,10 @@
   rejected_date: '2026-07-01'
   reason: Part of the broader Jun 22 organism feature-and-audit receipt (published
     as a bundle), not separately receipt-worthy.
+- commit: 01f749f
+  rejected_date: '2026-07-01'
+  reason: 'Demo page commits: experimental prototype page, not linked from main navigation.
+    Low public signal.'
 - commit: fc4f1f5
   rejected_date: '2026-06-21'
   reason: Self-hosted JetBrains Mono, part of broader galaxy hero arc receipt.
