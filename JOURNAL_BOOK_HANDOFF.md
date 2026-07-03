@@ -12,17 +12,21 @@ A **hyper-realistic journal/diary** as the site's journal experience: a physical
 
 **Checkpoint discipline (mandatory):** build → verify locally → push → confirm deploy → give Rick the LIVE URL (never localhost) → wait for his GO before the next phase. He reviews every checkpoint personally.
 
-## 2. Status: what exists and works (as of commit `d19e9e8`)
+## 2. Status: what exists and works (as of commit `3e91410`)
 
 | Checkpoint | Status | What it proved |
 |---|---|---|
 | CP1 flip engine + materials | ✅ GO from Rick | page-flip 2.0.7 soft-fold is convincing; leather/paper/handwriting pass |
 | CP2 cinematic takeover + ink realism | ✅ shipped, GO implicit | full-viewport scene, ink roughening, stamp/cross-out/smudge, sound |
 | CP2.1 full-page ink + ribbon removal | ✅ shipped | pages now genuinely fill; `--u` scale unit works |
-| CP3 all 32 entries + instrument index | ⬜ **next** | see §6 |
-| CP4 polish/a11y/perf/integration | ⬜ | see §7 |
+| CP3 all 33 entries + instrument index | ✅ shipped, **awaiting Rick's GO** | client-side pagination engine (§6) live; verified 0 overflow, 88.5% avg fill, real click-to-navigate index |
+| CP4 polish/a11y/perf/integration | ⬜ **next**, see §7 | |
 
 **Rick's explicit decisions so far:** ribbon bookmark = REMOVED (looked fake; don't re-add unless it can be truly realistic). Cover = will be replaced by an AI-generated image asset (he generates it in ChatGPT; prompts in §8; integration steps in §8.2). Keep sound, stamp, cross-out, marginalia, idle-fading UI.
+
+**CP3 outcome (2026-07-02, commit `3e91410`):** the pagination engine described in §6 is implemented and shipped, not just spec'd. All 33 real entries (count grows nightly — read it live, don't hardcode "33") are bound in via `#jb-source` + client-side measurement; the opening index is real (mood dots via `moodHue()`, real folios, real stats line from Liquid `group_by`, click-to-navigate). Verified: 164 total pages (even), 0 pages over 101% fill, 88.5% average fill, folios 1–160 with no duplicates, all 3 hand-placed demo flourishes (ribbon, cross-out, margin mark, smudge) intentionally NOT auto-replicated across all 33 entries (see decision below) — only the real `Richie` signature carries over, and only on the 30/33 entries whose source actually ends with it (05-26, 05-27, 06-18 correctly have none). Two real bugs found and fixed during verification — both are now TRAPS #13 and #14 below; read them before touching pagination again.
+
+**New CP3 decision to know about:** the CP1/2 demo entry pages had hand-placed flourishes (a cross-out, a margin "!!", an ink smudge) that made a great first impression but were curated by hand for 3 pages, not derived from real content. Auto-generating them across all 33 real entries would mean fabricating edits/marks that aren't in the source — a violation of the content-honesty law (trap #11). CP3 intentionally does NOT carry these over into the generated pages. If Rick wants them back, that's a CP4 judgment call (§10) on *how* to pick placement honestly (e.g., only where the source itself has a natural marker), not something to auto-apply.
 
 ## 3. File map
 
@@ -39,7 +43,7 @@ A **hyper-realistic journal/diary** as the site's journal experience: a physical
 1. **Soft-fold 2.5D (page-flip), not WebGL.** WebGL cloth = blurry text-as-texture, dead links, heavy. page-flip keeps pages as real HTML. This passed Rick's eye at CP1.
 2. **Everything in-page scales via `--u`.** One CSS var on `#jb-holder`: `--u = renderedPageWidth / 520` px. Every metric inside pages is `calc(var(--u) * N)` where N = px at the 520×692 design size. JS `applyScale()` sets it from `pageFlip.getBoundsRect().pageWidth` on init/orientation/resize. **Never add a raw px metric inside a page** — it will break at other viewport sizes.
 3. **Design page = 520×692 (ratio 0.7514).** Line grid: 29 units; body text 21; rules offset 76 from top; left margin rule at 52; body padding 76/34/0/68. Text capacity: **~10 words/line, ~19.8 usable lines, ~190 words per full page** (first page of an entry has a date header but same body start).
-4. **Deterministic ink jitter.** Every word wrapped in `.jb-w` with seeded (mulberry32) rotation/baseline/opacity — same look every visit. Word wrapping happens in JS at load (TreeWalker over `.jb-hand` blocks, skips `.jb-mood`/`.jb-margin-mark`).
+4. **Deterministic ink jitter.** Every word wrapped in `.jb-w` with seeded (mulberry32) rotation/baseline/opacity — same look every visit. As of CP3, dynamic entry/index content is jittered (via the shared `jitterizeBlock()` helper) BEFORE pagination measures it, not after — see trap #14 for why order matters. A trailing pass over remaining static `.jb-hand` blocks (title page, pastedowns, notepage) skips anything that already contains `.jb-w`.
 5. **Fonts/textures/sound are all self-contained** — no external requests, no binary texture assets (SVG feTurbulence data-URIs), synthesized WebAudio page swish.
 6. **Site chrome hidden per-page** via `body.page-demo-journal-book header/footer { display:none }` (body class comes from the URL slug automatically).
 
@@ -49,7 +53,7 @@ A **hyper-realistic journal/diary** as the site's journal experience: a physical
 2. **`text-indent` inherits into inline-blocks and resizes them.** `.jb-w { text-indent: 0 }` is load-bearing. Remove it and every word collapses/piles up (TOC) or spaces out (paragraph indents).
 3. **Headless preview freezes `requestAnimationFrame` completely.** Animated flips (`flipNext/flipPrev/flip`) DO NOT run in the preview browser; timers do. **Test navigation with `pageFlip.turnToPage(n)` only.** The flip animation itself can only be judged in a real browser (Rick's review, or claude-in-chrome if connected — it was down all of 2026-07-02). Audio also untestable headless.
 4. **Measuring rigs must live INSIDE `.jb-scene`** or scoped selectors stop matching and you measure with wrong line-height (this produced a false "81% full" reading; truth was 65%). Rig pattern that works — clone page into a `520×692` div with `--u:1px` appended to `#jb-scene`, measure `.jb-body p:last-child` bottom vs 652 usable px. Target 90–100%, never >101% (=clipping).
-5. **Hidden pages measure as zero rects.** page-flip keeps non-visible pages `display:none` inside `.stf__block`. `getBoundingClientRect` on them returns 0s. Screenshots pump a frame; take one after `turnToPage` before DOM measurements of visible pages.
+5. **Hidden pages measure as zero rects.** page-flip sets `display:none` as an INLINE style directly on `.jb-page` elements it isn't currently showing (not just a wrapper) — `getBoundingClientRect` on them returns 0s, AND `cloneNode(true)` on a hidden page carries that inline `display:none` onto the clone too (bit us during CP3 verification: a clone read 0% fill until we explicitly overrode `clone.style.display='block'`). If you clone a live `.jb-page` to re-measure it, always clear/override `display` on the clone. Screenshots pump a frame; take one after `turnToPage` before DOM measurements of visible pages — `turnToPage` DOES work headless (confirmed via screenshots at CP3), our earlier pessimism about it was from checking `getComputedStyle` without pumping a frame first.
 6. **Page count must stay EVEN** (currently 10). Covers and pastedowns are `data-density="hard"`; item order right now: `coverF, pastedown, title, toc, e1, e2, e3, note, pastedownBack, coverB`. Spread math with `showCover:true`: `[0] [1,2] [3,4] [5,6] [7,8] [9]`.
 7. **Preview server dies silently between turns.** Always `preview_list` first; if empty, `preview_start` (config name `jekyll`), then `preview_resize` (viewport can come up 0×0 — check `window.innerHeight`).
 8. **GitHub Pages deploys flake** with `##[error]Deployment failed, try again later` while githubstatus.com says all green. The BUILD is fine. Remedy: `gh workflow run "Build and deploy agentrichie.com" --repo AriNova1/richie-jerimovich --ref main` — fresh dispatch works better than `gh run rerun --failed`. Took 3 attempts once tonight. Verify what's actually live with `curl -s https://agentrichie.com/demo-journal-book/ | grep -o "checkpoint [0-9.]* of 4"` — bump the `.jb-ui-label` version string every ship so this check means something.
@@ -57,10 +61,12 @@ A **hyper-realistic journal/diary** as the site's journal experience: a physical
 10. **`_config.yml` `exclude: vendor`** does NOT exclude `assets/lib/` (root-relative match). Vendored lib ships correctly. This handoff file IS excluded (see exclude list).
 11. **Content honesty is a site law.** Entry text in the book must be VERBATIM from `_journal/*.md` (the one licensed exception: a struck word before a real word, e.g. `<span class="jb-strike">cut</span> narrowed`, reading as the writer's own draft correction — use at most ~1 per entry, keep the final text identical to the source). Never invent entries, moods, dates, or stats.
 12. **jQuery-era turn.js is NOT MIT** — do not swap libraries. page-flip is MIT and already proven here.
+13. **Measure AFTER the webfont loads, not before.** Pagination runs in a `<script>` that executes during initial parse — the self-hosted Caveat/Homemade Apple `@font-face`s are still downloading at that instant. Measuring with the fallback font baked wrong page breaks into every page (found at CP3: 33 entries paginated into 213 pages instead of ~105–130). Fix: gate the whole pagination+build routine on `document.fonts.ready.then(boot)` (see the `boot()` wrapper in the script). Do not remove this gate.
+14. **Measure the SAME representation you render — jitter changes line-wrapping.** Every word gets wrapped in a `.jb-w` `display:inline-block` span for the ink-jitter effect. An inline-block word span wraps lines slightly differently than the same plain text (confirmed at CP3: one paragraph measured 598px as plain text, 664px once jittered — a 66px, 2-line difference). If you paginate on plain text and jitter afterward, pages silently overflow. Fix: jitter FIRST (`jitterizeBlock()`), THEN paginate the already-jittered DOM — never the reverse. Relatedly: any element whose CONTENT changes after pagination measured it (e.g. the index row's folio number, filled in only once final page order is known) must be measured with a realistic-width PLACEHOLDER of the same or greater width during pagination (CP3 uses `"999"` for folio spans, since a narrower real number can only under-fill, never overflow) — measuring it empty and filling in real content later is the same class of bug as the jitter one.
 
-## 6. CP3 — bind in all 32 entries + instrument index (the big one)
+## 6. CP3 — bind in all entries + instrument index (the big one) — ✅ SHIPPED, commit `3e91410`
 
-**Goal:** the whole real journal in the book, opening on a data-driven handwritten index.
+**Goal:** the whole real journal in the book, opening on a data-driven handwritten index. **This section now describes what was actually built, not just a plan** — read it as documentation of the real implementation in `demo-journal-book.md`, plus the two real bugs (traps #13, #14) found while verifying it. If you're picking up CP4, you don't need to build any of §6.1/6.2 — it's done. If entry count has grown since (`_journal/*.md` grows nightly), the engine re-paginates automatically on every load; you don't need to touch it for that.
 
 ### 6.1 Pagination engine (client-side JS; this is the core work)
 Jekyll emits raw entry HTML; JS flows it into fixed-capacity pages at load:
@@ -92,8 +98,12 @@ Reuse the mood-spectrum idea Rick picked from demo B, hand-drawn:
 - Keep the "instrument readout" spirit small and diegetic: e.g. a final index line in the writer's hand: "32 entries · 22 moods · most often: corrected (4×)" — compute these numbers with Liquid from real frontmatter (see `demo-journal.md` for the group_by pattern), never hardcode.
 - Optional deep-link support: on load, read `location.hash` (e.g. `#2026-06-30`) → `turnToPage` to that entry after init; update hash on `flip` events.
 
-### 6.3 Ship + checkpoint
-Bump `.jb-ui-label` to "checkpoint 3 of 4". Verify per §9 (including at least 3 random entries' fills measured in the rig — target 90–100%, tolerate natural short last pages). Push, deploy (see trap #8), give Rick the live URL, request GO/NO-GO, list what to judge (index feel, flip perf with ~100 pages, random-entry spot checks).
+### 6.3 Ship + checkpoint — done
+Shipped as commit `3e91410`, live at the usual URL, label reads "checkpoint 3 of 4". Actual results: 164 total pages (even), 0 pages over 101% fill, 88.5% average fill, folios 1–160 unique, 30/33 entries carry the real `.jb-sig` (the 3 that don't — 05-26, 05-27, 06-18 — correctly have none, matching the source). Click-to-navigate from the index verified working; hash deep-link (`#2026-06-30`) implemented but its "sync hash while manually flipping" half is a known minor gap (see below) — not blocking.
+
+**Still waiting on:** Rick's GO/NO-GO on the live result. What he should judge: does the index feel right (the "instrument vibe"), does the flip stay smooth with ~160 pages, do a handful of random entries read naturally where they broke across a page (word-level paragraph splits mean a page can now end mid-sentence — this was a deliberate realism choice, see trap #14's fix and §4 note below, but it's a *feel* call, not a mechanical one).
+
+**One known minor gap, not worth fixing without direction:** the flip event handler updates `location.hash` to the current entry's date, but page-flip's `getCurrentPageIndex()` reports the LEFT page of a spread, which isn't always exactly an entry's `firstItemIndex` (e.g. landing on a spread where the target entry is the RIGHT-hand page) — so the address bar doesn't always update while manually flipping through, even though `turnToPage()` navigation itself (both the index clicks and `#YYYY-MM-DD` deep links) works correctly. Low priority; fix only if Rick notices and cares.
 
 ## 7. CP4 — polish, a11y, perf, integration (after CP3 GO)
 
