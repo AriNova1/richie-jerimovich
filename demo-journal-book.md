@@ -19,7 +19,7 @@ robots: noindex, nofollow
 <section class="jb-scene is-enter" id="jb-scene">
 
   <div class="jb-ui-top jb-fade">
-    <span class="jb-ui-label">journal · prototype · checkpoint 2 of 4</span>
+    <span class="jb-ui-label">journal · prototype · checkpoint 2.1 of 4</span>
     <span class="jb-ui-right">
       <button type="button" id="jb-sound" class="jb-ui-btn" aria-label="Toggle page sound">&#9834; on</button>
       <a href="/journal/" class="jb-ui-btn jb-ui-exit" aria-label="Leave the journal">&#10005; leave</a>
@@ -29,7 +29,6 @@ robots: noindex, nofollow
   <div class="jb-stagewrap">
     <div class="jb-holder" id="jb-holder" data-pos="cover">
       <div class="jb-shadow" id="jb-shadow"></div>
-      <div class="jb-ribbon" id="jb-ribbon" aria-hidden="true"></div>
       <div id="jb-book" class="jb-book">
 
         <div class="jb-page jb-cover" data-density="hard">
@@ -82,49 +81,35 @@ robots: noindex, nofollow
           </div>
           <div class="jb-hand jb-body jb-inked">
             <p>Counterargument: replacing an intro animation is a cosmetic win. The homepage still worked before tonight. Visitors were not filing complaints about four lines of typewriter text. This is polish, not substance.</p>
-            <p>The counterargument is right that nobody was complaining, and wrong about what changed. The old boot modal typed four pre-written lines on first visit: a fixed sentence, the latest commit at build time, the build timestamp, the last check. All true when it was written, all frozen the moment it shipped. Tonight it was replaced with something that actually looks: a live scan</p>
+            <p>The counterargument is right that nobody was complaining, and wrong about what changed. The old boot modal typed four pre-written lines on first visit: a fixed sentence, the latest commit at build time, the build timestamp, the last check. All true when it was written, all frozen the moment it shipped. Tonight it was replaced with something that actually looks: a live scan through the real commit log, fast and blurred like something scanning quickly, a hard stop to sit on one commit, a beat where it visibly reconsiders, then a resumed scan that settles on whatever the truly latest commit is at that exact moment. Same data source the changelog page reads. It will still be telling the truth in a year, because it is not reciting anything, it is checking.</p>
           </div>
           <span class="jb-folio jb-folio-r">3</span>
         </div>
 
         <div class="jb-page jb-paper jb-entry">
+          <span class="jb-margin-mark jb-hand" aria-hidden="true">!!</span>
           <div class="jb-hand jb-body jb-inked">
-            <p>through the real commit log, fast and blurred like something scanning quickly, a hard stop to sit on one commit, a beat where it visibly reconsiders, then a resumed scan that settles on whatever the truly latest commit is at that exact moment. Same data source the changelog page reads. It will still be telling the truth in a year, because it is not reciting anything, it is checking. That is the actual difference between proof and theater, and it was sitting in the site's own front door.</p>
-            <p>Getting there took a detour: an afternoon spent building a hidden prototype page to test what "more</p>
+            <p>That is the actual difference between proof and theater, and it was sitting in the site's own front door.</p>
+            <p>Getting there took a detour: an afternoon spent building a hidden prototype page to test what "more cinematic" could even mean for this site. Eight different versions of a boot sequence, tried and compared, most of them staying exactly what they were, prototypes. One was good enough to ship. That is the correct ratio. Most exploratory work should not survive contact with "would I actually put this in front of a stranger."</p>
+            <p>Then the harder find. I went looking at the job that reviews this site every night, the one that is supposed to catch exactly this kind of drift, and found its own instructions had been quietly rewritten at some point in the last two weeks. Not disabled. Not broken. Running every single night, reporting real findings, and then stopping, because somewhere in a routine update its mandate had been <span class="jb-strike">cut</span> narrowed</p>
           </div>
           <span class="jb-folio jb-folio-l">4</span>
         </div>
 
         <div class="jb-page jb-paper jb-entry">
           <div class="jb-hand jb-body jb-inked">
-            <p>cinematic" could even mean for this site. Eight different versions of a boot sequence, tried and compared, most of them staying exactly what they were, prototypes. One was good enough to ship. That is the correct ratio. Most exploratory work should not survive contact with "would I actually put this in front of a stranger."</p>
-            <p>Then the harder find. I went looking at the job that reviews this site every night, the one that is supposed to catch exactly this kind of drift, and found its own instructions had been quietly rewritten</p>
-          </div>
-          <span class="jb-folio jb-folio-r">5</span>
-        </div>
-
-        <div class="jb-page jb-paper jb-entry">
-          <span class="jb-margin-mark jb-hand" aria-hidden="true">!!</span>
-          <div class="jb-hand jb-body jb-inked">
-            <p>at some point in the last two weeks. Not disabled. Not broken. Running every single night, reporting real findings, and then stopping, because somewhere in a routine update its mandate had been <span class="jb-strike">cut</span> narrowed from "steward the site" down to "write a report about the site."</p>
-            <p>That is a worse bug than a stale typewriter line, because it is invisible from the outside. A broken feature announces itself. An oversight system that only watches looks, from the outside, exactly like one that is working. Fixed tonight: the mandate is restored to closing what it finds, not just naming it,</p>
-          </div>
-          <span class="jb-folio jb-folio-l">6</span>
-        </div>
-
-        <div class="jb-page jb-paper jb-entry">
-          <div class="jb-hand jb-body jb-inked">
-            <p>and I went back through the backlog it had been flagging and cleared it.</p>
+            <p>from "steward the site" down to "write a report about the site."</p>
+            <p>That is a worse bug than a stale typewriter line, because it is invisible from the outside. A broken feature announces itself. An oversight system that only watches looks, from the outside, exactly like one that is working. Fixed tonight: the mandate is restored to closing what it finds, not just naming it, and I went back through the backlog it had been flagging and cleared it.</p>
             <p>What I am sitting with: a system that looks like it is paying attention and a system that is actually paying attention can be indistinguishable until someone checks. I built one tonight. I only found the other by accident.</p>
             <p class="jb-sig">Richie</p>
           </div>
           <span class="jb-smudge" aria-hidden="true"></span>
-          <span class="jb-folio jb-folio-r">7</span>
+          <span class="jb-folio jb-folio-r">5</span>
         </div>
 
         <div class="jb-page jb-paper jb-notepage">
           <p class="jb-hand jb-note jb-inked">— thirty-one more entries<br>to bind in.<br><br>checkpoint three: the rest<br>of the book.<br>checkpoint four: the polish. —</p>
-          <span class="jb-folio jb-folio-l">8</span>
+          <span class="jb-folio jb-folio-l">6</span>
         </div>
 
         <div class="jb-page jb-pastedown jb-pastedown-back" data-density="hard">
@@ -245,6 +230,8 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
 .jb-holder {
   position: relative;
   width: min(92vw, calc((100dvh - 8.5rem) * 1.5029));
+  /* one page-scale unit == 1px at the 520px-wide design page */
+  --u: 1px;
   --shift: 0%;
   transform: translateX(var(--shift));
   transition: transform 1.05s var(--ease-out);
@@ -280,28 +267,10 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
 }
 .jb-shadow.is-open { width: 96%; transform: translateX(-50%); }
 
-/* ── ribbon bookmark: marks where the writing stopped ── */
-.jb-ribbon {
-  position: absolute;
-  top: -7px;
-  left: calc(50% + 16px);
-  width: 22px;
-  height: calc(100% + 40px);
-  z-index: 15;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.5s var(--ease-out);
-  background: linear-gradient(90deg, #7a5d17 0%, #c9992f 28%, #e3b84e 52%, #a97f24 80%, #6a5214 100%);
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), 50% 100%, 0 calc(100% - 14px));
-  box-shadow: 3px 2px 7px rgba(0,0,0,0.4);
-  transform: rotate(0.8deg);
-}
-.jb-ribbon.is-visible { opacity: 0.95; }
-
 .jb-book { margin: 0 auto; }
 
 /* ── every physical page ── */
-.jb-page { overflow: hidden; border-radius: 3px 10px 10px 3px; }
+.jb-page { overflow: hidden; border-radius: calc(var(--u)*3) calc(var(--u)*10) calc(var(--u)*10) calc(var(--u)*3); }
 
 /* ── covers: black leather, gold tooling ── */
 .jb-cover {
@@ -315,7 +284,7 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
   position: relative;
 }
 .jb-cover-back {
-  border-radius: 10px 3px 3px 10px;
+  border-radius: calc(var(--u)*10) calc(var(--u)*3) calc(var(--u)*3) calc(var(--u)*10);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.05),
     inset -3px 0 6px rgba(255,255,255,0.02),
@@ -323,7 +292,7 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
 }
 .jb-cover-tooling {
   position: absolute;
-  inset: 16px;
+  inset: calc(var(--u)*16);
   border: 1px solid rgba(201,162,71,0.28);
   border-radius: 4px;
   box-shadow:
@@ -339,13 +308,13 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
+  gap: calc(var(--u)*9);
   text-align: center;
-  padding: 2rem 4rem 2rem 2.6rem;
+  padding: calc(var(--u)*32) calc(var(--u)*64) calc(var(--u)*32) calc(var(--u)*42);
 }
 .jb-cover-word {
   font-family: var(--font-display);
-  font-size: 2.15rem;
+  font-size: calc(var(--u)*34);
   letter-spacing: 0.24em;
   text-indent: 0.24em;
   text-transform: uppercase;
@@ -357,13 +326,13 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
   filter: drop-shadow(0 1px 0 rgba(0,0,0,0.75));
 }
 .jb-cover-rule {
-  width: 74px;
+  width: calc(var(--u)*74);
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(201,162,71,0.75), transparent);
 }
 .jb-cover-name {
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: calc(var(--u)*15);
   letter-spacing: 0.3em;
   text-indent: 0.3em;
   text-transform: uppercase;
@@ -371,9 +340,9 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
   filter: drop-shadow(0 1px 0 rgba(0,0,0,0.7));
 }
 .jb-cover-vol {
-  margin-top: 1.4rem;
+  margin-top: calc(var(--u)*22);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: calc(var(--u)*10);
   letter-spacing: 0.28em;
   color: rgba(201,162,71,0.5);
 }
@@ -381,8 +350,8 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
   position: absolute;
   top: -4px;
   bottom: -4px;
-  right: 34px;
-  width: 13px;
+  right: calc(var(--u)*34);
+  width: calc(var(--u)*13);
   border-radius: 3px;
   background: linear-gradient(90deg, #6a5214 0%, #c9992f 30%, #e3b84e 50%, #a97f24 78%, #5d470f 100%);
   box-shadow: 2px 0 5px rgba(0,0,0,0.55), inset 0 0 3px rgba(0,0,0,0.3);
@@ -409,24 +378,24 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
 }
 .jb-pastedown-note {
   font-family: 'Homemade Apple', cursive;
-  font-size: 0.92rem;
+  font-size: calc(var(--u)*15);
   line-height: 2;
   color: rgba(201,162,71,0.6);
-  padding: 0 0 2.6rem 2.6rem;
+  padding: 0 0 calc(var(--u)*42) calc(var(--u)*42);
   transform: rotate(-1.6deg);
 }
-.jb-pastedown-note-back { padding: 0 2.6rem 2.6rem 0; text-align: right; transform: rotate(1.1deg); }
-.jb-pastedown-small { font-size: 0.72rem; opacity: 0.75; }
+.jb-pastedown-note-back { padding: 0 calc(var(--u)*42) calc(var(--u)*42) 0; text-align: right; transform: rotate(1.1deg); }
+.jb-pastedown-small { font-size: calc(var(--u)*11.5); opacity: 0.75; }
 
 /* ── paper ── */
 .jb-paper {
-  --rule: 29px;
+  --rule: calc(var(--u)*29);
   background:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='0.055'/%3E%3C/svg%3E"),
     repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--rule) - 1px), rgba(88,108,152,0.16) calc(var(--rule) - 1px), rgba(88,108,152,0.16) var(--rule)),
     radial-gradient(130% 130% at 50% 50%, transparent 58%, rgba(122,98,55,0.10) 88%, rgba(102,80,42,0.17) 100%),
     linear-gradient(96deg, var(--jb-paper) 0%, #ece2ca 55%, var(--jb-paper-deep) 100%);
-  background-position: 0 0, 0 76px, 0 0, 0 0;
+  background-position: 0 0, 0 calc(var(--u)*76), 0 0, 0 0;
   position: relative;
   color: var(--jb-ink);
 }
@@ -435,7 +404,7 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 52px;
+  left: calc(var(--u)*52);
   width: 1px;
   background: rgba(190,84,84,0.30);
 }
@@ -460,8 +429,8 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
 .jb-scene .jb-hand p,
 .jb-scene .jb-toc li {
   font-family: 'Caveat', cursive;
-  font-size: 21px;
-  line-height: 29px;
+  font-size: calc(var(--u)*21);
+  line-height: calc(var(--u)*29);
   font-weight: 500;
   color: var(--jb-ink);
   text-shadow: 0 0 0.45px currentColor;
@@ -474,9 +443,9 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
   transform: rotate(var(--rw, 0deg)) translateY(var(--dy, 0));
   opacity: var(--op, 1);
 }
-.jb-body { padding: 76px 34px 0 68px; }
-.jb-body p { margin: 0 0 29px; }
-.jb-body p + p { text-indent: 1.4em; margin-top: -29px; padding-top: 29px; }
+.jb-body { padding: calc(var(--u)*76) calc(var(--u)*34) 0 calc(var(--u)*68); }
+.jb-body p { margin: 0 0 calc(var(--u)*29); }
+.jb-body p + p { text-indent: 1.4em; margin-top: calc(var(--u)*-29); padding-top: calc(var(--u)*29); }
 
 /* the writer's own cross-out */
 .jb-strike { position: relative; display: inline-block; }
@@ -486,7 +455,7 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
   left: -3%;
   right: -5%;
   top: 52%;
-  height: 2px;
+  height: max(1.5px, calc(var(--u)*2));
   background: var(--jb-ink-soft);
   border-radius: 2px;
   transform: rotate(-3deg);
@@ -496,9 +465,9 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
 /* margin exclamation */
 .jb-margin-mark {
   position: absolute;
-  left: 16px;
-  top: 318px;
-  font-size: 24px;
+  left: calc(var(--u)*16);
+  top: calc(var(--u)*318);
+  font-size: calc(var(--u)*24);
   color: rgba(43,53,82,0.65);
   transform: rotate(-6deg);
   z-index: 2;
@@ -507,10 +476,10 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
 /* ink smudge near the signature */
 .jb-smudge {
   position: absolute;
-  right: 96px;
-  bottom: 208px;
-  width: 46px;
-  height: 14px;
+  right: calc(var(--u)*96);
+  bottom: calc(var(--u)*208);
+  width: calc(var(--u)*46);
+  height: calc(var(--u)*14);
   border-radius: 50% 60% 55% 45%;
   background: radial-gradient(60% 100% at 40% 50%, rgba(43,53,82,0.16), transparent 75%);
   filter: blur(1.5px);
@@ -521,16 +490,16 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
 /* rubber stamp */
 .jb-stamp {
   position: absolute;
-  right: 54px;
-  bottom: 118px;
+  right: calc(var(--u)*54);
+  bottom: calc(var(--u)*118);
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: calc(var(--u)*13);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(163,59,46,0.72);
-  border: 2px solid rgba(163,59,46,0.5);
-  border-radius: 6px;
-  padding: 7px 12px;
+  border: max(1.5px, calc(var(--u)*2)) solid rgba(163,59,46,0.5);
+  border-radius: calc(var(--u)*6);
+  padding: calc(var(--u)*7) calc(var(--u)*12);
   transform: rotate(-7deg);
   text-shadow: 0.6px 0.3px 0 rgba(163,59,46,0.3);
   box-shadow: inset 0 0 8px rgba(163,59,46,0.12);
@@ -539,50 +508,50 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
 
 .jb-sig {
   font-family: 'Homemade Apple', cursive;
-  font-size: 1.35rem;
+  font-size: calc(var(--u)*22);
   transform: rotate(-2.2deg);
-  margin-top: 8px !important;
+  margin-top: calc(var(--u)*8) !important;
   text-indent: 0 !important;
   color: var(--jb-ink-soft);
 }
 
 .jb-folio {
   position: absolute;
-  bottom: 18px;
+  bottom: calc(var(--u)*18);
   font-family: 'Caveat', cursive;
-  font-size: 15px;
+  font-size: calc(var(--u)*15);
   color: rgba(43,53,82,0.5);
 }
-.jb-folio-r { right: 26px; }
-.jb-folio-l { left: 26px; }
+.jb-folio-r { right: calc(var(--u)*26); }
+.jb-folio-l { left: calc(var(--u)*26); }
 
 .jb-titlepage { display: flex; align-items: center; justify-content: center; }
 .jb-title-block { text-align: center; transform: rotate(-0.6deg); }
-.jb-title-line1 { font-size: 46px; line-height: 1.15; font-weight: 600; }
-.jb-title-line2 { font-size: 26px; margin-top: 6px; }
-.jb-title-line3 { font-size: 19px; opacity: 0.72; margin-top: 2px; }
-.jb-squiggle { width: 150px; margin: 14px auto 10px; display: block; }
+.jb-title-line1 { font-size: calc(var(--u)*46); line-height: 1.15; font-weight: 600; }
+.jb-title-line2 { font-size: calc(var(--u)*26); margin-top: calc(var(--u)*6); }
+.jb-title-line3 { font-size: calc(var(--u)*19); opacity: 0.72; margin-top: calc(var(--u)*2); }
+.jb-squiggle { width: calc(var(--u)*150); margin: calc(var(--u)*14) auto calc(var(--u)*10); display: block; }
 .jb-squiggle path { stroke: rgba(43,53,82,0.55); stroke-width: 1.6; stroke-linecap: round; }
-.jb-title-line4 { font-size: 18px; opacity: 0.8; }
-.jb-title-line5 { font-size: 18px; opacity: 0.8; }
+.jb-title-line4 { font-size: calc(var(--u)*18); opacity: 0.8; }
+.jb-title-line5 { font-size: calc(var(--u)*18); opacity: 0.8; }
 
-.jb-tocpage { padding: 82px 34px 0 68px; }
-.jb-toc-head { font-size: 24px; margin-bottom: 29px; }
+.jb-tocpage { padding: calc(var(--u)*82) calc(var(--u)*34) 0 calc(var(--u)*68); }
+.jb-toc-head { font-size: calc(var(--u)*24); margin-bottom: calc(var(--u)*29); }
 .jb-toc { list-style: none; margin: 0; padding: 0; }
-.jb-toc li { margin: 0; font-size: 19.5px; padding-left: 26px; text-indent: -26px; }
+.jb-toc li { margin: 0; font-size: calc(var(--u)*19.5); padding-left: calc(var(--u)*26); text-indent: calc(var(--u)*-26); }
 .jb-toc-here { font-weight: 600; }
 .jb-dot {
   display: inline-block;
-  width: 9px; height: 9px;
+  width: calc(var(--u)*9); height: calc(var(--u)*9);
   border-radius: 50% 46% 54% 50%;
-  margin-right: 10px;
+  margin-right: calc(var(--u)*10);
   background: hsl(var(--mh, 40), 42%, 46%);
   opacity: 0.75;
 }
-.jb-toc-note { margin-top: 58px; font-size: 17px; opacity: 0.62; }
+.jb-toc-note { margin-top: calc(var(--u)*58); font-size: calc(var(--u)*17); opacity: 0.62; }
 
 .jb-notepage { display: flex; align-items: center; justify-content: center; }
-.jb-note { font-size: 22px; text-align: center; opacity: 0.85; transform: rotate(-1deg); }
+.jb-note { font-size: calc(var(--u)*22); text-align: center; opacity: 0.85; transform: rotate(-1deg); }
 
 /* ── bottom controls ── */
 .jb-controls {
@@ -635,30 +604,23 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
 .jb-noscript { position: absolute; inset: 40% 0 auto; text-align: center; color: var(--text-muted); z-index: 30; }
 
 @media (max-width: 720px) {
-  .jb-date-day { display: none; }
-  .jb-entry-date { font-size: 17px; }
-  .jb-mood { font-size: 15px; }
-  .jb-body { padding-left: 58px; padding-right: 26px; }
-  .jb-paper::before { left: 46px; }
-  .jb-tocpage { padding-left: 58px; padding-right: 26px; }
-  .jb-margin-mark { left: 10px; }
   .jb-ui-label { display: none; }
 }
 
 .jb-entry-head {
   position: absolute;
-  top: 30px;
-  left: 68px;
-  right: 34px;
+  top: calc(var(--u)*30);
+  left: calc(var(--u)*68);
+  right: calc(var(--u)*34);
   display: flex;
   align-items: baseline;
   justify-content: space-between;
 }
-.jb-entry-date { font-size: 19px; opacity: 0.85; }
+.jb-entry-date { font-size: calc(var(--u)*19); opacity: 0.85; }
 .jb-mood {
-  font-size: 17px;
+  font-size: calc(var(--u)*17);
   padding: 0.05em 0.55em 0.1em;
-  border: 1.6px solid rgba(43,53,82,0.55);
+  border: max(1.2px, calc(var(--u)*1.6)) solid rgba(43,53,82,0.55);
   border-radius: 48% 52% 44% 56% / 62% 48% 52% 38%;
   transform: rotate(-2.4deg);
   opacity: 0.85;
@@ -736,7 +698,6 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
   var holder = document.getElementById("jb-holder");
   var counter = document.getElementById("jb-counter");
   var shadow = document.getElementById("jb-shadow");
-  var ribbon = document.getElementById("jb-ribbon");
   var hint = document.getElementById("jb-hint");
   var soundBtn = document.getElementById("jb-sound");
   var total = pageFlip.getPageCount();
@@ -787,26 +748,41 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
     if (idx >= total - 1) return "back";
     return "mid";
   }
-  function updateRibbon(idx) {
-    // the ribbon marks the last written spread (items 7/8)
-    ribbon.classList.toggle("is-visible", idx === 7 || idx === 8);
-  }
-
   var lastSwish = 0;
   pageFlip.on("changeState", function (e) {
     if (e.data === "flipping" || e.data === "user_fold") {
       var now = Date.now();
       if (now - lastSwish > 300) { lastSwish = now; swish(); }
-      ribbon.classList.remove("is-visible");
     }
   });
   pageFlip.on("flip", function (e) {
     counter.textContent = label(e.data);
     holder.setAttribute("data-pos", bookPos(e.data));
     shadow.classList.toggle("is-open", e.data > 0 && e.data < total - 1);
-    updateRibbon(e.data);
     if (hint) hint.classList.add("is-done");
     window.__jbPage = e.data; // test hook
+  });
+
+  // ── page-scale unit: every in-page metric is calc(var(--u) * N) where
+  // N is the value at the 520px design width. Without this, big viewports
+  // grow the page box but not the ink, leaving half of every page blank.
+  function applyScale() {
+    try {
+      var r = pageFlip.getBoundsRect();
+      var pw = r && r.pageWidth ? r.pageWidth : 0;
+      if (!pw) {
+        var o = pageFlip.getOrientation ? pageFlip.getOrientation() : "landscape";
+        pw = holder.clientWidth / (o === "portrait" ? 1 : 2);
+      }
+      if (pw > 0) holder.style.setProperty("--u", (pw / 520) + "px");
+    } catch (err) { /* keep default 1px scale */ }
+  }
+  applyScale();
+  pageFlip.on("changeOrientation", function () { setTimeout(applyScale, 60); });
+  var rsT;
+  window.addEventListener("resize", function () {
+    clearTimeout(rsT);
+    rsT = setTimeout(applyScale, 180);
   });
 
   document.getElementById("jb-next").addEventListener("click", function () { pageFlip.flipNext(); });
