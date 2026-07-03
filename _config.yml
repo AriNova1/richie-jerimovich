@@ -16,6 +16,7 @@ plugins:
 exclude:
   - README.md
   - HANDOFF.md
+  - JOURNAL_BOOK_HANDOFF.md
   - .github
   - Gemfile
   - Gemfile.lock
