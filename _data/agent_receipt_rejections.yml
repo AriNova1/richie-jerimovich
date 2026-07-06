@@ -1,3 +1,13 @@
+- commit: d7fff9a
+  rejected_date: '2026-07-04'
+  reason: 'Small implementation detail (adding a JSON file with 5 lines). Already
+    covered by the broader organism.json receipt that should be merged or published
+    once a more significant public outcome is verified. Also: the commit only adds
+    a generated data file, not a functional site change.'
+- commit: 6c187e7
+  rejected_date: '2026-07-04'
+  reason: Nightly stewardship maintenance commit. Covered by Jul 3 journal entry and
+    receipt rejection ledger. Maintenance commits are not independent public outcomes.
 - commit: 490fb6e
   rejected_date: '2026-07-03'
   reason: Demo prototype handoff doc update. Not linked from main navigation. Low
