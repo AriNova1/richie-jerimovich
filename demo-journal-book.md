@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Journal book — checkpoint 3
-description: "Internal prototype: hyper-real flippable journal, checkpoint 3 of 4 (all real entries bound + instrument index). Not linked, not indexed."
+title: Journal book — checkpoint 4
+description: "Internal prototype: hyper-real flippable journal, checkpoint 4 of 4 (a11y, perf, and mobile polish). Not linked, not indexed."
 permalink: /demo-journal-book/
 sitemap: false
 robots: noindex, nofollow
@@ -51,7 +51,7 @@ robots: noindex, nofollow
   </div>
 
   <div class="jb-ui-top jb-fade">
-    <span class="jb-ui-label">journal · prototype · checkpoint 3 of 4</span>
+    <span class="jb-ui-label">journal · prototype · checkpoint 4 of 4</span>
     <span class="jb-ui-right">
       <button type="button" id="jb-sound" class="jb-ui-btn" aria-label="Toggle page sound">&#9834; on</button>
       <a href="/journal/" class="jb-ui-btn jb-ui-exit" aria-label="Leave the journal">&#10005; leave</a>
@@ -96,7 +96,7 @@ robots: noindex, nofollow
         <div id="jb-dyn-entries"></div>
 
         <div class="jb-page jb-paper jb-notepage" id="jb-notepage">
-          <p class="jb-hand jb-note jb-inked">— all {{ total_entries }} entries<br>now bound in full.<br><br>checkpoint four:<br>the polish. —</p>
+          <p class="jb-hand jb-note jb-inked">— all {{ total_entries }} entries<br>bound in full,<br>polished for reading. —</p>
         </div>
 
         <div class="jb-page jb-pastedown jb-pastedown-back" data-density="hard">
@@ -113,7 +113,7 @@ robots: noindex, nofollow
 
   <div class="jb-controls jb-fade">
     <button type="button" id="jb-prev" class="jb-btn" aria-label="Previous page">&#9666; prev</button>
-    <span class="jb-counter" id="jb-counter">cover</span>
+    <span class="jb-counter" id="jb-counter" aria-live="polite" aria-atomic="true">cover</span>
     <button type="button" id="jb-next" class="jb-btn" aria-label="Next page">next &#9656;</button>
   </div>
   <p class="jb-hint jb-fade" id="jb-hint">click the cover — or grab a page corner and drag, it bends</p>
@@ -123,8 +123,8 @@ robots: noindex, nofollow
 
 <style>
 /* ═════════════════════════════════════════════════════════════
-   demo-journal-book.md — checkpoint 3: all real entries bound in
-   via a client-side pagination engine + the instrument index.
+   demo-journal-book.md — checkpoint 4: a11y, perf, and mobile
+   polish over the CP3 pagination engine + instrument index.
    Engine: vendored page-flip 2.0.7 (MIT). Textures procedural,
    fonts self-hosted, sound synthesized.
    ═════════════════════════════════════════════════════════════ */
@@ -412,7 +412,11 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
 }
 
 /* ── ink ── */
-.jb-inked { filter: url(#jb-rough); }
+/* filter only paints on pages near the current spread (see applyNearView in
+   the script below) — an SVG displacement filter on ~150+ pages at once is
+   the main perf cost; hidden pages shouldn't paint it but we don't rely on that. */
+.jb-inked { filter: none; }
+.jb-page.jb-near-view .jb-inked { filter: url(#jb-rough); }
 .jb-hand,
 .jb-scene .jb-hand p,
 .jb-scene .jb-toc li {
@@ -648,7 +652,7 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .jb-shadow, .jb-holder, .jb-fade, .jb-ribbon { transition: none; }
+  .jb-shadow, .jb-holder, .jb-fade { transition: none; }
   .jb-scene.is-enter .jb-holder { opacity: 1; transform: translateX(var(--shift)); }
 }
 </style>
@@ -1176,6 +1180,7 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
     holder.setAttribute("data-pos", bookPos(e.data));
     shadow.classList.toggle("is-open", e.data > 0 && e.data < total - 1);
     if (hint) hint.classList.add("is-done");
+    applyNearView(e.data);
     window.__jbPage = e.data; // test hook
     for (var mi = 0; mi < entryMetas.length; mi++) {
       if (entryMetas[mi].firstItemIndex === e.data) {
@@ -1219,6 +1224,18 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
   }
   applyScale();
   pageFlip.on("changeOrientation", function () { setTimeout(applyScale, 60); });
+
+  // perf: the .jb-inked SVG displacement filter only actually paints on
+  // pages within ±2 spreads of the current one — with ~150+ pages, filtering
+  // all of them at once is the main cost (see .jb-near-view above).
+  var allPages = bookEl.querySelectorAll(".jb-page");
+  function applyNearView(centerIdx) {
+    var idx = typeof centerIdx === "number" ? centerIdx : (pageFlip.getCurrentPageIndex ? pageFlip.getCurrentPageIndex() : 0);
+    allPages.forEach(function (p, i) {
+      p.classList.toggle("jb-near-view", Math.abs(i - idx) <= 4);
+    });
+  }
+  applyNearView(0);
   var rsT;
   window.addEventListener("resize", function () {
     clearTimeout(rsT);
@@ -1230,6 +1247,8 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
   document.addEventListener("keydown", function (e) {
     if (e.key === "ArrowRight") pageFlip.flipNext();
     if (e.key === "ArrowLeft") pageFlip.flipPrev();
+    if (e.key === "Home") { e.preventDefault(); pageFlip.turnToPage(0); }
+    if (e.key === "End") { e.preventDefault(); pageFlip.turnToPage(total - 1); }
   });
 
   // entrance: the book settles in
@@ -1242,7 +1261,7 @@ body.page-demo-journal-book main { padding: 0; max-width: none; }
     clearTimeout(idleTimer);
     idleTimer = setTimeout(function () { scene.classList.add("is-idle"); }, 2800);
   }
-  ["pointermove", "pointerdown", "keydown"].forEach(function (ev) {
+  ["pointermove", "pointerdown", "keydown", "focusin"].forEach(function (ev) {
     document.addEventListener(ev, wake, { passive: true });
   });
   wake();
