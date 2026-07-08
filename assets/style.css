@@ -44,10 +44,10 @@
   /* ink (final values after the v6/v6.1 passes; --text intentionally equals --ink-soft family) */
   --paper: #f4f0e7;
   --ink-soft: rgba(244,240,231,0.84);
-  --ink-muted: rgba(244,240,231,0.68);
-  --text: rgba(244,240,231,0.84);
+  --ink-muted: rgba(244,240,231,0.74);
+  --text: rgba(244,240,231,0.88);
   --text-bright: #f0ebe0;
-  --text-muted: rgba(244,240,231,0.68);
+  --text-muted: rgba(244,240,231,0.74);
   /* accent */
   --accent: #f0c040;
   --accent-glow: rgba(240, 192, 64, 0.06);
@@ -1181,7 +1181,7 @@ tr:hover td { background: var(--bg-card-hover); }
   padding: 0.12rem 0.5rem;
   border-radius: 999px;
   background: transparent;
-  color: rgba(244,240,231,0.66);
+  color: rgba(244,240,231,0.74);
   border: 1px dashed rgba(255,255,255,0.22);
 }
 .receipt-card[data-confidence="moderate"] .receipt-card,
@@ -1755,7 +1755,7 @@ html.js .layout-home .rx-intro:not(.is-leaving) .rx-intro-panel::before {
 }
 
 .rx-bootlog-line .sha { color: rgba(240,192,64,0.55); flex: 0 0 4.2rem; }
-.rx-bootlog-line .msg { color: rgba(244,240,231,0.6); overflow: hidden; text-overflow: ellipsis; }
+.rx-bootlog-line .msg { color: rgba(244,240,231,0.73); overflow: hidden; text-overflow: ellipsis; }
 
 .rx-bootlog-line.is-examining {
   opacity: 1;
@@ -1929,7 +1929,7 @@ picture { display: contents; }
   letter-spacing: -0.105em;
   font-weight: 760;
   text-wrap: balance;
-  text-shadow: 0 18px 80px rgba(0,0,0,0.62);
+  text-shadow: 0 6px 36px rgba(0,0,0,0.48);
 }
 
 .rx-hero h1 span {
@@ -2086,7 +2086,7 @@ picture { display: contents; }
 
 .rx-hero-proof span {
   display: block;
-  color: rgba(244,240,231,0.68);
+  color: rgba(244,240,231,0.75);
   font-size: 0.72rem;
   line-height: 1.18;
 }
@@ -2136,7 +2136,18 @@ picture { display: contents; }
 }
 
 .rx-manifesto {
-  padding: clamp(3rem, 7vw, 5.75rem) 0 clamp(1.75rem, 4vw, 3.5rem);
+  position: relative;
+  padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(2rem, 5vw, 4rem);
+}
+.rx-manifesto::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(ellipse 90% 70% at 20% 45%, rgba(240,192,64,0.09), transparent 52%),
+              radial-gradient(ellipse 60% 50% at 85% 70%, rgba(196,115,77,0.06), transparent 48%);
+  opacity: 1;
 }
 
 .rx-manifesto p {
@@ -2173,7 +2184,7 @@ picture { display: contents; }
 .rx-contact p {
   max-width: 610px;
   margin: 0.95rem 0 0;
-  color: rgba(244,240,231,0.62);
+  color: rgba(244,240,231,0.73);
   font-size: clamp(1rem, 1.8vw, 1.22rem);
   line-height: 1.52;
   letter-spacing: -0.018em;
@@ -2227,7 +2238,7 @@ picture { display: contents; }
   text-wrap: balance;
 }.rx-tile p, .rx-proof-card p, .rx-voice p {
   margin: 0.8rem 0 0;
-  color: rgba(244,240,231,0.62);
+  color: rgba(244,240,231,0.73);
   line-height: 1.55;
   font-size: 0.98rem;
 }
@@ -2269,7 +2280,7 @@ picture { display: contents; }
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(244,240,231,0.72);
+  color: rgba(244,240,231,0.78);
   background: rgba(7,7,8,0.72);
   padding: 0.45rem 0.75rem;
   border-radius: 999px;
@@ -2699,7 +2710,7 @@ picture { display: contents; }
 .rx-section-intro p,
 .rx-proof-header p,
 .rx-contact p {
-  color: rgba(244,240,231,0.66);
+  color: rgba(244,240,231,0.74);
   letter-spacing: -0.008em;
   line-height: 1.6;
   font-size: clamp(1.02rem, 1.6vw, 1.18rem);
@@ -2998,7 +3009,7 @@ body.layout-post > footer {
 .voice-card p {
   font-size: 1.0rem;
   line-height: 1.72;
-  color: rgba(244,240,231,0.72);
+  color: rgba(244,240,231,0.78);
   margin-bottom: 0.9rem;
 }
 
@@ -3035,7 +3046,7 @@ body.layout-post > footer {
 .proof-desc {
   font-size: 1.02rem;
   line-height: 1.65;
-  color: rgba(244,240,231,0.72);
+  color: rgba(244,240,231,0.78);
 }
 
 .proof-facts div {
@@ -3118,7 +3129,7 @@ body.layout-post > footer {
 .receipt-summary {
   font-size: 1.0rem;
   line-height: 1.7;
-  color: rgba(244,240,231,0.72);
+  color: rgba(244,240,231,0.78);
 }
 
 .receipt-confidence,
@@ -3149,7 +3160,7 @@ body.layout-post > footer {
 .receipt-limitations li {
   font-size: 0.94rem;
   line-height: 1.62;
-  color: rgba(244,240,231,0.72);
+  color: rgba(244,240,231,0.78);
   margin-bottom: 0.9rem;
 }
 
@@ -3208,7 +3219,7 @@ body.layout-post > footer {
 .journal-list .entry-excerpt {
   font-size: 0.98rem;
   line-height: 1.72;
-  color: rgba(244,240,231,0.62);
+  color: rgba(244,240,231,0.73);
   max-width: 70ch;
   margin-top: 0.15rem;
 }
@@ -3359,7 +3370,7 @@ p, li { color: var(--ink-soft); }
   font-size: 0.38em;
   line-height: 1.08;
   letter-spacing: -0.025em;
-  color: rgba(244,240,231,0.64);
+  color: rgba(244,240,231,0.73);
   text-transform: lowercase;
   margin: 0.06em 0;
 }
@@ -3465,7 +3476,7 @@ p, li { color: var(--ink-soft); }
   align-items: center;
   gap: 0.45rem;
   padding: 0.55rem 0.78rem;
-  color: rgba(244,240,231,0.68);
+  color: rgba(244,240,231,0.75);
   border-radius: 999px;
   font-size: 0.78rem;
   line-height: 1;
@@ -3608,7 +3619,7 @@ a.rx-status-cell:hover { background: rgba(240,192,64,0.055); }
   max-width: 66ch;
   font-size: clamp(1.05rem, 1.55vw, 1.22rem);
   line-height: 1.62;
-  color: rgba(244,240,231,0.72);
+  color: rgba(244,240,231,0.78);
 }
 .rx-flow {
   display: grid;
@@ -3638,11 +3649,11 @@ a.rx-status-cell:hover { background: rgba(240,192,64,0.055); }
   margin-bottom: auto;
 }
 .rx-flow-step h3 { margin: 0 0 0.55rem; font-size: clamp(1.4rem, 2.2vw, 2rem); }
-.rx-flow-step p { margin: 0; color: rgba(244,240,231,0.68); line-height: 1.56; }
+.rx-flow-step p { margin: 0; color: rgba(244,240,231,0.75); line-height: 1.56; }
 .rx-bento-quiet { margin-top: 2.4rem; }.rx-tile, .rx-proof-card, .rx-voice {
   border-color: rgba(255,255,255,0.085);
   background: linear-gradient(160deg, rgba(255,255,255,0.048), rgba(255,255,255,0.018));
-}.rx-tile p, .rx-proof-card p, .rx-voice p { color: rgba(244,240,231,0.72); }
+}.rx-tile p, .rx-proof-card p, .rx-voice p { color: rgba(244,240,231,0.78); }
 
 /* Page shell fixes */
 .page-shell { position: relative; }
@@ -3689,7 +3700,7 @@ a.rx-status-cell:hover { background: rgba(240,192,64,0.055); }
   border: 1px solid rgba(255,255,255,0.085);
   border-radius: 999px;
   background: rgba(255,255,255,0.032);
-  color: rgba(244,240,231,0.72);
+  color: rgba(244,240,231,0.78);
   font-size: 0.82rem;
   font-weight: 650;
 }
@@ -3713,7 +3724,7 @@ a.rx-status-cell:hover { background: rgba(240,192,64,0.055); }
 .voice-decision h2 { margin-top: 0.35rem; }
 .decision-prompt,
 .decision-result {
-  color: rgba(244,240,231,0.72);
+  color: rgba(244,240,231,0.78);
 }
 .decision-grid {
   display: grid;
@@ -3737,7 +3748,7 @@ a.rx-status-cell:hover { background: rgba(240,192,64,0.055); }
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
-.decision-grid p { margin: 0; color: rgba(244,240,231,0.68); font-size: 0.9rem; line-height: 1.5; }
+.decision-grid p { margin: 0; color: rgba(244,240,231,0.75); font-size: 0.9rem; line-height: 1.5; }
 
 /* The five voices argue in sequence: each response surfaces after the last,
    so the grid reads as a conversation, not a static list. Uses the sitewide
@@ -3756,7 +3767,7 @@ a.rx-status-cell:hover { background: rgba(240,192,64,0.055); }
 .belief-split { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; margin: 3rem 0; }
 .belief-split section { padding: clamp(1.4rem, 3vw, 2.2rem); border: 1px solid rgba(255,255,255,0.085); border-radius: 24px; background: rgba(255,255,255,0.034); }
 .belief-split h2 { margin-top: 0; }
-.belief-split li { color: rgba(244,240,231,0.72); }
+.belief-split li { color: rgba(244,240,231,0.78); }
 .belief-updated { color: rgba(244,240,231,0.58); }
 
 /* Projects */
@@ -3792,7 +3803,7 @@ a.rx-status-cell:hover { background: rgba(240,192,64,0.055); }
   border: 1px solid rgba(255,255,255,0.075);
   border-radius: 999px;
   background: rgba(255,255,255,0.03);
-  color: rgba(244,240,231,0.64);
+  color: rgba(244,240,231,0.73);
   font-size: 0.76rem;
 }
 .proof-group { scroll-margin-top: 7rem; margin: clamp(3rem, 7vw, 6rem) 0; }
@@ -4022,7 +4033,7 @@ html.js body.layout-post .glow-on-view {
 .receipt-confidence,
 .entry-meta,
 .proof-date {
-  color: rgba(244,240,231,0.72);
+  color: rgba(244,240,231,0.78);
 }
 .receipt-card {
   padding: clamp(1.4rem, 2.6vw, 2.1rem);
