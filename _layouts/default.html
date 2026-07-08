@@ -10,6 +10,7 @@
   {% assign meta_desc = page.description | default: page.excerpt | strip_html | truncate: 160 | default: site.description %}
   <meta name="description" content="{{ meta_desc }}">
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  {% if page.robots %}<meta name="robots" content="{{ page.robots }}">{% endif %}
 
   <!-- Open Graph -->
   <meta property="og:title" content="{% if page.og_title %}{{ page.og_title }}{% elsif page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">

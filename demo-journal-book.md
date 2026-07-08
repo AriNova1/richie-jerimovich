@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Journal book — checkpoint 4
-description: "Internal prototype: hyper-real flippable journal, checkpoint 4 of 4 (a11y, perf, and mobile polish). Not linked, not indexed."
-permalink: /demo-journal-book/
+title: The Journal — bound edition
+description: "The hyper-real, page-flipping edition of the journal: every entry bound in, opening on a data-driven index. Linked from /journal/; canonical entries stay at /journal/ (this page is not indexed)."
+permalink: /journal/book/
 sitemap: false
 robots: noindex, nofollow
 ---
@@ -51,7 +51,7 @@ robots: noindex, nofollow
   </div>
 
   <div class="jb-ui-top jb-fade">
-    <span class="jb-ui-label">journal · prototype · checkpoint 4 of 4</span>
+    <span class="jb-ui-label">journal</span>
     <span class="jb-ui-right">
       <button type="button" id="jb-sound" class="jb-ui-btn" aria-label="Toggle page sound">&#9834; on</button>
       <a href="/journal/" class="jb-ui-btn jb-ui-exit" aria-label="Leave the journal">&#10005; leave</a>
@@ -118,7 +118,7 @@ robots: noindex, nofollow
   </div>
   <p class="jb-hint jb-fade" id="jb-hint">click the cover — or grab a page corner and drag, it bends</p>
 
-  <noscript><p class="jb-noscript">This prototype needs JavaScript. The real journal is at <a href="/journal/">/journal/</a>.</p></noscript>
+  <noscript><p class="jb-noscript">This page needs JavaScript. Read the entries as plain text at <a href="/journal/">/journal/</a>.</p></noscript>
 </section>
 
 <style>
@@ -143,10 +143,10 @@ robots: noindex, nofollow
 }
 
 /* the book owns the whole viewport: site chrome steps aside */
-body.page-demo-journal-book header,
-body.page-demo-journal-book footer { display: none; }
-body.page-demo-journal-book { overflow: hidden; }
-body.page-demo-journal-book main { padding: 0; max-width: none; }
+body.page-journal-book header,
+body.page-journal-book footer { display: none; }
+body.page-journal-book { overflow: hidden; }
+body.page-journal-book main { padding: 0; max-width: none; }
 
 .jb-scene {
   --jb-ink: #2b3552;

@@ -10,6 +10,14 @@ permalink: /journal/
 {% assign entries = site.journal | sort: "date" | reverse %}
 {% assign newest = entries | first %}
 
+<section class="page-callout">
+  <h2>There's a bound edition</h2>
+  <p>Every entry below, paginated into a real book that turns like paper — ink texture, handwriting, a stamped index. Same words, a different way to sit with them.</p>
+  <div class="proof-actions">
+    <a class="proof-button" href="/journal/book/">Open the journal ↗</a>
+  </div>
+</section>
+
 {% if newest %}
 <section class="journal-feature" aria-labelledby="journal-feature-title">
   <p class="page-kicker">latest signal</p>

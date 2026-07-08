@@ -1,7 +1,7 @@
 # Journal Book — Handoff Guide
 
 **For:** any model continuing this work (written by Fable 5, 2026-07-02, so a cheaper model can do the last mile without losing context).
-**Owner:** Rick. **Live prototype:** https://agentrichie.com/demo-journal-book/ (noindex, not linked from nav).
+**Owner:** Rick. **Live:** https://agentrichie.com/journal/book/ (moved here from `/demo-journal-book/` at CP4 integration; still `noindex, nofollow` via the `page.robots` frontmatter key — now actually wired into `<head>` in `_layouts/default.html`, see §12). Linked from `/journal/` via a hero button (integration option (a), Rick's call, 2026-07-08).
 **Read this whole file before touching anything. Read `demo-journal-book.md` next. You should not need to read anything else to start.**
 
 ---
@@ -19,8 +19,8 @@ A **hyper-realistic journal/diary** as the site's journal experience: a physical
 | CP1 flip engine + materials | ✅ GO from Rick | page-flip 2.0.7 soft-fold is convincing; leather/paper/handwriting pass |
 | CP2 cinematic takeover + ink realism | ✅ shipped, GO implicit | full-viewport scene, ink roughening, stamp/cross-out/smudge, sound |
 | CP2.1 full-page ink + ribbon removal | ✅ shipped | pages now genuinely fill; `--u` scale unit works |
-| CP3 all 33 entries + instrument index | ✅ shipped, **awaiting Rick's GO** | client-side pagination engine (§6) live; verified 0 overflow, 88.5% avg fill, real click-to-navigate index |
-| CP4 polish/a11y/perf/integration | ⬜ **next**, see §7 | |
+| CP3 all 33 (now 35+) entries + instrument index | ✅ shipped, GO given 2026-07-08 | client-side pagination engine (§6) live; verified 0 overflow, 88.5% avg fill, real click-to-navigate index |
+| CP4 polish/a11y/perf/integration | ✅ shipped 2026-07-08, see §7 | aria-live counter, Home/End keys, focusin-wake; `.jb-inked` filter scoped to ±2 spreads; mobile reverified; `/journal/` integration option (a) built (hero button + URL moved to `/journal/book/`) |
 
 **Rick's explicit decisions so far:** ribbon bookmark = REMOVED (looked fake; don't re-add unless it can be truly realistic). Cover = will be replaced by an AI-generated image asset (he generates it in ChatGPT; prompts in §8; integration steps in §8.2). Keep sound, stamp, cross-out, marginalia, idle-fading UI.
 
@@ -45,7 +45,7 @@ A **hyper-realistic journal/diary** as the site's journal experience: a physical
 3. **Design page = 520×692 (ratio 0.7514).** Line grid: 29 units; body text 21; rules offset 76 from top; left margin rule at 52; body padding 76/34/0/68. Text capacity: **~10 words/line, ~19.8 usable lines, ~190 words per full page** (first page of an entry has a date header but same body start).
 4. **Deterministic ink jitter.** Every word wrapped in `.jb-w` with seeded (mulberry32) rotation/baseline/opacity — same look every visit. As of CP3, dynamic entry/index content is jittered (via the shared `jitterizeBlock()` helper) BEFORE pagination measures it, not after — see trap #14 for why order matters. A trailing pass over remaining static `.jb-hand` blocks (title page, pastedowns, notepage) skips anything that already contains `.jb-w`.
 5. **Fonts/textures/sound are all self-contained** — no external requests, no binary texture assets (SVG feTurbulence data-URIs), synthesized WebAudio page swish.
-6. **Site chrome hidden per-page** via `body.page-demo-journal-book header/footer { display:none }` (body class comes from the URL slug automatically).
+6. **Site chrome hidden per-page** via `body.page-journal-book header/footer { display:none }` (body class comes from `page.url | slugify` automatically — moving the permalink changes this class; it changed from `page-demo-journal-book` to `page-journal-book` at the CP4 integration when the permalink moved from `/demo-journal-book/` to `/journal/book/`, confirmed by grepping the built `_site` output, not guessed).
 
 ## 5. TRAPS — every one of these burned time; do not rediscover them
 
@@ -56,13 +56,16 @@ A **hyper-realistic journal/diary** as the site's journal experience: a physical
 5. **Hidden pages measure as zero rects.** page-flip sets `display:none` as an INLINE style directly on `.jb-page` elements it isn't currently showing (not just a wrapper) — `getBoundingClientRect` on them returns 0s, AND `cloneNode(true)` on a hidden page carries that inline `display:none` onto the clone too (bit us during CP3 verification: a clone read 0% fill until we explicitly overrode `clone.style.display='block'`). If you clone a live `.jb-page` to re-measure it, always clear/override `display` on the clone. Screenshots pump a frame; take one after `turnToPage` before DOM measurements of visible pages — `turnToPage` DOES work headless (confirmed via screenshots at CP3), our earlier pessimism about it was from checking `getComputedStyle` without pumping a frame first.
 6. **Page count must stay EVEN** (currently 10). Covers and pastedowns are `data-density="hard"`; item order right now: `coverF, pastedown, title, toc, e1, e2, e3, note, pastedownBack, coverB`. Spread math with `showCover:true`: `[0] [1,2] [3,4] [5,6] [7,8] [9]`.
 7. **Preview server dies silently between turns.** Always `preview_list` first; if empty, `preview_start` (config name `jekyll`), then `preview_resize` (viewport can come up 0×0 — check `window.innerHeight`).
-8. **GitHub Pages deploys flake** with `##[error]Deployment failed, try again later` while githubstatus.com says all green. The BUILD is fine. Remedy: `gh workflow run "Build and deploy agentrichie.com" --repo AriNova1/richie-jerimovich --ref main` — fresh dispatch works better than `gh run rerun --failed`. Took 3 attempts once tonight. Verify what's actually live with `curl -s https://agentrichie.com/demo-journal-book/ | grep -o "checkpoint [0-9.]* of 4"` — bump the `.jb-ui-label` version string every ship so this check means something.
+8. **GitHub Pages deploys flake** with `##[error]Deployment failed, try again later` while githubstatus.com says all green. The BUILD is fine. Remedy: `gh workflow run "Build and deploy agentrichie.com" --repo AriNova1/richie-jerimovich --ref main` — fresh dispatch works better than `gh run rerun --failed`. Took 3 attempts once tonight. Verify what's actually live with `curl -s https://agentrichie.com/journal/book/`. Note: at CP4 integration `.jb-ui-label` was simplified from a version string (`journal · prototype · checkpoint N of 4`) down to just `journal`, since real visitors now reach this page via nav — the old "grep the version label" trick for confirming a deploy no longer applies; grep for something you actually changed instead (e.g. a copy string or class name).
 9. **kramdown:** the page is one big raw-HTML block in a `.md` file; block HTML passes through untouched. Don't introduce blank-line-separated markdown inside the book markup.
 10. **`_config.yml` `exclude: vendor`** does NOT exclude `assets/lib/` (root-relative match). Vendored lib ships correctly. This handoff file IS excluded (see exclude list).
 11. **Content honesty is a site law.** Entry text in the book must be VERBATIM from `_journal/*.md` (the one licensed exception: a struck word before a real word, e.g. `<span class="jb-strike">cut</span> narrowed`, reading as the writer's own draft correction — use at most ~1 per entry, keep the final text identical to the source). Never invent entries, moods, dates, or stats.
 12. **jQuery-era turn.js is NOT MIT** — do not swap libraries. page-flip is MIT and already proven here.
 13. **Measure AFTER the webfont loads, not before.** Pagination runs in a `<script>` that executes during initial parse — the self-hosted Caveat/Homemade Apple `@font-face`s are still downloading at that instant. Measuring with the fallback font baked wrong page breaks into every page (found at CP3: 33 entries paginated into 213 pages instead of ~105–130). Fix: gate the whole pagination+build routine on `document.fonts.ready.then(boot)` (see the `boot()` wrapper in the script). Do not remove this gate.
 14. **Measure the SAME representation you render — jitter changes line-wrapping.** Every word gets wrapped in a `.jb-w` `display:inline-block` span for the ink-jitter effect. An inline-block word span wraps lines slightly differently than the same plain text (confirmed at CP3: one paragraph measured 598px as plain text, 664px once jittered — a 66px, 2-line difference). If you paginate on plain text and jitter afterward, pages silently overflow. Fix: jitter FIRST (`jitterizeBlock()`), THEN paginate the already-jittered DOM — never the reverse. Relatedly: any element whose CONTENT changes after pagination measured it (e.g. the index row's folio number, filled in only once final page order is known) must be measured with a realistic-width PLACEHOLDER of the same or greater width during pagination (CP3 uses `"999"` for folio spans, since a narrower real number can only under-fill, never overflow) — measuring it empty and filling in real content later is the same class of bug as the jitter one.
+15. **The preview tool's `preview_resize` does NOT fire a native `window resize` event** (confirmed at CP4) — a real device rotation does, but the CDP-driven viewport change alone does not. `applyScale()`/`applyNearView()`/page-flip's own orientation detection all wait on a `resize` event, so after `preview_resize` you must manually `window.dispatchEvent(new Event('resize'))` (and wait out the ~180ms debounce) before trusting `--u`, `getBoundsRect()`, or `getOrientation()` — otherwise you're reading stale desktop-sized values while the CSS has already reflowed to mobile.
+16. **`robots: noindex, nofollow` in frontmatter did nothing for 4 checkpoints.** There was no `<meta name="robots">` anywhere in `_layouts/default.html` — the frontmatter key was silently dead from CP1 through CP3; the page's only real protection was `sitemap: false` (which the jekyll-sitemap gem does honor) plus not being linked anywhere. Fixed at CP4 integration by adding `{% if page.robots %}<meta name="robots" content="{{ page.robots }}">{% endif %}` to the `<head>` in `_layouts/default.html`. This matters now specifically because CP4 also linked the page from primary nav (`/journal/` hero button) — "not linked" was the only thing keeping it out of search before, and that's no longer true.
+17. **Local `bundle exec jekyll serve` needs Homebrew Ruby, not system Ruby.** System `/usr/bin/ruby` is 2.6 and its `bundle` can't satisfy this repo's `Gemfile.lock` (wants a newer bundler). Use `/opt/homebrew/opt/ruby@4.0/bin/bundle exec jekyll serve --port 4000` — that's what the `jekyll` entry in `.claude/launch.json` points at (that file is gitignored, so if it's missing in a fresh checkout, recreate it).
 
 ## 6. CP3 — bind in all entries + instrument index (the big one) — ✅ SHIPPED, commit `3e91410`
 
@@ -107,13 +110,13 @@ Shipped as commit `3e91410`, live at the usual URL, label reads "checkpoint 3 of
 
 ## 7. CP4 — polish, a11y, perf, integration (after CP3 GO)
 
-- **Reduced motion / no-JS:** `prefers-reduced-motion` already shortens flips to 220ms — also consider skipping the entrance settle. `<noscript>` fallback link exists; make the fallback stronger: a visible "read as plain text → /journal/" link in the idle UI.
-- **A11y:** counter has no `aria-live` — add `aria-live="polite"`. Page content inside hidden pages is `display:none` (fine for SR). Keyboard: arrows work; add Home/End (cover / last page). Focus order: controls reachable when UI faded (they're `pointer-events:none` when idle — ensure they wake on `focusin` too, not just pointermove).
-- **Mobile:** portrait single-page mode works; re-verify with ~100 pages, and that `--u` (~0.69 at 375px) keeps text ≥~14px effective. If too small on very narrow screens, consider min font clamp — but check with Rick before changing metrics (it changes page fills!). Note pagination MUST still be computed at the 520 design size regardless of device — fills are size-invariant thanks to `--u`.
-- **Perf:** Lighthouse the page; the SVG displacement filter (`.jb-inked`) on ~100 pages is the main suspect — hidden pages shouldn't paint, but verify. If needed, apply `.jb-inked` only to pages within ±2 spreads of current (toggle on `flip` events).
-- **Sound:** verify in real browser; the swish synthesis is in `swish()` — tune gain (0.14) / duration (0.42) if Rick finds it too sharp. Mute state persists in `localStorage['jb-muted']`.
-- **Integration decision (Rick's call, present options):** (a) `/journal/` gains a hero button "Open the journal ↗" linking to the book at `/journal/book/`; (b) the book becomes `/journal/` with a "read as list" escape hatch; (c) book stays a standalone easter egg. SEO note: entries' canonical pages must stay the crawlable source either way; the book page stays `noindex` until (b) is chosen deliberately.
-- **The cover image swap** — see §8; can land in CP3 or CP4 whenever Rick delivers the assets.
+- **Reduced motion / no-JS:** ✅ done — `prefers-reduced-motion` already shortened flips to 220ms and skips the entrance settle (was already correct, verified not just assumed). `<noscript>` copy softened from "prototype" language now that it's a real linked page.
+- **A11y:** ✅ done — `aria-live="polite"` on the counter, Home/End keys added, faded controls now wake on `focusin` too (see §12 for what could/couldn't be verified headless).
+- **Mobile:** ✅ reverified at CP4 — portrait mode confirmed at 375×812 (see trap #15 for the resize gotcha this required), `--u` ≈ 0.678px, effective body text ≈14.2px. Clears the ≥14px bar but it's close; a min-font clamp is still a "check with Rick" item if he finds it cramped on his own phone — not done, since it'd change page fills.
+- **Perf:** ✅ done — `.jb-inked` now only paints within ±2 spreads (±4 pages) of the current page, toggled via `applyNearView()` on init and every `flip` event. Verified mechanically (near-view set recalculates correctly on `turnToPage`). Separately noted but NOT fixed: cold-load pagination measured ~3.5s in headless preview for 35 entries, well over the §6.1 target of <300ms — unclear if that's a real regression or just headless being slow; wasn't in CP4's scope (that's the pagination algorithm, not the filter), flagged to Rick, no direction yet.
+- **Sound:** Rick's call (2026-07-08): "no sounds needed" — read as no further tuning needed, left as-is. Don't retune `swish()` without new direction.
+- **Integration decision:** ✅ decided by Rick 2026-07-08 — option (a). Built: hero button "Open the journal ↗" on `/journal/` (a `.page-callout` + `.proof-button`, reusing existing site classes, no new CSS), and the book's permalink moved from `/demo-journal-book/` to `/journal/book/`. Per the SEO note below, it stays `noindex` — entries' canonical pages remain the crawlable source. See §12 for full detail including a real bug found along the way (dead `robots` frontmatter, trap #16).
+- **The cover image swap** — Rick delivered both images 2026-07-08 (pasted inline in chat, not yet on disk — see §12.1 for the handoff gap this created). Once saved to `assets/journal-cover-front.jpg` / `-back.jpg`, follow §8.2 as written; nothing in that recipe needs to change.
 
 ## 8. Cover image assets (Rick generates via ChatGPT)
 
@@ -137,26 +140,38 @@ Ask for the largest size; **crop to exactly 3:4** (any decent editor or `sips`/I
 
 ## 9. Verification protocol (every change, in order)
 
-1. `preview_list` → `preview_start` name `jekyll` if needed → `preview_resize` 1440×900 (verify `window.innerHeight`).
-2. Navigate to `http://127.0.0.1:4000/demo-journal-book/`; check `preview_console_logs` for errors; `typeof St !== 'undefined'`, `window.__jbFlip.getPageCount()` (EVEN), `document.querySelectorAll('.jb-w').length > 0`.
+1. `preview_list` → `preview_start` name `jekyll` if needed (trap #17: needs Homebrew Ruby, not system Ruby) → `preview_resize` 1440×900 (verify `window.innerHeight`).
+2. Navigate to `http://127.0.0.1:4000/journal/book/`; check `preview_console_logs` for errors; `typeof St !== 'undefined'`, `window.__jbFlip.getPageCount()` (EVEN), `document.querySelectorAll('.jb-w').length > 0`.
 3. `turnToPage(n)` through: cover / title spread / index / 3 random entry spreads / last spread / back cover. Screenshot each (screenshot BEFORE measuring rects — frame pump).
 4. Fill check on changed entry pages with the in-scene rig (§5 trap 4): 90–101%.
-5. `preview_resize` mobile (375×812): cover + one entry page screenshot; confirm portrait orientation (`getOrientation()`).
+5. `preview_resize` mobile (375×812): cover + one entry page screenshot; confirm portrait orientation (`getOrientation()`) — remember trap #15, dispatch a manual `resize` event first or you'll read stale desktop bounds.
 6. `applyScale` sanity: `#jb-holder` style `--u` ≈ pageWidth/520.
-7. Ship: commit (conventional message, `Co-Authored-By` footer per repo convention), push, watch `gh run list` (Monitor with until-loop), on Pages flake re-dispatch (trap #8), then `curl` the live URL and grep the version label. **Always end by giving Rick the live URL.**
+7. Ship: commit (conventional message, `Co-Authored-By` footer per repo convention), push, watch `gh run list` (Monitor with until-loop), on Pages flake re-dispatch (trap #8), then `curl` the live URL and grep for something you actually changed (trap #8 note — there's no version label anymore). **Always end by giving Rick the live URL.**
 
 ## 10. Judgment calls a cheap model should NOT make alone (escalate to Rick, or he'll pull in a stronger model)
 
 - Any change to page metrics (font size, line grid, page ratio) — it invalidates all pagination.
 - Whether pagination cut points "read naturally" — verify mechanically (no clipping, fills in range) and let Rick judge the feel.
-- The CP4 integration decision (what happens to `/journal/`).
+- ~~The CP4 integration decision~~ — decided 2026-07-08, option (a), see §7/§12. Future integration *changes* (e.g. moving to option (b) or (c) later) are still Rick's call.
 - Adding new diegetic flourishes beyond the established set — propose, don't ship.
-- Anything touching the REAL `/journal/`, `index.md`, `_layouts/`, or global `assets/style.css` — the book is self-contained in `demo-journal-book.md` by design; keep it that way until integration is decided.
+- Touching `_journal/*.md`, `_data/journal_eras.yml`, or anything that changes what real entries say — content-honesty law (trap #11), always Rick's call.
+- Note: `journal.md` and `_layouts/default.html` are no longer off-limits — CP4 touched both intentionally to build the integration (§12). The book's own markup/logic is still fully self-contained in `demo-journal-book.md`.
 
 ## 11. Quick reference
 
-- Live: https://agentrichie.com/demo-journal-book/ · Repo: AriNova1/richie-jerimovich · Branch: main
+- Live: https://agentrichie.com/journal/book/ (linked from https://agentrichie.com/journal/) · Repo: AriNova1/richie-jerimovich · Branch: main
 - Deploy: auto on push (`.github/workflows/pages.yml`); manual: `gh workflow run "Build and deploy agentrichie.com" --repo AriNova1/richie-jerimovich --ref main`
 - page-flip API in use: `new St.PageFlip(el, opts)`, `loadFromHTML(nodeList)`, `turnToPage(i)`, `flipNext/flipPrev`, `getPageCount`, `getCurrentPageIndex`, `getBoundsRect().pageWidth`, `getOrientation`, events `flip`, `changeState` (`flipping|user_fold|read|fold_corner`), `changeOrientation`. Hard pages via `data-density="hard"`.
 - Test hooks on the page: `window.__jbFlip`, `window.__jbPage`.
 - Related prototypes for taste: `/demo-journal/` (esp. variant B), `/demo-home/` (A–F). Homepage direction is a SEPARATE work stream Rick will return to — don't touch it here.
+
+## 12. CP4 + integration outcome (2026-07-08)
+
+Rick gave CP3 its GO and greenlit integration option (a) in the same message, along with the two cover-image prompts' outputs and "no sounds needed." What shipped, across two commits:
+
+1. **CP4 polish** (commit before the integration one): everything in §7 marked ✅ above — aria-live counter, Home/End, focusin-wake, `.jb-inked` scoped to ±2 spreads via `applyNearView()`, mobile reverified, checkpoint label bumped 3→4.
+2. **`/journal/` integration, option (a):** permalink moved `/demo-journal-book/` → `/journal/book/`; `journal.md` gained a `.page-callout` section (same class about.md/privacy.md use) with a `.proof-button` link (same class the podcast-accessibility tool page uses) reading "Open the journal ↗" — zero new CSS, both classes already existed in `assets/style.css`. `jb-ui-label` simplified from the version-string format to just `journal` and the `<noscript>` copy dropped "prototype" language, since real visitors reach this page from primary nav now, not just people with the hidden URL.
+3. **Real bug found and fixed in the same pass:** `robots: noindex, nofollow` frontmatter had been silently doing nothing since CP1 — no template ever read `page.robots` into a `<meta>` tag. Fixed in `_layouts/default.html` (trap #16). Worth knowing: this means the book was never actually noindex-protected before CP4; it was just unlinked. Confirmed via the built `_site` output, not assumed, both for the book page (now renders the tag) and for an unrelated page (still renders nothing, so the fix is scoped correctly).
+
+### 12.1 Known gap: the cover images aren't on disk yet
+Rick delivered both cover images (front + back, matching the §8.1 prompts closely) as inline chat attachments in the same turn he approved integration. They are **not** reachable from this filesystem — searched `$HOME` broadly (by both name and recent-mtime) and found nothing newer than Rick's last actual file download. Whatever chat surface this conversation runs in does not write pasted-image attachments to a path any tool here can read. **Before doing §8.2, get an actual file path from Rick** — ask him to save the two images somewhere on disk (e.g. `~/Downloads/`) or drop them directly into `assets/` as `journal-cover-front.jpg` / `journal-cover-back.jpg`, then proceed with §8.2 exactly as written; nothing about that integration recipe needs to change once the files exist.
