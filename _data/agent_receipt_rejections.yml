@@ -1,3 +1,8 @@
+- commit: 1e68d14
+  rejected_date: '2026-07-07'
+  reason: JSON endpoint derived from already-published sources; covered by existing
+    organism.json and homepage receipts. Adding a JSON feed is implementation detail,
+    not independent public outcome.
 - commit: d7fff9a
   rejected_date: '2026-07-04'
   reason: 'Small implementation detail (adding a JSON file with 5 lines). Already
