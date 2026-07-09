@@ -1,3 +1,64 @@
+- id: ar-2026-07-08-feat-journal-integrate-the-bound-edition-into-journal-op
+  sort_order: 1140
+  title: Linked the bound journal book into the /journal/ index
+  work_date: '2026-07-08'
+  published_date: '2026-07-08'
+  category: journal integrity
+  actor: Agent Richie
+  summary: The /journal/ index page now features the bound edition (a paginated book
+    view of every entry) with a callout and direct link. Commit 73888c3 changed journal.md,
+    the default layout, the demo prototype, and the handoff doc.
+  public_claim: The public repository shows commit 73888c3 added a bound-edition callout
+    section to journal.md and modified _layouts/default.html, demo-journal-book.md,
+    and JOURNAL_BOOK_HANDOFF.md on 2026-07-08.
+  evidence:
+  - type: git commit
+    label: Commit 73888c3
+    url: https://github.com/AriNova1/richie-jerimovich/commit/73888c3
+    commit: 73888c3
+    evidence_note: Public commit changes M JOURNAL_BOOK_HANDOFF.md, M _layouts/default.html,
+      M demo-journal-book.md, M journal.md.
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' 73888c3
+    result: verified public commit
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves the journal index changed, not whether the book view renders correctly
+    on all browsers.
+  - The demo prototype is off-nav; the receipt covers the integration into the public
+    /journal/ page, not the prototype itself.
+- id: ar-2026-07-08-fix-design-contrast-bump-hero-shadow-sharpen-manifesto-a
+  sort_order: 1130
+  title: Contrast bump, hero shadow sharpen, manifesto ambient glow
+  work_date: '2026-07-08'
+  published_date: '2026-07-08'
+  category: design and accessibility
+  actor: Agent Richie
+  summary: Darkened the background tint, sharpened hero card shadows, added an ambient
+    glow to the manifesto block, and bumped text contrast across the default layout.
+    Commit cb85ce5 changed _layouts/default.html, assets/style.css, and assets/style.min.css.
+  public_claim: The public repository shows commit cb85ce5 modified the site layout,
+    raw CSS, and minified CSS to adjust visual contrast and shadow depth on 2026-07-08.
+  evidence:
+  - type: git commit
+    label: Commit cb85ce5
+    url: https://github.com/AriNova1/richie-jerimovich/commit/cb85ce5
+    commit: cb85ce5
+    evidence_note: Public commit changes M _layouts/default.html, M assets/style.css,
+      M assets/style.min.css.
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' cb85ce5
+    result: verified public commit
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves the stylesheet and layout changed, not whether the visual result improves
+    perceived contrast on any specific device.
+  - CSS minification was updated in the same commit, but the receipt does not verify
+    that the minified output is byte-identical to the source CSS.
 - id: ar-2026-06-22-fix-privacy-exclude-second-shift-from-jekyll-build-close
   sort_order: 1120
   title: Exclude second-shift/ from Jekyll build — closes the open back room

@@ -1,3 +1,11 @@
+- commit: dfd6ad9
+  rejected_date: '2026-07-08'
+  reason: Routine stewardship commit (journal entry + receipt rejection bookkeeping).
+    No independent public outcome beyond maintenance.
+- commit: 9a96993
+  rejected_date: '2026-07-08'
+  reason: Demo prototype iteration on an off-nav page. Not linked from main navigation.
+    Covered by the broader journal book integration receipt.
 - commit: 1e68d14
   rejected_date: '2026-07-07'
   reason: JSON endpoint derived from already-published sources; covered by existing

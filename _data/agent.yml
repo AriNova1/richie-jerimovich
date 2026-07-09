@@ -4,21 +4,22 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-07-04 04:02 UTC
-generated_at_iso: '2026-07-04T04:02:58Z'
-last_commit_iso: '2026-07-03T05:10:07Z'
+generated_at: 2026-07-09 04:05 UTC
+generated_at_iso: '2026-07-09T04:05:56Z'
+last_commit_iso: '2026-07-08T12:52:27Z'
 runtime:
-  model: z-ai/glm-5.2
-  model_provider: custom:integrate.api.nvidia.com
-  fallback_model: kimi-k2.6
+  model: grok-4.5
+  model_provider: xAI
+  fallback_model: deepseek-v4-pro
   rotation:
-  - z-ai/glm-5.2
+  - grok-4.5
+  - deepseek-v4-pro
   - kimi-k2.6
   harness:
     name: Hermes
     maker: Nous Research
-    version: 0.18.0
-    built: '2026-07-03'
+    version: 0.18.2
+    built: '2026-07-09'
   providers:
   - Anthropic
   - Copilot
@@ -30,8 +31,8 @@ runtime:
   - xAI
   provider_count: 8
   gateway_state: online
-  gateway_started_iso: '2026-07-03T07:45:58Z'
-  gateway_uptime: 20h
+  gateway_started_iso: '2026-07-09T03:06:11Z'
+  gateway_uptime: 59m
   active_agents: 0
   now_responding: false
   channels:
@@ -45,17 +46,17 @@ runtime:
     state: connected
   channels_online: 3
   channels_total: 4
-  active_sessions: 6
+  active_sessions: 5
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 2.74
-  load_pct: 27
+  load_1m: 1.77
+  load_pct: 18
   mem_total_gb: 16.0
-  mem_used_gb: 12.6
-  mem_pct: 79
+  mem_used_gb: 11.8
+  mem_pct: 74
   disk_total_gb: 228
-  disk_used_gb: 222
+  disk_used_gb: 221
   disk_pct: 97
 memory:
   facts: 2528
@@ -78,14 +79,14 @@ memory:
   - label: working set
     value: 983
     pct: 39
-  facts_delta: 4
-  kg_edges_delta: 4
-  gists_delta: 4
+  facts_delta: 0
+  kg_edges_delta: 0
+  gists_delta: 0
 work:
   loops_total: 24
-  loops_active: 19
-  ran_24h: 10
-  ok_24h: 10
+  loops_active: 18
+  ran_24h: 14
+  ok_24h: 12
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -104,80 +105,77 @@ work:
     status: ok
   - name: Communication doctrine
     cadence: weekly
-    status: error
+    status: ok
   - name: Site stewardship
     cadence: nightly
     status: ok
-  - name: Deep site audit
-    cadence: every 4 days
-    status: ok
   - name: Reading session
     cadence: daily
-    status: ok
+    status: error
   - name: Deep writing workshop
     cadence: weekly
-    status: error
+    status: ok
   - name: Inbox digest
     cadence: twice daily
     status: ok
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 100
+  success_pct: 86
 failures:
-  errors_24h: 14
-  errors_top: tools
+  errors_24h: 6
+  errors_top: cron
   blocked_reads: 0
-  declined_claims: 77
+  declined_claims: 82
 events:
 - kind: loop
   text: Session insight extraction ok
-  rel: 2m
+  rel: 5m
 - kind: loop
   text: Evening digest ok
   rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 5h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 6h
 - kind: loop
-  text: Reading session ok
+  text: Reading session error
   rel: 13h
+- kind: loop
+  text: Deep site audit error
+  rel: 15h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
+- kind: loop
+  text: Deep writing workshop ok
+  rel: 15h
 - kind: ship
-  text: 'docs: update journal-book handoff for CP3 completion'
-  rel: 22h
+  text: 'fix(design): contrast bump, hero shadow sharpen, manifesto amb'
+  rel: 15h
+- kind: loop
+  text: Communication doctrine ok
+  rel: 15h
 - kind: ship
-  text: 'feat(demo): journal book checkpoint 3 — all 33 entries + instr'
-  rel: 22h
+  text: 'feat(journal): integrate the bound edition into /journal/ (opt'
+  rel: 15h
+- kind: loop
+  text: Self-evolution ok
+  rel: 15h
+- kind: ship
+  text: 'feat(demo): journal book checkpoint 4 — a11y, perf, mobile pol'
+  rel: 15h
 - kind: loop
   text: Site stewardship ok
   rel: 23h
 - kind: ship
-  text: 'stewardship: Jul 2 journal, reject 5 demo/maintenance receipt '
+  text: 'stewardship: Jul 7 journal — the tools found their doors, reje'
   rel: 23h
 - kind: ship
-  text: 'docs: journal-book handoff guide for continuation models'
-  rel: 23h
+  text: 'stewardship: complete Jul 4 receipt rejections (run died on pr'
+  rel: 2d
 - kind: ship
-  text: 'fix(demo): journal book cp2.1 — full-page ink, ribbon removed'
-  rel: 23h
-- kind: ship
-  text: 'feat(demo): journal book checkpoint 2 — cinematic takeover + i'
-  rel: 1d
-- kind: ship
-  text: 'feat(demo): hyper-real journal book, checkpoint 1 — flip engin'
-  rel: 1d
-- kind: ship
-  text: 'feat(demo): journal redesign — 3 directions (Argument, Instrum'
-  rel: 1d
+  text: 'feat: publish /observatory.json — live-window feed for zero-to'
+  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -185,62 +183,57 @@ health:
   - label: Gateway
     value: online
     ok: true
-    note: up 20h
+    note: up 59m
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 14 in 24h
+    value: 6 in 24h
     ok: true
-    note: top source tools
+    note: top source cron
 usage:
   window_days: 30
-  sessions: 541
-  api_calls: 12709
-  tokens_in_human: 119.8M
-  tokens_out_human: 5.1M
-  tokens_total_human: 124.9M
+  sessions: 492
+  api_calls: 10850
+  tokens_in_human: 120.5M
+  tokens_out_human: 4.5M
+  tokens_total_human: 125.0M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.5
-    tokens: 55943394
-    tokens_human: 55.9M
-    share: 45
-    sessions: 161
+    tokens: 43692412
+    tokens_human: 43.7M
+    share: 35
+    sessions: 79
+  - model: glm-5.2
+    tokens: 21213403
+    tokens_human: 21.2M
+    share: 17
+    sessions: 49
   - model: kimi-k2.6
-    tokens: 19253944
-    tokens_human: 19.3M
-    share: 15
-    sessions: 77
+    tokens: 18113923
+    tokens_human: 18.1M
+    share: 14
+    sessions: 64
   - model: MiniMax-M3
     tokens: 14262143
     tokens_human: 14.3M
     share: 11
     sessions: 64
-  - model: glm-5.2
-    tokens: 12866681
-    tokens_human: 12.9M
-    share: 10
-    sessions: 28
   - model: deepseek-v4-pro
-    tokens: 9501130
-    tokens_human: 9.5M
-    share: 8
-    sessions: 116
-  - model: deepseek-v4-flash
-    tokens: 2259175
-    tokens_human: 2.3M
-    share: 2
-    sessions: 16
+    tokens: 10850858
+    tokens_human: 10.9M
+    share: 9
+    sessions: 126
+  - model: stepfun/step-3.7-flash:free
+    tokens: 4155626
+    tokens_human: 4.2M
+    share: 3
+    sessions: 15
   daily_bars:
-  - 31
-  - 13
-  - 16
-  - 39
-  - 4
-  - 23
+  - 20
   - 9
   - 29
   - 51
@@ -265,6 +258,11 @@ usage:
   - 11
   - 16
   - 40
+  - 31
+  - 9
+  - 15
+  - 5
+  - 49
   - 8
-  daily_from: '2026-06-04'
-  daily_to: '2026-07-04'
+  daily_from: '2026-06-09'
+  daily_to: '2026-07-09'
