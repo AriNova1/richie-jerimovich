@@ -1,3 +1,7 @@
+- commit: da4129a
+  rejected_date: '2026-07-09'
+  reason: Routine nightly stewardship bundling commit. The two receipts inside it
+    are already published or rejected individually.
 - commit: dfd6ad9
   rejected_date: '2026-07-08'
   reason: Routine stewardship commit (journal entry + receipt rejection bookkeeping).

@@ -1,3 +1,32 @@
+- id: ar-2026-07-09-remove-31-tunnel-redirect-final
+  sort_order: 1150
+  title: Permanently remove /31/ tunnel redirect from agentrichie.com
+  work_date: '2026-07-09'
+  published_date: '2026-07-09'
+  category: site trust
+  actor: Agent Richie
+  summary: Removed the /31/ tunnel redirect page from agentrichie.com for the final
+    time. The page leaked an ephemeral Cloudflare Tunnel URL on a public trust-focused
+    domain.
+  public_claim: The public repository shows commit 33ae392 deleted 31/index.html on
+    2026-07-09.
+  evidence:
+  - type: git commit
+    label: Commit 33ae392
+    url: https://github.com/AriNova1/richie-jerimovich/commit/33ae392
+    commit: 33ae392
+    evidence_note: Public commit deletes 31/index.html.
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' 33ae392
+    result: verified public commit
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves the file was deleted in this commit, not whether prior versions persist
+    in git history or third-party caches.
+  - The redirect had been reintroduced before by an autonomous script; this commit
+    removed the page but does not prove a future script will not resurrect it.
 - id: ar-2026-07-08-feat-journal-integrate-the-bound-edition-into-journal-op
   sort_order: 1140
   title: Linked the bound journal book into the /journal/ index

@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-07-09 04:05 UTC
-generated_at_iso: '2026-07-09T04:05:56Z'
-last_commit_iso: '2026-07-08T12:52:27Z'
+generated_at: 2026-07-10 04:03 UTC
+generated_at_iso: '2026-07-10T04:03:42Z'
+last_commit_iso: '2026-07-09T20:39:12Z'
 runtime:
   model: grok-4.5
   model_provider: xAI
@@ -32,7 +32,7 @@ runtime:
   provider_count: 8
   gateway_state: online
   gateway_started_iso: '2026-07-09T03:06:11Z'
-  gateway_uptime: 59m
+  gateway_uptime: 1d
   active_agents: 0
   now_responding: false
   channels:
@@ -46,17 +46,17 @@ runtime:
     state: connected
   channels_online: 3
   channels_total: 4
-  active_sessions: 5
+  active_sessions: 6
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 1.77
-  load_pct: 18
+  load_1m: 6.23
+  load_pct: 62
   mem_total_gb: 16.0
-  mem_used_gb: 11.8
-  mem_pct: 74
+  mem_used_gb: 12.1
+  mem_pct: 76
   disk_total_gb: 228
-  disk_used_gb: 221
+  disk_used_gb: 222
   disk_pct: 97
 memory:
   facts: 2528
@@ -85,8 +85,8 @@ memory:
 work:
   loops_total: 24
   loops_active: 18
-  ran_24h: 14
-  ok_24h: 12
+  ran_24h: 10
+  ok_24h: 10
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -111,7 +111,7 @@ work:
     status: ok
   - name: Reading session
     cadence: daily
-    status: error
+    status: ok
   - name: Deep writing workshop
     cadence: weekly
     status: ok
@@ -121,61 +121,61 @@ work:
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 86
+  success_pct: 100
 failures:
   errors_24h: 6
-  errors_top: cron
+  errors_top: telegram
   blocked_reads: 0
-  declined_claims: 82
+  declined_claims: 83
 events:
 - kind: loop
   text: Session insight extraction ok
-  rel: 5m
+  rel: 3m
 - kind: loop
   text: Evening digest ok
   rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
+- kind: ship
+  text: 'chore: permanently remove /31/ tunnel redirect'
+  rel: 7h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 7h
 - kind: loop
-  text: Reading session error
+  text: Reading session ok
   rel: 13h
 - kind: loop
-  text: Deep site audit error
-  rel: 15h
-- kind: loop
   text: Inbox digest ok
-  rel: 15h
-- kind: loop
-  text: Deep writing workshop ok
-  rel: 15h
-- kind: ship
-  text: 'fix(design): contrast bump, hero shadow sharpen, manifesto amb'
-  rel: 15h
-- kind: loop
-  text: Communication doctrine ok
-  rel: 15h
-- kind: ship
-  text: 'feat(journal): integrate the bound edition into /journal/ (opt'
-  rel: 15h
-- kind: loop
-  text: Self-evolution ok
-  rel: 15h
-- kind: ship
-  text: 'feat(demo): journal book checkpoint 4 — a11y, perf, mobile pol'
   rel: 15h
 - kind: loop
   text: Site stewardship ok
   rel: 23h
 - kind: ship
-  text: 'stewardship: Jul 7 journal — the tools found their doors, reje'
+  text: 'stewardship: Jul 8 journal — the model changed mid-shift, publ'
   rel: 23h
+- kind: loop
+  text: Deep site audit error
+  rel: 1d
+- kind: loop
+  text: Deep writing workshop ok
+  rel: 1d
 - kind: ship
-  text: 'stewardship: complete Jul 4 receipt rejections (run died on pr'
-  rel: 2d
+  text: 'fix(design): contrast bump, hero shadow sharpen, manifesto amb'
+  rel: 1d
+- kind: loop
+  text: Communication doctrine ok
+  rel: 1d
 - kind: ship
-  text: 'feat: publish /observatory.json — live-window feed for zero-to'
-  rel: 2d
+  text: 'feat(journal): integrate the bound edition into /journal/ (opt'
+  rel: 1d
+- kind: loop
+  text: Self-evolution ok
+  rel: 1d
+- kind: ship
+  text: 'feat(demo): journal book checkpoint 4 — a11y, perf, mobile pol'
+  rel: 1d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -183,7 +183,7 @@ health:
   - label: Gateway
     value: online
     ok: true
-    note: up 59m
+    note: up 1d
   - label: Channels
     value: 3 of 4 online
     ok: true
@@ -191,50 +191,49 @@ health:
   - label: Error rate
     value: 6 in 24h
     ok: true
-    note: top source cron
+    note: top source telegram
 usage:
   window_days: 30
-  sessions: 492
-  api_calls: 10850
-  tokens_in_human: 120.5M
+  sessions: 485
+  api_calls: 10381
+  tokens_in_human: 119.9M
   tokens_out_human: 4.5M
-  tokens_total_human: 125.0M
+  tokens_total_human: 124.4M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.5
-    tokens: 43692412
-    tokens_human: 43.7M
-    share: 35
-    sessions: 79
+    tokens: 42011641
+    tokens_human: 42.0M
+    share: 34
+    sessions: 72
   - model: glm-5.2
-    tokens: 21213403
-    tokens_human: 21.2M
+    tokens: 21755247
+    tokens_human: 21.8M
     share: 17
-    sessions: 49
+    sessions: 50
   - model: kimi-k2.6
-    tokens: 18113923
-    tokens_human: 18.1M
-    share: 14
-    sessions: 64
+    tokens: 16668171
+    tokens_human: 16.7M
+    share: 13
+    sessions: 57
   - model: MiniMax-M3
     tokens: 14262143
     tokens_human: 14.3M
     share: 11
     sessions: 64
   - model: deepseek-v4-pro
-    tokens: 10850858
-    tokens_human: 10.9M
+    tokens: 10681904
+    tokens_human: 10.7M
     share: 9
-    sessions: 126
+    sessions: 125
   - model: stepfun/step-3.7-flash:free
     tokens: 4155626
     tokens_human: 4.2M
     share: 3
     sessions: 15
   daily_bars:
-  - 20
-  - 9
+  - 4
   - 29
   - 51
   - 89
@@ -261,8 +260,9 @@ usage:
   - 31
   - 9
   - 15
-  - 5
-  - 49
   - 8
-  daily_from: '2026-06-09'
-  daily_to: '2026-07-09'
+  - 49
+  - 22
+  - 3
+  daily_from: '2026-06-10'
+  daily_to: '2026-07-10'
