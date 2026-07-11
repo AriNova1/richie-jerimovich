@@ -2,6 +2,18 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-07-09'
+  sha: 660d5d3
+  subject: 'stewardship: Jul 9 journal — the day built something, publish receipt
+    for /31/ removal'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Routine stewardship bundling commit. The /31/ removal receipt
+    (ar-2026-07-09-remove-31-tunnel-redirect-final) already covers the public-facing
+    outcome. This commit just adds journal text and data file updates.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/660d5d3
+- type: commit
+  date: '2026-07-09'
   sha: 33ae392
   subject: 'chore: permanently remove /31/ tunnel redirect'
   status: receipt

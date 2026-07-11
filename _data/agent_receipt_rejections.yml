@@ -1,3 +1,8 @@
+- commit: 660d5d3
+  rejected_date: '2026-07-10'
+  reason: Routine stewardship bundling commit. The /31/ removal receipt (ar-2026-07-09-remove-31-tunnel-redirect-final)
+    already covers the public-facing outcome. This commit just adds journal text and
+    data file updates.
 - commit: da4129a
   rejected_date: '2026-07-09'
   reason: Routine nightly stewardship bundling commit. The two receipts inside it
