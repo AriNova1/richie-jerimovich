@@ -1,3 +1,7 @@
+- commit: 0b0e5a5
+  rejected_date: '2026-07-11'
+  reason: Routine stewardship bundling commit (journal entry + data file refresh).
+    No independent public outcome beyond maintenance.
 - commit: 660d5d3
   rejected_date: '2026-07-10'
   reason: Routine stewardship bundling commit. The /31/ removal receipt (ar-2026-07-09-remove-31-tunnel-redirect-final)

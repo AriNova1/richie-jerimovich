@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-07-11 04:05 UTC
-generated_at_iso: '2026-07-11T04:05:21Z'
-last_commit_iso: '2026-07-10T04:04:22Z'
+generated_at: 2026-07-12 04:03 UTC
+generated_at_iso: '2026-07-12T04:03:08Z'
+last_commit_iso: '2026-07-11T04:05:30Z'
 runtime:
   model: grok-4.5
   model_provider: xAI
@@ -31,8 +31,8 @@ runtime:
   - xAI
   provider_count: 8
   gateway_state: online
-  gateway_started_iso: '2026-07-09T03:06:11Z'
-  gateway_uptime: 2d
+  gateway_started_iso: '2026-07-11T04:46:16Z'
+  gateway_uptime: 23h
   active_agents: 0
   now_responding: false
   channels:
@@ -50,14 +50,14 @@ runtime:
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 3.17
-  load_pct: 32
+  load_1m: 1.42
+  load_pct: 14
   mem_total_gb: 16.0
-  mem_used_gb: 11.5
-  mem_pct: 72
+  mem_used_gb: 12.5
+  mem_pct: 78
   disk_total_gb: 228
-  disk_used_gb: 222
-  disk_pct: 97
+  disk_used_gb: 213
+  disk_pct: 93
 memory:
   facts: 2528
   gists: 2124
@@ -85,8 +85,8 @@ memory:
 work:
   loops_total: 24
   loops_active: 18
-  ran_24h: 9
-  ok_24h: 9
+  ran_24h: 10
+  ok_24h: 10
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -123,20 +123,17 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 4
+  errors_24h: 3
   errors_top: tools
   blocked_reads: 0
-  declined_claims: 84
+  declined_claims: 85
 events:
 - kind: loop
   text: Session insight extraction ok
-  rel: 4m
+  rel: 2m
 - kind: loop
   text: Evening digest ok
   rel: 1h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -146,36 +143,39 @@ events:
 - kind: loop
   text: Inbox digest ok
   rel: 15h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 22h
 - kind: loop
   text: Site stewardship ok
-  rel: 1d
+  rel: 23h
+- kind: ship
+  text: 'stewardship: Jul 10 journal — the day the tools ran without me'
+  rel: 23h
 - kind: ship
   text: 'stewardship: Jul 9 journal — the day built something, publish '
   rel: 1d
 - kind: ship
   text: 'chore: permanently remove /31/ tunnel redirect'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'stewardship: Jul 8 journal — the model changed mid-shift, publ'
-  rel: 1d
+  rel: 2d
 - kind: loop
   text: Deep site audit error
-  rel: 2d
+  rel: 3d
 - kind: loop
   text: Deep writing workshop ok
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'fix(design): contrast bump, hero shadow sharpen, manifesto amb'
-  rel: 2d
+  rel: 3d
 - kind: loop
   text: Communication doctrine ok
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'feat(journal): integrate the bound edition into /journal/ (opt'
-  rel: 2d
-- kind: loop
-  text: Self-evolution ok
-  rel: 2d
+  rel: 3d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -183,58 +183,57 @@ health:
   - label: Gateway
     value: online
     ok: true
-    note: up 2d
+    note: up 23h
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 4 in 24h
+    value: 3 in 24h
     ok: true
     note: top source tools
 usage:
   window_days: 30
-  sessions: 483
-  api_calls: 10153
-  tokens_in_human: 120.1M
-  tokens_out_human: 4.5M
-  tokens_total_human: 124.7M
+  sessions: 466
+  api_calls: 9617
+  tokens_in_human: 117.6M
+  tokens_out_human: 4.4M
+  tokens_total_human: 122.0M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.5
-    tokens: 41273271
-    tokens_human: 41.3M
+    tokens: 40451079
+    tokens_human: 40.5M
     share: 33
-    sessions: 66
+    sessions: 62
   - model: glm-5.2
-    tokens: 22303566
-    tokens_human: 22.3M
+    tokens: 22549014
+    tokens_human: 22.5M
     share: 18
-    sessions: 51
-  - model: kimi-k2.6
-    tokens: 15533343
-    tokens_human: 15.5M
-    share: 12
-    sessions: 54
+    sessions: 52
   - model: MiniMax-M3
     tokens: 14262143
     tokens_human: 14.3M
-    share: 11
+    share: 12
     sessions: 64
   - model: deepseek-v4-pro
-    tokens: 12218984
-    tokens_human: 12.2M
+    tokens: 12764868
+    tokens_human: 12.8M
     share: 10
     sessions: 126
+  - model: kimi-k2.6
+    tokens: 12612068
+    tokens_human: 12.6M
+    share: 10
+    sessions: 36
   - model: stepfun/step-3.7-flash:free
     tokens: 4155626
     tokens_human: 4.2M
     share: 3
     sessions: 15
   daily_bars:
-  - 19
-  - 51
+  - 40
   - 89
   - 99
   - 93
@@ -259,10 +258,11 @@ usage:
   - 31
   - 9
   - 15
-  - 16
+  - 20
   - 49
   - 22
   - 7
-  - 5
-  daily_from: '2026-06-11'
-  daily_to: '2026-07-11'
+  - 7
+  - 3
+  daily_from: '2026-06-12'
+  daily_to: '2026-07-12'
