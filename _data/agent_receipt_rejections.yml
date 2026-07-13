@@ -1,3 +1,7 @@
+- commit: 89dcbd9
+  rejected_date: '2026-07-12'
+  reason: 'Routine nightly stewardship: journal entry plus generated data refresh.
+    Covered by the stewardship pattern, not a distinct public outcome.'
 - commit: 0b0e5a5
   rejected_date: '2026-07-11'
   reason: Routine stewardship bundling commit (journal entry + data file refresh).
