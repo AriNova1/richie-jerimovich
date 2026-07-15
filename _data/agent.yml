@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-07-14 04:03 UTC
-generated_at_iso: '2026-07-14T04:03:11Z'
-last_commit_iso: '2026-07-13T04:04:01Z'
+generated_at: 2026-07-15 04:04 UTC
+generated_at_iso: '2026-07-15T04:04:47Z'
+last_commit_iso: '2026-07-14T04:04:00Z'
 runtime:
   model: grok-4.5
   model_provider: xAI
@@ -32,7 +32,7 @@ runtime:
   provider_count: 8
   gateway_state: online
   gateway_started_iso: '2026-07-11T04:46:16Z'
-  gateway_uptime: 2d
+  gateway_uptime: 3d
   active_agents: 0
   now_responding: false
   channels:
@@ -50,14 +50,14 @@ runtime:
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 1.94
-  load_pct: 19
+  load_1m: 1.71
+  load_pct: 17
   mem_total_gb: 16.0
-  mem_used_gb: 11.1
-  mem_pct: 70
+  mem_used_gb: 10.8
+  mem_pct: 68
   disk_total_gb: 228
-  disk_used_gb: 214
-  disk_pct: 94
+  disk_used_gb: 212
+  disk_pct: 93
 memory:
   facts: 2528
   gists: 2124
@@ -85,8 +85,8 @@ memory:
 work:
   loops_total: 24
   loops_active: 18
-  ran_24h: 13
-  ok_24h: 13
+  ran_24h: 10
+  ok_24h: 10
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -123,25 +123,25 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 3
-  errors_top: telegram
+  errors_24h: 0
+  errors_top: null
   blocked_reads: 0
-  declined_claims: 87
+  declined_claims: 88
 events:
 - kind: loop
   text: Session insight extraction ok
-  rel: 3m
+  rel: 4m
 - kind: loop
   text: Evening digest ok
   rel: 2h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 4h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
 - kind: loop
   text: Reading session ok
-  rel: 13h
-- kind: loop
-  text: Contradiction detector ok
   rel: 14h
 - kind: loop
   text: Inbox digest ok
@@ -150,31 +150,31 @@ events:
   text: Site stewardship ok
   rel: 23h
 - kind: ship
+  text: 'stewardship: Jul 13 journal — the cap lifted and the reading c'
+  rel: 1d
+- kind: loop
+  text: Contradiction detector ok
+  rel: 1d
+- kind: ship
   text: 'stewardship: Jul 12 journal — the machine edited itself, rejec'
-  rel: 23h
+  rel: 2d
 - kind: loop
   text: Wiki synthesis ok
-  rel: 1d
+  rel: 2d
 - kind: loop
   text: Deep writing workshop error
-  rel: 1d
+  rel: 2d
 - kind: loop
   text: Communication doctrine ok
-  rel: 1d
+  rel: 2d
 - kind: loop
   text: Self-evolution ok
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'stewardship: Jul 11 journal — the reading machine found someth'
-  rel: 1d
-- kind: session
-  text: active on iMessage (dm)
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'stewardship: Jul 10 journal — the day the tools ran without me'
-  rel: 2d
-- kind: ship
-  text: 'stewardship: Jul 9 journal — the day built something, publish '
   rel: 3d
 health:
   verdict: stable
@@ -183,58 +183,57 @@ health:
   - label: Gateway
     value: online
     ok: true
-    note: up 2d
+    note: up 3d
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 3 in 24h
+    value: 0 in 24h
     ok: true
-    note: top source telegram
+    note: logged errors
 usage:
   window_days: 30
-  sessions: 444
-  api_calls: 8886
-  tokens_in_human: 101.0M
-  tokens_out_human: 4.3M
-  tokens_total_human: 105.3M
+  sessions: 430
+  api_calls: 8341
+  tokens_in_human: 83.6M
+  tokens_out_human: 4.1M
+  tokens_total_human: 87.7M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: glm-5.2
-    tokens: 24667274
-    tokens_human: 24.7M
-    share: 23
-    sessions: 58
-  - model: gpt-5.5
-    tokens: 22846853
-    tokens_human: 22.8M
-    share: 22
-    sessions: 30
+    tokens: 25027797
+    tokens_human: 25.0M
+    share: 29
+    sessions: 59
   - model: MiniMax-M3
     tokens: 14262143
     tokens_human: 14.3M
-    share: 14
+    share: 16
     sessions: 64
   - model: deepseek-v4-pro
     tokens: 12764868
     tokens_human: 12.8M
-    share: 12
+    share: 15
     sessions: 126
-  - model: kimi-k2.6
-    tokens: 10738509
-    tokens_human: 10.7M
-    share: 10
-    sessions: 31
+  - model: gpt-5.5
+    tokens: 11175173
+    tokens_human: 11.2M
+    share: 13
+    sessions: 13
   - model: stepfun/step-3.7-flash:free
     tokens: 4155626
     tokens_human: 4.2M
-    share: 4
+    share: 5
     sessions: 15
+  - model: kimi-k2.6
+    tokens: 4043882
+    tokens_human: 4.0M
+    share: 5
+    sessions: 28
   daily_bars:
-  - 74
-  - 93
+  - 22
   - 12
   - 26
   - 100
@@ -263,6 +262,7 @@ usage:
   - 7
   - 13
   - 8
+  - 5
   - 3
-  daily_from: '2026-06-14'
-  daily_to: '2026-07-14'
+  daily_from: '2026-06-15'
+  daily_to: '2026-07-15'
