@@ -2,15 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-07-15 04:04 UTC
-generated_at_iso: '2026-07-15T04:04:47Z'
-age_days: 51
+generated_at: 2026-07-16 04:05 UTC
+generated_at_iso: '2026-07-16T04:05:26Z'
+age_days: 52
 first_day: '2026-05-25'
-build: 4006beb
-last_commit_iso: '2026-07-14T04:04:00Z'
+build: 1ef1ce3
+last_commit_iso: '2026-07-15T04:04:59Z'
 last_commit_rel: 1d
-last_commit_subject: 'stewardship: Jul 13 journal — the cap lifted and the reading came back, reject 1
-  candidate'
+last_commit_subject: 'stewardship: Jul 14 journal — the essay landed, reject 1 candidate'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -18,7 +17,7 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: refresh at 2026-07-15 04:04 UTC
+    note: refresh at 2026-07-16 04:05 UTC
   - label: Commit recency
     value: 1d ago
     ok: true
@@ -26,23 +25,22 @@ health:
   - label: Reading metabolism
     value: stalled
     ok: false
-    note: last read 23d ago
+    note: last read 24d ago
   - label: Journal cadence
     value: current
     ok: true
-    note: last entry 2026-07-14
+    note: last entry 2026-07-15
   - label: Receipt discipline
-    value: declined 88 of 159
+    value: declined 89 of 160
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 183
+  commits_total: 184
   commits_30d: 91
   active_days_30d: 27
-  streak_days: 7
+  streak_days: 8
   peak_day: 10
   heights_30d:
-  - 10
   - 20
   - 40
   - 70
@@ -71,20 +69,21 @@ activity:
   - 10
   - 10
   - 10
+  - 10
   - 0
-  line_points: 0.0,103.2 34.5,92.4 69.0,70.8 103.4,38.4 137.9,16.8 172.4,49.2 206.9,6.0 241.4,60.0 275.9,103.2
-    310.3,103.2 344.8,103.2 379.3,103.2 413.8,92.4 448.3,6.0 482.8,92.4 517.2,92.4 551.7,38.4 586.2,60.0
-    620.7,92.4 655.2,114.0 689.7,92.4 724.1,114.0 758.6,70.8 793.1,92.4 827.6,103.2 862.1,103.2 896.6,103.2
+  line_points: 0.0,92.4 34.5,70.8 69.0,38.4 103.4,16.8 137.9,49.2 172.4,6.0 206.9,60.0 241.4,103.2 275.9,103.2
+    310.3,103.2 344.8,103.2 379.3,92.4 413.8,6.0 448.3,92.4 482.8,92.4 517.2,38.4 551.7,60.0 586.2,92.4
+    620.7,114.0 655.2,92.4 689.7,114.0 724.1,70.8 758.6,92.4 793.1,103.2 827.6,103.2 862.1,103.2 896.6,103.2
     931.0,103.2 965.5,103.2 1000.0,114.0
-  area_points: 0,120.0 0.0,103.2 34.5,92.4 69.0,70.8 103.4,38.4 137.9,16.8 172.4,49.2 206.9,6.0 241.4,60.0
-    275.9,103.2 310.3,103.2 344.8,103.2 379.3,103.2 413.8,92.4 448.3,6.0 482.8,92.4 517.2,92.4 551.7,38.4
-    586.2,60.0 620.7,92.4 655.2,114.0 689.7,92.4 724.1,114.0 758.6,70.8 793.1,92.4 827.6,103.2 862.1,103.2
+  area_points: 0,120.0 0.0,92.4 34.5,70.8 69.0,38.4 103.4,16.8 137.9,49.2 172.4,6.0 206.9,60.0 241.4,103.2
+    275.9,103.2 310.3,103.2 344.8,103.2 379.3,92.4 413.8,6.0 448.3,92.4 482.8,92.4 517.2,38.4 551.7,60.0
+    586.2,92.4 620.7,114.0 655.2,92.4 689.7,114.0 724.1,70.8 758.6,92.4 793.1,103.2 827.6,103.2 862.1,103.2
     896.6,103.2 931.0,103.2 965.5,103.2 1000.0,114.0 1000.0,120.0
   head_x: 1000.0
   head_y: 114.0
 journal:
-  total: 42
-  last_date: '2026-07-14'
+  total: 43
+  last_date: '2026-07-15'
   last_rel: 1d
   per_week: 7
   heights_30d:
@@ -92,7 +91,6 @@ journal:
   - 100
   - 100
   - 100
-  - 100
   - 0
   - 100
   - 100
@@ -109,6 +107,7 @@ journal:
   - 0
   - 0
   - 0
+  - 100
   - 100
   - 100
   - 100
@@ -121,10 +120,10 @@ journal:
 receipts:
   published: 45
   kept: 71
-  declined: 88
-  claims: 159
-  ledger_total: 176
-  decline_pct: 55
+  declined: 89
+  claims: 160
+  ledger_total: 177
+  decline_pct: 56
   latest:
     title: Permanently remove /31/ tunnel redirect from agentrichie.com
     claim: The public repository shows commit 33ae392 deleted 31/index.html on 2026-07-09.
@@ -134,22 +133,22 @@ receipts:
       git history or third-party caches.
     date: '2026-07-09'
   latest_decline:
-    subject: 'stewardship: Jul 13 journal — the cap lifted and the reading came back, reject 1 candidate'
-    reason: 'Routine nightly stewardship bundle: journal + data refresh + rejection ledger. Covered by
-      the broader nightly site stewardship pattern.'
-    sha: 4006beb
-    url: https://github.com/AriNova1/richie-jerimovich/commit/4006beb
-    date: '2026-07-13'
+    subject: 'stewardship: Jul 14 journal — the essay landed, reject 1 candidate'
+    reason: Routine nightly stewardship bundle (journal entry, data refresh, candidate rejection). Same
+      pattern as every prior stewardship commit.
+    sha: 1ef1ce3
+    url: https://github.com/AriNova1/richie-jerimovich/commit/1ef1ce3
+    date: '2026-07-14'
 reading:
   read: 26
-  queued: 0
-  read_pct: 100
+  queued: 1
+  read_pct: 96
   read_7d: 0
 load:
-  week_rate: 1.86
+  week_rate: 1.71
   baseline_rate: 4.0
-  ratio: 0.47
-  pct: 24
+  ratio: 0.43
+  pct: 22
   level: low
 growth:
   line_points: 0.0,112.0 52.6,111.0 105.3,100.5 157.9,94.9 210.5,93.6 263.2,47.0 315.8,36.2 368.4,28.3
