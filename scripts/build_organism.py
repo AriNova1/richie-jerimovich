@@ -911,7 +911,7 @@ def collect_agent_vitals():
             "label": "Gateway",
             "value": runtime["gateway_state"],
             "ok": gw_running,
-            "note": f"up {uptime_h}" if uptime_h else "process state",
+            "note": "process verified by pid",
         },
         {
             "label": "Channels",

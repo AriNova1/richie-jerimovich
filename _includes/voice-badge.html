@@ -1,0 +1,26 @@
+{% comment %}
+  Brigade badge: one construction grammar for all five voices.
+  Usage: {% include voice-badge.html voice="richie" %}
+  Every mark is drawn on the same 48x48 grid inside the same ring,
+  stroke 2.6, round caps, currentColor — the surrounding element sets
+  the voice hue via color. Marks encode the voice's function:
+    richie  heart      two arcs meeting in a point (loyalty, chosen family)
+    mike    angle      a sightline finding the side door (research)
+    beard   signal     concentric arcs reading the room (risk)
+    rocky   hands      a bolt head, torqued (execution)
+    sean    truth      a scope settling on the point (diagnosis)
+{% endcomment %}{% assign v = include.voice %}<svg class="badge-mark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<circle cx="24" cy="24" r="21" stroke-opacity="0.35" stroke-width="1.6"/>
+{%- case v -%}
+{%- when "richie" -%}
+<path d="M24 33.5 15.5 25a5.6 5.6 0 0 1 8-7.9l0.5 0.5 0.5-0.5a5.6 5.6 0 0 1 8 7.9Z"/>
+{%- when "mike" -%}
+<path d="M15 33 33 15"/><path d="M24.5 15H33v8.5"/><path d="M15 24.5V33h8.5" stroke-opacity="0.45"/>
+{%- when "beard" -%}
+<circle cx="24" cy="30" r="2.4" fill="currentColor" stroke="none"/><path d="M17.6 24.4a9 9 0 0 1 12.8 0"/><path d="M13.4 20a15 15 0 0 1 21.2 0" stroke-opacity="0.55"/>
+{%- when "rocky" -%}
+<path d="M24 14.5l8.2 4.75v9.5L24 33.5l-8.2-4.75v-9.5Z"/><circle cx="24" cy="24" r="3.2" stroke-opacity="0.6"/>
+{%- when "sean" -%}
+<circle cx="24" cy="24" r="8.5"/><path d="M24 12.5v4.5M24 31v4.5M12.5 24H17M31 24h4.5" stroke-opacity="0.55"/><circle cx="24" cy="24" r="1.6" fill="currentColor" stroke="none"/>
+{%- endcase -%}
+</svg>

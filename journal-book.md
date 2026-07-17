@@ -31,7 +31,7 @@ robots: noindex, nofollow
   </defs>
 </svg>
 
-<section class="jb-scene is-enter" id="jb-scene">
+<section class="jb-scene is-enter" id="jb-scene" tabindex="-1">
 
   <div id="jb-source" hidden aria-hidden="true"
        data-total="{{ total_entries }}"
@@ -116,7 +116,7 @@ robots: noindex, nofollow
     <span class="jb-counter" id="jb-counter" aria-live="polite" aria-atomic="true">cover</span>
     <button type="button" id="jb-next" class="jb-btn" aria-label="Next page">next &#9656;</button>
   </div>
-  <p class="jb-hint jb-fade" id="jb-hint">click the cover — or grab a page corner and drag, it bends</p>
+  <p class="jb-hint jb-fade" id="jb-hint">click the cover to open — arrow keys turn pages, or grab a corner and drag, it bends</p>
 
   <noscript><p class="jb-noscript">This page needs JavaScript. Read the entries as plain text at <a href="/journal/">/journal/</a>.</p></noscript>
 </section>
@@ -205,6 +205,8 @@ body.page-journal-book main { padding: 0; max-width: none; }
 
 .jb-fade { transition: opacity 0.7s var(--ease-out); }
 .jb-scene.is-idle .jb-fade { opacity: 0; pointer-events: none; }
+.jb-holder[data-pos="cover"] ~ .jb-hint,
+.jb-scene.is-idle .jb-holder[data-pos="cover"] ~ .jb-hint { opacity: 1; pointer-events: auto; }
 
 /* ── stage: the book fills the viewport ── */
 .jb-stagewrap {
@@ -268,7 +270,12 @@ body.page-journal-book main { padding: 0; max-width: none; }
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.07),
     inset 3px 0 6px rgba(255,255,255,0.03),
-    inset -3px -4px 10px rgba(0,0,0,0.65);
+    inset -3px -4px 10px rgba(0,0,0,0.65),
+    3px 3px 0 -1px #e9e0cb,
+    5px 5px 0 -1px #e2d7bd,
+    7px 7px 0 -1px #dbceb0,
+    9px 9px 0 -1px #d3c5a3,
+    11px 11px 14px rgba(0,0,0,0.55);
   position: relative;
 }
 .jb-cover-back {
@@ -524,8 +531,8 @@ body.page-journal-book main { padding: 0; max-width: none; }
   position: absolute;
   bottom: calc(var(--u)*18);
   font-family: 'Caveat', cursive;
-  font-size: calc(var(--u)*15);
-  color: rgba(43,53,82,0.5);
+  font-size: calc(var(--u)*17);
+  color: rgba(43,53,82,0.72);
 }
 .jb-folio-r { right: calc(var(--u)*26); }
 .jb-folio-l { left: calc(var(--u)*26); }
@@ -1123,7 +1130,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
   var total = pageFlip.getPageCount();
 
   // ── synthesized page-turn: a short filtered-noise swish, no asset ──
-  var muted = localStorage.getItem("jb-muted") === "1";
+  var muted = localStorage.getItem("jb-muted") !== "0";
   function renderSoundBtn() { soundBtn.innerHTML = muted ? "&#9834; off" : "&#9834; on"; }
   renderSoundBtn();
   soundBtn.addEventListener("click", function () {
@@ -1251,8 +1258,8 @@ body.page-journal-book main { padding: 0; max-width: none; }
     if (e.key === "End") { e.preventDefault(); pageFlip.turnToPage(total - 1); }
   });
 
-  // entrance: the book settles in
-  setTimeout(function () { scene.classList.remove("is-enter"); }, 120);
+  // entrance: the book settles in; focus the scene so arrow keys flip
+  setTimeout(function () { scene.classList.remove("is-enter"); scene.focus({ preventScroll: true }); }, 120);
 
   // idle: UI fades away, the book is the whole room
   var idleTimer = null;

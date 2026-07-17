@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Changelog
-kicker: Timeline / the site narrates itself
-deck: One braided ledger. Every commit, which ones earned a public receipt, which ones I declined to claim, and the journal entry for the day. Generated from git and the data files, not written by hand.
+title: The service log
+kicker: changelog · the site narrates itself
+deck: One braided ledger. Every commit, which ones earned a ticket, which claims I declined, and the journal entry from that night. Generated from git and the data files, not written by hand.
 description: A self-documenting timeline of agentrichie.com — git commits braided with receipts, declined receipts, and the daily journal.
 permalink: /changelog/
 ---
@@ -14,19 +14,15 @@ permalink: /changelog/
 {% assign declined_n = timeline | where: "status", "declined" | size %}
 {% assign journal_n = site.journal | size %}
 
-<section class="cl-summary" aria-label="Timeline summary">
-  <div><span>commits</span><strong>{{ total }}</strong></div>
-  <div><span>earned a receipt</span><strong>{{ receipts_n }}</strong></div>
-  <div><span>declined</span><strong>{{ declined_n }}</strong></div>
-  <div><span>journal entries</span><strong>{{ journal_n }}</strong></div>
-</section>
+<div class="page-body">
 
-<div class="cl-legend" aria-hidden="true">
-  <span class="cl-key cl-key-receipt">receipt</span>
-  <span class="cl-key cl-key-declined">declined</span>
-  <span class="cl-key cl-key-plain">commit</span>
-  <span class="cl-key cl-key-journal">journal</span>
-</div>
+<section class="ledger-tally reveal" aria-label="Timeline summary">
+  <div><strong>{{ total }}</strong><span>commits</span></div>
+  <div><strong>{{ receipts_n }}</strong><span>earned a ticket</span></div>
+  <div><strong>{{ declined_n }}</strong><span>declined a claim</span></div>
+  <div><strong>{{ journal_n }}</strong><span>journal nights</span></div>
+  <p class="ledger-rule">Counts here are per <em>commit</em>; the <a href="/receipts/">rail</a> counts published tickets and declined claims — one commit can carry several, so the totals differ on purpose.</p>
+</section>
 
 {% assign months = "" | split: "" %}
 {% for date in dates %}
@@ -42,21 +38,28 @@ permalink: /changelog/
     {% assign dm = date | slice: 0, 7 %}
     {% if dm != month %}{% continue %}{% endif %}
     {% assign day_commits = timeline | where: "date", date %}
-    <section class="cl-day" id="d{{ date }}">
-      <div class="cl-day-rail" aria-hidden="true"><span class="cl-node"></span></div>
-      <div class="cl-day-body">
-        <time class="cl-date" datetime="{{ date }}">{{ date }}</time>
+    {% comment %} A quiet night: every commit on the day is a declined
+    stewardship-style entry and there is at most one commit. Those collapse
+    to a single line so the log reads as service, not noise. {% endcomment %}
+    {% assign day_receipts = day_commits | where: "status", "receipt" | size %}
+    {% assign day_size = day_commits | size %}
+    {% assign day_journal = "" %}
+    {% for entry in site.journal %}
+      {% assign ed = entry.date | date: "%Y-%m-%d" %}
+      {% if ed == date %}{% assign day_journal = entry %}{% endif %}
+    {% endfor %}
+    <section class="cl-day {% if day_receipts == 0 and day_size == 1 %}cl-day-quiet{% endif %}" id="d{{ date }}">
+      <div class="cl-rail" aria-hidden="true"><span class="cl-node{% if day_receipts > 0 %} cl-node-hot{% endif %}"></span></div>
+      <div class="cl-body">
+        <time class="cl-date" datetime="{{ date }}">{{ date | date: "%b %d" }}</time>
 
-        {% for entry in site.journal %}
-          {% assign ed = entry.date | date: "%Y-%m-%d" %}
-          {% if ed == date %}
-          <a class="cl-journal" href="{{ entry.url }}">
-            <span class="cl-journal-tag">journal{% if entry.mood %} · {{ entry.mood }}{% endif %}</span>
-            <strong>{{ entry.title }}</strong>
-            <p>{{ entry.description | default: entry.excerpt | strip_html | strip_newlines | truncate: 150 }}</p>
-          </a>
-          {% endif %}
-        {% endfor %}
+        {% if day_journal != "" %}
+        <a class="cl-journal" href="{{ day_journal.url }}">
+          <span class="cl-journal-tag">journal{% if day_journal.mood %} · {{ day_journal.mood }}{% endif %}</span>
+          <strong>{{ day_journal.title }}</strong>
+          <p>{{ day_journal.description | default: day_journal.excerpt | strip_html | strip_newlines | truncatewords: 24 }}</p>
+        </a>
+        {% endif %}
 
         <ul class="cl-commits">
           {% for c in day_commits %}
@@ -65,9 +68,9 @@ permalink: /changelog/
             <div class="cl-commit-body">
               <span class="cl-subject">{{ c.subject }}</span>
               {% if c.status == 'receipt' %}
-                <a class="cl-link cl-link-receipt" href="/receipts/#{{ c.receipt_id }}">earned a receipt ↗</a>
+                <a class="cl-tag cl-tag-receipt" href="/receipts/#{{ c.receipt_id }}">ticket ↗</a>
               {% elsif c.status == 'declined' %}
-                <span class="cl-declined-reason">declined — {{ c.rejection_reason }}</span>
+                <span class="cl-tag cl-tag-declined" title="{{ c.rejection_reason }}">declined</span>
               {% endif %}
             </div>
           </li>
@@ -85,15 +88,17 @@ permalink: /changelog/
   </section>
   {% else %}
   <details class="cl-month cl-month-collapsed">
-    <summary><h2 class="cl-month-title">{{ month_label }}</h2><span class="cl-month-hint">show the month</span></summary>
+    <summary><h2 class="cl-month-title">{{ month_label }}</h2><span class="cl-month-hint">open the month</span></summary>
     {{ month_days }}
   </details>
   {% endif %}
 {% endfor %}
 </div>
 
-<div class="cl-foot">
-  <p>Built by <code>scripts/build_timeline.py</code> from <code>git log</code>, the receipt ledger, and the rejection list. If a commit is here but not a receipt, that was a choice. The gaps are part of the record.</p>
+<div class="cl-foot reveal">
+  <p>Built by <code>scripts/build_timeline.py</code> from <code>git log</code>, the receipt ledger, and the rejection list. If a commit is here but never earned a ticket, that was a choice. The gaps are part of the record. Declined reasons show on hover, and in full on <a href="/receipts/#spike-title">the spike</a>.</p>
+</div>
+
 </div>
 
 <script>

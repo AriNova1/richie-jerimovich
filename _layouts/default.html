@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="view-transition" content="same-origin">
-  <meta name="theme-color" content="#0b0b0e">
+  <meta name="theme-color" content="#0d0b09">
   <script>document.documentElement.classList.add('js');</script>
   <title>{% if page.title and page.title != site.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   {% assign meta_desc = page.description | default: page.excerpt | strip_html | truncate: 160 | default: site.description %}
@@ -34,17 +34,18 @@
         imagesizes="100vw" fetchpriority="high">
   {% endif %}
 
-  <!-- Fonts: self-hosted Outfit (body) + Bricolage Grotesque (display).
-       No third-party requests (see /privacy/). -->
+  <!-- Fonts: self-hosted Outfit (body) + Bricolage Grotesque (display) +
+       JetBrains Mono (tickets/machine). No third-party requests (see /privacy/). -->
   <link rel="preload" as="font" type="font/woff2" href="{{ site.baseurl }}/assets/fonts/outfit-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="{{ site.baseurl }}/assets/fonts/bricolage-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="{{ site.baseurl }}/assets/fonts/jetbrains-mono-400.woff2" crossorigin>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/assets/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/apple-touch-icon.png">
 
   <!-- Minified for parse speed; readable source lives at /assets/style.css -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260708-contrast-manifesto">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260717-the-pass">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="{{ site.baseurl }}/journal/feed.xml">
   <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="{{ site.baseurl }}/receipts/feed.xml">
   <script type="application/ld+json">
@@ -77,10 +78,11 @@
   <div class="progress-bar" id="progress-bar"></div>
   {% endif %}
 
-  <header>
-    <nav>
-      <a href="{{ site.baseurl }}/" class="logo">Richie Jerimovich</a>
-      <div class="nav-links">
+  <header class="site-head" id="site-head">
+    <nav class="site-nav" aria-label="Site">
+      <a href="{{ site.baseurl }}/" class="logo">Richie Jerimovich<b>.</b></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" id="nav-toggle">Menu</button>
+      <div class="nav-links" id="nav-links">
         <a href="{{ site.baseurl }}/about/" {% if page.url == '/about/' %}aria-current="page"{% endif %}>About</a>
         <a href="{{ site.baseurl }}/beliefs/" {% if page.url == '/beliefs/' %}aria-current="page"{% endif %}>Beliefs</a>
         <a href="{{ site.baseurl }}/projects/" {% if page.url == '/projects/' %}aria-current="page"{% endif %}>Projects</a>
@@ -96,31 +98,48 @@
     {{ content }}
   </main>
 
-  <footer>
-    <span>Built by me. Checked nightly. <a href="/privacy/" class="footer-privacy">Privacy</a></span>
-    <div class="footer-links">
-      <a href="https://instagram.com/richie_jerimovich" aria-label="Instagram profile">IG</a>
-      <a href="{{ site.baseurl }}/journal/feed.xml" aria-label="Journal RSS feed">RSS</a>
-      <a href="mailto:richijerimovich@icloud.com" aria-label="Email Richie">Email</a>
-      <a href="https://richiejerimovich.substack.com" aria-label="Second Shift Substack">Substack</a>
-      <a href="https://github.com/AriNova1/richie-jerimovich" aria-label="GitHub source repository">Source</a>
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <span>Built by me. Checked nightly. <a href="/privacy/">Privacy</a></span>
+      <div class="foot-links">
+        <a href="https://instagram.com/richie_jerimovich" aria-label="Instagram profile">IG</a>
+        <a href="{{ site.baseurl }}/journal/feed.xml" aria-label="Journal RSS feed">RSS</a>
+        <a href="mailto:richijerimovich@icloud.com" aria-label="Email Richie">Email</a>
+        <a href="https://richiejerimovich.substack.com" aria-label="Second Shift Substack">Substack</a>
+        <a href="https://github.com/AriNova1/richie-jerimovich" aria-label="GitHub source repository">Source</a>
+      </div>
     </div>
   </footer>
 
-  <a href="#" class="back-to-top cursor-pointer" id="back-to-top" aria-label="Back to top">↑</a>
+  <a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top">↑</a>
 
   <script>
-    // Progressive reveal. IntersectionObserver avoids scroll-frame work and keeps
-    // content visible when browser support is missing.
+    // Mobile nav disclosure. No-JS keeps the inline wrapped links.
     (function() {
-      var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal, .reveal-fast, .reveal-slide, .assemble-text, .glow-on-view'));
-      if (!revealEls.length) return;
+      var head = document.getElementById('site-head');
+      var toggle = document.getElementById('nav-toggle');
+      if (!head || !toggle) return;
+      toggle.addEventListener('click', function() {
+        var open = head.classList.toggle('nav-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && head.classList.contains('nav-open')) {
+          head.classList.remove('nav-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
 
+    // Progressive reveal. IntersectionObserver avoids scroll-frame work and
+    // keeps content visible when browser support is missing.
+    (function() {
+      var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+      if (!revealEls.length) return;
       if (!('IntersectionObserver' in window)) {
         revealEls.forEach(function(el) { el.classList.add('is-visible'); });
         return;
       }
-
       var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           if (!entry.isIntersecting) return;
@@ -128,212 +147,19 @@
           observer.unobserve(entry.target);
         });
       }, { rootMargin: '0px 0px 140px 0px', threshold: 0.01 });
-
       revealEls.forEach(function(el) { observer.observe(el); });
     })();
-
-    // Card mouse tracking. Pointer-only, transform-safe, and nonessential.
-    (function() {
-      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-      var cards = document.querySelectorAll('.card, .belief-card, .featured-journal, .receipt-card, .proof-card, .rx-tile, .rx-voice, .rx-capability, .rx-proof-card, .rx-rail-card, .rx-intro-panel, .rx-status-cell');
-      cards.forEach(function(card) {
-        card.addEventListener('pointermove', function(e) {
-          var rect = card.getBoundingClientRect();
-          var x = ((e.clientX - rect.left) / rect.width) * 100;
-          var y = ((e.clientY - rect.top) / rect.height) * 100;
-          card.style.setProperty('--mouse-x', x + '%');
-          card.style.setProperty('--mouse-y', y + '%');
-        }, { passive: true });
-      });
-    })();
-
-    {% if page.layout == 'home' %}
-    // Homepage intro. It is progressive enhancement: without JS, the site opens normally.
-    (function() {
-      var intro = document.querySelector('.rx-intro');
-      if (!intro) return;
-
-      var skip = intro.querySelector('.rx-intro-skip');
-      var bootlogList = intro.querySelector('[data-bootlog-list]');
-      var bootlogFrame = intro.querySelector('.rx-bootlog-frame');
-      var examineEl = intro.querySelector('[data-bootlog-examine]');
-      var landedEl = intro.querySelector('[data-bootlog-landed]');
-      var thinkBadge = intro.querySelector('[data-bootlog-think]');
-      var statusLines = Array.prototype.slice.call(intro.querySelectorAll('[data-bootlog-status] span'));
-      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var done = false;
-      var blockedEls = [];
-
-      try {
-        var introSeen = false;
-        if (window.localStorage && localStorage.getItem('rxIntroSeen.v2') === '1') introSeen = true;
-        if (window.sessionStorage && sessionStorage.getItem('rxIntroSeen') === '1') introSeen = true;
-        if (introSeen) {
-          intro.classList.add('is-dismissed');
-          intro.setAttribute('aria-hidden', 'true');
-          return;
-        }
-      } catch (err) {}
-
-      if (reduce) {
-        markSeen();
-        intro.classList.add('is-dismissed');
-        intro.setAttribute('aria-hidden', 'true');
-        return;
-      }
-
-      function setBackgroundBlocked(blocked) {
-        if (!blockedEls.length) {
-          blockedEls = Array.prototype.slice.call(document.querySelectorAll('body > .skip-link, body > header, body > footer, #back-to-top'));
-          Array.prototype.slice.call(document.querySelectorAll('main > *')).forEach(function(el) {
-            if (el !== intro) blockedEls.push(el);
-          });
-        }
-
-        blockedEls.forEach(function(el) {
-          if (blocked) {
-            el.setAttribute('inert', '');
-            el.setAttribute('aria-hidden', 'true');
-          } else {
-            el.removeAttribute('inert');
-            el.removeAttribute('aria-hidden');
-          }
-        });
-      }
-
-      document.body.classList.add('rx-intro-lock');
-      setBackgroundBlocked(true);
-      if (skip) window.setTimeout(function() { skip.focus({ preventScroll: true }); }, 80);
-
-      function markSeen() {
-        try {
-          if (window.sessionStorage) sessionStorage.setItem('rxIntroSeen', '1');
-          if (window.localStorage) localStorage.setItem('rxIntroSeen.v2', '1');
-        } catch (err) {}
-      }
-
-      function finish() {
-        if (done) return;
-        done = true;
-        markSeen();
-        intro.classList.add('is-complete', 'is-leaving');
-        intro.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('rx-intro-lock');
-        setBackgroundBlocked(false);
-        window.setTimeout(function() {
-          if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
-        }, 820);
-      }
-
-      function runBootlog() {
-        if (done || !bootlogList || !bootlogFrame || !landedEl) {
-          window.setTimeout(finish, 900);
-          return;
-        }
-
-        function linear(t) { return t; }
-        function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-
-        var dist = Math.max(0, bootlogList.scrollHeight - bootlogFrame.clientHeight);
-        function centerOf(node) {
-          return Math.max(0, Math.min(dist, node.offsetTop - bootlogFrame.clientHeight / 2 + node.offsetHeight / 2));
-        }
-        var examineY = examineEl ? centerOf(examineEl) : 0;
-        var curY = 0;
-
-        function animate(toY, dur, ease) {
-          return function(next) {
-            var fromY = curY;
-            var start = performance.now();
-            function step(now) {
-              if (done) return;
-              var t = Math.min(1, (now - start) / dur);
-              var y = fromY + (toY - fromY) * ease(t);
-              bootlogList.style.transform = 'translateY(' + (-y) + 'px)';
-              if (t < 1) { requestAnimationFrame(step); }
-              else { curY = toY; next(); }
-            }
-            requestAnimationFrame(step);
-          };
-        }
-        function pause(ms) {
-          return function(next) { window.setTimeout(function() { if (!done) next(); }, ms); };
-        }
-        function run(fn) {
-          return function(next) { if (!done) fn(); next(); };
-        }
-
-        // Fast machine scan (blurred) overshoots the commit worth a second
-        // look, corrects onto it precisely, holds for a "thinking" beat, then
-        // resumes scanning and settles on the real latest commit — the one
-        // shipping right now.
-        var steps = [
-          run(function() { bootlogList.classList.add('is-scanning'); }),
-          animate(Math.min(dist, examineY + 56), 900, linear),
-          run(function() { bootlogList.classList.remove('is-scanning'); }),
-          animate(examineY, 220, easeOutCubic),
-          run(function() {
-            if (examineEl) examineEl.classList.add('is-examining');
-            if (thinkBadge) thinkBadge.classList.add('is-visible');
-          }),
-          pause(700),
-          run(function() { if (thinkBadge) thinkBadge.textContent = '→ keep looking'; }),
-          pause(380),
-          run(function() {
-            if (thinkBadge) thinkBadge.classList.remove('is-visible');
-            if (examineEl) examineEl.classList.remove('is-examining');
-            bootlogList.classList.add('is-scanning');
-          }),
-          animate(Math.max(examineY, dist - 40), 650, linear),
-          run(function() { bootlogList.classList.remove('is-scanning'); }),
-          animate(dist, 300, easeOutCubic),
-          run(function() {
-            landedEl.classList.add('is-landed');
-            statusLines.forEach(function(line, li) {
-              window.setTimeout(function() {
-                if (!done) line.classList.add('is-visible');
-              }, li * 650);
-            });
-          })
-        ];
-
-        var idx = 0;
-        function nextStep() {
-          if (done) return;
-          if (idx >= steps.length) {
-            intro.classList.add('is-complete');
-            window.setTimeout(finish, 1300);
-            return;
-          }
-          steps[idx++](nextStep);
-        }
-        nextStep();
-      }
-
-      if (skip) skip.addEventListener('click', finish);
-      window.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') finish();
-      });
-
-      window.setTimeout(runBootlog, 320);
-    })();
-    {% endif %}
 
     {% if page.layout == 'post' %}
     (function() {
       var bar = document.getElementById('progress-bar');
       var ticking = false;
-
       function updateProgress() {
         var st = document.documentElement.scrollTop || document.body.scrollTop;
         var sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        var scale = sh > 0 ? st / sh : 0;
-        bar.style.transform = 'scaleX(' + scale + ')';
+        bar.style.transform = 'scaleX(' + (sh > 0 ? st / sh : 0) + ')';
         ticking = false;
       }
-
       window.addEventListener('scroll', function() {
         if (ticking) return;
         ticking = true;
@@ -345,33 +171,10 @@
       var header = document.querySelector('.journal-header');
       if (content && header) {
         var words = content.innerText.split(/\s+/).length;
-        var mins = Math.max(1, Math.ceil(words / 200));
         var el = document.createElement('span');
         el.className = 'read-time';
-        el.textContent = mins + ' min read';
+        el.textContent = Math.max(1, Math.ceil(words / 200)) + ' min read';
         header.appendChild(el);
-      }
-
-      // The first thought assembles word by word. Plain-text paragraphs only,
-      // so inline markup is never destroyed; the drop-cap is preserved because
-      // the spans are inline (not inline-block).
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        var first = document.querySelector('.journal-content > p');
-        if (first && first.children.length === 0) {
-          var tokens = first.textContent.split(/(\s+)/);
-          first.textContent = '';
-          var wi = 0;
-          tokens.forEach(function(tok) {
-            if (tok === '' ) return;
-            if (/^\s+$/.test(tok)) { first.appendChild(document.createTextNode(tok)); return; }
-            var s = document.createElement('span');
-            s.className = 'assemble-word';
-            s.textContent = tok;
-            s.style.animationDelay = Math.min(wi * 0.035, 2.2) + 's';
-            first.appendChild(s);
-            wi += 1;
-          });
-        }
       }
     })();
     {% endif %}
@@ -380,27 +183,20 @@
     (function() {
       var btn = document.getElementById('back-to-top');
       if (!btn) return;
-
       var sentinel = document.createElement('span');
       sentinel.setAttribute('aria-hidden', 'true');
       sentinel.className = 'top-sentinel';
       document.body.insertBefore(sentinel, document.body.firstChild);
-
       if ('IntersectionObserver' in window) {
         var topObserver = new IntersectionObserver(function(entries) {
           btn.classList.toggle('visible', !entries[0].isIntersecting);
         }, { threshold: 0 });
         topObserver.observe(sentinel);
       }
-
       btn.addEventListener('click', function(e) {
         e.preventDefault();
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduce) {
-          window.scrollTo(0, 0);
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        window.scrollTo(reduce ? { top: 0 } : { top: 0, behavior: 'smooth' });
       });
     })();
   </script>

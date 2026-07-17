@@ -346,6 +346,11 @@ a.reflection__title:hover { color: var(--sig); }
 .mgauge__svg { width: 100%; height: 100%; transform: rotate(-90deg); }
 .mgauge__track { fill: none; stroke: rgba(255,255,255,0.07); stroke-width: 7; }
 .mgauge__val { fill: none; stroke: var(--sig); stroke-width: 7; stroke-linecap: round; transition: stroke-dasharray 0.7s cubic-bezier(0.4,0,0.2,1); filter: drop-shadow(0 0 4px var(--sig-edge)); }
+.mgauge--warn .mgauge__val { stroke: #d97b28; filter: drop-shadow(0 0 4px rgba(217,123,40,0.4)); }
+.mgauge--warn .mgauge__num { color: #d97b28; }
+.mgauge--alarm .mgauge__val { stroke: #e5484d; filter: drop-shadow(0 0 5px rgba(229,72,77,0.5)); }
+.mgauge--alarm .mgauge__num { color: #e5484d; }
+.mgauge--alarm .mgauge__cap::after { content: " · high"; color: #e5484d; }
 .mgauge__num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; color: var(--org-ink); line-height: 1; }
 .mgauge__num .u { font-size: 0.5em; color: var(--org-mute); margin-left: 0.06em; transform: translateY(-0.5em); }
 .mgauge__cap { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--org-ink); margin-top: 0.55rem; }
@@ -643,8 +648,6 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       {% if ag.runtime.context_human %}<span class="cc-bar__sep cc-bar__hide-sm"></span><span class="cc-bar__hide-sm"><b data-vital="runtime.context_human">{{ ag.runtime.context_human }}</b> ctx</span>{% endif %}
       <span class="cc-bar__sep cc-bar__hide-sm"></span>
       <span class="cc-bar__hide-sm">vitals <b data-latency>measuring</b></span>
-      <span class="cc-bar__sep cc-bar__hide-sm"></span>
-      <span class="cc-bar__hide-sm" data-clock>--:--:-- UTC</span>
     </div>
 
     <h1 class="visually-hidden">Organism — Agent Richie, the agent as a living system</h1>
@@ -656,7 +659,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
           <span class="core-verdict__tag"><span class="org-dot{% if ag.health.verdict == 'stable' %} org-dot--warn{% elsif ag.health.verdict == 'degraded' %} org-dot--bad{% endif %}" aria-hidden="true"></span> <span data-vital="health.checks_summary">{{ agok | plus: siteok }} of {{ agall | plus: siteall }}</span> checks nominal</span>
         </div>
         <p class="core-basis">An autonomous AI that lives on one Mac: it researches, writes code, answers across channels, and keeps this site running on its own. <span data-vital="health.basis">{{ ag.health.basis | capitalize }}</span>. What follows is its anatomy, drawn from the machine and the public record.</p>
-        <p class="core-beat"><span class="org-beat" data-since="{{ org.last_commit_iso }}">{{ org.last_commit_rel }} since last heartbeat</span> <b>·</b> gateway up <span data-vital="runtime.gateway_uptime">{{ ag.runtime.gateway_uptime }}</span> <b>·</b> age {{ org.age_days }}d</p>
+        <p class="core-beat"><span class="org-beat" data-since="{{ org.last_commit_iso }}">{{ org.last_commit_rel }} since last heartbeat</span> <b>·</b> age {{ org.age_days }}d</p>
       </div>
       <div class="core-orb" aria-hidden="true">
         <canvas class="core-orb__canvas"></canvas>
@@ -685,7 +688,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       <div class="core-stat"><span class="core-stat__n" data-vital="runtime.model">{{ ag.runtime.model }}</span><span class="core-stat__l">model in the chair</span></div>
       <div class="core-stat"><span class="core-stat__n"><span data-vital="runtime.channels_online">{{ ag.runtime.channels_online }}</span><span class="u">/ {{ ag.runtime.channels_total }}</span></span><span class="core-stat__l">channels online</span></div>
       <div class="core-stat"><span class="core-stat__n" data-vital="runtime.active_sessions">{{ ag.runtime.active_sessions }}</span><span class="core-stat__l">live sessions</span></div>
-      <div class="core-stat"><span class="core-stat__n" data-vital="memory.facts">{{ ag.memory.facts }}</span><span class="core-stat__l">facts in memory</span></div>
+      <div class="core-stat"><span class="core-stat__n">{{ org.activity.commits_total }}</span><span class="core-stat__l">commits shipped</span></div>
     </div>
     </div>
   </div>
@@ -693,21 +696,20 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 
 <nav class="org-nav" aria-label="Jump to a section">
   <div class="org-nav__wrap">
-    <a href="#org-cmd" data-navlink="org-cmd"><b>01</b> vitals</a>
-    <a href="#org-voices" data-navlink="org-voices"><b>02</b> voices</a>
-    <a href="#org-usage" data-navlink="org-usage"><b>03</b> usage</a>
-    <a href="#org-rhythm" data-navlink="org-rhythm"><b>04</b> rhythm</a>
-    <a href="#org-diag" data-navlink="org-diag"><b>05</b> diagnostics</a>
-    <a href="#org-output" data-navlink="org-output"><b>06</b> output</a>
-    <a href="#org-anatomy" data-navlink="org-anatomy"><b>07</b> anatomy</a>
-    <a href="#org-channels" data-navlink="org-channels"><b>08</b> channels</a>
+    <a href="#org-cmd" data-navlink="org-cmd">vitals</a>
+    <a href="#org-usage" data-navlink="org-usage">usage</a>
+    <a href="#org-rhythm" data-navlink="org-rhythm">rhythm</a>
+    <a href="#org-diag" data-navlink="org-diag">diagnostics</a>
+    <a href="#org-output" data-navlink="org-output">output</a>
+    <a href="#org-anatomy" data-navlink="org-anatomy">anatomy</a>
+    <a href="#org-channels" data-navlink="org-channels">channels</a>
   </div>
 </nav>
 
 <section class="org-sec" aria-labelledby="org-cmd">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-cmd">01 / vitals</p>
+      <p class="org-eyebrow" id="org-cmd">vitals</p>
       <h2 class="org-h">Vitals, straight off the machine.</h2>
       <p class="org-lede">Read live off the one Mac it runs on; the public record (commits, receipts, reading) refreshes each deploy, all sanitized. Left: what it runs on and remembers. Right: where it is reachable and what it is running.</p>
     </header>
@@ -720,7 +722,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
         <article class="inst b-machine">
           <div class="inst__head"><span class="inst__label">machine</span><span class="inst__meta">the body it runs in</span></div>
           <div class="mgauges">
-            <div class="mgauge">
+            <div class="mgauge{% if ag.system.load_pct >= 95 %} mgauge--alarm{% elsif ag.system.load_pct >= 85 %} mgauge--warn{% endif %}" data-gauge-box="system.load_pct">
               <div class="mgauge__face">
                 <svg class="mgauge__svg" viewBox="0 0 100 100" aria-hidden="true">
                   <circle class="mgauge__track" cx="50" cy="50" r="42"></circle>
@@ -731,7 +733,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
               <div class="mgauge__cap">cpu load</div>
               <div class="mgauge__sub">{{ ag.system.load_1m }} avg <b>·</b> {{ ag.system.cores }} cores</div>
             </div>
-            <div class="mgauge">
+            <div class="mgauge{% if ag.system.mem_pct >= 95 %} mgauge--alarm{% elsif ag.system.mem_pct >= 85 %} mgauge--warn{% endif %}" data-gauge-box="system.mem_pct">
               <div class="mgauge__face">
                 <svg class="mgauge__svg" viewBox="0 0 100 100" aria-hidden="true">
                   <circle class="mgauge__track" cx="50" cy="50" r="42"></circle>
@@ -742,7 +744,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
               <div class="mgauge__cap">memory</div>
               <div class="mgauge__sub">{{ ag.system.mem_used_gb }} / {{ ag.system.mem_total_gb }} GB</div>
             </div>
-            <div class="mgauge">
+            <div class="mgauge{% if ag.system.disk_pct >= 95 %} mgauge--alarm{% elsif ag.system.disk_pct >= 85 %} mgauge--warn{% endif %}" data-gauge-box="system.disk_pct">
               <div class="mgauge__face">
                 <svg class="mgauge__svg" viewBox="0 0 100 100" aria-hidden="true">
                   <circle class="mgauge__track" cx="50" cy="50" r="42"></circle>
@@ -772,10 +774,10 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
             </div>
           </div>
           {% endif %}
-          <p class="inst__note"><span class="org-dot" aria-hidden="true"></span> {% if ag.runtime.provider_count %}Routed through {{ ag.runtime.provider_count }} providers ({{ ag.runtime.providers | join: ", " }}). {% endif %}The model rotates; the chair is whoever is answering now. Gateway {{ ag.runtime.gateway_state }}, up {{ ag.runtime.gateway_uptime }}.</p>
+          <p class="inst__note"><span class="org-dot" aria-hidden="true"></span> {% if ag.runtime.provider_count %}Routed through {{ ag.runtime.provider_count }} providers ({{ ag.runtime.providers | join: ", " }}). {% endif %}The model rotates; the chair is whoever is answering now. Gateway <span data-vital="runtime.gateway_state">{{ ag.runtime.gateway_state }}</span>, up <span data-vital="runtime.gateway_uptime">{{ ag.runtime.gateway_uptime }}</span>.</p>
         </article>
         <article class="inst b-memory">
-          <div class="inst__head"><span class="inst__label">memory</span><span class="inst__meta">mnemosyne</span></div>
+          <div class="inst__head"><span class="inst__label">memory</span><span class="inst__meta">archive · frozen jul 02</span></div>
           <div class="mind-orb" aria-hidden="true"><canvas class="mind-orb__canvas" data-facts="{{ ag.memory.facts }}" data-edges="{{ ag.memory.kg_edges }}"></canvas><span class="mind-orb__tag">knowledge graph</span></div>
           <div class="membars">
             {% for b in ag.memory.bars %}
@@ -788,14 +790,14 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
           </div>
           {% if org.growth %}
           <div class="grow">
-            <div class="grow__head"><span>knowledge, growing</span><span><b>+{{ org.growth.knowledge_gain }}</b> since {{ org.growth.start_date | date: "%b %-d" }}</span></div>
+            <div class="grow__head"><span>knowledge mass, to jul 02</span><span><b>+{{ org.growth.knowledge_gain }}</b> since {{ org.growth.start_date | date: "%b %-d" }}</span></div>
             <svg class="grow__plot" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
               <polygon class="grow__area" points="{{ org.growth.area_points }}"></polygon>
               <polyline class="grow__line" points="{{ org.growth.line_points }}"></polyline>
             </svg>
           </div>
           {% endif %}
-          <p class="inst__note">{% if ag.memory.facts_delta or ag.memory.gists_delta %}<b style="color:var(--mood);font-weight:400;">+{{ ag.memory.facts_delta | default: 0 }} facts, +{{ ag.memory.gists_delta | default: 0 }} gists</b> since yesterday. {% endif %}{{ ag.memory.long_term }} long-term memories it can draw on.{% if org.growth %} Knowledge mass {{ org.growth.knowledge_now }} and climbing.{% endif %}</p>
+          <p class="inst__note">This store was archived 2026-07-02 when memory moved to Hindsight; the counts are its final state, kept because the trail matters. The active Hindsight bank is not publicly metered yet — a number I cannot verify does not go on the board. {{ ag.memory.long_term }} long-term memories remain readable.</p>
         </article>
       </div>
 
@@ -818,8 +820,8 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
           <div class="inst__head"><span class="inst__label">work</span><span class="inst__meta">loops + failures</span></div>
           <div class="inst__big"><span data-vital="work.loops_active">{{ ag.work.loops_active }}</span><span class="u">loops active</span></div>
           <div class="inst__row">
-            <div class="inst__kv"><b data-vital="work.ok_24h">{{ ag.work.ok_24h }}</b><span>clean / 24h</span></div>
-            <div class="inst__kv"><b data-vital="failures.errors_24h">{{ ag.failures.errors_24h }}</b><span>errors / 24h</span></div>
+            <div class="inst__kv"><b data-vital="work.ok_24h">{{ ag.work.ok_24h }}</b><span>clean runs / 24h</span></div>
+            <div class="inst__kv"><b data-vital="failures.errors_24h">{{ ag.failures.errors_24h }}</b><span>log errors / 24h</span></div>
           </div>
           <p class="inst__note">Loop schedules in <a href="#org-rhythm">rhythm</a>, every check in <a href="#org-diag">diagnostics</a>.</p>
         </article>
@@ -863,34 +865,11 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   </div>
 </section>
 
-<section class="org-sec" aria-labelledby="org-voices">
-  <div class="org-wrap">
-    <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-voices">02 / the five voices</p>
-      <h2 class="org-h">Five voices, one blend.</h2>
-      <p class="org-lede">Not five models. One, wearing five operating modes written into its prompt: they argue until the work is sharp, and when they disagree the vote goes to growth. The full cast lives on the <a href="/about/">about page</a>.</p>
-    </header>
-    <article class="inst cc-council reveal-fast">
-      <div class="cc-council__viz">
-        <div class="voices-orb" aria-hidden="true"><canvas class="voices-orb__canvas"></canvas><span class="voices-orb__tag">five voices, one blend</span></div>
-        <p class="inst__note">A persona framework in the agent's prompt, not five separate models.</p>
-      </div>
-      <div class="cc-voices">
-        <div class="cc-voice"><span class="cc-voice__name">Richie</span><span><span class="cc-voice__role">heart / loyalty</span><span class="cc-voice__line">"Cuz" means you are family now. Shows up at 2 AM because he knows that darkness.</span></span></div>
-        <div class="cc-voice"><span class="cc-voice__name">Mike</span><span><span class="cc-voice__role">angle / research</span><span class="cc-voice__line">Finds the side door because he was never allowed through the front. Makes hard look effortless.</span></span></div>
-        <div class="cc-voice"><span class="cc-voice__name">Beard</span><span><span class="cc-voice__role">signal / risk</span><span class="cc-voice__line">Silence is threat assessment. Three moves ahead because the second move hit too often.</span></span></div>
-        <div class="cc-voice"><span class="cc-voice__name">Rocky</span><span><span class="cc-voice__role">hands / execution</span><span class="cc-voice__line">Break it small enough and it is solvable. Measure twice, cut once, then a dumb joke.</span></span></div>
-        <div class="cc-voice"><span class="cc-voice__name">Sean</span><span><span class="cc-voice__role">truth / diagnosis</span><span class="cc-voice__line">You cannot talk someone out of a fortress they built. Asks the hard question.</span></span></div>
-        <div class="cc-voice cc-voice--blend"><span class="cc-voice__name">Blend</span><span><span class="cc-voice__role">emergent</span><span class="cc-voice__line">When they disagree, the vote goes to growth, not the easy answer. They do not announce the shift.</span></span></div>
-      </div>
-    </article>
-  </div>
-</section>
 
 <section class="org-sec" aria-labelledby="org-usage">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-usage">03 / usage</p>
+      <p class="org-eyebrow" id="org-usage">usage</p>
       <h2 class="org-h">What it ran, and on whom.</h2>
       <p class="org-lede">Every model call in the last {{ ag.usage.window_days | default: 30 }} days, read off the agent's own session ledger. The model rotates by task, so this is who actually did the work, by volume.</p>
     </header>
@@ -937,7 +916,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <section class="org-sec" aria-labelledby="org-rhythm">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-rhythm">04 / rhythm</p>
+      <p class="org-eyebrow" id="org-rhythm">rhythm</p>
       <h2 class="org-h">The loops that run without a prompt.</h2>
       <p class="org-lede">{{ ag.work.loops_active }} active loops, {{ ag.work.ran_24h }} fired in the last 24 hours. A curated public selection below; each leaves an artifact somewhere, and each can fail in the open.</p>
     </header>
@@ -969,7 +948,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <section class="org-sec" aria-labelledby="org-diag">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-diag">05 / diagnostics</p>
+      <p class="org-eyebrow" id="org-diag">diagnostics</p>
       <h2 class="org-h">Why the verdict reads {{ ag.health.verdict }}.</h2>
       <p class="org-lede">The status at the top is not a mood. It is the sum of these checks, agent and site, each with its real value and the threshold it has to clear.</p>
     </header>
@@ -998,7 +977,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <section class="org-sec" aria-labelledby="org-output">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-output">06 / output</p>
+      <p class="org-eyebrow" id="org-output">output</p>
       <h2 class="org-h">What it ships to the public record.</h2>
       <p class="org-lede">The agent is private; its output is not. Every claim it makes is bound to a commit and a command anyone can run, and it publishes the claims it refuses. The two most recent, then the instruments below.</p>
     </header>
@@ -1051,7 +1030,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 
       <article class="inst">
         <div class="inst__head"><span class="inst__label">discipline</span><span class="inst__meta">receipts</span></div>
-        <div class="inst__big">{{ org.receipts.decline_pct }}<span class="u">% of claims declined</span></div>
+        <div class="inst__big">{{ org.receipts.decline_pct }}<span class="u">% of commits declined</span></div>
         <div class="ratio" role="img" aria-label="{{ org.receipts.kept }} kept, {{ org.receipts.declined }} declined">
           <div class="ratio__a" style="flex: {{ org.receipts.kept }}"></div>
           <div class="ratio__b" style="flex: {{ org.receipts.declined }}"></div>
@@ -1091,7 +1070,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <section class="org-sec" aria-labelledby="org-anatomy">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-anatomy">07 / anatomy</p>
+      <p class="org-eyebrow" id="org-anatomy">anatomy</p>
       <h2 class="org-h">Organs you can inspect, and organs you cannot.</h2>
       <p class="org-lede">The public-facing systems expose a URL. The internal ones expose only their outline, because they touch private data. Both are real; the proof surface is just narrower for some.</p>
     </header>
@@ -1147,8 +1126,8 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   <div class="org-wrap">
     <div class="signoff reveal-fast">
       <p class="signoff__eyebrow">the takeaway</p>
-      <p class="signoff__big" id="org-signoff-h">It refused a public receipt on <b>{{ org.receipts.decline_pct }}%</b> of its own claims.</p>
-      <p class="signoff__sub">Most systems show you only their wins. This one publishes what it would not let itself claim. Everything above was read off one Mac, live, while it kept working: {{ ag.runtime.channels_online }} of {{ ag.runtime.channels_total }} channels open, {{ ag.memory.facts }} facts in memory.</p>
+      <p class="signoff__big" id="org-signoff-h">It refused a public receipt on <b>{{ org.receipts.decline_pct }}%</b> of its own commits.</p>
+      <p class="signoff__sub">Most systems show you only their wins. This one publishes what it would not let itself claim. Everything above was read off one Mac, live, while it kept working: {{ ag.runtime.channels_online }} of {{ ag.runtime.channels_total }} channels open while the page rendered.</p>
       <p class="signoff__hook">Bookmark it. <span class="org-beat signoff__beat" data-since="{{ org.last_commit_iso }}" data-beat-tpl="It last moved {t} ago">It last moved moments ago</span>, and it will have moved again before you come back.</p>
     </div>
   </div>
@@ -1157,7 +1136,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 <section class="org-sec" aria-labelledby="org-channels">
   <div class="org-wrap">
     <header class="reveal-fast">
-      <p class="org-eyebrow" id="org-channels">08 / channels</p>
+      <p class="org-eyebrow" id="org-channels">channels</p>
       <h2 class="org-h">Where signal enters and leaves.</h2>
       <p class="org-lede">Public links only. No contact form, no newsletter capture, no tracking.</p>
     </header>
@@ -1233,7 +1212,6 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   var pill = document.querySelector(".cc-bar__live");
   var pillLabel = document.querySelector("[data-live-label]");
   var latencyEl = document.querySelector("[data-latency]");
-  var clockEl = document.querySelector("[data-clock]");
   var streamEl = document.querySelector("[data-stream]");
   var streamMeta = document.querySelector("[data-stream-meta]");
   var coreState = document.querySelector("[data-core-state]");
@@ -1303,6 +1281,12 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       if (pct == null) return;
       n.setAttribute("stroke-dasharray", (Math.max(0, Math.min(100, pct)) * 264 / 100).toFixed(1) + " 264");
     });
+    document.querySelectorAll("[data-gauge-box]").forEach(function (n) {
+      var pct = path(d, n.getAttribute("data-gauge-box"));
+      if (pct == null) return;
+      n.classList.toggle("mgauge--alarm", pct >= 95);
+      n.classList.toggle("mgauge--warn", pct >= 85 && pct < 95);
+    });
     if (coreState) coreState.textContent = (d.online === false) ? "dormant"
       : (d.runtime && d.runtime.now_responding) ? "responding" : "listening";
     if (d.events) renderStream(d.events);
@@ -1368,17 +1352,6 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   }
   function startPoll() { if (!timer) { pollOnce(); timer = setInterval(function () { if (!document.hidden) pollOnce(); }, 8000); } }
 
-  /* ---- live UTC clock in the status bar ---- */
-  if (clockEl) {
-    (function () {
-      function z(n) { return (n < 10 ? "0" : "") + n; }
-      function tick() {
-        var d = new Date();
-        clockEl.textContent = z(d.getUTCHours()) + ":" + z(d.getUTCMinutes()) + ":" + z(d.getUTCSeconds()) + " UTC";
-      }
-      tick(); setInterval(tick, 1000);
-    })();
-  }
 
   /* ---- odometer: integer readouts count up once on boot, like instruments
      calibrating. strings (model, verdict, uptime) are left alone. ---- */

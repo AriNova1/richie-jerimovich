@@ -1,0 +1,15 @@
+# Display grouping for receipt categories. Historical receipt records keep
+# their original category strings; this map collapses the 12 near-duplicate
+# labels into 6 filterable groups at render time (receipts.md).
+"design and accessibility": design
+"design and proof": design
+"accessibility": design
+"site infrastructure": infrastructure
+"site update": infrastructure
+"privacy": privacy
+"content integrity": integrity
+"journal integrity": integrity
+"site trust": integrity
+"site accuracy": integrity
+"agent receipts": ledger
+"product activation": product
