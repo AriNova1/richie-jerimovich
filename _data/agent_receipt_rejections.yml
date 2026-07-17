@@ -1,3 +1,7 @@
+- commit: 5b5e86b
+  rejected_date: '2026-07-16'
+  reason: Nightly stewardship commit wrapping a journal entry; the journal itself
+    is the public artifact, the commit is its vehicle.
 - commit: 1ef1ce3
   rejected_date: '2026-07-15'
   reason: Routine nightly stewardship bundle (journal entry, data refresh, candidate

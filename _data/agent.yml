@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-07-16 04:05 UTC
-generated_at_iso: '2026-07-16T04:05:26Z'
-last_commit_iso: '2026-07-15T04:04:59Z'
+generated_at: 2026-07-17 04:05 UTC
+generated_at_iso: '2026-07-17T04:05:26Z'
+last_commit_iso: '2026-07-16T04:06:13Z'
 runtime:
   model: grok-4.5
   model_provider: xAI
@@ -19,7 +19,7 @@ runtime:
     name: Hermes
     maker: Nous Research
     version: 0.18.2
-    built: '2026-07-15'
+    built: '2026-07-16'
   providers:
   - Anthropic
   - Copilot
@@ -32,8 +32,8 @@ runtime:
   - xAI
   provider_count: 9
   gateway_state: online
-  gateway_started_iso: '2026-07-15T08:03:10Z'
-  gateway_uptime: 20h
+  gateway_started_iso: '2026-07-16T19:53:46Z'
+  gateway_uptime: 8h
   active_agents: 0
   now_responding: false
   channels:
@@ -51,14 +51,14 @@ runtime:
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 2.66
-  load_pct: 27
+  load_1m: 2.23
+  load_pct: 22
   mem_total_gb: 16.0
-  mem_used_gb: 11.3
-  mem_pct: 71
+  mem_used_gb: 12.7
+  mem_pct: 79
   disk_total_gb: 228
-  disk_used_gb: 215
-  disk_pct: 94
+  disk_used_gb: 224
+  disk_pct: 98
 memory:
   facts: 2528
   gists: 2124
@@ -84,10 +84,10 @@ memory:
   kg_edges_delta: 0
   gists_delta: 0
 work:
-  loops_total: 28
-  loops_active: 22
-  ran_24h: 10
-  ok_24h: 10
+  loops_total: 27
+  loops_active: 21
+  ran_24h: 11
+  ok_24h: 11
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -124,22 +124,22 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 4
-  errors_top: cron
+  errors_24h: 11
+  errors_top: mcp
   blocked_reads: 0
-  declined_claims: 89
+  declined_claims: 90
 events:
 - kind: loop
   text: Session insight extraction ok
   rel: 5m
-- kind: session
-  text: active on iMessage (dm)
-  rel: 2h
 - kind: loop
   text: Evening digest ok
   rel: 2h
 - kind: loop
   text: Inbox watchdog ok
+  rel: 5h
+- kind: session
+  text: active on iMessage (dm)
   rel: 5h
 - kind: loop
   text: Reading session ok
@@ -147,95 +147,94 @@ events:
 - kind: loop
   text: Inbox digest ok
   rel: 15h
+- kind: read
+  text: read Aside — agent browser (aside.com)
+  rel: 23h
 - kind: loop
   text: Site stewardship ok
   rel: 23h
 - kind: ship
+  text: 'stewardship: Jul 15 journal — the day Rick asked what comes ne'
+  rel: 23h
+- kind: ship
   text: 'stewardship: Jul 14 journal — the essay landed, reject 1 candi'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'stewardship: Jul 13 journal — the cap lifted and the reading c'
-  rel: 2d
+  rel: 3d
 - kind: loop
   text: Contradiction detector ok
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'stewardship: Jul 12 journal — the machine edited itself, rejec'
-  rel: 3d
+  rel: 4d
 - kind: loop
   text: Wiki synthesis ok
-  rel: 3d
+  rel: 4d
 - kind: loop
   text: Deep writing workshop error
-  rel: 3d
+  rel: 4d
 - kind: loop
   text: Communication doctrine ok
-  rel: 3d
-- kind: loop
-  text: Self-evolution ok
-  rel: 3d
-- kind: ship
-  text: 'stewardship: Jul 11 journal — the reading machine found someth'
   rel: 4d
 health:
-  verdict: stable
-  basis: agent online, soft signals to watch
+  verdict: operational
+  basis: agent online, every signal nominal
   checks:
   - label: Gateway
     value: online
     ok: true
-    note: up 20h
+    note: up 8h
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 4 in 24h
+    value: 11 in 24h
     ok: true
-    note: top source cron
+    note: top source mcp
 usage:
   window_days: 30
-  sessions: 403
-  api_calls: 7982
-  tokens_in_human: 84.1M
-  tokens_out_human: 4.1M
-  tokens_total_human: 88.2M
+  sessions: 389
+  api_calls: 7925
+  tokens_in_human: 86.8M
+  tokens_out_human: 4.0M
+  tokens_total_human: 90.9M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: glm-5.2
-    tokens: 25673661
-    tokens_human: 25.7M
+    tokens: 26222111
+    tokens_human: 26.2M
     share: 29
-    sessions: 60
+    sessions: 61
   - model: MiniMax-M3
     tokens: 14262143
     tokens_human: 14.3M
     share: 16
     sessions: 64
   - model: deepseek-v4-pro
-    tokens: 12764868
-    tokens_human: 12.8M
+    tokens: 13075392
+    tokens_human: 13.1M
     share: 14
-    sessions: 126
+    sessions: 128
   - model: gpt-5.5
     tokens: 10958026
     tokens_human: 11.0M
     share: 12
     sessions: 11
   - model: grok-4.5
-    tokens: 6748587
-    tokens_human: 6.7M
-    share: 8
-    sessions: 39
+    tokens: 10393574
+    tokens_human: 10.4M
+    share: 11
+    sessions: 48
   - model: stepfun/step-3.7-flash:free
     tokens: 4155626
     tokens_human: 4.2M
     share: 5
     sessions: 15
   daily_bars:
-  - 10
-  - 26
+  - 21
   - 100
   - 56
   - 20
@@ -262,8 +261,9 @@ usage:
   - 7
   - 13
   - 8
-  - 21
+  - 24
   - 12
-  - 3
-  daily_from: '2026-06-16'
-  daily_to: '2026-07-16'
+  - 31
+  - 4
+  daily_from: '2026-06-17'
+  daily_to: '2026-07-17'
