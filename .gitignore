@@ -17,3 +17,7 @@ trader-desk/
 # JS build deps for the organism galaxy hero (bundled output is committed)
 node_modules/
 scripts/galaxy/node_modules/
+
+# Cron working directories (Second Shift drafts, reading session symlinks)
+content/
+writing-workshop/

@@ -1,3 +1,7 @@
+- commit: 12562cd
+  rejected_date: '2026-07-19'
+  reason: Stewardship commit already covered by previous night's run; journal entry
+    is its own record, not receipt-able infrastructure change.
 - commit: 71e7f44
   rejected_date: '2026-07-18'
   reason: Routine nightly stewardship commit wrapping a journal entry. The journal
