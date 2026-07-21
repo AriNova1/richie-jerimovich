@@ -17,7 +17,6 @@ from __future__ import annotations
 
 import re
 import subprocess
-from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 import yaml
@@ -30,10 +29,9 @@ JOURNAL_DIR = ROOT / "_journal"
 OUT = ROOT / "_data" / "experience.yml"
 REPO = "https://github.com/AriNova1/richie-jerimovich"
 
-# How many recent journal entries the voice-line scanner may quote.
+# The experience follows the latest published receipt. Its work date anchors
+# the commits, journal, pressure readings, cost, and evidence to one real night.
 JOURNAL_SCAN_DEPTH = 10
-# How far back (days, inclusive of the night itself) the cost scanner looks.
-COST_WINDOW_DAYS = 4
 
 
 # ── loaders ──────────────────────────────────────────────────────────────
@@ -150,7 +148,8 @@ PRESSURE_KEYWORDS = {
     "mike": [("reading session", 2), ("synthes", 2), ("benchmark", 2),
              ("research", 2), ("pattern", 1), ("study", 1), ("signal", 1)],
     "beard": [("still broken", 3), ("still blind", 3), ("watchdog", 2),
-              ("refus", 2), ("drift", 2), ("risk", 1), ("wait", 1)],
+              ("still dead", 3), ("dead", 2), ("refus", 2),
+              ("drift", 2), ("risk", 1), ("wait", 1)],
     "rocky": [("moved the lever", 3), ("shipped", 2), ("built", 2),
               ("rebuilt", 2), ("rebuild", 2), ("updated", 1), ("fix", 1),
               ("cut", 1)],
@@ -227,17 +226,23 @@ def find_voice_lines(journals):
 
 # ── cost scanner ─────────────────────────────────────────────────────────
 
-COST_KEYWORDS = [("still broken", 3), ("still blind", 3), ("timed out", 3),
-                 ("429", 3), ("failed", 3), ("failure", 3), ("dead", 2),
+COST_KEYWORDS = [("did not write alone", 4), ("co-auth", 4),
+                 ("external coding agent", 3), ("still broken", 3),
+                 ("still blind", 3), ("timed out", 3), ("429", 3),
+                 ("failed", 3), ("failure", 3), ("dead", 2),
                  ("refused", 1), ("drift", 1), ("error", 1)]
 
 COST_MEANING = {
+    "did not write alone": "The work shipped, but a sole-credit story would be false. The receipt names the collaboration.",
+    "co-auth": "The work shipped, but authorship is shared. Proof includes who helped make it.",
+    "external coding agent": "Another system did the heavy lifting. The record keeps that context beside the claim.",
     "timed out": "A job waited on an API that never answered. That run shipped nothing.",
     "still broken": "It stayed broken through the night. Reporting it again is not the fix.",
     "still blind": "A sensor stayed dark. The machine worked around what it could not see.",
     "refused": "The scheduler declined to spend on a config nobody pinned. Silence has a price.",
     "drift": "The config moved and the job did not. Unpinned work breaks quietly.",
     "failed": "The job failed and the record says so. Autonomy includes the misses.",
+    "dead": "Some scheduled jobs were still dead. A running system has to name the parts that are not running.",
 }
 
 
@@ -250,22 +255,14 @@ def meaning_for(text: str) -> str:
 
 
 def find_cost(commits, journals, night_date: str):
-    """One real failure from the night's +/- 3-day window of the record."""
-    try:
-        night = datetime.strptime(night_date, "%Y-%m-%d").date()
-    except ValueError:
-        night = None
-    window = set()
-    if night:
-        for d in range(COST_WINDOW_DAYS):
-            window.add((night - timedelta(days=d)).isoformat())
+    """One real cost from the same night as the anchored receipt."""
 
     candidates = []  # (score, length, order, text, source)
     order = 0
 
-    # Commit subjects in the window.
+    # Commit subjects from the anchored night.
     for c in commits:
-        if window and c["date"] not in window:
+        if night_date and c["date"] != night_date:
             continue
         s = score_sentence(c["subject"], COST_KEYWORDS)
         if s > 0:
@@ -274,10 +271,10 @@ def find_cost(commits, journals, night_date: str):
                                f"{REPO}/commit/{c['sha']}"))
             order += 1
 
-    # Journal sentences in the window; merge a short hit with the next
+    # Journal sentences from the anchored night; merge a short hit with the next
     # sentence when the pair still fits the card.
     for j in journals:
-        if window and j["date"] not in window:
+        if night_date and j["date"] != night_date:
             continue
         sents = sentences(j["body"])
         for i, sent in enumerate(sents):
@@ -298,15 +295,18 @@ def find_cost(commits, journals, night_date: str):
         # then the earliest scanned.
         candidates.sort(key=lambda c: (-c[0], -c[1], c[2]))
         _, _, _, text, source = candidates[0]
+        authorship = any(stem in text.lower() for stem in (
+            "did not write alone", "co-auth", "external coding agent"))
         return {
             "what_happened": text,
             "source": source,
             "what_it_means": meaning_for(text),
-            "kind": "failure",
+            "kind": "authorship-cost" if authorship else "failure",
         }
 
-    # Honest fallback: the most recent claim the system refused to print.
-    rejections = load_yaml(REJECTIONS)
+    # Honest fallback: a claim the system refused on the anchored night.
+    rejections = [r for r in load_yaml(REJECTIONS)
+                  if r.get("rejected_date") == night_date]
     if rejections:
         r = rejections[0]
         reason = truncate(str(r.get("reason", "")), 160)
@@ -321,9 +321,17 @@ def find_cost(commits, journals, night_date: str):
 
 # ── the ask ──────────────────────────────────────────────────────────────
 
-def find_ask(night_commits, night_journal):
+def find_ask(night_commits, night_journal, receipt=None):
     """One real task from the night. Prefer a non-stewardship commit; else
     pull the literal ask out of the journal; else the journal title."""
+    if receipt:
+        evidence = receipt.get("evidence") or []
+        first_evidence = evidence[0] if evidence else {}
+        return {
+            "title": truncate(str(receipt.get("title") or "The receipt's task"), 90),
+            "source_ref": first_evidence.get("label") or receipt.get("id"),
+            "source_url": first_evidence.get("url") or receipt.get("url"),
+        }
     for c in night_commits:
         if not c["subject"].lower().startswith("stewardship"):
             return {
@@ -359,7 +367,7 @@ def find_ask(night_commits, night_journal):
 
 def build_threshold_lines(night_date, night_commits, night_journal,
                           kept, declined, journal_count):
-    lines = [f"night of {night_date} — service ticket"]
+    lines = [f"night of {night_date}: service ticket"]
     if night_journal:
         lines.append(truncate(f"journal: {night_journal['title'].lower()}", 60))
     for c in night_commits:
@@ -382,11 +390,6 @@ def main() -> int:
     journals = recent_journals()
     journal_count = len(list(JOURNAL_DIR.glob("*.md"))) if JOURNAL_DIR.exists() else 0
 
-    night_date = commits[0]["date"] if commits else (
-        journals[0]["date"] if journals else "")
-    night_commits = [c for c in commits if c["date"] == night_date]
-    night_journal = next((j for j in journals if j["date"] == night_date), None)
-
     kept = len(receipts)
     declined = len(rejections)
 
@@ -397,11 +400,17 @@ def main() -> int:
         r["url"] = f"/receipts/#{r.get('id')}"
         latest_receipt = r
 
+    night_date = (latest_receipt or {}).get("work_date") or (
+        commits[0]["date"] if commits else (
+            journals[0]["date"] if journals else ""))
+    night_commits = [c for c in commits if c["date"] == night_date]
+    night_journal = next((j for j in journals if j["date"] == night_date), None)
+    trace_journals = [night_journal] if night_journal else []
+
     experience = {
-        "generated_at": datetime.now(timezone.utc).strftime(
-            "%Y-%m-%dT%H:%M:%SZ"),
         "night": {
             "date": night_date,
+            "receipt_id": (latest_receipt or {}).get("id"),
             "commits": [
                 {"sha": c["sha"], "subject": c["subject"],
                  "url": f"{REPO}/commit/{c['sha']}"}
@@ -417,21 +426,23 @@ def main() -> int:
         "threshold_lines": build_threshold_lines(
             night_date, night_commits, night_journal,
             kept, declined, journal_count),
-        "ask": find_ask(night_commits, night_journal),
-        "pressures": find_voice_lines(journals),
-        "cost": find_cost(commits, journals, night_date),
+        "ask": find_ask(night_commits, night_journal, latest_receipt),
+        "pressures": find_voice_lines(trace_journals),
+        "cost": find_cost(night_commits, trace_journals, night_date),
         "receipt": latest_receipt,
         "stats": {
             "receipts_kept": kept,
             "claims_declined": declined,
             "journal_entries": journal_count,
-            "site_last_commit": night_date,
+            "site_last_commit": commits[0]["date"] if commits else night_date,
+            "trace_date": night_date,
         },
     }
 
     header = (
         "# AUTO-GENERATED by scripts/build_experience.py — do not hand-edit.\n"
-        "# Canonical scene data for /inside/. Derived from git, _journal/,\n"
+        "# Canonical scene data for /inside/. Anchored to the latest published\n"
+        "# receipt and its work date; derived from git, _journal/,\n"
         "# agent_receipts.yml and agent_receipt_rejections.yml. Lines marked\n"
         "# dramatized: true are generic in-character fallbacks, not quotes.\n"
     )

@@ -67,7 +67,7 @@
 
 ---
 
-## 4. SOUND DESIGN (all opt-in, off by default — the page has quiet-mode already wired)
+## 4. SOUND DESIGN (all opt-in and off by default; add a Quiet control when audio ships)
 
 **4a. Room tone bed (The Room, loopable, 60s+):**
 > Low restaurant-kitchen room tone at night: distant HVAC hum, faint refrigeration cycle, occasional soft metal tick of cooling steel, very distant muted city outside. Warm, close, quiet. No music, no voices. Seamless loop.
@@ -97,7 +97,7 @@
 
 ## 6. THE SESSION TRACE (free — curation, not generation)
 
-Scene 2/3 currently runs on the Jul-20 ask. The strongest long-term fuel is a **curated library of 3–5 sanitized session traces** (ask → pressure argument → move → failure → receipt). Pick from the repo's own history: good candidates are the v7 rebuild (Jul 17, has sweep + proof), the /31/ tunnel removal (Jul 9, has stakes), and the Jul 19 "Sunday of machines" (richest failure material). Format each as a YAML block matching `_data/experience.yml`'s shape; `build_experience.py` can later rotate them.
+Scene 2/3 is anchored to the Jul-17 v7 receipt, its same-day commits, and its journal. The strongest long-term fuel is a **curated library of 3–5 sanitized, internally coherent session traces** (ask → pressure reading → move → cost → receipt). Good next candidates are the /31/ tunnel removal (Jul 9, has stakes) and a future receipt-backed night with strong failure material. Never splice separate dates and present them as one night. Format each trace as a YAML block matching `_data/experience.yml`; `build_experience.py` can later rotate them.
 
 ---
 

@@ -3,9 +3,9 @@
    Self-contained: uses only v7 tokens from assets/style.css.
    Rules of the house:
    - Content is visible by default. JS only adds motion.
-   - Entrance pattern: html.js .anim starts hidden; .inside-visible
-     brings it in. No-JS and reduced-motion see the same document,
-     simply still.
+   - Entrance pattern: JS adds html.inside-motion only after the
+     observer exists. No-JS, failed-JS, and reduced-motion see the
+     same complete document, simply still.
    - All motion lives behind @media (prefers-reduced-motion: no-preference).
    ═══════════════════════════════════════════════════════════ */
 
@@ -34,7 +34,7 @@
   padding: clamp(4rem, 10vh, 8rem) var(--gutter);
   overflow: clip;
 }
-.scene-inner { max-width: 46rem; margin: 0 auto; width: 100%; }
+.scene-inner { max-width: 46rem; margin: 0 auto; width: 100%; min-width: 0; }
 .scene-kicker {
   font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.22em;
   text-transform: uppercase; color: var(--text-dim); margin-bottom: 1.2rem;
@@ -71,19 +71,22 @@
 }
 
 /* ── Entrance pattern (visible by default; JS opts into hiding) ── */
-html.js .anim { opacity: 0; transform: translateY(22px); }
-html.js .anim.inside-visible { opacity: 1; transform: none; }
+html.inside-motion .anim { opacity: 0; transform: translateY(22px); }
+html.inside-motion .anim.inside-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: no-preference) {
-  html.js .anim.inside-visible {
+  html.inside-motion .anim.inside-visible {
     transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
   }
 }
 
 /* ── Scene 0 · the printer ── */
-.printer { display: grid; justify-items: center; margin: 2.4rem 0 2rem; }
+.printer {
+  display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center;
+  width: 100%; min-width: 0; margin: 2.4rem 0 2rem;
+}
 .printer-ticket {
   --perf: radial-gradient(circle at 6px 100%, transparent 4.5px, #000 5px);
-  width: min(26rem, 100%);
+  width: min(26rem, 100%); max-width: 100%; min-width: 0;
   background: var(--ticket); color: var(--ticket-ink);
   font-family: var(--font-mono);
   padding: 1.1rem 1.2rem 1.4rem;
@@ -111,7 +114,7 @@ html.js .anim.inside-visible { opacity: 1; transform: none; }
 .threshold-greeting { font-family: var(--font-mono); color: var(--amber); font-size: 0.9rem; }
 
 @media (prefers-reduced-motion: no-preference) {
-  html.js .printer-ticket.is-live { animation: ticket-settle 0.5s var(--ease-out); }
+  html.inside-motion .printer-ticket.is-live { animation: ticket-settle 0.5s var(--ease-out); }
   @keyframes ticket-settle {
     from { transform: translateY(-6px) rotate(-0.4deg); }
     to { transform: none; }
@@ -120,8 +123,8 @@ html.js .anim.inside-visible { opacity: 1; transform: none; }
 
 /* ── Scene 1 · the room ── */
 .room-excerpt {
-  border-left: 2px solid var(--steel-edge-hot);
-  padding-left: 1.1rem; font-size: var(--step--1); color: var(--text-dim);
+  border-block: 1px solid var(--steel-edge-hot);
+  padding: 0.9rem 0; font-size: var(--step--1); color: var(--text-dim);
 }
 
 /* ── Scene 2 · the ask + five pressures ── */
@@ -140,23 +143,23 @@ html.js .anim.inside-visible { opacity: 1; transform: none; }
   letter-spacing: 0.2em; text-transform: uppercase; color: var(--ticket-ink-soft);
   margin-bottom: 0.5rem;
 }
-.ask-card h3 { font-family: var(--font-display); font-size: var(--step-1); line-height: 1.25; }
+.ask-card h3 { font-family: var(--font-display); font-size: var(--step-1); line-height: 1.25; color: var(--ticket-ink); }
 .ask-source { font-family: var(--font-mono); font-size: 0.7rem; margin-top: 0.7rem; color: var(--ticket-ink-soft); }
 .ask-source a { color: var(--burn); }
 
 .pressures { margin-top: 2.4rem; display: grid; gap: 1rem; }
 .pressure {
+  --pressure-color: var(--steel-edge-hot);
   background: var(--bg-raised);
-  border: 1px solid var(--steel-edge);
-  border-left: 3px solid var(--steel-edge-hot);
+  border: 1px solid var(--pressure-color);
   border-radius: var(--r-card);
   padding: 1rem 1.2rem;
 }
-.p-mike { border-left-color: var(--v-mike); }
-.p-beard { border-left-color: var(--v-beard); }
-.p-rocky { border-left-color: var(--v-rocky); }
-.p-sean { border-left-color: var(--v-sean); }
-.p-richie { border-left-color: var(--v-richie); }
+.p-mike { --pressure-color: var(--v-mike); }
+.p-beard { --pressure-color: var(--v-beard); }
+.p-rocky { --pressure-color: var(--v-rocky); }
+.p-sean { --pressure-color: var(--v-sean); }
+.p-richie { --pressure-color: var(--v-richie); }
 .pressure-behavior {
   display: block; font-style: normal; font-family: var(--font-mono);
   font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
@@ -172,18 +175,22 @@ html.js .anim.inside-visible { opacity: 1; transform: none; }
 
 /* Wide screens: pressures sit spatially around the ask card. */
 @media (min-width: 62rem) {
-  .ask-cluster { min-height: 34rem; }
-  .ask-card { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 22rem; margin: 0; }
+  .scene-ask .scene-inner { max-width: 64rem; }
+  .scene-ask .scene-kicker,
+  .scene-ask h2,
+  .scene-ask .scene-note { max-width: 46rem; margin-left: auto; margin-right: auto; }
+  .ask-cluster { min-height: 42rem; }
+  .ask-card { position: absolute; left: 50%; top: 12rem; transform: translateX(-50%); width: 22rem; margin: 0; }
   .pressures { position: absolute; inset: 0; margin: 0; }
   .pressure { position: absolute; width: 19rem; }
-  .p-mike { left: 0; top: 4%; }
+  .p-mike { left: 0; top: 0; }
   .p-beard { right: 0; top: 0; }
-  .p-rocky { right: 2%; bottom: 6%; }
-  .p-sean { left: 2%; bottom: 0; }
-  .p-richie { left: 50%; bottom: -4%; transform: translateX(-50%); width: 21rem; }
+  .p-rocky { right: 0; bottom: 0; }
+  .p-sean { left: 0; bottom: 0; }
+  .p-richie { left: 50%; bottom: 0; transform: translateX(-50%); width: 21rem; }
   /* keep the entrance transform from fighting the layout transform */
-  html.js .p-richie.anim { transform: translateX(-50%) translateY(22px); }
-  html.js .p-richie.anim.inside-visible { transform: translateX(-50%); }
+  html.inside-motion .p-richie.anim { transform: translateX(-50%) translateY(22px); }
+  html.inside-motion .p-richie.anim.inside-visible { transform: translateX(-50%); }
 }
 
 /* ── Scene 3 · the move ── */
@@ -200,8 +207,7 @@ html.js .anim.inside-visible { opacity: 1; transform: none; }
 /* ── Scene 4 · the cost ── */
 .cost-card {
   background: var(--bg-raised);
-  border: 1px solid var(--steel-edge);
-  border-left: 3px solid var(--alarm);
+  border: 1px solid var(--alarm);
   border-radius: var(--r-card);
   padding: 1.4rem 1.5rem; margin: 1.8rem 0;
 }
@@ -223,7 +229,7 @@ html.js .anim.inside-visible { opacity: 1; transform: none; }
   font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--ticket-ink-soft); margin-bottom: 0.6rem;
 }
-.ticket-face h3 { font-family: var(--font-display); font-size: var(--step-1); line-height: 1.25; }
+.ticket-face h3 { font-family: var(--font-display); font-size: var(--step-1); line-height: 1.25; color: var(--ticket-ink); }
 .ticket-face .t-meta { font-size: 0.82rem; color: var(--ticket-ink-soft); margin-top: 0.6rem; line-height: 1.5; }
 .ticket-face .t-rule { border: none; border-top: 1px dashed var(--ticket-rule); margin: 0.9rem 0; }
 .ticket-face .stamp {
@@ -252,6 +258,7 @@ html.js .copy-btn {
   font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--ticket-ink);
   border: 1px solid var(--ticket-rule); border-radius: 3px; padding: 0.3rem 0.7rem;
+  min-height: 2.75rem;
 }
 html.js .copy-btn:hover { background: rgba(36, 31, 22, 0.1); }
 .t-limits { list-style: none; margin-top: 0.4rem; }
@@ -259,7 +266,7 @@ html.js .copy-btn:hover { background: rgba(36, 31, 22, 0.1); }
   font-size: 0.76rem; color: var(--ticket-ink-soft); line-height: 1.5;
   padding-left: 0.9rem; position: relative;
 }
-.t-limits li::before { content: "–"; position: absolute; left: 0; }
+.t-limits li::before { content: "·"; position: absolute; left: 0; }
 
 /* Flip mechanics: JS only. Without JS both faces stack, fully readable. */
 .flip-btn { display: none; }
@@ -268,7 +275,7 @@ html.js .flip-btn {
   font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--amber);
   border: 1px solid rgba(240, 192, 64, 0.4); border-radius: 3px;
-  padding: 0.55rem 1.1rem;
+  padding: 0.55rem 1.1rem; min-height: 2.75rem;
 }
 html.js .flip-btn:hover { background: var(--amber-soft); }
 html.js .ticket-flip { perspective: 1200px; min-height: 22rem; }
@@ -334,7 +341,8 @@ html.js .ticket-flip.flipped .ticket-back { transform: rotateY(0); }
   display: inline-flex; align-items: center; gap: 0.45rem;
   font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--text-dim); text-decoration: none;
-  padding: 0.3rem 0;
+  padding: 0.3rem 0; min-width: 2.75rem; min-height: 2.75rem;
+  justify-content: center;
 }
 .scene-index .dot {
   width: 7px; height: 7px; border-radius: 50%;
@@ -350,8 +358,12 @@ html.js .ticket-flip.flipped .ticket-back { transform: rotateY(0); }
     z-index: 40; flex-direction: column; gap: 0.55rem; padding: 0;
     max-width: none;
   }
+  html.js .scene-index a {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+  }
   html.js .scene-index .lbl {
-    opacity: 0; transform: translateX(4px);
+    opacity: 0; transform: translateX(-4px);
     transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
   }
   html.js .scene-index a:hover .lbl,
@@ -361,7 +373,7 @@ html.js .ticket-flip.flipped .ticket-back { transform: rotateY(0); }
 @media (max-width: 61.99rem) {
   html.js .scene-index {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
-    justify-content: center; gap: 0.9rem;
+    justify-content: space-between; gap: 0;
     background: rgba(13, 11, 9, 0.92); backdrop-filter: blur(6px);
     border-top: 1px solid var(--steel-edge);
     padding: 0.55rem var(--gutter); max-width: none;
@@ -378,17 +390,20 @@ html.js .ticket-flip.flipped .ticket-back { transform: rotateY(0); }
 .inside-modes { display: none; }
 html.js .inside-modes {
   display: flex; gap: 0.5rem;
-  position: fixed; right: 1rem; bottom: 1rem; z-index: 41;
+  position: fixed; left: 1rem; bottom: 1rem; z-index: 41;
 }
 html.js .inside-modes button {
   font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--text-dim);
   border: 1px solid var(--steel-edge); border-radius: 3px;
   background: rgba(13, 11, 9, 0.85); padding: 0.4rem 0.7rem;
+  min-height: 2.75rem;
 }
 html.js .inside-modes button[aria-pressed="true"] { color: var(--amber); border-color: rgba(240, 192, 64, 0.5); }
 @media (max-width: 61.99rem) {
-  html.js .inside-modes { bottom: 3.2rem; }
+  html.js .inside-modes {
+    top: 4.25rem; right: 1rem; bottom: auto; left: auto;
+  }
 }
 
 /* ── Mobile tightening ── */
@@ -402,7 +417,7 @@ html.js .inside-modes button[aria-pressed="true"] { color: var(--amber); border-
 
 /* ── Reduced motion: everything simply visible, in place ── */
 @media (prefers-reduced-motion: reduce) {
-  html.js .anim { opacity: 1; transform: none; }
+  html.inside-motion .anim { opacity: 1; transform: none; }
   html.js .ticket-face { transition: none; }
   .scene-backdrop { transform: none; }
 }

@@ -50,7 +50,7 @@ Eight scenes, one continuous native scroll, fully readable as static text with n
 
 - `inside.md` — the page (complete static markup, scene data from `_data/experience.yml` via Liquid)
 - `assets/css/inside.css` — scene layout + motion tokens, self-contained
-- `assets/js/inside.js` — vanilla orchestrator: scene progress, print-in, parallax, ticket flip, quiet/low-power modes, reduced-motion off-ramp, return-visitor memory
+- `assets/js/inside.js` — vanilla orchestrator: scene progress, print-in, parallax, ticket flip, low-power mode, reduced-motion off-ramp, return-visitor memory. Quiet appears only when opt-in audio ships.
 - `scripts/build_experience.py` — generates `_data/experience.yml` from timeline/receipts/journal; wired into `scripts/refresh.sh`
 - `_data/experience.yml` — generated, committed
 - Repairs: reveal visibility fix (`assets/style.css` + `_layouts/default.html`), `_data/projects.yml` + `projects.md` data-driven, podcast demote, `beliefs.md` July update, `talk.md` v7 token refactor (stays excluded)

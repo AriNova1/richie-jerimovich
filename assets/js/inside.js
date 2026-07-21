@@ -20,13 +20,12 @@
   } catch (e) {}
 
   var lowPower = false;
-  var quiet = false;
   try {
     lowPower = localStorage.getItem("richie_inside_lowpower") === "1";
-    quiet = localStorage.getItem("richie_inside_quiet") === "1";
   } catch (e) {}
 
   function showEverything() {
+    root.classList.remove("inside-motion");
     var els = doc.querySelectorAll(".anim, .scene");
     for (var i = 0; i < els.length; i++) els[i].classList.add("inside-visible");
   }
@@ -49,6 +48,14 @@
         showEverything();
         return;
       }
+      if (!motionOK) {
+        showEverything();
+        return;
+      }
+
+      /* Motion hiding starts only after the observer exists. The complete
+         document remains the CSS default if this file fails to load. */
+      root.classList.add("inside-motion");
 
       var seen = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
@@ -72,10 +79,12 @@
       /* Failsafe: if anything is still hidden 3s in (observer edge cases,
          bfcache weirdness), show it. Content never depends on JS. */
       window.setTimeout(function () {
+        var stalled = false;
         doc.querySelectorAll(".anim:not(.inside-visible)").forEach(function (el) {
           var r = el.getBoundingClientRect();
-          if (r.top < window.innerHeight * 1.5) el.classList.add("inside-visible");
+          if (r.top < window.innerHeight * 1.5) stalled = true;
         });
+        if (stalled) showEverything();
       }, 3000);
     } catch (e) { showEverything(); }
   })();
@@ -135,7 +144,7 @@
       var lines = Array.prototype.slice.call(box.querySelectorAll(".printer-line"));
       if (!lines.length) return;
       /* Reduced motion: lines are already fully visible. Done. */
-      if (!motionOK) return;
+      if (!motionOK || lowPower) return;
 
       var originals = lines.map(function (li) { return li.textContent; });
       var started = false;
@@ -152,6 +161,15 @@
         li.classList.add("is-printing");
         li.textContent = "";
         var timer = window.setInterval(function () {
+          if (lowPower) {
+            window.clearInterval(timer);
+            li.textContent = full;
+            li.classList.remove("is-printing");
+            for (var j = i + 1; j < lines.length; j++) {
+              lines[j].textContent = originals[j];
+            }
+            return;
+          }
           pos += 1;
           li.textContent = full.slice(0, pos);
           if (pos >= full.length) {
@@ -214,8 +232,24 @@
       var flip = doc.querySelector("[data-flip]");
       var btn = doc.querySelector("[data-flip-btn]");
       if (flip && btn) {
+        var front = flip.querySelector(".ticket-front");
+        var back = flip.querySelector(".ticket-back");
+        function setFaceState(on) {
+          if (front) {
+            front.setAttribute("aria-hidden", on ? "true" : "false");
+            if (on) front.setAttribute("inert", "");
+            else front.removeAttribute("inert");
+          }
+          if (back) {
+            back.setAttribute("aria-hidden", on ? "false" : "true");
+            if (on) back.removeAttribute("inert");
+            else back.setAttribute("inert", "");
+          }
+        }
+        setFaceState(false);
         btn.addEventListener("click", function () {
           var on = flip.classList.toggle("flipped");
+          setFaceState(on);
           btn.setAttribute("aria-pressed", on ? "true" : "false");
           btn.textContent = on ? "Flip it back" : "Flip the ticket";
         });
@@ -252,27 +286,16 @@
     } catch (e) {}
   })();
 
-  /* ── 6 · quiet + low-power toggles, persisted ── */
+  /* ── 6 · low-power toggle, persisted ── */
   (function modes() {
     try {
-      var qBtn = doc.getElementById("quiet-toggle");
       var pBtn = doc.getElementById("lowpower-toggle");
 
       function paint() {
-        if (qBtn) qBtn.setAttribute("aria-pressed", quiet ? "true" : "false");
         if (pBtn) pBtn.setAttribute("aria-pressed", lowPower ? "true" : "false");
       }
       paint();
 
-      if (qBtn) {
-        qBtn.addEventListener("click", function () {
-          quiet = !quiet;
-          /* Quiet mode: kills any future audio hooks. No audio ships in
-             this pass; the flag is the contract for when it does. */
-          try { localStorage.setItem("richie_inside_quiet", quiet ? "1" : "0"); } catch (e) {}
-          paint();
-        });
-      }
       if (pBtn) {
         pBtn.addEventListener("click", function () {
           lowPower = !lowPower;
@@ -295,7 +318,7 @@
         if (!motionOK) {
           showEverything();
           parallax.stop();
-        }
+        } else if (!lowPower) parallax.init();
       };
       if (mq.addEventListener) mq.addEventListener("change", onChange);
       else if (mq.addListener) mq.addListener(onChange);
