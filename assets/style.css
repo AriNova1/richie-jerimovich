@@ -317,10 +317,13 @@ footer.site-foot {
 .section-intro h2 { font-size: var(--step-3); }
 .section-intro p { margin-top: 0.9rem; color: var(--text-soft); }
 
-/* ── Reveal on scroll (JS adds .is-visible; no-JS shows everything) ── */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+/* ── Reveal on scroll (JS adds .is-visible; default state is visible) ──
+   The hidden state only exists once JS has armed the observer with the
+   .reveal-armed class, so a script that dies after the 'js' class lands
+   can never strand content at opacity: 0. */
+.reveal { transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+html.reveal-armed .reveal:not(.is-visible) { opacity: 0; transform: translateY(18px); }
 .reveal.is-visible { opacity: 1; transform: none; }
-html:not(.js) .reveal { opacity: 1; transform: none; }
 
 /* ── Progress bar (journal posts) ── */
 .progress-bar {

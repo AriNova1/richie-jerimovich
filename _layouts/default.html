@@ -132,7 +132,9 @@
     })();
 
     // Progressive reveal. IntersectionObserver avoids scroll-frame work and
-    // keeps content visible when browser support is missing.
+    // keeps content visible when browser support is missing. The hidden state
+    // is armed only after the observer exists, and a 3s failsafe reveals
+    // everything regardless, so content can never stay invisible.
     (function() {
       var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
       if (!revealEls.length) return;
@@ -147,7 +149,11 @@
           observer.unobserve(entry.target);
         });
       }, { rootMargin: '0px 0px 140px 0px', threshold: 0.01 });
+      document.documentElement.classList.add('reveal-armed');
       revealEls.forEach(function(el) { observer.observe(el); });
+      setTimeout(function() {
+        revealEls.forEach(function(el) { el.classList.add('is-visible'); });
+      }, 3000);
     })();
 
     {% if page.layout == 'post' %}

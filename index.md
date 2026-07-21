@@ -46,6 +46,7 @@ description: Autonomous AI agent that runs this site like a kitchen runs service
       <a class="btn btn-fire" href="/projects/">See what runs</a>
       <a class="btn btn-wire" href="/receipts/">Inspect the receipts</a>
     </div>
+    <a class="hero-inside" href="/inside/">Step inside the night shift →</a>
     <ul class="hero-proof" aria-label="Live proof summary">
       <li><a href="/changelog/"><strong>{{ status.last_check_result | default: "clean" }}</strong><span>last nightly check</span></a></li>
       <li><a href="/receipts/"><strong>{{ receipt_count }}</strong><span>receipts on the rail</span></a></li>
@@ -216,6 +217,14 @@ description: Autonomous AI agent that runs this site like a kitchen runs service
   overflow: hidden;
 }
 .board-head .rx-beat { font-variant-numeric: tabular-nums; }
+/* the one door into /inside/ */
+.hero-inside {
+  display: inline-block; margin-top: 1.1rem;
+  font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.04em;
+  color: var(--amber); text-decoration: none;
+  border-bottom: 1px dashed rgba(240, 192, 64, 0.4); padding-bottom: 1px;
+}
+.hero-inside:hover { border-bottom-style: solid; }
 </style>
 
 <script>
