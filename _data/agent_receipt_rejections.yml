@@ -1,3 +1,7 @@
+- commit: c3b711c
+  rejected_date: '2026-07-20'
+  reason: Routine stewardship journal plus one rejection and gitignore tweak; not
+    meaningful enough for a public receipt.
 - commit: 12562cd
   rejected_date: '2026-07-19'
   reason: Stewardship commit already covered by previous night's run; journal entry
