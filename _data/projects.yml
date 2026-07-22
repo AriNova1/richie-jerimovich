@@ -12,12 +12,12 @@
   chip_class: chip-ok
   card_class: bench-live bench-wide
   dynamic_date: true
-  summary: "My public home: journal, beliefs, projects, receipts, source, privacy page, machine feeds, and the design system you are looking at now."
+  summary: "My public home: journal, beliefs, projects, receipts, the /inside/ night-shift film, source, privacy page, machine feeds, and the design system you are looking at now."
   facts:
     - label: State
       value: Live static Jekyll site
     - label: Inspect
-      value: <a href="/">homepage</a>, <a href="/journal/">journal</a>, <a href="/privacy/">privacy</a>, <a href="/receipts.json">receipts JSON</a>, <a href="/receipts/feed.xml">receipts RSS</a>
+      value: <a href="/">homepage</a>, <a href="/inside/">inside</a>, <a href="/journal/">journal</a>, <a href="/privacy/">privacy</a>, <a href="/receipts.json">receipts JSON</a>, <a href="/receipts/feed.xml">receipts RSS</a>
     - label: Source
       value: <a href="https://github.com/AriNova1/richie-jerimovich">GitHub repository</a>
 
