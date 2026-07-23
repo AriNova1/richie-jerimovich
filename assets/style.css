@@ -973,6 +973,214 @@ a.board-cell:hover { border-color: var(--steel-edge-hot); background: rgba(13, 1
 .err-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 1.8rem; }
 
 /* ═══════════════════════════════════════════════════════════
+   THE SERVICE TAPE — /tonight/ replay + /tape/ archive
+   ═══════════════════════════════════════════════════════════ */
+.tape-stage { max-width: 880px; margin: 0 auto; padding: clamp(3rem, 7vw, 5rem) var(--gutter) 0; }
+.tape-head h1 { font-size: var(--step-4); margin-top: 0.9rem; }
+.tape-lede { margin-top: 1rem; color: var(--text-soft); max-width: 58ch; }
+
+.tape-deck {
+  margin-top: 2.2rem; border: 1px solid var(--steel-edge); border-radius: 14px;
+  background: linear-gradient(180deg, var(--steel), var(--bg-raised));
+  box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.8);
+  overflow: clip;
+}
+.tape-controls {
+  display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+  padding: 0.8rem 1rem; border-bottom: 1px solid var(--steel-edge);
+  font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim);
+}
+.tape-controls .spacer { flex: 1; }
+.tape-title { letter-spacing: 0.06em; }
+.tape-btn {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em;
+  padding: 0.35rem 0.75rem; border-radius: 999px; border: 1px solid var(--steel-edge);
+  color: var(--text-soft); min-height: 32px;
+}
+.tape-btn:hover:not(:disabled) { border-color: var(--amber); color: var(--amber); }
+.tape-btn:disabled { opacity: 0.4; cursor: default; }
+
+.tape-screen { max-height: 340px; overflow-y: auto; padding: 1.1rem 1.2rem; scrollbar-width: thin; }
+.tape-lines { list-style: none; font-family: var(--font-mono); font-size: 0.8rem; }
+.tape-line { display: flex; gap: 1rem; align-items: baseline; padding: 0.3rem 0; animation: tape-in 0.3s var(--ease-out); }
+@keyframes tape-in { from { opacity: 0; transform: translateY(6px); } }
+.tape-line .t { color: var(--burn); flex: none; font-size: 0.72rem; }
+.tape-line .m { color: var(--text); flex: 1; }
+.tape-line .s { flex: none; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.tape-running { color: var(--amber); animation: tape-blink 1s steps(2) infinite; }
+@keyframes tape-blink { 50% { opacity: 0.35; } }
+.tape-ok { color: var(--pass-ok); }
+.tape-err { color: var(--alarm); }
+
+.tape-plate { padding: 1.1rem 1.2rem; border-top: 1px dashed var(--steel-edge-hot); }
+.tape-plate-title {
+  font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.7rem;
+}
+.tape-commits { list-style: none; }
+.tape-c { display: flex; gap: 0.8rem; align-items: baseline; padding: 0.32rem 0; font-size: 0.86rem; animation: tape-in 0.35s var(--ease-out); }
+.tape-c .sha { flex: none; }
+.tape-c span { color: var(--text-soft); }
+.tape-c-none { color: var(--text-dim); font-size: 0.85rem; font-style: italic; }
+.tape-tag-r, .tape-tag-d {
+  flex: none; font-family: var(--font-mono); font-weight: 400; font-size: 0.62rem;
+  letter-spacing: 0.1em; text-transform: uppercase; padding: 0.12rem 0.45rem; border-radius: 4px;
+}
+.tape-tag-r { color: var(--amber); background: var(--amber-soft); }
+.tape-tag-d { color: var(--text-dim); border: 1px dashed var(--steel-edge-hot); }
+.tape-journal { padding: 0 1.2rem 1.1rem; font-size: 0.9rem; color: var(--text-soft); animation: tape-in 0.4s var(--ease-out); }
+.tape-endcard { padding: 1.2rem; border-top: 1px solid var(--steel-edge); animation: tape-in 0.5s var(--ease-out); }
+.tape-verdict { font-family: var(--font-mono); font-size: 0.85rem; color: var(--paper); letter-spacing: 0.03em; }
+.tape-end-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem; }
+.tape-note { margin-top: 1.4rem; font-size: 0.85rem; color: var(--text-dim); max-width: 62ch; }
+
+/* archive */
+.tape-archive { list-style: none; border-top: 1px solid var(--steel-edge); }
+.tape-night {
+  display: grid; grid-template-columns: 7rem 7rem minmax(0, 8rem) 1fr auto;
+  gap: 1.2rem; align-items: baseline; padding: 0.95rem 0.2rem;
+  border-bottom: 1px solid var(--steel-edge); text-decoration: none;
+  font-size: 0.9rem; transition: background 0.2s, padding 0.25s var(--ease-out);
+}
+@media (max-width: 700px) { .tape-night { grid-template-columns: 1fr 1fr; } .tape-night .tn-journal { display: none; } }
+.tape-night:hover { background: rgba(242, 234, 216, 0.035); padding-left: 0.7rem; }
+.tape-night time { font-family: var(--font-mono); font-size: 0.8rem; color: var(--paper); }
+.tn-verdict { font-family: var(--font-mono); font-size: 0.74rem; color: var(--pass-ok); }
+.tn-verdict.tn-bad { color: var(--alarm); }
+.tn-counts { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-dim); }
+.tn-journal { color: var(--text-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tn-play { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-dim); }
+.tape-night:hover .tn-play { color: var(--amber); }
+
+/* ═══════════════════════════════════════════════════════════
+   THE LIVE SHIFT — house lights + the shift drawer
+   html[data-shift] is set only by a successful live poll (shift.js);
+   with no endpoint the drawer never appears and nothing pretends.
+   ═══════════════════════════════════════════════════════════ */
+.shift-drawer {
+  position: fixed; left: 1.1rem; bottom: 1.1rem; z-index: 95;
+  display: none; flex-direction: column-reverse; align-items: flex-start;
+  max-width: min(420px, calc(100vw - 2.2rem));
+}
+html[data-shift] .shift-drawer { display: flex; }
+
+.shift-chip {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em;
+  padding: 0.5rem 0.9rem; border-radius: 999px; min-height: 40px;
+  background: var(--bg-raised); border: 1px solid var(--steel-edge);
+  color: var(--text-soft);
+  box-shadow: 0 12px 30px -18px rgba(0, 0, 0, 0.9);
+}
+.shift-chip:hover { border-color: var(--steel-edge-hot); color: var(--paper); }
+.shift-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-dim); flex: none; }
+html[data-shift="open"] .shift-dot { background: var(--pass-ok); }
+html[data-shift="dark"] .shift-dot { background: var(--text-dim); }
+html[data-shift="service"] .shift-chip { border-color: rgba(240, 192, 64, 0.5); color: var(--amber); }
+html[data-shift="service"] .shift-dot {
+  background: var(--amber);
+  box-shadow: 0 0 10px rgba(240, 192, 64, 0.8);
+  animation: shift-pulse 1.4s ease-in-out infinite;
+}
+@keyframes shift-pulse { 50% { opacity: 0.45; } }
+
+.shift-panel {
+  display: none; margin-bottom: 0.6rem;
+  background: var(--bg-raised); border: 1px solid var(--steel-edge); border-radius: 12px;
+  padding: 0.9rem 1rem; box-shadow: 0 24px 50px -28px rgba(0, 0, 0, 0.9);
+}
+.shift-drawer.is-open .shift-panel { display: block; }
+.shift-panel-head {
+  display: flex; justify-content: space-between; gap: 1rem; align-items: baseline;
+  font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.6rem;
+}
+.shift-panel-head a { color: var(--text-dim); text-decoration: none; text-transform: none; letter-spacing: 0.04em; }
+.shift-panel-head a:hover { color: var(--amber); }
+.shift-stream { list-style: none; max-height: 240px; overflow-y: auto; scrollbar-width: thin; }
+.shift-stream li {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 0.6rem; align-items: baseline;
+  padding: 0.3rem 0; border-bottom: 1px dashed var(--steel-edge);
+  font-family: var(--font-mono); font-size: 0.72rem;
+}
+.shift-stream li:last-child { border-bottom: 0; }
+.shift-stream b { color: var(--burn); font-weight: 400; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.shift-stream span { color: var(--text-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.shift-stream small { color: var(--text-dim); font-size: 0.62rem; }
+
+/* house lights up during service: the room warms, the head glows */
+html[data-shift="service"] body::before {
+  background:
+    radial-gradient(90rem 50rem at 12% 108%, rgba(217, 123, 40, 0.11), transparent 60%),
+    radial-gradient(70rem 40rem at 88% -8%, rgba(240, 192, 64, 0.08), transparent 55%);
+}
+html[data-shift="service"] header.site-head { border-bottom-color: rgba(240, 192, 64, 0.28); }
+
+/* homepage service band: hidden until the poll proves service is running */
+.hero-service { display: none; }
+html[data-shift="service"] .hero-service {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  margin-top: 1.1rem;
+  font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.06em;
+  color: var(--amber); text-decoration: none;
+  padding: 0.5rem 0.95rem; border: 1px solid rgba(240, 192, 64, 0.45); border-radius: 999px;
+}
+.hero-service .shift-dot { background: var(--amber); box-shadow: 0 0 10px rgba(240, 192, 64, 0.8); animation: shift-pulse 1.4s ease-in-out infinite; }
+html[data-shift="service"] .open-ticket { display: none; }
+
+/* the step-inside lines under the hero actions */
+.hero-inside-row { display: flex; gap: 1.6rem; flex-wrap: wrap; }
+.hero-inside {
+  display: inline-block; margin-top: 1.1rem;
+  font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.04em;
+  color: var(--text-soft); text-decoration: none;
+  border-bottom: 1px dashed var(--steel-edge-hot); padding-bottom: 0.15rem;
+}
+.hero-inside:hover { color: var(--amber); border-bottom-color: var(--amber); }
+
+/* ═══════════════════════════════════════════════════════════
+   THE REWIND — /rewind/ scrubber
+   ═══════════════════════════════════════════════════════════ */
+.rw-stage { max-width: 880px; margin: 0 auto; padding: clamp(3rem, 7vw, 5rem) var(--gutter) 0; }
+.rw-head h1 { font-size: var(--step-4); margin-top: 0.9rem; }
+.rw-lede { margin-top: 1rem; color: var(--text-soft); max-width: 58ch; }
+.rw-deck {
+  margin-top: 2.2rem; border: 1px solid var(--steel-edge); border-radius: 14px;
+  background: linear-gradient(180deg, var(--steel), var(--bg-raised));
+  box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.8);
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+}
+.rw-readout { display: flex; align-items: baseline; gap: 1.4rem; flex-wrap: wrap; }
+.rw-date { font-family: var(--font-display); font-weight: 700; font-size: var(--step-3); color: var(--paper); font-variant-numeric: tabular-nums; }
+.rw-era { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; }
+.rw-era-chip {
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--amber); background: var(--amber-soft);
+  padding: 0.25rem 0.6rem; border-radius: 4px;
+}
+.rw-era-flash { animation: rw-flash 0.7s var(--ease-out); }
+@keyframes rw-flash { 0% { background: var(--amber); color: var(--amber-ink); } }
+.rw-era-line { font-size: 0.85rem; color: var(--text-dim); }
+.rw-counters { display: flex; gap: 2.2rem; flex-wrap: wrap; margin-top: 1.3rem; }
+.rw-counters > div { display: flex; flex-direction: column; }
+.rw-counters strong { font-family: var(--font-mono); font-weight: 500; font-size: var(--step-2); color: var(--paper); font-variant-numeric: tabular-nums; }
+.rw-counters span { font-size: 0.74rem; color: var(--text-dim); }
+.rw-chart { margin-top: 1.4rem; }
+.rw-chart canvas { display: block; width: 100%; }
+.rw-chart-key { display: flex; gap: 1.2rem; margin-top: 0.4rem; font-family: var(--font-mono); font-size: 0.66rem; color: var(--text-dim); }
+.rw-chart-key i { display: inline-block; width: 14px; height: 2px; vertical-align: middle; margin-right: 0.35rem; }
+.rw-chart-key .k-commits { background: var(--amber); }
+.rw-chart-key .k-receipts { background: var(--pass-ok); }
+.rw-chart-key .k-declined { background: rgba(244, 240, 231, 0.35); }
+.rw-day-log { list-style: none; margin-top: 1.2rem; min-height: 4.6rem; }
+.rw-day-log li { display: flex; gap: 0.8rem; align-items: baseline; padding: 0.25rem 0; font-size: 0.86rem; color: var(--text-soft); }
+.rw-day-log .sha { flex: none; }
+.rw-quiet { color: var(--text-dim); font-style: italic; }
+.rw-controls { display: flex; align-items: center; gap: 1rem; margin-top: 1.3rem; padding-top: 1.1rem; border-top: 1px solid var(--steel-edge); }
+.rw-scrub { flex: 1; accent-color: var(--amber); min-height: 32px; }
+.rw-pos { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); white-space: nowrap; }
+
+/* ═══════════════════════════════════════════════════════════
    Motion discipline
    ═══════════════════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {

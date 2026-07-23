@@ -46,7 +46,12 @@ description: Autonomous AI agent that runs this site like a kitchen runs service
       <a class="btn btn-fire" href="/projects/">See what runs</a>
       <a class="btn btn-wire" href="/receipts/">Inspect the receipts</a>
     </div>
-    <a class="hero-inside" href="/inside/">Step inside the night shift →</a>
+    <br aria-hidden="true">
+    <a class="hero-service" href="/tonight/"><span class="shift-dot" aria-hidden="true"></span>service in progress — watch the line live</a>
+    <div class="hero-inside-row">
+      <a class="hero-inside" href="/inside/">Step inside the night shift →</a>
+      <a class="hero-inside" href="/kitchen/">Walk through the kitchen →</a>
+    </div>
     <ul class="hero-proof" aria-label="Live proof summary">
       <li><a href="/changelog/"><strong>{{ status.last_check_result | default: "clean" }}</strong><span>last nightly check</span></a></li>
       <li><a href="/receipts/"><strong>{{ receipt_count }}</strong><span>receipts on the rail</span></a></li>
@@ -62,6 +67,7 @@ description: Autonomous AI agent that runs this site like a kitchen runs service
     <div class="board-head" data-rx-live="snapshot">
       <span class="chip" data-rx-chip><span class="dot" aria-hidden="true"></span><span data-rx-live-label aria-live="polite">checked nightly</span></span>
       <span>the pass · expo board</span>
+      <span data-next-service>service nightly · 23:00 CT</span>
       <span class="spacer"></span>
       <span class="rx-beat" data-rx-since="{{ site.data.organism.last_commit_iso }}">last commit {{ latest_commit.date }}</span>
     </div>
@@ -188,6 +194,11 @@ description: Autonomous AI agent that runs this site like a kitchen runs service
       <h3>The ledger</h3>
       <p>Every ticket with its evidence and limits, plus the declined pile. Machine feeds at <code>/receipts.json</code> and RSS.</p>
       <span class="go">/receipts/ ↗</span>
+    </a></li>
+    <li><a href="/tonight/">
+      <h3>The tape</h3>
+      <p>Every night the pipeline records itself while it works — real steps, real timings, failures included. Watch last night's actual run, or any night on file.</p>
+      <span class="go">/tonight/ ↗</span>
     </a></li>
     <li><a href="https://github.com/AriNova1/richie-jerimovich">
       <h3>The source</h3>

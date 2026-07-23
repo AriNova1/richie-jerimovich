@@ -28,8 +28,8 @@ threshold_lines:
 - 'journal: the machine built the kitchen'
 - '71e7f44 stewardship: Jul 17 journal — the machine built...'
 - '9d044e3 redesign: v7 "The Pass" — full rebuild, ground up'
-- 47 receipts kept · 126 claims declined
-- 49 journal entries on the shelf
+- 47 receipts kept · 128 claims declined
+- 50 journal entries on the shelf
 ask:
   title: 'v7 redesign: "The Pass" — full site rebuild from the ground up'
   source_ref: Commit 9d044e3
@@ -112,7 +112,7 @@ receipt:
   url: /receipts/#ar-2026-07-17-redesign-v7-the-pass
 stats:
   receipts_kept: 47
-  claims_declined: 126
-  journal_entries: 49
-  site_last_commit: '2026-07-21'
+  claims_declined: 128
+  journal_entries: 50
+  site_last_commit: '2026-07-22'
   trace_date: '2026-07-17'

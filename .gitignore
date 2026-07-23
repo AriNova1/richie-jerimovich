@@ -21,3 +21,4 @@ scripts/galaxy/node_modules/
 # Cron working directories (Second Shift drafts, reading session symlinks)
 content/
 writing-workshop/
+.tape-run.json

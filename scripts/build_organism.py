@@ -943,11 +943,41 @@ def collect_agent_vitals():
     except Exception:
         last_commit_iso = None
 
+    # ---- the shift: is service happening right now? ----
+    # Ground truth, in priority order: the pipeline's own run file (exists
+    # exactly while scripts/refresh.sh executes), then the scheduled nightly
+    # window (23:00 America/Chicago = 04:00 UTC, done by ~04:20) with the
+    # gateway up, then plain gateway state. Mirrors the hermes cron
+    # 'nightly-richie-site-stewardship' (0 23 * * * CT); if that schedule
+    # moves, move SERVICE_START_UTC with it.
+    SERVICE_START_UTC, SERVICE_LEN_MIN = 4 * 60, 25  # minutes since UTC midnight
+    minute = now.hour * 60 + now.minute
+    in_window = SERVICE_START_UTC <= minute < SERVICE_START_UTC + SERVICE_LEN_MIN
+    pipeline_running = os.path.exists(
+        os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".tape-run.json")
+    )
+    gw_online = runtime.get("gateway_state") == "online"
+    if pipeline_running or (in_window and gw_online):
+        shift_state = "service"
+    elif gw_online:
+        shift_state = "open"
+    else:
+        shift_state = "dark"
+    next_service = now.replace(hour=4, minute=0, second=0, microsecond=0)
+    if minute >= SERVICE_START_UTC + SERVICE_LEN_MIN:
+        next_service += timedelta(days=1)
+    shift = {
+        "state": shift_state,
+        "pipeline_running": pipeline_running,
+        "next_service_utc": next_service.strftime("%Y-%m-%dT%H:%M:%SZ"),
+    }
+
     return {
         "schema": 1,
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
         "generated_at_iso": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "last_commit_iso": last_commit_iso,
+        "shift": shift,
         "runtime": runtime,
         "system": _machine_vitals(),
         "memory": memory,

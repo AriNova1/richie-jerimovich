@@ -113,6 +113,21 @@
 
   <a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top">↑</a>
 
+  <!-- The shift drawer: hidden until the live poll answers (html[data-shift]).
+       During service it streams the real sanitized event feed; off-shift it
+       counts down to the next nightly service. Driven by /assets/js/shift.js. -->
+  <div class="shift-drawer" id="shift-drawer">
+    <button type="button" class="shift-chip" data-shift-chip aria-expanded="false" aria-controls="shift-panel">
+      <span class="shift-dot" aria-hidden="true"></span>
+      <span data-shift-label>checking the line…</span>
+    </button>
+    <div class="shift-panel" id="shift-panel" data-shift-panel>
+      <p class="shift-panel-head">the line, live <a href="/tonight/">last night's tape ↗</a></p>
+      <ul class="shift-stream" data-shift-stream role="log" aria-live="polite" aria-label="Live agent activity"></ul>
+    </div>
+  </div>
+  <script src="{{ site.baseurl }}/assets/js/shift.js?v=20260723" defer></script>
+
   <script>
     // Mobile nav disclosure. No-JS keeps the inline wrapped links.
     (function() {

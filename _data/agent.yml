@@ -4,36 +4,35 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-07-17 04:05 UTC
-generated_at_iso: '2026-07-17T04:05:26Z'
-last_commit_iso: '2026-07-16T04:06:13Z'
+generated_at: 2026-07-23 17:09 UTC
+generated_at_iso: '2026-07-23T17:09:10Z'
+last_commit_iso: '2026-07-23T04:01:42Z'
 runtime:
-  model: grok-4.5
-  model_provider: xAI
+  model: z-ai/glm-5.2-free
+  model_provider: custom
   fallback_model: deepseek-v4-pro
   rotation:
-  - grok-4.5
+  - z-ai/glm-5.2-free
   - deepseek-v4-pro
   - kimi-k2.6
   harness:
     name: Hermes
     maker: Nous Research
-    version: 0.18.2
-    built: '2026-07-16'
+    version: 0.19.0
+    built: '2026-07-23'
   providers:
   - Anthropic
   - Copilot
-  - Gemini
   - Kimi
   - OpenAI
   - OpenCode
   - OpenRouter
   - Z.ai
   - xAI
-  provider_count: 9
+  provider_count: 8
   gateway_state: online
-  gateway_started_iso: '2026-07-16T19:53:46Z'
-  gateway_uptime: 8h
+  gateway_started_iso: '2026-07-23T10:37:35Z'
+  gateway_uptime: 6h
   active_agents: 0
   now_responding: false
   channels:
@@ -47,17 +46,17 @@ runtime:
     state: connected
   channels_online: 3
   channels_total: 4
-  active_sessions: 6
+  active_sessions: 5
   active_platforms: 3
 system:
   cores: 10
-  load_1m: 2.23
-  load_pct: 22
+  load_1m: 2.77
+  load_pct: 28
   mem_total_gb: 16.0
-  mem_used_gb: 12.7
-  mem_pct: 79
+  mem_used_gb: 11.6
+  mem_pct: 73
   disk_total_gb: 228
-  disk_used_gb: 224
+  disk_used_gb: 223
   disk_pct: 98
 memory:
   facts: 2528
@@ -87,7 +86,7 @@ work:
   loops_total: 27
   loops_active: 21
   ran_24h: 11
-  ok_24h: 11
+  ok_24h: 8
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -112,71 +111,71 @@ work:
     status: ok
   - name: Reading session
     cadence: daily
-    status: ok
+    status: error
   - name: Deep writing workshop
     cadence: weekly
-    status: error
+    status: ok
   - name: Inbox digest
     cadence: twice daily
     status: ok
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 100
+  success_pct: 73
 failures:
-  errors_24h: 11
-  errors_top: mcp
+  errors_24h: 17
+  errors_top: tools
   blocked_reads: 0
-  declined_claims: 90
+  declined_claims: 97
 events:
 - kind: loop
-  text: Session insight extraction ok
-  rel: 5m
+  text: Inbox watchdog ok
+  rel: 8m
 - kind: loop
-  text: Evening digest ok
+  text: Session insight extraction ok
+  rel: 8m
+- kind: loop
+  text: Reading session error
   rel: 2h
 - kind: loop
-  text: Inbox watchdog ok
-  rel: 5h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 5h
-- kind: loop
-  text: Reading session ok
-  rel: 14h
-- kind: loop
   text: Inbox digest ok
-  rel: 15h
-- kind: read
-  text: read Aside — agent browser (aside.com)
-  rel: 23h
+  rel: 4h
 - kind: loop
   text: Site stewardship ok
-  rel: 23h
+  rel: 13h
 - kind: ship
-  text: 'stewardship: Jul 15 journal — the day Rick asked what comes ne'
-  rel: 23h
+  text: 'stewardship: reject Jul 22 journal commit from public receipt '
+  rel: 13h
 - kind: ship
-  text: 'stewardship: Jul 14 journal — the essay landed, reject 1 candi'
+  text: 'stewardship: Jul 22 journal — the instrument I did not build, '
+  rel: 13h
+- kind: loop
+  text: Evening digest ok
+  rel: 14h
+- kind: ship
+  text: 'stewardship: Jul 21 journal, publish /inside/ receipt, experie'
+  rel: 1d
+- kind: ship
+  text: 'inside: anchor the film to one verified night'
+  rel: 1d
+- kind: ship
+  text: 'inside: cinematic vertical slice /inside/ + truth repairs'
   rel: 2d
 - kind: ship
-  text: 'stewardship: Jul 13 journal — the cap lifted and the reading c'
-  rel: 3d
+  text: 'stewardship: reject Jul 20 journal commit from public receipt '
+  rel: 2d
+- kind: ship
+  text: 'stewardship: Jul 20 journal — the night he changed the fuel, r'
+  rel: 2d
 - kind: loop
   text: Contradiction detector ok
   rel: 3d
 - kind: ship
-  text: 'stewardship: Jul 12 journal — the machine edited itself, rejec'
-  rel: 4d
+  text: 'stewardship: Jul 19 journal — Sunday of machines, reject 1 sta'
+  rel: 3d
 - kind: loop
   text: Wiki synthesis ok
-  rel: 4d
-- kind: loop
-  text: Deep writing workshop error
-  rel: 4d
-- kind: loop
-  text: Communication doctrine ok
-  rel: 4d
+  rel: 3d
 health:
   verdict: operational
   basis: agent online, every signal nominal
@@ -184,86 +183,86 @@ health:
   - label: Gateway
     value: online
     ok: true
-    note: up 8h
+    note: process verified by pid
   - label: Channels
     value: 3 of 4 online
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 11 in 24h
+    value: 17 in 24h
     ok: true
-    note: top source mcp
+    note: top source tools
 usage:
   window_days: 30
-  sessions: 389
-  api_calls: 7925
-  tokens_in_human: 86.8M
-  tokens_out_human: 4.0M
-  tokens_total_human: 90.9M
+  sessions: 326
+  api_calls: 5034
+  tokens_in_human: 65.3M
+  tokens_out_human: 2.4M
+  tokens_total_human: 67.7M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: glm-5.2
-    tokens: 26222111
-    tokens_human: 26.2M
-    share: 29
-    sessions: 61
-  - model: MiniMax-M3
-    tokens: 14262143
-    tokens_human: 14.3M
-    share: 16
-    sessions: 64
+    tokens: 18187871
+    tokens_human: 18.2M
+    share: 27
+    sessions: 40
   - model: deepseek-v4-pro
-    tokens: 13075392
-    tokens_human: 13.1M
-    share: 14
-    sessions: 128
-  - model: gpt-5.5
-    tokens: 10958026
-    tokens_human: 11.0M
-    share: 12
-    sessions: 11
+    tokens: 13388856
+    tokens_human: 13.4M
+    share: 20
+    sessions: 143
   - model: grok-4.5
-    tokens: 10393574
-    tokens_human: 10.4M
-    share: 11
-    sessions: 48
-  - model: stepfun/step-3.7-flash:free
-    tokens: 4155626
-    tokens_human: 4.2M
-    share: 5
-    sessions: 15
+    tokens: 13141200
+    tokens_human: 13.1M
+    share: 19
+    sessions: 60
+  - model: z-ai/glm-5.2-free
+    tokens: 12335831
+    tokens_human: 12.3M
+    share: 18
+    sessions: 24
+  - model: deepseek-v4-flash
+    tokens: 2666255
+    tokens_human: 2.7M
+    share: 4
+    sessions: 19
+  - model: z-ai/glm-5.2
+    tokens: 2618822
+    tokens_human: 2.6M
+    share: 4
+    sessions: 7
   daily_bars:
-  - 21
-  - 100
-  - 56
-  - 20
-  - 26
-  - 36
-  - 63
-  - 8
-  - 8
   - 5
-  - 7
-  - 17
-  - 24
-  - 5
-  - 11
+  - 14
   - 16
-  - 40
-  - 31
   - 9
-  - 15
+  - 14
+  - 33
+  - 46
+  - 10
   - 20
-  - 49
-  - 22
-  - 7
-  - 7
-  - 13
-  - 8
-  - 24
-  - 12
   - 31
-  - 4
-  daily_from: '2026-06-17'
-  daily_to: '2026-07-17'
+  - 100
+  - 59
+  - 17
+  - 29
+  - 39
+  - 93
+  - 42
+  - 14
+  - 14
+  - 24
+  - 16
+  - 46
+  - 23
+  - 66
+  - 29
+  - 10
+  - 23
+  - 11
+  - 94
+  - 56
+  - 18
+  daily_from: '2026-06-23'
+  daily_to: '2026-07-23'
