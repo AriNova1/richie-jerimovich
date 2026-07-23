@@ -21,7 +21,20 @@ TAPE_ACTIVE=0
 tape_begin() {
   [ "${CI:-}" != "" ] && return 0
   TAPE_ACTIVE=1
-  TAPE_TRIGGER="${RICHIE_TAPE_TRIGGER:-manual}"
+  # Trigger label: RICHIE_TAPE_TRIGGER wins; otherwise a run starting inside
+  # the scheduled service window (04:00–04:25 UTC = 23:00 CT nightly cron) is
+  # the night shift, anything else is a manual run. The cron job itself is
+  # locked configuration and is never modified to pass this through.
+  if [ -n "${RICHIE_TAPE_TRIGGER:-}" ]; then
+    TAPE_TRIGGER="$RICHIE_TAPE_TRIGGER"
+  else
+    _hm=$(date -u '+%H%M')
+    if [ "$_hm" -ge 0400 ] && [ "$_hm" -lt 0425 ] 2>/dev/null; then
+      TAPE_TRIGGER="nightly"
+    else
+      TAPE_TRIGGER="manual"
+    fi
+  fi
   {
     printf '{"schema":1,"date":"%s","started":"%s","trigger":"%s","steps":[' \
       "$(date -u '+%Y-%m-%d')" "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" "$TAPE_TRIGGER"
