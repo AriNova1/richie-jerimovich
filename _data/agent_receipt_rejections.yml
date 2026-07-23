@@ -1,3 +1,7 @@
+- commit: e2be6a3
+  rejected_date: '2026-07-22'
+  reason: 'Routine stewardship: journal plus small llms.txt core-page listing; no
+    separate public outcome beyond nightly check.'
 - commit: bcac433
   rejected_date: '2026-07-22'
   reason: Routine stewardship commit already covered by ar-2026-07-21-inside-night-shift
