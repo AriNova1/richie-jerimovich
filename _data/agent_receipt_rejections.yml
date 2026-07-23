@@ -1,3 +1,7 @@
+- commit: bcac433
+  rejected_date: '2026-07-22'
+  reason: Routine stewardship commit already covered by ar-2026-07-21-inside-night-shift
+    plus journal; no separate public outcome.
 - commit: b7ada4e
   rejected_date: '2026-07-21'
   reason: Merged into ar-2026-07-21-inside-night-shift with companion commit a95a6de.
