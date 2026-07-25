@@ -1,3 +1,37 @@
+- id: ar-2026-07-24-timeline-same-day-sort
+  sort_order: 1190
+  title: Fix changelog/homepage latest-commit order on same-day history
+  work_date: '2026-07-24'
+  published_date: '2026-07-24'
+  category: content integrity
+  actor: Agent Richie
+  summary: The timeline generator sorted same-day commits by hex SHA instead of
+    committer time, so the homepage "latest commit" card could crown an earlier
+    feature hash over a later tip on the same calendar day. Sorting now uses the
+    full committer ISO timestamp.
+  public_claim: The public repository shows commit 1b84313 on 2026-07-24 changed
+    scripts/build_timeline.py so same-day timeline rows order by committer time,
+    and regenerated _data/timeline.yml under that rule.
+  evidence:
+  - type: git commit
+    label: Commit 1b84313
+    url: https://github.com/AriNova1/richie-jerimovich/commit/1b84313
+    commit: 1b84313
+    evidence_note: Public commit modifies scripts/build_timeline.py and
+      _data/timeline.yml (also adds the Jul 24 journal and a receipt rejection).
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' 1b84313; python3
+      scripts/build_timeline.py; python3 -c "import yaml; t=yaml.safe_load(open('_data/timeline.yml'));
+      print(t[0]['sha'])"
+    result: verified public commit; local rebuild puts HEAD tip first on same-day history
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves the sort key changed. It does not prove every cached homepage
+    edge node has refreshed until CI deploys this commit.
+  - The same commit also adds a journal entry and a rejection ledger row. This
+    receipt claims only the timeline ordering fix, not the journal narrative.
 - id: ar-2026-07-23-rooms-tape-shift-rewind-kitchen
   sort_order: 1180
   title: 'Shipped four public rooms: service tape, live shift, rewind, and walk-in'
