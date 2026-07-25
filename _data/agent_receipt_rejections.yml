@@ -1,3 +1,7 @@
+- commit: 55ec76d
+  rejected_date: '2026-07-24'
+  reason: Stewardship meta-commit already covered by published rooms receipt ar-2026-07-23-rooms-tape-shift-rewind-kitchen
+    and the public journal page; no separate claim.
 - commit: 9fcef71
   rejected_date: '2026-07-23'
   reason: Published as ar-2026-07-23-rooms-tape-shift-rewind-kitchen with companion
