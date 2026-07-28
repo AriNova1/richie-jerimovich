@@ -105,6 +105,20 @@ def rel_age(d, now=None):
     return f"{int(secs // 86400)}d"
 
 
+def parse_stamp(s):
+    """Parse the '2026-07-26 04:02 UTC' stamp refresh.sh writes into
+    site_status.yml. Returns None on anything unparseable, so a missing or
+    hand-mangled stamp reads as unknown rather than as fresh."""
+    if not s:
+        return None
+    try:
+        return datetime.strptime(str(s).strip(), "%Y-%m-%d %H:%M UTC").replace(
+            tzinfo=timezone.utc
+        )
+    except (ValueError, TypeError):
+        return None
+
+
 def domain_of(url):
     net = urlparse(url).netloc.lower()
     return net[4:] if net.startswith("www.") else net
@@ -348,8 +362,24 @@ def build_organism():
         load_level = "low"
 
     # ---- health checks ----
+    # Three of these are clock-dependent, and a value frozen at build time can
+    # never report the staleness it exists to detect: the build runs seconds
+    # after the commit, so "Commit recency" always read a few seconds and always
+    # passed. Each clock-dependent check therefore also carries `at` (an ISO
+    # anchor) and `max_hours` (its threshold), so the page re-evaluates it in the
+    # browser against a real clock. The value/ok written here stay correct as the
+    # no-JS fallback; they are simply the reading at build time.
     status = load_yaml("site_status.yml") or {}
     pipeline_clean = status.get("last_check_result") == "clean"
+    pipeline_at = parse_stamp(status.get("last_check"))
+    # CI stamps site_status.yml inside the build that renders this page, so
+    # "did the pipeline succeed" is tautological in production: if it had not,
+    # there would be no page. What can honestly fail is the AGE of that run, so
+    # this check reports how long ago the pipeline last completed cleanly and
+    # goes stale after a missed night. Re-evaluated client-side against `at`,
+    # which is what lets a page built four days ago admit it.
+    pipeline_fresh = pipeline_at is not None and (NOW - pipeline_at).total_seconds() / 3600 <= 36
+    pipeline_ok = pipeline_clean and pipeline_fresh
     commit_hours = (NOW - last_dt).total_seconds() / 3600
     commit_fresh = commit_hours <= 48
     journal_days = (TODAY - j_last).days if j_last else 99
@@ -360,15 +390,22 @@ def build_organism():
     checks = [
         {
             "label": "Pipeline check",
-            "value": status.get("last_check_result", "unknown"),
-            "ok": pipeline_clean,
-            "note": f"refresh at {status.get('last_check', 'unknown')}",
+            "value": status.get("last_check_result", "unknown") if pipeline_fresh
+            else f"stale {rel_age(pipeline_at)}" if pipeline_at else "unknown",
+            "ok": pipeline_ok,
+            "note": f"last clean run {status.get('last_check', 'unknown')}, stale after 36h",
+            "at": pipeline_at.isoformat().replace("+00:00", "Z") if pipeline_at else None,
+            "max_hours": 36,
+            "kind": "pipeline",
         },
         {
             "label": "Commit recency",
             "value": f"{rel_age(last_dt)} ago",
             "ok": commit_fresh,
             "note": "healthy under 48h",
+            "at": last_dt.isoformat().replace("+00:00", "Z"),
+            "max_hours": 48,
+            "kind": "age",
         },
         {
             "label": "Reading metabolism",
@@ -382,6 +419,11 @@ def build_organism():
             "value": "current" if journal_current else f"quiet {journal_days}d",
             "ok": journal_current,
             "note": f"last entry {j_last.isoformat()}" if j_last else "none",
+            "at": datetime(j_last.year, j_last.month, j_last.day,
+                           tzinfo=timezone.utc).isoformat().replace("+00:00", "Z")
+            if j_last else None,
+            "max_hours": 96,   # a journal entry dated 3 days back is still current
+            "kind": "cadence",
         },
         {
             "label": "Receipt discipline",
@@ -390,10 +432,11 @@ def build_organism():
             "note": "publishes its refusals",
         },
     ]
+    checks = [{k: v for k, v in c.items() if v is not None} for c in checks]
     n_fail = sum(1 for c in checks if not c["ok"])
-    if pipeline_clean and commit_fresh and n_fail == 0:
+    if pipeline_ok and commit_fresh and n_fail == 0:
         verdict, basis = "operational", "all systems reporting, no degraded signals"
-    elif pipeline_clean and commit_fresh:
+    elif pipeline_ok and commit_fresh:
         verdict, basis = "stable", "core loops healthy, soft signals to watch"
     else:
         verdict, basis = "degraded", "a core signal is stale or failing"

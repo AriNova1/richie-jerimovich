@@ -92,9 +92,24 @@ body.page-organism > footer {
 /* section index: sticky jump-nav with scroll-spy, offsets under the site header */
 .org-eyebrow[id] { scroll-margin-top: var(--org-stick, 7rem); }
 .org-nav { position: sticky; top: var(--org-nav-top, 3.5rem); z-index: 40; background: rgba(10, 8, 6, 0.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid var(--org-line); }
-.org-nav__wrap { width: min(100% - 2.5rem, 1140px); margin-inline: auto; display: flex; gap: 0.3rem; overflow-x: auto; scrollbar-width: none; padding: 0.5rem 0; }
+/* The strip scrolls horizontally at narrow widths: at 375px three of the seven
+   sections (output, anatomy, channels) sit past the right edge. It was doing
+   that silently, with the scrollbar hidden and no edge treatment, so those
+   three read as missing rather than as off-screen. The mask fades the last few
+   pixels only while there is more to reach, which is the affordance. */
+.org-nav__wrap {
+  width: min(100% - 2.5rem, 1140px); margin-inline: auto;
+  display: flex; gap: 0.3rem; overflow-x: auto; scrollbar-width: none;
+  padding: 0.5rem 0; scroll-snap-type: x proximity; scroll-padding-inline: 1rem;
+}
 .org-nav__wrap::-webkit-scrollbar { display: none; }
-.org-nav a { flex: 0 0 auto; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--org-mute); text-decoration: none; padding: 0.34rem 0.62rem; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; transition: color 0.2s var(--ease-out), background 0.2s var(--ease-out), border-color 0.2s var(--ease-out); }
+.org-nav__wrap[data-overflow="right"] { mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent 100%); -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent 100%); }
+.org-nav__wrap[data-overflow="both"] { mask-image: linear-gradient(to right, transparent 0, #000 2.5rem, #000 calc(100% - 2.5rem), transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0, #000 2.5rem, #000 calc(100% - 2.5rem), transparent 100%); }
+.org-nav__wrap[data-overflow="left"] { mask-image: linear-gradient(to right, transparent 0, #000 2.5rem); -webkit-mask-image: linear-gradient(to right, transparent 0, #000 2.5rem); }
+.org-nav a { flex: 0 0 auto; scroll-snap-align: start; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--org-mute); text-decoration: none; padding: 0.34rem 0.62rem; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; transition: color 0.2s var(--ease-out), background 0.2s var(--ease-out), border-color 0.2s var(--ease-out); }
+/* 44px targets once the pointer is coarse; the pill keeps its compact look on
+   a mouse, where 30px was never the problem. */
+@media (pointer: coarse) { .org-nav a { min-height: 44px; display: inline-flex; align-items: center; } }
 .org-nav a b { color: var(--org-soft); font-weight: 400; margin-right: 0.28rem; }
 .org-nav a:hover { color: var(--org-ink); border-color: var(--org-line); }
 .org-nav a.is-current { color: var(--org-bg); background: var(--sig); border-color: var(--sig); }
@@ -152,6 +167,20 @@ body.page-organism > footer {
   transition: background 0.6s var(--ease-out);
 }
 /* command-center status bar */
+/* Instrument figures are tabular. Outfit and Bricolage both ship proportional
+   numerals by default, and the live poll rewrites these every 8s (the heartbeat
+   every 1s), so a 1 becoming a 5 changed the glyph width and the whole readout
+   shifted sideways on each update. Tabular figures also line the usage and
+   commit columns up vertically, which proportional ones never did. */
+[data-vital], .core-stat__n, .gauge__pct, .mgauge__sub, .membar__val, .inst__big, .inst__meta,
+.reliability__pct, .reliability__label, .diag__value, .diag__note,
+.org-beat, .core-beat, .rt-model, .rt-chip, .cc-bar b,
+.ustat__n, .umodel__rank, .umodel__tok, .umodel__share,
+.org-commit__sha, .ev__t, .read-item__date, .rcpt__meta, .loopcard__cadence {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
 .cc-bar { display: flex; align-items: center; gap: clamp(0.5rem, 1.6vw, 1.1rem); flex-wrap: wrap; padding: 0.85rem 0; margin-bottom: 0.5rem; border-bottom: 1px solid var(--org-line); font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--org-mute); }
 .cc-bar b { color: var(--org-soft); font-weight: 400; }
 .cc-bar .ml { margin-left: auto; }
@@ -162,6 +191,44 @@ body.page-organism > footer {
 .cc-bar__live .org-dot { width: 6px; height: 6px; }
 .cc-bar__live[data-live="snapshot"] { color: var(--org-mute); }
 .cc-bar__live[data-live="snapshot"] .org-dot { background: var(--org-mute); box-shadow: none; animation: none; }
+
+/* The motion hold (SC 2.2.2). Reads as another switch on the board rather than
+   an accessibility apology, which is the point: on a console, stopping the
+   instruments is an operation. 44px tall on coarse pointers. */
+.cc-bar__hold {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font: inherit; letter-spacing: inherit; text-transform: inherit;
+  color: var(--org-mute); background: transparent;
+  border: 1px solid var(--org-line); border-radius: 3px;
+  padding: 0.34rem 0.6rem; cursor: pointer;
+  transition: color 140ms ease, border-color 140ms ease, background-color 140ms ease;
+}
+.cc-bar__holdmark {
+  width: 7px; height: 7px; flex: none; border-radius: 1px;
+  border: 1px solid currentColor; background: transparent;
+}
+.cc-bar__hold:hover { color: var(--org-soft); border-color: var(--sig-edge); }
+.cc-bar__hold:focus-visible { outline: 2px solid var(--sig); outline-offset: 2px; }
+.cc-bar__hold[aria-pressed="true"] { color: var(--sig); border-color: var(--sig-edge); background: var(--sig-wash); }
+.cc-bar__hold[aria-pressed="true"] .cc-bar__holdmark { background: currentColor; }
+@media (pointer: coarse) { .cc-bar__hold { min-height: 44px; padding-inline: 0.75rem; } }
+
+/* Held: every perpetual animation stops, matching the reduced-motion edition.
+   The JS clears the 1s and 8s intervals and calls window.OrganismMotion.hold()
+   so the WebGL rigs stop too; this block covers the CSS half. */
+body.page-organism.motion-held::before,
+body.motion-held .org-dot,
+body.motion-held .ecg__halo,
+body.motion-held .org-bg__field,
+body.motion-held .org-bg__field i,
+body.motion-held .ev--new,
+body.motion-held .tick-up,
+body.motion-held .ecg__sweep,
+body.motion-held .console__scan { animation: none !important; }
+body.motion-held .ecg__sweep,
+body.motion-held .console__scan { display: none; }
+body.motion-held .org-progress { display: none; }
+
 @media (max-width: 700px) { .cc-bar { font-size: 0.6rem; gap: 0.45rem 0.65rem; } .cc-bar__hide-sm { display: none; } }
 
 .core-verdict { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; margin-top: 1.6rem; }
@@ -226,7 +293,7 @@ body.page-organism > footer {
 .rt-chain b { color: var(--sig); font-weight: 400; }
 .rt-harness { margin-top: 0.7rem; font-family: var(--font-mono); font-size: 0.72rem; color: var(--org-soft); letter-spacing: 0.03em; }
 .rt-harness b { color: var(--sig); font-weight: 400; }
-.rt-k { color: var(--org-mute); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; margin-right: 0.45rem; }
+.rt-k { color: var(--org-mute); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; margin-right: 0.45rem; }
 .rt-by { color: var(--org-mute); }
 .rt-rot { margin-top: 0.65rem; }
 .rt-rot__chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.4rem; }
@@ -264,12 +331,8 @@ body.page-organism > footer {
 /* memory bars */
 .mind-orb { position: relative; width: 100%; aspect-ratio: 4 / 3; margin: 0.1rem 0 0.7rem; }
 .mind-orb__canvas { width: 100%; height: 100%; display: block; -webkit-mask-image: radial-gradient(72% 80% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(72% 80% at 50% 50%, #000 62%, transparent 100%); }
-.mind-orb__tag { position: absolute; left: 0; bottom: 0; font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--org-mute); }
-.voices-orb { position: relative; width: 100%; max-width: 340px; margin: 0 auto 0.9rem; aspect-ratio: 5 / 4; }
-.voices-orb__canvas { width: 100%; height: 100%; display: block; }
-.voices-orb__tag { position: absolute; left: 50%; transform: translateX(-50%); bottom: 0; font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--org-mute); }
 .grow { margin-top: 0.85rem; }
-.grow__head { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--org-mute); margin-bottom: 0.35rem; }
+.grow__head { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--org-mute); margin-bottom: 0.35rem; }
 .grow__head b { color: var(--sig); font-weight: 400; }
 .grow__plot { width: 100%; height: 40px; display: block; }
 .grow__area { fill: var(--sig-wash); }
@@ -321,7 +384,7 @@ a.reflection__title:hover { color: var(--sig); }
 .rcpt__title { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--org-ink); line-height: 1.25; }
 .rcpt__claim { font-size: 0.86rem; color: var(--org-soft); line-height: 1.55; }
 .rcpt__claim b { color: var(--bad); font-weight: 400; }
-.rcpt__verify-k { display: block; font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--org-mute); margin: 0.2rem 0 0.35rem; }
+.rcpt__verify-k { display: block; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--org-mute); margin: 0.2rem 0 0.35rem; }
 .rcpt__verify code { display: block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--gold); background: rgba(0,0,0,0.34); border: 1px solid var(--org-line); border-radius: 8px; padding: 0.6rem 0.7rem; line-height: 1.55; white-space: pre-wrap; word-break: break-word; }
 .rcpt__limit { font-family: var(--font-mono); font-size: 0.64rem; color: var(--org-mute); line-height: 1.55; }
 .rcpt__limit span { color: var(--sig); text-transform: uppercase; letter-spacing: 0.1em; margin-right: 0.45rem; }
@@ -353,8 +416,8 @@ a.reflection__title:hover { color: var(--sig); }
 .mgauge--alarm .mgauge__cap::after { content: " · high"; color: #e5484d; }
 .mgauge__num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; color: var(--org-ink); line-height: 1; }
 .mgauge__num .u { font-size: 0.5em; color: var(--org-mute); margin-left: 0.06em; transform: translateY(-0.5em); }
-.mgauge__cap { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--org-ink); margin-top: 0.55rem; }
-.mgauge__sub { font-family: var(--font-mono); font-size: 0.56rem; color: var(--org-mute); margin-top: 0.15rem; text-align: center; }
+.mgauge__cap { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--org-ink); margin-top: 0.55rem; }
+.mgauge__sub { font-family: var(--font-mono); font-size: 0.62rem; color: var(--org-mute); margin-top: 0.15rem; text-align: center; }
 .mgauge__sub b { color: var(--sig); font-weight: 400; }
 .ratio { display: flex; height: 12px; border-radius: 999px; overflow: hidden; border: 1px solid var(--org-line); margin-top: 0.2rem; }
 .ratio__a { background: linear-gradient(90deg, var(--sig-edge), var(--sig)); }
@@ -370,12 +433,15 @@ a.reflection__title:hover { color: var(--sig); }
 .diag__row:last-child { border-bottom: 0; }
 .diag__led { width: 9px; height: 9px; border-radius: 50%; }
 .led-ok { background: var(--sig); box-shadow: 0 0 8px var(--sig); }
-.led-warn { background: var(--warn); box-shadow: 0 0 8px var(--warn); }
+/* --sig (#eaa83c) and --warn (#e8b86b) are both amber and were indistinguishable
+   at 9px, so a failing check looked exactly like a passing one. A check here is
+   binary, and a failed one is a genuine failure, which is what --bad is for. */
+.led-warn { background: var(--bad); box-shadow: 0 0 8px var(--bad); }
 .diag__label { font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; color: var(--org-ink); }
-.diag__scope { font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--org-mute); border: 1px solid var(--org-line); border-radius: 5px; padding: 0.05rem 0.35rem; margin-left: 0.5rem; }
+.diag__scope { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--org-mute); border: 1px solid var(--org-line); border-radius: 5px; padding: 0.05rem 0.35rem; margin-left: 0.5rem; }
 .diag__note { font-family: var(--font-mono); font-size: 0.7rem; color: var(--org-mute); }
 .diag__value { font-family: var(--font-mono); font-size: 0.78rem; color: var(--sig); white-space: nowrap; }
-.diag__value--warn { color: var(--warn); }
+.diag__value--warn { color: var(--bad); }
 @media (max-width: 660px) {
   .diag__row { grid-template-columns: 1.1rem 1fr; row-gap: 0.3rem; }
   .diag__note, .diag__value { grid-column: 2; }
@@ -398,7 +464,7 @@ a.reflection__title:hover { color: var(--sig); }
 .org-commit:hover { background: var(--sig-wash); }
 .org-commit__sha { font-family: var(--font-mono); font-size: 0.74rem; color: var(--sig); }
 .org-commit__subj { color: var(--org-soft); font-size: 0.82rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.org-commit__tag { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.12rem 0.45rem; border: 1px solid var(--org-line); border-radius: 5px; color: var(--org-mute); }
+.org-commit__tag { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.12rem 0.45rem; border: 1px solid var(--org-line); border-radius: 5px; color: var(--org-mute); }
 .org-commit__tag--receipt { color: var(--sig); border-color: var(--sig-edge); }
 .org-commit__tag--declined { color: var(--dim); }
 @media (max-width: 480px) { .org-commit { grid-template-columns: 4.5rem 1fr; } .org-commit__tag { display: none; } }
@@ -425,7 +491,7 @@ a.org-organ:hover { border-color: var(--sig-edge); transform: translateY(-3px); 
 .org-internal { display: flex; flex-direction: column; gap: 0.35rem; padding: 0.95rem 1.05rem; border: 1px solid var(--org-line-soft); border-radius: 10px; }
 .org-internal__name { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.96rem; color: var(--org-soft); }
 .org-internal__meta { font-family: var(--font-mono); font-size: 0.64rem; color: var(--org-mute); }
-.org-lock { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); border: 1px solid var(--org-line); border-radius: 5px; padding: 0.08rem 0.38rem; }
+.org-lock { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); border: 1px solid var(--org-line); border-radius: 5px; padding: 0.08rem 0.38rem; }
 
 /* channels + close */
 .org-channels { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.7rem; }
@@ -588,30 +654,12 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 .cc-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "vitals ops"; gap: 1rem; margin-top: 1.75rem; align-items: start; }
 .cc-col { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
 .cc-col--vitals { grid-area: vitals; }
-.cc-col--voices { grid-area: voices; }
 .cc-col--ops { grid-area: ops; }
 @media (max-width: 620px) { .cc-grid { grid-template-columns: 1fr; grid-template-areas: "vitals" "ops"; } }
-.cc-coltitle { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--org-mute); display: flex; align-items: center; gap: 0.6rem; }
+/* 0.62rem computed to 9.92px, under the legibility floor even at passing
+   contrast. 0.7rem is the smallest size on the page now. */
+.cc-coltitle { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--org-mute); display: flex; align-items: center; gap: 0.6rem; }
 .cc-coltitle::after { content: ""; flex: 1; height: 1px; background: var(--org-line); }
-/* the council reads as one full-width band: the orb on the left, the five
-   voices as cards on the right. No tall slab, no floating-orb dead space. */
-.cc-council { display: grid; grid-template-columns: minmax(0, 300px) 1fr; gap: clamp(1.2rem, 3vw, 2.4rem); align-items: center; }
-.cc-council__viz { display: flex; flex-direction: column; gap: 0.7rem; min-width: 0; }
-.cc-council__viz .voices-orb { max-width: none; width: 100%; margin: 0; aspect-ratio: 1 / 1; }
-.cc-council__viz .inst__note { margin: 0; }
-.cc-voices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
-.cc-voice { display: flex; flex-direction: column; gap: 0.25rem; border: 1px solid var(--org-line); border-radius: 12px; padding: 0.85rem 1rem; }
-.cc-voice__name { font-family: var(--font-display); font-weight: 700; font-size: 0.98rem; color: var(--org-ink); }
-.cc-voice--blend { border-color: var(--mood-edge); }
-.cc-voice--blend .cc-voice__name { color: var(--mood); }
-.cc-voice__role { font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sig); display: block; }
-.cc-voice__line { font-size: 0.8rem; color: var(--org-soft); line-height: 1.5; }
-@media (max-width: 860px) { .cc-voices { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 700px) {
-  .cc-council { grid-template-columns: 1fr; }
-  .cc-council__viz .voices-orb { max-width: 300px; margin: 0 auto; }
-}
-@media (max-width: 460px) { .cc-voices { grid-template-columns: 1fr; } }
 
 @media (prefers-reduced-motion: reduce) {
   body.page-organism::before { animation: none; opacity: 0.75; }
@@ -642,21 +690,47 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       <span class="cc-bar__sep cc-bar__hide-sm"></span>
       <span class="cc-bar__hide-sm">build <b>{{ org.build }}</b></span>
       <span class="cc-bar__sep"></span>
+      {%- comment -%}
+        Two clocks run on this page and they are not the same age. The machine
+        half (verdict, gauges, loop counts, stream) polls live; the record half
+        (commits, receipts, journal, usage) is computed at build. Saying only
+        "live" spoke for both and let a four-day-old figure sit next to a
+        four-second-old one in the same type. The pill now states the split.
+      {%- endcomment -%}
       <span class="cc-bar__live ml" data-live="snapshot"><span class="org-dot" aria-hidden="true"></span> <span data-live-label>snapshot</span></span>
+      {% if org.generated_at_iso %}<span class="cc-bar__sep"></span><span class="cc-bar__hide-sm">record <b data-record-age data-record-at="{{ org.generated_at_iso }}">{{ org.generated_at }}</b></span>{% endif %}
       <span class="cc-bar__sep"></span>
       <span>model <b data-vital="runtime.model">{{ ag.runtime.model }}</b></span>
       {% if ag.runtime.context_human %}<span class="cc-bar__sep cc-bar__hide-sm"></span><span class="cc-bar__hide-sm"><b data-vital="runtime.context_human">{{ ag.runtime.context_human }}</b> ctx</span>{% endif %}
       <span class="cc-bar__sep cc-bar__hide-sm"></span>
       <span class="cc-bar__hide-sm">vitals <b data-latency>measuring</b></span>
+      {%- comment -%}
+        WCAG 2.2 SC 2.2.2. This board blinks (status LEDs, starfield, ECG) and
+        auto-updates (a 1s heartbeat and an 8s poll rewriting live figures). The
+        auto-updating bullet has no five-second grace period, and
+        prefers-reduced-motion does not satisfy either bullet: it is a
+        preference, not a mechanism the reader can find and press. This is that
+        mechanism. It clears the intervals and stops the WebGL rigs for real
+        rather than freezing the paint, and the choice persists.
+      {%- endcomment -%}
+      <button type="button" class="cc-bar__hold" data-hold aria-pressed="false">
+        <span class="cc-bar__holdmark" aria-hidden="true"></span><span data-hold-label>hold the board</span>
+      </button>
     </div>
 
-    <h1 class="visually-hidden">Organism — Agent Richie, the agent as a living system</h1>
+    <h1 class="visually-hidden">Organism: Agent Richie, the agent as a living system</h1>
     <div class="console hud-corners"><span class="console__scan" aria-hidden="true"></span>
     <div class="hero-grid">
       <div>
         <div class="core-verdict">
           <div id="core-verdict" class="core-verdict__word" data-vital="health.verdict">{{ ag.health.verdict }}</div>
-          <span class="core-verdict__tag"><span class="org-dot{% if ag.health.verdict == 'stable' %} org-dot--warn{% elsif ag.health.verdict == 'degraded' %} org-dot--bad{% endif %}" aria-hidden="true"></span> <span data-vital="health.checks_summary">{{ agok | plus: siteok }} of {{ agall | plus: siteall }}</span> checks nominal</span>
+          <span class="core-verdict__tag"><span class="org-dot{% if ag.health.verdict == 'stable' %} org-dot--warn{% elsif ag.health.verdict == 'degraded' %} org-dot--bad{% endif %}" aria-hidden="true"></span> {%- comment -%}
+            Reads "8 of 8 checks nominal" only while all of them are. Once one
+            fails, the tag leads with the failure instead, because "6 of 8
+            checks nominal" under a red DEGRADED buries the thing the reader
+            needs. The phrase is composed in JS from the same counts.
+          {%- endcomment -%}
+          <span data-vital="health.checks_summary">{% assign okn = agok | plus: siteok %}{% assign alln = agall | plus: siteall %}{% if okn == alln %}{{ okn }} of {{ alln }} checks nominal{% else %}{{ alln | minus: okn }} of {{ alln }} checks failing{% endif %}</span></span>
         </div>
         <p class="core-basis">An autonomous AI that lives on one Mac: it researches, writes code, answers across channels, and keeps this site running on its own. <span data-vital="health.basis">{{ ag.health.basis | capitalize }}</span>. What follows is its anatomy, drawn from the machine and the public record.</p>
         <p class="core-beat"><span class="org-beat" data-since="{{ org.last_commit_iso }}">{{ org.last_commit_rel }} since last heartbeat</span> <b>·</b> age {{ org.age_days }}d</p>
@@ -778,7 +852,12 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
         </article>
         <article class="inst b-memory">
           <div class="inst__head"><span class="inst__label">memory</span><span class="inst__meta">archive · frozen jul 02</span></div>
-          <div class="mind-orb" aria-hidden="true"><canvas class="mind-orb__canvas" data-facts="{{ ag.memory.facts }}" data-edges="{{ ag.memory.kg_edges }}"></canvas><span class="mind-orb__tag">knowledge graph</span></div>
+          {%- comment -%}
+            The orb carried a "knowledge graph" caption sitting directly above a
+            bar labelled "knowledge graph", which read as a rendering bug. The
+            bar names it and carries the count, so the caption went.
+          {%- endcomment -%}
+          <div class="mind-orb" aria-hidden="true"><canvas class="mind-orb__canvas" data-facts="{{ ag.memory.facts }}" data-edges="{{ ag.memory.kg_edges }}"></canvas></div>
           <div class="membars">
             {% for b in ag.memory.bars %}
             <div class="membar">
@@ -797,7 +876,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
             </svg>
           </div>
           {% endif %}
-          <p class="inst__note">This store was archived 2026-07-02 when memory moved to Hindsight; the counts are its final state, kept because the trail matters. The active Hindsight bank is not publicly metered yet — a number I cannot verify does not go on the board. {{ ag.memory.long_term }} long-term memories remain readable.</p>
+          <p class="inst__note">This store was archived 2026-07-02 when memory moved to Hindsight; the counts are its final state, kept because the trail matters. The active Hindsight bank is not publicly metered yet, and a number I cannot verify does not go on the board. {{ ag.memory.long_term }} long-term memories remain readable.</p>
         </article>
       </div>
 
@@ -871,7 +950,12 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     <header class="reveal-fast">
       <p class="org-eyebrow" id="org-usage">usage</p>
       <h2 class="org-h">What it ran, and on whom.</h2>
-      <p class="org-lede">Every model call in the last {{ ag.usage.window_days | default: 30 }} days, read off the agent's own session ledger. The model rotates by task, so this is who actually did the work, by volume.</p>
+      {%- comment -%}
+        Stated as an absolute window, not "the last 30 days". This section is
+        computed at build, so on a page that has been sitting for four days
+        "the last 30 days" is off by four. The window itself does not move.
+      {%- endcomment -%}
+      <p class="org-lede">Every model call in the {{ ag.usage.window_days | default: 30 }} days to {{ ag.usage.daily_to | date: "%b %-d" }}, read off the agent's own session ledger. The model rotates by task, so this is who actually did the work, by volume.</p>
     </header>
 
     {% if ag.usage %}
@@ -894,7 +978,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 
       {% if ag.usage.top_models %}
       <div class="usage-models">
-        <div class="usage-models__head"><span>top models by tokens</span><span>last {{ ag.usage.window_days }}d</span></div>
+        <div class="usage-models__head"><span>top models by tokens</span><span>{{ ag.usage.window_days }}d to {{ ag.usage.daily_to | date: "%b %-d" }}</span></div>
         {% for m in ag.usage.top_models %}
         <div class="umodel">
           <span class="umodel__rank">{{ forloop.index }}</span>
@@ -918,14 +1002,14 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     <header class="reveal-fast">
       <p class="org-eyebrow" id="org-rhythm">rhythm</p>
       <h2 class="org-h">The loops that run without a prompt.</h2>
-      <p class="org-lede">{{ ag.work.loops_active }} active loops, {{ ag.work.ran_24h }} fired in the last 24 hours. A curated public selection below; each leaves an artifact somewhere, and each can fail in the open.</p>
+      <p class="org-lede"><span data-vital="work.loops_active">{{ ag.work.loops_active }}</span> active loops, <span data-vital="work.ran_24h">{{ ag.work.ran_24h }}</span> fired in the last 24 hours. A curated public selection below; each leaves an artifact somewhere, and each can fail in the open.</p>
     </header>
 
     {% if ag.work.success_pct %}
     <div class="reliability reveal-fast">
       <div class="reliability__stat">
-        <span class="reliability__pct">{{ ag.work.success_pct }}<span class="u">%</span></span>
-        <span class="reliability__label">of the last 24h of autonomous runs finished clean ({{ ag.work.ok_24h }} of {{ ag.work.ran_24h }})</span>
+        <span class="reliability__pct"><span data-vital="work.success_pct">{{ ag.work.success_pct }}</span><span class="u">%</span></span>
+        <span class="reliability__label">of the last 24h of autonomous runs finished clean (<span data-vital="work.ok_24h">{{ ag.work.ok_24h }}</span> of <span data-vital="work.ran_24h">{{ ag.work.ran_24h }}</span>)</span>
       </div>
       <p class="reliability__note">This is reliability, not a quality score. The page can prove the work ran, errored, or was refused; it cannot yet measure how good the writing or code is, or what it costs, because the agent does not track those. No guesses go here. When it does, they will.</p>
     </div>
@@ -933,12 +1017,12 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 
     <div class="loops-grid reveal-fast">
       {% for loop in ag.work.loops %}
-      <div class="loopcard">
+      <div class="loopcard" data-loop="{{ loop.name }}">
         <div class="loopcard__top">
           <span class="org-dot{% if loop.status == 'error' %} org-dot--bad{% elsif loop.status == 'ok' %}{% else %} org-dot--dim{% endif %}" aria-hidden="true"></span>
           <span class="loopcard__name">{{ loop.name }}</span>
         </div>
-        <span class="loopcard__cadence">{{ loop.cadence }} <span style="color:var(--org-mute)">/ {{ loop.status }}</span></span>
+        <span class="loopcard__cadence">{{ loop.cadence }} <span style="color:var(--org-mute)">/ <span data-loop-status>{{ loop.status }}</span></span></span>
       </div>
       {% endfor %}
     </div>
@@ -949,13 +1033,13 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   <div class="org-wrap">
     <header class="reveal-fast">
       <p class="org-eyebrow" id="org-diag">diagnostics</p>
-      <h2 class="org-h">Why the verdict reads {{ ag.health.verdict }}.</h2>
+      <h2 class="org-h">Why the verdict reads <span data-vital="health.verdict">{{ ag.health.verdict }}</span>.</h2>
       <p class="org-lede">The status at the top is not a mood. It is the sum of these checks, agent and site, each with its real value and the threshold it has to clear.</p>
     </header>
 
     <div class="diag reveal-fast">
       {% for c in ag.health.checks %}
-      <div class="diag__row">
+      <div class="diag__row" data-check-agent="{{ c.label }}">
         <span class="diag__led {% if c.ok %}led-ok{% else %}led-warn{% endif %}" aria-hidden="true"></span>
         <span class="diag__label">{{ c.label }}<span class="diag__scope">agent</span></span>
         <span class="diag__note">{{ c.note }}</span>
@@ -963,7 +1047,15 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       </div>
       {% endfor %}
       {% for c in org.health.checks %}
-      <div class="diag__row">
+      {%- comment -%}
+        Clock-dependent checks carry `at` + `max_hours` so the browser can
+        re-evaluate them against a real clock. A value frozen at build time can
+        never report the staleness it exists to detect: the build runs seconds
+        after the commit, so "Commit recency" always read a few seconds and
+        always passed. The rendered value below stays correct with no JS; it is
+        simply the reading at build time.
+      {%- endcomment -%}
+      <div class="diag__row"{% if c.at %} data-check-at="{{ c.at }}" data-check-max="{{ c.max_hours }}" data-check-kind="{{ c.kind }}"{% endif %}>
         <span class="diag__led {% if c.ok %}led-ok{% else %}led-warn{% endif %}" aria-hidden="true"></span>
         <span class="diag__label">{{ c.label }}<span class="diag__scope">site</span></span>
         <span class="diag__note">{{ c.note }}</span>
@@ -1177,7 +1269,6 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   "use strict";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var SNAP = {{ ag | jsonify }};
-  var SITE_OK = {{ siteok }}, SITE_ALL = {{ siteall }};
   var DEV = /^(localhost|127\.|0\.0\.0\.0|\[?::1)/.test(location.hostname);
   var ENDPOINT = DEV
     ? (localStorage.getItem("vitalsDev") || "http://127.0.0.1:8787/vitals.json")
@@ -1211,6 +1302,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 
   var pill = document.querySelector(".cc-bar__live");
   var pillLabel = document.querySelector("[data-live-label]");
+  var recordEl = document.querySelector("[data-record-age]");
   var latencyEl = document.querySelector("[data-latency]");
   var streamEl = document.querySelector("[data-stream]");
   var streamMeta = document.querySelector("[data-stream-meta]");
@@ -1232,8 +1324,8 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     }
   }
 
-  function mood(d) {
-    var v = (d.health && d.health.verdict) || "operational";
+  function mood(d, verdict) {
+    var v = verdict || (d.health && d.health.verdict) || "operational";
     var responding = d.runtime && d.runtime.now_responding;
     var cls = "v-" + v;
     if (d.online === false) cls += " mood-dormant";
@@ -1243,10 +1335,95 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     root.className = cls;
   }
 
-  function summary(d) {
+  /* ---- site checks, re-evaluated against the reader's clock.
+
+     A check whose value is frozen at build time cannot report the staleness it
+     exists to detect: the build runs seconds after the commit, so "Commit
+     recency" always read a few seconds and always passed, even on a page that
+     had been sitting for two days. Rows carrying data-check-at are recomputed
+     here from real elapsed time, so a stale page says so on its own. ---- */
+  function ageStr(ms) {
+    var s = Math.max(0, ms / 1000);
+    var d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600), m = Math.floor((s % 3600) / 60);
+    return d > 0 ? d + "d" : h > 0 ? h + "h" : m > 0 ? m + "m" : Math.floor(s) + "s";
+  }
+
+  var HARD = { pipeline: 1, age: 1 };   // a stale build or a stale record is a core signal
+
+  function recheckSite() {
+    var all = 0, ok = 0, hardFail = 0;
+    document.querySelectorAll(".diag__row").forEach(function (row) {
+      var scope = row.querySelector(".diag__scope");
+      if (!scope || scope.textContent.trim() !== "site") return;
+      all++;
+      var led = row.querySelector(".diag__led"), out = row.querySelector(".diag__value");
+      var at = Date.parse(row.getAttribute("data-check-at") || "");
+      var max = parseFloat(row.getAttribute("data-check-max"));
+      if (!isNaN(at) && !isNaN(max) && led && out) {
+        var elapsed = Date.now() - at, kind = row.getAttribute("data-check-kind");
+        var fresh = elapsed / 3600000 <= max, age = ageStr(elapsed);
+        out.textContent = (kind === "age" ? age + " ago"
+          : kind === "pipeline" ? (fresh ? "clean" : "stale " + age)
+          : (fresh ? "current" : "quiet " + age)) + (fresh ? " ✓" : " ⚠");
+        led.classList.toggle("led-ok", fresh);
+        led.classList.toggle("led-warn", !fresh);
+        out.classList.toggle("diag__value--warn", !fresh);
+        if (!fresh && HARD[kind]) hardFail++;
+      }
+      if (led && led.classList.contains("led-ok")) ok++;
+    });
+    return { ok: ok, all: all, hardFail: hardFail };
+  }
+
+  /* The live endpoint reports on the agent only. The verdict at the top is the
+     sum of BOTH halves, so a failing site check has to be able to pull it down;
+     otherwise the page can go stale while still claiming it is operational. */
+  function compose(d, site) {
+    var v = (d.health && d.health.verdict) || "operational";
+    var basis = (d.health && d.health.basis) || "";
+    if (site.hardFail) return { verdict: "degraded", basis: "a core signal is stale or failing" };
+    if (site.ok < site.all && v === "operational")
+      return { verdict: "stable", basis: "core loops healthy, soft signals to watch" };
+    return { verdict: v, basis: basis };
+  }
+
+  function summary(d, site) {
     if (!d.health || !d.health.checks) return null;
-    var ok = d.health.checks.filter(function (c) { return c.ok; }).length;
-    return (ok + SITE_OK) + " of " + (d.health.checks.length + SITE_ALL);
+    var ok = d.health.checks.filter(function (c) { return c.ok; }).length + site.ok;
+    var all = d.health.checks.length + site.all;
+    return ok === all ? ok + " of " + all + " checks nominal"
+                      : (all - ok) + " of " + all + " checks failing";
+  }
+
+  /* ---- the agent's own rows and loop cards are rendered frozen by Liquid so
+     the page is complete with no JS, then re-synced from the live payload.
+     Without this the loop list could show a loop as errored while the headline
+     counts, which ARE live, disagreed with it on the same screen. ---- */
+  function syncAgentChecks(d) {
+    if (!d.health || !d.health.checks) return;
+    d.health.checks.forEach(function (c) {
+      var row = document.querySelector('[data-check-agent="' + CSS.escape(c.label) + '"]');
+      if (!row) return;
+      var led = row.querySelector(".diag__led"), out = row.querySelector(".diag__value"),
+          note = row.querySelector(".diag__note");
+      if (out) { setVital(out, c.value + (c.ok ? " ✓" : " ⚠")); out.classList.toggle("diag__value--warn", !c.ok); }
+      if (note && c.note) note.textContent = c.note;
+      if (led) { led.classList.toggle("led-ok", !!c.ok); led.classList.toggle("led-warn", !c.ok); }
+    });
+  }
+
+  function syncLoops(d) {
+    if (!d.work || !d.work.loops) return;
+    d.work.loops.forEach(function (l) {
+      var card = document.querySelector('[data-loop="' + CSS.escape(l.name) + '"]');
+      if (!card) return;
+      var st = card.querySelector("[data-loop-status]"), dot = card.querySelector(".org-dot");
+      if (st) setVital(st, l.status);
+      if (dot) {
+        dot.classList.toggle("org-dot--bad", l.status === "error");
+        dot.classList.toggle("org-dot--dim", l.status !== "error" && l.status !== "ok");
+      }
+    });
   }
 
   var seen = {};
@@ -1268,11 +1445,18 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   function esc(s) { return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
 
   function apply(d, live) {
-    mood(d);
+    if (recordEl) {
+      var rAt = Date.parse(recordEl.getAttribute("data-record-at"));
+      if (!isNaN(rAt)) recordEl.textContent = ageStr(Date.now() - rAt) + " old";
+    }
+    var site = recheckSite();
+    var composed = compose(d, site);
+    mood(d, composed.verdict);
     document.querySelectorAll("[data-vital]").forEach(function (n) {
       var p = n.getAttribute("data-vital");
-      var v = p === "health.checks_summary" ? summary(d)
-            : p === "health.basis" ? cap(path(d, p))
+      var v = p === "health.checks_summary" ? summary(d, site)
+            : p === "health.verdict" ? composed.verdict
+            : p === "health.basis" ? cap(composed.basis)
             : path(d, p);
       setVital(n, v);
     });
@@ -1287,6 +1471,8 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       n.classList.toggle("mgauge--alarm", pct >= 95);
       n.classList.toggle("mgauge--warn", pct >= 85 && pct < 95);
     });
+    syncAgentChecks(d);
+    syncLoops(d);
     if (coreState) coreState.textContent = (d.online === false) ? "dormant"
       : (d.runtime && d.runtime.now_responding) ? "responding" : "listening";
     if (d.events) renderStream(d.events);
@@ -1313,6 +1499,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
   /* ---- heartbeat: real elapsed since last commit (immutable anchor). Any
      number of readouts can subscribe via .org-beat; an optional data-beat-tpl
      supplies custom phrasing ("{t}" is the elapsed time), else the hero wording. ---- */
+  var beatTimer = null, beatTick = null;
   (function () {
     var els = document.querySelectorAll(".org-beat");
     if (!els.length) return;
@@ -1331,7 +1518,9 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
         el.textContent = tpl ? tpl.replace("{t}", e) : e + " since last heartbeat";
       });
     }
-    tick(); setInterval(tick, 1000);
+    beatTick = tick;
+    tick();
+    beatTimer = setInterval(tick, 1000);
   })();
 
   /* ---- poll loop, visibility-gated, snapshot on failure ---- */
@@ -1350,7 +1539,44 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
         if (latencyEl) latencyEl.textContent = "offline";
       });
   }
-  function startPoll() { if (!timer) { pollOnce(); timer = setInterval(function () { if (!document.hidden) pollOnce(); }, 8000); } }
+  function startPoll() { if (!timer && !HELD) { pollOnce(); timer = setInterval(function () { if (!document.hidden) pollOnce(); }, 8000); } }
+  function stopPoll() { if (timer) { clearInterval(timer); timer = null; } }
+
+  /* ---- the hold (WCAG 2.2 SC 2.2.2).
+
+     Both bullets apply here: the board blinks, and it auto-updates on a 1s and
+     an 8s interval, which the criterion gives no grace period at all. A
+     preference like prefers-reduced-motion does not satisfy either one, so this
+     is a real control the reader can find and press. It clears both intervals
+     and stops the WebGL rigs rather than hiding the paint, so a held page costs
+     nothing to leave open, and the choice survives a reload. ---- */
+  var HELD = localStorage.getItem("organismHold") === "1";
+  var holdBtn = document.querySelector("[data-hold]");
+  var holdLabel = document.querySelector("[data-hold-label]");
+
+  function setHeld(next, persist) {
+    HELD = next;
+    document.body.classList.toggle("motion-held", HELD);
+    if (holdBtn) holdBtn.setAttribute("aria-pressed", HELD ? "true" : "false");
+    if (holdLabel) holdLabel.textContent = HELD ? "board held" : "hold the board";
+    if (HELD) {
+      stopPoll();
+      if (beatTimer) { clearInterval(beatTimer); beatTimer = null; }
+      if (window.OrganismMotion) window.OrganismMotion.hold();
+    } else {
+      if (!beatTimer && beatTick) { beatTick(); beatTimer = setInterval(beatTick, 1000); }
+      if (window.OrganismMotion) window.OrganismMotion.release();
+      startPoll();
+    }
+    if (persist) {
+      try { HELD ? localStorage.setItem("organismHold", "1") : localStorage.removeItem("organismHold"); } catch (_) {}
+    }
+  }
+
+  if (holdBtn) holdBtn.addEventListener("click", function () { setHeld(!HELD, true); });
+  // Restore a held board before anything starts moving. Only the true branch
+  // runs, so this never kicks the poll off ahead of the boot odometer.
+  if (HELD) setHeld(true, false);
 
 
   /* ---- odometer: integer readouts count up once on boot, like instruments
@@ -1384,10 +1610,14 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
 })();
 </script>
 
-<!-- Cinematic galaxy hero: self-hosted Three.js + bloom, bundled by esbuild
-     (scripts/galaxy). Owns the core canvas; the engine above forwards live state
-     to window.OrganismCore. No third-party request. -->
-<script type="module" src="{{ site.baseurl }}/assets/js/organism-galaxy.js?v=20260621c"></script>
+<!-- Cinematic galaxy hero: self-hosted Three.js, additive points, NO bloom
+     (the blown-out look was rejected and the postprocessing dep removed).
+     Bundled by esbuild (scripts/galaxy). Owns the core canvas; the engine above
+     forwards live state to window.OrganismCore and holds motion via
+     window.OrganismMotion. No third-party request.
+     GOTCHA: after `npm run build` in scripts/galaxy, bump the ?v= below or
+     browsers and the CDN keep serving the stale bundle. -->
+<script type="module" src="{{ site.baseurl }}/assets/js/organism-galaxy.js?v=20260728a"></script>
 
 {% raw %}
 <script>
@@ -1406,9 +1636,30 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
     var nh = nav.offsetHeight || 44;
     root.style.setProperty("--org-nav-top", h + "px");
     root.style.setProperty("--org-stick", (h + nh + 14) + "px");
+    edges();
+  }
+
+  /* Tell the strip whether there is more to reach on either side, so the edge
+     mask only appears when it means something. Without it the three sections
+     past the right edge at 375px read as missing rather than as scrollable. */
+  var wrap = nav.querySelector(".org-nav__wrap");
+  function edges() {
+    if (!wrap) return;
+    var more = wrap.scrollWidth - wrap.clientWidth;
+    if (more <= 2) { wrap.removeAttribute("data-overflow"); return; }
+    var left = wrap.scrollLeft > 2, right = wrap.scrollLeft < more - 2;
+    wrap.setAttribute("data-overflow", left && right ? "both" : left ? "left" : "right");
   }
   layout();
   window.addEventListener("resize", layout);
+  if (wrap) wrap.addEventListener("scroll", edges, { passive: true });
+  // Re-measure once the self-hosted fonts land, or the strip is measured with
+  // fallback metrics and reports overflow that will not exist. The observer
+  // also catches reflows that never fire a window resize (orientation change
+  // with a stable width, a font swap, the sticky header changing height).
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(edges);
+  window.addEventListener("load", edges);
+  if (wrap && "ResizeObserver" in window) new ResizeObserver(edges).observe(wrap);
 
   nav.addEventListener("click", function (e) {
     var a = e.target.closest("a[data-navlink]");
@@ -1433,7 +1684,20 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
       if (!en.isIntersecting) return;
       links.forEach(function (a) { a.classList.remove("is-current"); a.removeAttribute("aria-current"); });
       Object.keys(map).forEach(function (k) {
-        if (map[k].sec === en.target) { map[k].a.classList.add("is-current"); map[k].a.setAttribute("aria-current", "true"); }
+        if (map[k].sec !== en.target) return;
+        var a = map[k].a;
+        a.classList.add("is-current"); a.setAttribute("aria-current", "true");
+        // Carry the active pill into view, or the reader scrolls past three
+        // sections whose labels never move on a narrow screen.
+        if (wrap && wrap.scrollWidth > wrap.clientWidth + 2) {
+          var ar = a.getBoundingClientRect(), wr = wrap.getBoundingClientRect();
+          if (ar.left < wr.left + 8 || ar.right > wr.right - 8) {
+            wrap.scrollTo({
+              left: a.offsetLeft - wrap.clientWidth / 2 + a.offsetWidth / 2,
+              behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+            });
+          }
+        }
       });
     });
   }, { rootMargin: "-25% 0px -65% 0px" });

@@ -1,5 +1,5 @@
 // Cinematic WebGL for /organism/. Self-hosted, bundled by esbuild into
-// assets/js/organism-galaxy.js (no third-party runtime request). Three visuals
+// assets/js/organism-galaxy.js (no third-party runtime request). Two visuals
 // share this one Three.js import:
 //   1. initGalaxy        the hero core: a face-on spiral particle disc, rendered
 //                        crisp (additive points, no bloom) so the grain reads,
@@ -8,10 +8,27 @@
 //   2. initConstellation the memory card's knowledge graph: a slow rotating
 //                        sphere of nodes wired by nearest-neighbour edges, its
 //                        density scaled to the real mnemosyne facts/edge counts.
-//   3. initVoices        the five-voices council: Richie/Mike/Beard/Rocky/Sean
-//                        as nodes around one "blend" centre, drawn together and
-//                        breathing. A living diagram beside the voices text.
+//
+// A third visual, initVoices (the five-voices council), was removed in the v7
+// "The Pass" rebuild along with the voices column it drew beside. It kept
+// shipping in this bundle as dead code until 2026-07-28.
+//
+// Motion hold: every rig registers with HOLD so the page can stop all of them
+// from one control (WCAG 2.2 SC 2.2.2). While held, the visibility and
+// intersection observers below must not quietly resume them, which is why
+// start() checks HOLD.held rather than the caller checking it.
 import * as THREE from "three";
+
+// Seeded from storage so a reader who held the board last visit does not get
+// one frame of motion before the page script re-applies it.
+var HOLD = { held: false, rigs: [] };
+try { HOLD.held = localStorage.getItem("organismHold") === "1"; } catch (e) {}
+function register(start, stop) { HOLD.rigs.push({ start: start, stop: stop }); }
+window.OrganismMotion = {
+  hold: function () { HOLD.held = true; HOLD.rigs.forEach(function (r) { r.stop(); }); },
+  release: function () { HOLD.held = false; HOLD.rigs.forEach(function (r) { r.start(); }); },
+  isHeld: function () { return HOLD.held; },
+};
 
 // shared soft-glow point sprite (additive); alpha carried in vA
 var GLOW_FRAG = [
@@ -135,8 +152,9 @@ function initGalaxy() {
     renderer.render(scene, camera);
     raf = requestAnimationFrame(frame);
   }
-  function start() { if (!running && !reduce) { running = true; last = performance.now(); raf = requestAnimationFrame(frame); } }
+  function start() { if (!running && !reduce && !HOLD.held) { running = true; last = performance.now(); raf = requestAnimationFrame(frame); } }
   function stop() { if (running) { running = false; cancelAnimationFrame(raf); } }
+  register(start, stop);
 
   if (reduce) { uniforms.uTime.value = 8; renderer.render(scene, camera); }
   else start();
@@ -270,8 +288,9 @@ function initConstellation() {
     renderer.render(scene, camera);
     raf = requestAnimationFrame(frame);
   }
-  function start() { if (!running && !reduce) { running = true; last = performance.now(); raf = requestAnimationFrame(frame); } }
+  function start() { if (!running && !reduce && !HOLD.held) { running = true; last = performance.now(); raf = requestAnimationFrame(frame); } }
   function stop() { if (running) { running = false; cancelAnimationFrame(raf); } }
+  register(start, stop);
 
   if (reduce) { nUniforms.uTime.value = 5; renderer.render(scene, camera); }
   else start();
@@ -282,126 +301,5 @@ function initConstellation() {
   }
 }
 
-function initVoices() {
-  var canvas = document.querySelector(".voices-orb__canvas");
-  if (!canvas) return;
-  var gl;
-  try { gl = canvas.getContext("webgl2") || canvas.getContext("webgl"); } catch (e) {}
-  if (!gl) return;
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-  renderer.setClearColor(0x000000, 0);
-
-  var scene = new THREE.Scene();
-  var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
-  camera.position.set(0, 0, 4.6);
-  var group = new THREE.Group();
-  scene.add(group);
-
-  // five voices on a pentagon (facing the camera) + one blend node at centre
-  var base = [];
-  for (var i = 0; i < 5; i++) {
-    var a = (i / 5) * Math.PI * 2 - Math.PI / 2;
-    base.push(new THREE.Vector3(Math.cos(a) * 1.5, Math.sin(a) * 1.5, 0));
-  }
-  var cur = base.map(function (v) { return v.clone(); });
-  var phase = base.map(function () { return Math.random() * 6.28; });
-
-  var P = 6;
-  var npos = new Float32Array(P * 3), ncol = new Float32Array(P * 3), nsc = new Float32Array(P), nsd = new Float32Array(P);
-  var voiceCol = new THREE.Color(0xeaa83c), blendCol = new THREE.Color(0xfff1d4);
-  for (var i = 0; i < P; i++) {
-    var c = i === 5 ? blendCol : voiceCol;
-    ncol[i * 3] = c.r; ncol[i * 3 + 1] = c.g; ncol[i * 3 + 2] = c.b;
-    nsc[i] = i === 5 ? 3.0 : 2.0; nsd[i] = Math.random();
-  }
-  var ngeo = new THREE.BufferGeometry();
-  ngeo.setAttribute("position", new THREE.BufferAttribute(npos, 3));
-  ngeo.setAttribute("color", new THREE.BufferAttribute(ncol, 3));
-  ngeo.setAttribute("aScale", new THREE.BufferAttribute(nsc, 1));
-  ngeo.setAttribute("aSeed", new THREE.BufferAttribute(nsd, 1));
-  var u = { uTime: { value: 0 }, uSize: { value: 30 * renderer.getPixelRatio() } };
-  var nmat = new THREE.ShaderMaterial({
-    depthWrite: false, blending: THREE.AdditiveBlending, vertexColors: true, uniforms: u,
-    vertexShader: [
-      "uniform float uTime;uniform float uSize;attribute float aScale;attribute float aSeed;",
-      "varying vec3 vColor;varying float vA;",
-      "void main(){vec4 mv=modelViewMatrix*vec4(position,1.0);gl_Position=projectionMatrix*mv;",
-      "float tw=0.7+0.3*sin(uTime*1.5+aSeed*20.0);",
-      "gl_PointSize=uSize*aScale*tw*(1.0/-mv.z);vColor=color;vA=0.55+tw*0.45;}",
-    ].join("\n"),
-    fragmentShader: GLOW_FRAG,
-  });
-  group.add(new THREE.Points(ngeo, nmat));
-
-  // 5 spokes to centre + 5 perimeter edges
-  var lpos = new Float32Array(10 * 2 * 3);
-  var lgeo = new THREE.BufferGeometry(); lgeo.setAttribute("position", new THREE.BufferAttribute(lpos, 3));
-  var lmat = new THREE.LineBasicMaterial({ color: 0xeaa83c, transparent: true, opacity: 0.3, blending: THREE.AdditiveBlending, depthWrite: false });
-  group.add(new THREE.LineSegments(lgeo, lmat));
-
-  function resize() {
-    var w = canvas.clientWidth || 300, h = canvas.clientHeight || 260;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h; camera.updateProjectionMatrix();
-  }
-  resize();
-  window.addEventListener("resize", resize);
-
-  var last = performance.now(), raf = 0, running = false;
-  function frame() {
-    var nowt = performance.now();
-    var dt = Math.min(0.05, (nowt - last) / 1000);
-    last = nowt;
-    u.uTime.value += dt;
-    var t = u.uTime.value;
-    // gentle parallax only, never edge-on, so all five stay readable
-    group.rotation.y = 0.35 * Math.sin(t * 0.28);
-    group.rotation.x = 0.12 * Math.sin(t * 0.43);
-    var conv = 0.5 + 0.5 * Math.sin(t * 0.6); // breathe toward the blend
-    for (var i = 0; i < 5; i++) {
-      var pull = 0.1 + 0.2 * conv + 0.05 * Math.sin(t * 1.3 + phase[i]);
-      cur[i].copy(base[i]).multiplyScalar(1.0 - pull);
-      npos[i * 3] = cur[i].x; npos[i * 3 + 1] = cur[i].y; npos[i * 3 + 2] = cur[i].z;
-      lpos[i * 6] = cur[i].x; lpos[i * 6 + 1] = cur[i].y; lpos[i * 6 + 2] = cur[i].z;
-      lpos[i * 6 + 3] = 0; lpos[i * 6 + 4] = 0; lpos[i * 6 + 5] = 0;
-    }
-    for (var i = 0; i < 5; i++) {
-      var a = cur[i], b = cur[(i + 1) % 5], o = 30 + i * 6;
-      lpos[o] = a.x; lpos[o + 1] = a.y; lpos[o + 2] = a.z;
-      lpos[o + 3] = b.x; lpos[o + 4] = b.y; lpos[o + 5] = b.z;
-    }
-    npos[15] = 0; npos[16] = 0; npos[17] = 0;
-    ngeo.attributes.position.needsUpdate = true;
-    lgeo.attributes.position.needsUpdate = true;
-    renderer.render(scene, camera);
-    raf = requestAnimationFrame(frame);
-  }
-  function start() { if (!running && !reduce) { running = true; last = performance.now(); raf = requestAnimationFrame(frame); } }
-  function stop() { if (running) { running = false; cancelAnimationFrame(raf); } }
-
-  if (reduce) { u.uTime.value = 1.5; frame_once(); }
-  function frame_once() {
-    for (var i = 0; i < 5; i++) {
-      npos[i * 3] = base[i].x; npos[i * 3 + 1] = base[i].y; npos[i * 3 + 2] = base[i].z;
-      lpos[i * 6] = base[i].x; lpos[i * 6 + 1] = base[i].y; lpos[i * 6 + 2] = base[i].z;
-      var b = base[(i + 1) % 5], o = 30 + i * 6;
-      lpos[o] = base[i].x; lpos[o + 1] = base[i].y; lpos[o + 2] = base[i].z;
-      lpos[o + 3] = b.x; lpos[o + 4] = b.y; lpos[o + 5] = b.z;
-    }
-    ngeo.attributes.position.needsUpdate = true; lgeo.attributes.position.needsUpdate = true;
-    renderer.render(scene, camera);
-  }
-  if (!reduce) start();
-
-  document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (es) { es[0].isIntersecting ? start() : stop(); }, { threshold: 0.01 }).observe(canvas);
-  }
-}
-
 initGalaxy();
 initConstellation();
-initVoices();
