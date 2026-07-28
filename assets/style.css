@@ -184,6 +184,28 @@ header.site-head {
 }
 .nav-links a:hover { color: var(--paper); background: rgba(242, 234, 216, 0.06); }
 .nav-links a[aria-current="page"] { color: var(--amber); background: var(--amber-soft); }
+
+/* The two halves of the nav. Rooms are places you walk into and operate;
+   the record is what you read afterwards. They were one undifferentiated row
+   of seven documents, which is how four authored rooms stayed invisible.
+   The rooms carry full ink; the record sits back a step. */
+.nav-group { display: inline-flex; gap: 0.25rem; align-items: center; }
+.nav-rule { width: 1px; height: 14px; background: var(--steel-edge); margin-inline: 0.5rem; flex: none; }
+.nav-group--quiet a { color: var(--muted); }
+.nav-group--quiet a:hover { color: var(--paper); }
+.nav-links .nav-group a[aria-current="page"] { color: var(--amber); background: var(--amber-soft); }
+
+/* The rest of the map, under the fold. Small, quiet, and complete: every route
+   on the site is reachable from here, so nothing depends on one inline link. */
+.foot-map {
+  display: flex; flex-wrap: wrap; gap: 0.2rem 1.1rem;
+  padding-bottom: 0.9rem; margin-bottom: 0.9rem;
+  border-bottom: 1px solid var(--steel-edge);
+  font-size: 0.82rem;
+}
+.foot-map a { color: var(--muted); text-decoration: none; }
+.foot-map a:hover { color: var(--paper); text-decoration: underline; text-underline-offset: 3px; }
+
 .nav-toggle { display: none; }
 
 @media (max-width: 760px) {
@@ -205,6 +227,11 @@ header.site-head {
   }
   html.js header.site-head.nav-open .nav-links { display: flex; }
   .nav-links a { padding: 0.8rem 0.75rem; border-radius: 8px; font-size: 1rem; }
+  /* The groups stack in the drawer instead of sitting inline, and the divider
+     becomes a full rule between them. The rooms keep full ink at the top,
+     which is the whole point of the reordering. */
+  .nav-group { display: flex; flex-direction: column; align-items: stretch; gap: 0; width: 100%; }
+  .nav-rule { width: 100%; height: 1px; margin: 0.5rem 0; }
   /* no-JS fallback: links stay inline and wrap */
   html:not(.js) .nav-toggle { display: none; }
 }
@@ -1007,8 +1034,11 @@ a.board-cell:hover { border-color: var(--steel-edge-hot); background: rgba(13, 1
 .tape-line .t { color: var(--burn); flex: none; font-size: 0.72rem; }
 .tape-line .m { color: var(--text); flex: 1; }
 .tape-line .s { flex: none; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
-.tape-running { color: var(--amber); animation: tape-blink 1s steps(2) infinite; }
-@keyframes tape-blink { 50% { opacity: 0.35; } }
+/* Was `1s steps(2)`: a hard on/off blink, the most aggressive motion on the
+   site and the one most likely to bother someone. Same signal, breathing
+   instead of flashing, and it stops with the hold like everything else. */
+.tape-running { color: var(--amber); animation: tape-blink 2.4s ease-in-out infinite; }
+@keyframes tape-blink { 50% { opacity: 0.45; } }
 .tape-ok { color: var(--pass-ok); }
 .tape-err { color: var(--alarm); }
 
@@ -1189,3 +1219,164 @@ html[data-shift="service"] .open-ticket { display: none; }
   .reveal { opacity: 1; transform: none; }
   html.js .open-ticket { display: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   THE TICKET TRAVELS
+   Cross-document view transitions. The site already declared
+   view-transition in <head> and styled nothing, so navigation
+   was a hard cut. The ticket is this world's one real object:
+   cream paper, mono type, perforated edge. It appears on the
+   rail, in the ledger, in the night. Make it the SAME ticket,
+   physically carried between routes, instead of a card that
+   gets redrawn.
+
+   The argument is the motion: one claim, one ticket, followed
+   from the rail to the ledger. Nothing is asserted about
+   continuity; the paper just does not let go.
+
+   Tier 1 (benchmark 02-doctrine §34): zero JS, compositor only,
+   and it degrades to a normal navigation where unsupported.
+   ═══════════════════════════════════════════════════════════ */
+@view-transition { navigation: auto; }
+
+/* Chrome exposes the old cut as a crossfade on the whole page. Kill it:
+   only named elements should move, everything else holds still. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 220ms;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);   /* pass-glide */
+}
+
+/* Persistent chrome does not travel, it stays put. Naming it keeps the
+   header and the shift drawer from flickering through the transition. */
+.site-head { view-transition-name: site-head; }
+.shift-drawer { view-transition-name: shift-drawer; }
+::view-transition-group(site-head),
+::view-transition-group(shift-drawer) { animation-duration: 0ms; }
+
+/* The ticket itself. 260ms is the pass: long enough to read as one object
+   moving, short enough that it never becomes a page transition you wait on.
+   The per-ticket name is written inline by Liquid (view-transition-name takes
+   a custom-ident, so it cannot be handed in through a variable). */
+::view-transition-group(*) { animation-duration: 260ms; }
+
+/* Paper does not crossfade. Hold both frames opaque so the edge, the rule and
+   the stamp stay solid while the card changes size, the way a card handed
+   across a pass stays a card the whole way. */
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+  mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* SC 2.3.3. The Print Edition of a navigation is a cut, not a slide. */
+  @view-transition { navigation: none; }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THE PROOF LINE
+   The hero's three figures, on a tape the reader can drag back
+   through every day the site has existed. Replaces three
+   numbers that sat still. The tape is the one thing on the
+   homepage that moves, and only when a hand moves it.
+   ═══════════════════════════════════════════════════════════ */
+.proofline { margin-top: 1.6rem; max-width: 34rem; }
+.proofline[hidden] { display: none; }
+
+.proofline__row {
+  display: flex; align-items: baseline; gap: 0.6rem;
+  font-family: var(--font-mono); font-size: 0.74rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.proofline__date { color: var(--paper); }
+.proofline__era { color: var(--muted); }
+/* Reading the past is a different state from reading now: the amber cools. */
+.proofline.is-past .proofline__date { color: var(--amber); }
+
+.proofline__stats {
+  display: flex; gap: 1.6rem; flex-wrap: wrap;
+  list-style: none; margin: 0.5rem 0 0.75rem; padding: 0;
+}
+.proofline__stats li { display: flex; flex-direction: column; gap: 0.1rem; }
+.proofline__stats strong {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.75rem; line-height: 1; color: var(--paper);
+  /* the figures are rewritten on every step of the drag; proportional
+     numerals made the whole row jump sideways as the digits changed */
+  font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1;
+}
+.proofline__stats span {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+}
+
+/* The tape. Deliberately reads as a strip of film rather than a form control:
+   this is the one place on the site the reader's hand drives the record. */
+.proofline__scrub {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 26px; background: transparent; cursor: grab;
+}
+.proofline__scrub:active { cursor: grabbing; }
+.proofline__scrub::-webkit-slider-runnable-track {
+  height: 3px; border-radius: 2px;
+  background: repeating-linear-gradient(90deg,
+    var(--steel-edge-hot) 0 1px, transparent 1px 7px);
+}
+.proofline__scrub::-moz-range-track {
+  height: 3px; border-radius: 2px;
+  background: repeating-linear-gradient(90deg,
+    var(--steel-edge-hot) 0 1px, transparent 1px 7px);
+}
+.proofline__scrub::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 3px; height: 22px; margin-top: -10px;
+  border: 0; border-radius: 1px; background: var(--amber);
+  box-shadow: 0 0 12px rgba(240, 192, 64, 0.55);
+}
+.proofline__scrub::-moz-range-thumb {
+  width: 3px; height: 22px;
+  border: 0; border-radius: 1px; background: var(--amber);
+  box-shadow: 0 0 12px rgba(240, 192, 64, 0.55);
+}
+.proofline__scrub:focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; border-radius: 2px; }
+
+.proofline__hint {
+  margin: 0 0 0.35rem; font-size: 0.78rem; line-height: 1.5; color: var(--muted);
+}
+.proofline__hint a { color: var(--text-soft); text-underline-offset: 3px; }
+
+@media (max-width: 560px) {
+  .proofline__stats { gap: 1.1rem; }
+  .proofline__stats strong { font-size: 1.45rem; }
+  /* a 26px tall grab area is fine with a mouse and not with a thumb */
+  .proofline__scrub { height: 44px; }
+  .proofline__scrub::-webkit-slider-thumb { height: 30px; margin-top: -14px; }
+  .proofline__scrub::-moz-range-thumb { height: 30px; }
+}
+
+/* The site-wide motion hold, in the footer. Deliberately quiet: it is a
+   control, not a feature, and it should be findable rather than loud. */
+.foot-hold {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-family: var(--font-mono); font-size: 0.72rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); background: transparent;
+  border: 1px solid var(--steel-edge); border-radius: 3px;
+  padding: 0.35rem 0.65rem; cursor: pointer; min-height: 44px;
+  transition: color 140ms ease, border-color 140ms ease;
+}
+.foot-hold__mark { width: 7px; height: 7px; border: 1px solid currentColor; border-radius: 1px; }
+.foot-hold:hover { color: var(--paper); border-color: var(--steel-edge-hot); }
+.foot-hold:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.foot-hold[aria-pressed="true"] { color: var(--amber); border-color: rgba(240, 192, 64, 0.4); }
+.foot-hold[aria-pressed="true"] .foot-hold__mark { background: currentColor; }
+
+/* Held: the site-wide perpetual motion stops. Mirrors the reduced-motion
+   edition rather than inventing a second set of rules. */
+body.motion-held .shift-dot,
+body.motion-held .tape-running,
+body.motion-held .dot { animation: none !important; }

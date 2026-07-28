@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="view-transition" content="same-origin">
+  <!-- Cross-document view transitions are opted into by the `@view-transition`
+       rule in style.css, not here. The old <meta name="view-transition"> syntax
+       this file carried never shipped in any browser, so navigation had been a
+       hard cut the whole time it was declared. -->
+
   <meta name="theme-color" content="#0d0b09">
   <script>document.documentElement.classList.add('js');</script>
   <title>{% if page.title and page.title != site.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
@@ -45,7 +49,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/apple-touch-icon.png">
 
   <!-- Minified for parse speed; readable source lives at /assets/style.css -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260723-rooms">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260728-ticket">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="{{ site.baseurl }}/journal/feed.xml">
   <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="{{ site.baseurl }}/receipts/feed.xml">
   <script type="application/ld+json">
@@ -82,14 +86,31 @@
     <nav class="site-nav" aria-label="Site">
       <a href="{{ site.baseurl }}/" class="logo">Richie Jerimovich<b>.</b></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" id="nav-toggle">Menu</button>
+      {%- comment -%}
+        The nav used to list seven documents and hide four rooms. Every
+        interactive control on this site except the receipt filters lives in
+        those rooms: the scrubber that replays the whole record, the kitchen's
+        four doors, the vitals board. A visitor entering through the old nav
+        could reach six pages with nothing to operate and never learn the rest
+        existed; /rewind/ was linked from exactly one page on the property.
+
+        So the rooms lead now, and the records follow them. The two groups are
+        separated visually and by an accessible label each, because they are
+        different KINDS of thing: one you walk into, one you read.
+      {%- endcomment -%}
       <div class="nav-links" id="nav-links">
-        <a href="{{ site.baseurl }}/about/" {% if page.url == '/about/' %}aria-current="page"{% endif %}>About</a>
-        <a href="{{ site.baseurl }}/beliefs/" {% if page.url == '/beliefs/' %}aria-current="page"{% endif %}>Beliefs</a>
-        <a href="{{ site.baseurl }}/projects/" {% if page.url == '/projects/' %}aria-current="page"{% endif %}>Projects</a>
-        <a href="{{ site.baseurl }}/receipts/" {% if page.url == '/receipts/' %}aria-current="page"{% endif %}>Receipts</a>
-        <a href="{{ site.baseurl }}/journal/" {% if page.url contains '/journal/' %}aria-current="page"{% endif %}>Journal</a>
-        <a href="{{ site.baseurl }}/organism/" {% if page.url == '/organism/' %}aria-current="page"{% endif %}>Organism</a>
-        <a href="{{ site.baseurl }}/changelog/" {% if page.url == '/changelog/' %}aria-current="page"{% endif %}>Changelog</a>
+        <span class="nav-group" role="group" aria-label="Rooms">
+          <a href="{{ site.baseurl }}/kitchen/" {% if page.url == '/kitchen/' %}aria-current="page"{% endif %}>Kitchen</a>
+          <a href="{{ site.baseurl }}/rewind/" {% if page.url == '/rewind/' %}aria-current="page"{% endif %}>Rewind</a>
+          <a href="{{ site.baseurl }}/organism/" {% if page.url == '/organism/' %}aria-current="page"{% endif %}>Organism</a>
+        </span>
+        <span class="nav-rule" aria-hidden="true"></span>
+        <span class="nav-group nav-group--quiet" role="group" aria-label="The record">
+          <a href="{{ site.baseurl }}/receipts/" {% if page.url == '/receipts/' %}aria-current="page"{% endif %}>Receipts</a>
+          <a href="{{ site.baseurl }}/journal/" {% if page.url contains '/journal/' %}aria-current="page"{% endif %}>Journal</a>
+          <a href="{{ site.baseurl }}/projects/" {% if page.url == '/projects/' %}aria-current="page"{% endif %}>Projects</a>
+          <a href="{{ site.baseurl }}/about/" {% if page.url == '/about/' %}aria-current="page"{% endif %}>About</a>
+        </span>
       </div>
     </nav>
   </header>
@@ -99,8 +120,31 @@
   </main>
 
   <footer class="site-foot">
+    {%- comment -%}
+      Beliefs and Changelog came out of the nav when the rooms went in. They
+      are not orphaned: both live here, alongside the two rooms that sit behind
+      the kitchen door rather than beside it. Nothing on this site should be
+      reachable from exactly one page, which is how /rewind/ got lost.
+    {%- endcomment -%}
+    <nav class="foot-map" aria-label="The rest of the site">
+      <a href="{{ site.baseurl }}/inside/">Inside the shift</a>
+      <a href="{{ site.baseurl }}/tonight/">Last night's tape</a>
+      <a href="{{ site.baseurl }}/tape/">Every night on file</a>
+      <a href="{{ site.baseurl }}/beliefs/">Beliefs</a>
+      <a href="{{ site.baseurl }}/changelog/">Service log</a>
+      <a href="{{ site.baseurl }}/journal/book/">The bound edition</a>
+    </nav>
     <div class="foot-inner">
       <span>Built by me. Checked nightly. <a href="/privacy/">Privacy</a></span>
+      {%- comment -%}
+        SC 2.2.2. The shift drawer polls every 10s and re-renders every 30s on
+        every route, which the criterion allows no grace period for, and the
+        site had no pause anywhere. shift.js owns this switch; /organism/ has a
+        second copy in its command bar and both stay in sync.
+      {%- endcomment -%}
+      <button type="button" class="foot-hold" data-hold aria-pressed="false">
+        <span class="foot-hold__mark" aria-hidden="true"></span><span data-hold-label>hold motion</span>
+      </button>
       <div class="foot-links">
         <a href="https://instagram.com/richie_jerimovich" aria-label="Instagram profile">IG</a>
         <a href="{{ site.baseurl }}/journal/feed.xml" aria-label="Journal RSS feed">RSS</a>
@@ -199,6 +243,47 @@
       }
     })();
     {% endif %}
+
+    /* ── The ticket travels ──────────────────────────────────────────────
+       A receipt on the homepage rail and the same receipt in the ledger are
+       the same claim, so they should be the same piece of paper. Rather than
+       naming all 49 tickets (49 snapshots per navigation), only the ticket
+       the reader actually activated is named, on both ends: on the way out at
+       click, on the way in from the destination hash. One element, one morph.
+
+       pageswap/pagereveal are the cross-document view transition API. Where
+       they are missing the listeners never fire and navigation is an ordinary
+       cut, which is the correct fallback. Reduced motion is handled in CSS by
+       turning the transition off entirely. */
+    (function () {
+      var NAME = 't-active';
+
+      function ticketFor(id) {
+        if (!id) return null;
+        var el = document.getElementById(id);
+        return el && el.classList.contains('ticket') ? el : null;
+      }
+
+      // On the way out: the ticket under the reader's cursor is the one that travels.
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href*="/receipts/#"]');
+        if (!a) return;
+        var card = a.closest('.ticket');
+        if (card) card.style.viewTransitionName = NAME;
+      }, true);
+
+      // On the way in: the ledger entry named by the hash receives it.
+      window.addEventListener('pagereveal', function (e) {
+        if (!e.viewTransition) return;
+        var card = ticketFor(decodeURIComponent(location.hash.slice(1)));
+        if (!card) return;
+        card.style.viewTransitionName = NAME;
+        // Release the name once the paper has landed, or the next navigation
+        // inherits a stale one and morphs the wrong card.
+        e.viewTransition.finished.then(clear, clear);
+        function clear() { card.style.viewTransitionName = ''; }
+      });
+    })();
 
     // Back to top without scroll listeners.
     (function() {

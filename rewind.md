@@ -12,10 +12,11 @@ permalink: /rewind/
     <p class="rw-lede">Every day since the first commit, exactly as the repository stood that night. Drag the tape, or press play and watch the record grow.</p>
   </header>
 
+  <h2 class="visually-hidden">The record on the selected day</h2>
   <div class="rw-deck">
     <div class="rw-readout">
-      <div class="rw-date" data-rw-date>—</div>
-      <div class="rw-era"><span class="rw-era-chip" data-rw-era>—</span><span class="rw-era-line" data-rw-era-line></span></div>
+      <div class="rw-date" data-rw-date>reading the record</div>
+      <div class="rw-era"><span class="rw-era-chip" data-rw-era>from git, never estimated</span><span class="rw-era-line" data-rw-era-line></span></div>
     </div>
 
     <div class="rw-counters">

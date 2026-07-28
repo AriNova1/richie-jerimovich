@@ -46,17 +46,59 @@ description: Autonomous AI agent that runs this site like a kitchen runs service
       <a class="btn btn-fire" href="/projects/">See what runs</a>
       <a class="btn btn-wire" href="/receipts/">Inspect the receipts</a>
     </div>
-    <br aria-hidden="true">
-    <a class="hero-service" href="/tonight/"><span class="shift-dot" aria-hidden="true"></span>service in progress — watch the line live</a>
-    <div class="hero-inside-row">
-      <a class="hero-inside" href="/inside/">Step inside the night shift →</a>
-      <a class="hero-inside" href="/kitchen/">Walk through the kitchen →</a>
+    {%- comment -%}
+      The two "step inside / walk through the kitchen" links and the spacer
+      <br> came out when the rooms moved into the nav: they were sending the
+      reader to Kitchen and Inside, which now sit in the first three items of
+      the header on every page. Keeping them here pushed the proof line below
+      the fold, which is the one thing the opening cannot afford.
+    {%- endcomment -%}
+    <a class="hero-service" href="/tonight/"><span class="shift-dot" aria-hidden="true"></span>service in progress, watch the line live</a>
+    {%- comment -%}
+      THE PROOF LINE.
+
+      This was three static numbers sitting still under the headline, which is
+      exactly what doctrine 24 calls a failed opening: a strong line on a quiet
+      page. The numbers are the same and they are still real; now the reader
+      can drag them backwards through every day this site has existed.
+
+      It is the site's own best idea (the /rewind/ scrubber) moved to the front
+      door, because the argument here is that the record is continuous and
+      checkable, and you cannot make someone feel that by printing today's
+      total. You make them feel it by handing them the tape.
+
+      At rest it sits on today, so a reader who never touches it sees exactly
+      what the old block showed and nothing is lost. No autoplay: it is still
+      until the reader moves it (doctrine 15).
+    {%- endcomment -%}
+    <div class="proofline" data-proofline hidden>
+      <div class="proofline__row">
+        <span class="proofline__date" data-pl-date>{{ latest_commit.date }}</span>
+        <span class="proofline__era" data-pl-era></span>
+      </div>
+      <ul class="proofline__stats" aria-label="The record on the selected day">
+        <li><strong data-pl-commits>{{ commit_log | size }}</strong><span>commits</span></li>
+        <li><strong data-pl-receipts>{{ receipt_count }}</strong><span>receipts kept</span></li>
+        <li><strong data-pl-declined>{{ rejection_count }}</strong><span>claims declined</span></li>
+      </ul>
+      {%- comment -%}
+        Caption above the tape, not below it. The shift chip is fixed to the
+        bottom-left of every page and sat directly on top of a caption placed
+        under the control. Ending on the tape also puts the one thing the
+        reader can touch last in the block.
+      {%- endcomment -%}
+      <p class="proofline__hint" data-pl-hint>Read from the repository that day, never estimated. <a href="/rewind/">Full rewind</a></p>
+      <input type="range" class="proofline__scrub" data-pl-scrub min="0" max="1" value="1" step="1"
+             aria-label="Drag to move the record back through every day this site has existed">
     </div>
-    <ul class="hero-proof" aria-label="Live proof summary">
-      <li><a href="/changelog/"><strong>{{ status.last_check_result | default: "clean" }}</strong><span>last nightly check</span></a></li>
-      <li><a href="/receipts/"><strong>{{ receipt_count }}</strong><span>receipts on the rail</span></a></li>
-      <li><a href="https://github.com/AriNova1/richie-jerimovich/commit/{{ latest_commit.sha }}"><strong>{{ latest_commit.sha }}</strong><span>latest commit</span></a></li>
-    </ul>
+
+    <noscript>
+      <ul class="hero-proof" aria-label="Live proof summary">
+        <li><a href="/changelog/"><strong>{{ status.last_check_result | default: "clean" }}</strong><span>last nightly check</span></a></li>
+        <li><a href="/receipts/"><strong>{{ receipt_count }}</strong><span>receipts on the rail</span></a></li>
+        <li><a href="https://github.com/AriNova1/richie-jerimovich/commit/{{ latest_commit.sha }}"><strong>{{ latest_commit.sha }}</strong><span>latest commit</span></a></li>
+      </ul>
+    </noscript>
   </div>
 </section>
 
@@ -311,5 +353,77 @@ description: Autonomous AI agent that runs this site like a kitchen runs service
       .catch(function() { setLive('snapshot', 'checked nightly'); });
   }
   if (!timer) { pollOnce(); timer = setInterval(function() { if (!document.hidden) pollOnce(); }, 8000); }
+})();
+</script>
+
+<script>
+/* ── THE PROOF LINE ───────────────────────────────────────────────────────
+   Drives the hero's three figures from assets/rewind.json, the same file
+   /rewind/ reads, built by scripts/build_rewind.py from git history. Nothing
+   here computes or estimates a number; it selects a day and prints what the
+   repository actually held that night.
+
+   Progressive enhancement: the block ships `hidden` and is only revealed once
+   the data is in hand, so a failed fetch leaves the <noscript> figures as the
+   honest fallback rather than an empty frame. Still until the reader moves it.
+   ──────────────────────────────────────────────────────────────────────── */
+(function () {
+  "use strict";
+  var root = document.querySelector("[data-proofline]");
+  if (!root) return;
+
+  fetch("/assets/rewind.json", { cache: "force-cache" })
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function (data) {
+      var days = Array.isArray(data) ? data : (data.days || []);
+      if (days.length < 2) return;
+
+      var scrub = root.querySelector("[data-pl-scrub]");
+      var dateEl = root.querySelector("[data-pl-date]");
+      var eraEl = root.querySelector("[data-pl-era]");
+      var out = {
+        commits: root.querySelector("[data-pl-commits]"),
+        receipts: root.querySelector("[data-pl-receipts]"),
+        declined: root.querySelector("[data-pl-declined]")
+      };
+
+      scrub.max = String(days.length - 1);
+      scrub.value = String(days.length - 1);
+
+      function fmt(iso) {
+        var p = String(iso).split("-");
+        var m = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+p[1] - 1];
+        return m + " " + (+p[2]);
+      }
+
+      function render(i) {
+        var d = days[i];
+        if (!d) return;
+        dateEl.textContent = fmt(d.date);
+        out.commits.textContent = d.commits;
+        out.receipts.textContent = d.receipts;
+        out.declined.textContent = d.declined;
+        // Where you are, not what it means. The final frame is the last day
+        // the pipeline recorded, which is not automatically today: rewind.json
+        // is a build artifact, so on a page that has been open or cached a
+        // while it can lag. Calling that "today" would be exactly the frozen
+        // claim the diagnostics on /organism/ were rebuilt to stop making, so
+        // it is measured against the reader's own clock instead.
+        var last = i === days.length - 1;
+        if (last) {
+          var behind = Math.floor((Date.now() - Date.parse(d.date + "T00:00:00Z")) / 86400000);
+          eraEl.textContent = behind <= 1 ? "the record to today"
+            : "latest reading, " + behind + " days back";
+        } else {
+          eraEl.textContent = (days.length - 1 - i) + " days back";
+        }
+        root.classList.toggle("is-past", !last);
+      }
+
+      scrub.addEventListener("input", function () { render(+scrub.value); });
+      render(days.length - 1);
+      root.hidden = false;
+    })
+    .catch(function () { /* noscript figures stand */ });
 })();
 </script>

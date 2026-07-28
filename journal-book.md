@@ -31,7 +31,14 @@ robots: noindex, nofollow
   </defs>
 </svg>
 
-<section class="jb-scene is-enter" id="jb-scene" tabindex="-1">
+<section class="jb-scene is-enter" id="jb-scene" tabindex="-1" aria-labelledby="jb-title">
+  {%- comment -%}
+    The bound edition shipped with no heading at any level. The book itself is
+    the title page, so drawing an h1 over it would break the object; it is
+    visually hidden instead, which gives assistive tech and crawlers the
+    document structure the page was missing without touching the composition.
+  {%- endcomment -%}
+  <h1 id="jb-title" class="visually-hidden">The Journal, bound edition: every entry as a turnable book</h1>
 
   <div id="jb-source" hidden aria-hidden="true"
        data-total="{{ total_entries }}"

@@ -714,7 +714,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
         rather than freezing the paint, and the choice persists.
       {%- endcomment -%}
       <button type="button" class="cc-bar__hold" data-hold aria-pressed="false">
-        <span class="cc-bar__holdmark" aria-hidden="true"></span><span data-hold-label>hold the board</span>
+        <span class="cc-bar__holdmark" aria-hidden="true"></span><span data-hold-label data-idle-text="hold the board" data-held-text="board held">hold the board</span>
       </button>
     </div>
 
@@ -1551,32 +1551,27 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
      and stops the WebGL rigs rather than hiding the paint, so a held page costs
      nothing to leave open, and the choice survives a reload. ---- */
   var HELD = localStorage.getItem("organismHold") === "1";
-  var holdBtn = document.querySelector("[data-hold]");
-  var holdLabel = document.querySelector("[data-hold-label]");
 
-  function setHeld(next, persist) {
+  /* shift.js owns the switch now: it lives in the shared layout, holds the
+     storage key, paints body.motion-held and keeps every copy of the control
+     in sync, because the drawer it governs auto-updates on every route. This
+     page only has to stop the two timers that belong to it. Binding the click
+     here as well would toggle the state twice per press. */
+  function setHeld(next) {
     HELD = next;
-    document.body.classList.toggle("motion-held", HELD);
-    if (holdBtn) holdBtn.setAttribute("aria-pressed", HELD ? "true" : "false");
-    if (holdLabel) holdLabel.textContent = HELD ? "board held" : "hold the board";
     if (HELD) {
       stopPoll();
       if (beatTimer) { clearInterval(beatTimer); beatTimer = null; }
-      if (window.OrganismMotion) window.OrganismMotion.hold();
     } else {
       if (!beatTimer && beatTick) { beatTick(); beatTimer = setInterval(beatTick, 1000); }
-      if (window.OrganismMotion) window.OrganismMotion.release();
       startPoll();
-    }
-    if (persist) {
-      try { HELD ? localStorage.setItem("organismHold", "1") : localStorage.removeItem("organismHold"); } catch (_) {}
     }
   }
 
-  if (holdBtn) holdBtn.addEventListener("click", function () { setHeld(!HELD, true); });
+  document.addEventListener("motionhold", function (e) { setHeld(!!(e.detail && e.detail.held)); });
   // Restore a held board before anything starts moving. Only the true branch
   // runs, so this never kicks the poll off ahead of the boot odometer.
-  if (HELD) setHeld(true, false);
+  if (HELD) setHeld(true);
 
 
   /* ---- odometer: integer readouts count up once on boot, like instruments

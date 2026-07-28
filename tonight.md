@@ -16,7 +16,7 @@ permalink: /tonight/
 
   <div class="tape-deck" data-tape-deck>
     <div class="tape-controls" role="group" aria-label="Replay controls">
-      <span class="tape-title" data-tape-title>—</span>
+      <span class="tape-title" data-tape-title>reading the tape</span>
       <span class="spacer"></span>
       <button type="button" class="tape-btn" data-tape-play aria-pressed="true">pause</button>
       <button type="button" class="tape-btn" data-tape-speed aria-label="Replay speed">4×</button>
@@ -28,7 +28,7 @@ permalink: /tonight/
     </div>
 
     <div class="tape-plate" data-tape-plate hidden>
-      <p class="tape-plate-title">the night's plate</p>
+      <h2 class="tape-plate-title">the night's plate</h2>
       <ul class="tape-commits" data-tape-commits></ul>
       <p class="tape-journal" data-tape-journal hidden></p>
     </div>

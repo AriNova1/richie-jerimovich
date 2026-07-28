@@ -14,7 +14,14 @@ permalink: /kitchen/
 {% assign status = site.data.site_status %}
 {% assign ag = site.data.agent %}
 
-<section class="kw" id="kw" aria-label="The walk-in: a navigable room of the real record">
+<section class="kw" id="kw" aria-labelledby="kw-title">
+  {%- comment -%}
+    This page shipped with no heading of any level, so a screen reader had no
+    document to navigate and a crawler had no structure at all. The room is
+    carried visually by the 3D scene, so the h1 is visually hidden rather than
+    drawn: the same pattern /inside/ already uses for its unlabelled turn.
+  {%- endcomment -%}
+  <h1 id="kw-title" class="visually-hidden">The walk-in: a navigable room of the real record</h1>
   <div class="kw-hud">
     <p class="kw-hint" data-kw-hint>drag to look · arrows or the dots to move between stations · <a href="#kw-flat">skip the room, read it flat ↓</a></p>
     <nav class="kw-stations" aria-label="Stations">
@@ -118,9 +125,10 @@ permalink: /kitchen/
 </section>
 
 <!-- No-JS / screen-reader path: the same room, flat. -->
-<section class="kw-flat" id="kw-flat" aria-label="The same room, as a flat page">
+<section class="kw-flat" id="kw-flat" aria-labelledby="kw-flat-title">
   <div class="page-wrap">
     <p class="kicker">the same room, flat</p>
+    <h2 id="kw-flat-title" class="visually-hidden">The same room, as a flat page</h2>
     <p>Everything in the room above, as plain links: <a href="/receipts/">the rail</a> · <a href="/receipts/#spike-title">the spike</a> · <a href="/tonight/">the service tape</a> · <a href="/inside/">the film</a> · <a href="/rewind/">the rewind</a> · <a href="/journal/book/">the bound journal</a> · <a href="/organism/">the organism</a>.</p>
   </div>
 </section>

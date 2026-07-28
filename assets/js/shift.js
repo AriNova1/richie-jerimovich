@@ -112,7 +112,60 @@
       .catch(function () { setState("snapshot"); });
   }
 
+  /* ── The hold (WCAG 2.2 SC 2.2.2) ────────────────────────────────────────
+     This drawer auto-updates on every route: a 10s poll rewriting the chip,
+     the countdown and an aria-live event stream, plus a 30s re-render. The
+     auto-updating bullet of SC 2.2.2 allows no grace period at all, and the
+     drawer shipped with no pause, stop, hide or frequency control anywhere on
+     the site. Collapsing it only hid the stream; both intervals kept running
+     and the label kept changing.
+
+     /organism/ grew its own HOLD THE BOARD first. This is the same switch,
+     lifted to the layer that actually owns the timers, so one control governs
+     every page. State is shared under the same storage key: hold it once, it
+     stays held everywhere. ─────────────────────────────────────────────── */
+  var timers = [];
+  function startTimers() {
+    if (timers.length) return;
+    timers.push(setInterval(function () { if (!document.hidden) poll(); }, 10000));
+    timers.push(setInterval(renderChip, 30000));
+  }
+  function stopTimers() {
+    timers.forEach(clearInterval);
+    timers = [];
+  }
+
+  function held() {
+    try { return localStorage.getItem("organismHold") === "1"; } catch (e) { return false; }
+  }
+
+  function applyHold(on) {
+    document.body.classList.toggle("motion-held", on);
+    if (on) stopTimers(); else { poll(); startTimers(); }
+    // A page may carry more than one switch (the organism console has its own
+    // in the command bar); every copy has to report the same state.
+    document.querySelectorAll("[data-hold]").forEach(function (b) {
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    document.querySelectorAll("[data-hold-label]").forEach(function (l) {
+      l.textContent = on ? (l.getAttribute("data-held-text") || "motion held")
+                         : (l.getAttribute("data-idle-text") || "hold motion");
+    });
+    if (window.OrganismMotion) on ? window.OrganismMotion.hold() : window.OrganismMotion.release();
+    // Pages with their own timers (the organism console runs a 1s heartbeat and
+    // an 8s vitals poll) subscribe to this rather than binding the click twice,
+    // which would toggle the state and immediately toggle it back.
+    document.dispatchEvent(new CustomEvent("motionhold", { detail: { held: on } }));
+  }
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest && e.target.closest("[data-hold]");
+    if (!btn) return;
+    var next = !held();
+    try { next ? localStorage.setItem("organismHold", "1") : localStorage.removeItem("organismHold"); } catch (err) {}
+    applyHold(next);
+  });
+
   poll();
-  setInterval(function () { if (!document.hidden) poll(); }, 10000);
-  setInterval(renderChip, 30000); // keep the countdown honest between polls
+  if (held()) applyHold(true); else startTimers();
 })();
