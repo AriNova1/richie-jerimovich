@@ -1,3 +1,13 @@
+- commit: 63e38da
+  rejected_date: '2026-07-28'
+  reason: Published as ar-2026-07-28-organism-board-can-fail.
+- commit: 058cd24
+  rejected_date: '2026-07-28'
+  reason: Published as ar-2026-07-28-rooms-lead-paper-travels.
+- commit: 54e3319
+  rejected_date: '2026-07-28'
+  reason: Stewardship meta-commit that only added catch-up journals and a rejection;
+    journal commits do not need a public receipt trophy.
 - commit: 58238ac
   rejected_date: '2026-07-27'
   reason: Stewardship meta-commit that only added a journal entry and a rejection;

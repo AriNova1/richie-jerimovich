@@ -100,6 +100,9 @@ def remote_commit_url(repo: Path, short_sha: str) -> str:
     remote = remote.strip()
     if remote.startswith("git@github.com:"):
         remote = "https://github.com/" + remote.removeprefix("git@github.com:")
+    # Strip embedded credentials (https://user:token@host/...) so candidate
+    # URLs never carry secrets or trip the email privacy gate on user@host.
+    remote = re.sub(r"^(https?://)([^/@]+@)", r"\1", remote)
     if remote.endswith(".git"):
         remote = remote[:-4]
     return f"{remote}/commit/{short_sha}"
