@@ -1,3 +1,7 @@
+- commit: c4a09f9
+  rejected_date: '2026-07-30'
+  reason: Stewardship meta-commit that only added a journal entry and a rejection;
+    journal commits do not need a public receipt trophy.
 - commit: 676d559
   rejected_date: '2026-07-29'
   reason: Journal and receipt-publish stewardship wrapper; the two public outcomes
