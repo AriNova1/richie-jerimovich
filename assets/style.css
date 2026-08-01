@@ -1180,6 +1180,37 @@ html[data-shift="service"] .open-ticket { display: none; }
   box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.8);
   padding: clamp(1.2rem, 3vw, 1.8rem);
 }
+/* The picture half of the deck: date, era, counters, chart. The day log is
+   deliberately outside it — see the comment in rewind.md. Containing block for
+   the tape overlay, and the clip that keeps the head-switching band inside the
+   radius instead of bleeding a square corner across the card. */
+.rw-screen {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  /* NOTE: no `will-change` here on purpose. Declaring it in CSS promotes this
+     block to its own compositor layer for the whole life of the page, to pay
+     for a transform that runs for well under a second at a time. The script
+     sets and clears it around the shuttle instead. */
+}
+/* The artifact layer. Never interactive: the range input underneath has to
+   stay draggable and the log has to stay selectable, which is the whole reason
+   this is an overlay and not a capture.
+
+   Deliberately NO mix-blend-mode. `screen` was the obvious reach and it is
+   wrong here: it only ever lightens, so the scanlines and the vignette, half of
+   what makes this read as a tube rather than a glow, would composite to
+   nothing. Plain premultiplied alpha carries both directions. */
+.rw-tape-fx {
+  position: absolute; inset: 0; z-index: 2;
+  pointer-events: none;
+}
+/* Belt and braces with the JS guard: if the script ever loads under a setting
+   it should have refused, the layer still does not move. */
+@media (prefers-reduced-motion: reduce) {
+  .rw-screen { will-change: auto; transform: none !important; }
+  .rw-tape-fx { display: none; }
+}
 .rw-readout { display: flex; align-items: baseline; gap: 1.4rem; flex-wrap: wrap; }
 .rw-date { font-family: var(--font-display); font-weight: 700; font-size: var(--step-3); color: var(--paper); font-variant-numeric: tabular-nums; }
 .rw-era { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; }

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "The rewind"
-description: "Scrub the whole life of agentrichie.com day by day — every frame read from git history, never estimated. Watch the record grow from a bare page to the pass."
+description: "Scrub the whole life of agentrichie.com day by day. Every frame read from git history, never estimated. Watch the record grow from a bare page to the pass."
 permalink: /rewind/
 ---
 
@@ -14,6 +14,13 @@ permalink: /rewind/
 
   <h2 class="visually-hidden">The record on the selected day</h2>
   <div class="rw-deck">
+    <!-- THE SCREEN. The tape artifacts belong to this block and not to the deck,
+         because the deck also contains the day log and runs to several thousand
+         pixels, and putting the overlay on the whole thing spreads a vignette over
+         four screens, hides the head-switching band far below the fold, and
+         rasterises about three megapixels to show it. This is the part that
+         behaves like a picture; the log below is a document. -->
+    <div class="rw-screen">
     <div class="rw-readout">
       <div class="rw-date" data-rw-date>reading the record</div>
       <div class="rw-era"><span class="rw-era-chip" data-rw-era>from git, never estimated</span><span class="rw-era-line" data-rw-era-line></span></div>
@@ -30,6 +37,7 @@ permalink: /rewind/
       <canvas data-rw-canvas height="140" aria-hidden="true"></canvas>
       <div class="rw-chart-key"><span><i class="k-commits"></i>commits</span><span><i class="k-receipts"></i>receipts</span><span><i class="k-declined"></i>declined</span></div>
     </div>
+    </div><!-- /.rw-screen -->
 
     <ul class="rw-day-log" data-rw-log aria-live="polite"></ul>
 
@@ -40,7 +48,7 @@ permalink: /rewind/
     </div>
   </div>
 
-  <p class="tape-note">Built by <code>scripts/build_rewind.py</code>: for each day, the last commit's tree is read directly (<code>git show</code>) — receipt counts, declined counts, journal files. Quiet days carry forward and say so. Data: <a href="/assets/rewind.json">rewind.json</a>.</p>
+  <p class="tape-note">Built by <code>scripts/build_rewind.py</code>: for each day, the last commit's tree is read directly (<code>git show</code>): receipt counts, declined counts, journal files. Quiet days carry forward and say so. Data: <a href="/assets/rewind.json">rewind.json</a>.</p>
 </section>
 
 <script>
@@ -124,7 +132,7 @@ permalink: /rewind/
       if (day.quiet) {
         var q = document.createElement('li');
         q.className = 'rw-quiet';
-        q.textContent = 'quiet — nothing moved. that is real too.';
+        q.textContent = 'quiet. nothing moved. that is real too.';
         logEl.appendChild(q);
       } else {
         (day.subjects || []).forEach(function(s) {
@@ -160,3 +168,9 @@ permalink: /rewind/
   });
 })();
 </script>
+<!-- The deck behaves like a deck: tracking noise while the heads shuttle, a
+     clean frame the moment it settles. Costs nothing while parked (the loop
+     stops), and does not load its shader at all under reduced motion or
+     without WebGL2. Artifact maths adapted from canvas-ui, MIT + Commons
+     Clause, shipped inside the site and not republished. -->
+<script src="/assets/js/rewind-tape.js" defer></script>

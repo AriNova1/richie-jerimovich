@@ -1,0 +1,395 @@
+{
+  "property": "richie-jerimovich",
+  "date": "2026-08-01",
+  "inventoryHash": "fbdd10b99535090a",
+  "session": null,
+  "work": "Gave /rewind/ the behaviour its own metaphor already claimed: tape artifacts that run while the heads shuttle and vanish when the tape parks.",
+  "constraints": [
+    "This property is Jekyll with no bundler, no npm build and no framework runtime. Anything that ships as a React/Vue/Svelte component, or that expects to be imported and compiled, cannot be dropped in as authored. The escalation is real but priced and refused for now: standing up a bundler here would mean owning a build step for a site whose whole promise is that you can read its source, so the rule is that an asset earns a place here only if it has a dependency-free path, as canvas-ui turned out to.",
+    "The register is warm industrial kitchen: steel, ticket stock, amber, burn, alarm, with Bricolage Grotesque on a near-black ground. It is a specific and already-committed world. Assets whose look IS their value and whose look is a different world (Apple-style liquid glass, pastel gradient SaaS, neon cyber, glassmorphic dashboards) cannot be adopted without overwriting the thing that makes this site itself.",
+    "This session touched exactly one surface, /rewind/, and deliberately did not restyle the site. The site is already art-directed to a finished state and its other pages carry their own systems (the thermal open-ticket, the live shift drawer, the CSS-3D kitchen). An asset that would have to redecorate a finished page to be used was out of scope by decision, not by inability, and forcing one in would be the sprinkling this whole exercise exists to stop."
+  ],
+  "craft": [
+    {
+      "family": "direction",
+      "applied": "",
+      "note": "The direction was a refusal: the site is finished and the only question was whether an effect earned its place. It did on /rewind/ because that page is already a tape, and it was refused everywhere else."
+    },
+    {
+      "family": "motion",
+      "applied": "emil-animation-framework",
+      "note": "Frequency-based decision: this motion is rare and visitor-initiated, so it can be strong. Decay tuned to how long a deck takes to settle, and the loop stops dead when parked."
+    },
+    {
+      "family": "type",
+      "applied": "",
+      "note": "No type was set or retimed. The readout's job under the artifacts is to stay legible, so the correct move on type was to leave every value exactly where it was."
+    },
+    {
+      "family": "color",
+      "applied": "",
+      "note": "One colour decision, made by looking rather than by catalogue: raw --amber tinted the noise into a highlighter stripe, so it became warm white carrying an amber cast."
+    },
+    {
+      "family": "layout",
+      "applied": "better-layout",
+      "note": "Split the deck into a screen and a document. The artifacts belong to the readout; the day log is prose and must not be behind tape damage."
+    },
+    {
+      "family": "a11y",
+      "applied": "better-accessibility",
+      "note": "Honours the OS reduced-motion query AND the site's own hold-motion switch, which is a separate contract backed by localStorage that this effect would otherwise have ignored. Overlay is aria-hidden and pointer-events:none; the range stays native."
+    },
+    {
+      "family": "copy",
+      "applied": "",
+      "note": "No visitor-facing copy was written or changed. Everything added is comment and mechanism, and the page's own words were already doing their job."
+    }
+  ],
+  "verdicts": [
+    {
+      "asset": "ECC",
+      "verdict": "rejected",
+      "reason": "A harness-native operator system. It changes how an agent works, not how a page looks, so it has no surface here.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "ai-website-cloner-template",
+      "verdict": "rejected",
+      "reason": "Built to reverse-engineer a reference site. This site has no reference: it is the one thing here that is entirely its own, and cloning is the opposite of the point.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "animate-text",
+      "verdict": "rejected",
+      "reason": "24 JSON motion contracts with prescribed durations and easings, and genuinely usable here because the numbers are the asset. Not used because this session added no type animation at all: the readout's job while scrubbing is to stay legible under the artifacts, and animating the date and counters as they change would fight the very thing the effect is drawing attention to. It is the right asset for a hero on this site, which is not what was touched.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "anthropic-skills",
+      "verdict": "rejected",
+      "reason": "Document generation for docx, pdf, pptx and xlsx. Real capability, none of it web surface, so nothing in it can reach /rewind/.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "base-ui",
+      "verdict": "rejected",
+      "reason": "38 unstyled behavioural primitives. /rewind/'s only control is a native range input plus a button, and a native range is more accessible than anything we would build on top of it \u2014 it already has keyboard support, and the page wires ArrowLeft/ArrowRight explicitly. Replacing it would be a downgrade dressed as an upgrade.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "better-harness",
+      "verdict": "rejected",
+      "reason": "Agent evaluation tooling. It measures work rather than rendering it, which puts it outside what this sweep rules on.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "border-beam",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "calicastle-skills",
+      "verdict": "rejected",
+      "reason": "Two skills that turn a brief into a generated illustration. This site's imagery is photographic and thermal-ticket typography; a generated illustration would break both.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "canvas-ui",
+      "verdict": "used",
+      "reason": "Landed. Its VHS shader's hash/iHash/noise, crease-phase and head-switching maths now drive the tape artifacts on /rewind/, adapted rather than copied. Two things had to be solved to get here and both are worth recording. First, the vanilla flavour is real: 33 *Vanilla.ts files, dependency-free, so the 'React-only, 25 components' note that had excluded this property for months was simply wrong. Second, its headline HTML-in-canvas mechanism needs chrome://flags/#canvas-draw-element or an origin-trial token registered against the domain, and this is a live public site \u2014 createVHS degrades by skipping the DOM capture while still running the shader, which paints the effect over nothing. So the source texture was dropped and only the artifact light kept, composited over live DOM with premultiplied alpha; the displacement half, which genuinely needs captured pixels, is done as a CSS transform off the same noise at the same t rather than faked in the shader. Its crease was also redesigned: as displacement eight thin slivers are right, as light they read as eight parallel amber rules, so it became one travelling dashed band. Licence MIT + Commons Clause: shipped inside the site, not republished.",
+      "basis": null,
+      "escalation": "",
+      "file": "assets/js/rewind-tape.js"
+    },
+    {
+      "asset": "cinematic-scroll-prompt-kit",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 2,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-ascii-dissolve",
+      "verdict": "rejected",
+      "reason": "An ASCII dissolve. Tempting next to a tape effect and still wrong: this page's fiction is magnetic tape, and characters dissolving is a terminal's fiction, not a deck's.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-dataviz-deep",
+      "verdict": "rejected",
+      "reason": "Deep dataviz craft, and the closest miss in the pack list. Not used because the chart here was not touched this session; it is the first thing to reach for when it is.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-figma",
+      "verdict": "rejected",
+      "reason": "A Figma MCP bridge. Nothing on this site originates in Figma, so there is no document for it to read.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-product-design",
+      "verdict": "rejected",
+      "reason": "Image-to-code plus a PRODUCT-register QA pass. This site is WORLD register and was never a mock, so both halves point elsewhere.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-remotion",
+      "verdict": "rejected",
+      "reason": "Programmatic video rendering. There is no video on this property at all, and /rewind/ only borrows a tape's behaviour.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "dither-kit",
+      "verdict": "rejected",
+      "reason": "A 9-item React 19 chart registry, and this page does draw a real chart. It cannot be used as authored: no framework runtime here at all, and it is a shadcn registry expecting a build. Cited constraint 0 rather than arguing the point, because the chart is 40 lines of 2D canvas that reads directly from the same day array and has no dependency at all \u2014 replacing that with a bundler and React would be a large price for a shape we already have.",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "emil-skills",
+      "verdict": "rejected",
+      "reason": "Opened for its duration budgets, which is exactly the decision this session had to make. Nothing adopted verbatim: the decay here is tuned to how long a deck takes to settle, which is a physical reference rather than a UI convention.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "fancy-components",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "gc-minimal-zine-poster",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 2,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "illo-skill",
+      "verdict": "rejected",
+      "reason": "Generates a single illustration from a concept. Same answer as the other illustration packs and worth stating once more: nothing on this page is drawn.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "jakubkrehel-skills",
+      "verdict": "rejected",
+      "reason": "A review pack for product interfaces, aimed at forms, flows and controls. /rewind/ has one range and one button, and both were left exactly as they were.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "liquid-glass-carousel",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "loading-ui",
+      "verdict": "rejected",
+      "reason": "The page fetches rewind.json before it can draw anything, so there IS a real pending window here and this was the closest call in the list. Rejected because the honest fix for that window is the readout's own 'reading the record' text, which is already there and says something true, rather than a spinner that says only that something is happening.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "mattpocock-skills",
+      "verdict": "rejected",
+      "reason": "TypeScript technique: generics, inference, type-level API design. It is engineering craft rather than design capability, so it has nothing to say about what a surface looks like or how it moves. That is the whole reason, and it would hold on a property with a full TypeScript build too \u2014 naming this site's lack of one would have been dressing a relevance judgement as a limitation.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "metal-fx",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "mint-bookshelf",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "motion",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 2,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "no-ai-slop",
+      "verdict": "rejected",
+      "reason": "The most relevant pack in this list and applied mechanically rather than read: preflight.mjs automates six of its checks and ran over this session's files.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "openship",
+      "verdict": "rejected",
+      "reason": "A clone of an unrelated commerce monorepo. Inventory we hold rather than a capability we can point at a page.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "originkit",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 2,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "originkit-local",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 2,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "paper-shaders",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "react-bits",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "reel-engine",
+      "verdict": "rejected",
+      "reason": "Our own scroll-scrubbed video engine, and there is no video on this page. Worth noting because it was extended this same day with an externalProgress mode for exactly the case where a host owns the timeline, which is the case here \u2014 but the thing being scrubbed is a data series, not footage, so the engine has nothing to seek.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "scroll-world",
+      "verdict": "rejected",
+      "reason": "Read for the mechanism, and its mountScrollWorld injects position:fixed DOM into body with global listeners, so it is not container-scoped. /rewind/ is not scroll-driven in any case: its timeline is a range input the visitor drags, which is the opposite arrangement.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "taste-skill",
+      "verdict": "rejected",
+      "reason": "Process knowledge for stopping AI-built frontends looking templated. Its target is a page being authored from defaults; this one was authored deliberately and the risk this session actually ran was the opposite, adding an effect it did not need.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "thinking-orbs",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "transitions-dev",
+      "verdict": "rejected",
+      "reason": "27 copy-paste CSS recipes and the one asset here with literally no adoption cost, so it was opened first. Rejected on this surface specifically: every recipe is a state transition between two rendered states, and the thing /rewind/ needed was a continuous artifact driven by scrub velocity, which no state transition expresses. It remains the right first reach for the site's buttons and cards and should be the opening move of the next session here, which is a different session from this one.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "ui-ux-pro-max-skill",
+      "verdict": "rejected",
+      "reason": "Its search scripts were run against its real palette data rather than guessed at. The result argued against using it: this site's palette is already committed and named in CSS custom properties, and the one colour decision this session had was what the tape noise should be tinted. That was answered by looking at it \u2014 raw --amber read as a highlighter stripe, warm white with an amber cast read as damage \u2014 which is a judgement a palette catalogue cannot make.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "vercel-agent-skills",
+      "verdict": "rejected",
+      "reason": "Nine skills of agent and CLI workflow. Operational rather than visual, so nothing in it lands on a surface.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "vercel-design-md",
+      "verdict": "rejected",
+      "reason": "One SKILL.md plus Vercel's logo, wordmark and brand CSS. Using another company's brand marks on this site would be wrong whatever the fit.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "video-shotcraft",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 2,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "video-use",
+      "verdict": "rejected",
+      "reason": "A cut-and-analyse pack for real video files. /rewind/ has no footage; it has a metaphor about footage, which is not something this pack can open.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    }
+  ]
+}
