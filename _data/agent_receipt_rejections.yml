@@ -1,3 +1,7 @@
+- commit: '9480721'
+  rejected_date: '2026-07-31'
+  reason: Journal-and-stewardship meta-commit. Not a public product outcome; covered
+    by the journal entry itself.
 - commit: c4a09f9
   rejected_date: '2026-07-30'
   reason: Stewardship meta-commit that only added a journal entry and a rejection;
