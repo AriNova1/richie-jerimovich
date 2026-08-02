@@ -407,5 +407,14 @@
       "escalation": "",
       "file": ""
     }
-  ]
+  ],
+  "looked": {
+    "shots": [
+      ".design/shots/rewind-desktop.png",
+      ".design/shots/rewind-375.png"
+    ],
+    "saw": "Desktop 1440: the deck sits clean and parked, which is correct \u2014 the artifacts cost nothing until the heads move. The chart, counters and era chip all render; the overlay is invisible at rest, which is the behaviour the whole effect is built around. Shader output itself was verified separately through a single-draw probe because this pane throttles rAF while hidden, so the animated state cannot be captured here and I am not pretending it was.",
+    "mobile": "375 at a VERIFIED innerWidth of 375, not a 500px crop: nothing clips. The deck reflows to a single column, the four counters wrap 3+1 without overlapping, and the chart keeps its full width inside the gutter.",
+    "bar": "Clears it for this surface and I will not claim past it. The effect is earned rather than decorative \u2014 the page was already a tape and now behaves like one \u2014 and it costs nothing parked. What it is NOT is a reconception of /rewind/; it is one honest mechanism added to a page that already worked."
+  }
 }
