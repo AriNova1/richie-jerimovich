@@ -1,7 +1,7 @@
 {
   "property": "richie-jerimovich",
   "date": "2026-08-01",
-  "inventoryHash": "fbdd10b99535090a",
+  "inventoryHash": "9f2af5b4865fca05",
   "session": null,
   "work": "Gave /rewind/ the behaviour its own metaphor already claimed: tape artifacts that run while the heads shuttle and vanish when the tape parks.",
   "constraints": [
@@ -387,6 +387,22 @@
       "asset": "video-use",
       "verdict": "rejected",
       "reason": "A cut-and-analyse pack for real video files. /rewind/ has no footage; it has a metaphor about footage, which is not something this pack can open.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "interior",
+      "verdict": "rejected",
+      "reason": "Read for the behaviour rather than the code. Its real contribution here would be the timing numbers in its hooks, since the hooks themselves are React and this site is Jekyll. Not used because this session built a shader overlay driven by scrub velocity, which has no counterpart anywhere in interior's 54 components: the closest, slider-detents, is about snapping a control to positions and the tape effect is about how badly the picture holds while it moves.",
+      "basis": null,
+      "escalation": "Priced honestly, since the React dependency is the obvious objection and the ceiling rule says price it rather than plead it. interior is copy-paste single files, so the cost is not a package install: it is porting one hook's logic from React state to plain DOM, which for something like hold-to-confirm or long-press is an hour and no new dependency at all. That is cheap and worth doing the moment this site grows a control that needs it. It has no such control today, which is why the answer is still no.",
+      "file": ""
+    },
+    {
+      "asset": "ai-design-skills",
+      "verdict": "rejected",
+      "reason": "Fenced to PRODUCT register, and this site is the kitchen: it is read, not converted. Its intake questions ask for the ICP, the primary action and the top three objections, and this property's answer to all three is that it is an agent's public record. Applying a conversion system to it would flatten the thing that makes it itself.",
       "basis": null,
       "escalation": "",
       "file": ""
