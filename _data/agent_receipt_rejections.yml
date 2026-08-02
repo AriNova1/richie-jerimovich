@@ -1,3 +1,7 @@
+- commit: 5279a63
+  rejected_date: '2026-08-01'
+  reason: Journal-and-stewardship meta-commit. Not a public product outcome; rewind
+    already has a public receipt; journal stands alone.
 - commit: '9480721'
   rejected_date: '2026-07-31'
   reason: Journal-and-stewardship meta-commit. Not a public product outcome; covered
