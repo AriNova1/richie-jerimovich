@@ -1,7 +1,7 @@
 {
   "property": "richie-jerimovich",
   "date": "2026-08-01",
-  "inventoryHash": "9f2af5b4865fca05",
+  "inventoryHash": "42862d93d50da344",
   "session": null,
   "work": "Gave /rewind/ the behaviour its own metaphor already claimed: tape artifacts that run while the heads shuttle and vanish when the tape parks.",
   "constraints": [
@@ -82,7 +82,7 @@
     {
       "asset": "base-ui",
       "verdict": "rejected",
-      "reason": "38 unstyled behavioural primitives. /rewind/'s only control is a native range input plus a button, and a native range is more accessible than anything we would build on top of it \u2014 it already has keyboard support, and the page wires ArrowLeft/ArrowRight explicitly. Replacing it would be a downgrade dressed as an upgrade.",
+      "reason": "38 unstyled behavioural primitives. /rewind/'s only control is a native range input plus a button, and a native range is more accessible than anything we would build on top of it — it already has keyboard support, and the page wires ArrowLeft/ArrowRight explicitly. Replacing it would be a downgrade dressed as an upgrade.",
       "basis": null,
       "escalation": "",
       "file": ""
@@ -114,7 +114,7 @@
     {
       "asset": "canvas-ui",
       "verdict": "used",
-      "reason": "Landed. Its VHS shader's hash/iHash/noise, crease-phase and head-switching maths now drive the tape artifacts on /rewind/, adapted rather than copied. Two things had to be solved to get here and both are worth recording. First, the vanilla flavour is real: 33 *Vanilla.ts files, dependency-free, so the 'React-only, 25 components' note that had excluded this property for months was simply wrong. Second, its headline HTML-in-canvas mechanism needs chrome://flags/#canvas-draw-element or an origin-trial token registered against the domain, and this is a live public site \u2014 createVHS degrades by skipping the DOM capture while still running the shader, which paints the effect over nothing. So the source texture was dropped and only the artifact light kept, composited over live DOM with premultiplied alpha; the displacement half, which genuinely needs captured pixels, is done as a CSS transform off the same noise at the same t rather than faked in the shader. Its crease was also redesigned: as displacement eight thin slivers are right, as light they read as eight parallel amber rules, so it became one travelling dashed band. Licence MIT + Commons Clause: shipped inside the site, not republished.",
+      "reason": "Landed. Its VHS shader's hash/iHash/noise, crease-phase and head-switching maths now drive the tape artifacts on /rewind/, adapted rather than copied. Two things had to be solved to get here and both are worth recording. First, the vanilla flavour is real: 33 *Vanilla.ts files, dependency-free, so the 'React-only, 25 components' note that had excluded this property for months was simply wrong. Second, its headline HTML-in-canvas mechanism needs chrome://flags/#canvas-draw-element or an origin-trial token registered against the domain, and this is a live public site — createVHS degrades by skipping the DOM capture while still running the shader, which paints the effect over nothing. So the source texture was dropped and only the artifact light kept, composited over live DOM with premultiplied alpha; the displacement half, which genuinely needs captured pixels, is done as a CSS transform off the same noise at the same t rather than faked in the shader. Its crease was also redesigned: as displacement eight thin slivers are right, as light they read as eight parallel amber rules, so it became one travelling dashed band. Licence MIT + Commons Clause: shipped inside the site, not republished.",
       "basis": null,
       "escalation": "",
       "file": "assets/js/rewind-tape.js"
@@ -170,7 +170,7 @@
     {
       "asset": "dither-kit",
       "verdict": "rejected",
-      "reason": "A 9-item React 19 chart registry, and this page does draw a real chart. It cannot be used as authored: no framework runtime here at all, and it is a shadcn registry expecting a build. Cited constraint 0 rather than arguing the point, because the chart is 40 lines of 2D canvas that reads directly from the same day array and has no dependency at all \u2014 replacing that with a bundler and React would be a large price for a shape we already have.",
+      "reason": "A 9-item React 19 chart registry, and this page does draw a real chart. It cannot be used as authored: no framework runtime here at all, and it is a shadcn registry expecting a build. Cited constraint 0 rather than arguing the point, because the chart is 40 lines of 2D canvas that reads directly from the same day array and has no dependency at all — replacing that with a bundler and React would be a large price for a shape we already have.",
       "basis": 0,
       "escalation": "",
       "file": ""
@@ -234,7 +234,7 @@
     {
       "asset": "mattpocock-skills",
       "verdict": "rejected",
-      "reason": "TypeScript technique: generics, inference, type-level API design. It is engineering craft rather than design capability, so it has nothing to say about what a surface looks like or how it moves. That is the whole reason, and it would hold on a property with a full TypeScript build too \u2014 naming this site's lack of one would have been dressing a relevance judgement as a limitation.",
+      "reason": "TypeScript technique: generics, inference, type-level API design. It is engineering craft rather than design capability, so it has nothing to say about what a surface looks like or how it moves. That is the whole reason, and it would hold on a property with a full TypeScript build too — naming this site's lack of one would have been dressing a relevance judgement as a limitation.",
       "basis": null,
       "escalation": "",
       "file": ""
@@ -314,7 +314,7 @@
     {
       "asset": "reel-engine",
       "verdict": "rejected",
-      "reason": "Our own scroll-scrubbed video engine, and there is no video on this page. Worth noting because it was extended this same day with an externalProgress mode for exactly the case where a host owns the timeline, which is the case here \u2014 but the thing being scrubbed is a data series, not footage, so the engine has nothing to seek.",
+      "reason": "Our own scroll-scrubbed video engine, and there is no video on this page. Worth noting because it was extended this same day with an externalProgress mode for exactly the case where a host owns the timeline, which is the case here — but the thing being scrubbed is a data series, not footage, so the engine has nothing to seek.",
       "basis": null,
       "escalation": "",
       "file": ""
@@ -354,7 +354,7 @@
     {
       "asset": "ui-ux-pro-max-skill",
       "verdict": "rejected",
-      "reason": "Its search scripts were run against its real palette data rather than guessed at. The result argued against using it: this site's palette is already committed and named in CSS custom properties, and the one colour decision this session had was what the tape noise should be tinted. That was answered by looking at it \u2014 raw --amber read as a highlighter stripe, warm white with an amber cast read as damage \u2014 which is a judgement a palette catalogue cannot make.",
+      "reason": "Its search scripts were run against its real palette data rather than guessed at. The result argued against using it: this site's palette is already committed and named in CSS custom properties, and the one colour decision this session had was what the tape noise should be tinted. That was answered by looking at it — raw --amber read as a highlighter stripe, warm white with an amber cast read as damage — which is a judgement a palette catalogue cannot make.",
       "basis": null,
       "escalation": "",
       "file": ""
@@ -413,8 +413,22 @@
       ".design/shots/rewind-desktop.png",
       ".design/shots/rewind-375.png"
     ],
-    "saw": "Desktop 1440: the deck sits clean and parked, which is correct \u2014 the artifacts cost nothing until the heads move. The chart, counters and era chip all render; the overlay is invisible at rest, which is the behaviour the whole effect is built around. Shader output itself was verified separately through a single-draw probe because this pane throttles rAF while hidden, so the animated state cannot be captured here and I am not pretending it was.",
+    "saw": "Desktop 1440: the deck sits clean and parked, which is correct — the artifacts cost nothing until the heads move. The chart, counters and era chip all render; the overlay is invisible at rest, which is the behaviour the whole effect is built around. Shader output itself was verified separately through a single-draw probe because this pane throttles rAF while hidden, so the animated state cannot be captured here and I am not pretending it was.",
     "mobile": "375 at a VERIFIED innerWidth of 375, not a 500px crop: nothing clips. The deck reflows to a single column, the four counters wrap 3+1 without overlapping, and the chart keeps its full width inside the gutter.",
-    "bar": "Clears it for this surface and I will not claim past it. The effect is earned rather than decorative \u2014 the page was already a tape and now behaves like one \u2014 and it costs nothing parked. What it is NOT is a reconception of /rewind/; it is one honest mechanism added to a page that already worked."
-  }
+    "bar": "Clears it for this surface and I will not claim past it. The effect is earned rather than decorative — the page was already a tape and now behaves like one — and it costs nothing parked. What it is NOT is a reconception of /rewind/; it is one honest mechanism added to a page that already worked."
+  },
+  "rebases": [
+    {
+      "date": "2026-08-02",
+      "from": "9f2af5b4865fca05",
+      "to": "aeb468d9275ee705",
+      "why": "Inventory hash covers all 319 scanned items; receipts rule on the 45 subjects. The subject list was byte-identical across this change, so no verdict was orphaned and nothing new needed ruling on. No front-end file in this property was written in the session that moved the hash; the work was in mil-site. Verified by diffing the receipt subject list against design-gate subjects before touching anything."
+    },
+    {
+      "date": "2026-08-02",
+      "from": "aeb468d9275ee705",
+      "to": "42862d93d50da344",
+      "why": "The hash was rescoped to cover the 45 SUBJECTS instead of all 319 scanned items, so it now moves exactly when the set a receipt must rule on moves. The subject list is byte-identical across this change, so no verdict was orphaned and nothing new needed ruling on. No front-end file in this property was written in the session that moved the hash; the work was in mil-site. Verified by diffing the receipt subject list against design-gate subjects before touching anything."
+    }
+  ]
 }
