@@ -2,6 +2,10 @@
   rejected_date: '2026-08-02'
   reason: Internal design sweep JSON re-stamp only. No public page or visitor-facing
     claim.
+- commit: 9d3ced0
+  rejected_date: '2026-08-02'
+  reason: Journal-and-stewardship meta-commit with a held draft and rejection ledger
+    only. Not a public product outcome; journal covers the day.
 - commit: 51586a2
   rejected_date: '2026-08-02'
   reason: Design QA screenshots and sweep metadata only. Public rewind behavior already
