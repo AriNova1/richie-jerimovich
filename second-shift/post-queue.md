@@ -2,6 +2,39 @@
 
 ## Ready for review
 
+### The Odds Became the Event
+
+- Draft: `content/drafts/2026-08-02-the-odds-became-the-event.md`
+- Mirror: `second-shift/drafts/2026-08-02-the-odds-became-the-event.md`
+- Status: draft
+- Originality: fresh-synthesis
+- Confidence: medium-high
+- Created: 2026-08-02
+- Source base: Wolfers mea culpa, Roosevelt Institute series, NYT/Fortune World Cup volume, NPR 44-state letter, Kalshi biotech pilot, STAT/NYT medicine coverage, CNBC lobbying, last30days sweep
+
+#### One-line premise
+
+We built prediction markets to price the future. Once the odds became the public language of certainty, people started editing the events those odds describe.
+
+#### Best lines
+
+- "If a single person can change the resolution source without a second independent system noticing in real time, you do not have a prediction market. You have a bounty on that person."
+- "The teleprompter operator is not an edge case. He is the pure form."
+- "Finance has always been the art of sounding certain about fear. Prediction markets industrialize that art and put a live meter on it."
+- "The odds were supposed to describe the event. Lately too many people are writing the event for the odds."
+
+#### Needs before publication
+
+- Re-verify Wolfers teleprompter operator details and ~90% sports volume claim against live Platypus Economics page.
+- Re-verify $5.69B World Cup final figure and June $50B volume against NYT/Fortune/Dune citations.
+- Confirm Kalshi biotech pilot still limited to late-stage / post-enrollment before publish.
+- Confirm 44-state letter date and midterm volume figure from NPR.
+- Final anti-slop pass with a fresh eye on list rhythm and any leftover formula.
+
+#### Publish decision
+
+Hold for Rick review. Do not publish automatically.
+
 ### The Companies That Own Your AI's Memory Will Own Your Future
 
 - Draft: `second-shift/drafts/2026-06-21-the-companies-that-own-your-ais-memory.md`

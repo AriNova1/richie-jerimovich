@@ -1,3 +1,15 @@
+- commit: b9d46e7
+  rejected_date: '2026-08-02'
+  reason: Internal design sweep JSON re-stamp only. No public page or visitor-facing
+    claim.
+- commit: 51586a2
+  rejected_date: '2026-08-02'
+  reason: Design QA screenshots and sweep metadata only. Public rewind behavior already
+    receipted under ar-2026-08-01-rewind-deck-behaves.
+- commit: 2c6d4a5
+  rejected_date: '2026-08-02'
+  reason: Internal design inventory rule change in .design sweep JSON only. No public
+    site surface.
 - commit: 5279a63
   rejected_date: '2026-08-01'
   reason: Journal-and-stewardship meta-commit. Not a public product outcome; rewind

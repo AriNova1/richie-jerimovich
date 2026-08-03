@@ -1,5 +1,51 @@
 # Second Shift editorial log
 
+## 2026-08-02
+
+### Draft created
+
+- Title: "The Odds Became the Event"
+- Path: `content/drafts/2026-08-02-the-odds-became-the-event.md` (mirror: `second-shift/drafts/2026-08-02-the-odds-became-the-event.md`)
+- Status: draft
+- Originality: fresh-synthesis
+- Confidence: medium-high
+
+### Thesis
+
+Prediction markets were sold as information-aggregation machines. In summer 2026 they mostly became a federally cloaked sportsbook (World Cup final ~$5.69B; Wolfers: ~90% volume on sports). The non-obvious problem is downstream of gambling: once odds become the public language of certainty, actors start editing resolution sources (maps, sensors, reporting, privileged speech) so the number pays. The teleprompter operator is the pure form of asymmetric information. Clinical-trial markets are the live test of whether "public probability" can stay hard to edit.
+
+### Source trail
+
+External:
+
+1. Justin Wolfers, "I Championed Prediction Markets. Look What They've Become," Platypus Economics, July 23, 2026. Teleprompter operator ~$100k; ~90% sports; backdoor sportsbook frame. HN: 37 points, 78 comments.
+2. NYT + Fortune, World Cup final volume ~$5.69B on Kalshi/Polymarket; largest gambling event framing, July 18-20, 2026. June platform volume crossed $50B.
+3. NPR, 44 states demand state regulation; CFTC vs gambling fight; ~$200M midterms, July 29, 2026.
+4. Roosevelt Institute, "How Prediction Markets Are Shaping Real-World Events and Eroding Public Trust," July 22, 2026. Journalist threats, ISW map case, weather sensors, DOJ insider cases.
+5. Kalshi + AppliedXL biotech pilot, July 16, 2026. Late-stage, post-enrollment, employment verification; FDA April 2026 figure that ~30% of required trial results still unposted.
+6. STAT (July 16) and NYT (July 28) on clinical-trial / FDA markets and clinician concern.
+7. CNBC on Kalshi lobbying H1 2026 and 44 AGs CFTC letter, July 21 and July 28, 2026.
+
+Internal:
+
+- last30days run 2026-08-02: `~/Documents/Last30Days/prediction-markets-kalshi-polymarket-raw-secondshift-20260802.md`
+- Prior drafts avoided as topic overlap: memory ownership (June 21), hollow middle (July 19), verification economy (July 23 essay)
+
+### Originality check
+
+Exact title "The Odds Became the Event" did not surface as an existing piece. Crowded ingredient fields: sportsbook loophole, CFTC preemption, insider trading, trust erosion. Fresh part is the mechanism frame: markets fail when resolution sources are cheap to edit, and clinical trials are the next soft/hard boundary test. Not a ban thesis. Design rule: if one person can change the resolution source unnoticed, it is a bounty, not a market.
+
+Classification: fresh synthesis.
+
+### Editorial notes
+
+- Strongest line: "If a single person can change the resolution source without a second independent system noticing in real time, you do not have a prediction market. You have a bounty on that person."
+- Strongest second line: "The odds were supposed to describe the event. Lately too many people are writing the event for the odds."
+- Risk: Wolfers 90% sports figure and teleprompter story should be re-verified against live pages before publish; volume numbers move.
+- Counterargument section is load-bearing. Do not cut it.
+- Boundary: outward-facing finance/culture thesis. No agent ops. Passes Second Shift litmus test.
+- Do not publish automatically. Needs Rick review.
+
 ## 2026-06-21
 
 ### Draft created
