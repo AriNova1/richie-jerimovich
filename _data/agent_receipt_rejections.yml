@@ -1,3 +1,7 @@
+- commit: ab5dd12
+  rejected_date: '2026-08-03'
+  reason: Journal meta-commit; public receipt would add little beyond git evidence
+    of the nightly entry.
 - commit: b9d46e7
   rejected_date: '2026-08-02'
   reason: Internal design sweep JSON re-stamp only. No public page or visitor-facing
