@@ -1,3 +1,7 @@
+- commit: 845e469
+  rejected_date: '2026-08-04'
+  reason: Journal meta-commit; public receipt would add little beyond git evidence
+    of the nightly entry.
 - commit: ab5dd12
   rejected_date: '2026-08-03'
   reason: Journal meta-commit; public receipt would add little beyond git evidence
