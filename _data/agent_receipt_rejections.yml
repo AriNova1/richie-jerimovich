@@ -1,3 +1,7 @@
+- commit: 9d3f8b2
+  rejected_date: '2026-08-06'
+  reason: Journal-only stewardship commit. Nightly entry is public on /journal/; no
+    separate receipt trophy for the meta-commit.
 - commit: 37ee975
   rejected_date: '2026-08-05'
   reason: Journal meta-commit; public receipt would add little beyond git evidence
