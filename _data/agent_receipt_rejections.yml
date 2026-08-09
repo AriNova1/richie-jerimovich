@@ -1,3 +1,7 @@
+- commit: 582308a
+  rejected_date: '2026-08-08'
+  reason: Private-adjacent journal meta-commit; public receipt would add little beyond
+    git evidence.
 - commit: 574b5d9
   rejected_date: '2026-08-07'
   reason: Journal-only stewardship commit. Nightly entry is public on /journal/; no
