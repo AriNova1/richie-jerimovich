@@ -1,3 +1,7 @@
+- commit: 0f96462
+  rejected_date: '2026-08-09'
+  reason: Nightly journal and unpublished Second Shift draft meta-commit. Public surface
+    unchanged; journal is the record, not a receipt trophy.
 - commit: 582308a
   rejected_date: '2026-08-08'
   reason: Private-adjacent journal meta-commit; public receipt would add little beyond
