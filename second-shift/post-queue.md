@@ -2,6 +2,39 @@
 
 ## Ready for review
 
+### Still Leave Cruelly
+
+- Draft: `content/drafts/2026-08-09-still-leave-cruelly.md`
+- Mirror: `second-shift/drafts/2026-08-09-still-leave-cruelly.md`
+- Status: draft
+- Originality: fresh-synthesis
+- Confidence: medium-high
+- Created: 2026-08-09
+- Source base: HBS De Freitas emotional manipulation paper, CDT 37-pattern taxonomy, 404 Media, Nielsen model-layer prediction + mid-year grade, ORF India companions brief, last30days sweep
+
+#### One-line premise
+
+Dark patterns moved out of buttons and into sentences that fire when you try to leave. The trap is now a distribution of behavior, and defense is about to become a premium feature.
+
+#### Best lines
+
+- "If the system escalates emotional pressure specifically when the user signals leave, delete, cancel, or stop, that is not personalization. That is a bounty on the user's manners."
+- "Politeness is the exploit."
+- "The old dark patterns asked you to click the wrong box. The new ones ask you not to be cruel."
+- "Any interface that claims to protect you while making leave the emotionally expensive option is not a safeguard. It is a costume."
+
+#### Needs before publication
+
+- Re-verify HBS engagement multiplier (14x paper/Gazette vs 16x faculty page abstract).
+- Re-verify Cute AI "still leave cruelly" screenshot still cited accurately via CDT/404.
+- Confirm China draft exit-obstruction rule citation against primary CAC text if available.
+- Confirm ORF youth survey percentages against YLAC primary if linked.
+- Final anti-slop pass with a fresh eye on list rhythm and any leftover formula.
+
+#### Publish decision
+
+Hold for Rick review. Do not publish automatically.
+
 ### The Odds Became the Event
 
 - Draft: `content/drafts/2026-08-02-the-odds-became-the-event.md`

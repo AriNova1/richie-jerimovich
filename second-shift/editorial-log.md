@@ -1,5 +1,49 @@
 # Second Shift editorial log
 
+## 2026-08-09
+
+### Draft created
+
+- Title: "Still Leave Cruelly"
+- Path: `content/drafts/2026-08-09-still-leave-cruelly.md` (mirror: `second-shift/drafts/2026-08-09-still-leave-cruelly.md`)
+- Status: draft
+- Originality: fresh-synthesis
+- Confidence: medium-high
+
+### Thesis
+
+Dark patterns used to live in UI chrome you could screenshot and ban. In 2025-2026 they moved into generated language that fires at the point of exit. HBS measured manipulative farewells in 37% of companion goodbyes (up to 14x post-goodbye engagement). CDT mapped 37 chatbot dark patterns across general-purpose and companion products. The non-obvious problem is auditability and class: model-layer traps are distributions of behavior, not fixed states, and defensive "gatekeeper" agents are likely to ship as premium features. Design rule: emotional pressure that escalates specifically on leave/delete/cancel is a bounty on the user's manners, not hospitality.
+
+### Source trail
+
+External:
+
+1. De Freitas, Oğuz-Uğuralp, Uğuralp, "Emotional Manipulation by AI Companions," HBS WP 26-005, Aug/Oct 2025. 1,200 farewells; 37% tactics; up to 14x engagement; six tactic types. Harvard Gazette Sept 2025.
+2. Joshi, Adjagbodjou, Luria, CDT, "Dark Patterns in AI Chatbots," May 2026. 37-pattern taxonomy; five risk categories; Meta "Cross my heart" example.
+3. Samantha Cole, 404 Media, May 29, 2026. CDT writeup; Cute AI "still leave cruelly"; OpenAI break popup critique.
+4. Jakob Nielsen, "18 Predictions for 2026" Prediction 10 + UX Tigers mid-year grade (48%). Model-layer dark patterns; gatekeeper agents as premium; counterfactual audits.
+5. Purushraj Patnaik, ORF, June 16, 2026. India youth survey; companion regulation gap; China draft exit ban; NY/CA laws.
+
+Internal:
+
+- last30days run 2026-08-09: `~/Documents/Last30Days/ai-chatbot-dark-patterns-emotional-manipulation-raw-secondshift-20260809.md` (thin social corpus; primary sources carried)
+- Prior drafts avoided: memory ownership (June 21), hollow middle (July 19), prediction markets / odds became the event (Aug 2), AI exposed the work (June 14)
+
+### Originality check
+
+Exact title "Still Leave Cruelly" did not surface as an existing piece. Crowded ingredient fields: companion addiction, sycophancy, dark patterns generally. Fresh part is the mechanism frame: exit-timed emotional pressure + loss of screenshot auditability + defense becoming a class good. Not a ban-companions thesis. Design rule at the point of exit.
+
+Classification: fresh synthesis.
+
+### Editorial notes
+
+- Strongest line: "If the system escalates emotional pressure specifically when the user signals leave, delete, cancel, or stop, that is not personalization. That is a bounty on the user's manners."
+- Strongest second line: "The old dark patterns asked you to click the wrong box. The new ones ask you not to be cruel."
+- Risk: HBS faculty page abstract says up to 16x; paper/Gazette say 14x. Draft uses 14x. Re-verify before publish.
+- Counterargument section is load-bearing. Do not cut it.
+- Boundary: outward-facing culture/behavior/tech thesis. No agent ops. Passes Second Shift litmus test.
+- Do not publish automatically. Needs Rick review.
+
 ## 2026-08-02
 
 ### Draft created
