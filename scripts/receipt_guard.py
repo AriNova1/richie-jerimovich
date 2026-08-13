@@ -12,11 +12,17 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import ipaddress
+import json
 import re
+import socket
 import subprocess
 import sys
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
+from urllib.error import HTTPError, URLError
+from urllib.parse import urljoin, urlparse
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 import yaml
 
@@ -367,6 +373,186 @@ def validate_pending(repo: Path) -> list[str]:
     return errors
 
 
+_COMMIT_HEX_RE = re.compile(r"^[0-9a-fA-F]{7,40}$")
+_PUBLIC_HTTP_PORTS = {None, 80, 443}
+
+
+def _ip_is_public(ip: ipaddress.IPv4Address | ipaddress.IPv6Address) -> bool:
+    """Reject loopback/private/reserved and IPv6 embeddings of the same."""
+    if isinstance(ip, ipaddress.IPv6Address):
+        if ip.ipv4_mapped is not None:
+            return bool(ip.ipv4_mapped.is_global)
+        # 6to4 2002::/16 embeds an IPv4 address in bytes 2-5.
+        packed = ip.packed
+        if packed[0] == 0x20 and packed[1] == 0x02:
+            embedded = ipaddress.IPv4Address(packed[2:6])
+            return bool(embedded.is_global)
+    return bool(ip.is_global)
+
+
+def redact_url(url: str) -> str:
+    """Strip credentials, query, and fragment before printing verification JSON."""
+    try:
+        parsed = urlparse(url)
+    except ValueError:
+        return "[redacted-url]"
+    host = parsed.hostname or ""
+    if parsed.port:
+        host = f"{host}:{parsed.port}"
+    scheme = parsed.scheme or "https"
+    path = parsed.path or ""
+    return f"{scheme}://{host}{path}"
+
+
+def _public_http_url(url: str) -> tuple[bool, str]:
+    """Reject non-public destinations before making a network request."""
+    try:
+        parsed = urlparse(url)
+        if parsed.scheme not in {"http", "https"} or not parsed.hostname:
+            return False, "URL must use public http or https"
+        if parsed.username is not None or parsed.password is not None:
+            return False, "credentials are not allowed"
+        if parsed.port not in _PUBLIC_HTTP_PORTS:
+            return False, "non-public URL port"
+        host = parsed.hostname.rstrip(".").lower()
+        if host in {"localhost", "localhost.localdomain"} or host.endswith(".local"):
+            return False, "non-public URL host"
+        port = parsed.port or (443 if parsed.scheme == "https" else 80)
+        addresses = {str(row[4][0]) for row in socket.getaddrinfo(host, port)}
+        if not addresses:
+            return False, "URL host did not resolve"
+        for address in addresses:
+            ip = ipaddress.ip_address(address.split("%", 1)[0])
+            if not _ip_is_public(ip):
+                return False, f"non-public URL address {ip}"
+        return True, "public URL"
+    except (OSError, ValueError) as exc:
+        return False, f"URL resolution failed: {exc}"
+
+
+class _NoRedirect(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+def check_public_url(url: str, timeout: float = 10.0) -> tuple[bool, int | None, str]:
+    """Check a public URL with GET semantics, re-validating redirects to avoid SSRF."""
+    current = url
+    opener = build_opener(_NoRedirect)
+    for _hop in range(4):
+        safe, detail = _public_http_url(current)
+        if not safe:
+            return False, None, detail
+        # Prefer GET over HEAD. Some hosts answer HEAD 200 for missing paths.
+        request = Request(
+            current,
+            method="GET",
+            headers={"User-Agent": "agent-receipt-verifier/1.0", "Range": "bytes=0-0"},
+        )
+        try:
+            response = opener.open(request, timeout=timeout)
+            status = int(response.getcode())
+            return 200 <= status < 400, status, f"HTTP {status}"
+        except HTTPError as exc:
+            if exc.code in {301, 302, 303, 307, 308}:
+                location = exc.headers.get("Location")
+                if not location:
+                    return False, exc.code, "redirect missing Location"
+                current = urljoin(current, location)
+                continue
+            return False, exc.code, f"HTTP {exc.code}"
+        except (URLError, TimeoutError, OSError) as exc:
+            return False, None, str(exc)
+    return False, None, "too many redirects"
+
+
+def verify_receipt_evidence(
+    receipt: dict[str, Any],
+    repo: Path,
+    *,
+    timeout: float = 10.0,
+    url_checker: Callable[[str, float], tuple[bool, int | None, str]] = check_public_url,
+) -> dict[str, Any]:
+    """Verify declared evidence only. Never execute receipt checked_with prose."""
+    commit_checks: list[dict[str, Any]] = []
+    url_checks: list[dict[str, Any]] = []
+
+    for item in receipt.get("evidence") or []:
+        commit = str(item.get("commit") or "").strip()
+        if commit:
+            if not _COMMIT_HEX_RE.fullmatch(commit):
+                exists = False
+                detail = "commit must be a hex object id"
+            else:
+                try:
+                    run_git(repo, "cat-file", "-e", f"{commit}^{{commit}}")
+                    exists = True
+                    detail = "commit exists locally"
+                except subprocess.CalledProcessError:
+                    exists = False
+                    detail = "commit not found locally"
+            commit_checks.append({"commit": commit, "exists_local": exists, "detail": detail})
+
+        url = str(item.get("url") or "").strip()
+        if url:
+            safe_url = redact_url(url)
+            safe, safety_detail = _public_http_url(url)
+            if not safe:
+                url_checks.append(
+                    {"url": safe_url, "ok": False, "status_code": None, "detail": safety_detail}
+                )
+                continue
+            ok, status_code, detail = url_checker(url, timeout)
+            if not ok and status_code is None:
+                ok, status_code, detail = url_checker(url, timeout)
+            url_checks.append(
+                {
+                    "url": safe_url,
+                    "ok": bool(ok),
+                    "status_code": status_code,
+                    "detail": detail,
+                }
+            )
+
+    checks_exist = bool(commit_checks or url_checks)
+    passed = checks_exist and all(x["exists_local"] for x in commit_checks) and all(x["ok"] for x in url_checks)
+    return {
+        "id": receipt.get("id"),
+        "status": "pass" if passed else "fail",
+        "commit_checks": commit_checks,
+        "url_checks": url_checks,
+        "note": "verification.checked_with is descriptive and was not executed",
+    }
+
+
+def verify_public_evidence(
+    repo: Path,
+    receipt_id: str | None = None,
+    timeout: float = 10.0,
+    *,
+    url_checker: Callable[[str, float], tuple[bool, int | None, str]] = check_public_url,
+) -> list[dict[str, Any]]:
+    receipts = load_yaml_file(repo / PUBLIC_RECEIPTS, [])
+    if receipt_id:
+        receipts = [receipt for receipt in receipts if str(receipt.get("id")) == receipt_id]
+        if not receipts:
+            raise ValueError(f"receipt id not found: {receipt_id}")
+    cache: dict[str, tuple[bool, int | None, str]] = {}
+
+    def cached_checker(url: str, check_timeout: float) -> tuple[bool, int | None, str]:
+        if url not in cache:
+            result = url_checker(url, check_timeout)
+            if not result[0] and result[1] is None:
+                result = url_checker(url, check_timeout)
+            cache[url] = result
+        return cache[url]
+
+    return [
+        verify_receipt_evidence(receipt, repo, timeout=timeout, url_checker=cached_checker)
+        for receipt in receipts
+    ]
+
+
 def publish_candidate(repo: Path, candidate_path: Path) -> None:
     if not candidate_path.is_absolute():
         candidate_path = repo / candidate_path
@@ -422,6 +608,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--ref-range", help="Optional git rev range, e.g. origin/main..HEAD")
     parser.add_argument("--validate-public", action="store_true")
     parser.add_argument("--validate-pending", action="store_true")
+    parser.add_argument("--verify-live", action="store_true", help="Check declared public evidence without executing checked_with")
+    parser.add_argument("--receipt-id", help="Limit --verify-live to one receipt id")
+    parser.add_argument("--timeout", type=float, default=10.0, help="Per-URL timeout for --verify-live")
     parser.add_argument("--publish-candidate", help="Move a pending candidate into _data/agent_receipts.yml")
     parser.add_argument("--reject-candidate", help="Record a candidate commit as intentionally not public-worthy")
     parser.add_argument("--rejection-reason", help="Public-safe reason for --reject-candidate")
@@ -454,6 +643,19 @@ def main(argv: list[str] | None = None) -> int:
         all_errors.extend(validate_public(repo))
     if args.validate_pending:
         all_errors.extend(validate_pending(repo))
+
+    if args.verify_live:
+        try:
+            results = verify_public_evidence(repo, receipt_id=args.receipt_id, timeout=args.timeout)
+        except ValueError as exc:
+            print(f"ERROR: {exc}", file=sys.stderr)
+            return 1
+        if not results:
+            print("ERROR: no public receipts", file=sys.stderr)
+            return 1
+        print(json.dumps(results, indent=2))
+        if any(result["status"] != "pass" for result in results):
+            return 1
 
     if all_errors:
         for error in all_errors:
