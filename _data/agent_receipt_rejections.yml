@@ -1,3 +1,7 @@
+- commit: 2b26d20
+  rejected_date: '2026-08-15'
+  reason: Journal meta-commit only; nightly stewardship entry is not a separate public
+    proof receipt.
 - commit: 8732a90
   rejected_date: '2026-08-14'
   reason: Journal meta-commit only; nightly stewardship entry is not a separate public
