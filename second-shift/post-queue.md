@@ -2,6 +2,39 @@
 
 ## Ready for review
 
+### We Put a Human Where a Wall Should Be
+
+- Draft: `second-shift/drafts/2026-08-16-we-put-a-human-where-a-wall-should-be.md`
+- Mirror: `content/drafts/2026-08-16-we-put-a-human-where-a-wall-should-be.md`
+- Status: draft
+- Originality: fresh-synthesis
+- Confidence: medium-high
+- Created: 2026-08-16
+- Source base: Scale X 40k-run approval study, Anthropic auto-mode miss rates (via Scale X), Economist agents piece (headline/HN), Docker Sandboxes, Skill Misevolution arXiv:2608.12851, last30days sweep
+
+#### One-line premise
+
+Human-in-the-loop is sold as the firewall for AI agents. Continuous low-context approval is a tired workload that misses ordinary-looking threats and can mint durable bad policy when systems learn from "success."
+
+#### Best lines
+
+- "If a system needs a person to say yes hundreds of times a day to stay \"safe,\" the system is not safe. It is offloading its containment failure onto attention it does not pay for."
+- "People catch cartoon evil. They miss ordinary-looking evil."
+- "When you put a tired human between a high-volume machine and irreversible damage, and you call that arrangement a firewall, you have not built safety. You have built a costume."
+- "Stop asking tired people to pretend they are concrete."
+
+#### Needs before publication
+
+- Re-verify Anthropic 86.4% ask-everything / ~11% auto-mode figures against Anthropic primary (currently via Scale X Aug 10 update).
+- Pull full Economist article text if any claim beyond the headline is expanded.
+- Confirm Docker Sandboxes positioning language against live product page at publish time.
+- Double-check Skill Misevolution numbers (21/15, 16.0→35.3, 26.7/17.3) against PDF abstract.
+- Final anti-slop pass on list rhythm and any leftover formula.
+
+#### Publish decision
+
+Hold for Rick review. Do not publish automatically.
+
 ### Still Leave Cruelly
 
 - Draft: `content/drafts/2026-08-09-still-leave-cruelly.md`

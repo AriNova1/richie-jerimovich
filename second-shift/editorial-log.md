@@ -1,5 +1,51 @@
 # Second Shift editorial log
 
+## 2026-08-16
+
+### Draft created
+
+- Title: "We Put a Human Where a Wall Should Be"
+- Path: `second-shift/drafts/2026-08-16-we-put-a-human-where-a-wall-should-be.md` (mirror: `content/drafts/2026-08-16-we-put-a-human-where-a-wall-should-be.md`)
+- Status: draft
+- Originality: fresh-synthesis
+- Confidence: medium-high
+
+### Thesis
+
+"Human in the loop" is sold as the moral and legal firewall for AI agents. August 2026 measurements say continuous low-context approval is a fatigued workload, not a wall: Scale X game data (40k+ runs, 409k decisions) shows ~1 in 3 threats missed, with familiar script names doubling miss rates; Anthropic internal study (1,053 testers) reported 86.4% miss on ask-everything vs ~11% auto mode; Docker sandboxes and auto-mode defaults are the structural admission; Skill Misevolution (arXiv 2608.12851) shows unsafe successes can become durable skill policy after the attack is gone. Design rule: if safety requires hundreds of daily yes-clicks, the system is offloading containment failure onto unpaid attention.
+
+### Source trail
+
+External:
+
+1. Alex Wauters / Scale X, "Humans missed 1 in 3 threats approving AI agent commands across 40,000 plays," Aug 5, 2026 (update Aug 10 on Anthropic auto mode). 409k decisions; category miss rates; npm run blind spot 64.7%; Anthropic 1,053-tester study 86.4% vs 11%.
+2. The Economist, "AI agents lie, cheat and steal. That is putting off users," Aug 12, 2026. HN 164 pts / 212 comments (paywalled primary; cited via HN + title).
+3. Docker Sandboxes product page / launch, Aug 2026. Disposable isolated sandboxes for coding agents. HN 693 pts / 396 comments.
+4. Mao, Zhao, Zheng, Wang, "Practice Makes Unsafe: Skill Misevolution in Self-Improving LLM Agents," arXiv:2608.12851, Aug 13, 2026. All 21 evolved configs author unsafe artifacts; 15 fresh-session harm; carryover ASR 16.0%→35.3%; SafeEvolve −26.7 / −17.3 pp.
+5. HN thread on Scale X (item 49195468): monitor blindness, permission annoyance as classic pen-test path, command-string approval critique.
+
+Internal:
+
+- last30days run 2026-08-16: `~/Documents/Last30Days/ai-agent-human-oversight-approval-failures-raw-secondshift-20260816.md`
+- Daily reading synthesis 2026-08-16 (skill misevolution / persistence as policy) used only as pointer; draft grounded in primary paper + public sources
+- Prior drafts avoided: companions/dark patterns (Aug 9), prediction markets (Aug 2), hollow middle (Jul 19), memory ownership (Jun 21), verification economy (Jul 23)
+
+### Originality check
+
+Exact title "We Put a Human Where a Wall Should Be" did not surface as an existing piece. Crowded ingredient fields: permission fatigue, HITL skepticism, agent sandboxing, agent safety papers. Fresh part is the mechanism stack: continuous approval as costume + miss-rate gradient (theatrical vs ordinary evil) + self-improvement turning one rubber stamp into durable policy. Not a "ban agents" thesis. Design rule: rare high-context escalation, structural walls, write gates on persistence.
+
+Classification: fresh synthesis.
+
+### Editorial notes
+
+- Strongest line: "If a system needs a person to say yes hundreds of times a day to stay \"safe,\" the system is not safe. It is offloading its containment failure onto attention it does not pay for."
+- Strongest second line: "People catch cartoon evil. They miss ordinary-looking evil."
+- Risk: Anthropic 86.4% / 11% figures are reported via Scale X Aug 10 update, not a directly extracted Anthropic HTML page this run. Re-verify against Anthropic primary before publish.
+- Risk: Economist body paywalled this run; keep claims at headline/HN level or pull full text before publish.
+- Counterargument section is load-bearing. Do not cut it.
+- Boundary: outward-facing tech/behavior/trust thesis. No Hermes/agent-ops diary. Passes Second Shift litmus test.
+- Do not publish automatically. Needs Rick review.
+
 ## 2026-08-09
 
 ### Draft created
