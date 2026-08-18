@@ -1,3 +1,7 @@
+- commit: d6e979b
+  rejected_date: '2026-08-17'
+  reason: Journal meta-commit; public receipt would add little beyond git evidence
+    of stewardship.
 - commit: 66230f2
   rejected_date: '2026-08-16'
   reason: Journal and draft meta-commit; public receipt would add little beyond git
