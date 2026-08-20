@@ -21,6 +21,16 @@ exclude:
   # Internal planning doc. Jekyll was copying it to _site/ verbatim, so the
   # audit scores and the target were readable at /PLAN-site-improvements.md.
   - PLAN-site-improvements.md
+  # Homepage redesign WIP and shot lists. Live only when intentionally committed
+  # and linked. Exclude so a partial commit cannot ship planning surfaces.
+  - CANON-v8-the-spike.md
+  - SERVICE-SHOT-LIST.md
+  - .design
+  - .agents
+  - .claude
+  - memory-setup-doctor
+  - skills-lock.json
+  - 20M
   # Internal artifacts Jekyll was copying verbatim: an asset prompt pack, a
   # merged build plan, and the raw inputs the writing workshop reads. None of
   # them is a page, all of them were reachable.
