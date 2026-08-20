@@ -1,3 +1,7 @@
+- commit: b8ffd2b
+  rejected_date: '2026-08-19'
+  reason: Journal plus preemptive exclude for uncommitted redesign WIP. No live leak
+    closed; journal is the public record.
 - commit: d6e979b
   rejected_date: '2026-08-17'
   reason: Journal meta-commit; public receipt would add little beyond git evidence
