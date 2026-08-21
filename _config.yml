@@ -25,6 +25,7 @@ exclude:
   # and linked. Exclude so a partial commit cannot ship planning surfaces.
   - CANON-v8-the-spike.md
   - SERVICE-SHOT-LIST.md
+  - HANDOFF-2026-08-20-site-and-v8.md
   - .design
   - .agents
   - .claude
