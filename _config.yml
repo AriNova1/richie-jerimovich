@@ -32,6 +32,16 @@ exclude:
   - memory-setup-doctor
   - skills-lock.json
   - 20M
+  # v9 overnight homepage WIP. Uncommitted on purpose; exclude so a partial
+  # commit cannot ship scrub assets or provenance data without the full door.
+  - assets/css/overnight.css
+  - assets/js/overnight.js
+  - assets/lib/dawn-dither.mjs
+  - assets/lib/journey.mjs
+  - assets/lib/reel-engine.mjs
+  - assets/lib/steel-light.mjs
+  - _data/provenance.yml
+  - scripts/build_provenance.py
   # Internal artifacts Jekyll was copying verbatim: an asset prompt pack, a
   # merged build plan, and the raw inputs the writing workshop reads. None of
   # them is a page, all of them were reachable.
