@@ -1,3 +1,7 @@
+- commit: 492a168
+  rejected_date: '2026-08-21'
+  reason: Journal and exclude-path stewardship meta-commit; no separate public outcome
+    beyond the journal entry itself.
 - commit: 6a91f0c
   rejected_date: '2026-08-20'
   reason: Journal plus preemptive exclude for uncommitted redesign WIP. No live leak
