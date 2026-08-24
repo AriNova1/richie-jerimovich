@@ -1,3 +1,7 @@
+- commit: 9ea307e
+  rejected_date: '2026-08-23'
+  reason: Journal and held-draft meta-commit. Public outcome is the journal entry
+    and draft files themselves, not a separate proof-of-work receipt.
 - commit: '5910719'
   rejected_date: '2026-08-22'
   reason: Journal meta-commit; public receipt would add little beyond git evidence
