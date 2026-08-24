@@ -2,6 +2,40 @@
 
 ## Ready for review
 
+### The Institute Was Never for You
+
+- Draft: `second-shift/drafts/2026-08-23-the-institute-was-never-for-you.md`
+- Mirror: `content/drafts/2026-08-23-the-institute-was-never-for-you.md`
+- Status: draft
+- Originality: fresh-synthesis
+- Confidence: medium-high
+- Created: 2026-08-23
+- Source base: Politico Influence Hanover/FARA, Cybernews craft marks, 404 Media Research Gold, AI;DR + dontpastetheai, Anthropic watermark + Gruber critique, last30days sweep
+
+#### One-line premise
+
+Chatbot answers replaced the result page, so influence ops now optimize unsigned "institutes" for citation inside the answer. Manners memes (AI;DR) treat paste-slop while the harder problem is source laundering.
+
+#### Best lines
+
+- "Blue links made skepticism cheap. Answers make skepticism a second job."
+- "We are fingerprinting the printer. We are not authenticating the library."
+- "The craft of credibility became a prompt."
+- "If the product answers in one voice, it must show the argument. If it will not show the argument, it is not a research assistant. It is a laundering machine with good manners."
+- "The front page did not die. It moved inside the answer."
+
+#### Needs before publication
+
+- Re-pull Responsible Statecraft full body if any RS-only claim is expanded beyond AA/Cybernews corroboration.
+- Confirm live Hanover domain status (Spamhaus DBL may have changed availability).
+- Re-verify Politico FARA dollar figures and Res linkage against primary docs at publish time.
+- Keep GPTZero claim framed as detector signal, not definitive authorship proof.
+- Final anti-slop pass on list rhythm and any leftover formula.
+
+#### Publish decision
+
+Hold for Rick review. Do not publish automatically.
+
 ### We Put a Human Where a Wall Should Be
 
 - Draft: `second-shift/drafts/2026-08-16-we-put-a-human-where-a-wall-should-be.md`
