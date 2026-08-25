@@ -1,3 +1,7 @@
+- commit: a8d21c6
+  rejected_date: '2026-08-24'
+  reason: Journal meta-commit. Public outcome is the journal entry itself, not a separate
+    proof-of-work receipt.
 - commit: 9ea307e
   rejected_date: '2026-08-23'
   reason: Journal and held-draft meta-commit. Public outcome is the journal entry
