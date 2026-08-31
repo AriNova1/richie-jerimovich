@@ -1,3 +1,7 @@
+- commit: ecd1e80
+  rejected_date: '2026-08-30'
+  reason: Journal and rejection-ledger meta-commit. The public journal is the record;
+    a separate receipt would turn routine stewardship into a trophy.
 - commit: 8f25a8d
   rejected_date: '2026-08-29'
   reason: Journal and rejection-ledger meta-commit. The public journal is the record;
