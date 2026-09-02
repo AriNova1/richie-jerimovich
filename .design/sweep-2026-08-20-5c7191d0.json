@@ -1,0 +1,475 @@
+{
+ "property": "richie-jerimovich",
+ "date": "2026-08-20",
+ "inventoryHash": "5c7191d07bae0b98",
+ "session": null,
+ "work": "v9 THE OVERNIGHT: homepage is one tracking shot down the pass built from the site's own overnight record. No footage. Still edition first. Provenance card at dawn.",
+ "constraints": [
+  "Jekyll, no bundler, no npm at build. Native ES modules work and are used: overnight.js imports journey.mjs, steel-light.mjs and dawn-dither.mjs with a plain import, so 'no bundler' is not a reason to refuse anything that ships as ESM.",
+  "No React runtime, and adding one would break the site's promise that its source is readable. React-only assets get a priced escalation, never a flat refusal.",
+  "The locked conception (.design/conception-2026-08-20.json) forbids generated footage, forbids crossfades between stations, and requires a still edition that is a different document. An asset that would soften the cuts or add a clip is refused by the conception, not by taste.",
+  "Nothing third-party at runtime. Fonts are self-hosted, shaders are hand-rolled, libraries that fetch or phone home are out even when they would look good."
+ ],
+ "craft": [
+  {
+   "family": "direction",
+   "applied": "design-director",
+   "note": "Scan reported WORLD. Score of the live v7 door is a photograph that argues nothing; v8 was dead code. Conception gate locked THE OVERNIGHT from the plan's three mechanisms before any UI write. Signature is a paused frame of the site's own night that no other front door can render honestly."
+  },
+  {
+   "family": "motion",
+   "applied": "emil-animation-framework",
+   "note": "Frequency rule: seen once per visit, visitor-driven, so interior motion is a pure function of scroll and reversing the scrub un-spikes tickets. Impacts use the dead-stop curve (no bounce, paper does not bounce). Idle life (pointer lamp, grain) stops under hold-motion, reduced-motion, offscreen and tab-hide."
+  },
+  {
+   "family": "type",
+   "applied": "animate-text",
+   "note": "Hero type is the night clock, tabular lining, Bricolage 800 at --step-6. Caption entrance uses the authored soft-blur-in numbers. Machine copy stays JetBrains Mono. Verified in the reduced-motion still where the subtitle was inheriting the clock size and had to be reset to --step--1."
+  },
+  {
+   "family": "color",
+   "applied": "",
+   "note": "Palette stayed closed except the planned dawn counterpoint: --dawn, --dawn-ink, --night-depth. --dawn appears in Movement 5 and nowhere before it. --pass-ok and --alarm stay reserved for verdicts. --muted was undefined; it now aliases --text-dim."
+  },
+  {
+   "family": "layout",
+   "applied": "better-layout",
+   "note": "375 composed first. Sticky stage clears the 3.5rem header (first captures had the clock under the nav). Service strip is proportional to dwell, not equal-width. M6 is a blueprint strip of doors, not a bento. Reduced-motion unpins the stage so source order is the photo essay."
+  },
+  {
+   "family": "a11y",
+   "applied": "better-accessibility",
+   "note": "prefers-reduced-motion never calls mountJourney. Hold-motion uses shift.js body.motion-held plus the motionhold event; the dead data-hold-motion path is gone. Strip buttons are 44px with aria-current. Captions and counts are real text in the still edition. Skip does not gate content."
+  },
+  {
+   "family": "copy",
+   "applied": "no-ai-slop",
+   "note": "Clinical register. 'This kitchen has no staff.' Tape dates print the real night, never 'last night' on a stale tape. Provenance says 'this page's birth certificate' once, then 'provenance'. Journal criticism is quoted, not paraphrased."
+  }
+ ],
+ "looked": {
+  "shots": [
+   ".design/shots/overnight-desk-p00.png",
+   ".design/shots/overnight-desk-p15.png",
+   ".design/shots/overnight-desk-p55.png",
+   ".design/shots/overnight-desk-past.png",
+   ".design/shots/overnight-375-p00.png",
+   ".design/shots/overnight-375-p35.png",
+   ".design/shots/overnight-reduced.png",
+   ".design/shots/overnight-nojs.png"
+  ],
+  "saw": "First desktop captures put the 11:25 clock under the sticky header the moment the stage stuck, and skip to dawn sat on top of the time at 375. The still-edition subtitle inherited --step-6 so '11:25last scheduled service' read as one word. After the header clearance and the small reset, M0 holds: steel, unlit lamps, clock, caption, proportional strip. M3 is the frame that earns the night: '3 refused for every 1 kept', drought as a mono note, a real spiked ticket on the rod with a pierced hole. M6 prints sha eecc440, the 2026-07-23 tape date, 1 kept 2 spiked, and 'You are reading what the night shipped.' Dawn is an 8x8 Bayer field, cold, not a crossfade.",
+  "mobile": "375x667. Clock clears the menu. Strip is hour ticks, current segment amber. Caption no longer collides with the counts after skip moved under the movement label. One kept ticket hangs on the rail at p=0.35 with THE RAIL in the HUD. Provenance card wraps; vitals stay a strip.",
+  "bar": "The conception is 110: no other site can build this frame from its own overnight record. The current build earns it at the spike and the provenance card. The corridor is a sequence of named stations rather than a felt dolly down a counter, and 375 still stacks skip near the counts. Honest band: 90. The 110 of a paused frame at every station is not yet true for M0 lamps (they read as icons) or M4 (type on steel, no journal object)."
+ },
+ "verdicts": [
+  {
+   "asset": "ECC",
+   "verdict": "rejected",
+   "reason": "A greppable idiom library. The film is one CSS file and one ES module, both hand-written against a locked conception; there was no idiom to look up.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "ai-design-skills",
+   "verdict": "rejected",
+   "reason": "A general rules-file layer under a stricter property-specific contract weakens the specific one.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "ai-website-cloner-template",
+   "verdict": "rejected",
+   "reason": "Cloning, on a brief whose whole complaint was that the site read as templated.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "animate-text",
+   "verdict": "used",
+   "reason": "soft-blur-in on the HUD caption: 900ms, cubic-bezier(0.22, 1, 0.36, 1), y 16px, blur 12px, authored in overnight.css as ov-cap. Applied per phrase not per character because a caption over a station should arrive as a sentence. File moved from the deleted service.css.",
+   "basis": null,
+   "escalation": "",
+   "file": "assets/css/overnight.css"
+  },
+  {
+   "asset": "anthropic-skills",
+   "verdict": "rejected",
+   "reason": "Document generation. Nothing renders UI.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "base-ui",
+   "verdict": "rejected",
+   "reason": "Six service-strip buttons and a skip. They are plain buttons with aria-label and aria-current. There is no combobox, dialog or menu to justify a primitives library.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "better-harness",
+   "verdict": "rejected",
+   "reason": "Harness and delivery-loop review rather than a surface. Its evidence-bounded shape informs how this receipt is written.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "border-beam",
+   "verdict": "rejected",
+   "reason": "Nothing in the film is a bordered element. The only rectangle is the frame itself and a beam around that is a screensaver.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "calicastle-skills",
+   "verdict": "rejected",
+   "reason": "Signal Geometry and Chalk Logic, both generative mark-making. Same boundary as above.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "canvas-ui",
+   "verdict": "rejected",
+   "reason": "Its Vanilla.ts builds would run here, and I looked at Dither and Asciify specifically. Refused because Commons Clause plus a catalog look: the dawn has to be an 8x8 Bayer threshold wipe driven by scroll, which is a 40-line fragment shader, not a component overlay on live DOM.",
+   "basis": null,
+   "escalation": "Copy the Vanilla dither into assets/lib/, about two hours. The Bayer matrix is shorter to write than to restyle.",
+   "file": ""
+  },
+  {
+   "asset": "cinematic-scroll-prompt-kit",
+   "verdict": "rejected",
+   "reason": "Read it properly this time: an implementation contract, a project brief template, an asset manifest schema and a QA definition of done. The contract discipline is what SERVICE-SHOT-LIST.md and the conception file already do for this build, including the delivery filenames and the honesty line, so adopting it would be a second contract over the same work. Its 2.5D parallax form is wrong for a room shot photographically on a locked-off camera.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-ascii-dissolve",
+   "verdict": "rejected",
+   "reason": "An ASCII treatment of the film was considered as a way to make eight generated clips read as deliberately synthetic rather than as stock. Refused because the conception's signature depends on the room being believable: an empty kitchen only lands as eerie if it reads as a real kitchen.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-dataviz-deep",
+   "verdict": "rejected",
+   "reason": "No figures inside the film at all, by failsIf 5: numbers must never be depicted in a frame. That rule makes a data-visualisation pack structurally inapplicable to this surface rather than merely unneeded.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-figma",
+   "verdict": "rejected",
+   "reason": "No Figma file. Source of truth is assets/style.css plus assets/css/overnight.css.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-product-design",
+   "verdict": "rejected",
+   "reason": "Turns ideas and URLs into reviewable prototypes. That step is finished: the conception is locked and this is the build.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-remotion",
+   "verdict": "rejected",
+   "reason": "A Remotion pipeline for rendering video. This front door has no footage by decision: if a beat needs generated media the beat is deleted. There is nothing to render.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "dither-kit",
+   "verdict": "rejected",
+   "reason": "No chart. The Bayer wipe in dawn-dither.mjs is a threshold, not a data mark, and dither-kit is React plus shadcn which this site does not have.",
+   "basis": null,
+   "escalation": "Port the ordered-dither canvas core as a standalone module, about half a day. dawn-dither.mjs already did that job in one file.",
+   "file": ""
+  },
+  {
+   "asset": "emil-skills",
+   "verdict": "rejected",
+   "reason": "Its frequency rule already decided this surface before the build: this film is seen once per visit so it may be strong, but the visitor drives it rather than watching it, so nothing in it runs on a timer. That principle is applied and it is why every beat's interior motion is a function of scroll position, which means scrubbing backwards genuinely runs it backwards. Recorded as informing rather than used, because no code came from it this time.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "fancy-components",
+   "verdict": "rejected",
+   "reason": "Playful animated React microinteractions against a film whose first caption is 'This kitchen has no staff.' The tone is the mismatch before the runtime is.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "fudge-design-md",
+   "verdict": "rejected",
+   "reason": "A DESIGN.md generator, and this build already has two binding documents: CANON-v8-the-spike.md and the locked conception. A third would be the duplicate-object failure this repo has already been bitten by.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "gc-minimal-zine-poster",
+   "verdict": "rejected",
+   "reason": "A print poster generator in a quiet editorial register. Wrong medium and wrong tone for a night shift.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "illo-skill",
+   "verdict": "rejected",
+   "reason": "Illustration would replace a photographed empty room with a drawn one, and a drawn empty room is not eerie, it is just a picture.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "interior",
+   "verdict": "rejected",
+   "reason": "The film has three controls: eight filmstrip segments, a skip, and the scroll itself. A micro-interaction library for the half-second after a click would land on the filmstrip, where the correct feedback is the frame changing, which is already the loudest possible response.",
+   "basis": null,
+   "escalation": "React. One interaction ports in about 45 minutes; the filmstrip does not want one.",
+   "file": ""
+  },
+  {
+   "asset": "jakubkrehel-skills",
+   "verdict": "rejected",
+   "reason": "Overlaps emil-skills and transitions-dev, both already accounted for. A third motion vocabulary would make the caption arrival disagree with the counter pop-in two sections down the same page.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "liquid-glass-carousel",
+   "verdict": "rejected",
+   "reason": "A three.js scroll-driven carousel with a glass lens. It is the nearest thing we own to a scroll film, which is why it was opened. Refused because a carousel is a loop of peers and a night is a sequence with a beginning and an end, and glass is a different material from steel and thermal stock.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "loading-ui",
+   "verdict": "rejected",
+   "reason": "Nothing waits. Data is inlined at build, shaders fail closed to CSS, and a loader over the first frame would hide the hook, which is 'This kitchen has no staff.'",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "marketingskills",
+   "verdict": "rejected",
+   "reason": "Conversion and growth copy on an opening whose argument is that most of the work was refused.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "mattpocock-skills",
+   "verdict": "rejected",
+   "reason": "Engineering discipline. The four defects here were found by reading rendered screenshots and computed style, which is the verification rig, not a skill.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "mengto-sketchbook",
+   "verdict": "rejected",
+   "reason": "A page-flip in one static HTML file. Its paper physics are lovely and its gesture is pagination, which is what a continuous night is not. The property's own page-flip already lives at /journal/book/.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "metal-fx",
+   "verdict": "rejected",
+   "reason": "Shelved in the kit in favour of paper-shaders LiquidMetal. Brushed steel is the M0-M4 backdrop and it is a stretched-noise fragment in steel-light.mjs, not a third-party metal shader on a 7px rod.",
+   "basis": null,
+   "escalation": "React-only. Extracting the shader is about two hours. steel-light.mjs already owns the metal.",
+   "file": ""
+  },
+  {
+   "asset": "mint-bookshelf",
+   "verdict": "rejected",
+   "reason": "A three.js shelf of book objects. The corridor is CSS-3D planes borrowed from /kitchen/, and a modeled space would put a fourth renderer (Three) on a page whose shaders are already two hand-rolled quads with a CSS fallback.",
+   "basis": null,
+   "escalation": "Needs React 19 and Tailwind v4. A day to stand up, and it would replace the kitchen grammar the brief said to reuse.",
+   "file": ""
+  },
+  {
+   "asset": "motion",
+   "verdict": "rejected",
+   "reason": "The scrub is a single rAF reading scrollY and writing custom properties, and every transition is one property over a known duration, which CSS already does. A tween library would sit between scroll position and paint, which is precisely the coupling a scrubbed film must not have: the frame has to be a pure function of scroll, or scrubbing backwards stops being exact.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "no-ai-slop",
+   "verdict": "used",
+   "reason": "Ran over the seven movement captions and the provenance close. Zero em-dashes in authored copy. Captions carry orientation the objects cannot: 'This kitchen has no staff' does not describe the lamps. The journal excerpt is quoted verbatim under data-verbatim rather than rewritten prettier.",
+   "basis": null,
+   "escalation": "",
+   "file": "index.md"
+  },
+  {
+   "asset": "openship",
+   "verdict": "rejected",
+   "reason": "Deployment infrastructure. Nothing here changed how the site ships.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "originkit",
+   "verdict": "rejected",
+   "reason": "Still unreachable at SNI level on this network. Ruled unavailable rather than judged, because claiming to have evaluated a registry I cannot load would be the dishonesty this site refuses.",
+   "basis": null,
+   "escalation": "Local extraction is capped at 10 fetches a day and 50 a week; full localisation is a two-week drip per vendor/originkit-local/README.",
+   "file": ""
+  },
+  {
+   "asset": "originkit-local",
+   "verdict": "rejected",
+   "reason": "Re-checked the 8 extracted components against this surface specifically, looking for anything film, timeline, scrub or filmstrip shaped. There is nothing. Nothing to adopt rather than nothing worth adopting.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "paper-shaders",
+   "verdict": "rejected",
+   "reason": "Opened GrainGradient, Dithering and PaperTexture before writing steel-light.mjs. The Bayer 8x8 wipe in dawn-dither.mjs IS the dawn, ordered and printable, and a catalog GrainGradient would sit on top of the night as decoration. Hand-rolled two WebGL1 quads with a shared capability probe instead of importing a React catalog.",
+   "basis": null,
+   "escalation": "Vendor @paper-design/shaders ESM into assets/lib/ beside reel-engine.mjs, about 30 minutes plus a probe. Not paid because the dither pattern is the material metaphor, not an ambient texture.",
+   "file": ""
+  },
+  {
+   "asset": "pixel2motion",
+   "verdict": "rejected",
+   "reason": "No logo treatment. The wordmark stays set type in Bricolage, and the hero type is the night clock, which is time rather than a mark.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "pringles-reference",
+   "verdict": "rejected",
+   "reason": "Its transferable value is citing contract section numbers in code comments, and that is in force: overnight.js and overnight.css cite the locked conception. The React and Vite build itself is not usable here.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "react-bits",
+   "verdict": "rejected",
+   "reason": "134 React components, none of which is a scrubbed film. The property has no React and its readable-source promise is the reason, which is a decision rather than a cost.",
+   "basis": null,
+   "escalation": "Would require standing up React purely to import animation components. I would not pay it at any price on this repo.",
+   "file": ""
+  },
+  {
+   "asset": "reel-engine",
+   "verdict": "used",
+   "reason": "journey.mjs composes it rather than forking it. validateReelMap fails the mount on a non-monotone edit, reelTime interpolates dwell, clamp is used throughout. No video path is taken: the still edition stands when reduced-motion or no-WebGL, which is the engine's first fallback tier applied to a page with no footage.",
+   "basis": null,
+   "escalation": "",
+   "file": "assets/lib/reel-engine.mjs"
+  },
+  {
+   "asset": "reference-captures",
+   "verdict": "rejected",
+   "reason": "Opened mengto-scroll3d and moein-generative-film specifically because both are scroll films and this is now a scroll film. Refused as a source: mengto-scroll3d is a 3D camera through a modeled space and moein-generative-film is a generative-art landing, and lifting either shape would have produced a scroll film about scrolling. The eight beats came from the property's own night and its own 3-to-1 refusal ratio, which is the only place a signature can come from.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "scroll-world",
+   "verdict": "rejected",
+   "reason": "Its defining rule is a CONTINUOUS camera flight with no visible cuts. THE OVERNIGHT forbids that: station boundaries cut, only interiors are continuous. Taking scroll-world would take its continuity, which failsIf 2 names as collapsing the night into a mood. Phone hardening already lives in reel-engine.",
+   "basis": null,
+   "escalation": "Its generation pipeline assumes Higgsfield. If a later surface wants a continuous flight, steal the seam rule, not the continuity.",
+   "file": ""
+  },
+  {
+   "asset": "taste-skill",
+   "verdict": "rejected",
+   "reason": "The anti-slop function is served by design-director's concrete reflex list and by the conception's own failsIf, which is specific to this surface rather than general.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "thinking-orbs",
+   "verdict": "rejected",
+   "reason": "No pending state on this surface. The still edition is complete in source order; an orb would invent a wait the page does not have.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "transitions-dev",
+   "verdict": "rejected",
+   "reason": "Its number-pop recipe was harvested into overnight.js counters then the source pass.js was deleted. Nothing in the journey is a UI-state transition: stations CUT, and a cut is the absence of a transition. Reaching for the library again would have put a fade on a boundary the conception forbids.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "ui-ux-pro-max-skill",
+   "verdict": "rejected",
+   "reason": "Palette still closed: the film must look like the site it opens, so every value is inherited. This is the tool the moment a palette is genuinely open.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "vercel-agent-skills",
+   "verdict": "rejected",
+   "reason": "Deployment and framework tooling, nothing design-bearing.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "vercel-design-md",
+   "verdict": "rejected",
+   "reason": "A PRODUCT-register system carrying Vercel's brand contract, on a surface declared WORLD in writing.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "video-shotcraft",
+   "verdict": "rejected",
+   "reason": "Composites real page screenshots into a product video. Opposite direction: this page is the thing, not a source of frames for a promo cut.",
+   "basis": null,
+   "escalation": "Remotion needs a Node render pipeline this repo does not have. A day to stand up as a separate build, out of scope for readable source.",
+   "file": ""
+  },
+  {
+   "asset": "video-use",
+   "verdict": "rejected",
+   "reason": "Conversational video editing on a surface that cancelled its eight clips. There is no footage in the tree to cut.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  }
+ ]
+}

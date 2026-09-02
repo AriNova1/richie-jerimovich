@@ -1,0 +1,469 @@
+{
+ "property": "richie-jerimovich",
+ "date": "2026-08-17",
+ "inventoryHash": "5c7191d07bae0b98",
+ "session": null,
+ "work": "ACT 0 of the v8 THE SPIKE overhaul: the homepage opening is now the pass itself, replacing the v7 photograph-and-scrim hero.",
+ "constraints": [
+  "Jekyll with no bundler and no npm at build. assets/lib/page-flip.browser.js proves a single vendored browser build IS droppable here, so 'no build step' is never a verdict on its own in this receipt; where an asset has a vendorable file the price is written on its row.",
+  "No React runtime, and introducing one would break the site's own promise that you can read its source. That promise is the product, not a preference, so React-only assets are priced rather than adopted.",
+  "The world is already committed: v7 'The Pass' tokens (--ticket, --amber, --burn, service-black) plus the brigade badges, the rail and the spike on /receipts/. Act 0 had to EXTEND that vocabulary, not import a second one. An asset whose value is a different look would have made the homepage disagree with every other route.",
+  "Act 0 is one surface of seven (CANON-v8 \u00a74). Assets that belong to a later act were deliberately not fired here rather than sprinkled early; those rows say which act they are queued for."
+ ],
+ "craft": [
+  {
+   "family": "direction",
+   "applied": "design-director",
+   "note": "The old hero failed the removal test and the new one is built to pass it: delete the pass and the page can no longer say refusal is the product. The photograph is gone entirely rather than treated, because its problem was that it argued nothing and no treatment fixes an argument. Written up as CANON-v8-the-spike.md before any code, with \u00a7numbers cited in index.md, pass.js and style.css."
+  },
+  {
+   "family": "motion",
+   "applied": "emil-animation-framework",
+   "note": "Seen once per visit so it may be strong, but it must terminate: 22 rulings then rest, sessionStorage passRun so a returning visitor lands straight on the resting frame, and finish() clears anything still airborne rather than freezing it. The impale kills velocity dead because paper on a spike does not bounce."
+  },
+  {
+   "family": "type",
+   "applied": "transitions-dev",
+   "note": "02-number-pop-in drives the three counters in assets/style.css and assets/js/pass.js. Porting it here needed a specificity guard the demo taught me: .pass-counts span also matches the digit spans and would have dropped 2.1rem type to 0.6rem, so the rule is written as .pass-counts strong .t-digit and verified by computed style (33.6px on both) in the built site, not the source."
+  },
+  {
+   "family": "color",
+   "applied": "",
+   "note": "Not a single new colour was introduced. Act 0 uses --ticket, --ticket-shade, --ticket-ink, --amber, --burn, --pass-ok and --bg exactly as v7 defined them; two placeholder fallbacks I first wrote (--ticket-2, --ok) were replaced with the real tokens once I read the :root block instead of assuming the names. Adding a palette here would have made the homepage the one page that disagrees with the system."
+  },
+  {
+   "family": "layout",
+   "applied": "better-layout",
+   "note": "Portrait was treated as its own composition and it changed the DOM, not just the CSS: the drought block was moved inside .pass-hud so that at 640px it can return to normal flow under the copy instead of floating over the buttons and being run through by the spike rod. Desktop still positions it absolutely in the centre of the room. Measured at 390px, no horizontal overflow."
+  },
+  {
+   "family": "a11y",
+   "applied": "better-accessibility",
+   "note": "The resting state is the no-JS state: the counters render the real totals and the drought is printed by Liquid at build, so the mechanism only ever animates numbers that are already correct. Reduced motion and data-hold-motion both skip straight to rest, the skip control is a real button that is hidden when there is nothing left to skip, and every moving part is aria-hidden because none of it carries information the text does not."
+  },
+  {
+   "family": "copy",
+   "applied": "no-ai-slop",
+   "note": "The headline is a claim the page then proves rather than an adjective: 'Most of what I make, I throw away.' No em-dashes, no mood-list words. The deck states the rule in two clauses and stops. The old hero's three-line explanation of what a ticket contains was cut because the mechanism now shows it."
+  }
+ ],
+ "looked": {
+  "shots": [
+   ".design/shots/act0-act0b.png",
+   ".design/shots/act0-act0m4.png"
+  ],
+  "saw": "Read both, against the built site on a local server rather than the source. Four things came out of looking: the Liquid limit was taking the OLDEST 60 declines because the sort was ascending, so the pass would have printed June and silently dropped today; the headline at --step-4 with a 34ch measure broke to five lines and fought the counters; the counter digits were 9.5px until the specificity guard went in; and portrait had the drought sitting on the buttons with the rod through it.",
+  "mobile": "390x780, no horizontal overflow, 20 tickets on the spike, counters reading 212/52/160. The fix was structural rather than cosmetic: the drought moved inside the hud so portrait can lay it out in flow. The giant numeral is now explicitly a desktop move.",
+  "bar": "Act 0 clears the removal test and the frame test: a paused frame of a spike stacked with cream tickets under one lamp, with a live drought count, is nameable and is not a shape any template produces. It is one act of seven and is not claimed to be the finished site. Not verified: screen reader, real-device touch, and the pass running against a nightly rebuild where dry_days changes under it."
+ },
+ "verdicts": [
+  {
+   "asset": "ECC",
+   "verdict": "rejected",
+   "reason": "A greppable pattern library for language and framework idioms. Act 0 is hand-written Liquid, CSS and one IIFE; there was no idiom to look up, and its mechanisms are derived from this property's argument rather than from any general pattern.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "ai-design-skills",
+   "verdict": "rejected",
+   "reason": "A general rules-file layer. This build is already governed by a stricter and property-specific contract, and layering a general rules file underneath a specific one weakens the specific one.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "ai-website-cloner-template",
+   "verdict": "rejected",
+   "reason": "Cloning is the precise opposite of this task. The brief was that the site reads as templated, so a cloning pipeline would deepen the failure being fixed.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "animate-text",
+   "verdict": "rejected",
+   "reason": "Considered for the headline reveal and refused on this property's own doctrine: type arrives at the machine's gain. Here the machine's gain is the ruling, so what moves is the counter, driven by a real impale. A named text effect on the headline would be motion applied to type rather than derived from anything.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "anthropic-skills",
+   "verdict": "rejected",
+   "reason": "Document generation (docx, pdf, pptx, xlsx). Nothing in it renders UI.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "base-ui",
+   "verdict": "rejected",
+   "reason": "Act 0 contains one button, the skip control, and it is a native <button> with real focus-visible styling inherited from the existing system. Importing accessible primitives to avoid writing one button would add a dependency and remove nothing.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "better-harness",
+   "verdict": "rejected",
+   "reason": "Harness and delivery-loop review. Act 0 is a surface, not a workflow. Its evidence-bounded findings shape did inform how the receipt's looked block is written, which is where it belongs rather than in the page.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "border-beam",
+   "verdict": "rejected",
+   "reason": "Act 0 deliberately has no cards and no bordered containers. A travelling glow would be the first thing on the page that responds to nothing.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "calicastle-skills",
+   "verdict": "rejected",
+   "reason": "Signal Geometry and Chalk Logic are generative mark-making. Same refusal as algorithmic-art and for the same reason: nothing on this page may be generated.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "canvas-ui",
+   "verdict": "rejected",
+   "reason": "Already in service on this property at assets/js/rewind-tape.js, which is the honest reason it is not fired again in Act 0: its premise is a shader composited over live DOM, and Act 0's paper must hold still once printed. Re-using it here would have made the ticket stock shimmer, which contradicts the material.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "cinematic-scroll-prompt-kit",
+   "verdict": "rejected",
+   "reason": "Its contract discipline is real and is essentially what CANON-v8 does for this build, but the 2.5D scroll form it encodes is wrong for an opening with no scroll and no depth. Took the discipline, left the form.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-ascii-dissolve",
+   "verdict": "rejected",
+   "reason": "Read it while deciding what to do with the retired hero photograph. Concluded the whole line of thinking was wrong: the photo's failure is that it argues nothing, and an ASCII treatment would have been a prettier version of the same failure. The image is retired instead, and per Rick's standing request the files stay in the repo rather than being deleted.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-dataviz-deep",
+   "verdict": "rejected",
+   "reason": "Act 0 displays three scalars. A pack built for D3, geospatial and uncertainty work is the wrong instrument for three integers that are already the argument. Queued for /organism/ at Act 5.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-figma",
+   "verdict": "rejected",
+   "reason": "There is no Figma file for this property. The source of truth for the design system is assets/style.css, which is exactly the arrangement the site's readable-source promise requires.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-product-design",
+   "verdict": "rejected",
+   "reason": "It turns ideas and URLs into reviewable prototypes, which is close to what the hero-demos step did. Act 0 is past that: the conception is picked and the work is now landing in the real repository under CANON-v8.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-remotion",
+   "verdict": "rejected",
+   "reason": "Same as video-shotcraft: nothing in Act 0 is a video.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "dither-kit",
+   "verdict": "rejected",
+   "reason": "No chart exists in Act 0. Its ordered-dither engine is genuinely the right register for this world's figures, which is why it is queued rather than dismissed: /organism/ carries real gauges and is the surface where a material chart treatment would be load-bearing.",
+   "basis": null,
+   "escalation": "React and shadcn, neither of which this site has. Porting the ordered-dither canvas core alone as a standalone module is roughly half a day; that is the version to price at Act 5, not a React runtime.",
+   "file": ""
+  },
+  {
+   "asset": "emil-skills",
+   "verdict": "used",
+   "reason": "Its frequency rule set the whole motion budget for the homepage: rare and unrepeated, so it may be loud, but it must end and must not replay on every navigation. That is why passRun is written to sessionStorage on first run and why the resting frame, not the animation, is treated as the real design.",
+   "basis": null,
+   "escalation": "",
+   "file": "assets/js/pass.js"
+  },
+  {
+   "asset": "fancy-components",
+   "verdict": "rejected",
+   "reason": "Playful animated React microinteractions. Act 0's register is a working machine at night that mostly destroys its own output; the mismatch is the tone, before the runtime.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "fudge-design-md",
+   "verdict": "rejected",
+   "reason": "A DESIGN.md generator. The contract for this build is CANON-v8-the-spike.md, written from the master guide's template against this property's own doctrine and its real numbers. Running a generator alongside it would produce a second competing document, which is the duplicate-object failure this repo has been bitten by before.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "gc-minimal-zine-poster",
+   "verdict": "rejected",
+   "reason": "A print poster generator, and a quiet editorial register at that. Act 0 is a loud working machine on a screen.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "illo-skill",
+   "verdict": "rejected",
+   "reason": "Drawn illustration would repeat the mistake Act 0 exists to fix: a picture of the idea instead of the idea running.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "interior",
+   "verdict": "rejected",
+   "reason": "Its subject is the half-second after a click and Act 0 has no click in it: the pass runs unprompted and the only control is skip, which should feel administrative rather than delightful. Queued for Act 2, where ruling on a receipt is a real interaction.",
+   "basis": null,
+   "escalation": "React. One interaction ports in about 45 minutes.",
+   "file": ""
+  },
+  {
+   "asset": "jakubkrehel-skills",
+   "verdict": "rejected",
+   "reason": "Overlaps almost entirely with emil-skills and transitions-dev, both already applied in pass.js. A third motion vocabulary on one surface would produce inconsistent easing between the counter and the ticket.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "liquid-glass-carousel",
+   "verdict": "rejected",
+   "reason": "No carousel, and glass is a different material from thermal stock and steel. three.js plus GSAP for a surface that currently ships zero runtime dependencies would be the largest single cost in the repo for the smallest gain.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "loading-ui",
+   "verdict": "rejected",
+   "reason": "The homepage inlines its own data and has no genuine wait to cover. A loading state here would be theatre over an instant page.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "marketingskills",
+   "verdict": "rejected",
+   "reason": "Conversion optimisation and growth copy. This site publishes its refusals and prints its own limitations next to its proof, which is close to the opposite discipline.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "mattpocock-skills",
+   "verdict": "rejected",
+   "reason": "Engineering discipline rather than design capability. diagnosing-bugs is the closest, but the four real defects in Act 0 were found by reading rendered screenshots and computed style, which is the verification rig's procedure rather than this skill's.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "mengto-sketchbook",
+   "verdict": "rejected",
+   "reason": "Opened it. Its page-flip is already answered on this property by assets/lib/page-flip.browser.js at /journal/book/, so adopting it would introduce a second implementation of a solved problem. Its brass magnifier is genuinely interesting for reading ticket fine print and is noted for Act 2 rather than taken now.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "metal-fx",
+   "verdict": "rejected",
+   "reason": "The rod is the only metal in Act 0 and it is 5px wide. A real-time WebGL metal shader on a 5px column is spectacle with nothing to show, and this rod should read as worn service hardware rather than polished product chrome.",
+   "basis": null,
+   "escalation": "React-only; extracting the shader is roughly two hours. Not worth it at any act I can currently see.",
+   "file": ""
+  },
+  {
+   "asset": "mint-bookshelf",
+   "verdict": "rejected",
+   "reason": "A three.js bookshelf. The shelf as a metaphor competes directly with the rail and the spike, which this world already owns and which Act 0 is promoting.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "motion",
+   "verdict": "rejected",
+   "reason": "The vanilla entry would have worked for the hang and the print. Refused because the fall needs an interruptible state machine that finish() can cut mid-flight and clear, and wrapping that in a tween library would have meant fighting it to get the interruption back.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "no-ai-slop",
+   "verdict": "used",
+   "reason": "Ran over the new hero copy. It cut a three-line explanation of what a ticket contains, which the mechanism now demonstrates, and held the headline to a claim the rest of the page can be checked against. Zero em-dashes in the shipped markup.",
+   "basis": null,
+   "escalation": "",
+   "file": "index.md"
+  },
+  {
+   "asset": "openship",
+   "verdict": "rejected",
+   "reason": "Deployment infrastructure. This site builds in GitHub Actions and Act 0 changed nothing about how it ships.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "originkit",
+   "verdict": "rejected",
+   "reason": "Unreachable: the MCP fails at SNI level on this network, so I cannot see the current registry. Ruled unavailable rather than judged, because pretending to have evaluated 160 components I could not load would be the exact dishonesty this site exists to refuse.",
+   "basis": null,
+   "escalation": "Local extraction is capped at 10 fetches a day and 50 a week; full localisation is a two-week drip documented in vendor/originkit-local/README.",
+   "file": ""
+  },
+  {
+   "asset": "originkit-local",
+   "verdict": "rejected",
+   "reason": "Checked what was actually pulled: 8 of 160 components. Looked specifically for anything ticket, stamp, receipt or rail shaped for Act 0 and there is nothing in those 8. Nothing to adopt, rather than nothing worth adopting.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "paper-shaders",
+   "verdict": "rejected",
+   "reason": "Its PaperTexture and GrainGradient are a real match for Act 0's grain layer, and I priced this rather than waving at it. Refused for THIS act on a judgement, not a limit: the grain here is a 3x-downscaled canvas at 0.4 opacity that stops the moment the pass rests, so it is on screen for eighteen seconds and then gone. A WebGL context and a capability probe to carry eighteen seconds of overlay is the wrong trade.",
+   "basis": null,
+   "escalation": "Vendor @paper-design/shaders as a single ESM file into assets/lib/, alongside page-flip.browser.js which proves the pattern works here: roughly 30 to 45 minutes with a probe and a canvas fallback. Queued for Act 2, where /receipts/ makes ticket stock the subject of the page and the texture is permanent rather than transient.",
+   "file": ""
+  },
+  {
+   "asset": "pixel2motion",
+   "verdict": "rejected",
+   "reason": "No logo treatment in Act 0. The wordmark is set type in the site's own face and stays that way.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "pringles-reference",
+   "verdict": "rejected",
+   "reason": "Its actual value is the convention of citing design-doc section numbers in code comments, and that convention IS adopted here: index.md, pass.js and style.css all cite CANON-v8 \u00a7numbers. The React and Vite build itself is not usable and was not needed.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "react-bits",
+   "verdict": "rejected",
+   "reason": "134 React components, and this site's promise is that a visitor can read its source without a build. Nothing in the catalogue models a ruling, an impale or a rail, which are the only three things Act 0 does.",
+   "basis": null,
+   "escalation": "Per-component install assumes a React project; standing one up here is not a cost question but a contradiction of the property's stated promise, so I would not pay it at any price.",
+   "file": ""
+  },
+  {
+   "asset": "reel-engine",
+   "verdict": "rejected",
+   "reason": "Read reel-engine.mjs. It maps scroll progress to a video's currentTime, and Act 0 has no footage and takes no scroll: the pass runs on its own clock and rests. Queued as a genuine candidate for Act 4, where /tonight/ replays a real nightly run and dwell should go where the run actually spent its time.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "reference-captures",
+   "verdict": "rejected",
+   "reason": "Read the directory listing including ample-svg-boot and mengto-scroll3d. Deliberately not used as a source for Act 0: the mechanism had to come from this repository's own 3-to-1 refusal ratio and its 16-day drought, both of which are facts no capture could supply. Reading it first is how an opening becomes a template.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "scroll-world",
+   "verdict": "rejected",
+   "reason": "Act 0 takes no scroll at all, on purpose: it runs on its own clock and rests, so the visitor scrolls past a finished frame rather than driving it. A scroll world would have meant inventing a scroll dependency the opening does not have.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "taste-skill",
+   "verdict": "rejected",
+   "reason": "The anti-slop function was served more precisely by design-director's concrete reflex list and by armory/TASTE-FINDINGS.md, which is mined from Rick's own words on this specific property. Adding a general taste layer would have diluted the specific one.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "thinking-orbs",
+   "verdict": "rejected",
+   "reason": "There is no wait in Act 0. The data is inlined by Liquid at build and the pass begins immediately, so an orb would be manufacturing a pause that does not exist.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "transitions-dev",
+   "verdict": "used",
+   "reason": "02-number-pop-in is what the three counters run: digits re-render, reflow is forced, .is-animating replays, and --i staggers the ones place last so the readout reads as counted. It earns its place here specifically because these counters are fed by what actually landed on screen, so the number moving IS the event, not a decoration on one.",
+   "basis": null,
+   "escalation": "",
+   "file": "assets/js/pass.js"
+  },
+  {
+   "asset": "ui-ux-pro-max-skill",
+   "verdict": "rejected",
+   "reason": "It is the right tool when a palette is open and this one is closed: v7 committed --ticket, --amber, --burn and the rest, and Act 0's job was to make the homepage agree with the other eleven routes. Reading the existing :root block was the actual research step, and it caught two token names I had guessed wrong.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "vercel-agent-skills",
+   "verdict": "rejected",
+   "reason": "Deployment and framework tooling. Nothing design-bearing that Act 0 needed.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "vercel-design-md",
+   "verdict": "rejected",
+   "reason": "A PRODUCT-register system carrying Vercel's own brand contract. This property is WORLD register by written declaration and is not Vercel's, so it would import both the wrong rulebook and someone else's identity.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "video-shotcraft",
+   "verdict": "rejected",
+   "reason": "No video in Act 0. Worth revisiting as a launch reel once the full seven acts are up, since it composes from real page screenshots rather than mockups.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "video-use",
+   "verdict": "rejected",
+   "reason": "There is no footage anywhere in this repository to edit.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  }
+ ]
+}

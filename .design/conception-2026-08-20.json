@@ -1,0 +1,57 @@
+{
+  "property": "richie-jerimovich",
+  "date": "2026-08-20",
+  "register": "WORLD",
+  "world": "A professional kitchen at night that runs itself. The homepage is one tracking shot down the length of the pass: every object on the counter is a real record of a recorded night, and at the far end the camera reaches dawn and the page you are holding.",
+  "directions": [
+    {
+      "name": "THE OVERNIGHT",
+      "mechanism": "Scroll dollies the camera down the pass. Station boundaries cut; interiors are continuous functions of scroll in both directions. The night's commits print from the near-end printer, kept receipts hang as the camera reaches them, declined claims drop onto the spike in recorded order, and at dawn the paper world resolves into the live document which prints this build's sha. Scrubbing backwards lifts tickets off the spike.",
+      "risk": "If a missing tape night is filled with invented tickets, the honesty claim dies at the front door. If station boundaries crossfade, the night collapses into a mood and the cuts that make it a night disappear."
+    },
+    {
+      "name": "THE ARGUMENT",
+      "mechanism": "Each block is a claim with its verdict stamped on it. The visitor weighs the ledger in date order and compares the public claim to the evidence sitting next to it. When the journal criticizes the site, that criticism is not redacted: it is exposed in the same stack as the keeps, so the page argues with itself in source order.",
+      "risk": "It reads as a list. The receipts page already does this job at full depth, so the front door would duplicate a room rather than open one, and the cinema of the night would be gone."
+    },
+    {
+      "name": "THE INSTRUMENT",
+      "mechanism": "The homepage is one instrument that idles until 23:00 CT, then plays the live event stream as it arrives. The visitor holds a pause control and watches the machine charge, measure, and register each real event against the clock. Off hours it freezes on the last measured state rather than replaying anything.",
+      "risk": "Most visits arrive to an idle machine. shift.js already delivers the live state honestly at chip scale, so the idle front door would be a larger version of a widget the visitor already has."
+    }
+  ],
+  "locked": 0,
+  "why": "THE OVERNIGHT beats THE ARGUMENT because a ledger of claims is already /receipts/; putting it at the door opens mid-argument. It beats THE INSTRUMENT because an idle machine at 3pm teaches nothing, while replaying a recorded night orients a stranger at any hour. It is the only one of the three where scroll moves TIME through real objects, and the only one whose last movement can name this page's own build.",
+  "signature": "One tracking shot down the pass, where every object on the counter is a real record of a recorded night, and at the far end the camera reaches dawn and the page you are holding, which prints its own birth certificate. Scroll dollies; reversing the scroll lifts tickets off the spike. Any paused frame is nameable, and no other site can render this frame honestly because no other front door is built from its own overnight record.",
+  "organs": "THE ARGUMENT donates the rule that a journal criticism of this redesign is the preferred excerpt, printed verbatim. THE INSTRUMENT donates the hold-motion contract: the visitor can freeze the machine, and idle life (lamp flicker, grain) must stop under hold, reduced motion, offscreen, and tab-hide.",
+  "failsIf": "(1) Any number on screen that did not come from _data/, git, or the vitals endpoint. Decoration may move; numbers may not. (2) Any crossfade between stations. Station boundaries cut; only interiors are continuous. Crossfading collapses the night into a mood. (3) Any movement that depends on an asset not in the repo. If a beat needs generated media, the beat is deleted, not waited on. (4) Captions that restate what the scene already shows. Copy carries the orientation the objects cannot, or it is cut. (5) A reduced-motion edition that is the same page slower. It is a different document: stations unpinned and in flow, scrub-only controls removed. (6) A final movement that could end any website. If the dawn does not name this page's own build, sha, and receipt, the handoff from world to record never landed.",
+  "references": [
+    {
+      "url": "https://www.apple.com/macbook-pro/",
+      "shot": ".design/refs/apple-macbook-pro.png",
+      "takes": "Scroll holds a single object on a dark stage while type settles under it. The visitor's first move is to scroll, and the page treats that scroll as the clock that reveals the next cut of the object.",
+      "refuses": "The product photograph is the argument. Price, a Buy button, and a marketing headline do the work the object should do. We will not put a picture of a kitchen in front of a kitchen."
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Expediting",
+      "shot": ".design/refs/wikipedia-expediting.png",
+      "takes": "The page prints a banner when citations are missing rather than hiding the gap. Every claim is a sentence that can be challenged, and the document itself is the record the visitor scrolls through in source order.",
+      "refuses": "The encyclopedia chrome, the sidebar, and the habit of describing a kitchen pass instead of standing in one. We take the citation banner, not the article layout."
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translateZ",
+      "shot": ".design/refs/mdn-translatez.png",
+      "takes": "translateZ repositions a real DOM element along the camera axis. The corridor will dolly by translating a scene root in Z, so the visitor scrubs through stations the same way this function moves a plane closer or farther.",
+      "refuses": "The docs chrome, the Try-it sandbox, and the idea that the room is a CSS demo. The function is the organ; the documentation around it is not the place."
+    }
+  ],
+  "_vocabulary": [
+    "Scroll-scrubbed footage \u2014 Scroll drives a video's currentTime through a keyframed map, so the money shot earns a viewport and a half while transit shots run quick. (built: zero-to-agent/src/app/film/Film.tsx)",
+    "Live strip chart / seismograph drum \u2014 A pen draws a continuous trace on moving paper. The instrument's response is real and measurable, so every caption claim can be verified against the deflection it describes. (built: the-tender/site/js/lib/strip.js)",
+    "Split-flap departures board \u2014 Characters roll through intermediate glyphs to land on the value. The machine is visibly working to tell you something, and the settle is the beat. (built: the-exit-bet/components/SplitFlap.tsx)",
+    "Power-on boot sequence \u2014 The surface boots rather than loads: real state is enumerated, checks pass or fail visibly, and the interface arrives as a machine coming up. (built: richie-jerimovich/assets/js/shift.js)",
+    "CSS 3D room you move through \u2014 A navigable space built from transformed planes, no WebGL, so it degrades to a readable document and still reads as a place. (built: richie-jerimovich/assets/js/inside.js)",
+    "The half-second after a click \u2014 Press depth, optimistic state, a confirm that has to be held, a list that keeps its layout while loading. Trust is won and lost in the same half-second. (built: high-agency/components/Hold.tsx)",
+    "Hard act cut \u2014 A scroll film that actually cuts rather than crossfading: the frame changes discontinuously on a beat, which is what makes the next act read as new. (built: cant-beat-it/src/cut.js)"
+  ]
+}

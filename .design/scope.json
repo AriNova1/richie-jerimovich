@@ -1,0 +1,4 @@
+{
+  "skip": ["trader-desk"],
+  "why": "THE PIT is a separate application that happens to live in this repo: its own Python backend, its own frontend, its own Render deploy, and none of it renders on agentrichie.com. Folding its 38 findings into the site's preflight said the site was in twice the shape it is, which is how a number stops being read."
+}

@@ -1,0 +1,472 @@
+{
+ "property": "richie-jerimovich",
+ "date": "2026-08-18",
+ "inventoryHash": "5c7191d07bae0b98",
+ "session": null,
+ "work": "ACT 0 \u00b7 THE SERVICE: scroll scrubs one night, 22:50 to dawn, through eight cut beats on CSS placeholder plates, handing off to the live pass. Built to accept generated footage as a config change.",
+ "constraints": [
+  "Jekyll, no bundler, no npm at build. Native ES modules ARE available and are now used: reel-engine is vendored to assets/lib/ and imported by service.js with a plain import, which proves the module path works here without a build step and removes 'no bundler' as a reason for anything shipping as ESM.",
+  "No React runtime, and adding one would break the site's promise that its source is readable. React-only assets get a priced escalation, never a flat refusal.",
+  "The footage does not exist yet. Rick is generating it from SERVICE-SHOT-LIST.md, so every asset judged here had to be judged against a surface whose plates are CSS placeholders. Anything whose value only appears once real frames land is deferred with that said plainly, not rejected.",
+  "The conception is LOCKED (.design/conception-2026-08-18.json) and its failsIf list is binding: the beats must CUT rather than crossfade, no human may appear, and beat nine must look different in kind from the eight before it. An asset that would soften the cuts or blend the film into the live record is refused by the conception, not by taste."
+ ],
+ "craft": [
+  {
+   "family": "direction",
+   "applied": "design-director",
+   "note": "The conception gate refused the first write of this file and was right to: the previous Act 0 was a mechanism chosen from my own head and coded immediately, which is exactly the failure that gate names. Three directions were written as machines rather than moods (time, space, address), THE SERVICE was locked by Rick, and the signature and failsIf were written before a line of CSS."
+  },
+  {
+   "family": "motion",
+   "applied": "emil-animation-framework",
+   "note": "Its frequency rule decided the surface: seen once per visit so it may be strong, but the visitor drives it rather than watching it, so nothing runs on a timer and every beat's interior motion is a pure function of scroll position. That is why scrubbing backwards runs the night backwards exactly rather than replaying forwards. The implementation sits on our own reel-engine, vendored to assets/lib/reel-engine.mjs and ruled separately in the verdicts: reelTime drives scroll-to-seconds, validateReelMap fails the mount loudly on a non-monotone edit, and the REEL_MAP is deliberately non-proportional so the rack focus earns 1.6 beats of scroll for 4 seconds of clip while the transit beats get 0.9."
+  },
+  {
+   "family": "type",
+   "applied": "animate-text",
+   "note": "soft-blur-in, enter values as authored: 900ms, cubic-bezier(0.22, 1, 0.36, 1), y 16px, blur 12px. Applied per-line instead of per-character because a caption over footage should arrive as a phrase rather than as typing, and the blur reads as a focus pull, which belongs in a film. Verified by computed style on the live build, not by reading the CSS."
+  },
+  {
+   "family": "color",
+   "applied": "",
+   "note": "Still no new colour. The plates are built from --amber and --burn at varying alpha plus the existing near-blacks, and the one cold plate (dawn) is a desaturate of the same room rather than a second palette. The film has to look like the site it opens, so introducing a grade here would have made the hero the one surface that disagrees."
+  },
+  {
+   "family": "layout",
+   "applied": "better-layout",
+   "note": "Reading order is the night itself, so the layout decision was where the HUD sits over arbitrary frames. Portrait moves the macro plate down and shrinks it so it never runs under the clock, and the filmstrip stays full width because it is the only way back to a beat on a phone."
+  },
+  {
+   "family": "a11y",
+   "applied": "better-accessibility",
+   "note": "The reduced-motion edition is a different document, not a slower one: the sticky stage unsticks, all eight plates become stills in flow, each caption moves under its own plate, and the clock, filmstrip and skip are removed because none of them mean anything without a scrub. Captions are real selectable text in source order, plates are aria-hidden because they carry nothing the text does not, and every filmstrip segment is a real button with an aria-label naming its hour and beat."
+  },
+  {
+   "family": "copy",
+   "applied": "no-ai-slop",
+   "note": "Eight captions carry the entire orientation, and the first one is the whole hook: 'This kitchen has no staff.' No em-dashes, no mood words, and no caption explains something the frame is supposed to be showing, which is failsIf 2. The longest is the imbalance line, and it is long on purpose because that beat holds twice as long as any other."
+  }
+ ],
+ "looked": {
+  "shots": [
+   ".design/shots/service-beat3.png",
+   ".design/shots/service-beat6-rack.png",
+   ".design/shots/service-mobile.png",
+   ".design/shots/service-reduced-motion.png",
+   ".design/shots/service-caption.png"
+  ],
+  "saw": "Four defects came out of reading these rather than the source. The HUD was unreadable over the cream plate, which would be worse over real daylight footage, so the stage now carries its own top and bottom scrims instead of relying on what happens to be behind it. The portrait macro ran under the clock. A hard seam cut across every frame at 62% where the counter met the wall. And the reduced-motion captions rendered at browser-default type because service.js moves them out of .service-cap, which silently stops `.service-cap p` matching them; they carry their own class now.",
+  "mobile": "390x780. The macro sits lower and smaller, the scrims carry the clock and the skip, and the filmstrip stays full width. Verified the still edition separately with Emulation.setEmulatedMedia rather than assuming the media query fires.",
+  "bar": "Honest: this is an engine with placeholder plates and it is labeled as one on every frame. The pacing, the cuts, the caption arrival, the filmstrip and the still edition are finished and verifiable now, which is the point of building it before the footage. Whether it clears the bar is not yet answerable, because the thing that decides it is eight clips that do not exist. What IS answerable: the previous Act 0 opened mid-argument and this one opens with 'This kitchen has no staff' over an empty room, which is the orientation failure fixed structurally."
+ },
+ "verdicts": [
+  {
+   "asset": "ECC",
+   "verdict": "rejected",
+   "reason": "A greppable idiom library. The film is one CSS file and one ES module, both hand-written against a locked conception; there was no idiom to look up.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "ai-design-skills",
+   "verdict": "rejected",
+   "reason": "A general rules-file layer under a stricter property-specific contract weakens the specific one.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "ai-website-cloner-template",
+   "verdict": "rejected",
+   "reason": "Cloning, on a brief whose whole complaint was that the site read as templated.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "animate-text",
+   "verdict": "used",
+   "reason": "soft-blur-in applied to the captions with its authored enter values, 900ms and cubic-bezier(0.22, 1, 0.36, 1) and y 16px and blur 12px, verified by computed style on the built page. Changed verdict from the last receipt, where the surface had no arriving type at all and the honest answer was that the property's doctrine wanted the headline still.",
+   "basis": null,
+   "escalation": "",
+   "file": "assets/css/service.css"
+  },
+  {
+   "asset": "anthropic-skills",
+   "verdict": "rejected",
+   "reason": "Document generation. Nothing renders UI.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "base-ui",
+   "verdict": "rejected",
+   "reason": "The film has nine interactive elements and eight of them are filmstrip segments that are plain buttons with aria-labels. There is no primitive here worth importing a library for.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "better-harness",
+   "verdict": "rejected",
+   "reason": "Harness and delivery-loop review rather than a surface. Its evidence-bounded shape informs how this receipt is written.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "border-beam",
+   "verdict": "rejected",
+   "reason": "Nothing in the film is a bordered element. The only rectangle is the frame itself and a beam around that is a screensaver.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "calicastle-skills",
+   "verdict": "rejected",
+   "reason": "Signal Geometry and Chalk Logic, both generative mark-making. Same boundary as above.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "canvas-ui",
+   "verdict": "rejected",
+   "reason": "In service already at assets/js/rewind-tape.js. Refused here because its premise is a shader over live DOM and the plates are not DOM to be treated, they are the frame itself. Once footage lands, a shader over video is a different and worse idea than grading the video.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "cinematic-scroll-prompt-kit",
+   "verdict": "rejected",
+   "reason": "Read it properly this time: an implementation contract, a project brief template, an asset manifest schema and a QA definition of done. The contract discipline is what SERVICE-SHOT-LIST.md and the conception file already do for this build, including the delivery filenames and the honesty line, so adopting it would be a second contract over the same work. Its 2.5D parallax form is wrong for a room shot photographically on a locked-off camera.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-ascii-dissolve",
+   "verdict": "rejected",
+   "reason": "An ASCII treatment of the film was considered as a way to make eight generated clips read as deliberately synthetic rather than as stock. Refused because the conception's signature depends on the room being believable: an empty kitchen only lands as eerie if it reads as a real kitchen.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-dataviz-deep",
+   "verdict": "rejected",
+   "reason": "No figures inside the film at all, by failsIf 5: numbers must never be depicted in a frame. That rule makes a data-visualisation pack structurally inapplicable to this surface rather than merely unneeded.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-figma",
+   "verdict": "rejected",
+   "reason": "No Figma file. The design system's source of truth is assets/style.css and now assets/css/service.css.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-product-design",
+   "verdict": "rejected",
+   "reason": "Turns ideas and URLs into reviewable prototypes. That step is finished: the conception is locked and this is the build.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "codex-remotion",
+   "verdict": "rejected",
+   "reason": "A Remotion pipeline for rendering video. We are consuming generated clips, not rendering them in-repo.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "dither-kit",
+   "verdict": "rejected",
+   "reason": "No chart in the film. Still the right register for /organism/ at Act 5 and still React and shadcn, which this site does not have.",
+   "basis": null,
+   "escalation": "Port the ordered-dither canvas core alone as a standalone module, roughly half a day, at Act 5. Not a React runtime.",
+   "file": ""
+  },
+  {
+   "asset": "emil-skills",
+   "verdict": "rejected",
+   "reason": "Its frequency rule already decided this surface before the build: this film is seen once per visit so it may be strong, but the visitor drives it rather than watching it, so nothing in it runs on a timer. That principle is applied and it is why every beat's interior motion is a function of scroll position, which means scrubbing backwards genuinely runs it backwards. Recorded as informing rather than used, because no code came from it this time.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "fancy-components",
+   "verdict": "rejected",
+   "reason": "Playful animated React microinteractions against a film whose first caption is 'This kitchen has no staff.' The tone is the mismatch before the runtime is.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "fudge-design-md",
+   "verdict": "rejected",
+   "reason": "A DESIGN.md generator, and this build already has two binding documents: CANON-v8-the-spike.md and the locked conception. A third would be the duplicate-object failure this repo has already been bitten by.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "gc-minimal-zine-poster",
+   "verdict": "rejected",
+   "reason": "A print poster generator in a quiet editorial register. Wrong medium and wrong tone for a night shift.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "illo-skill",
+   "verdict": "rejected",
+   "reason": "Illustration would replace a photographed empty room with a drawn one, and a drawn empty room is not eerie, it is just a picture.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "interior",
+   "verdict": "rejected",
+   "reason": "The film has three controls: eight filmstrip segments, a skip, and the scroll itself. A micro-interaction library for the half-second after a click would land on the filmstrip, where the correct feedback is the frame changing, which is already the loudest possible response.",
+   "basis": null,
+   "escalation": "React. One interaction ports in about 45 minutes; the filmstrip does not want one.",
+   "file": ""
+  },
+  {
+   "asset": "jakubkrehel-skills",
+   "verdict": "rejected",
+   "reason": "Overlaps emil-skills and transitions-dev, both already accounted for. A third motion vocabulary would make the caption arrival disagree with the counter pop-in two sections down the same page.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "liquid-glass-carousel",
+   "verdict": "rejected",
+   "reason": "A three.js scroll-driven carousel with a glass lens. It is the nearest thing we own to a scroll film, which is why it was opened. Refused because a carousel is a loop of peers and a night is a sequence with a beginning and an end, and glass is a different material from steel and thermal stock.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "loading-ui",
+   "verdict": "rejected",
+   "reason": "Same as above and more sharply, now that real video is coming. A loader over a scrubbed film hides the first frame, and the first frame is the hook. The correct pattern is the poster still, which reel-engine already handles as its no-video tier.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "marketingskills",
+   "verdict": "rejected",
+   "reason": "Conversion and growth copy on an opening whose argument is that most of the work was refused.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "mattpocock-skills",
+   "verdict": "rejected",
+   "reason": "Engineering discipline. The four defects here were found by reading rendered screenshots and computed style, which is the verification rig, not a skill.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "mengto-sketchbook",
+   "verdict": "rejected",
+   "reason": "A page-flip in one static HTML file. Its paper physics are lovely and its gesture is pagination, which is what a continuous night is not. The property's own page-flip already lives at /journal/book/.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "metal-fx",
+   "verdict": "rejected",
+   "reason": "The spike rod appears in three of eight plates and is 7px wide in all of them. A real-time WebGL metal shader on a 7px column that will be replaced by photographed steel is spend with no possible return.",
+   "basis": null,
+   "escalation": "React-only; extracting the shader is about two hours. There is no act where I would pay it.",
+   "file": ""
+  },
+  {
+   "asset": "mint-bookshelf",
+   "verdict": "rejected",
+   "reason": "A three.js bookshelf. No 3D in the film by decision: the shots are photographic and locked off, and a modeled space would be a fourth kind of image in a surface that already has footage, CSS plates and live data.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "motion",
+   "verdict": "rejected",
+   "reason": "The scrub is a single rAF reading scrollY and writing custom properties, and every transition is one property over a known duration, which CSS already does. A tween library would sit between scroll position and paint, which is precisely the coupling a scrubbed film must not have: the frame has to be a pure function of scroll, or scrubbing backwards stops being exact.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "no-ai-slop",
+   "verdict": "used",
+   "reason": "Ran over all eight captions, which are the entire orientation for a first-time visitor. Zero em-dashes, no mood adjectives, and each one is checked against failsIf 2: a caption that describes what the frame should be showing means the film is decoration on a paragraph, so several were cut back to the shortest sentence that still lands.",
+   "basis": null,
+   "escalation": "",
+   "file": "assets/js/service.js"
+  },
+  {
+   "asset": "openship",
+   "verdict": "rejected",
+   "reason": "Deployment infrastructure. Nothing here changed how the site ships.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "originkit",
+   "verdict": "rejected",
+   "reason": "Still unreachable at SNI level on this network. Ruled unavailable rather than judged, because claiming to have evaluated a registry I cannot load would be the dishonesty this site refuses.",
+   "basis": null,
+   "escalation": "Local extraction is capped at 10 fetches a day and 50 a week; full localisation is a two-week drip per vendor/originkit-local/README.",
+   "file": ""
+  },
+  {
+   "asset": "originkit-local",
+   "verdict": "rejected",
+   "reason": "Re-checked the 8 extracted components against this surface specifically, looking for anything film, timeline, scrub or filmstrip shaped. There is nothing. Nothing to adopt rather than nothing worth adopting.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "paper-shaders",
+   "verdict": "rejected",
+   "reason": "Still the closest call we own, and still refused, but the reason changed with the surface. Act 0 is now eight full-frame plates that will be replaced by footage, so a WebGL grain layer would be built to sit over frames that do not exist and would be re-tuned the moment they do. Grain belongs on the graded footage, not on a placeholder.",
+   "basis": null,
+   "escalation": "Vendor the @paper-design/shaders ESM build into assets/lib/ beside reel-engine.mjs, which is now a proven path in this repo rather than a hypothetical one: roughly 30 minutes plus a capability probe. The right moment is after the eight clips land, when there is a real image to grain.",
+   "file": ""
+  },
+  {
+   "asset": "pixel2motion",
+   "verdict": "rejected",
+   "reason": "No logo treatment anywhere in the film. The wordmark stays set type in the site's own face.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "pringles-reference",
+   "verdict": "rejected",
+   "reason": "Its transferable value is citing contract section numbers in code comments, and that IS in force: service.js and service.css both cite the canon section and the conception's failsIf by number. The React and Vite build itself is not usable here.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "react-bits",
+   "verdict": "rejected",
+   "reason": "134 React components, none of which is a scrubbed film. The property has no React and its readable-source promise is the reason, which is a decision rather than a cost.",
+   "basis": null,
+   "escalation": "Would require standing up React purely to import animation components. I would not pay it at any price on this repo.",
+   "file": ""
+  },
+  {
+   "asset": "reel-engine",
+   "verdict": "used",
+   "reason": "Vendored and imported, which is a change of verdict from the last receipt where I queued it for Act 4. reelTime drives the scroll-to-seconds mapping, validateReelMap fails the mount loudly on a non-monotone edit, and clamp is used throughout. The engine's byte-range reasoning is also carried into the footage mount: direct src and never a blob, because Chromium will not decode our own VP9 encode through a blob URL even though it decodes the identical bytes over HTTP.",
+   "basis": null,
+   "escalation": "",
+   "file": "assets/lib/reel-engine.mjs"
+  },
+  {
+   "asset": "reference-captures",
+   "verdict": "rejected",
+   "reason": "Opened mengto-scroll3d and moein-generative-film specifically because both are scroll films and this is now a scroll film. Refused as a source: mengto-scroll3d is a 3D camera through a modeled space and moein-generative-film is a generative-art landing, and lifting either shape would have produced a scroll film about scrolling. The eight beats came from the property's own night and its own 3-to-1 refusal ratio, which is the only place a signature can come from.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "scroll-world",
+   "verdict": "rejected",
+   "reason": "The most important row in this sweep, because I did not look at it before writing the shot list and I should have. It is a full pipeline for exactly this shape: scroll-scrubbed camera flight, scene stills plus dive-in clips plus connector clips, and a portable scrub engine. Refused on the conception, not on capability: its defining rule is that the flight is CONTINUOUS with no visible cuts and frame-identical seams, and THE SERVICE is built on cuts. failsIf 3 says crossfading collapses eight moments into one mood and removes the night. Taking scroll-world would mean taking its continuity, which is the one thing the locked conception forbids. Its art direction is also isometric diorama and this room is photographic.",
+   "basis": null,
+   "escalation": "Its video chain bills through Monid pay-per-clip with Higgsfield credits as fallback, and Rick is generating the footage himself, so the generation half is not ours to run. If a later act genuinely wants a continuous flight rather than a cut sequence, the skill is the right tool and its frame-identical seam rule is the technique to steal.",
+   "file": ""
+  },
+  {
+   "asset": "taste-skill",
+   "verdict": "rejected",
+   "reason": "The anti-slop function is served by design-director's concrete reflex list and by the conception's own failsIf, which is specific to this surface rather than general.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "thinking-orbs",
+   "verdict": "rejected",
+   "reason": "There is no wait anywhere in this surface: plates are CSS and the data is inlined at build. Once footage lands there IS a genuine load, and an orb would still be wrong for it because the honest move on a heavy reel is a poster frame, not a spinner over one.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "transitions-dev",
+   "verdict": "rejected",
+   "reason": "Used on this property at assets/js/pass.js for the counters and deliberately not reached for again here. Its recipes are UI-state transitions, and nothing in the film is a UI state changing: the beats CUT, and a cut is the absence of a transition. Applying a transition library to a surface whose conception forbids crossfades would have been the tool choosing the design.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "ui-ux-pro-max-skill",
+   "verdict": "rejected",
+   "reason": "Palette still closed: the film must look like the site it opens, so every value is inherited. This is the tool the moment a palette is genuinely open.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "vercel-agent-skills",
+   "verdict": "rejected",
+   "reason": "Deployment and framework tooling, nothing design-bearing.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "vercel-design-md",
+   "verdict": "rejected",
+   "reason": "A PRODUCT-register system carrying Vercel's brand contract, on a surface declared WORLD in writing.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  },
+  {
+   "asset": "video-shotcraft",
+   "verdict": "rejected",
+   "reason": "Now genuinely adjacent, since footage is being made. Refused for this act because it is a Remotion pipeline that composites real page screenshots into a product video, which is the opposite direction of travel: we are putting generated footage into a page, not putting the page into a video. Its 106 motion-recipe cards are the right library for a launch reel once all seven acts are up.",
+   "basis": null,
+   "escalation": "Remotion needs a Node render pipeline this repo does not have. Roughly a day to stand up as a separate build, and correctly out of scope for a site whose promise is readable source.",
+   "file": ""
+  },
+  {
+   "asset": "video-use",
+   "verdict": "rejected",
+   "reason": "Conversational video editing. Once the eight clips land there IS footage in this repository, and concatenating them into one timeline is a real job, but it is an ffmpeg concat and a two-tier encode rather than an editorial pass.",
+   "basis": null,
+   "escalation": "",
+   "file": ""
+  }
+ ]
+}

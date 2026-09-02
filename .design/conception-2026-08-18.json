@@ -1,0 +1,37 @@
+{
+ "property": "richie-jerimovich",
+ "date": "2026-08-18",
+ "register": "WORLD",
+ "world": "A professional kitchen at night that runs itself. Service black, one bank of amber heat lamps, brushed steel, and cream thermal ticket stock as the only bright material. The room is real and physical; the record in it is real data. The world carries the metaphor, the data carries the argument, and they never swap jobs.",
+ "directions": [
+  {
+   "name": "THE SERVICE",
+   "mechanism": "Scroll scrubs one night, 22:50 to dawn, through eight cut beats of footage: the room cold, the lamps igniting bank by bank, the first ticket feeding out of the printer, the rail filling, a ticket driven onto the spike, a rack focus from the loaded spike to the nearly empty rail, the lamps draining, and daylight on the pile. The visitor moves TIME. A ninth beat then breaks kind entirely and runs live from git, so the film hands off to the record.",
+   "risk": "Eight generated clips is the largest asset dependency this property has ever taken, and a bad generation makes it a stock b-roll montage with type over it, which is the exact failure the old photographic hero already committed."
+  },
+  {
+   "name": "THE ARRIVAL",
+   "mechanism": "The visitor drags to look and clicks a station to walk to it. The screen yaws the room around a fixed eye height and dollies forward to the station clicked, and on arrival that station prints its own name and its live count onto the surface in front of it: the rail prints how many tickets are hanging, the spike prints how many are impaled, the printer prints what came in tonight. Four presets snap the yaw to 0, 90, 180 and -90 so the room can be traversed with a keyboard. The vocabulary is learned by standing in front of the object that owns the word.",
+   "risk": "The property already owns a CSS-3D room at /kitchen/, so this risks making the front door a duplicate of an existing page rather than a new surface, and first-person navigation on a phone is historically where this shape falls apart."
+  },
+  {
+   "name": "THE CALL",
+   "mechanism": "One printer in the dark prints a ticket addressed to the visitor, carrying today's real date and the live drought count, then the frame pulls back to reveal a room full of them. The visitor RECEIVES rather than travels: the machine speaks first and the scale arrives second.",
+   "risk": "Strongest three seconds and the weakest orientation. A stranger who does not already know what a receipt is gets a beautiful summons they cannot parse, which is precisely how the first Act 0 attempt failed."
+  }
+ ],
+ "locked": 0,
+ "why": "Picked by Rick, and the reason it beats the other two is that it is the only one that ORIENTS while it grips. The previous attempt at this opening put the spike mechanism at the front door and it opened mid-argument: a stranger met a punchline whose setup was never delivered, and would have bounced. THE SERVICE fixes that structurally rather than with copy, because watching a night happen end to end teaches what the job IS before any claim about it is made. It is also the only one of the three with a journey in it, which is what the brief asked for.",
+ "signature": "A professional kitchen at full service with nobody in it. Tickets print, the rail fills, the spike loads, the lamps burn down to dawn, and there is not one person anywhere in the room. That is the thesis delivered in three seconds without a word: something is running this, and it is not a person. It is also the frame test: any paused frame of this film is nameable, and no stock kitchen shot looks like it because every real one has staff in it.",
+ "organs": "Eight cut plates driven by a REEL_MAP through reel-engine, so dwell goes where the cut wants it and the rack-focus beat holds twice as long as a transit beat. A clock reading the night's real hour in the corner. Captions that arrive one line at a time on the beat, carrying the orientation. A draggable filmstrip so a visitor can return to a beat instead of hunting for it with the wheel. Then beat nine breaks kind: the footage stops and the live pass runs from git and _data, ending on the drought computed at build. Placeholder plates are drawn in CSS now so pacing, type timing and the reduced-motion edition are finished and verified before a frame of footage exists.",
+ "failsIf": "(1) Any human, hand, or reflection of a person appears in any frame. The signature dies instantly and it becomes stock b-roll. (2) The captions explain what the footage should be showing, which would mean the film is decoration on a paragraph. (3) The beats crossfade instead of cutting, which collapses eight moments into one mood and removes the night. (4) Beat nine is not visibly different IN KIND from the eight before it; if the live record looks like more film, the handoff from world to data never lands and the honesty claim goes with it. (5) Any figure appears inside a frame of footage. Numbers must stay read from git and _data at build, never depicted. (6) Removing the scrub leaves the same page: if the reduced-motion photo-essay edition says everything the scroll film says, the scroll was decoration and the height should go.",
+ "_vocabulary": [
+  "Scroll-scrubbed footage \u2014 Scroll drives a video's currentTime through a keyframed map, so the money shot earns a viewport and a half while transit shots run quick. (built: zero-to-agent/src/app/film/Film.tsx)",
+  "Live strip chart / seismograph drum \u2014 A pen draws a continuous trace on moving paper. The instrument's response is real and measurable, so every caption claim can be verified against the deflection it describes. (built: the-tender/site/js/lib/strip.js)",
+  "Split-flap departures board \u2014 Characters roll through intermediate glyphs to land on the value. The machine is visibly working to tell you something, and the settle is the beat. (built: the-exit-bet/components/SplitFlap.tsx)",
+  "Power-on boot sequence \u2014 The surface boots rather than loads: real state is enumerated, checks pass or fail visibly, and the interface arrives as a machine coming up. (built: richie-jerimovich/assets/js/shift.js)",
+  "CSS 3D room you move through \u2014 A navigable space built from transformed planes, no WebGL, so it degrades to a readable document and still reads as a place. (built: richie-jerimovich/assets/js/inside.js)",
+  "The half-second after a click \u2014 Press depth, optimistic state, a confirm that has to be held, a list that keeps its layout while loading. Trust is won and lost in the same half-second. (built: high-agency/components/Hold.tsx)",
+  "Hard act cut \u2014 A scroll film that actually cuts rather than crossfading: the frame changes discontinuously on a beat, which is what makes the next act read as new. (built: cant-beat-it/src/cut.js)"
+ ]
+}
