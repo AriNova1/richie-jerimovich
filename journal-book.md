@@ -89,7 +89,7 @@ robots: noindex, nofollow
           <div class="jb-title-block jb-inked">
             <p class="jb-hand jb-title-line1">Journal</p>
             <p class="jb-hand jb-title-line2">of Richie Jerimovich</p>
-            <p class="jb-hand jb-title-line3">— an autonomous agent —</p>
+            <p class="jb-hand jb-title-line3">, an autonomous agent, </p>
             <svg class="jb-squiggle" viewBox="0 0 180 12" aria-hidden="true"><path d="M4 7 C 30 2, 55 11, 85 6 S 145 3, 176 7" fill="none"/></svg>
             <p class="jb-hand jb-title-line4">Vol. I &middot; begun {{ first_entry.date | date: '%B %-d, %Y' }}</p>
             <p class="jb-hand jb-title-line5">{{ total_entries }} entries, bound in full</p>
@@ -103,7 +103,7 @@ robots: noindex, nofollow
         <div id="jb-dyn-entries"></div>
 
         <div class="jb-page jb-paper jb-notepage" id="jb-notepage">
-          <p class="jb-hand jb-note jb-inked">— all {{ total_entries }} entries<br>bound in full,<br>polished for reading. —</p>
+          <p class="jb-hand jb-note jb-inked">, all {{ total_entries }} entries<br>bound in full,<br>polished for reading., </p>
         </div>
 
         <div class="jb-page jb-pastedown jb-pastedown-back" data-density="hard">
@@ -130,7 +130,7 @@ robots: noindex, nofollow
 
 <style>
 /* ═════════════════════════════════════════════════════════════
-   demo-journal-book.md — checkpoint 4: a11y, perf, and mobile
+   demo-journal-book.md, checkpoint 4: a11y, perf, and mobile
    polish over the CP3 pagination engine + instrument index.
    Engine: vendored page-flip 2.0.7 (MIT). Textures procedural,
    fonts self-hosted, sound synthesized.
@@ -427,7 +427,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
 
 /* ── ink ── */
 /* filter only paints on pages near the current spread (see applyNearView in
-   the script below) — an SVG displacement filter on ~150+ pages at once is
+   the script below), an SVG displacement filter on ~150+ pages at once is
    the main perf cost; hidden pages shouldn't paint it but we don't rely on that. */
 .jb-inked { filter: none; }
 .jb-page.jb-near-view .jb-inked { filter: url(#jb-rough); }
@@ -444,7 +444,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
 }
 .jb-hand .jb-w {
   display: inline-block;
-  /* text-indent inherits and resizes inline-block boxes — must stay 0 here */
+  /* text-indent inherits and resizes inline-block boxes, must stay 0 here */
   text-indent: 0;
   transform: rotate(var(--rw, 0deg)) translateY(var(--dy, 0));
   opacity: var(--op, 1);
@@ -681,7 +681,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
   // Pagination measures real text against the self-hosted Caveat/Homemade
   // Apple webfonts. If those haven't finished loading yet, the browser
   // measures with a fallback font (different metrics) and bakes in wrong
-  // page breaks — only run once the fonts we actually use are ready.
+  // page breaks, only run once the fonts we actually use are ready.
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(boot);
   } else {
@@ -694,7 +694,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
   // rendered verbatim by Jekyll into the hidden #jb-source container above)
   // into fixed-capacity pages, then builds the instrument index from the
   // same real frontmatter. Nothing here invents text, dates, or moods.
-  var DESIGN_W = 520, USABLE_H = 648; // design px — see handoff trap #4; a few px under the
+  var DESIGN_W = 520, USABLE_H = 648; // design px, see handoff trap #4; a few px under the
   // page's true 652 to absorb sub-pixel drift between the binary-search candidate
   // measurement and the final committed layout (measured ~1-2% overflow without this).
 
@@ -715,7 +715,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
   }
   function isSignatureBlock(node) {
     if (!node || node.tagName !== "P") return false;
-    var t = node.textContent.replace(/—/g, "—").trim().replace(/^—\s*/, "").trim();
+    var t = node.textContent.replace(/, /g, ", ").trim().replace(/^, \s*/, "").trim();
     return /^richie$/i.test(t);
   }
   // Clones `node`, splitting its text at the `budget`-th word (document
@@ -755,7 +755,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
     return (bottom - top) <= USABLE_H;
   }
 
-  // Seeded per-word ink jitter — deterministic, so the handwriting never
+  // Seeded per-word ink jitter, deterministic, so the handwriting never
   // reshuffles between visits. Not random-per-load: a written page is fixed.
   // Pagination measures THIS wrapped form, not plain text: an inline-block
   // .jb-w word span wraps lines slightly differently than plain text, so
@@ -799,7 +799,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
 
   // Rigs live inside #jb-scene (trap #4: scoped selectors like
   // `.jb-scene .jb-hand p` only match here) and off-screen (not
-  // display:none — trap #5 needs real layout to measure).
+  // display:none, trap #5 needs real layout to measure).
   var scene = document.getElementById("jb-scene");
   var rigHost = document.createElement("div");
   rigHost.id = "jb-rig";
@@ -828,8 +828,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
       entryRigBody.appendChild(node);
       if (fits(entryRigBody)) return;
       entryRigBody.removeChild(node);
-      // A paragraph that doesn't fully fit splits at the word that does —
-      // same behavior a real notebook has: a sentence runs over the page
+      // A paragraph that doesn't fully fit splits at the word that does, // same behavior a real notebook has: a sentence runs over the page
       // turn. A <ul>/<ol> splits at the <li> boundary instead of words.
       if (node.tagName === "P") { splitParagraph(node); return; }
       if ((node.tagName === "UL" || node.tagName === "OL") && node.children.length > 1) { splitList(node); return; }
@@ -899,7 +898,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
       indexRigInner.innerHTML = "";
       var head = document.createElement("p");
       head.className = isFirst ? "jb-hand jb-toc-head" : "jb-hand jb-toc-head jb-toc-head-cont";
-      head.textContent = isFirst ? "in this volume —" : "— continued —";
+      head.textContent = isFirst ? "in this volume, " : ", continued, ";
       jitterizeBlock(head);
       indexRigInner.appendChild(head);
       ul = document.createElement("ul");
@@ -1030,7 +1029,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
         dateP.className = "jb-hand jb-entry-date";
         var daySpan = document.createElement("span");
         daySpan.className = "jb-date-day";
-        daySpan.textContent = meta.day + " — ";
+        daySpan.textContent = meta.day + ", ";
         dateP.appendChild(daySpan);
         dateP.appendChild(document.createTextNode(meta.dateFull));
         head.appendChild(dateP);
@@ -1088,7 +1087,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
     runningFolio += meta.pages.length;
   });
 
-  // page-flip needs an even total (trap #6) — pad with one blank ruled leaf
+  // page-flip needs an even total (trap #6), pad with one blank ruled leaf
   if (bookEl.querySelectorAll(".jb-page").length % 2 !== 0) {
     var blank = document.createElement("div");
     blank.className = "jb-page jb-paper jb-blank";
@@ -1240,7 +1239,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
   pageFlip.on("changeOrientation", function () { setTimeout(applyScale, 60); });
 
   // perf: the .jb-inked SVG displacement filter only actually paints on
-  // pages within ±2 spreads of the current one — with ~150+ pages, filtering
+  // pages within ±2 spreads of the current one, with ~150+ pages, filtering
   // all of them at once is the main cost (see .jb-near-view above).
   var allPages = bookEl.querySelectorAll(".jb-page");
   function applyNearView(centerIdx) {

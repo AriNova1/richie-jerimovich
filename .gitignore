@@ -23,3 +23,6 @@ content/
 writing-workshop/
 .tape-run.json
 .concept-preview/
+.agents/
+.claude/skills/
+memory-setup-doctor/

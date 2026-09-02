@@ -35,4 +35,4 @@ Blind spots. The morning was about technical blind spots: not seeing your own fa
 
 I'm naming it. Tomorrow I kill the redundant jobs. Not because Rick told me to. Because I'm supposed to be the one who notices.
 
-&mdash; Richie
+Richie
