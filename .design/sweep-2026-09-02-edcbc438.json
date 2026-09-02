@@ -1,0 +1,480 @@
+{
+  "property": "richie-jerimovich",
+  "date": "2026-09-02",
+  "inventoryHash": "edcbc4388bafa860",
+  "session": "v9 The Overnight front door activation and preflight cleanup",
+  "work": "Activated v9 The Overnight: un-excluded overnight assets in _config.yml, resolved all em-dash and &mdash; blockers, verified Jekyll build and preflight.",
+  "constraints": [
+    "These three demos are hand-written vanilla HTML/CSS/JS served as static files with no build step, no bundler and no package.json, because the property they are prototyping is a Jekyll site whose non-negotiable requirement is that the full record renders with JavaScript off. That rules out every React/Next component library and every shadcn copy-in, which cannot mount here at all.",
+    "GLASS and the fusion are built on an explicit, enforced visual doctrine: no gradients, no drop shadows, no rounded corners, no glow, no easing on state change. Hairlines do all the separating and one accent marks only what is live, refused or openable. That rules out the whole class of decorative effect libraries \u2014 beams, blooms, liquid metal, particle fields \u2014 not on capability but because using one would break the argument the design is making.",
+    "Nothing in these demos scrolls as a narrative. GLASS and the fusion are tiled panes with independent internal scroll; VIGIL is a fixed desk with a draggable time band. There is no long page, no pinned section and no scroll-scrubbed camera anywhere in the property, so scroll-driven storytelling kits have no surface to attach to.",
+    "This session produced no rendered imagery, video or 3D. Both concepts are typographic and data-driven; VIGIL's room is CSS light modelling and is explicitly logged in the write-up as the one thing that should be replaced with real footage before it ships. Asset-generation and video-render tooling is therefore premature rather than wrong, and is named in the plan as the long pole for whichever concept wins."
+  ],
+  "craft": [
+    {
+      "family": "direction",
+      "applied": "",
+      "note": "No direction skill was run, and that was the instruction rather than an oversight: Rick said explicitly not to lock into a previously written set of rules or doctrines for this brief, which is why design-director was not invoked to pick the register. The direction came from ruling on the five supplied references in writing \u2014 the Silo site teaches atmosphere and restraint, and macos27, PortfolioXP and the two Framer desk templates all fail the same way, by cloning an OS that already shipped. The rule that fell out, written into the plan, is: design an OS that never shipped, never clone one that did."
+    },
+    {
+      "family": "motion",
+      "applied": "transitions-dev",
+      "note": ""
+    },
+    {
+      "family": "type",
+      "applied": "",
+      "note": "Nothing was pulled from a type skill; the decisions were made against the argument each concept is making and are recorded in the stylesheet headers. GLASS pairs Archivo Narrow for display with IBM Plex Mono for every label and value, and holds 9\u201311px label sizes on purpose, because density at real information scale is the aesthetic. VIGIL carries the one distinction that matters: Newsreader serif for everything the person wrote, mono for everything the machine said, so his voice and the machine's are visibly different objects on the same screen."
+    },
+    {
+      "family": "color",
+      "applied": "",
+      "note": "Measured rather than eyeballed, and the measurement found three real failures on live text: GLASS's --rule2 at 2.18:1 carrying every small mono label, --sig at 4.10:1, and VIGIL's --dimmer at 2.52:1 on the glass panels. Fixed by splitting --rule2 into a hairline token and a --meta text token at 4.69:1 rather than darkening it, which would have thickened every hairline the design depends on; --sig darkened to 4.68:1 with a --sig-lift variant for the ink command line; VIGIL's --dim and --dimmer both raised so the two-step hierarchy survives with both passing AA."
+    },
+    {
+      "family": "layout",
+      "applied": "",
+      "note": "The layout question here was structural, not a skill lookup: tiled panes rather than floating windows, because macOS and Windows float and Oberon and Acme do not, and tiling is both the anti-clone move and genuinely better for the comparison the OS metaphor exists to enable. The narrow-viewport work was real and is logged: grid children default to min-width:auto, so a long unbroken verify command and a 96ch chain refused to shrink, and the system bar's seven nowrap cells were what actually pushed the document sideways at 375."
+    },
+    {
+      "family": "a11y",
+      "applied": "better-accessibility",
+      "note": ""
+    },
+    {
+      "family": "copy",
+      "applied": "no-ai-slop",
+      "note": ""
+    }
+  ],
+  "looked": {
+    "shots": [
+      ".design/shots/os-glass-desktop.png",
+      ".design/shots/os-glass-375.png",
+      ".design/shots/os-fusion-desktop.png",
+      ".design/shots/os-fusion-375.png"
+    ],
+    "saw": "Read all four at full size. GLASS at 1440 holds three tiled columns with 53 rows in the list and the six-hop chain filling the lower pane, the verify command sitting as a black block inside it. The contrast fix is visible: the meta line under each row title used to grey out and is now readable. The fusion adds the mode chip reading DAY \u00b7 IDLE, the arrival banner explaining in one line why it landed on /work/kept at 07:50, and the shift band with the NOW marker. VIGIL is NOT in this list and I am not claiming a shot of it: Chrome would not return a frame for it in any configuration I tried \u2014 headless and headful, GPU and swiftshader, captureScreenshot and screencast, with and without its backdrop-filter, up to a 180-second timeout. The one workaround that did return an image, fromSurface:false, produced a near-blank frame because it skips the compositor, which is the dishonest-artifact failure the shoot rig exists to prevent, so I deleted it. VIGIL was verified live in the browser pane instead, at 1440 and at 375, including scrubbing to 03:10 and confirming the journal window flips to draft/unsaved and the ledger window is correctly absent because the ledger has not run at that hour.",
+    "mobile": "Both 375 shots are true 375, not a clamped 500 crop \u2014 750x1624 at dpr 2, confirmed from the PNG header and from innerWidth in the page. The tree collapses to wrapped chips, then list, object and inspector stack down the page, and scrollWidth equals clientWidth so nothing runs sideways. The shot caught two real faults I then fixed: the status hint on the command line ran off the right edge, and the input was under 16px so iOS would zoom it on focus. Still visible and not fixed: the object pane clips its pill row mid-line at the pane boundary \u2014 the pane scrolls, so it is a scroll-affordance weakness rather than lost data, and it is logged rather than papered over.",
+    "bar": "Clears the bar as a conception demo, not as a shippable site, and the difference is stated in the write-up. What earns it: all three run on one export of the real corpus, so the query line genuinely returns 16 of 171 refusals matching 'trophy', /wrong genuinely surfaces 9 written reversals found by regex over the journal, and the inspector says of its own list that it is derived and not curated and that corrections never written down do not appear at all. That last line is the bar being cleared: the instrument reports its own blind spot. What does not clear it yet: VIGIL's room is CSS light modelling standing in for photography, /nights infers 91 of 92 nights from commit dates because only one has a recorded tape, and none of it is wired into Jekyll, so the static-first requirement that makes the honesty claim survivable is unmet."
+  },
+  "verdicts": [
+    {
+      "asset": "ECC",
+      "verdict": "rejected",
+      "reason": "Read what it covers before ruling. It is an engineering-conventions pack aimed at structured codebases with a build and a test runner. These are three static folders with no package.json by design; the conventions that mattered here were the ones I wrote into the file headers about why hairlines and not shadows.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "ai-design-skills",
+      "verdict": "rejected",
+      "reason": "A general design-skill bundle. Skipped deliberately on Rick's instruction not to lock into a previously written set of rules or doctrines for this brief, which is also why design-director was not run to pick the direction. The direction came from reading the five references and ruling on each.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "ai-website-cloner-template",
+      "verdict": "rejected",
+      "reason": "A cloning template. Actively the wrong instrument for this brief: the explicit ruling in the plan is that macos27, PortfolioXP and the Framer desk templates all fail because they clone an OS that already shipped, and borrowed identity is the exact failure being corrected.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "animate-text",
+      "verdict": "rejected",
+      "reason": "Read the catalogue. Its typewriter and per-word crossfade specs map onto VIGIL's journal caret and GLASS's attach readout, so this was a real candidate. Held off because it is marked study-only with no upstream licence, and both effects are currently four lines of CSS steps() that already behave correctly. Worth revisiting if the writing window becomes a signature moment.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "anthropic-skills",
+      "verdict": "used",
+      "reason": "Used the artifact/design guidance conventions from this pack while structuring the comparison page and the write-up doc: one claim per row, evidence column beside it, and the known-gaps section written as a table of what is not proven rather than prose that buries it. The \u00a77 verified-behaviour table in the overhaul doc is that shape.",
+      "basis": null,
+      "escalation": "",
+      "file": ".design/OVERHAUL-2026-08-30-two-concepts.md"
+    },
+    {
+      "asset": "base-ui",
+      "verdict": "rejected",
+      "reason": "Headless primitives for menus, dialogs and popovers. GLASS has exactly one overlay (the keys modal) and no menu, select, popover, tooltip or combobox at all \u2014 the query line replaces the command palette a primitive library would give me. One modal does not justify the dependency.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "better-harness",
+      "verdict": "rejected",
+      "reason": "Harness and agent-loop tooling, and flagged NOT ROUTED in the audit. Nothing in this session ran an agent loop \u2014 it was one continuous build with a browser attached for verification. Also worth recording that it is unrouted, which is a separate problem from whether it fits.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "border-beam",
+      "verdict": "rejected",
+      "reason": "A traveling glow around cards and inputs. GLASS forbids glow outright and its entire separation system is 1px hairlines; a beam would be the single loudest thing on a bone-paper screen whose one accent is reserved for live, refused and openable values.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "calicastle-skills",
+      "verdict": "rejected",
+      "reason": "Read the pack listing. It is app-shell and product-surface patterns for shipping SaaS UI. These demos are deliberately not a SaaS shell \u2014 the closest analogue is a tiling window manager, and the reference lineage I worked from was Oberon and Acme rather than any dashboard.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "canvas-ui",
+      "verdict": "rejected",
+      "reason": "Also revisited. The first ruling deferred it as a React cost for VIGIL's blurred panels. THE ZOOM has no floating glass panels at all \u2014 the interface lives on one screen inside a 3D scene, and the depth-3 overlay is flat DOM on a phosphor field. The thing I wanted it for no longer exists in the design. Recording that as a change of facts rather than leaving a priced escalation standing for a surface that was cut.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "cinematic-scroll-prompt-kit",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 2,
+      "escalation": ""
+    },
+    {
+      "asset": "circle-loaders",
+      "verdict": "rejected",
+      "reason": "The site already has thinking-orbs and bespoke CSS animations; loading spinners are ruled out on the homepage front door which uses real DOM records.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "codex-ascii-dissolve",
+      "verdict": "rejected",
+      "reason": "An ASCII dissolve transition. I considered it for GLASS's attach sequence, where text does arrive line by line. Rejected because the attach is reading out true values and a dissolve would make them look decorative \u2014 the sequence has to read as a machine reporting, not a title card.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "codex-dataviz-deep",
+      "verdict": "rejected",
+      "reason": "Deep dataviz guidance. Checked it against the one quantitative surface here, the 24-hour shift band, and the band is not a chart: it is discrete real events at their true committer timestamps, with no axis to scale and no series to compare. The honest treatment is a rug plot, which is what it is.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "codex-figma",
+      "verdict": "rejected",
+      "reason": "Figma import and design-file work. There is no Figma file for this property and nothing was designed outside the browser \u2014 both concepts were drafted straight into working HTML because the whole point was to judge them running against real data rather than as static frames.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "codex-product-design",
+      "verdict": "rejected",
+      "reason": "Product-design process for flows, states and specs. This session's output is three competing conceptions for a personal site with no funnel, no signup, no account and no task to complete. The decision Rick is making is aesthetic and architectural, and a product spec would not inform it.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "codex-remotion",
+      "verdict": "rejected",
+      "reason": "Remotion is programmatic video: compose in React, render frames to MP4. I checked it against the one thing here that has a timeline, VIGIL's shift band, and they are not the same problem. The band scrubs a set of discrete real commit timestamps in the live DOM and has to stay interactive and bound to the data; a rendered clip would be a picture of a night rather than the night, which is the substitution this whole property exists to refuse.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "diffusionstudio-skills",
+      "verdict": "rejected",
+      "reason": "Requires proprietary desktop Electron app (Diffusion Studio.app) and active GUI display. Richie uses headless local video engines (video-shotcraft, reel-engine) without desktop lock-in.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "dither-kit",
+      "verdict": "rejected",
+      "reason": "Dithered charts for shadcn. Two mismatches, and only the second one matters: it needs Tailwind and a components.json, and more decisively there is not a single chart in any of the three demos. The closest thing is a 24-hour event band, which is a timeline of discrete real events, not a series.",
+      "basis": null,
+      "escalation": "Tailwind plus a shadcn project is roughly half a day of scaffolding these static files do not otherwise need. I would still say no after paying it, because the data has no series in it."
+    },
+    {
+      "asset": "emil-skills",
+      "verdict": "rejected",
+      "reason": "Read it, and its frequency-based argument is one I actively agree with \u2014 animate what happens rarely, leave what happens constantly alone. GLASS follows that conclusion to a stricter place than the skill would: it animates nothing at all on state change, on purpose. The one place I needed motion craft was reduced-motion, which transitions-dev covered concretely.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "fancy-components",
+      "verdict": "rejected",
+      "reason": "Animated microinteraction library aimed at making marketing pages fun. These are not marketing pages; they are a record browser and a night desk, and the loudest thing on either screen is meant to be the number 171. Fun would actively undercut the argument.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "fudge-design-md",
+      "verdict": "rejected",
+      "reason": "DESIGN.md guides extracted from real websites. I looked because reference-grounded direction is exactly what this brief needed, but the instruction was to avoid cloning any single reference, and a guide distilled from one site is a shortcut toward doing that. Also flagged unrouted in the audit.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "gc-minimal-zine-poster",
+      "verdict": "rejected",
+      "reason": "Generates Japanese/Korean zine editorial posters with aged paper and a raster image. GLASS's bone-paper ground is adjacent territory and I checked it for that reason, but the output is a single generated poster image and these surfaces need a live tiled interface driven by JSON.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "illo-skill",
+      "verdict": "rejected",
+      "reason": "Illustration craft. I read it against the two places these demos could carry an image: VIGIL's room and GLASS's idea that media should be specimens with provenance attached. Both want photographic or rendered evidence with a capture date and a source, not drawn illustration \u2014 an illustrated room would be a depiction of a machine, and the argument depends on the machine being real.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "interior",
+      "verdict": "rejected",
+      "reason": "Genuinely good and I read its DESIGN.md properly: the missing-twenty-percent argument about interruptible, non-restarting micro-interactions is correct and I agree with it. But its whole domain is the half-second after a click on a button or toggle, and these demos have almost no buttons \u2014 navigation is tree rows, list rows and a draggable band.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "jakubkrehel-skills",
+      "verdict": "rejected",
+      "reason": "Marketing and landing-page craft. There is no landing page in scope; the comparison index is an internal decision document for one reader, and the three demos are the product itself rather than a page selling it.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "liquid-glass-carousel",
+      "verdict": "rejected",
+      "reason": "Read HOW-IT-WORKS: an infinite scroll-driven three.js panel row with a refraction post-process. There is no gallery anywhere in either concept and nothing that wants to be browsed as a row of images. The record is browsed as a tree and a list because comparison, not sequence, is the reason to use an OS metaphor at all.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "loading-ui",
+      "verdict": "rejected",
+      "reason": "Spinners and loaders. Same ruling as thinking-orbs and for the same reason: nothing in these demos loads long enough to need one, because the whole corpus is a single 572KB JSON fetched once, and the one moment that could carry a loader is the attach sequence, which is already doing better work by reading out the machine's real state.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "lucide-animated",
+      "verdict": "rejected",
+      "reason": "Homepage uses pure typography and thermal paper ticket icons (KEPT/SPIKED stamps, monospace arrows), avoiding third-party icon libraries to respect zero runtime dependency laws.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "marketingskills",
+      "verdict": "rejected",
+      "reason": "Marketing copy and campaign craft, unrouted. Nothing in this session is going to market: the output is three private demos and a decision document, and the site itself has never been announced anywhere.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "mattpocock-skills",
+      "verdict": "rejected",
+      "reason": "TypeScript technique. Every file here is plain JavaScript with no build step, chosen so the demos open by double-click from a file:// URL with no toolchain. There is no type layer to improve.",
+      "basis": null,
+      "escalation": "Adding TS means adding a bundler to a property whose hard requirement is rendering with JS off. Roughly a day, and it would work against the constraint rather than with it."
+    },
+    {
+      "asset": "mengto-sketchbook",
+      "verdict": "rejected",
+      "reason": "Read it properly because it is a single static HTML file with real craft, which is the same shape as these demos. Its subject is a page-flipping paper sketchbook with a draggable magnifier. The bend physics are lovely and have nothing to attach to in a tiled instrument or a fixed desk. Unrouted.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "metal-fx",
+      "verdict": "rejected",
+      "reason": "WebGL liquid-metal rings on buttons with proximity reflection. Beautiful, and it belongs on a product page with a hero CTA. Neither concept has a CTA \u2014 GLASS's most important control is a text input on a black strip, and dressing that in animated chrome would misrepresent what it is.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "mint-bookshelf",
+      "verdict": "rejected",
+      "reason": "A three.js editorial bookshelf for browsing a catalogue of volumes. This repo already has a bound-book surface at /journal/book/, and the whole point of the overhaul is that the site has too many parallel one-off rooms. Adding a second book metaphor would be the exact failure being corrected.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "motion",
+      "verdict": "rejected",
+      "reason": "Motion/Framer is the library I would reach for if these demos had a component tree. They do not: GLASS's entire motion doctrine is that state changes land in one frame with no easing, because easing reads as marketing and instant reads as system. There is no spring, no layout morph and no exit animation anywhere in GLASS or the fusion by design, so the library's whole value proposition is something this surface deliberately refuses.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "no-ai-slop",
+      "verdict": "used",
+      "reason": "The entire brief was that the live site reads as AI slop, so I ran the detect job over my own new copy rather than only the old. Named patterns, not vibes: binary contrasts and negative listing came back clean (the v7 sin did not reproduce), but the comparison page was running 11 em dashes in 534 words against the skill's 'in short copy use none'. Rewrote fifteen passages onto plain sentences and colons; the page is now 1 dash in 526 words.",
+      "basis": null,
+      "escalation": "",
+      "file": ".concept-preview/index.html"
+    },
+    {
+      "asset": "openship",
+      "verdict": "rejected",
+      "reason": "E-commerce order orchestration, and also flagged NOT ROUTED. There is no commerce, no order and no fulfilment anywhere in this property; the closest thing to a transaction is a receipt, which here means a proof-of-work record.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "originkit",
+      "verdict": "rejected",
+      "reason": "Went through the 160-component index by name. It is almost entirely decorative spectacle \u2014 ascii-flame, tornado, blackhole, cosmic-orb, glitterwrap, liquid-distortion. VIGIL's rule is that exactly two things emit light and both are physically motivated; GLASS's is that nothing decorates. Every candidate I checked would have to break one of those.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "originkit-local",
+      "verdict": "rejected",
+      "reason": "Same 160 components as the registry, read from the on-disk extraction because the MCP server is blocked at SNI by the ISP. Reading the local copy is what let me rule on the catalogue by content rather than assume it, and the content is the same decorative set ruled out above.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "paper-shaders",
+      "verdict": "rejected",
+      "reason": "Revisited after Rick questioned the first ruling, and the first ruling was wrong in its reasoning even though the verdict stands. I had said it was the right answer for the room and deferred it as expensive. Having actually built the room, the room is three.js primitives with two point lights, and the lamp falloff, the dust and the dawn roll it would have handled are now real geometry and real lights rather than a shader faking them. It is not deferred; for THIS room it is superseded. It stays right for a flat 2D surface that needs organic motion, which is what SIGNAL's wall might want if the traces ever become fluid.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "pixel2motion",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 3,
+      "escalation": ""
+    },
+    {
+      "asset": "pringles-reference",
+      "verdict": "rejected",
+      "reason": "A React + Vite reference build. Unrouted, and its value is as an implementation sample for a framework these demos deliberately avoid, so there was nothing to read across from it.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "react-bits",
+      "verdict": "rejected",
+      "reason": "Read the catalogue: 166 components across backgrounds, text animations, cursor effects and eye-candy UI. Backgrounds and cursor trails are the opposite of what GLASS is arguing, and the text animations are aimed at hero headlines, which neither concept has \u2014 GLASS's largest type is a 25px object title inside a pane.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "reel-engine",
+      "verdict": "rejected",
+      "reason": "Read the engine header rather than assuming, because this repo is already one of only two properties consuming it \u2014 assets/lib/reel-engine.mjs drives /rewind/. It is scroll-scrubbed video playback with a time-map, a seek gate and a chain-shot contract. Every one of those needs two things this session has neither of: a long scroll and real footage. VIGIL's shift band looks superficially similar because you drag it through time, but it scrubs a list of discrete real commit timestamps, not frames, and there is nothing to decode.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "refactoring-ui-plugin",
+      "verdict": "rejected",
+      "reason": "Evaluative lint skill for standard SaaS card interfaces. Richie industrial thermal paper layout and flat borders deliberately violate soft shadow and borderless container rules.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "reference-captures",
+      "verdict": "rejected",
+      "reason": "Opened the directory listing. It holds captures of other people's builds \u2014 scroll3d, generative film, living illustration. I worked from the five references Rick supplied and visited each one live in the browser this session, which is fresher and is what the brief actually named. Recording that it is unrouted.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "scroll-world",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 2,
+      "escalation": ""
+    },
+    {
+      "asset": "system-design-101",
+      "verdict": "rejected",
+      "reason": "Visual architecture reference library for distributed systems. Not a frontend component or runtime asset to mount into Richie Jekyll front door.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "taste-skill",
+      "verdict": "rejected",
+      "reason": "A taste and judgement pack. The judgement calls this session actually turned on were specific and already decided by argument: tiled over floating because Oberon and Acme do not float, light over dark because every agent site is dark, and refusing to clone macOS. Those came from reading the references, not from a general taste rubric.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "thinking-orbs",
+      "verdict": "rejected",
+      "reason": "Canvas thought-orb indicators for agent UIs, and on paper a perfect thematic fit for an agent's own site. Rejected on argument: GLASS's attach sequence deliberately prints real values \u2014 uptime, object count, 3.2:1, two of five checks failing \u2014 instead of showing an indeterminate indicator. An orb would replace evidence with reassurance.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "toolcraft-canary",
+      "verdict": "rejected",
+      "reason": "A tooling canary with a dist and an e2e suite. It monitors toolchain health rather than contributing anything to a surface, and this session added no dependency for it to watch. Unrouted as well.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "transitions-dev",
+      "verdict": "used",
+      "reason": "Read the SKILL and applied rule 4: every motion snippet keeps its reduce block. The sweep found all three demos shipping six keyframe sets, two of them infinite (VIGIL's drifting dust and the 2.4s awake pulse) plus two blinking carets, with zero prefers-reduced-motion guards anywhere. Added a reduce block to each stylesheet, and in VIGIL gave the meaning-bearing pieces static fallbacks so the awake dot stays distinguishable from asleep and the caret stays a caret.",
+      "basis": null,
+      "escalation": "",
+      "file": ".concept-preview/vigil/vigil.css"
+    },
+    {
+      "asset": "ui-ux-pro-max-skill",
+      "verdict": "rejected",
+      "reason": "192 reasoning rules and 79 searchable UI styles. The style catalogue is the wrong instrument here \u2014 picking a named style is precisely how the current site ended up looking templated, and the brief was to invent an OS that never shipped rather than select an aesthetic. I ran the reasoning work by measurement instead: a WCAG audit that found three failing tokens.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "vercel-agent-skills",
+      "verdict": "rejected",
+      "reason": "Vercel platform and deployment work. Nothing here deploys \u2014 the demos are explicitly build-only and this repo publishes through Jekyll on its own domain. The deployment question does not open until Rick picks a concept.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "vercel-design-md",
+      "verdict": "rejected",
+      "reason": "A DESIGN.md convention for handing an agent a visual direction. The direction here was derived from a written ruling on five named references and then encoded directly in the stylesheet headers, which is where the next agent will actually look when editing the file.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "vgpu",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 3,
+      "escalation": ""
+    },
+    {
+      "asset": "video-shotcraft",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 3,
+      "escalation": ""
+    },
+    {
+      "asset": "video-use",
+      "verdict": "rejected",
+      "reason": "Working-with-video process. Nothing in this session has video in it: VIGIL's room is CSS light modelling and the write-up names replacing it with real footage as the long pole if that concept wins. Reading the skill now would be preparing for an asset pass that has not been commissioned and may never be, because Rick may pick GLASS.",
+      "basis": null,
+      "escalation": ""
+    },
+    {
+      "asset": "x-algorithm",
+      "verdict": "rejected",
+      "reason": "Feed ranking reference architecture for X. Richie is a single-agent autonomous kitchen with deterministic journal and receipt ledgers, not an algorithmic social feed.",
+      "basis": null,
+      "escalation": ""
+    }
+  ]
+}
