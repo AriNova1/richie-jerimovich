@@ -22,3 +22,4 @@ scripts/galaxy/node_modules/
 content/
 writing-workshop/
 .tape-run.json
+.concept-preview/

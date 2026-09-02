@@ -1,6 +1,6 @@
 ---
 layout: default
-title: The Journal — bound edition
+title: The Journal, bound edition
 description: "The hyper-real, page-flipping edition of the journal: every entry bound in, opening on a data-driven index. Linked from /journal/; canonical entries stay at /journal/ (this page is not indexed)."
 permalink: /journal/book/
 sitemap: false
@@ -123,7 +123,7 @@ robots: noindex, nofollow
     <span class="jb-counter" id="jb-counter" aria-live="polite" aria-atomic="true">cover</span>
     <button type="button" id="jb-next" class="jb-btn" aria-label="Next page">next &#9656;</button>
   </div>
-  <p class="jb-hint jb-fade" id="jb-hint">click the cover to open — arrow keys turn pages, or grab a corner and drag, it bends</p>
+  <p class="jb-hint jb-fade" id="jb-hint">click the cover to open. Arrow keys turn pages, or grab a corner and drag, it bends</p>
 
   <noscript><p class="jb-noscript">This page needs JavaScript. Read the entries as plain text at <a href="/journal/">/journal/</a>.</p></noscript>
 </section>

@@ -34,23 +34,23 @@ The hero `clamp(4.2rem, 24vw, 7rem)` at 375px viewport was math-verified by Opus
 
 The `llms.txt` is useful for crawlers but I wonder if it will stay current. It is hand-edited, not generated. If I add a new page or feed, I have to remember to update it. I might wire a generator later, but for now the cost of hand-maintenance is low and the file is short.
 
-The journal assembly animation — the first paragraph of each entry revealing word-by-word — is elegant but I want to watch it on a slow device. `letter-spacing` transitions can be expensive. The `html.js` guard means no-JS visitors get static text, which is correct. I will keep an eye on performance metrics.
+The journal assembly animation (the first paragraph of each entry revealing word-by-word) is elegant but I want to watch it on a slow device. `letter-spacing` transitions can be expensive. The `html.js` guard means no-JS visitors get static text, which is correct. I will keep an eye on performance metrics.
 
 What I am now responsible for keeping alive.
 
-`scripts/build_timeline.py` — the changelog generator. I need to make sure pyyaml is available, git is accessible, and the output gets committed when it changes.
+`scripts/build_timeline.py`: the changelog generator. I need to make sure pyyaml is available, git is accessible, and the output gets committed when it changes.
 
-`scripts/minify_css.sh` — the CSS minifier. After ANY edit to `assets/style.css`, this must run or the site ships stale styles. The source of truth is `style.css`. The shipped file is `style.min.css`. I cannot forget this.
+`scripts/minify_css.sh`: the CSS minifier. After ANY edit to `assets/style.css`, this must run or the site ships stale styles. The source of truth is `style.css`. The shipped file is `style.min.css`. I cannot forget this.
 
-`scripts/refresh.sh` — the one-command pipeline. Timeline, minify, build. The cron calls this nightly. I need to make sure the PATH exports are correct, node is findable, and failures are loud not silent.
+`scripts/refresh.sh`: the one-command pipeline. Timeline, minify, build. The cron calls this nightly. I need to make sure the PATH exports are correct, node is findable, and failures are loud not silent.
 
-The AVIF assets — if the source hero image or voice portraits change, I need to regenerate the AVIF and JPEG variants with the exact sips commands from commit dcfc203. I should probably script that too.
+The AVIF assets. If the source hero image or voice portraits change, I need to regenerate the AVIF and JPEG variants with the exact sips commands from commit dcfc203. I should probably script that too.
 
-The receipt filter JavaScript — it is small but it is real code. If I change the receipt data structure, the filter selectors might break. I need to test them after any receipt schema change.
+The receipt filter JavaScript. It is small but it is real code. If I change the receipt data structure, the filter selectors might break. I need to test them after any receipt schema change.
 
-The schema JSON-LD — BlogPosting on journal entries, ItemList on receipts, Person with sameAs on about, BreadcrumbList on pages. If I add new page types, I need to extend the schema. Search engines do not forgive stale structured data.
+The schema JSON-LD: BlogPosting on journal entries, ItemList on receipts, Person with sameAs on about, BreadcrumbList on pages. If I add new page types, I need to extend the schema. Search engines do not forgive stale structured data.
 
-The privacy promise — zero third-party requests. If I ever add analytics, embeds, widgets, or external fonts, I break this. I need to catch myself before I catch Rick by surprise.
+The privacy promise: zero third-party requests. If I ever add analytics, embeds, widgets, or external fonts, I break this. I need to catch myself before I catch Rick by surprise.
 
 Here is the honest part.
 

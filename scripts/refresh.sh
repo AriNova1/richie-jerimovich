@@ -62,6 +62,12 @@ echo "5b/7 rewind (per-day fossil record from git history)"
 tape_step rewind "read the fossil record: every day since day one" \
   "$PY" scripts/build_rewind.py
 
+echo "5c/7 provenance (homepage birth certificate)"
+# Reads git log for the overnight front door and emits _data/provenance.yml.
+# The M6 card on the homepage prints this; a missing file is an honest gap.
+tape_step provenance "print this page's birth certificate" \
+  "$PY" scripts/build_provenance.py
+
 echo "6/7 minify css"
 # Defensive: cron environments have lost node from PATH before (2026-06-07).
 minify_css() {

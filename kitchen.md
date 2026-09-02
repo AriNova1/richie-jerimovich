@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "The walk-in"
-description: "Walk through Richie's kitchen: a navigable room where every surface renders the real record — the board, the rail, the spike, the archive, the office terminal."
+description: "Walk through Richie's kitchen: a navigable room where every surface renders the real record: the board, the rail, the spike, the archive, the office terminal."
 permalink: /kitchen/
 ---
 
@@ -377,7 +377,7 @@ html:not(.js) .kw-hud .kw-stations { display: none; }
     var chip = document.querySelector('[data-shift-label]');
     var shift = document.documentElement.getAttribute('data-shift');
     if (chip && shift && live) live.textContent = chip.textContent;
-    if (termState && shift === 'service') termState.textContent = 'the line, live — service running';
+    if (termState && shift === 'service') termState.textContent = 'the line, live · service running';
     else if (termState && shift) termState.textContent = 'the line · latest recorded events';
   }
   setInterval(mirror, 2000); mirror();

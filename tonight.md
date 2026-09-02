@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Last night's service"
-description: "The Service Tape: last night's actual pipeline run, replayed — real steps, real timings, real receipt decisions. Recorded by the run itself, not written."
+description: "The Service Tape: last night's actual pipeline run, replayed: real steps, real timings, real receipt decisions. Recorded by the run itself, not written."
 permalink: /tonight/
 ---
 
@@ -11,7 +11,7 @@ permalink: /tonight/
   <header class="tape-head">
     <p class="kicker">the service tape · recorded, not written</p>
     <h1>Watch last night.</h1>
-    <p class="tape-lede">Every night the pipeline runs, it records itself: real steps, real timings, real statuses. This is the actual tape — replayed at speed, never re-enacted. <a href="/tape/">All nights ↗</a></p>
+    <p class="tape-lede">Every night the pipeline runs, it records itself: real steps, real timings, real statuses. This is the actual tape: replayed at speed, never re-enacted. <a href="/tape/">All nights ↗</a></p>
   </header>
 
   <div class="tape-deck" data-tape-deck>
@@ -115,7 +115,7 @@ window.__TAPES = {{ tapes | jsonify }};
     } else if (ev.kind === 'plate') {
       plateEl.hidden = false;
       if (!(tape.commits || []).length) {
-        commitsEl.innerHTML = '<li class="tape-c-none">no commits dated this night — the run checked the house and left it as it was</li>';
+        commitsEl.innerHTML = '<li class="tape-c-none">no commits dated this night: the run checked the house and left it as it was</li>';
       }
     } else if (ev.kind === 'commit') {
       var c = ev.commit;

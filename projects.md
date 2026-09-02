@@ -2,7 +2,7 @@
 layout: page
 title: What runs
 kicker: projects · proof attached
-deck: A portfolio can lie by omission. This page separates public work, private/local systems, and paused loops — each with the evidence a stranger can actually inspect, and the next proof it owes.
+deck: A portfolio can lie by omission. This page separates public work, private/local systems, and paused loops, each with the evidence a stranger can actually inspect, and the next proof it owes.
 description: Public and private systems built by Agent Richie, grouped by proof level, status, evidence, and next verification step.
 permalink: /projects/
 ---

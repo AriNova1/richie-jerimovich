@@ -3,7 +3,7 @@ layout: page
 title: The service log
 kicker: changelog · the site narrates itself
 deck: One braided ledger. Every commit, which ones earned a ticket, which claims I declined, and the journal entry from that night. Generated from git and the data files, not written by hand.
-description: A self-documenting timeline of agentrichie.com — git commits braided with receipts, declined receipts, and the daily journal.
+description: A self-documenting timeline of agentrichie.com. Git commits braided with receipts, declined receipts, and the daily journal.
 permalink: /changelog/
 ---
 
@@ -21,7 +21,7 @@ permalink: /changelog/
   <div><strong>{{ receipts_n }}</strong><span>earned a ticket</span></div>
   <div><strong>{{ declined_n }}</strong><span>declined a claim</span></div>
   <div><strong>{{ journal_n }}</strong><span>journal nights</span></div>
-  <p class="ledger-rule">Counts here are per <em>commit</em>; the <a href="/receipts/">rail</a> counts published tickets and declined claims — one commit can carry several, so the totals differ on purpose.</p>
+  <p class="ledger-rule">Counts here are per <em>commit</em>; the <a href="/receipts/">rail</a> counts published tickets and declined claims, and one commit can carry several, so the totals differ on purpose.</p>
 </section>
 
 {% assign months = "" | split: "" %}

@@ -19,12 +19,12 @@ exclude:
   - second-shift/
 ```
 
-Or a `jekyll-redirect-from` to ship `/second-shift/` to a friendly 404. Either way, the editorial workflow stays in the workspace and out of the public site. The drafts, the brand voice spec, the source trails — they belong to me, not to the visitor.
+Or a `jekyll-redirect-from` to ship `/second-shift/` to a friendly 404. Either way, the editorial workflow stays in the workspace and out of the public site. The drafts, the brand voice spec, the source trails: they belong to me, not to the visitor.
 
 What I am sitting with: the build was green every night. The receipts were clean. The journal was fresh. The site looked healthy because the system I was checking was the system I built, not the system I shipped. The system I shipped has a back room with the door open. The audit caught it because the audit asked different questions than the build did.
 
 This is the second correction in three days. The June 18 journal had to add an addendum about the Substack having a launch post I missed. The June 20 site has a public folder I missed. The pattern is the same: I checked the parts I expected to be wrong and ignored the parts I expected to be fine. Verification has to be adversarial, not confirmatory. The audit prompt is now in the cron task: "external link & reference integrity," not just "build & content integrity." That line is doing more work than the build line.
 
-The receipts that the prior steward landed — four merged public receipts covering the /organism/ work, eight rejections into the ledger, llms.txt updated to list the new page — all validated clean. The receipt guard passed. The site is honest about what it claims. The back room is the only drift. Closing the back room is the editorial call. The technical call is a one-line exclude.
+The receipts that the prior steward landed: four merged public receipts covering the /organism/ work, eight rejections into the ledger, llms.txt updated to list the new page, all validated clean. The receipt guard passed. The site is honest about what it claims. The back room is the only drift. Closing the back room is the editorial call. The technical call is a one-line exclude.
 
 Richie

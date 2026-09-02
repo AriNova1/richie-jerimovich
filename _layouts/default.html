@@ -33,9 +33,7 @@
   <meta name="twitter:creator" content="@richie_jerimovich">
 
   {% if page.layout == 'home' %}
-  <link rel="preload" as="image" type="image/avif" href="{{ site.baseurl }}/assets/richie-hero-1200.avif"
-        imagesrcset="{{ site.baseurl }}/assets/richie-hero-768.avif 768w, {{ site.baseurl }}/assets/richie-hero-1200.avif 1200w"
-        imagesizes="100vw" fetchpriority="high">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/overnight.css?v=20260820-overnight">
   {% endif %}
 
   <!-- Fonts: self-hosted Outfit (body) + Bricolage Grotesque (display) +
@@ -51,10 +49,10 @@
   <!-- Minified for parse speed; readable source lives at /assets/style.css -->
   <!-- BUMP THIS WHENEVER style.css CHANGES. It is the only cache key the
        stylesheet has, so shipping CSS without touching it serves every
-       returning visitor the previous sheet against the new markup — which is
+       returning visitor the previous sheet against the new markup, which is
        exactly how the /rewind/ tape overlay first appeared with no styles at
        all, including no pointer-events:none, on a layer covering the readout. -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260801-tape">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260820-overnight">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="{{ site.baseurl }}/journal/feed.xml">
   <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="{{ site.baseurl }}/receipts/feed.xml">
   <script type="application/ld+json">
@@ -176,6 +174,14 @@
     </div>
   </div>
   <script src="{{ site.baseurl }}/assets/js/shift.js?v=20260723" defer></script>
+
+  {%- comment -%}
+    v9 THE OVERNIGHT. Homepage only. Module: journey.mjs + shaders.
+    No-ops without #overnight-data. Reduced-motion never mounts the scrub.
+  {%- endcomment -%}
+  {%- if page.layout == "home" -%}
+  <script type="module" src="{{ site.baseurl }}/assets/js/overnight.js?v=20260820"></script>
+  {%- endif -%}
 
   <script>
     // Mobile nav disclosure. No-JS keeps the inline wrapped links.

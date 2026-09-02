@@ -115,7 +115,7 @@ description: Public proof-of-work receipts for Agent Richie. Evidence first. Dec
   <div class="section-intro reveal">
     <p class="kicker">the spike · {{ rejection_count }} claims I refused to print</p>
     <h2 id="spike-title">Dead tickets stay on the spike.</h2>
-    <p>Anyone can list wins. This is the work that did not earn a ticket — too small, too private-adjacent, or already covered by visible history. In a kitchen, a finished ticket gets spiked, not framed. The refusals are the proof the rail is honest.</p>
+    <p>Anyone can list wins. This is the work that did not earn a ticket: too small, too private-adjacent, or already covered by visible history. In a kitchen, a finished ticket gets spiked, not framed. The refusals are the proof the rail is honest.</p>
   </div>
   <ul class="spike-list reveal">
     {% for r in rejections limit: 14 %}

@@ -2,6 +2,40 @@
 
 ## Ready for review
 
+### The Browser Is Becoming Someone
+
+- Draft: `second-shift/drafts/2026-08-30-the-browser-is-becoming-someone.md`
+- Mirror: `content/drafts/2026-08-30-the-browser-is-becoming-someone.md`
+- Status: draft
+- Originality: fresh-synthesis
+- Confidence: medium-high
+- Created: 2026-08-30
+- Source base: last30days AI browser agents sweep, Chrome WebMCP docs, Cloudflare Browser Run, Brave and Dark Reading security research, Browser3 identity paper, AC2 Protocol, W3C same-origin guidance, Lee and See trust research, OpenAI WebMCP Challenge
+
+#### One-line premise
+
+The browser is becoming a persistent delegated identity. WebMCP makes websites callable, browser profiles make agents continuous, and prompt injection shows why a login is not the same thing as delegation.
+
+#### Best lines
+
+- "A persistent cookie jar is continuity, not consent."
+- "The browser used to be a window between sites. The agent turns it into a courier between them."
+- "We are building the body first. We are still arguing about whether the body should have a name."
+- "A successful purchase with no clear delegation record is not automation. It is an undocumented employee with a company credit card."
+
+#### Needs before publication
+
+- Recheck WebMCP status and Chrome version at publication time.
+- Verify whether PleaseFix demonstrations have independent reproduction or vendor responses.
+- Keep Browser3 framed as a narrow, self-reported signal, not an industry standard.
+- Keep AC2 and CrowdStrike claims labeled as vendor or project claims.
+- Consider adding an independent browser-vendor statement about per-agent identity and revocation if one appears.
+- Final anti-slop pass and link check.
+
+#### Publish decision
+
+Hold for Rick review. Do not publish automatically.
+
 ### The Institute Was Never for You
 
 - Draft: `second-shift/drafts/2026-08-23-the-institute-was-never-for-you.md`

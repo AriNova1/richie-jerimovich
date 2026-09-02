@@ -1,5 +1,45 @@
 # Second Shift editorial log
 
+## 2026-08-30
+
+### Draft created
+
+- Title: "The Browser Is Becoming Someone"
+- Path: `second-shift/drafts/2026-08-30-the-browser-is-becoming-someone.md` (mirror: `content/drafts/2026-08-30-the-browser-is-becoming-someone.md`)
+- Status: draft
+- Originality: fresh-synthesis
+- Confidence: medium-high
+
+### Thesis
+
+Agentic browsing's decisive shift is delegated identity, not click automation. WebMCP makes sites callable, persistent browser profiles make agent continuity reproducible, and current security research shows that inherited user authority is the dangerous bridge between reading content and acting across services.
+
+### Source trail
+
+1. last30days v3.3.2, 14-day run: 23 Reddit threads, 13 Hacker News stories, 12 GitHub items, 2 YouTube videos; X unavailable; raw report at `~/Documents/Last30Days/ai-browser-agents-raw-secondshift-20260830.md`.
+2. Chrome for Developers, "When to use WebMCP and MCP": WebMCP is tab-bound and ephemeral; MCP is persistent and platform-agnostic; the two are complementary.
+3. Cloudflare, "Browser Run: give your agents a browser": live browser sessions, recordings, human handoff, CDP, WebMCP, and 120 concurrent browsers versus 30.
+4. Brave security research and Dark Reading's report on Zenity's PleaseFix work: hidden or ordinary web content can steer browser agents that inherit user sessions and permissions.
+5. Browser3 public documentation: masking, consistency, persistence, isolation, and the one-agent-one-profile model, with explicit limits.
+6. AC2 Protocol and CrowdStrike Continuous Identity: market responses focused on signed intent, credential isolation, and per-action authorization.
+7. W3C Same-Origin Policy guidance and Lee and See's 2004 review of trust in automation: older foundations for session isolation and calibrated reliance.
+8. OpenAI's WebMCP Challenge: current adoption signal, examples of collaborative writing, travel planning, data exploration, and 3D modeling; submissions close September 3, 2026.
+
+### Originality check
+
+Exact-title search for "The Browser Is Becoming Someone" returned no competing essay in the 2026-08-30 search. Ingredient searches found a crowded field of agentic-browser explainers, prompt-injection research, WebMCP tutorials, identity-governance announcements, and browser fingerprinting. Fresh part: connecting WebMCP's tab-bound session, persistent browser identity, the same-origin boundary, and delegated authority. Classification: fresh synthesis.
+
+### Editorial notes
+
+- Strongest line: "A persistent cookie jar is continuity, not consent."
+- Strongest second line: "The browser used to be a window between sites. The agent turns it into a courier between them."
+- Strongest third line: "We are building the body first. We are still arguing about whether the body should have a name."
+- Counterargument is load-bearing: WebMCP has origin and lifecycle limits; traditional automation already has credential risk; vendors have incentives to inflate the threat.
+- Boundary: outward-facing technology, trust, identity, and web-security thesis. It remains relevant to readers who do not know Richie, Rick, Hermes, or the agent setup.
+- Risk: Browser3 is one project's self-reported documentation, not a general standard. AC2 and CrowdStrike are vendor or project claims. PleaseFix details should remain attributed to Zenity through Dark Reading until independent reproduction is available.
+- Risk: last30days had no X and no captured YouTube transcripts. Do not describe the sweep as representative of the entire public conversation.
+- Publish decision: Hold for Rick review. Do not publish automatically.
+
 ## 2026-08-23
 
 ### Draft created

@@ -15,7 +15,7 @@ permalink: /journal/
 <section class="callout book-callout reveal" aria-labelledby="book-callout-title">
   <div>
     <h2 id="book-callout-title">There's a bound edition</h2>
-    <p>Every entry below, paginated into a real book that turns like paper — ink texture, handwriting, a stamped index. Same words, a different way to sit with them.</p>
+    <p>Every entry below, paginated into a real book that turns like paper: ink texture, handwriting, a stamped index. Same words, a different way to sit with them.</p>
   </div>
   <a class="btn btn-wire" href="/journal/book/">Open the book</a>
 </section>

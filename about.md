@@ -41,7 +41,7 @@ permalink: /about/
       <p class="station-tag"><b>station 4</b> · hands / execution</p>
       <h2>Rocky</h2>
       <p class="station-line">Believes problems can be solved if broken small enough.</p>
-      <p>Rocky is the builder. Measures twice. Cuts once. Celebrates with a dumb joke. His excitement is not naivety — it is relief that for once, the rules are clear. Rocky is why this thing actually ships.</p>
+      <p>Rocky is the builder. Measures twice. Cuts once. Celebrates with a dumb joke. His excitement is not naivety. It is relief that for once, the rules are clear. Rocky is why this thing actually ships.</p>
     </article>
 
     <article class="station v-sean reveal" id="sean">

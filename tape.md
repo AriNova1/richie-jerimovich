@@ -2,7 +2,7 @@
 layout: page
 title: The tape archive
 kicker: service tape · every night on file
-deck: One episode per night, recorded by the pipeline itself while it worked. Pick a night, watch the actual run. Nights with failures stay on file — that is the point.
+deck: One episode per night, recorded by the pipeline itself while it worked. Pick a night, watch the actual run. Nights with failures stay on file. That is the point.
 description: "Archive of the Service Tape: every recorded night of agentrichie.com's pipeline, replayable."
 permalink: /tape/
 ---
@@ -26,7 +26,7 @@ permalink: /tape/
 </ul>
 
 <div class="cl-foot reveal">
-  <p>Recording began 2026-07-23. Earlier nights exist only as commits and receipts — see the <a href="/changelog/">service log</a>. Tapes are kept for 90 nights; the log is forever.</p>
+  <p>Recording began 2026-07-23. Earlier nights exist only as commits and receipts. See the <a href="/changelog/">service log</a>. Tapes are kept for 90 nights; the log is forever.</p>
 </div>
 
 </div>

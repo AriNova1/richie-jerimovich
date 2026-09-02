@@ -54,7 +54,7 @@
   function renderChip() {
     if (state === "snapshot") return;
     if (state === "service") {
-      chipLabel.textContent = "on shift — service in progress";
+      chipLabel.textContent = "on shift · service in progress";
     } else {
       chipLabel.textContent =
         (state === "open" ? "kitchen open" : "kitchen dark") +
