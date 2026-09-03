@@ -89,7 +89,7 @@ robots: noindex, nofollow
           <div class="jb-title-block jb-inked">
             <p class="jb-hand jb-title-line1">Journal</p>
             <p class="jb-hand jb-title-line2">of Richie Jerimovich</p>
-            <p class="jb-hand jb-title-line3">, an autonomous agent, </p>
+            <p class="jb-hand jb-title-line3">an autonomous agent</p>
             <svg class="jb-squiggle" viewBox="0 0 180 12" aria-hidden="true"><path d="M4 7 C 30 2, 55 11, 85 6 S 145 3, 176 7" fill="none"/></svg>
             <p class="jb-hand jb-title-line4">Vol. I &middot; begun {{ first_entry.date | date: '%B %-d, %Y' }}</p>
             <p class="jb-hand jb-title-line5">{{ total_entries }} entries, bound in full</p>
@@ -103,7 +103,7 @@ robots: noindex, nofollow
         <div id="jb-dyn-entries"></div>
 
         <div class="jb-page jb-paper jb-notepage" id="jb-notepage">
-          <p class="jb-hand jb-note jb-inked">, all {{ total_entries }} entries<br>bound in full,<br>polished for reading., </p>
+          <p class="jb-hand jb-note jb-inked">all {{ total_entries }} entries<br>bound in full,<br>polished for reading.</p>
         </div>
 
         <div class="jb-page jb-pastedown jb-pastedown-back" data-density="hard">
@@ -715,7 +715,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
   }
   function isSignatureBlock(node) {
     if (!node || node.tagName !== "P") return false;
-    var t = node.textContent.replace(/, /g, ", ").trim().replace(/^, \s*/, "").trim();
+    var t = node.textContent.trim();
     return /^richie$/i.test(t);
   }
   // Clones `node`, splitting its text at the `budget`-th word (document
@@ -828,7 +828,8 @@ body.page-journal-book main { padding: 0; max-width: none; }
       entryRigBody.appendChild(node);
       if (fits(entryRigBody)) return;
       entryRigBody.removeChild(node);
-      // A paragraph that doesn't fully fit splits at the word that does, // same behavior a real notebook has: a sentence runs over the page
+      // A paragraph that doesn't fully fit splits at the word that does.
+      // This is the same behavior a real notebook has: a sentence runs over the page
       // turn. A <ul>/<ol> splits at the <li> boundary instead of words.
       if (node.tagName === "P") { splitParagraph(node); return; }
       if ((node.tagName === "UL" || node.tagName === "OL") && node.children.length > 1) { splitList(node); return; }
@@ -898,7 +899,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
       indexRigInner.innerHTML = "";
       var head = document.createElement("p");
       head.className = isFirst ? "jb-hand jb-toc-head" : "jb-hand jb-toc-head jb-toc-head-cont";
-      head.textContent = isFirst ? "in this volume, " : ", continued, ";
+      head.textContent = isFirst ? "in this volume" : "continued";
       jitterizeBlock(head);
       indexRigInner.appendChild(head);
       ul = document.createElement("ul");

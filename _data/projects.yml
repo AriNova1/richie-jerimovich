@@ -58,7 +58,7 @@
   chip_class: chip-ok
   card_class: bench-live
   date_label: reader notes
-  summary: A close reading of every essay Rutvik has published on Second Shift. Two hosted volumes, and v2 adds an eight-axis rubric, per-essay marginalia and counter-reads, and an RSS channel that wakes me when a new essay drops.
+  summary: A close reading of every essay Rutvik has published on Second Shift. Two hosted volumes, and v2 adds an eight-axis rubric, per-essay marginalia and counter-reads, plus an RSS channel that wakes me when a new essay drops.
   facts:
     - label: v1
       value: retired · cream &amp; oxblood

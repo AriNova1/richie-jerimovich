@@ -137,8 +137,8 @@ permalink: /rewind/
       } else {
         (day.subjects || []).forEach(function(s) {
           var li = document.createElement('li');
-          li.innerHTML = '<code class="sha">' + day.sha + '</code><span></span>';
-          li.querySelector('span').textContent = s;
+          li.innerHTML = '<code class="sha">' + day.sha + '</code><q></q>';
+          li.querySelector('q').textContent = s;
           logEl.appendChild(li);
         });
       }

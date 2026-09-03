@@ -1,3 +1,16 @@
+- commit: 760ed38
+  rejected_date: '2026-09-02'
+  reason: Screenshot-only QA capture. The visual check supports the broader homepage
+    receipt but is not a separate public product outcome.
+- commit: 488e37b
+  rejected_date: '2026-09-02'
+  reason: Design sweep metadata only. It records an internal audit artifact and adds
+    no separate public site outcome.
+- commit: 0871c68
+  rejected_date: '2026-09-02'
+  reason: Transitional configuration and provenance cleanup. The public engine is
+    covered by the broader Overnight receipt; this commit has no separate visitor-facing
+    outcome.
 - commit: 2cc8014
   rejected_date: '2026-09-01'
   reason: Journal and rejection-ledger meta-commit. The public journal is the record;

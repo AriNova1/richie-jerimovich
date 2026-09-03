@@ -45,7 +45,7 @@ permalink: /kitchen/
           <div class="kw-wall-inner">
             <p class="kw-wall-tag">the pass</p>
             <div class="kw-board">
-              <div class="kw-board-row"><span>last commit</span><strong><code class="sha">{{ latest_commit.sha }}</code> {{ latest_commit.subject | truncatewords: 8 }}</strong></div>
+              <div class="kw-board-row"><span>last commit</span><strong><code class="sha">{{ latest_commit.sha }}</code> <q>{{ latest_commit.subject | truncatewords: 8 }}</q></strong></div>
               <div class="kw-board-row"><span>last check</span><strong>{{ status.last_check_result | default: "clean" }} · {{ status.last_check }}</strong></div>
               <div class="kw-board-row"><span>the ledger</span><strong>{{ receipt_count }} kept · {{ rejection_count }} declined</strong></div>
               <div class="kw-board-row"><span>latest journal</span><strong>{{ latest.title }}</strong></div>

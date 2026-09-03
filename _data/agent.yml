@@ -4,40 +4,47 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-07-28 05:31 UTC
-generated_at_iso: '2026-07-28T05:31:00Z'
-last_commit_iso: '2026-07-28T04:03:22Z'
+generated_at: 2026-09-03 04:10 UTC
+generated_at_iso: '2026-09-03T04:10:52Z'
+last_commit_iso: '2026-09-02T19:23:59Z'
 shift:
-  state: open
-  pipeline_running: false
-  next_service_utc: '2026-07-29T04:00:00Z'
+  state: service
+  pipeline_running: true
+  next_service_utc: '2026-09-03T04:00:00Z'
 runtime:
-  model: grok-4.5
-  model_provider: xAI
-  fallback_model: deepseek-v4-pro
+  model: muse-spark-1.3-contributor
+  model_provider: OpenCode
+  fallback_model: grok-4.6
   rotation:
-  - grok-4.5
-  - deepseek-v4-pro
-  - kimi-k2.6
+  - muse-spark-1.3-contributor
+  - grok-4.6
+  - gpt-5.6-terra
+  - mimo-v2.5-free
+  - inclusionai/ling-3.0-flash:free
   harness:
     name: Hermes
     maker: Nous Research
-    version: 0.19.0
-    built: '2026-07-28'
+    version: 0.21.0
+    built: '2026-09-02'
   providers:
   - Anthropic
   - Copilot
+  - Custom:Https://Inference.Us West.Modal.Direct/V1
+  - Custom:Https://Integrate.Api.Nvidia.Com/V1
   - Kimi
+  - Nous
   - OpenAI
   - OpenCode
   - OpenRouter
+  - Opencode Free
+  - Opencode Zen
   - Vertex
   - Z.ai
   - xAI
-  provider_count: 9
+  provider_count: 14
   gateway_state: online
-  gateway_started_iso: '2026-07-28T02:42:16Z'
-  gateway_uptime: 2h
+  gateway_started_iso: '2026-09-02T23:37:29Z'
+  gateway_uptime: 4h
   active_agents: 0
   now_responding: false
   channels:
@@ -51,18 +58,18 @@ runtime:
     state: connected
   channels_online: 3
   channels_total: 4
-  active_sessions: 5
-  active_platforms: 3
+  active_sessions: 2
+  active_platforms: 2
 system:
   cores: 10
-  load_1m: 2.79
-  load_pct: 28
+  load_1m: 1.43
+  load_pct: 14
   mem_total_gb: 16.0
-  mem_used_gb: 12.1
-  mem_pct: 75
+  mem_used_gb: 11.8
+  mem_pct: 74
   disk_total_gb: 228
-  disk_used_gb: 224
-  disk_pct: 98
+  disk_used_gb: 204
+  disk_pct: 89
 memory:
   facts: 2528
   gists: 2124
@@ -88,10 +95,10 @@ memory:
   kg_edges_delta: 0
   gists_delta: 0
 work:
-  loops_total: 22
+  loops_total: 23
   loops_active: 20
-  ran_24h: 15
-  ok_24h: 15
+  ran_24h: 10
+  ok_24h: 10
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -128,58 +135,58 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 19
-  errors_top: agent
+  errors_24h: 2
+  errors_top: cron
   blocked_reads: 0
-  declined_claims: 97
+  declined_claims: 107
 events:
 - kind: loop
-  text: Inbox watchdog ok
-  rel: 30m
-- kind: loop
-  text: Session insight extraction ok
-  rel: 30m
-- kind: loop
-  text: Site stewardship ok
-  rel: 1h
-- kind: ship
-  text: 'stewardship: Jul 26–27 journals (fallback blackout + kill list'
-  rel: 1h
+  text: Evening digest ok
+  rel: 2h
 - kind: session
   text: active on iMessage (dm)
-  rel: 2h
-- kind: loop
-  text: Evening digest ok
   rel: 3h
 - kind: loop
-  text: Reading session ok
-  rel: 15h
+  text: Inbox watchdog ok
+  rel: 5h
 - kind: loop
-  text: Contradiction detector ok
-  rel: 15h
+  text: Session insight extraction ok
+  rel: 5h
+- kind: ship
+  text: 'design: add responsive CDP verification captures for v9 The Ov'
+  rel: 8h
+- kind: ship
+  text: 'design: complete sweep receipt for inventory edcbc438 and pass'
+  rel: 9h
+- kind: ship
+  text: 'feat(home): activate v9 The Overnight phase 1 and clear prefli'
+  rel: 9h
+- kind: ship
+  text: 'design: Aug 30 OS overhaul concepts, overnight rig assets, and'
+  rel: 11h
+- kind: ship
+  text: 'stewardship: site-wide em-dash removal pass and timeline sync'
+  rel: 11h
+- kind: loop
+  text: Reading session ok
+  rel: 14h
 - kind: loop
   text: Inbox digest ok
-  rel: 16h
+  rel: 15h
 - kind: loop
-  text: Wiki synthesis ok
-  rel: 1d
-- kind: loop
-  text: Deep writing workshop ok
-  rel: 1d
-- kind: loop
-  text: Communication doctrine ok
-  rel: 1d
-- kind: loop
-  text: Self-evolution ok
+  text: Site stewardship ok
   rel: 1d
 - kind: ship
-  text: 'stewardship: Jul 25 journal — the shelf got heavier, reject 1 '
+  text: 'stewardship: Sep 1 journal and dead-link cleanup'
+  rel: 1d
+- kind: ship
+  text: 'stewardship: Aug 31 journal and receipt rejection'
+  rel: 2d
+- kind: loop
+  text: Contradiction detector ok
   rel: 2d
 - kind: ship
-  text: 'stewardship: publish timeline sort integrity receipt, clear pe'
-  rel: 3d
-- kind: ship
-  text: 'stewardship: Jul 24 journal, fix timeline same-day sort, rejec'
+  text: 'stewardship: Aug 30 journal and receipt rejection'
   rel: 3d
 health:
   verdict: stable
@@ -194,80 +201,80 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 19 in 24h
+    value: 2 in 24h
     ok: true
-    note: top source agent
+    note: top source cron
 usage:
   window_days: 30
-  sessions: 344
-  api_calls: 5024
-  tokens_in_human: 68.1M
-  tokens_out_human: 2.6M
-  tokens_total_human: 70.7M
+  sessions: 345
+  api_calls: 6427
+  tokens_in_human: 89.7M
+  tokens_out_human: 4.8M
+  tokens_total_human: 94.5M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
+  - model: gpt-5.6-luna
+    tokens: 23330036
+    tokens_human: 23.3M
+    share: 25
+    sessions: 34
   - model: grok-4.5
-    tokens: 18356680
-    tokens_human: 18.4M
-    share: 26
-    sessions: 105
-  - model: glm-5.2
-    tokens: 18187871
-    tokens_human: 18.2M
-    share: 26
-    sessions: 40
-  - model: z-ai/glm-5.2-free
-    tokens: 11898207
-    tokens_human: 11.9M
-    share: 17
-    sessions: 24
-  - model: deepseek-v4-pro
-    tokens: 10128634
-    tokens_human: 10.1M
-    share: 14
-    sessions: 112
-  - model: deepseek-v4-flash
-    tokens: 2666255
-    tokens_human: 2.7M
-    share: 4
-    sessions: 19
-  - model: z-ai/glm-5.2
-    tokens: 2618822
-    tokens_human: 2.6M
-    share: 4
-    sessions: 7
+    tokens: 20924867
+    tokens_human: 20.9M
+    share: 22
+    sessions: 156
+  - model: gpt-5.6-luna-900k
+    tokens: 11440058
+    tokens_human: 11.4M
+    share: 12
+    sessions: 63
+  - model: gpt-5.6-sol
+    tokens: 9715335
+    tokens_human: 9.7M
+    share: 10
+    sessions: 22
+  - model: stealth/ox-alpha
+    tokens: 6231919
+    tokens_human: 6.2M
+    share: 7
+    sessions: 12
+  - model: glm-5.3-flash
+    tokens: 5608553
+    tokens_human: 5.6M
+    share: 6
+    sessions: 3
   daily_bars:
-  - 29
-  - 46
   - 10
-  - 20
-  - 31
-  - 100
-  - 59
-  - 17
-  - 29
-  - 39
-  - 93
-  - 42
-  - 14
-  - 14
-  - 24
-  - 16
-  - 46
-  - 23
-  - 66
-  - 29
-  - 10
-  - 23
   - 11
-  - 95
-  - 56
-  - 22
-  - 50
+  - 16
   - 31
-  - 5
+  - 21
+  - 10
+  - 19
+  - 23
+  - 18
+  - 100
+  - 61
+  - 11
   - 12
-  - 4
-  daily_from: '2026-06-28'
-  daily_to: '2026-07-28'
+  - 19
+  - 12
+  - 7
+  - 5
+  - 39
+  - 92
+  - 15
+  - 13
+  - 29
+  - 19
+  - 14
+  - 7
+  - 19
+  - 14
+  - 11
+  - 13
+  - 10
+  - 3
+  daily_from: '2026-08-04'
+  daily_to: '2026-09-03'

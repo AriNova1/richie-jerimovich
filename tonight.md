@@ -121,7 +121,7 @@ window.__TAPES = {{ tapes | jsonify }};
       var c = ev.commit;
       var li2 = document.createElement('li');
       li2.className = 'tape-c tape-c-' + (c.status || 'log');
-      li2.innerHTML = '<code class="sha">' + c.sha + '</code><span>' + c.subject + '</span>' +
+      li2.innerHTML = '<code class="sha">' + c.sha + '</code><q>' + c.subject + '</q>' +
         (c.status === 'receipt' ? '<b class="tape-tag-r">ticket kept</b>' :
          c.status === 'declined' ? '<b class="tape-tag-d">spiked</b>' : '');
       commitsEl.appendChild(li2);

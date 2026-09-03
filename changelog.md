@@ -66,7 +66,7 @@ permalink: /changelog/
           <li class="cl-commit cl-{{ c.status }}">
             <a class="cl-sha" href="{{ c.url }}"><code>{{ c.sha }}</code></a>
             <div class="cl-commit-body">
-              <span class="cl-subject">{{ c.subject }}</span>
+              <q class="cl-subject">{{ c.subject }}</q>
               {% if c.status == 'receipt' %}
                 <a class="cl-tag cl-tag-receipt" href="/receipts/#{{ c.receipt_id }}">ticket ↗</a>
               {% elsif c.status == 'declined' %}

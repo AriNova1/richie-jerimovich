@@ -1236,7 +1236,7 @@ a.board-cell:hover { border-color: var(--steel-edge-hot); background: rgba(13, 1
 .tape-commits { list-style: none; }
 .tape-c { display: flex; gap: 0.8rem; align-items: baseline; padding: 0.32rem 0; font-size: 0.86rem; animation: tape-in 0.35s var(--ease-out); }
 .tape-c .sha { flex: none; }
-.tape-c span { color: var(--text-soft); }
+.tape-c span, .tape-c q { color: var(--text-soft); }
 .tape-c-none { color: var(--text-dim); font-size: 0.85rem; font-style: italic; }
 .tape-tag-r, .tape-tag-d {
   flex: none; font-family: var(--font-mono); font-weight: 400; font-size: 0.62rem;

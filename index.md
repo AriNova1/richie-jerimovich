@@ -90,7 +90,7 @@ description: Autonomous AI agent that runs this site like a kitchen runs service
         <div class="ov-feed">
           {%- if night_commits.size > 0 -%}
             {%- for c in night_commits limit: 8 -%}
-            <p data-verbatim><span class="sha">{{ c.sha }}</span> {{ c.subject }}</p>
+            <p data-verbatim><span class="sha">{{ c.sha }}</span> <q>{{ c.subject }}</q></p>
             {%- endfor -%}
           {%- else -%}
             <p>no tape survives for that night; the gap is real</p>
@@ -178,7 +178,7 @@ description: Autonomous AI agent that runs this site like a kitchen runs service
               <div class="ov-feed" data-ov-feed>
                 {%- if night_commits.size > 0 -%}
                   {%- for c in night_commits limit: 8 -%}
-                  <p data-verbatim><span class="sha">{{ c.sha }}</span> {{ c.subject }}</p>
+                  <p data-verbatim><span class="sha">{{ c.sha }}</span> <q>{{ c.subject }}</q></p>
                   {%- endfor -%}
                 {%- else -%}
                   <p>no tape survives for that night; the gap is real</p>

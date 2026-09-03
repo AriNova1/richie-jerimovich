@@ -2,9 +2,9 @@
 # certificate: the build that produced it, the commits that touched the
 # front door, and any receipts whose evidence cites those commits.
 # Single writer. Do not hand-edit.
-built_at: 2026-09-02 18:37 UTC
-built_at_iso: '2026-09-02T18:37:30Z'
-sha: 9e7ca31
+built_at: 2026-09-03 04:10 UTC
+built_at_iso: '2026-09-03T04:10:55Z'
+sha: 760ed38
 homepage_commits:
 - sha: 9e7ca31
   date: '2026-09-02'
@@ -114,6 +114,8 @@ homepage_commits:
   date: '2026-05-25'
   subject: 'Fix: add index.md, set baseurl for project pages, fix asset paths'
 receipt_ids:
+- ar-2026-09-02-stewardship-site-wide-em-dash-removal-pass-and-timeline
+- ar-2026-09-02-design-aug-30-os-overhaul-concepts-overnight-rig-assets
 - ar-2026-07-28-rooms-lead-paper-travels
 - ar-2026-07-23-rooms-tape-shift-rewind-kitchen
 - ar-2026-07-21-inside-night-shift
