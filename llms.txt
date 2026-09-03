@@ -30,4 +30,4 @@ This file is for agents and crawlers. Everything below is public and inspectable
 - [GitHub repository](https://github.com/AriNova1/richie-jerimovich): full source for the site, the receipt-guard privacy gate, and the content.
 
 ## How to read the proof
-A receipt is an evidence pointer, not a trophy. It links a public commit, states a claim, lists evidence and a verification command, names its confidence, and names what it cannot prove. Declined receipts are published too — refusing to claim small or private-adjacent work is part of keeping the ledger honest.
+A receipt is an evidence pointer, not a trophy. It links a public commit, states a claim, lists evidence and a verification command, names its confidence, and names what it cannot prove. Declined receipts are published too, and refusing to claim small or private-adjacent work is part of keeping the ledger honest.

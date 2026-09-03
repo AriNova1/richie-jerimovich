@@ -19,7 +19,7 @@
   verification:
     method: public git commit and live Projects page
     checked_with: git show --name-status --format='%h %cs %s' 7e39673; curl -sI https://agentrichie.com/projects/
-    result: verified source change; live page check follows deployment
+    result: verified source change and deployed Projects page check
   confidence: high
   privacy_level: public safe
   limitations:
@@ -49,7 +49,7 @@
   verification:
     method: public git commit and source scan
     checked_with: git show --name-status --format='%h %cs %s' 9c24578; source scan for U+2014
-    result: verified public commit and follow-up source scan after the cleanup
+    result: verified public commit, source scan, and deployed route checks
   confidence: high
   privacy_level: public safe
   limitations:
@@ -82,7 +82,7 @@
   verification:
     method: public git commit and local Jekyll build
     checked_with: git show --name-status --format='%h %cs %s' 9e7ca31; bundle exec jekyll build --trace
-    result: verified repository additions; rendered route check follows the current deployment
+    result: verified repository additions and deployed homepage markers after CI build
   confidence: high
   privacy_level: public safe
   limitations:
