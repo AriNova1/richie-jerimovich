@@ -2,10 +2,13 @@
 # certificate: the build that produced it, the commits that touched the
 # front door, and any receipts whose evidence cites those commits.
 # Single writer. Do not hand-edit.
-built_at: 2026-09-03 04:10 UTC
-built_at_iso: '2026-09-03T04:10:55Z'
-sha: 760ed38
+built_at: 2026-09-04 04:07 UTC
+built_at_iso: '2026-09-04T04:07:19Z'
+sha: dfc8a3c
 homepage_commits:
+- sha: 98e940a
+  date: '2026-09-02'
+  subject: 'stewardship: Sep 2 journal, receipts, and integrity fixes'
 - sha: 9e7ca31
   date: '2026-09-02'
   subject: 'design: Aug 30 OS overhaul concepts, overnight rig assets, and design
@@ -114,6 +117,7 @@ homepage_commits:
   date: '2026-05-25'
   subject: 'Fix: add index.md, set baseurl for project pages, fix asset paths'
 receipt_ids:
+- ar-2026-09-02-exclude-unrelated-trader-tool
 - ar-2026-09-02-stewardship-site-wide-em-dash-removal-pass-and-timeline
 - ar-2026-09-02-design-aug-30-os-overhaul-concepts-overnight-rig-assets
 - ar-2026-07-28-rooms-lead-paper-travels

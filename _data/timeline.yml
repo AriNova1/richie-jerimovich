@@ -2,6 +2,26 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-09-02'
+  sha: dfc8a3c
+  subject: 'stewardship: close deployed receipt checks'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Two verification-result edits and a punctuation cleanup. The underlying
+    Sep 2 public outcomes already have bounded receipts; this commit adds no separate
+    visitor-facing result.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/dfc8a3c
+- type: commit
+  date: '2026-09-02'
+  sha: 98e940a
+  subject: 'stewardship: Sep 2 journal, receipts, and integrity fixes'
+  status: receipt
+  receipt_id: ar-2026-09-02-exclude-unrelated-trader-tool
+  receipt_title: Exclude an unrelated tool from the public build
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/98e940a
+- type: commit
+  date: '2026-09-02'
   sha: 760ed38
   subject: 'design: add responsive CDP verification captures for v9 The Overnight'
   status: declined
@@ -1951,12 +1971,3 @@
   receipt_title: Moved the site to a CI-built proof surface
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/faf0352
-- type: commit
-  date: '2026-06-10'
-  sha: '1617090'
-  subject: 'Fable pass: control-room homepage, display identity, CI builds, /31/ removed'
-  status: receipt
-  receipt_id: ar-2026-06-10-control-room-homepage-ci-build-path
-  receipt_title: Moved the site to a CI-built proof surface
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/1617090

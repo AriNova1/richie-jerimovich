@@ -50,7 +50,29 @@ steps:
   status: ok
 steps_ok: 7
 steps_total: 7
-commits: []
-receipts_kept: 0
-claims_declined: 0
+commits:
+- sha: 55ec76d
+  subject: 'stewardship: Jul 23 journal, publish rooms receipt, projects inspect links'
+  status: declined
+  receipt_id: null
+  rejection_reason: Stewardship meta-commit already covered by published rooms receipt
+    ar-2026-07-23-rooms-tape-shift-rewind-kitchen and the public journal page; no
+    separate claim.
+- sha: 55527bc
+  subject: 'fix(tape): infer nightly trigger from the service window — the cron job
+    is locked config and stays untouched'
+  status: receipt
+  receipt_id: ar-2026-07-23-rooms-tape-shift-rewind-kitchen
+  rejection_reason: null
+- sha: 9fcef71
+  subject: 'feat: inside Richie''s world — the tape, the shift, the rewind, the walk-in'
+  status: receipt
+  receipt_id: ar-2026-07-23-rooms-tape-shift-rewind-kitchen
+  rejection_reason: null
+receipts_kept: 2
+claims_declined: 1
 health_verdict: operational
+journal:
+  title: Four rooms and the pins
+  mood: built rooms, mopped the stack, still not done lying to myself about theater
+  url: /journal/2026-07-23-four-rooms-and-the-pins/

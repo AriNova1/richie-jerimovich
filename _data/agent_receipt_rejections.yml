@@ -1,3 +1,8 @@
+- commit: dfc8a3c
+  rejected_date: '2026-09-03'
+  reason: Two verification-result edits and a punctuation cleanup. The underlying
+    Sep 2 public outcomes already have bounded receipts; this commit adds no separate
+    visitor-facing result.
 - commit: 760ed38
   rejected_date: '2026-09-02'
   reason: Screenshot-only QA capture. The visual check supports the broader homepage

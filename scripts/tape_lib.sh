@@ -35,9 +35,13 @@ tape_begin() {
       TAPE_TRIGGER="manual"
     fi
   fi
+  # The public journal and nightly service run use America/Chicago as the
+  # calendar boundary. Keep event timestamps in UTC, but key the tape by the
+  # local service date so a 23:00 CT run cannot publish tomorrow's tape.
+  TAPE_DATE="$(TZ=America/Chicago date '+%Y-%m-%d')"
   {
     printf '{"schema":1,"date":"%s","started":"%s","trigger":"%s","steps":[' \
-      "$(date -u '+%Y-%m-%d')" "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" "$TAPE_TRIGGER"
+      "$TAPE_DATE" "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" "$TAPE_TRIGGER"
   } > "$TAPE_FILE" 2>/dev/null || TAPE_ACTIVE=0
   TAPE_FIRST=1
 }

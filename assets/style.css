@@ -299,7 +299,7 @@ footer.site-foot {
   color: var(--ticket-ink-soft);
   border-bottom: 1px dashed var(--ticket-rule); padding-bottom: 0.5rem; margin-bottom: 0.65rem;
 }
-.ticket h3, .ticket .t-title {
+.ticket h2, .ticket .t-title {
   font-family: var(--font-mono); font-weight: 500; font-size: 0.92rem;
   color: var(--ticket-ink); letter-spacing: 0; line-height: 1.4; text-wrap: pretty;
 }
@@ -900,7 +900,7 @@ a.board-cell:hover { border-color: var(--steel-edge-hot); background: rgba(13, 1
 }
 @media (max-width: 860px) { .ticket-ledger { columns: 1; } }
 .ledger-ticket { break-inside: avoid; margin-bottom: 1.4rem; }
-.ledger-ticket h3 { font-size: 0.98rem; }
+.ledger-ticket h2 { font-size: 0.98rem; }
 .ledger-ticket .t-meta { margin-top: 0.5rem; font-size: 0.78rem; line-height: 1.55; }
 .ledger-ticket .t-claim, .ledger-ticket .t-evidence, .ledger-ticket .t-verify, .ledger-ticket .t-limits { margin-top: 0.85rem; }
 .ledger-ticket .t-claim > span, .ledger-ticket .t-evidence > span,

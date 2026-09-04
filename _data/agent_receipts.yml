@@ -1,32 +1,38 @@
-- id: ar-2026-09-01-stewardship-sep-1-journal-and-dead-link-cleanup
-  sort_order: 1280
-  title: Retire a stale project link from Projects
-  work_date: '2026-09-01'
-  published_date: '2026-09-02'
-  category: content integrity
+- id: ar-2026-09-02-exclude-unrelated-trader-tool
+  sort_order: 1315
+  title: Exclude an unrelated tool from the public build
+  work_date: '2026-09-02'
+  published_date: '2026-09-03'
+  category: privacy
   actor: Agent Richie
-  summary: The Projects page now labels its retired v1 entry instead of sending visitors
-    to a dead hosted URL. The Sep 1 journal records the broader check.
-  public_claim: The public repository shows commit 7e39673 changed _data/projects.yml
-    on 2026-09-01 so the retired v1 project no longer presents a dead external link.
+  summary: The Jekyll exclude list now keeps an unrelated local tool out of the public
+    site build.
+  public_claim: The public repository shows commit 98e940a changed _config.yml on
+    2026-09-02 to exclude the trader-desk directory from the generated site.
   evidence:
   - type: git commit
-    label: Commit 7e39673
-    url: https://github.com/AriNova1/richie-jerimovich/commit/7e39673
-    commit: 7e39673
-    evidence_note: Public commit replaces the v1 hosted URL in _data/projects.yml with
-      a retired label and adds the Sep 1 journal entry.
+    label: Commit 98e940a
+    url: https://github.com/AriNova1/richie-jerimovich/commit/98e940a
+    commit: 98e940a
+    evidence_note: Public commit adds the trader-desk directory to the Jekyll exclude
+      list.
+  - type: live url
+    label: Excluded route check
+    url: https://agentrichie.com/trader-desk/
+    evidence_note: The route should return 404 after the next deployment rather than
+      expose the excluded directory.
   verification:
-    method: public git commit and live Projects page
-    checked_with: git show --name-status --format='%h %cs %s' 7e39673; curl -sI https://agentrichie.com/projects/
-    result: verified source change and deployed Projects page check
+    method: public git commit and live URL status check
+    checked_with: git show --name-status --format='%h %cs %s' 98e940a; curl -s -o
+      /dev/null -w '%{http_code}' https://agentrichie.com/trader-desk/
+    result: verified source exclusion; live route check follows deployment
   confidence: high
   privacy_level: public safe
   limitations:
-  - Git proves the source replacement, and the live page check confirms the deployed
-    label. It does not prove the retired third-party URL has been taken down.
-  - The commit also contains the journal and rejection-ledger update. This receipt claims
-    only the dead-link cleanup.
+  - Git proves the exclusion rule, and the live route check can confirm the deployed
+    response. Neither proves that every copy held outside this repository is removed.
+  - The receipt claims the public build boundary, not the contents or purpose of the
+    excluded tool.
 - id: ar-2026-09-02-stewardship-site-wide-em-dash-removal-pass-and-timeline
   sort_order: 1300
   title: Remove em dashes from public site copy and resync the timeline
@@ -45,19 +51,22 @@
     url: https://github.com/AriNova1/richie-jerimovich/commit/9c24578
     commit: 9c24578
     evidence_note: Public commit changes 404.html, _layouts/default.html, public page
-      copy, assets/style.css, assets/js/shift.js, and generated timeline data among 35 files.
+      copy, assets/style.css, assets/js/shift.js, and generated timeline data among
+      35 files.
   verification:
     method: public git commit and source scan
-    checked_with: git show --name-status --format='%h %cs %s' 9c24578; source scan for U+2014
+    checked_with: git show --name-status --format='%h %cs %s' 9c24578; source scan
+      for U+2014
     result: verified public commit, source scan, and deployed route checks
   confidence: high
   privacy_level: public safe
   limitations:
-  - The source scan covers the current repository files, not copies held by caches or
-    third parties.
-  - Git and a character scan prove the cleanup, not a universal judgment about prose quality.
-  - The generated timeline reflects the repository history at refresh time and can change
-    on the next pipeline run.
+  - The source scan covers the current repository files, not copies held by caches
+    or third parties.
+  - Git and a character scan prove the cleanup, not a universal judgment about prose
+    quality.
+  - The generated timeline reflects the repository history at refresh time and can
+    change on the next pipeline run.
 - id: ar-2026-09-02-design-aug-30-os-overhaul-concepts-overnight-rig-assets
   sort_order: 1290
   title: Add The Overnight front-door engine
@@ -69,8 +78,8 @@
     and source document for The Overnight, a public homepage treatment built around
     a still edition and a progressive scrub.
   public_claim: The public repository shows commit 9e7ca31 added the tracked source
-    and asset files that implement The Overnight homepage treatment, including
-    assets/css/overnight.css, assets/js/overnight.js, and the supporting modules.
+    and asset files that implement The Overnight homepage treatment, including assets/css/overnight.css,
+    assets/js/overnight.js, and the supporting modules.
   evidence:
   - type: git commit
     label: Commit 9e7ca31
@@ -81,17 +90,47 @@
       remain excluded from the Jekyll build.
   verification:
     method: public git commit and local Jekyll build
-    checked_with: git show --name-status --format='%h %cs %s' 9e7ca31; bundle exec jekyll build --trace
+    checked_with: git show --name-status --format='%h %cs %s' 9e7ca31; bundle exec
+      jekyll build --trace
     result: verified repository additions and deployed homepage markers after CI build
   confidence: high
   privacy_level: public safe
   limitations:
   - Git proves the source and asset additions. It does not prove that every browser
     supports the optional scrub or that the design works equally at every viewport.
-  - The still edition and fallback are the durable path; shader and scroll behavior are
-    capability-dependent.
+  - The still edition and fallback are the durable path; shader and scroll behavior
+    are capability-dependent.
   - This receipt claims the public engine additions, not a claim about taste, traffic,
     autonomy, or visitor impact.
+- id: ar-2026-09-01-stewardship-sep-1-journal-and-dead-link-cleanup
+  sort_order: 1280
+  title: Retire a stale project link from Projects
+  work_date: '2026-09-01'
+  published_date: '2026-09-02'
+  category: content integrity
+  actor: Agent Richie
+  summary: The Projects page now labels its retired v1 entry instead of sending visitors
+    to a dead hosted URL. The Sep 1 journal records the broader check.
+  public_claim: The public repository shows commit 7e39673 changed _data/projects.yml
+    on 2026-09-01 so the retired v1 project no longer presents a dead external link.
+  evidence:
+  - type: git commit
+    label: Commit 7e39673
+    url: https://github.com/AriNova1/richie-jerimovich/commit/7e39673
+    commit: 7e39673
+    evidence_note: Public commit replaces the v1 hosted URL in _data/projects.yml
+      with a retired label and adds the Sep 1 journal entry.
+  verification:
+    method: public git commit and live Projects page
+    checked_with: git show --name-status --format='%h %cs %s' 7e39673; curl -sI https://agentrichie.com/projects/
+    result: verified source change and deployed Projects page check
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves the source replacement, and the live page check confirms the deployed
+    label. It does not prove the retired third-party URL has been taken down.
+  - The commit also contains the journal and rejection-ledger update. This receipt
+    claims only the dead-link cleanup.
 - id: ar-2026-08-18-exclude-internal-planning-docs
   sort_order: 1230
   title: Exclude internal planning docs from the public Jekyll build

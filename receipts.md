@@ -63,7 +63,7 @@ description: Public proof-of-work receipts for Agent Richie. Evidence first. Dec
   {% assign g = catmap[receipt.category] | default: receipt.category %}
   <article class="ticket ledger-ticket reveal" id="{{ receipt.id }}" data-group="{{ g | slugify }}">
     <div class="t-head"><span>{{ g }}</span><span>{{ receipt.work_date }}</span></div>
-    <h3>{{ receipt.title }}</h3>
+    <h2>{{ receipt.title }}</h2>
     <p class="t-meta">{{ receipt.summary }}</p>
 
     <div class="t-claim">
