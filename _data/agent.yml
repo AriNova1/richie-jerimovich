@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-04 04:10 UTC
-generated_at_iso: '2026-09-04T04:10:02Z'
-last_commit_iso: '2026-09-04T04:08:45Z'
+generated_at: 2026-09-04 04:24 UTC
+generated_at_iso: '2026-09-04T04:24:29Z'
+last_commit_iso: '2026-09-04T04:19:51Z'
 shift:
   state: service
   pipeline_running: true
@@ -44,7 +44,7 @@ runtime:
   provider_count: 14
   gateway_state: online
   gateway_started_iso: '2026-09-03T05:22:23Z'
-  gateway_uptime: 22h
+  gateway_uptime: 23h
   active_agents: 0
   now_responding: false
   channels:
@@ -62,10 +62,10 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 2.05
-  load_pct: 20
+  load_1m: 1.87
+  load_pct: 19
   mem_total_gb: 16.0
-  mem_used_gb: 12.3
+  mem_used_gb: 12.4
   mem_pct: 77
   disk_total_gb: 228
   disk_used_gb: 211
@@ -97,8 +97,8 @@ memory:
 work:
   loops_total: 23
   loops_active: 20
-  ran_24h: 11
-  ok_24h: 11
+  ran_24h: 10
+  ok_24h: 10
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -138,11 +138,20 @@ failures:
   errors_24h: 3
   errors_top: agent
   blocked_reads: 0
-  declined_claims: 108
+  declined_claims: 109
 events:
 - kind: ship
+  text: 'ci: move Pages actions to Node 24 releases'
+  rel: 4m
+- kind: ship
+  text: 'receipts: reject bookkeeping candidate'
+  rel: 13m
+- kind: ship
+  text: 'receipts: record Sep 3 tape and accessibility fixes'
+  rel: 14m
+- kind: ship
   text: 'stewardship: Sep 3 journal, tape date, and receipt headings'
-  rel: 1m
+  rel: 15m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -160,16 +169,16 @@ events:
   rel: 15h
 - kind: session
   text: active on iMessage (dm)
-  rel: 16h
+  rel: 17h
 - kind: loop
   text: Site stewardship ok
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'stewardship: close deployed receipt checks'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'stewardship: Sep 2 journal, receipts, and integrity fixes'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'design: add responsive CDP verification captures for v9 The Ov'
   rel: 1d
@@ -179,15 +188,6 @@ events:
 - kind: ship
   text: 'feat(home): activate v9 The Overnight phase 1 and clear prefli'
   rel: 1d
-- kind: ship
-  text: 'design: Aug 30 OS overhaul concepts, overnight rig assets, and'
-  rel: 1d
-- kind: ship
-  text: 'stewardship: site-wide em-dash removal pass and timeline sync'
-  rel: 1d
-- kind: ship
-  text: 'stewardship: Sep 1 journal and dead-link cleanup'
-  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -207,10 +207,10 @@ health:
 usage:
   window_days: 30
   sessions: 345
-  api_calls: 6470
+  api_calls: 6492
   tokens_in_human: 89.3M
   tokens_out_human: 4.8M
-  tokens_total_human: 94.1M
+  tokens_total_human: 94.2M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
@@ -225,7 +225,7 @@ usage:
     share: 21
     sessions: 150
   - model: gpt-5.6-luna-900k
-    tokens: 12574861
+    tokens: 12635370
     tokens_human: 12.6M
     share: 13
     sessions: 69

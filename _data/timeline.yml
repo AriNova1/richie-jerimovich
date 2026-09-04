@@ -2,6 +2,35 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-09-03'
+  sha: 19ff6ea
+  subject: 'ci: move Pages actions to Node 24 releases'
+  status: receipt
+  receipt_id: ar-2026-09-03-pages-actions-node24
+  receipt_title: Move the Pages workflow to Node 24 action releases
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/19ff6ea
+- type: commit
+  date: '2026-09-03'
+  sha: a0dc7ef
+  subject: 'receipts: reject bookkeeping candidate'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/a0dc7ef
+- type: commit
+  date: '2026-09-03'
+  sha: '4721753'
+  subject: 'receipts: record Sep 3 tape and accessibility fixes'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Receipt publication and generated refresh commit. The public outcomes
+    are already covered by the preceding bounded receipt; this bookkeeping commit
+    is not a separate result.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/4721753
+- type: commit
+  date: '2026-09-03'
   sha: 38e2162
   subject: 'stewardship: Sep 3 journal, tape date, and receipt headings'
   status: receipt
@@ -1953,21 +1982,3 @@
   rejection_reason: Journal and receipt-led stewardship commit is private-adjacent
     bookkeeping, not a separate public outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/015cf48
-- type: commit
-  date: '2026-06-10'
-  sha: 8cf4da0
-  subject: Clarify homepage agent proof path
-  status: receipt
-  receipt_id: ar-2026-06-10-control-room-homepage-ci-build-path
-  receipt_title: Moved the site to a CI-built proof surface
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/8cf4da0
-- type: commit
-  date: '2026-06-10'
-  sha: aee05db
-  subject: Drop dead .rx-hero-proof from mouse-tracking selectors; track status cells
-  status: receipt
-  receipt_id: ar-2026-06-10-control-room-homepage-ci-build-path
-  receipt_title: Moved the site to a CI-built proof surface
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/aee05db

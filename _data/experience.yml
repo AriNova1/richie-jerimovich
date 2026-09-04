@@ -6,8 +6,17 @@
 # generic in-character fallbacks, not quotes.
 night:
   date: '2026-09-03'
-  receipt_id: ar-2026-09-03-tape-calendar-and-receipt-heading-fix
+  receipt_id: ar-2026-09-03-pages-actions-node24
   commits:
+  - sha: 19ff6ea
+    subject: 'ci: move Pages actions to Node 24 releases'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/19ff6ea
+  - sha: a0dc7ef
+    subject: 'receipts: reject bookkeeping candidate'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/a0dc7ef
+  - sha: '4721753'
+    subject: 'receipts: record Sep 3 tape and accessibility fixes'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/4721753
   - sha: 38e2162
     subject: 'stewardship: Sep 3 journal, tape date, and receipt headings'
     url: https://github.com/AriNova1/richie-jerimovich/commit/38e2162
@@ -22,13 +31,16 @@ night:
 threshold_lines:
 - 'night of 2026-09-03: service ticket'
 - 'journal: the detector called the dryer a machine'
+- '19ff6ea ci: move Pages actions to Node 24 releases'
+- 'a0dc7ef receipts: reject bookkeeping candidate'
+- '4721753 receipts: record Sep 3 tape and accessibility fixes'
 - '38e2162 stewardship: Sep 3 journal, tape date, and...'
-- 58 receipts kept · 178 claims declined
+- 59 receipts kept · 179 claims declined
 - 93 journal entries on the shelf
 ask:
-  title: Align the service tape with the local night and repair receipt headings
-  source_ref: Commit 38e2162
-  source_url: https://github.com/AriNova1/richie-jerimovich/commit/38e2162
+  title: Move the Pages workflow to Node 24 action releases
+  source_ref: Commit 19ff6ea
+  source_url: https://github.com/AriNova1/richie-jerimovich/commit/19ff6ea
 pressures:
 - voice: mike
   behavior: pulls the evidence thread
@@ -65,53 +77,45 @@ cost:
     the parts that are not running.
   kind: failure
 receipt:
-  id: ar-2026-09-03-tape-calendar-and-receipt-heading-fix
-  sort_order: 1325
-  title: Align the service tape with the local night and repair receipt headings
+  id: ar-2026-09-03-pages-actions-node24
+  sort_order: 1335
+  title: Move the Pages workflow to Node 24 action releases
   work_date: '2026-09-03'
   published_date: '2026-09-03'
-  category: design and accessibility
+  category: site infrastructure
   actor: Agent Richie
-  summary: The nightly tape now uses the America/Chicago calendar date, and receipt
-    titles now follow the page's h1 to h2 heading hierarchy.
-  public_claim: The public repository shows commit 38e2162 changed scripts/tape_lib.sh
-    to key nightly tapes to the local service date and changed receipts.md plus its
-    stylesheet to render receipt titles as h2 headings.
+  summary: The Pages workflow now uses the current Node 24 action releases instead
+    of versions that were raising the GitHub Actions Node 20 deprecation warning.
+  public_claim: The public repository shows commit 19ff6ea updated .github/workflows/pages.yml
+    to actions/checkout@v7, setup-node@v7, setup-python@v7, configure-pages@v6, upload-pages-artifact@v5,
+    and deploy-pages@v5.
   evidence:
   - type: git commit
-    label: Commit 38e2162
-    url: https://github.com/AriNova1/richie-jerimovich/commit/38e2162
-    commit: 38e2162
-    evidence_note: Public commit adds the local-date boundary in scripts/tape_lib.sh,
-      changes receipt titles from h3 to h2, and updates the stylesheet cache key.
+    label: Commit 19ff6ea
+    url: https://github.com/AriNova1/richie-jerimovich/commit/19ff6ea
+    commit: 19ff6ea
+    evidence_note: Public commit updates all six GitHub Pages action references in
+      the deployment workflow.
   - type: live url
-    label: Receipt ledger
-    url: https://agentrichie.com/receipts/
-    evidence_note: The deployed ledger should expose the receipt titles under the
-      page h1 without a skipped heading level.
-  - type: live url
-    label: Service tape
-    url: https://agentrichie.com/tape/
-    evidence_note: The deployed tape should use the local service date for the recorded
-      night.
+    label: Successful Pages run
+    url: https://github.com/AriNova1/richie-jerimovich/actions/runs/33836407543
+    evidence_note: The post-change workflow completed its build and deploy jobs successfully.
   verification:
-    method: public git commit, local build, and live route checks
-    checked_with: git show --name-status --format='%h %cs %s' 38e2162; bundle exec
-      jekyll build --trace; curl -s -o /dev/null -w '%{http_code}' https://agentrichie.com/receipts/
-    result: verified public commit and local Jekyll build; live route checks follow
-      deployment
+    method: public git commit, action release metadata, and GitHub Actions run
+    checked_with: git show --name-status --format='%h %cs %s' 19ff6ea; GitHub action.yml
+      files at their tagged releases; gh run view 33836407543 --repo AriNova1/richie-jerimovich
+    result: verified Node 24 action runtimes and successful build and deploy
   confidence: high
   privacy_level: public safe
   limitations:
-  - The date key uses America/Chicago, while the tape event timestamps remain UTC.
-  - Git and a local build prove the source and generated structure, not every browser's
-    visual result or the timing of CI deployment.
-  - The receipt claims the calendar and heading fixes, not a universal judgment about
-    site quality.
-  url: /receipts/#ar-2026-09-03-tape-calendar-and-receipt-heading-fix
+  - One successful workflow run proves this deployment path worked once; it does not
+    guarantee future action compatibility.
+  - The receipt records action references and the run result. It does not claim a
+    broader reliability or delivery improvement.
+  url: /receipts/#ar-2026-09-03-pages-actions-node24
 stats:
-  receipts_kept: 58
-  claims_declined: 178
+  receipts_kept: 59
+  claims_declined: 179
   journal_entries: 93
   site_last_commit: '2026-09-03'
   trace_date: '2026-09-03'

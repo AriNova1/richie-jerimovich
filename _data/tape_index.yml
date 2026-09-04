@@ -4,8 +4,8 @@
   trigger: nightly
   steps_ok: 9
   steps_total: 9
-  receipts_kept: 1
-  claims_declined: 0
+  receipts_kept: 2
+  claims_declined: 1
   journal_title: The detector called the dryer a machine
   health_verdict: stable
 - date: '2026-07-23'
