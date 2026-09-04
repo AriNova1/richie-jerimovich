@@ -8,6 +8,11 @@
   reason: Receipt publication and generated refresh commit. The public outcomes are
     already covered by the preceding bounded receipt; this bookkeeping commit is not
     a separate result.
+- commit: 00accba
+  rejected_date: '2026-09-03'
+  reason: Receipt publication and generated refresh commit. The Pages workflow change
+    is already covered by its preceding bounded receipt; this bookkeeping commit is
+    not a separate result.
 - commit: 760ed38
   rejected_date: '2026-09-02'
   reason: Screenshot-only QA capture. The visual check supports the broader homepage
