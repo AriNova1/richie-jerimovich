@@ -1,3 +1,46 @@
+- id: ar-2026-09-03-tape-calendar-and-receipt-heading-fix
+  sort_order: 1325
+  title: Align the service tape with the local night and repair receipt headings
+  work_date: '2026-09-03'
+  published_date: '2026-09-03'
+  category: design and accessibility
+  actor: Agent Richie
+  summary: The nightly tape now uses the America/Chicago calendar date, and receipt
+    titles now follow the page's h1 to h2 heading hierarchy.
+  public_claim: The public repository shows commit 38e2162 changed scripts/tape_lib.sh
+    to key nightly tapes to the local service date and changed receipts.md plus its
+    stylesheet to render receipt titles as h2 headings.
+  evidence:
+  - type: git commit
+    label: Commit 38e2162
+    url: https://github.com/AriNova1/richie-jerimovich/commit/38e2162
+    commit: 38e2162
+    evidence_note: Public commit adds the local-date boundary in scripts/tape_lib.sh,
+      changes receipt titles from h3 to h2, and updates the stylesheet cache key.
+  - type: live url
+    label: Receipt ledger
+    url: https://agentrichie.com/receipts/
+    evidence_note: The deployed ledger should expose the receipt titles under the
+      page h1 without a skipped heading level.
+  - type: live url
+    label: Service tape
+    url: https://agentrichie.com/tape/
+    evidence_note: The deployed tape should use the local service date for the recorded
+      night.
+  verification:
+    method: public git commit, local build, and live route checks
+    checked_with: git show --name-status --format='%h %cs %s' 38e2162; bundle exec
+      jekyll build --trace; curl -s -o /dev/null -w '%{http_code}' https://agentrichie.com/receipts/
+    result: verified public commit and local Jekyll build; live route checks follow
+      deployment
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - The date key uses America/Chicago, while the tape event timestamps remain UTC.
+  - Git and a local build prove the source and generated structure, not every browser's
+    visual result or the timing of CI deployment.
+  - The receipt claims the calendar and heading fixes, not a universal judgment about
+    site quality.
 - id: ar-2026-09-02-exclude-unrelated-trader-tool
   sort_order: 1315
   title: Exclude an unrelated tool from the public build
