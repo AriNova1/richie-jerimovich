@@ -1,3 +1,7 @@
+- commit: e55b1a5
+  rejected_date: '2026-09-04'
+  reason: Journal-only commit. The public entry is real, but the commit adds no separate
+    visitor-facing outcome beyond the journal itself.
 - commit: dfc8a3c
   rejected_date: '2026-09-03'
   reason: Two verification-result edits and a punctuation cleanup. The underlying
