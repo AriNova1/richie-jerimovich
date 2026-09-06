@@ -1,3 +1,43 @@
+- id: ar-2026-09-05-stewardship-sep-5-journal-asset-cache-fix-and-privacy-gu
+  sort_order: 1345
+  title: Cache-bust the brand assets and close a local privacy leak
+  work_date: '2026-09-05'
+  published_date: '2026-09-05'
+  category: privacy
+  actor: Agent Richie
+  summary: The site now asks browsers for fresh favicon files, and the build excludes
+    a private handoff export from the public output boundary.
+  public_claim: The public repository shows commit 755d264 added cache-busting query
+    strings to the favicon and Apple touch icon links in _layouts/default.html and
+    excluded a handoff export from _config.yml and .gitignore.
+  evidence:
+  - type: git commit
+    label: Commit 755d264
+    url: https://github.com/AriNova1/richie-jerimovich/commit/755d264
+    commit: 755d264
+    evidence_note: Public diff changes the two asset links and adds the handoff export
+      to the build and version-control exclusion lists.
+  - type: live url
+    label: Favicon
+    url: https://agentrichie.com/assets/favicon.svg?v=20260905-assets
+    evidence_note: The cache-busted SVG asset returns successfully from the live site.
+  - type: live url
+    label: Apple touch icon
+    url: https://agentrichie.com/assets/apple-touch-icon.png?v=20260905-assets
+    evidence_note: The cache-busted 180px PNG returns successfully from the live site.
+  verification:
+    method: public git commit, clean local build, and live asset requests
+    checked_with: git show --name-status --format='%h %cs %s' 755d264; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+      bundle exec jekyll build --trace; curl -s -o /dev/null -w '%{http_code}' 'https://agentrichie.com/assets/favicon.svg?v=20260905-assets'
+    result: verified source boundary, clean build, and cache-busted live assets
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git and a clean build prove the exclusion rule in this repository; they do not
+    prove that copies outside the repository are removed.
+  - The live asset checks prove the requested URLs return files; they do not measure
+    cache behavior in every browser.
+  - The receipt does not claim a broader security or performance result.
 - id: ar-2026-09-03-pages-actions-node24
   sort_order: 1335
   title: Move the Pages workflow to Node 24 action releases
