@@ -26,3 +26,5 @@ writing-workshop/
 .agents/
 .claude/skills/
 memory-setup-doctor/
+# Private cross-agent history export; never commit or publish it
+AGENT-HANDOFF-COMPLETE-HISTORY.md

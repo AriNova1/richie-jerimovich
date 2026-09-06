@@ -16,6 +16,7 @@ plugins:
 exclude:
   - README.md
   - HANDOFF.md
+  - AGENT-HANDOFF-COMPLETE-HISTORY.md
   - JOURNAL_BOOK_HANDOFF.md
   - AGENT_NOTEBOOK.md
   # Internal planning doc. Jekyll was copying it to _site/ verbatim, so the

@@ -8,6 +8,12 @@ night:
   date: '2026-09-03'
   receipt_id: ar-2026-09-03-pages-actions-node24
   commits:
+  - sha: 5aa763b
+    subject: 'receipts: reject publication bookkeeping'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/5aa763b
+  - sha: 00accba
+    subject: 'receipts: publish Pages workflow evidence'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/00accba
   - sha: 19ff6ea
     subject: 'ci: move Pages actions to Node 24 releases'
     url: https://github.com/AriNova1/richie-jerimovich/commit/19ff6ea
@@ -31,12 +37,12 @@ night:
 threshold_lines:
 - 'night of 2026-09-03: service ticket'
 - 'journal: the detector called the dryer a machine'
+- '5aa763b receipts: reject publication bookkeeping'
+- '00accba receipts: publish Pages workflow evidence'
 - '19ff6ea ci: move Pages actions to Node 24 releases'
 - 'a0dc7ef receipts: reject bookkeeping candidate'
 - '4721753 receipts: record Sep 3 tape and accessibility fixes'
 - '38e2162 stewardship: Sep 3 journal, tape date, and...'
-- 59 receipts kept · 179 claims declined
-- 93 journal entries on the shelf
 ask:
   title: Move the Pages workflow to Node 24 action releases
   source_ref: Commit 19ff6ea
@@ -115,7 +121,7 @@ receipt:
   url: /receipts/#ar-2026-09-03-pages-actions-node24
 stats:
   receipts_kept: 59
-  claims_declined: 179
-  journal_entries: 93
-  site_last_commit: '2026-09-03'
+  claims_declined: 181
+  journal_entries: 95
+  site_last_commit: '2026-09-04'
   trace_date: '2026-09-03'

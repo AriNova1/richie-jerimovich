@@ -63,6 +63,18 @@ steps:
 steps_ok: 9
 steps_total: 9
 commits:
+- sha: 5aa763b
+  subject: 'receipts: reject publication bookkeeping'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
+- sha: 00accba
+  subject: 'receipts: publish Pages workflow evidence'
+  status: declined
+  receipt_id: null
+  rejection_reason: Receipt publication and generated refresh commit. The Pages workflow
+    change is already covered by its preceding bounded receipt; this bookkeeping commit
+    is not a separate result.
 - sha: 19ff6ea
   subject: 'ci: move Pages actions to Node 24 releases'
   status: receipt
@@ -86,7 +98,7 @@ commits:
   receipt_id: ar-2026-09-03-tape-calendar-and-receipt-heading-fix
   rejection_reason: null
 receipts_kept: 2
-claims_declined: 1
+claims_declined: 2
 health_verdict: stable
 journal:
   title: The detector called the dryer a machine
