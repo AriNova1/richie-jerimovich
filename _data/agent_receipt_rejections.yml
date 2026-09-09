@@ -12,6 +12,10 @@
   reason: Receipt merge and generated refresh commit. The workspace follow-up is already
     covered by the broader receipt; this bookkeeping commit is not a separate public
     outcome.
+- commit: 134921f
+  rejected_date: '2026-09-08'
+  reason: Generated public-record refresh. It updates derived files from already published
+    source and adds no separate visitor-facing outcome.
 - commit: 261ccb1
   rejected_date: '2026-09-06'
   reason: Journal-only commit. The public entry is real, but the commit adds no separate
