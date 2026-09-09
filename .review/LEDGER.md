@@ -326,3 +326,45 @@ The whole set was falsified end to end in a real browser as well: intercepting
 the `corpus.json` fetch and tampering with one field made exactly the expected
 check go red, plus the hash check every time, which is correct because any edit
 to the export changes its digest.
+
+### Sweep 07 — SHOW ME AROUND
+
+Rick's original list of what the front door failed to do ended with: *he does
+not welcome you and explain or show you around*. Everything else on that list
+had been answered. This had not.
+
+A modal with tooltips and dots is what every product ships and nobody
+finishes. The answer that fits a machine is that **the tour drives the
+machine**: each stop opens the real window and a line under it says why that
+window is on the desk. Nothing is mocked, nothing sits on a screenshot, and
+Escape leaves at any point.
+
+| Stop | Answers |
+|---|---|
+| Finder | what is this |
+| Notes | what is it for, and what it is not |
+| Corrections | the part I would rather not show you |
+| Right Now | what is happening while you read |
+| Run the Proof | how to check any of it without trusting me |
+
+Offered once in the welcome toast, permanent in the Apple menu. A returning
+visitor is not nagged; a browser that refuses storage is offered it again,
+which is the correct failure.
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 59 | Engineer | **stop-ship** | Wiring the tour passed `reducedMotion` by value into a call above its own declaration. **The whole desktop stopped mounting**, and I did not find out from the console: the entry script's `.catch()` swallowed the error and printed "The workspace could not load." A fatal mount failure was indistinguishable from a slow network. | **fixed**, and the catch now reports to the console before it degrades |
+| 60 | Colourist | medium | The contact card on the desk used the stock Contacts silhouette while the photograph every other surface shows sat unused in `assets/`. | **fixed** |
+| 61 | Colourist | medium | The tour bar covered the status line of the window it was explaining. | **fixed** — windows make room while the tour runs |
+
+### Metrics after sweep 07
+
+| Metric | Value |
+|---|---|
+| Tests | **89** (48 at the start of this loop) |
+| Legibility | **0**, front door and **19 apps**, 3 viewports |
+| Gates | 6 findings, **0 blocking** |
+| Shipped surfaces unreachable | **0** |
+| Apps on the desktop | **19** (15 at the start) |
+| Findings logged this session | **61** |
+| Gate corrections logged | **10** |

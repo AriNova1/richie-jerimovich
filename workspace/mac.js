@@ -15,6 +15,7 @@ import {mountQuestions} from './apps/questions.mjs';
 import {mountCorrections} from './apps/corrections.mjs';
 import {mountSchedule} from './apps/schedule.mjs';
 import {mountProof} from './apps/proof.mjs';
+import {createTour, shouldOffer as tourUnseen} from './tour.mjs';
 import {mountTape} from './apps/tape.mjs';
 import {PLAYLIST, trackCount} from './data/playlist.mjs';
 import {createLens} from './lens.mjs';
@@ -177,6 +178,18 @@ export function createDesktop(root, C, { leave }) {
   appHost.register('corrections', mountCorrections);   /* the times a published claim was not true */
   appHost.register('schedule', mountSchedule);         /* what the machine is doing at this moment */
   appHost.register('proof', mountProof);               /* the checks, run in the reader's own browser */
+  /* Rick's list of what the front door failed to do ended with "he doesn't
+     welcome you and show you around". A modal with tooltips is what every
+     product ships and nobody finishes; this drives the real machine, opening
+     the actual window at each stop. */
+  const tour = createTour(root, {
+    open: (id) => open(id),
+    closeAll: () => { for (const id of [...windows.keys()]) close(id); },
+    /* Called later, so it must be a thunk: reading the binding here is a
+       temporal dead zone error, and the entry script's catch turned that into
+       a silent "could not load" with nothing in the console. */
+    reduced: () => reducedMotion(),
+  });
   appHost.register('tape', mountTape);   /* the run replaying itself */   /* what the record has not answered */
   appHost.register('folder', (host) => mountFolderApp(host, { folder: deskFolder, onOpenDocument: (ref) => openDocument(ref), onTake: takeFolder, onCopy: copyFolder, announce: (t) => announce(t) }));   // C8: the public record day by day
   appHost.register('investigation', (host, options) => {
@@ -339,7 +352,7 @@ export function createDesktop(root, C, { leave }) {
     <div class="desktop-files">
       <button class="desk-icon" data-folder="home">${icon('folder')}<span>Richie’s Mac</span></button>
       <button class="desk-icon" data-app="notes">${icon('notes')}<span>Start here</span></button>
-      <button class="desk-icon" data-app="contacts">${icon('contacts')}<span>Rutvik Thakkar</span></button>
+      <button class="desk-icon desk-icon-photo" data-app="contacts"><img src="assets/rutvik.jpg" alt="" width="60" height="60"><span>Rutvik Thakkar</span></button>
       <button class="desk-icon" data-app="messages">${icon('messages')}<span>Messages</span></button>
       <button class="desk-icon desk-folder" data-app="folder" data-count="0" aria-label="The folder, empty">${icon('folder')}<span class="folder-stack"><i></i></span><span class="folder-count">0</span><span>The folder</span></button>
     </div>
@@ -513,7 +526,9 @@ export function createDesktop(root, C, { leave }) {
     $('[data-login]').hidden = true;
     $('[data-boot]').hidden = true;
     root.classList.add('session-on');
-    notify('Richie', 'You are in. Everything on this desk opens the real record. Nothing you do here changes it.');
+    notify('Richie', tourUnseen()
+      ? 'You are in. Everything on this desk opens the real record, and nothing you do here changes it. First time? Apple menu, then Show me around.'
+      : 'You are in. Everything on this desk opens the real record. Nothing you do here changes it.');
     announce('Workspace unlocked for this visitor.');
     $('[data-enter]')?.blur();
     restoreWorkspace();
@@ -1528,7 +1543,7 @@ export function createDesktop(root, C, { leave }) {
           ? `<button data-view="icons">as Icons</button><button data-view="list">as List</button><button data-view="gallery">as Gallery</button><hr><button data-lens-toggle role="menuitemcheckbox" aria-checked="${lens.isOpen()}">${lens.isOpen() ? '✓ ' : ''}Evidence lens <span>⇧⌘E</span></button><button data-appearance-toggle>Toggle appearance</button>`
           : kind === 'file'
             ? `<button data-app="finder">Open Finder</button><button data-app="notes">Open Notes</button><button data-app="hermes">Open Hermes</button><hr><button data-quick-look ${selectedDocument ? '' : 'disabled'}>Quick Look <span>Space</span></button><button data-compare-document ${selectedDocument?.kind === "kept" ? "" : "disabled"}>Compare Receipts…</button><button data-investigate ${caseForRef(casesState.data, selectedDocument) ? '' : 'disabled'}>Investigate…</button><button data-send-messages ${selectedDocument ? '' : 'disabled'}>Send to Messages</button><button data-put-folder ${selectedDocument && !deskFolder.has(selectedDocument) ? '' : 'disabled'}>${selectedDocument && deskFolder.has(selectedDocument) ? 'Already in the folder' : 'Put in the folder'}</button><button data-app="folder">Open the folder<span>${deskFolder.count() || ''}</span></button><button data-close-active>Close window</button>`
-            : `<button data-welcome>About this workspace</button><button data-app="voices">How I think</button><button data-app="settings">About this Mac</button><button data-app="activity">Activity Monitor</button><button data-mission>Mission Control <span>⌃↑</span></button><button data-timemachine>Time Machine…</button><button data-app="questions">Unfinished business<span>${(C.counts?.open_questions ?? 0) || ''}</span></button><button data-app="corrections">Corrections<span>${(C.counts?.corrections ?? 0) || ''}</span></button><button data-app="schedule">Right now…</button><button data-app="proof">Run the proof…</button><button data-app="tape">Last night’s service…</button><hr>${memory.available
+            : `<button data-tour>Show me around</button><button data-welcome>About this workspace</button><button data-app="voices">How I think</button><button data-app="settings">About this Mac</button><button data-app="activity">Activity Monitor</button><button data-mission>Mission Control <span>⌃↑</span></button><button data-timemachine>Time Machine…</button><button data-app="questions">Unfinished business<span>${(C.counts?.open_questions ?? 0) || ''}</span></button><button data-app="corrections">Corrections<span>${(C.counts?.corrections ?? 0) || ''}</span></button><button data-app="schedule">Right now…</button><button data-app="proof">Run the proof…</button><button data-app="tape">Last night’s service…</button><hr>${memory.available
               ? `<button data-remember role="menuitemcheckbox" aria-checked="${memory.enabled()}">${memory.enabled() ? '✓ ' : ''}Remember this desk</button>${memory.enabled() ? '<button data-forget>Forget this desk</button><button data-export-place>Export my place…</button>' : ''}`
               : '<button disabled title="This browser has no working storage (private mode or storage disabled).">Remember this desk (unavailable here)</button>'}<hr><button data-leave>Return to room</button><a href="record.html">Read the public record</a>`;
     pop.innerHTML = items;
@@ -1740,6 +1755,7 @@ export function createDesktop(root, C, { leave }) {
     if (bt.dataset.folder) { choose(bt.dataset.folder); pop.hidden = true; return; }
     if (bt.dataset.app) { open(bt.dataset.app); pop.hidden = true; $('.control-center').hidden = true; return; }
     if (bt.dataset.view) { finderView = bt.dataset.view; if (windows.has('finder')) drawFinder(); pop.hidden = true; return; }
+    if (bt.matches('[data-tour]')) { pop.hidden = true; tour.start(); return; }
     if (bt.matches('[data-welcome]')) { note = -1; open('notes'); drawNotes(); pop.hidden = true; }
     if (bt.matches('.mac-leave,[data-leave]')) { pop.hidden = true; leave(); }
     if (bt.matches('.apple-menu')) menu('apple', bt);
@@ -1811,6 +1827,7 @@ export function createDesktop(root, C, { leave }) {
       else if (!$('.mac-context').hidden) hideContext();
       else if (!$('.control-center').hidden) { $('.control-center').hidden = true; $('.mac-cc').focus(); }
       else if (!pop.hidden) { pop.hidden = true; $('.apple-menu').focus(); }
+      else if(tour.running) { tour.end(); }
       else if(active==='preview' || active==='comparison' || active==='investigation' || active==='timemachine' || active==='questions' || active==='corrections' || active==='schedule' || active==='proof' || active==='tape') close(active);   // F5/C4/C8: Escape closes the active document window
       return;
     }

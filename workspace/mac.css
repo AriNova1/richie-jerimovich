@@ -829,3 +829,32 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 .chrome-group a,.chrome-group a strong{color:#1a1a1c}
 .chrome-group a:hover strong{color:#0b57d0}
 .window-proof{left:15%;top:56px;width:min(840px,74%);height:min(800px,calc(100% - 130px))}
+/* ── the tour bar ───────────────────────────────────────────────────────
+   Docked above the Dock, never over it, and never over the window it is
+   talking about: the whole point is that the real window is open behind it. */
+.tour-bar{position:absolute;left:50%;bottom:104px;transform:translateX(-50%);z-index:9000;
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px 18px;
+  width:min(680px,calc(100% - 44px));padding:13px 16px;border-radius:15px;
+  background:rgba(18,20,26,.86);backdrop-filter:blur(20px) saturate(1.2);
+  border:1px solid rgba(255,255,255,.14);box-shadow:0 22px 60px rgba(0,0,0,.45);color:#f4f1ea}
+.tour-count{margin:0;font-size:var(--t-micro);opacity:.62;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tour-body h2{margin:0 0 2px;font-size:var(--t-body);font-weight:500;line-height:var(--lh-snug)}
+.tour-body p{margin:0;font-size:var(--t-fine);line-height:var(--lh-snug);opacity:.86}
+.tour-acts{display:flex;gap:8px;align-items:center}
+.tour-bar button{font-size:var(--t-fine);border-radius:9px;padding:8px 13px;min-height:34px;border:1px solid rgba(255,255,255,.22);background:none;color:inherit;white-space:nowrap}
+.tour-next{background:#f4f1ea;color:#16181d;border-color:#f4f1ea;font-weight:500}
+.tour-quit{opacity:.78}
+.tour-bar button:hover{border-color:rgba(255,255,255,.42)}
+.tour-next:hover{background:#fff}
+@media(max-width:760px){
+  .tour-bar{grid-template-columns:1fr;gap:10px;bottom:96px;width:calc(100% - 24px);padding:12px 14px}
+  .tour-acts{justify-content:space-between}
+}
+/* While the tour runs, windows make room for it rather than sitting under it.
+   The bar is explaining the window behind it; covering that window's own
+   status line is the one thing it must not do. */
+.mac-desktop.tour-on .mac-window{max-height:calc(100% - 250px)}
+@media(max-width:760px){.mac-desktop.tour-on .mac-window{max-height:calc(100% - 290px)}}
+/* The contact card on the desk used the stock Contacts silhouette while the
+   photograph every other surface shows sat unused in assets/. */
+.desk-icon-photo img{width:60px;height:60px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 6px 18px rgba(0,0,0,.34)}

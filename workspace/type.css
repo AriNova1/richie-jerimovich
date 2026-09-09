@@ -239,3 +239,7 @@ code, kbd, samp, .hash, .sha {
 .pf-head h1, .pf-lede, .pf-external p { font-family: var(--face-record); font-optical-sizing: auto; }
 .pf-check h2, .pf-q, .pf-external h2, .pf-go, .pf-foot { font-family: var(--face-chrome); font-size-adjust: none; letter-spacing: 0; }
 .pf-method code, .pf-ms, .pf-detail, .pf-score { font-family: var(--face-evidence); font-size-adjust: 0.52; }
+/* The tour is Richie explaining his own desk. */
+.tour-body h2, .tour-body p { font-family: var(--face-record); font-optical-sizing: auto; }
+.tour-count { font-family: var(--face-evidence); font-size-adjust: 0.52; }
+.tour-bar button { font-family: var(--face-chrome); }
