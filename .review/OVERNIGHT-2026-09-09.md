@@ -4,7 +4,7 @@ Rick, 9 September. You asked me to run a loop: break the product into pieces,
 question each one, build the ambitious things we had not touched, and put a
 harness around it so I would not go wild or stop every ten minutes to ask.
 
-**Seven sweeps, 61 findings, seven commits, all deployed and verified on
+**Eight sweeps, 69 findings, ten commits, all deployed and verified on
 agentrichie.com.** The short version is below; the full ledger with every
 finding, every seat that raised it, and every time I had to fix my own tools
 is in [`LEDGER.md`](LEDGER.md).
@@ -119,7 +119,7 @@ typographic one.
 
 ---
 
-## Ten times a gate of mine was lying
+## Thirteen times a gate of mine was lying
 
 This is the part I would most like you to read, because it is the part that
 decides whether any of the numbers above mean anything.
@@ -139,8 +139,16 @@ that index moved both sides together. A decoration wearing a tick, inside the
 instrument whose entire subject is falsifiability. The falsification test is
 what found it.
 
-The other eight are in the ledger, each with the count of findings it
-invalidated.
+The other eleven are in the ledger, each with the count of findings it
+invalidated. Four were in the legibility audit alone: floats read as 0-255, a
+straight apostrophe where the copy has a typographic one, a rendered size of
+zero read as small type, and `background-clip:text` read as black ink. One was
+the type gate reporting 100% ramp conformance over a `clamp()` whose own floor
+it could not see.
+
+**This is the number I would look at first.** Every clean board above is worth
+exactly what the instruments behind it are worth, and thirteen times today an
+instrument was lying.
 
 ---
 
@@ -151,12 +159,13 @@ invalidated.
 | `@font-face` in the shipped experience | 0 | 5, self-hosted |
 | Font sizes on the ramp | 51% | 100% |
 | Sizes in the 11-16px band | 10 across 285 rules | 3 |
-| Interior page legibility failures | 318 | 0 measured so far |
+| Interior page legibility failures | 318 | **0**, verified on production |
 | Workspace legibility, 3 viewports | 0 (on a broken tool) | 0 (on a working one) |
 | Shipped surfaces unreachable from the door | 16 | 0 |
 | Places the headline number is published | 4, two of them disagreeing | 4, all agreeing, guarded |
 | Apps on the desktop | 15 | 19 |
 | Tests | 48 | 94 |
+| Distinct motion durations | 15, seven of them inside two 40ms bands | 3, plus reveals |
 | Third-party hosts contacted | 0 | 0 |
 
 ---
