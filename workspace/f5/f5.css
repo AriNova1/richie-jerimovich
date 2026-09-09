@@ -23,11 +23,11 @@
 .f5-more-count{position:absolute;top:2px;right:6px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#c22e33;color:#fff;font-size:var(--t-micro);line-height:16px;font-weight:700;text-align:center}
 
 /* ── More sheet ───────────────────────────────────────────────────── */
-.f5-more{position:absolute;inset:0;z-index:950;display:flex;align-items:flex-end;justify-content:center;background:rgba(10,14,22,0);transition:background 160ms ease-out}
+.f5-more{position:absolute;inset:0;z-index:950;display:flex;align-items:flex-end;justify-content:center;background:rgba(10,14,22,0);transition:background var(--m-tap) var(--e-enter)}
 .f5-more.on{background:rgba(10,14,22,.28)}
 .f5-more-sheet{width:100%;max-height:calc(100% - 60px);overflow:auto;border-radius:18px 18px 0 0;padding:6px 14px 92px;
   background:rgba(246,248,252,.94);backdrop-filter:blur(30px) saturate(180%);box-shadow:0 -18px 50px rgba(0,0,0,.35),inset 0 1px 0 #fff;
-  translate:0 24px;opacity:0;transition:translate 180ms cubic-bezier(.2,.7,.2,1),opacity 160ms ease-out}
+  translate:0 24px;opacity:0;transition:translate var(--m-move) var(--e-enter),opacity var(--m-tap) var(--e-enter)}
 .f5-more.on .f5-more-sheet{translate:0 0;opacity:1}
 .f5-more-sheet header{display:flex;align-items:center;justify-content:space-between;padding:12px 2px 6px}
 .f5-more-sheet header strong{font-size:var(--t-micro);text-transform:uppercase;letter-spacing:.08em;color:#67676b}
@@ -41,7 +41,7 @@
 .f5-more-grid small{font-size:var(--t-micro);color:#67676b}
 .f5-more-grid button:focus-visible,.f5-more-grid a:focus-visible,.f5-more-sheet header button:focus-visible{outline:3px solid #0a84ff;outline-offset:2px}
 .f5-more-empty{grid-column:1/-1;margin:4px 0;color:#67676b;font-size:var(--t-fine)}
-@media (prefers-reduced-motion:reduce){.f5-more,.f5-more-sheet{transition:opacity 120ms linear}.f5-more-sheet{translate:0 0}}
+@media (prefers-reduced-motion:reduce){.f5-more,.f5-more-sheet{transition:opacity var(--m-tap) linear}.f5-more-sheet{translate:0 0}}
 
 /* ── phone menu bar: long app names wrapped onto two lines. PROPOSED. ── */
 @media(max-width:650px){
@@ -52,14 +52,14 @@
 }
 
 /* ── banners ──────────────────────────────────────────────────────── */
-.f5-banner{position:relative;opacity:0;translate:0 -6px;transition:opacity 160ms ease-out,translate 160ms cubic-bezier(.2,.7,.2,1);padding-right:34px}
+.f5-banner{position:relative;opacity:0;translate:0 -6px;transition:opacity var(--m-tap) var(--e-enter),translate var(--m-tap) var(--e-enter);padding-right:34px}
 .f5-banner.on{opacity:1;translate:0 0}
-.f5-banner.leaving{opacity:0;transition:opacity 120ms linear}
+.f5-banner.leaving{opacity:0;transition:opacity var(--m-tap) linear}
 .banner-dismiss{position:absolute;top:6px;right:6px;width:24px;height:24px;border:0;border-radius:50%;background:rgba(0,0,0,.06);color:#3a3a3c;font-size:var(--t-body);line-height:24px;display:grid;place-items:center;cursor:default}
 .banner-dismiss:hover{background:rgba(0,0,0,.12)}
 .banner-dismiss:focus-visible{outline:2px solid #0a84ff;outline-offset:1px}
 .banner-dismiss::after{content:'';position:absolute;inset:-8px}
-@media (prefers-reduced-motion:reduce){.f5-banner{translate:0 0;transition:opacity 120ms linear}}
+@media (prefers-reduced-motion:reduce){.f5-banner{translate:0 0;transition:opacity var(--m-tap) linear}}
 @media(max-width:650px){.f5-banner{translate:0 6px}.f5-banner.on{translate:0 0}}
 
 /* ── C6: documents travel ─────────────────────────────────────────── */

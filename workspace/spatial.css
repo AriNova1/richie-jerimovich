@@ -69,7 +69,7 @@ body.graphics-failed #journey-nav,body.motion-off #journey-nav{display:none}
 @media(max-width:650px){
 .room-fallback{max-width:none}
 }
-#mini-marker{position:fixed;left:0;top:0;z-index:9;pointer-events:none;color:var(--paper);opacity:0;transition:opacity .5s cubic-bezier(.32,.72,0,1)}
+#mini-marker{position:fixed;left:0;top:0;z-index:9;pointer-events:none;color:var(--paper);opacity:0;transition:opacity .5s var(--e-move)}
 #mini-marker.on{opacity:1}
 #mini-marker[hidden]{display:none}
 .mm-dot{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;border:1.5px solid #f7f1e7;background:#f7f1e733;box-shadow:0 0 14px #000a}

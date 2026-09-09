@@ -106,7 +106,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color var(--m-tap) ease, box-shadow var(--m-tap) ease;
 }
 
 .zoom-comparison .zoom-comp-select:focus-visible {
@@ -128,7 +128,7 @@
   font-size:var(--t-micro);
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: background-color var(--m-tap) ease, border-color var(--m-tap) ease, color var(--m-tap) ease;
 }
 
 .zoom-comparison .zoom-comp-swap-btn:hover {
@@ -403,7 +403,7 @@
   font-size:var(--t-fine);
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: background-color var(--m-tap) ease, border-color var(--m-tap) ease, color var(--m-tap) ease;
 }
 
 .zoom-comparison .zoom-comp-copy-btn:hover {

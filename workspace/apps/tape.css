@@ -23,11 +23,11 @@
 
 .tp-steps{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:2px}
 .tp-step{display:grid;grid-template-columns:16px 74px 1fr auto auto;gap:12px;align-items:baseline;
-  padding:9px 10px;border-radius:8px;font-size:var(--t-fine);transition:background .18s,opacity .18s}
+  padding:9px 10px;border-radius:8px;font-size:var(--t-fine);transition:background var(--m-move),opacity var(--m-move)}
 .tp-step[data-state=waiting]{opacity:.42}
 .tp-step[data-state=running]{background:#1e2634;opacity:1}
 .tp-step[data-state=done]{opacity:1}
-.tp-dot{width:9px;height:9px;border-radius:50%;background:#4a4f5e;align-self:center;transition:background .18s,box-shadow .18s}
+.tp-dot{width:9px;height:9px;border-radius:50%;background:#4a4f5e;align-self:center;transition:background var(--m-move),box-shadow var(--m-move)}
 .tp-step[data-state=running] .tp-dot{background:#64d2ff;box-shadow:0 0 12px #64d2ff}
 .tp-step[data-state=done] .tp-dot{background:#32d74b}
 .tp-when{color:#8f8fa0;font-variant-numeric:tabular-nums;font-size:var(--t-fine)}

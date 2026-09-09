@@ -26,7 +26,7 @@ body.inside .hud,body.inside .depth,body.inside .hint{display:none}
   color:#1d1d1f;text-shadow:none;
   font:var(--t-fine)/1.4 var(--face-chrome);
   letter-spacing:0;-webkit-font-smoothing:antialiased;
-  --mac-blue:#0067d0;--mac-blue-press:#0060c8;--ease:cubic-bezier(.23,1,.32,1);
+  --mac-blue:#0067d0;--mac-blue-press:#0060c8;
   --glass:rgba(246,248,252,.72);--titlebar:#f3f3f5;--window:#f6f6f7;
   --stroke:rgba(255,255,255,.55);--hairline:rgba(0,0,0,.1);--text:#1d1d1f;--muted:#67676b;
 }
@@ -77,7 +77,7 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
   background:var(--window);color:var(--text);
   border:1px solid var(--stroke);
   box-shadow:0 0 0 1px rgba(0,0,0,.18),0 22px 70px rgba(0,0,0,.28),0 2px 8px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.55);
-  transition:box-shadow 180ms var(--ease);isolation:isolate;
+  transition:box-shadow var(--m-move) var(--e-enter);isolation:isolate;
 }
 .mac-window.active{box-shadow:0 0 0 1px rgba(0,0,0,.22),0 28px 80px rgba(0,0,0,.38),0 8px 18px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.7)}
 .mac-titlebar{
@@ -352,7 +352,7 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 }
 .mac-dock::after{content:'';position:absolute;left:12%;right:12%;bottom:7px;height:10px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.28));border-radius:50%;filter:blur(4px);pointer-events:none}
 .mac-dock button,.mac-dock a{position:relative;background:none;border:0;width:58px;height:62px;padding:0;display:flex;align-items:center;flex-direction:column;justify-content:flex-end;color:#222;text-decoration:none}
-.mac-dock img{width:52px;height:52px;object-fit:contain;transition:transform 160ms var(--ease);filter:drop-shadow(0 8px 6px rgba(0,0,0,.28))}
+.mac-dock img{width:52px;height:52px;object-fit:contain;transition:transform var(--m-tap) var(--e-enter);filter:drop-shadow(0 8px 6px rgba(0,0,0,.28))}
 .mac-dock img[src*="hermes.png"]{border-radius:22%;background:#161616}
 @media (hover:hover) and (pointer:fine){
   .mac-dock button:hover img,.mac-dock a:hover img{transform:translateY(-6px) scale(1.12)}
@@ -563,7 +563,7 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 .mac-boot .boot-fine{margin:0;font-size:var(--t-fine);color:#6f6f74;max-width:40ch}
 .boot-bar{width:148px;height:4px;border-radius:99px;background:#ffffff22;overflow:hidden;margin-top:4px}
 .boot-bar i{display:block;height:100%;width:0;background:#f5f5f7;border-radius:99px}
-.boot-bar i.fill{animation:bootfill 2.2s cubic-bezier(.23,1,.32,1) forwards}
+.boot-bar i.fill{animation:bootfill 2.2s var(--e-enter) forwards}
 @keyframes bootfill{to{width:100%}}
 .boot-skip{
   margin-top:18px;border:0;background:#ffffff14;color:#f5f5f7;border-radius:999px;padding:8px 16px;font-size:var(--t-micro)
@@ -691,10 +691,10 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 .motion-window>.mac-window-body{border-radius:0 0 11px 11px}
 .motion-window.is-lifted>.mac-titlebar{cursor:grabbing}
 .motion-window>.mac-titlebar:focus-visible{outline:2px solid #0067d0;outline-offset:-3px}
-.snap-preview{position:absolute;pointer-events:none;border-radius:12px;background:#ffffff29;box-shadow:inset 0 0 0 1px #ffffff6b,0 0 0 .5px #0000002e;backdrop-filter:blur(8px) saturate(120%);opacity:0;transform:scale(.985);transition:opacity 140ms ease-out,transform 140ms ease-out}
+.snap-preview{position:absolute;pointer-events:none;border-radius:12px;background:#ffffff29;box-shadow:inset 0 0 0 1px #ffffff6b,0 0 0 .5px #0000002e;backdrop-filter:blur(8px) saturate(120%);opacity:0;transform:scale(.985);transition:opacity var(--m-tap) var(--e-enter),transform var(--m-tap) ease-out}
 .snap-preview.on{opacity:1;transform:none}
 .motion-sheet>.mac-titlebar{touch-action:auto}
-@media(prefers-reduced-motion:reduce){.snap-preview{transition:opacity 120ms linear;transform:none}}
+@media(prefers-reduced-motion:reduce){.snap-preview{transition:opacity var(--m-tap) linear;transform:none}}
 /* The disclosure marker must not consume the Name grid column. Columns follow window width. */
 .finder-main{container:finder-content / inline-size}
 .window-finder.motion-window .finder-list-head,.window-finder.motion-window .view-list .record-item>summary,.window-finder.motion-window .view-list .record-item>header:has(.ri-name){grid-template-columns:minmax(140px,2fr) 88px minmax(80px,1fr) 72px minmax(100px,1.2fr)}
@@ -740,7 +740,7 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
   .ms-counts i{font-style:normal;opacity:.4;margin:0 2px}
   .ms-fail{flex:1 0 100%;color:#ffb4ae}
   .ms-ok{flex:1 0 100%;color:#9fe1cb}
-  .ms-more{position:absolute;right:12px;top:14px;width:9px;height:9px;border-right:1.5px solid #ffffff9c;border-bottom:1.5px solid #ffffff9c;transform:rotate(45deg);transition:transform .2s}
+  .ms-more{position:absolute;right:12px;top:14px;width:9px;height:9px;border-right:1.5px solid #ffffff9c;border-bottom:1.5px solid #ffffff9c;transform:rotate(45deg);transition:transform var(--m-move)}
   .mac-desktop.strip-open .ms-more{transform:rotate(-135deg)}
   .mac-strip:focus-visible{outline:3px solid #0a84ff;outline-offset:2px}
 
@@ -764,7 +764,7 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 .login-avatar svg{display:block;width:88px;height:auto;color:#f4d9a8}
 .login-card:hover .login-avatar,.login-card:focus-visible .login-avatar{border-color:#ffffff40}
 .login-card:hover .login-avatar svg{color:#ffe6bd}
-.login-avatar svg rect{transition:opacity 260ms ease}
+.login-avatar svg rect{transition:opacity var(--m-move) ease}
 @media(prefers-reduced-motion:reduce){.login-avatar svg rect{transition:none}}
 /* Definition rows inside a 400px widget. Without an explicit grid the label
    and the value each wrapped: "Memory at / snapshot" beside "11.6 of 16 / GB",

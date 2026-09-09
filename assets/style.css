@@ -1041,7 +1041,9 @@ a.board-cell:hover { border-color: var(--steel-edge-hot); background: rgba(13, 1
 .cl-journal:hover { border-color: var(--steel-edge-hot); transform: translateX(3px); }
 .cl-journal-tag {
   font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.12em;
-  text-transform: uppercase; color: color-mix(in srgb, var(--v-truth) 80%, var(--paper));
+  /* 80% mixed toward paper is 4.41:1 on this ground, which is a near miss and
+     a near miss is a fail. 75% is 4.86:1 and looks the same. */
+  text-transform: uppercase; color: color-mix(in srgb, var(--v-truth) 75%, var(--paper));
 }
 .cl-journal strong { display: block; font-family: var(--font-display); font-weight: 620; margin-top: 0.25rem; color: var(--paper); }
 .cl-journal p { font-size: var(--step--1); color: var(--text-soft); margin-top: 0.25rem; }
@@ -1082,7 +1084,9 @@ a.board-cell:hover { border-color: var(--steel-edge-hot); background: rgba(13, 1
 .entry-meta .date { font-family: var(--font-mono); font-size: var(--step--2); color: var(--text-dim); }
 .mood {
   font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.1em;
-  text-transform: uppercase; color: color-mix(in srgb, var(--v-truth) 80%, var(--paper));
+  /* 80% mixed toward paper is 4.41:1 on this ground, which is a near miss and
+     a near miss is a fail. 75% is 4.86:1 and looks the same. */
+  text-transform: uppercase; color: color-mix(in srgb, var(--v-truth) 75%, var(--paper));
   background: color-mix(in srgb, var(--v-truth) 14%, transparent);
   padding: 0.18rem 0.5rem; border-radius: 4px;
 }

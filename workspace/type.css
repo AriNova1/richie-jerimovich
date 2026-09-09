@@ -245,3 +245,23 @@ code, kbd, samp, .hash, .sha {
 .tour-bar button { font-family: var(--face-chrome); }
 .growth-head strong { font-family: var(--face-chrome); }
 .growth-now, .growth-note { font-family: var(--face-evidence); font-size-adjust: 0.52; letter-spacing: 0; }
+
+/* ── MOTION ───────────────────────────────────────────────────────────────
+   Fifteen distinct durations, four of them (120, 140, 150, 160ms) inside a
+   40ms band across eighteen declarations and three more (180, 200, 220) across
+   seventeen. Nobody can tell 140 from 150, so that variation was carrying
+   nothing, exactly as ten sizes in a 5px band carried nothing.
+
+   Three durations, mapped to what is moving, and three easings mapped to
+   which way it is going. Reveals and progress indicators keep their own
+   longer timings: those are not interface feedback and the scale is not
+   trying to govern them. */
+:root {
+  --m-tap:   140ms;   /* state feedback: hover, press, focus, a small fade   */
+  --m-move:  200ms;   /* something appears, moves, or changes size           */
+  --m-stage: 320ms;   /* a whole view changes                               */
+
+  --e-enter: cubic-bezier(.2, .7, .2, 1);    /* decelerating: arriving       */
+  --e-exit:  cubic-bezier(.4, 0, 1, 1);      /* accelerating: leaving        */
+  --e-move:  cubic-bezier(.32, .72, 0, 1);   /* both ends: travelling        */
+}

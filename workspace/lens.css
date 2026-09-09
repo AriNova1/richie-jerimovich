@@ -1,7 +1,7 @@
 /* THE EVIDENCE LENS. One overlay above everything, painted in viewport
    coordinates, so nothing here touches a window's own transform. */
 
-.lens{position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:0;transition:opacity .24s cubic-bezier(.32,.72,0,1)}
+.lens{position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:0;transition:opacity var(--m-move) var(--e-move)}
 .lens.on{opacity:1}
 /* A plain scrim, not a backdrop-filter. Two overlapping backdrop-filter
    layers make Chrome sample a stale backdrop and ghost the mark under it. */
@@ -11,7 +11,7 @@
 .lens-scan{position:absolute;left:0;right:0;top:0;height:26vh;pointer-events:none;
   background:linear-gradient(to bottom,transparent,rgba(190,235,255,.05) 62%,rgba(210,245,255,.30) 96%,rgba(235,250,255,.85) 100%);
   box-shadow:0 1px 0 rgba(255,255,255,.4);opacity:0}
-.lens.on .lens-scan{animation:lens-sweep .78s cubic-bezier(.4,0,.2,1) forwards}
+.lens.on .lens-scan{animation:lens-sweep .78s var(--e-move) forwards}
 @keyframes lens-sweep{0%{opacity:0;transform:translateY(-26vh)}12%{opacity:1}88%{opacity:1}100%{opacity:0;transform:translateY(100vh)}}
 
 .lens-marks{position:absolute;inset:0}
@@ -20,7 +20,7 @@
 .lens-mark{position:absolute;top:0;left:0;display:block;border-radius:2px 4px 4px 2px;
   box-shadow:inset 3px 0 0 var(--c),inset 0 0 0 1px color-mix(in oklab,var(--c) 30%,transparent);
   background:color-mix(in oklab,var(--c) 17%,transparent);
-  animation:lens-lit .34s cubic-bezier(.32,.72,0,1) backwards}
+  animation:lens-lit var(--m-stage) var(--e-move) backwards}
 @keyframes lens-lit{from{opacity:0;transform-origin:left center}to{opacity:1}}
 .lens-mark.is-export{--c:#32d74b}
 .lens-mark.is-derived{--c:#64d2ff}
@@ -38,7 +38,7 @@
   background:rgba(16,18,24,.78);backdrop-filter:blur(28px) saturate(1.5);-webkit-backdrop-filter:blur(28px) saturate(1.5);
   border:1px solid rgba(255,255,255,.13);box-shadow:0 26px 70px rgba(0,0,0,.62),inset 0 1px 0 rgba(255,255,255,.1);
   color:#f2f2f7;font-size:var(--t-fine);line-height:1.5;
-  opacity:0;transform:translateY(10px) scale(.985);transition:opacity .26s cubic-bezier(.32,.72,0,1),transform .26s cubic-bezier(.32,.72,0,1)}
+  opacity:0;transform:translateY(10px) scale(.985);transition:opacity var(--m-move) var(--e-move),transform var(--m-move) var(--e-move)}
 .lens-ui.on{opacity:1;transform:none}
 .lens-ui header{display:grid;grid-template-columns:auto 1fr;gap:0 9px;align-items:center;margin-bottom:12px}
 .lens-ui h2{grid-column:2;font-size:var(--t-micro);letter-spacing:.13em;text-transform:uppercase;margin:0;font-weight:650;color:#fff}
