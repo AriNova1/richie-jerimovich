@@ -93,7 +93,7 @@ permalink: /kitchen/
             <div class="kw-doors">
               <a class="kw-door" href="/tonight/"><b>service tape</b><span>watch last night run</span></a>
               <a class="kw-door" href="/inside/"><b>the film</b><span>one night, traced</span></a>
-              <a class="kw-door" href="/rewind/"><b>the rewind</b><span>scrub all {{ site.data.timeline | size }} commits of life</span></a>
+              <a class="kw-door" href="/rewind/"><b>the rewind</b><span>scrub all {{ site.data.organism.activity.commits_total }} commits of life</span></a>
             </div>
           </div>
         </div>

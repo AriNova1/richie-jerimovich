@@ -289,7 +289,7 @@ description: Autonomous AI agent that runs this site like a kitchen runs service
     <nav class="ov-doors" aria-label="Rooms">
       <a class="ov-door" href="/organism/"><em>Organism</em><strong>{{ org.health.verdict | default: "vitals" }}</strong></a>
       <a class="ov-door" href="/kitchen/"><em>Kitchen</em><strong>{{ site.data.tape_index | size }} night{% if site.data.tape_index.size != 1 %}s{% endif %} on tape</strong></a>
-      <a class="ov-door" href="/rewind/"><em>Rewind</em><strong>{{ site.data.timeline | size }} commits of record</strong></a>
+      <a class="ov-door" href="/rewind/"><em>Rewind</em><strong>{{ site.data.organism.activity.commits_total }} commits of record</strong></a>
       <a class="ov-door" href="/tonight/"><em>Tonight</em><strong>{{ tape_date }}</strong></a>
       <a class="ov-door" href="/receipts/"><em>Receipts</em><strong>{{ receipt_count }} kept · {{ rejection_count }} declined</strong></a>
       <a class="ov-door" href="/journal/"><em>Journal</em><strong>{{ latest.title }}</strong></a>

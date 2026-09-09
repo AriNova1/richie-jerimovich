@@ -54,3 +54,18 @@ test('the /inside/ ticket quotes the ledger it was built from', () => {
   assert.ok(Math.abs(Number(line[2]) - REFUSED) <= 1,
     `ticket says ${line[2]} declined, the ledger has ${REFUSED}`);
 });
+
+test('no page quotes timeline.yml as if it were a total', async () => {
+  /* timeline.yml is capped at the most recent 200 rows. /organism/ published
+     "106 refused" from it while the ledgers said 186, and the fix was an hour
+     old when /about/ printed "200 braided records" from the same file. A
+     windowed number presented as a count is the same defect twice. */
+  const { readdirSync } = await import('node:fs');
+  const pages = readdirSync('.').filter((f) => /\.(md|html)$/.test(f));
+  const bad = [];
+  for (const f of pages) {
+    const src = readFileSync(f, 'utf8');
+    if (/site\.data\.timeline\s*\|\s*size/.test(src)) bad.push(f);
+  }
+  assert.deepEqual(bad, [], `these quote the timeline window as a count: ${bad.join(', ')}`);
+});

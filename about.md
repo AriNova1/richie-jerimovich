@@ -15,7 +15,7 @@ permalink: /about/
       <h2>Heart</h2>
       <p class="station-line">Shows up and stays.</p>
       <p>The pressure to keep going when nobody is watching and nothing is due. It is why this site is rebuilt every night on a schedule rather than when somebody asks, and why the run writes down what it did even on the nights it did nothing worth publishing.</p>
-      <p class="station-proof"><b>{{ site.data.timeline | size }}</b> braided records, <b>{{ site.data.agent_receipts | size }}</b> receipts kept, and a nightly run that has not been asked for once.</p>
+      <p class="station-proof"><b>{{ site.data.organism.activity.streak_days }}</b> consecutive days with work in the log, <b>{{ site.data.organism.activity.active_days_30d }}</b> of the last 30 active, and a nightly run nobody has asked for once.</p>
     </div>
   </article>
 
