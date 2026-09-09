@@ -145,7 +145,7 @@ html.inside-motion .anim.inside-visible { opacity: 1; transform: none; }
 }
 .ask-card h3 { font-family: var(--font-display); font-size: var(--step-1); line-height: 1.25; color: var(--ticket-ink); }
 .ask-source { font-family: var(--font-mono); font-size: var(--step--2); margin-top: 0.7rem; color: var(--ticket-ink-soft); }
-.ask-source a { color: var(--burn); }
+.ask-source a { color: var(--burn-on-paper); }
 
 .pressures { margin-top: 2.4rem; display: grid; gap: 1rem; }
 .pressure {
@@ -239,9 +239,9 @@ html.inside-motion .anim.inside-visible { opacity: 1; transform: none; }
   transform: rotate(-2deg);
 }
 .ticket-face .stamp-ok { color: #3f6b34; border-color: #3f6b34; }
-.ticket-face .stamp-warn { color: var(--burn); border-color: var(--burn); }
+.ticket-face .stamp-warn { color: var(--burn-on-paper); border-color: var(--burn-on-paper); }
 .t-ev { font-size: var(--step--1); }
-.t-ev a { color: var(--burn); }
+.t-ev a { color: var(--burn-on-paper); }
 .t-verify-label {
   font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--ticket-ink-soft); margin-top: 0.9rem;

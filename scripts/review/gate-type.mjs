@@ -30,6 +30,14 @@ const nearestStep = (v) => RAMP.reduce((a, b) => (Math.abs(b - v) < Math.abs(a -
    lying about a defect that is not there. */
 const RAMP_VARS = { '--t-micro': 12, '--t-fine': 13, '--t-body': 15, '--t-lead': 17, '--t-sub': 20, '--t-h2': 25, '--t-h1': 32 };
 const resolveRamp = (v) => { const m = /^var\((--t-[a-z0-9]+)\)/.exec(v.trim()); return m ? RAMP_VARS[m[1]] ?? null : null; };
+/* A clamp hides its own floor from every grep for a size. clamp(0.7rem, 1.6vw,
+   0.85rem) renders at 11.2px on a narrow screen and reads as a considered
+   fluid decision in the source. Read the minimum. */
+export const clampFloor = (v) => {
+  const m = /^clamp\(\s*([0-9.]+)(rem|px|em)/.exec(String(v).trim());
+  if (!m) return null;
+  return m[2] === 'px' ? parseFloat(m[1]) : parseFloat(m[1]) * 16;
+};
 
 const SYSTEM_ONLY = /^-apple-system|^BlinkMacSystemFont|^system-ui/i;
 
@@ -51,6 +59,12 @@ export function gateType(files) {
         if (d.prop === 'font-size' || (d.prop === 'font' && /\d+px/.test(d.value))) {
           const raw = d.prop === 'font-size' ? d.value : (/(\d+(?:\.\d+)?px)/.exec(d.value)?.[1] ?? '');
           const px = PX(raw) ?? resolveRamp(raw);
+          const floor = clampFloor(raw);
+          if (floor !== null && floor < MIN_PX) {
+            findings.push({ gate: 'type', severity: 'high',
+              what: `clamp() floor is ${floor.toFixed(1)}px, under the ${MIN_PX}px minimum. A clamp hides its floor from every grep for a size.`,
+              where: `${file} · ${rule.selector.slice(0, 70)}` });
+          }
           if (px === null) continue;
           if (PX(raw) !== null && px > 0 && px < DISPLAY_PX + 1 && !raw.includes('var(')) {
             findings.push({ gate: 'type', severity: 'medium',

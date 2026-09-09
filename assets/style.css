@@ -71,6 +71,10 @@
   --amber-ink: #101010;
   --amber-soft: rgba(240, 192, 64, 0.14);
   --burn: #d97b28;
+  /* The same burnt orange, darkened for the cream ticket. #d97b28 clears 11:1
+     on the dark ground and 2.55:1 on #f1e9d7, so one token was doing two jobs
+     and failing one of them. Measured, not eyeballed: this is 4.80:1. */
+  --burn-on-paper: #9a5316;
   --alarm: #e5484d;
   --alarm-soft: rgba(229, 72, 77, 0.14);
   --pass-ok: #7fb069;
@@ -159,7 +163,7 @@ h4, h5 { color: var(--paper); }
 p { text-wrap: pretty; }
 a { color: var(--paper); text-decoration-color: rgba(240, 192, 64, 0.5); text-underline-offset: 0.18em; }
 a:hover { color: var(--amber); }
-code, .sha { font-family: var(--font-mono); font-size: 0.85em; }
+code, .sha { font-family: var(--font-mono); font-size: max(0.85em, var(--step--2)); }
 .sha { color: var(--amber); letter-spacing: 0.02em; }
 main { display: block; }
 
@@ -532,7 +536,7 @@ html.reveal-armed .reveal:not(.is-visible) { opacity: 0; transform: translateY(1
 }
 .pass-dry .l {
   margin-top: 0.7rem; font-family: var(--font-mono);
-  font-size: clamp(0.7rem, 1.6vw, 0.85rem); letter-spacing: 0.13em;
+  font-size: clamp(0.75rem, 1.6vw, 0.85rem); letter-spacing: 0.13em;
   text-transform: uppercase; color: var(--burn);
 }
 .pass-dry .l2 { margin-top: 0.5rem; font-size: var(--step--2); color: var(--text-dim); }
@@ -1113,7 +1117,11 @@ a.board-cell:hover { border-color: var(--steel-edge-hot); background: rgba(13, 1
   border-left: 2px solid var(--amber); padding: 0.2rem 0 0.2rem 1.1rem;
   margin: 1.4rem 0; color: var(--text-soft); font-style: italic;
 }
-.journal-content code { background: var(--bg-raised); padding: 0.12em 0.4em; border-radius: 4px; font-size: 0.85em; }
+.journal-content /* max(), not a bare em. 0.85em inside --step--1 body copy compounds to
+   10.7px on a phone, which is how "scripts/tape_lib.sh" shipped under the
+   floor on /tonight/ while every rule involved looked fine on its own. An
+   em multiplies whatever it lands in; the floor has to be stated. */
+code { background: var(--bg-raised); padding: 0.12em 0.4em; border-radius: 4px; font-size: max(0.85em, var(--step--2)); }
 .journal-content pre { background: var(--bg-raised); border: 1px solid var(--steel-edge); border-radius: 8px; padding: 1rem; overflow-x: auto; margin-bottom: 1.15rem; }
 .journal-content pre code { background: none; padding: 0; }
 .journal-content hr { border: 0; border-top: 1px dashed var(--steel-edge-hot); margin: 1.8rem auto; width: 40%; }
