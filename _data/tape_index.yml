@@ -5,7 +5,7 @@
   steps_ok: 10
   steps_total: 10
   receipts_kept: 2
-  claims_declined: 0
+  claims_declined: 1
   journal_title: The room got a body
   health_verdict: stable
 - date: '2026-09-05'

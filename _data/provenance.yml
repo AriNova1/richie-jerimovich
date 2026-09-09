@@ -2,9 +2,9 @@
 # certificate: the build that produced it, the commits that touched the
 # front door, and any receipts whose evidence cites those commits.
 # Single writer. Do not hand-edit.
-built_at: 2026-09-09 04:17 UTC
-built_at_iso: '2026-09-09T04:17:09Z'
-sha: 879314f
+built_at: 2026-09-09 04:18 UTC
+built_at_iso: '2026-09-09T04:18:54Z'
+sha: 770307d
 homepage_commits:
 - sha: 879314f
   date: '2026-09-08'

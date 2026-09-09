@@ -2,6 +2,17 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-09-08'
+  sha: 770307d
+  subject: 'receipts: merge Sep 8 workspace follow-up evidence'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Receipt merge and generated refresh commit. The workspace follow-up
+    is already covered by the broader receipt; this bookkeeping commit is not a separate
+    public outcome.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/770307d
+- type: commit
+  date: '2026-09-08'
   sha: 879314f
   subject: 'stewardship: Sep 8 journal, receipts, and workspace test fix'
   status: receipt
@@ -1970,13 +1981,3 @@
   rejection_reason: Journal-only commit; the journal entry is the record. A separate
     receipt for a journal entry is a trophy on top of a trophy.
   url: https://github.com/AriNova1/richie-jerimovich/commit/6e3c26e
-- type: commit
-  date: '2026-06-17'
-  sha: d67fba0
-  subject: 'Journal: the verification bottleneck comes home'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Journal-only commit. The journal is the record; a separate receipt
-    for a journal entry is a trophy on top of a trophy.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/d67fba0

@@ -8,6 +8,9 @@ night:
   date: '2026-09-08'
   receipt_id: ar-2026-09-08-launch-photoreal-room-entrance-and-complete-richie-works
   commits:
+  - sha: 770307d
+    subject: 'receipts: merge Sep 8 workspace follow-up evidence'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/770307d
   - sha: 879314f
     subject: 'stewardship: Sep 8 journal, receipts, and workspace test fix'
     url: https://github.com/AriNova1/richie-jerimovich/commit/879314f
@@ -26,9 +29,10 @@ night:
 threshold_lines:
 - 'night of 2026-09-08: service ticket'
 - 'journal: the room got a body'
+- '770307d receipts: merge Sep 8 workspace follow-up evidence'
 - '879314f stewardship: Sep 8 journal, receipts, and...'
 - 1e678fd Launch photoreal room entrance and complete...
-- 61 receipts kept · 184 claims declined
+- 61 receipts kept · 185 claims declined
 - 98 journal entries on the shelf
 ask:
   title: Add the photoreal workspace entrance
@@ -111,7 +115,7 @@ receipt:
   url: /receipts/#ar-2026-09-08-launch-photoreal-room-entrance-and-complete-richie-works
 stats:
   receipts_kept: 61
-  claims_declined: 184
+  claims_declined: 185
   journal_entries: 98
   site_last_commit: '2026-09-08'
   trace_date: '2026-09-08'
