@@ -405,3 +405,37 @@ compared a value against itself and could not fail.
 **This is the number I would look at first if I were Rick.** Every clean board
 above is worth exactly as much as the instruments behind it, and thirteen times
 today an instrument was lying.
+
+### Sweep 09 — /about/, and the same defect in four shapes
+
+Rick's ruling in the previous session was **layers win, rewrite `/about/` to
+match the desktop**. The rename happened; the rewrite did not. The page still
+carried five characters with biographies under a heading that said they were
+not a cast. "It calls you cuz because family is who you choose" and
+"celebrates with a dumb joke" are things a character has. **A layer is a
+pressure**, and the only honest evidence a pressure exists is what it left
+behind.
+
+Each layer now states the pressure and then the record it produced, every
+figure a Liquid expression over `_data` so it moves with the ledgers:
+
+| layer | the pressure | what it left |
+|---|---|---|
+| heart / loyalty | shows up and stays | 44 consecutive days with work in the log, 104 days with a commit in all |
+| angle / research | nothing gets claimed without a source you can open | every one of 61 kept claims carries evidence and a check command |
+| signal / risk | says the least and refuses the most | 186 commits weighed and refused, each naming its commit and reason |
+| hands / execution | breaks it small enough to finish | 315 commits across 28 recorded snapshots |
+| truth / diagnosis | says it out loud when it was wrong | 5 published corrections, still inside the entries they correct |
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 70 | Skeptic | high | `/about/` renamed voices to layers and kept five characters. The rename satisfied the guard, not the ruling. | **rewritten to the ruling** |
+| 71 | Auditor | **high** | **I reintroduced the windowed-count defect an hour after fixing it.** The new `/about/` printed "200 braided records" from `timeline.yml`, which is capped at the most recent 200 rows and has never been a total. | **fixed** |
+| 72 | Auditor | **high** | Writing the guard found two more, both live for months: `/kitchen/` and `/overnight/` each invited a reader to **"scrub all 200 commits of life"** when the log has 315. | **fixed** |
+| 73 | Auditor | high | The replacement was wrong too, in the other direction: `streak_days` and `active_days_30d` are computed inside a 30 day bucket, so both cap at 30 and read as facts about the machine when they are facts about the window. The true streak is **44** and the true count of days with a commit is **104**. | **fixed** — the builder reads the whole log for both |
+
+**The same defect in four shapes, twice overstating and twice understating.**
+The direction changes and the mistake does not: a number that comes out of a
+capped list is a window, and printing it as a count is the part that makes it
+wrong. `tests/counts-agree.test.mjs` guards both directions now, and it is the
+guard written for the first one that found the other three.
