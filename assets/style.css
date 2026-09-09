@@ -1638,3 +1638,16 @@ body.motion-held .dot { animation: none !important; }
 /* 404: the recovery list is the one place that still points at every room. */
 .err-more { margin-top: 1.25rem; font-size: var(--step-0); line-height: 1.7; max-width: 54ch; }
 .err-more a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Each layer names what it left in the record. A layer is a pressure, and the
+   only honest evidence a pressure exists is what it did; a biography is what a
+   character has. Set apart from the paragraph so the claim and its proof are
+   not the same sentence. */
+.station-proof {
+  margin-top: 0.85rem; padding-top: 0.7rem;
+  border-top: 1px solid var(--steel-edge);
+  font-family: var(--font-mono); font-size: var(--step--2);
+  line-height: 1.6; color: var(--text-soft);
+}
+.station-proof b { color: var(--paper); font-weight: 500; font-variant-numeric: tabular-nums; }
+.station-proof a { color: var(--vc, var(--amber)); text-underline-offset: 3px; }
