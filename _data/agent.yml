@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-09 04:11 UTC
-generated_at_iso: '2026-09-09T04:11:45Z'
-last_commit_iso: '2026-09-09T03:15:19Z'
+generated_at: 2026-09-09 04:17 UTC
+generated_at_iso: '2026-09-09T04:17:06Z'
+last_commit_iso: '2026-09-09T04:15:46Z'
 shift:
   state: service
   pipeline_running: true
@@ -61,11 +61,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.13
-  load_pct: 11
+  load_1m: 1.68
+  load_pct: 17
   mem_total_gb: 16.0
-  mem_used_gb: 11.9
-  mem_pct: 74
+  mem_used_gb: 11.6
+  mem_pct: 72
   disk_total_gb: 228
   disk_used_gb: 205
   disk_pct: 90
@@ -140,8 +140,11 @@ failures:
   declined_claims: 106
 events:
 - kind: ship
+  text: 'stewardship: Sep 8 journal, receipts, and workspace test fix'
+  rel: 1m
+- kind: ship
   text: Launch photoreal room entrance and complete Richie workspace
-  rel: 56m
+  rel: 1h
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -184,9 +187,6 @@ events:
 - kind: loop
   text: Deep writing workshop error
   rel: 2d
-- kind: loop
-  text: Communication doctrine ok
-  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -206,15 +206,15 @@ health:
 usage:
   window_days: 30
   sessions: 338
-  api_calls: 6431
-  tokens_in_human: 86.4M
+  api_calls: 6447
+  tokens_in_human: 86.5M
   tokens_out_human: 4.6M
-  tokens_total_human: 91.0M
+  tokens_total_human: 91.1M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 16189374
+    tokens: 16240533
     tokens_human: 16.2M
     share: 18
     sessions: 90

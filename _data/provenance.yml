@@ -2,10 +2,13 @@
 # certificate: the build that produced it, the commits that touched the
 # front door, and any receipts whose evidence cites those commits.
 # Single writer. Do not hand-edit.
-built_at: 2026-09-09 04:11 UTC
-built_at_iso: '2026-09-09T04:11:48Z'
-sha: 1e678fd
+built_at: 2026-09-09 04:17 UTC
+built_at_iso: '2026-09-09T04:17:09Z'
+sha: 879314f
 homepage_commits:
+- sha: 879314f
+  date: '2026-09-08'
+  subject: 'stewardship: Sep 8 journal, receipts, and workspace test fix'
 - sha: 1e678fd
   date: '2026-09-08'
   subject: Launch photoreal room entrance and complete Richie workspace

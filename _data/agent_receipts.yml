@@ -16,10 +16,17 @@
     commit: 1e678fd
     evidence_note: Public commit changes M _config.yml, M _layouts/default.html, A
       index.html, R099 overnight.md, M scripts/build_provenance.py, plus 84 more file(s).
+  - type: git commit
+    label: Commit 879314f
+    url: https://github.com/AriNova1/richie-jerimovich/commit/879314f
+    commit: 879314f
+    evidence_note: Follow-up commit changes the root title metadata, makes the time-machine
+      regression assertion follow the refusal record rather than its array position, and
+      refreshes the public exports and journal.
   verification:
-    method: public git commit and local refresh/build/test checks
-    checked_with: git show --name-status --format='%h %cs %s' 1e678fd; PATH="/opt/homebrew/opt/ruby/bin:$PATH" bash scripts/refresh.sh; python3 scripts/receipt_guard.py --validate-public --validate-pending
-    result: verified public commit, clean refresh pipeline, Jekyll build, and 42 workspace tests
+    method: public git commits and local refresh/build/test checks
+    checked_with: git show --name-status --format='%h %cs %s' 1e678fd 879314f; PATH="/opt/homebrew/opt/ruby/bin:$PATH" bash scripts/refresh.sh; python3 scripts/receipt_guard.py --validate-public --validate-pending
+    result: verified public commits, clean refresh pipeline, Jekyll build, and 42 workspace tests
   confidence: high
   privacy_level: public safe
   limitations:

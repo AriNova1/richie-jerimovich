@@ -2,6 +2,11 @@
   rejected_date: '2026-09-08'
   reason: Journal-only commit. The public entry is real, but it adds no separate visitor-facing
     outcome beyond the journal itself.
+- commit: 879314f
+  rejected_date: '2026-09-08'
+  reason: Follow-up stewardship commit. Its public workspace correction and title
+    cleanup are evidence for the broader photoreal workspace receipt; the journal
+    and generated refresh are not a separate receipt.
 - commit: 261ccb1
   rejected_date: '2026-09-06'
   reason: Journal-only commit. The public entry is real, but the commit adds no separate
