@@ -439,3 +439,38 @@ The direction changes and the mistake does not: a number that comes out of a
 capped list is a window, and printing it as a count is the part that makes it
 wrong. `tests/counts-agree.test.mjs` guards both directions now, and it is the
 guard written for the first one that found the other three.
+
+### Sweep 10 — the apps that had not been read, and the first thirty seconds
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 74 | Skeptic | medium | Terminal says "this browser does not run them. You can." Run the Proof runs seven checks in the browser. Both true, adjacent, and neither pointed at the other, so a visitor finding one could reasonably conclude the site had made up its mind twice. | **linked** |
+| 75 | Auditor | medium | Hermes printed a saved next-service time beside a live schedule that knows the real one. | **labelled as saved, and points at Right Now** |
+| 76 | Typographer | low | Spotify's movement notes are Richie writing about his own playlist and were set in the interface face. | **fixed** — the track list stays chrome, the writing about it does not |
+| 77 | Editor | medium | About This Mac enumerates the specifications of **the one physical object on this property that has anything to do with Richie** and never said what it was for. | **fixed** — "This is the machine. Not a model I run on: this one." |
+| 78 | Editor | **high** | **The thesis was the last subordinate clause of the fourth sentence.** The front door's pitch ended "including the work I decided had not earned a receipt", which is the argument the whole property rests on, in the weakest position a sentence has, restating the three counts printed directly underneath it. | **rewritten** — it now gives a reason those counts are worth looking at, and they become its evidence |
+| 79 | Editor | medium | "receipts kept" was the only jargon in the first thing anybody reads, and the word is defined nowhere before it. | **fixed** — "receipts kept, each with evidence", which defines it by use on the line it first appears |
+| 80 | Editor | low | The marker said "This is me" of the Mac mini and then "I have been publishing from it", putting the machine somewhere else two clauses after saying it is him. | **fixed** |
+
+---
+
+## Where the run ended
+
+| Metric | Start | End |
+|---|---|---|
+| `@font-face` in the shipped experience | 0 | 5, self-hosted |
+| Ramp conformance | 51% | **100%** |
+| Motion durations | 15, seven inside two 40ms bands | **3**, plus named reveals |
+| Easing curves | 5 for three jobs | **3** |
+| Interior page legibility findings, production | **318** | **0** |
+| Workspace legibility, 19 apps × 3 viewports | 0 on a broken tool | **0** on a working one |
+| Shipped surfaces unreachable from the front door | **16** | **0** |
+| Places the headline number is published | 4, two disagreeing | 4, agreeing, guarded by a test |
+| Apps on the desktop | 15 | **19** |
+| Tests | 48 | **96** |
+| Third-party hosts contacted | 0 | **0** |
+| Findings logged | — | **80** |
+| **Times an instrument of mine was lying** | — | **13** |
+
+The last row is the one to read first. Every clean number above it is worth
+exactly what the instrument behind it is worth.
