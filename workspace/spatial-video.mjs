@@ -149,7 +149,7 @@ function paintInvitation(){
   const n=c.counts||{};
   /* Three figures stacked, not run together: on one line the last clause
      orphaned a word and the two uses of "commits" read as a contradiction. */
-  counts.innerHTML=[[n.kept??0,'receipts kept'],[n.refused??0,'commits that earned none'],[n.commits??0,'commits in all']]
+  counts.innerHTML=[[n.kept??0,'receipts kept, each with evidence'],[n.refused??0,'commits that earned none'],[n.commits??0,'commits in all']]
     .map(([v,l])=>`<span class="ic-row"><b>${v}</b><i>${l}</i></span>`).join('');
   counts.title=`Counted from the export generated ${c.generated||'date not exported'}.`;
   counts.dataset.tier='derived';
@@ -250,7 +250,7 @@ function miniCopy(corpus){
     publishing" here made the machine's own label read like a museum card
     written by somebody else. */
  line.textContent=`This is me. ${spec ? spec + '. ' : ''}`+
-  (Number.isFinite(days)?`I have been publishing from it for ${days} days.`:'I publish from it.');
+  (Number.isFinite(days)?`${days} days in here so far.`:'This is where the record is written.');
  line.dataset.tier='export';
 }
 /* ── What the room costs to arrive at ────────────────────────────────
