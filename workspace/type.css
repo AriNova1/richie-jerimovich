@@ -222,3 +222,14 @@ code, kbd, samp, .hash, .sha {
 .sc-head h1 { font-weight: 400; }
 .sc-big, .sc-nums dd { font-family: var(--face-evidence); font-size-adjust: none; letter-spacing: -.02em; }
 .sc-tag, .sc-fine, .sc-band-key, .sc-foot, .sc-day h2 { font-family: var(--face-chrome); font-size-adjust: none; letter-spacing: 0; }
+
+/* Health rows: the label is chrome, the reading is evidence. Set in the
+   record face a value like "last read 55d ago" read as a sentence somebody
+   wrote rather than a number a machine took. */
+.activity-content .record-item p,
+.activity-content dd { font-family: var(--face-evidence); font-size-adjust: none; letter-spacing: 0; }
+.activity-content .record-item header span:first-child,
+.activity-content dt { font-family: var(--face-chrome); }
+.chrome-start h1, .chrome-lede, .chrome-group strong { font-family: var(--face-record); font-optical-sizing: auto; }
+.chrome-group span, .chrome-group h2, .chrome-url, .chrome-home { font-family: var(--face-chrome); font-size-adjust: none; letter-spacing: 0; }
+.chrome-group code, .chrome-url { font-family: var(--face-evidence); font-size-adjust: 0.52; }

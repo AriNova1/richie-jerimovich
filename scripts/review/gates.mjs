@@ -49,6 +49,16 @@ const o = gateType(SYSTEMS[other]());
 const oBlocking = o.findings.filter((f) => f.severity === 'stop-ship' || f.severity === 'high').length;
 
 if (liveAt) {
+  /* Reach needs a running server, so it rides with --live. It is the gate
+     that would have caught the launch orphaning sixteen published pages, and
+     nothing else on this list can see that class of defect: every one of
+     those pages still returned 200 at its own URL. */
+  const { execFileSync } = await import('node:child_process');
+  try {
+    execFileSync(process.execPath, ['scripts/review/gate-reach.mjs', liveAt.replace(/\/[^/]*$/, '')], { stdio: 'inherit' });
+  } catch {
+    findings.push({ gate: 'reach', severity: 'high', what: 'shipped surfaces are unreachable from the front door', where: 'see the list above' });
+  }
   const { liveGates } = await import('./gate-live.mjs');
   for (const [w, h, label] of [[1440, 900, 'desktop'], [390, 844, 'phone']]) {
     const r = await liveGates(liveAt, { viewport: { width: w, height: h }, label });

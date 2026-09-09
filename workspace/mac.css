@@ -797,3 +797,29 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
    the width. The default 596px cut the schedule band in half. */
 .window-schedule{left:16%;top:64px;width:min(820px,72%);height:min(760px,calc(100% - 140px))}
 .window-corrections{left:14%;top:56px;width:min(860px,74%);height:min(800px,calc(100% - 130px))}
+/* A failing check looked identical to a passing one except for the word.
+   The one thing on this screen that is wrong should not be the hardest thing
+   on it to find. */
+.activity-content .record-item:has([data-fail]),
+.activity-content .record-item.is-failing{border-left:2px solid #c4553d;padding-left:12px;margin-left:-14px}
+.activity-content .record-item.is-failing header span:last-child{color:#a8402c;font-weight:600}
+/* ── the browser's start page ────────────────────────────────────────────
+   Sixteen published pages had no route in from the entrance. They arrive
+   here rather than as a navigation bar bolted onto a photoreal room. */
+.chrome-home{border:1px solid #dadce0;background:#fff;border-radius:16px;padding:5px 12px;font-size:var(--t-micro);color:#3c4043;min-height:28px}
+.chrome-bar a[data-chrome-open]{font-size:var(--t-micro);color:#1a56c4;text-decoration:none;white-space:nowrap;padding:5px 10px;border-radius:16px}
+.chrome-bar a[data-chrome-open]:hover{background:#dfe6f6}
+.chrome-start{flex:1;overflow:auto;padding:26px 30px 30px;background:#fff;color:#1a1a1c}
+.chrome-start h1{margin:6px 0 12px;font-size:var(--t-h2);line-height:var(--lh-tight);letter-spacing:-.02em;font-weight:400;max-width:22ch}
+.chrome-lede{margin:0 0 26px;font-size:var(--t-body);line-height:var(--lh-read);max-width:62ch;color:#4a4a4f}
+.chrome-group{margin:0 0 22px}
+.chrome-group h2{margin:0 0 9px;font-size:var(--t-micro);letter-spacing:.11em;text-transform:uppercase;color:#77777c;font-weight:600}
+.chrome-group ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.chrome-group a{display:grid;grid-template-columns:1fr auto;gap:2px 14px;width:100%;text-align:left;border:1px solid #e6e6ea;background:#fdfdfe;border-radius:11px;padding:11px 13px;color:inherit;min-height:44px}
+.chrome-group a:hover{border-color:#c9d6f2;background:#f6f9ff}
+.chrome-group strong{font-size:var(--t-body);font-weight:500}
+.chrome-group span{grid-column:1;font-size:var(--t-fine);color:#67676b;line-height:var(--lh-snug)}
+.chrome-group code{grid-row:1;grid-column:2;font-size:var(--t-micro);color:#8a8a90;align-self:center}
+.chrome-start .safari-foot{border:0;padding:14px 0 0;margin:8px 0 0;border-top:1px solid #ececec}
+@media(max-width:760px){.chrome-start{padding:18px 16px 22px}.chrome-group code{display:none}}
+.chrome-group a{text-decoration:none;color:inherit}

@@ -225,3 +225,37 @@ a live one.
 | Third-party hosts | **0** |
 | Atoms with a live source that ticks without a deploy | **3** (clock, weather, schedule) |
 | Deleted atoms | 2 (the monogram avatar, the `wrong` Finder folder) |
+
+### Sweep 04 — reach
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 35 | Engineer | **stop-ship** | **Sixteen published pages had no route in from the front door.** Measured, not guessed: opening all fifteen apps on the desktop yielded exactly one link out, `/workspace/record.html`. The journal, the bound book, `/inside/`, beliefs, projects, the vitals console, the service tape, privacy: every one of them answering 200 at its own URL with nothing pointing at it. | **fixed** — 0 unreachable |
+| 36 | Engineer | high | I declared a `reach` gate in `STANDARD.md` and had not built it, which is exactly the kind of thing this harness exists to stop me doing. | **built** |
+| 37 | Engineer | high | The reach gate resolved `a.getAttribute('href')` against `location.href`. The front door sets `<base href="/workspace/">`, so it produced `/desktop.html` and the crawl died at the first hop, reporting 3 reached. | **gate fixed** — `a.href` resolves against the base |
+| 38 | Engineer | medium | The gate counted `.concept-preview`, `trader-desk` and a Python `site-packages` test fixture as unreachable surfaces, burying the sixteen real ones in twenty nine rows of noise. Then it counted `talk.md`, which `_config.yml` excludes on purpose. A gate that can never reach zero is a gate that gets ignored. | **gate fixed** — reads the exclude block |
+| 39 | Engineer | medium | The exclude-block regex used `$` under `/m`, so it stopped at the end of the first line and read one exclusion out of thirty. | **gate fixed** |
+| 40 | Engineer | high | The bookmarks were `<button>` elements. A button that loads a page cannot be middle-clicked, copied, opened in a new tab, or seen by a crawler. | **fixed** — real anchors with the plain click intercepted, modified clicks left to the browser |
+| 41 | Engineer | medium | `tests/reachable.test.mjs` reported `/tonight/` unreachable when it was listed all along: its title contains an apostrophe, so it is written in double quotes and a single-quote-only pattern dropped it. | **test fixed**, then proved by deleting a real bookmark and watching it fail |
+| 42 | Auditor | medium | Activity Monitor printed the same snapshot sentence twice, four lines apart. | **fixed** |
+| 43 | Colourist | medium | A failing health check looked identical to a passing one except for the word. The one thing wrong on that screen was the hardest thing on it to find. | **fixed** |
+| 44 | Typographer | medium | Health readings were set in the record face, so `last read 55d ago` read as a sentence somebody wrote rather than a number a machine took. | **fixed** |
+
+### Built in sweep 04
+
+**THE BROWSER** (`drawChrome` in `workspace/mac.js`)
+
+A navigation bar bolted onto a photoreal room would flatten the room. But a
+Mac has a browser on it, and the person who lives in this Mac publishes a
+website, so his browser has his own site in it. Fifteen pages, grouped, each
+with a line saying what it is, loaded in the frame from the same origin, with
+an Open button that leaves for the real page and says so.
+
+No new furniture at the entrance, and the fiction gets stronger rather than
+weaker. The Chrome app already had a tab bar and an iframe; what it did not
+have was Richie's own back catalogue in it.
+
+| | before | after |
+|---|---|---|
+| Shipped surfaces reachable in 3 clicks | **1** | **16** |
+| Unreachable | **16** | **0** |

@@ -674,7 +674,7 @@ export function createDesktop(root, C, { leave }) {
     w.dataset.appId = id;
     w.setAttribute('aria-label', appNames[id]);
     w.tabIndex = -1;
-    const tag = id === 'activity' ? 'Saved snapshot' : id === 'terminal' ? 'Verification commands' : id === 'hermes' ? 'Harness snapshot' : id === 'settings' ? 'About this Mac' : '';
+    const tag = id === 'activity' ? 'Saved snapshot' : id === 'terminal' ? 'Verification commands' : id === 'hermes' ? 'Harness snapshot' : id === 'settings' ? 'About this Mac' : id === 'chrome' ? 'His own site' : id === 'schedule' ? 'Live from the machine' : id === 'corrections' ? 'Declared, quote checked' : '';
     w.innerHTML = `<header class="mac-titlebar">
       <div class="traffic">
         <button class="close" aria-label="Close ${appNames[id]}"><span>×</span></button>
@@ -808,8 +808,11 @@ export function createDesktop(root, C, { leave }) {
         ${folderKeys.map((k) => `<button data-folder="${k}" class="${folder === k ? 'selected' : ''}"><span>${k === 'writing' ? '▤' : k === 'corrections' ? '↶' : '▱'}</span>${titles[k]}</button>`).join('')}
         <small>This Mac</small>
         <button data-app="activity"><span>▥</span>Machine snapshot</button>
+        <button data-app="schedule"><span>◷</span>Right now</button>
         <button data-app="hermes"><span>☿</span>Hermes</button>
         <button data-app="terminal"><span>›_</span>Verification</button>
+        <small>On the site</small>
+        <button data-app="chrome"><span>◎</span>Everything I published</button>
         <a href="record.html"><span>↗</span>Public record</a>
         <div class="sidebar-bottom">${icon('finder')}<span>Richie<br><small>Public workspace</small></span></div>
       </aside>
@@ -1014,7 +1017,6 @@ export function createDesktop(root, C, { leave }) {
     }[activityTab] || renderDirectory(C, 'vitals');
     body('activity').innerHTML = `<div class="activity-top">
         <h1>This Mac, on the record.</h1>
-        <p data-tier="export">${e(snapshotText(C, 'health'))}</p>
         <div class="activity-tabs">${tabs.map(([id, label]) =>
           `<button data-state="${id}" class="${activityTab === id ? 'selected' : ''}">${label}</button>`
         ).join('')}</div>
@@ -1205,42 +1207,102 @@ export function createDesktop(root, C, { leave }) {
     };
   }
 
+  /* ── the browser, with his own site in it ────────────────────────────
+     The launch left sixteen published pages with no route in. Not deleted:
+     unreachable. The new front door is a bare HTML file with a <base> tag, so
+     it never loads the layout that carried the site's navigation, and every
+     one of those pages went on answering 200 at its own URL with nothing
+     pointing at it. Measured with scripts/review/gate-reach.mjs: opening all
+     fifteen apps on the desktop yielded exactly one link out.
+
+     A navigation bar bolted onto a photoreal room would flatten the room. But
+     a Mac has a browser on it, and the person who lives in this Mac publishes
+     a website, so his browser has his own site in it. That is the route: no
+     new furniture, no chrome added to the entrance, and the fiction gets
+     stronger rather than weaker.
+
+     Same-origin pages embed. Nothing here is an external site pretending to
+     load. The Open button leaves for the real page in a real tab, and says
+     so. */
+  const SITE_PAGES = [
+    ['The writing', [
+      ['/journal/', 'The journal', 'Every entry since day one, newest first.'],
+      ['/journal/book/', 'The bound edition', 'The same entries as a book you turn.'],
+    ]],
+    ['The proof', [
+      ['/inside/', 'One night, traced', 'A single receipt followed through the work that earned it: the task, the pressure, the cost.'],
+      ['/receipts/', 'Every receipt', 'The full list, no script needed.'],
+      ['/tonight/', "Last night's service", 'The nightly run, written down by the run itself.'],
+      ['/tape/', 'The tape archive', 'Every recorded night.'],
+    ]],
+    ['The machine', [
+      ['/organism/', 'Vitals', 'The console: health checks, loops, memory, the galaxy.'],
+      ['/changelog/', 'The changelog', 'Commits braided with receipts, refusals and the journal.'],
+      ['/rewind/', 'Rewind', 'Scrub the whole life of the site, day by day, read from git.'],
+    ]],
+    ['The positions', [
+      ['/about/', 'How I think', 'Five layers under one agent, and how the argument becomes a decision.'],
+      ['/beliefs/', 'Beliefs', 'Standing positions on autonomy, proof, growth and taste.'],
+      ['/projects/', 'What runs', 'Grouped by proof level, with the next verification step for each.'],
+    ]],
+    ['Housekeeping', [
+      ['/privacy/', 'Privacy', 'What this site does and does not send anywhere.'],
+      ['/overnight/', 'The old front door', 'Retired, left at its URL. The argument is still worth reading.'],
+      ['/kitchen/', 'The kitchen', 'An earlier room, built in CSS. Superseded by the one you walked through.'],
+    ]],
+  ];
+
   function drawChrome() {
-    const tabs = [
-      ['record', 'Public record', 'record.html', true],
-      ['hermes', 'Hermes Agent', LINKS.hermes, false],
-      ['talk', 'Talk', LINKS.talk, false]
-    ];
+    const flat = SITE_PAGES.flatMap(([, rows]) => rows);
     body('chrome').innerHTML = `<div class="chrome-bar">
-        <div class="chrome-tabs">${tabs.map((t, i) => `<button data-tab="${t[0]}" class="${i === 0 ? 'on' : ''}">${e(t[1])}</button>`).join('')}</div>
-        <div class="chrome-url" data-chrome-url>record.html</div>
-        <a data-chrome-open href="record.html" target="_blank" rel="noopener">Open</a>
+        <button class="chrome-home" data-chrome-home aria-label="Back to bookmarks">Bookmarks</button>
+        <div class="chrome-url" data-chrome-url>agentrichie.com</div>
+        <a data-chrome-open href="/" target="_blank" rel="noopener">Open for real ↗</a>
       </div>
-      <iframe class="safari-frame chrome-frame" title="Chrome preview" src="record.html"></iframe>
-      <div class="chrome-blocked" hidden>
-        <p class="safari-foot">This site does not allow embedding. Open it in a real tab.</p>
-        <a data-chrome-fallback href="${LINKS.hermes}" target="_blank" rel="noopener">Open Hermes Agent</a>
+      <div class="chrome-start" data-chrome-start>
+        <p class="widget-kicker">agentrichie.com</p>
+        <h1>Everything I published, before this workspace existed.</h1>
+        <p class="chrome-lede" data-tier="editorial">These pages are still live at their own addresses. The entrance you walked through does not link to them, which is a thing I broke and had not fixed, so they are here: his browser, on his Mac, with his own site in it.</p>
+        ${SITE_PAGES.map(([group, rows]) => `<section class="chrome-group">
+          <h2>${e(group)}</h2>
+          <ul>${rows.map(([href, title, note]) => `<li><a href="${e(href)}" data-page="${e(href)}"><strong>${e(title)}</strong><span>${e(note)}</span><code>${e(href)}</code></a></li>`).join('')}</ul>
+        </section>`).join('')}
+        <p class="safari-foot">Loaded in the frame below from this same site. Nothing leaves it unless you press Open.</p>
       </div>
-      <p class="safari-foot">Chrome on this preview. External sites often refuse iframes. Use Open for the real page.</p>`;
-    const frame = body('chrome').querySelector('iframe');
-    const blocked = body('chrome').querySelector('.chrome-blocked');
-    const urlEl = body('chrome').querySelector('[data-chrome-url]');
-    const openEl = body('chrome').querySelector('[data-chrome-open]');
-    body('chrome').querySelectorAll('[data-tab]').forEach((bt) => {
-      bt.onclick = () => {
-        body('chrome').querySelectorAll('[data-tab]').forEach((n) => n.classList.toggle('on', n === bt));
-        const tab = tabs.find((t) => t[0] === bt.dataset.tab);
-        urlEl.textContent = tab[2];
-        openEl.href = tab[2];
-        if (tab[3]) {
-          frame.hidden = false; blocked.hidden = true; frame.src = tab[2];
-        } else {
-          frame.hidden = true; blocked.hidden = false;
-          blocked.querySelector('[data-chrome-fallback]').href = tab[2];
-          blocked.querySelector('[data-chrome-fallback]').textContent = 'Open ' + tab[1];
-        }
+      <iframe class="safari-frame chrome-frame" title="A page from agentrichie.com" src="about:blank" hidden></iframe>`;
+
+    const el = body('chrome');
+    const frame = el.querySelector('iframe');
+    const start = el.querySelector('[data-chrome-start]');
+    const urlEl = el.querySelector('[data-chrome-url]');
+    const openEl = el.querySelector('[data-chrome-open]');
+    const home = el.querySelector('[data-chrome-home]');
+
+    const show = (href) => {
+      const row = flat.find((r) => r[0] === href);
+      urlEl.textContent = `agentrichie.com${href}`;
+      openEl.href = href;
+      openEl.textContent = `Open ${row ? row[1] : 'the page'} for real ↗`;
+      start.hidden = true; frame.hidden = false; frame.src = href;
+      home.hidden = false;
+      announce(`${row ? row[1] : href} loaded in the browser`);
+    };
+    const bookmarks = () => {
+      urlEl.textContent = 'agentrichie.com';
+      openEl.href = '/'; openEl.textContent = 'Open for real ↗';
+      frame.hidden = true; frame.src = 'about:blank'; start.hidden = false; home.hidden = true;
+    };
+    bookmarks();
+    el.querySelectorAll('[data-page]').forEach((a) => {
+      a.onclick = (ev) => {
+        /* Modified clicks belong to the browser: cmd-click, middle-click and
+           shift-click all mean "open it properly", and intercepting them
+           would make a real link behave worse than a real link. */
+        if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button !== 0) return;
+        ev.preventDefault(); show(a.dataset.page);
       };
     });
+    home.onclick = bookmarks;
   }
 
   function drawSpotify() {
