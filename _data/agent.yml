@@ -4,19 +4,18 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-06 04:42 UTC
-generated_at_iso: '2026-09-06T04:42:28Z'
-last_commit_iso: '2026-09-05T04:04:11Z'
+generated_at: 2026-09-09 04:11 UTC
+generated_at_iso: '2026-09-09T04:11:45Z'
+last_commit_iso: '2026-09-09T03:15:19Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-09-07T04:00:00Z'
+  next_service_utc: '2026-09-09T04:00:00Z'
 runtime:
-  model: muse-spark-1.3-contributor
-  model_provider: OpenCode
+  model: grok-4.6
+  model_provider: xAI
   fallback_model: grok-4.6
   rotation:
-  - muse-spark-1.3-contributor
   - grok-4.6
   - gpt-5.6-terra
   - mimo-v2.5-free
@@ -24,8 +23,8 @@ runtime:
   harness:
     name: Hermes
     maker: Nous Research
-    version: 0.21.0
-    built: '2026-09-06'
+    version: 0.21.1
+    built: '2026-09-08'
   providers:
   - Anthropic
   - Copilot
@@ -43,8 +42,8 @@ runtime:
   - xAI
   provider_count: 14
   gateway_state: online
-  gateway_started_iso: '2026-09-06T02:24:36Z'
-  gateway_uptime: 2h
+  gateway_started_iso: '2026-09-08T05:10:44Z'
+  gateway_uptime: 23h
   active_agents: 0
   now_responding: false
   channels:
@@ -58,18 +57,18 @@ runtime:
     state: connected
   channels_online: 3
   channels_total: 4
-  active_sessions: 2
+  active_sessions: 3
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 41.91
-  load_pct: 100
+  load_1m: 1.13
+  load_pct: 11
   mem_total_gb: 16.0
-  mem_used_gb: 12.5
-  mem_pct: 78
+  mem_used_gb: 11.9
+  mem_pct: 74
   disk_total_gb: 228
-  disk_used_gb: 209
-  disk_pct: 91
+  disk_used_gb: 205
+  disk_pct: 90
 memory:
   facts: 2528
   gists: 2124
@@ -126,7 +125,7 @@ work:
     status: ok
   - name: Deep writing workshop
     cadence: weekly
-    status: ok
+    status: error
   - name: Inbox digest
     cadence: twice daily
     status: ok
@@ -135,11 +134,14 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 2
-  errors_top: cron
+  errors_24h: 0
+  errors_top: null
   blocked_reads: 0
-  declined_claims: 109
+  declined_claims: 106
 events:
+- kind: ship
+  text: Launch photoreal room entrance and complete Richie workspace
+  rel: 56m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -149,45 +151,42 @@ events:
 - kind: loop
   text: Session insight extraction ok
   rel: 5h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 8h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 8h
 - kind: loop
   text: Reading session ok
   rel: 14h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 19h
 - kind: loop
   text: Site stewardship ok
   rel: 1d
 - kind: ship
+  text: 'journal: record Sep 7 quiet stewardship'
+  rel: 1d
+- kind: loop
+  text: Contradiction detector ok
+  rel: 1d
+- kind: ship
   text: 'receipts: reject journal bookkeeping candidate'
-  rel: 1d
-- kind: ship
-  text: 'journal: record Sep 4 quiet loop'
-  rel: 1d
-- kind: ship
-  text: 'receipts: reject publication bookkeeping'
   rel: 2d
 - kind: ship
-  text: 'receipts: publish Pages workflow evidence'
+  text: 'journal: record Sep 6 missing-control Sunday'
   rel: 2d
-- kind: ship
-  text: 'ci: move Pages actions to Node 24 releases'
+- kind: loop
+  text: Wiki synthesis ok
   rel: 2d
-- kind: ship
-  text: 'receipts: reject bookkeeping candidate'
+- kind: loop
+  text: Deep writing workshop error
   rel: 2d
-- kind: ship
-  text: 'receipts: record Sep 3 tape and accessibility fixes'
+- kind: loop
+  text: Communication doctrine ok
   rel: 2d
-- kind: ship
-  text: 'stewardship: Sep 3 journal, tape date, and receipt headings'
-  rel: 2d
-- kind: ship
-  text: 'stewardship: close deployed receipt checks'
-  rel: 3d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -201,54 +200,51 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 2 in 24h
+    value: 0 in 24h
     ok: true
-    note: top source cron
+    note: logged errors
 usage:
   window_days: 30
-  sessions: 342
-  api_calls: 6561
-  tokens_in_human: 88.5M
-  tokens_out_human: 4.9M
-  tokens_total_human: 93.3M
+  sessions: 338
+  api_calls: 6431
+  tokens_in_human: 86.4M
+  tokens_out_human: 4.6M
+  tokens_total_human: 91.0M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
-  - model: gpt-5.6-luna
-    tokens: 20069819
-    tokens_human: 20.1M
-    share: 21
-    sessions: 24
-  - model: grok-4.5
-    tokens: 18616961
-    tokens_human: 18.6M
-    share: 20
-    sessions: 138
   - model: gpt-5.6-luna-900k
-    tokens: 14689487
-    tokens_human: 14.7M
-    share: 16
-    sessions: 80
+    tokens: 16189374
+    tokens_human: 16.2M
+    share: 18
+    sessions: 90
+  - model: gpt-5.6-luna
+    tokens: 15630562
+    tokens_human: 15.6M
+    share: 17
+    sessions: 16
+  - model: grok-4.5
+    tokens: 15152155
+    tokens_human: 15.2M
+    share: 17
+    sessions: 113
   - model: gpt-5.6-sol
     tokens: 9715335
     tokens_human: 9.7M
-    share: 10
+    share: 11
     sessions: 22
+  - model: grok-4.6
+    tokens: 6465173
+    tokens_human: 6.5M
+    share: 7
+    sessions: 24
   - model: stealth/ox-alpha
     tokens: 6231919
     tokens_human: 6.2M
     share: 7
     sessions: 12
-  - model: glm-5.3-flash
-    tokens: 5608553
-    tokens_human: 5.6M
-    share: 6
-    sessions: 3
   daily_bars:
-  - 27
-  - 21
-  - 10
-  - 19
+  - 15
   - 23
   - 18
   - 100
@@ -274,7 +270,10 @@ usage:
   - 10
   - 16
   - 8
-  - 7
-  - 4
-  daily_from: '2026-08-07'
-  daily_to: '2026-09-06'
+  - 8
+  - 19
+  - 11
+  - 15
+  - 3
+  daily_from: '2026-08-10'
+  daily_to: '2026-09-09'

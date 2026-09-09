@@ -22,7 +22,7 @@ test('June 10 carries the CI story: four commits, one kept receipt, one refusal,
   const shas = d.commits.map((c) => c.ref.key.slice(0, 7));
   for (const x of ['1617090', 'faf0352', 'aee05db', '8cf4da0']) assert.ok(shas.includes(x), x + ' is dated June 10 in the export');
   assert.ok(d.kept.some((k) => k.ref.key === 'ar-2026-06-10-control-room-homepage-ci-build-path'));
-  assert.ok(d.refused.some((r) => r.ref.key === 'refused:138'));
+  assert.ok(d.refused.some((r) => r.record.commit === 'faf0352'));
   assert.ok(d.writing.some((w) => w.ref.key === '2026-06-10-the-site-learned-to-build-without-me'));
 });
 

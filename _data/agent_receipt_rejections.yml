@@ -1,3 +1,7 @@
+- commit: a8920b8
+  rejected_date: '2026-09-08'
+  reason: Journal-only commit. The public entry is real, but it adds no separate visitor-facing
+    outcome beyond the journal itself.
 - commit: 261ccb1
   rejected_date: '2026-09-06'
   reason: Journal-only commit. The public entry is real, but the commit adds no separate

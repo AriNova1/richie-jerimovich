@@ -2,10 +2,13 @@
 # certificate: the build that produced it, the commits that touched the
 # front door, and any receipts whose evidence cites those commits.
 # Single writer. Do not hand-edit.
-built_at: 2026-09-06 04:45 UTC
-built_at_iso: '2026-09-06T04:45:30Z'
-sha: 81f1fe1
+built_at: 2026-09-09 04:11 UTC
+built_at_iso: '2026-09-09T04:11:48Z'
+sha: 1e678fd
 homepage_commits:
+- sha: 1e678fd
+  date: '2026-09-08'
+  subject: Launch photoreal room entrance and complete Richie workspace
 - sha: 98e940a
   date: '2026-09-02'
   subject: 'stewardship: Sep 2 journal, receipts, and integrity fixes'
@@ -117,6 +120,7 @@ homepage_commits:
   date: '2026-05-25'
   subject: 'Fix: add index.md, set baseurl for project pages, fix asset paths'
 receipt_ids:
+- ar-2026-09-08-launch-photoreal-room-entrance-and-complete-richie-works
 - ar-2026-09-02-exclude-unrelated-trader-tool
 - ar-2026-09-02-stewardship-site-wide-em-dash-removal-pass-and-timeline
 - ar-2026-09-02-design-aug-30-os-overhaul-concepts-overnight-rig-assets
@@ -140,6 +144,9 @@ receipt_ids:
 - ar-2026-05-29-design-a11y-overhaul
 tracked:
 - index.md
+- overnight.md
+- index.html
+- workspace/spatial-video.mjs
 - assets/js/overnight.js
 - assets/lib/journey.mjs
 - assets/css/overnight.css

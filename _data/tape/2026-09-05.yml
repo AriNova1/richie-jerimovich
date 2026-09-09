@@ -62,8 +62,18 @@ steps:
   status: ok
 steps_ok: 9
 steps_total: 9
-commits: []
-receipts_kept: 0
+commits:
+- sha: 07d4064
+  subject: 'receipts: publish Sep 5 asset and privacy evidence'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
+- sha: 755d264
+  subject: 'stewardship: Sep 5 journal, asset cache fix, and privacy guard'
+  status: receipt
+  receipt_id: ar-2026-09-05-stewardship-sep-5-journal-asset-cache-fix-and-privacy-gu
+  rejection_reason: null
+receipts_kept: 1
 claims_declined: 0
 health_verdict: stable
 journal:

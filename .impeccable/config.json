@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "workspace/index.html"
+        ],
+        "createdAt": "2026-09-09T04:09:25.418Z",
+        "reason": "The evidence lens uses a left rail as its provenance instrument, not as generic card decoration."
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "workspace/index.html"
+        ],
+        "createdAt": "2026-09-09T04:09:34.578Z",
+        "reason": "The red halo belongs to the explicit unsourced defect state in the evidence lens."
+      }
+    ]
+  }
+}

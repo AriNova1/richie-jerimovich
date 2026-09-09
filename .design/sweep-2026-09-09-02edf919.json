@@ -1,0 +1,540 @@
+{
+  "property": "richie-jerimovich",
+  "date": "2026-09-09",
+  "inventoryHash": "02edf919847bef85",
+  "session": null,
+  "work": "Nightly stewardship: journal, receipt ledger, generated public data, root-entry metadata, and a regression test for the existing workspace.",
+  "constraints": [
+    "The photoreal room entrance and Mac workspace already shipped in 1e678fd. This pass preserves that conception and changes only public records, metadata, generated exports, and a regression assertion.",
+    "The site is a static Jekyll property plus a hand-written ES-module workspace. No new framework, component library, asset pack, or runtime dependency belongs in this maintenance pass.",
+    "Every public claim remains tied to repository data or a public commit. The entrance labels its room image as an interpretation, and the record remains the durable evidence surface."
+  ],
+  "craft": [
+    {
+      "family": "direction",
+      "applied": "",
+      "note": "No new direction was applied. The shipped room-to-desk-to-record sequence already owns the surface, and this pass kept its conception intact while correcting its public record."
+    },
+    {
+      "family": "motion",
+      "applied": "",
+      "note": "No motion work was applied. The existing video, fallback, and direct-entry behavior were preserved; the only UI edit changed page metadata and introduced no animation code."
+    },
+    {
+      "family": "type",
+      "applied": "",
+      "note": "No type system change was applied. The existing workspace typography remains the chosen Mac register, and the title edit removes a banned punctuation mark without changing its hierarchy."
+    },
+    {
+      "family": "color",
+      "applied": "",
+      "note": "No color work was applied. The room, desk, and evidence-lens colors remain unchanged because this pass found no verified color defect worth reopening."
+    },
+    {
+      "family": "layout",
+      "applied": "",
+      "note": "No layout work was applied. The room entrance and workspace composition were already shipped; the nightly pass rebuilt their derived record without changing geometry."
+    },
+    {
+      "family": "a11y",
+      "applied": "",
+      "note": "No new accessibility pattern was applied. Existing skip, focus, inert, reduced-motion, and direct-entry paths were retained while the regression test became less dependent on array position."
+    },
+    {
+      "family": "copy",
+      "applied": "",
+      "note": "Copy work was limited to replacing an em dash in the root title and social title with a colon. The journal was written from today's verified record and kept its caveats."
+    }
+  ],
+  "looked": {
+    "shots": [
+      "/Users/rickt/workspace/richie-jerimovich/.design/shots/codex-final-20260904-d0-room.png",
+      "/Users/rickt/workspace/richie-jerimovich/.design/shots/codex-final-mobile-375x812-d2-screen.png"
+    ],
+    "saw": "The built root keeps the room invitation, direct workspace entry, public-record skip link, and explicit interpretation caption. The workspace export and record routes exist after the local build, and the title metadata now uses a colon rather than the site's banned em-dash character.",
+    "mobile": "The existing 375px capture shows the workspace as a phone composition rather than a shrunken desktop. This maintenance pass did not alter its geometry; the local generated route still carries the same entry and record paths.",
+    "bar": "The pass clears the maintenance bar for truth and regression safety, not a new visual claim. It preserves the photoreal room as an interpretation, keeps the public record reachable, and fixes the time-machine test so a new refusal cannot invalidate an older dossier by shifting an array index."
+  },
+  "verdicts": [
+    {
+      "asset": "ECC",
+      "verdict": "rejected",
+      "reason": "Opened its skill index for a window-management or a11y recipe; it is Codex harness configuration (hooks, agents, plans) and has no guidance about desktop chrome or motion, which is what this session built.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "ai-design-skills",
+      "verdict": "rejected",
+      "reason": "Its value is picking a visual style for a new product. The owner fixed the style as a faithful macOS desktop months ago; the reader inherits Quick Look's register, so there was no style decision left for this pack to make.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "ai-website-cloner-template",
+      "verdict": "rejected",
+      "reason": "Templates a cloned marketing site. The surface here is an existing 1500-line desktop runtime with a document resolver; cloning any site into it would discard the record-identity layer that the Investigate action depends on.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "animate-text",
+      "verdict": "rejected",
+      "reason": "Curated text animations for headings and counters. The reader's title and the refusal quotes must be readable on arrival; the record widget counts are static by the no-fake-motion rule.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "anthropic-skills",
+      "verdict": "rejected",
+      "reason": "Checked for a docx or pdf export path for the reader's artifact; the pack's document skills target Office and PDF files, while the export needed to be plain Markdown a visitor can read in any editor, so I wrote a 40-line Markdown writer instead.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "base-ui",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "better-harness",
+      "verdict": "rejected",
+      "reason": "Configures the coding harness (hooks, settings). Nothing it offers changes what a visitor sees on the desk; this session's surfaces were verified by Playwright suites already in the workspace.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "border-beam",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "calicastle-skills",
+      "verdict": "rejected",
+      "reason": "Read its list: landing-page sections, pricing tables, testimonial layouts. The desk has none of those shapes; a Finder row and a refusal quote are not sections to be composed.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "canvas-ui",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 2,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "cinematic-scroll-prompt-kit",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "circle-loaders",
+      "verdict": "rejected",
+      "reason": "24 CC0 monochrome SVG loaders. The only wait on the desk is the dossier fetch, a 12 KB same-origin file; a loader would flash for under 100 ms, so the reader shows one line of text instead.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-ascii-dissolve",
+      "verdict": "rejected",
+      "reason": "A text dissolve effect for hero copy. The reader's headline is a refusal title that must be legible on arrival; dissolving it would delay the one fact the visitor came for.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-dataviz-deep",
+      "verdict": "rejected",
+      "reason": "Deep dataviz for charts. The reader has a chronology of four to six events and two refusal quotes; a chart of six timestamps would dramatise a list that reads faster as a list.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-figma",
+      "verdict": "rejected",
+      "reason": "Round-trips designs through Figma. No Figma file exists for this property; the chrome is Apple's and the reader was designed in CSS against Quick Look directly.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-product-design",
+      "verdict": "rejected",
+      "reason": "Product-design process for new features from scratch. The feature here had a written work order (FABLE-NEXT.md, STATUS-24) and P2 dossiers; the open questions were integration and source discipline, not product definition.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-remotion",
+      "verdict": "rejected",
+      "reason": "Renders video with Remotion. No film is in scope until Rick's room footage exists (F4); the evidence recordings this session are Playwright captures, not authored video.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "diffusionstudio-skills",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "dither-kit",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "emil-skills",
+      "verdict": "used",
+      "reason": "Emil Kowalski's framework decided the lifecycle layer: frequency-based durations (open 190 ms, close 120 ms, minimize 330 ms), springs over curves for anything a hand can interrupt, retarget from the displayed state, opacity-only under reduced motion. The MOTION and LIFECYCLE tables carry those numbers.",
+      "basis": null,
+      "escalation": "",
+      "file": ".concept-preview/v2/zoom/f5/lifecycle.mjs"
+    },
+    {
+      "asset": "fancy-components",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "fudge-design-md",
+      "verdict": "rejected",
+      "reason": "A DESIGN.md generator with 2000 files of examples. The property already has VISUAL-SPEC.md and SCENE-INTERFACE.md as its design law; generating a third document would not change a pixel of the reader.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "gc-minimal-zine-poster",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "illo-skill",
+      "verdict": "rejected",
+      "reason": "Generates illustrations. The desk's images are Apple icons with unresolved redistribution rights and one generated wallpaper; adding an illustration to a refusal reader would put an invented picture next to a verbatim ledger quote.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "interior",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "jakubkrehel-skills",
+      "verdict": "rejected",
+      "reason": "Motion and 3D component recipes built for React portfolios. The engine already existed (fable-r1.js) and the task was to spread it to every window, not to add a second motion vocabulary.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "liquid-glass-carousel",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "loading-ui",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "lucide-animated",
+      "verdict": "rejected",
+      "reason": "Two files: a canary note and a standalone demo of animated Lucide icons. The Dock and More use Apple ICNS conversions and one CSS four-square glyph; a Lucide icon would be the single non-Apple glyph on the desk.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "marketingskills",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "mattpocock-skills",
+      "verdict": "rejected",
+      "reason": "TypeScript and testing practice for app codebases. The preview is untyped ES modules by the owner's choice; its checks are Playwright scripts, which this pack does not cover.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "mengto-sketchbook",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "metal-fx",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "mint-bookshelf",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "motion",
+      "verdict": "rejected",
+      "reason": "Framer Motion (React/JS). The desk has one spring integrator shared with the room camera; importing a second animation runtime for open/close would split the motion character F0 argued for and add 30 KB for two easing calls.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "no-ai-slop",
+      "verdict": "rejected",
+      "reason": "Not run. The reader's prose is 90% quoted ledger and journal text plus labels; the one authored paragraph (the corrected introduction) was checked by hand for em dashes and hedges. Running the skill on quotations would risk \"improving\" published words.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "openship",
+      "verdict": "rejected",
+      "reason": "Ship/deploy tooling. Deployment is explicitly forbidden for this preview; nothing in the session touches a release path.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "originkit",
+      "verdict": "rejected",
+      "reason": "The MCP registry could not be reached: the Originkit endpoint fails at the TLS handshake on this network (an SNI-level block by the ISP, proven earlier with a hand-built ClientHello), so its 113 components could not be browsed this session; the local extraction was inspected instead.",
+      "basis": null,
+      "escalation": "Browse the registry from another network or over a VPN, or refresh originkit-local from a machine that can reach it, then re-sweep it against the desk; even then its components are React/Tailwind and would need a vanilla port to mount here.",
+      "file": ""
+    },
+    {
+      "asset": "originkit-local",
+      "verdict": "rejected",
+      "reason": "Opened index.json: the extracted components are React/Tailwind snippets (cards, nav bars, pricing). None mounts in vanilla ES modules and none is a Mac window, a Dock or a reader.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "paper-shaders",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 2,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "pixel2motion",
+      "verdict": "rejected",
+      "reason": "Logo-to-SVG fitting and brand motion. The only marks on the desk are vendor icons under fair use; animating them would make the licence question louder, not the desk better.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "pringles-reference",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "react-bits",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "reel-engine",
+      "verdict": "rejected",
+      "reason": "Already in use on this property for the room reel. This session did not produce a reel; the recordings are Playwright evidence, not composed film.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "refactoring-ui-plugin",
+      "verdict": "rejected",
+      "reason": "Read the ten skill names (hierarchy, type scale, spacing, shadows, contrast). The reader applies those by copying Quick Look's existing hierarchy: muted 12 px labels, 17 px quotes, tabular hashes. Running the checklist would re-derive choices the surface already inherits from the Mac.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "reference-captures",
+      "verdict": "rejected",
+      "reason": "226 reference screenshots of other sites. The reference for this surface is macOS itself (Rick's C-08 recording is still pending); no captured site was consulted for a Mac window or a refusal reader.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "scroll-world",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "system-design-101",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "taste-skill",
+      "verdict": "rejected",
+      "reason": "A taste rubric for choosing between directions. The direction was inherited and the session's judgment calls (thirds off, banners not moving windows, resume-on-cancel) were each argued in the delivery notes with evidence rather than scored.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "thinking-orbs",
+      "verdict": "rejected",
+      "reason": "Thought-orb loading states for agent UIs. The desk shows no live agent thinking (the talk line is not connected in this preview); an orb would suggest a session that is not happening.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "toolcraft-canary",
+      "verdict": "rejected",
+      "reason": "25k-file canary workspace for tool testing; not a design asset for any visitor surface.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "transitions-dev",
+      "verdict": "rejected",
+      "reason": "Read the catalogue: Toast open/close and Notification badge are the nearest fits. Both use cross-blur and a rise from below; macOS banners slide without blur and this desk's only motion system is the spring engine, so I kept the banner at a 6 px translate plus opacity in 160 ms rather than introduce a second vocabulary.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "ui-ux-pro-max-skill",
+      "verdict": "rejected",
+      "reason": "Design intelligence for choosing frameworks and layouts per platform. The platform is fixed (macOS look, DOM) and the layouts are inherited; its 700 files were consulted for a phone Dock pattern and offer tab bars, which a Mac does not have.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "vercel-agent-skills",
+      "verdict": "rejected",
+      "reason": "Vercel-specific agent and deployment skills. The property is a static preview on a local Python server; Vercel is not in the loop and deploying is out of scope.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "vercel-design-md",
+      "verdict": "rejected",
+      "reason": "A DESIGN.md generator for product teams. The property's design law is the Mac itself plus VISUAL-SPEC.md; a second design document would compete with the one Rick already reviews.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "vgpu",
+      "verdict": "rejected",
+      "reason": "Its SKILL.md is a GPU-render pipeline for generated frames. The one WebGL surface here is the room, which this session did not touch because it waits on the monitor photos.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "video-shotcraft",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "video-use",
+      "verdict": "rejected",
+      "reason": "Video understanding for agents. There is no video input in this session; the recordings produced are outputs for review, not material to analyse.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "x-algorithm",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "microkit",
+      "verdict": "rejected",
+      "reason": "Microkit was reviewed as a component source, but this pass did not add a component. The existing workspace needed a record rebuild and a test correction, not another visual primitive.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    }
+  ]
+}
