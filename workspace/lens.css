@@ -1,0 +1,72 @@
+/* THE EVIDENCE LENS. One overlay above everything, painted in viewport
+   coordinates, so nothing here touches a window's own transform. */
+
+.lens{position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:0;transition:opacity .24s cubic-bezier(.32,.72,0,1)}
+.lens.on{opacity:1}
+/* A plain scrim, not a backdrop-filter. Two overlapping backdrop-filter
+   layers make Chrome sample a stale backdrop and ghost the mark under it. */
+.lens-veil{position:absolute;inset:0;background:rgba(6,8,13,.62)}
+
+/* One pass of light, top to bottom, then it is gone. It does not loop. */
+.lens-scan{position:absolute;left:0;right:0;top:0;height:26vh;pointer-events:none;
+  background:linear-gradient(to bottom,transparent,rgba(190,235,255,.05) 62%,rgba(210,245,255,.30) 96%,rgba(235,250,255,.85) 100%);
+  box-shadow:0 1px 0 rgba(255,255,255,.4);opacity:0}
+.lens.on .lens-scan{animation:lens-sweep .78s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes lens-sweep{0%{opacity:0;transform:translateY(-26vh)}12%{opacity:1}88%{opacity:1}100%{opacity:0;transform:translateY(100vh)}}
+
+.lens-marks{position:absolute;inset:0}
+/* Each lit sentence gets a spine in its own colour: at a glance the
+   left margin of a window reads as a bar chart of where it came from. */
+.lens-mark{position:absolute;top:0;left:0;display:block;border-radius:2px 4px 4px 2px;
+  box-shadow:inset 3px 0 0 var(--c),inset 0 0 0 1px color-mix(in oklab,var(--c) 30%,transparent);
+  background:color-mix(in oklab,var(--c) 17%,transparent);
+  animation:lens-lit .34s cubic-bezier(.32,.72,0,1) backwards}
+@keyframes lens-lit{from{opacity:0;transform-origin:left center}to{opacity:1}}
+.lens-mark.is-export{--c:#32d74b}
+.lens-mark.is-derived{--c:#64d2ff}
+.lens-mark.is-git{--c:#bf5af2}
+.lens-mark.is-editorial{--c:#ffd60a}
+.lens-mark.is-live{--c:#ff9f0a}
+/* A defect reads as a defect: heavier rule, a hatch, and it does not blend in. */
+.lens-mark.is-unsourced{--c:#ff453a;
+  box-shadow:inset 4px 0 0 #ff453a,inset 0 0 0 1.5px #ff453a,0 0 24px -2px rgba(255,69,58,.8);
+  background:color-mix(in oklab,#ff453a 14%,transparent) repeating-linear-gradient(135deg,rgba(255,69,58,.22) 0 5px,transparent 5px 11px)}
+
+/* The reading. Glass, tabular numerals, one accent per row. */
+.lens-ui{position:fixed;left:22px;bottom:22px;z-index:9010;width:330px;max-height:min(72vh,620px);overflow:auto;
+  padding:16px 18px 14px;border-radius:16px;pointer-events:auto;
+  background:rgba(16,18,24,.78);backdrop-filter:blur(28px) saturate(1.5);-webkit-backdrop-filter:blur(28px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.13);box-shadow:0 26px 70px rgba(0,0,0,.62),inset 0 1px 0 rgba(255,255,255,.1);
+  color:#f2f2f7;font-size:12.5px;line-height:1.5;
+  opacity:0;transform:translateY(10px) scale(.985);transition:opacity .26s cubic-bezier(.32,.72,0,1),transform .26s cubic-bezier(.32,.72,0,1)}
+.lens-ui.on{opacity:1;transform:none}
+.lens-ui header{display:grid;grid-template-columns:auto 1fr;gap:0 9px;align-items:center;margin-bottom:12px}
+.lens-ui h2{grid-column:2;font-size:12px;letter-spacing:.13em;text-transform:uppercase;margin:0;font-weight:650;color:#fff}
+.lens-dot{grid-row:span 2;width:9px;height:9px;border-radius:50%;background:#32d74b;box-shadow:0 0 12px #32d74b}
+.lens-ui[data-alarm=on] .lens-dot{background:#ff453a;box-shadow:0 0 14px #ff453a}
+.lens-sum{grid-column:2;margin:1px 0 0;font-size:12px;color:#98989f}
+.lens-key{margin:0;display:grid;gap:1px;border-radius:10px;overflow:hidden;background:rgba(255,255,255,.07)}
+.lens-row{display:grid;grid-template-columns:1fr auto;gap:0 12px;padding:9px 11px;background:rgba(22,24,30,.9);align-items:baseline}
+.lens-row[data-zero]{opacity:.42}
+.lens-row dt{display:flex;align-items:center;gap:8px;font-weight:600;color:#f2f2f7;font-size:12.5px}
+.lens-row dt i{width:8px;height:8px;border-radius:2px;background:var(--c);box-shadow:0 0 9px -1px var(--c);flex:none}
+.lens-row dd{margin:0;font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:#fff;line-height:1}
+.lens-row p{grid-column:1/-1;margin:4px 0 0;font-size:11.5px;line-height:1.45;color:#8e8e93}
+.lens-row.is-alarm{background:rgba(70,18,16,.92)}
+.lens-row.is-alarm dd{color:#ff453a}
+.lens-row.is-alarm p{color:#ffb4ae}
+.lens-rule{margin:11px 0 0;font-size:11px;line-height:1.5;color:#8e8e93}
+.lens-esc{color:#636366}
+
+.mac-desktop.lens-on .mac-window{transition:none}
+
+@media(prefers-reduced-motion:reduce){
+  .lens,.lens-ui{transition:none}
+  .lens-mark{animation:none}
+  .lens.on .lens-scan{animation:none;opacity:0}
+}
+@media(max-width:650px){
+  .lens-ui{left:8px;right:8px;bottom:calc(100px + env(safe-area-inset-bottom));width:auto;max-height:52vh;padding:13px 14px 12px}
+  .lens-row p{display:none}
+  .lens-row{padding:8px 10px}
+}

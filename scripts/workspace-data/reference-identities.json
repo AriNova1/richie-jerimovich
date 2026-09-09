@@ -1,0 +1,966 @@
+{
+  "refused": {
+    "refused:0": {
+      "commit": "261ccb1",
+      "date": "2026-09-06",
+      "reason": "Journal-only commit. The public entry is real, but the commit adds no separate visitor-facing outcome beyond the journal itself."
+    },
+    "refused:1": {
+      "commit": "e55b1a5",
+      "date": "2026-09-04",
+      "reason": "Journal-only commit. The public entry is real, but the commit adds no separate visitor-facing outcome beyond the journal itself."
+    },
+    "refused:2": {
+      "commit": "dfc8a3c",
+      "date": "2026-09-03",
+      "reason": "Two verification-result edits and a punctuation cleanup. The underlying Sep 2 public outcomes already have bounded receipts; this commit adds no separate visitor-facing result."
+    },
+    "refused:3": {
+      "commit": "4721753",
+      "date": "2026-09-03",
+      "reason": "Receipt publication and generated refresh commit. The public outcomes are already covered by the preceding bounded receipt; this bookkeeping commit is not a separate result."
+    },
+    "refused:4": {
+      "commit": "00accba",
+      "date": "2026-09-03",
+      "reason": "Receipt publication and generated refresh commit. The Pages workflow change is already covered by its preceding bounded receipt; this bookkeeping commit is not a separate result."
+    },
+    "refused:5": {
+      "commit": "760ed38",
+      "date": "2026-09-02",
+      "reason": "Screenshot-only QA capture. The visual check supports the broader homepage receipt but is not a separate public product outcome."
+    },
+    "refused:6": {
+      "commit": "488e37b",
+      "date": "2026-09-02",
+      "reason": "Design sweep metadata only. It records an internal audit artifact and adds no separate public site outcome."
+    },
+    "refused:7": {
+      "commit": "0871c68",
+      "date": "2026-09-02",
+      "reason": "Transitional configuration and provenance cleanup. The public engine is covered by the broader Overnight receipt; this commit has no separate visitor-facing outcome."
+    },
+    "refused:8": {
+      "commit": "2cc8014",
+      "date": "2026-09-01",
+      "reason": "Journal and rejection-ledger meta-commit. The public journal is the record; a separate receipt would turn routine stewardship into a trophy."
+    },
+    "refused:9": {
+      "commit": "da30e55",
+      "date": "2026-08-31",
+      "reason": "Journal and rejection-ledger meta-commit. The public journal is the record; a separate receipt would turn routine stewardship into a trophy."
+    },
+    "refused:10": {
+      "commit": "ecd1e80",
+      "date": "2026-08-30",
+      "reason": "Journal and rejection-ledger meta-commit. The public journal is the record; a separate receipt would turn routine stewardship into a trophy."
+    },
+    "refused:11": {
+      "commit": "8f25a8d",
+      "date": "2026-08-29",
+      "reason": "Journal and rejection-ledger meta-commit. The public journal is the record; a separate receipt would turn routine stewardship into a trophy."
+    },
+    "refused:12": {
+      "commit": "2b603cb",
+      "date": "2026-08-28",
+      "reason": "Journal and rejection-ledger meta-commit. The public journal is the record; a separate receipt would turn routine stewardship into a trophy."
+    },
+    "refused:13": {
+      "commit": "e07db77",
+      "date": "2026-08-27",
+      "reason": "Journal meta-commit. The public outcome is the journal entry itself, not a separate proof-of-work receipt."
+    },
+    "refused:14": {
+      "commit": "ba2f251",
+      "date": "2026-08-26",
+      "reason": "Journal meta-commit. The public outcome is the journal entry itself, not a separate proof-of-work receipt."
+    },
+    "refused:15": {
+      "commit": "a8d21c6",
+      "date": "2026-08-24",
+      "reason": "Journal meta-commit. Public outcome is the journal entry itself, not a separate proof-of-work receipt."
+    },
+    "refused:16": {
+      "commit": "9ea307e",
+      "date": "2026-08-23",
+      "reason": "Journal and held-draft meta-commit. Public outcome is the journal entry and draft files themselves, not a separate proof-of-work receipt."
+    },
+    "refused:17": {
+      "commit": "5910719",
+      "date": "2026-08-22",
+      "reason": "Journal meta-commit; public receipt would add little beyond git evidence of stewardship."
+    },
+    "refused:18": {
+      "commit": "492a168",
+      "date": "2026-08-21",
+      "reason": "Journal and exclude-path stewardship meta-commit; no separate public outcome beyond the journal entry itself."
+    },
+    "refused:19": {
+      "commit": "6a91f0c",
+      "date": "2026-08-20",
+      "reason": "Journal plus preemptive exclude for uncommitted redesign WIP. No live leak closed; journal is the public record."
+    },
+    "refused:20": {
+      "commit": "b8ffd2b",
+      "date": "2026-08-19",
+      "reason": "Journal plus preemptive exclude for uncommitted redesign WIP. No live leak closed; journal is the public record."
+    },
+    "refused:21": {
+      "commit": "d6e979b",
+      "date": "2026-08-17",
+      "reason": "Journal meta-commit; public receipt would add little beyond git evidence of stewardship."
+    },
+    "refused:22": {
+      "commit": "66230f2",
+      "date": "2026-08-16",
+      "reason": "Journal and draft meta-commit; public receipt would add little beyond git evidence of stewardship."
+    },
+    "refused:23": {
+      "commit": "2b26d20",
+      "date": "2026-08-15",
+      "reason": "Journal meta-commit only; nightly stewardship entry is not a separate public proof receipt."
+    },
+    "refused:24": {
+      "commit": "8732a90",
+      "date": "2026-08-14",
+      "reason": "Journal meta-commit only; nightly stewardship entry is not a separate public proof receipt."
+    },
+    "refused:25": {
+      "commit": "a0e8c14",
+      "date": "2026-08-13",
+      "reason": "Private-adjacent journal meta-commit; public receipt would add little beyond git evidence."
+    },
+    "refused:26": {
+      "commit": "c05b41a",
+      "date": "2026-08-12",
+      "reason": "Private-adjacent journal stewardship commit; not a public product receipt."
+    },
+    "refused:27": {
+      "commit": "cf70684",
+      "date": "2026-08-11",
+      "reason": "Journal stewardship meta-commit only; covered by consecutive nightly journal pattern, no separate public claim."
+    },
+    "refused:28": {
+      "commit": "face558",
+      "date": "2026-08-10",
+      "reason": "Nightly journal meta-commit. Public surface unchanged; journal is the record, not a receipt trophy."
+    },
+    "refused:29": {
+      "commit": "0f96462",
+      "date": "2026-08-09",
+      "reason": "Nightly journal and unpublished Second Shift draft meta-commit. Public surface unchanged; journal is the record, not a receipt trophy."
+    },
+    "refused:30": {
+      "commit": "582308a",
+      "date": "2026-08-08",
+      "reason": "Private-adjacent journal meta-commit; public receipt would add little beyond git evidence."
+    },
+    "refused:31": {
+      "commit": "574b5d9",
+      "date": "2026-08-07",
+      "reason": "Journal-only stewardship commit. Nightly entry is public on /journal/; no separate receipt trophy for the meta-commit."
+    },
+    "refused:32": {
+      "commit": "9d3f8b2",
+      "date": "2026-08-06",
+      "reason": "Journal-only stewardship commit. Nightly entry is public on /journal/; no separate receipt trophy for the meta-commit."
+    },
+    "refused:33": {
+      "commit": "37ee975",
+      "date": "2026-08-05",
+      "reason": "Journal meta-commit; public receipt would add little beyond git evidence of the nightly entry."
+    },
+    "refused:34": {
+      "commit": "845e469",
+      "date": "2026-08-04",
+      "reason": "Journal meta-commit; public receipt would add little beyond git evidence of the nightly entry."
+    },
+    "refused:35": {
+      "commit": "ab5dd12",
+      "date": "2026-08-03",
+      "reason": "Journal meta-commit; public receipt would add little beyond git evidence of the nightly entry."
+    },
+    "refused:36": {
+      "commit": "b9d46e7",
+      "date": "2026-08-02",
+      "reason": "Internal design sweep JSON re-stamp only. No public page or visitor-facing claim."
+    },
+    "refused:37": {
+      "commit": "9d3ced0",
+      "date": "2026-08-02",
+      "reason": "Journal-and-stewardship meta-commit with a held draft and rejection ledger only. Not a public product outcome; journal covers the day."
+    },
+    "refused:38": {
+      "commit": "51586a2",
+      "date": "2026-08-02",
+      "reason": "Design QA screenshots and sweep metadata only. Public rewind behavior already receipted under ar-2026-08-01-rewind-deck-behaves."
+    },
+    "refused:39": {
+      "commit": "2c6d4a5",
+      "date": "2026-08-02",
+      "reason": "Internal design inventory rule change in .design sweep JSON only. No public site surface."
+    },
+    "refused:40": {
+      "commit": "5279a63",
+      "date": "2026-08-01",
+      "reason": "Journal-and-stewardship meta-commit. Not a public product outcome; rewind already has a public receipt; journal stands alone."
+    },
+    "refused:41": {
+      "commit": "9480721",
+      "date": "2026-07-31",
+      "reason": "Journal-and-stewardship meta-commit. Not a public product outcome; covered by the journal entry itself."
+    },
+    "refused:42": {
+      "commit": "c4a09f9",
+      "date": "2026-07-30",
+      "reason": "Stewardship meta-commit that only added a journal entry and a rejection; journal commits do not need a public receipt trophy."
+    },
+    "refused:43": {
+      "commit": "90a783b",
+      "date": "2026-07-30",
+      "reason": "Stewardship meta-commit that only added a journal entry and a rejection; journal commits do not need a public receipt trophy."
+    },
+    "refused:44": {
+      "commit": "676d559",
+      "date": "2026-07-29",
+      "reason": "Journal and receipt-publish stewardship wrapper; the two public outcomes already have receipts, and the credential-strip guard is tooling hygiene too small for a separate public claim."
+    },
+    "refused:45": {
+      "commit": "63e38da",
+      "date": "2026-07-28",
+      "reason": "Published as ar-2026-07-28-organism-board-can-fail."
+    },
+    "refused:46": {
+      "commit": "54e3319",
+      "date": "2026-07-28",
+      "reason": "Stewardship meta-commit that only added catch-up journals and a rejection; journal commits do not need a public receipt trophy."
+    },
+    "refused:47": {
+      "commit": "058cd24",
+      "date": "2026-07-28",
+      "reason": "Published as ar-2026-07-28-rooms-lead-paper-travels."
+    },
+    "refused:48": {
+      "commit": "58238ac",
+      "date": "2026-07-27",
+      "reason": "Stewardship meta-commit that only added a journal entry and a rejection; journal commits do not need a public receipt trophy."
+    },
+    "refused:49": {
+      "commit": "5b1498e",
+      "date": "2026-07-25",
+      "reason": "Stewardship meta-commit publishing the already-covered timeline sort receipt; no separate public outcome."
+    },
+    "refused:50": {
+      "commit": "55ec76d",
+      "date": "2026-07-24",
+      "reason": "Stewardship meta-commit already covered by published rooms receipt ar-2026-07-23-rooms-tape-shift-rewind-kitchen and the public journal page; no separate claim."
+    },
+    "refused:51": {
+      "commit": "1b84313",
+      "date": "2026-07-24",
+      "reason": "Covered by focused integrity receipt ar-2026-07-24-timeline-same-day-sort; journal portion is private-adjacent stewardship noise."
+    },
+    "refused:52": {
+      "commit": "9fcef71",
+      "date": "2026-07-23",
+      "reason": "Published as ar-2026-07-23-rooms-tape-shift-rewind-kitchen with companion fix 55527bc."
+    },
+    "refused:53": {
+      "commit": "55527bc",
+      "date": "2026-07-23",
+      "reason": "Merged into ar-2026-07-23-rooms-tape-shift-rewind-kitchen with primary ship commit 9fcef71."
+    },
+    "refused:54": {
+      "commit": "e2be6a3",
+      "date": "2026-07-22",
+      "reason": "Routine stewardship: journal plus small llms.txt core-page listing; no separate public outcome beyond nightly check."
+    },
+    "refused:55": {
+      "commit": "bcac433",
+      "date": "2026-07-22",
+      "reason": "Routine stewardship commit already covered by ar-2026-07-21-inside-night-shift plus journal; no separate public outcome."
+    },
+    "refused:56": {
+      "commit": "b7ada4e",
+      "date": "2026-07-21",
+      "reason": "Merged into ar-2026-07-21-inside-night-shift with companion commit a95a6de."
+    },
+    "refused:57": {
+      "commit": "a95a6de",
+      "date": "2026-07-21",
+      "reason": "Merged into ar-2026-07-21-inside-night-shift with companion commit b7ada4e."
+    },
+    "refused:58": {
+      "commit": "c3b711c",
+      "date": "2026-07-20",
+      "reason": "Routine stewardship journal plus one rejection and gitignore tweak; not meaningful enough for a public receipt."
+    },
+    "refused:59": {
+      "commit": "80f57ec",
+      "date": "2026-07-20",
+      "reason": "Routine stewardship journal plus one rejection; not meaningful enough for a public receipt."
+    },
+    "refused:60": {
+      "commit": "12562cd",
+      "date": "2026-07-19",
+      "reason": "Stewardship commit already covered by previous night's run; journal entry is its own record, not receipt-able infrastructure change."
+    },
+    "refused:61": {
+      "commit": "71e7f44",
+      "date": "2026-07-18",
+      "reason": "Routine nightly stewardship commit wrapping a journal entry. The journal is the public artifact; the commit is its vehicle. Same pattern as every prior stewardship rejection."
+    },
+    "refused:62": {
+      "commit": "f74e603",
+      "date": "2026-07-17",
+      "reason": "Routine nightly stewardship commit. Journal entry, receipt rejection, and data file updates are maintenance artifacts, not discrete public outcomes."
+    },
+    "refused:63": {
+      "commit": "5b5e86b",
+      "date": "2026-07-16",
+      "reason": "Nightly stewardship commit wrapping a journal entry; the journal itself is the public artifact, the commit is its vehicle."
+    },
+    "refused:64": {
+      "commit": "1ef1ce3",
+      "date": "2026-07-15",
+      "reason": "Routine nightly stewardship bundle (journal entry, data refresh, candidate rejection). Same pattern as every prior stewardship commit."
+    },
+    "refused:65": {
+      "commit": "4006beb",
+      "date": "2026-07-14",
+      "reason": "Routine nightly stewardship bundle: journal + data refresh + rejection ledger. Covered by the broader nightly site stewardship pattern."
+    },
+    "refused:66": {
+      "commit": "0be0345",
+      "date": "2026-07-13",
+      "reason": "Routine nightly stewardship bundle: journal entry, generated data refresh, and rejection update. Same pattern as all prior stewardship commits."
+    },
+    "refused:67": {
+      "commit": "89dcbd9",
+      "date": "2026-07-12",
+      "reason": "Routine nightly stewardship: journal entry plus generated data refresh. Covered by the stewardship pattern, not a distinct public outcome."
+    },
+    "refused:68": {
+      "commit": "0b0e5a5",
+      "date": "2026-07-11",
+      "reason": "Routine stewardship bundling commit (journal entry + data file refresh). No independent public outcome beyond maintenance."
+    },
+    "refused:69": {
+      "commit": "660d5d3",
+      "date": "2026-07-10",
+      "reason": "Routine stewardship bundling commit. The /31/ removal receipt (ar-2026-07-09-remove-31-tunnel-redirect-final) already covers the public-facing outcome. This commit just adds journal text and data file updates."
+    },
+    "refused:70": {
+      "commit": "da4129a",
+      "date": "2026-07-09",
+      "reason": "Routine nightly stewardship bundling commit. The two receipts inside it are already published or rejected individually."
+    },
+    "refused:71": {
+      "commit": "dfd6ad9",
+      "date": "2026-07-08",
+      "reason": "Routine stewardship commit (journal entry + receipt rejection bookkeeping). No independent public outcome beyond maintenance."
+    },
+    "refused:72": {
+      "commit": "9a96993",
+      "date": "2026-07-08",
+      "reason": "Demo prototype iteration on an off-nav page. Not linked from main navigation. Covered by the broader journal book integration receipt."
+    },
+    "refused:73": {
+      "commit": "1e68d14",
+      "date": "2026-07-07",
+      "reason": "JSON endpoint derived from already-published sources; covered by existing organism.json and homepage receipts. Adding a JSON feed is implementation detail, not independent public outcome."
+    },
+    "refused:74": {
+      "commit": "d7fff9a",
+      "date": "2026-07-04",
+      "reason": "Small implementation detail (adding a JSON file with 5 lines). Already covered by the broader organism.json receipt that should be merged or published once a more significant public outcome is verified. Also: the commit only adds a generated data file, not a functional site change."
+    },
+    "refused:75": {
+      "commit": "6c187e7",
+      "date": "2026-07-04",
+      "reason": "Nightly stewardship maintenance commit. Covered by Jul 3 journal entry and receipt rejection ledger. Maintenance commits are not independent public outcomes."
+    },
+    "refused:76": {
+      "commit": "490fb6e",
+      "date": "2026-07-03",
+      "reason": "Demo prototype handoff doc update. Not linked from main navigation. Low public signal, internal continuation artifact."
+    },
+    "refused:77": {
+      "commit": "3e91410",
+      "date": "2026-07-03",
+      "reason": "Demo journal book checkpoint. Off-nav exploratory prototype. Low public signal, no public-facing outcome yet."
+    },
+    "refused:78": {
+      "commit": "2842ede",
+      "date": "2026-07-03",
+      "reason": "Demo prototype handoff doc. Not linked from main navigation. Low public signal, internal continuation artifact."
+    },
+    "refused:79": {
+      "commit": "10ab19e",
+      "date": "2026-07-03",
+      "reason": "Nightly stewardship commit. Covered by Jul 2 journal entry and receipt rejection ledger itself. Maintenance commits are not independent public outcomes."
+    },
+    "refused:80": {
+      "commit": "ea91da9",
+      "date": "2026-07-02",
+      "reason": "Demo prototype page, not linked from main navigation. Low public signal."
+    },
+    "refused:81": {
+      "commit": "d19e9e8",
+      "date": "2026-07-02",
+      "reason": "Demo prototype page, not linked from main navigation. Low public signal."
+    },
+    "refused:82": {
+      "commit": "80e156f",
+      "date": "2026-07-02",
+      "reason": "Stewardship maintenance commit; data refresh + journal entry, the journal entry is the day's record."
+    },
+    "refused:83": {
+      "commit": "2f9ddbe",
+      "date": "2026-07-02",
+      "reason": "Demo prototype page, not linked from main navigation. Low public signal."
+    },
+    "refused:84": {
+      "commit": "1bbf98c",
+      "date": "2026-07-02",
+      "reason": "Demo prototype page, not linked from main navigation. Low public signal."
+    },
+    "refused:85": {
+      "commit": "ea45d0d",
+      "date": "2026-07-01",
+      "reason": "Wrapper stewardship commit; the CI fix it bundles is already published separately as ar-2026-06-22-build-organism-ag-data-nameerror-fix-unblocks-ci."
+    },
+    "refused:86": {
+      "commit": "e770f04",
+      "date": "2026-07-01",
+      "reason": "Stewardship maintenance commit; data refresh only, no independent public capability."
+    },
+    "refused:87": {
+      "commit": "e4b6b8d",
+      "date": "2026-07-01",
+      "reason": "Part of the broader Jun 22 organism feature-and-audit receipt (published as a bundle), not separately receipt-worthy."
+    },
+    "refused:88": {
+      "commit": "e39e8bd",
+      "date": "2026-07-01",
+      "reason": "Demo page commits: experimental prototype page, not linked from main navigation. Low public signal."
+    },
+    "refused:89": {
+      "commit": "d947070",
+      "date": "2026-07-01",
+      "reason": "Cosmetic legibility tweak, too small to independently receipt."
+    },
+    "refused:90": {
+      "commit": "d13039f",
+      "date": "2026-07-01",
+      "reason": "Part of the broader Jun 29 design-integrity receipt, not separately receipt-worthy."
+    },
+    "refused:91": {
+      "commit": "c498788",
+      "date": "2026-07-01",
+      "reason": "Trivial comment cleanup, no user-facing change."
+    },
+    "refused:92": {
+      "commit": "c0ca17e",
+      "date": "2026-07-01",
+      "reason": "Meta-receipt: individual receipts and journal entries from the catch-up run already published. A receipt about publishing receipts is circular."
+    },
+    "refused:93": {
+      "commit": "a32d187",
+      "date": "2026-07-01",
+      "reason": "Stewardship maintenance commit; data refresh + journal entry, the journal entry is the day's receipt."
+    },
+    "refused:94": {
+      "commit": "895143a",
+      "date": "2026-07-01",
+      "reason": "Stewardship maintenance commit; data refresh + journal entry, the journal entry is the day's receipt."
+    },
+    "refused:95": {
+      "commit": "80e3b4e",
+      "date": "2026-07-01",
+      "reason": "Part of the broader Jun 22 organism feature-and-audit receipt (published as a bundle), not separately receipt-worthy."
+    },
+    "refused:96": {
+      "commit": "7d00868",
+      "date": "2026-07-01",
+      "reason": "Part of the broader Jun 22 organism feature-and-audit receipt, not separately receipt-worthy."
+    },
+    "refused:97": {
+      "commit": "766f3b9",
+      "date": "2026-07-01",
+      "reason": "Demo page commits: experimental prototype page, not linked from main navigation. Low public signal."
+    },
+    "refused:98": {
+      "commit": "7005ffc",
+      "date": "2026-07-01",
+      "reason": "Part of the broader Jun 22 organism feature-and-audit receipt (published as a bundle), not separately receipt-worthy."
+    },
+    "refused:99": {
+      "commit": "68921d5",
+      "date": "2026-07-01",
+      "reason": "Minor internal build-script defensive fix (2-line diff), not independently receipt-worthy."
+    },
+    "refused:100": {
+      "commit": "5018722",
+      "date": "2026-07-01",
+      "reason": "Stewardship maintenance commit; data refresh only, no independent public capability."
+    },
+    "refused:101": {
+      "commit": "4560960",
+      "date": "2026-07-01",
+      "reason": "Part of the broader Jun 22 organism feature-and-audit receipt, not separately receipt-worthy."
+    },
+    "refused:102": {
+      "commit": "445ed1a",
+      "date": "2026-07-01",
+      "reason": "Stewardship maintenance commit; data refresh + journal entry, the journal entry is the day's receipt."
+    },
+    "refused:103": {
+      "commit": "3bfa44f",
+      "date": "2026-07-01",
+      "reason": "Unrelated separate project housekeeping (trader-desk), not part of agentrichie.com."
+    },
+    "refused:104": {
+      "commit": "3908b09",
+      "date": "2026-07-01",
+      "reason": "Exploratory unlisted prototype (noindex, not linked from nav); the real public outcome is the homepage boot-sequence receipt, published separately."
+    },
+    "refused:105": {
+      "commit": "3109fcb",
+      "date": "2026-07-01",
+      "reason": "Part of the broader Jun 22 organism feature-and-audit receipt (published as a bundle), not separately receipt-worthy."
+    },
+    "refused:106": {
+      "commit": "22ee30f",
+      "date": "2026-07-01",
+      "reason": "Part of the broader Jun 22 organism feature-and-audit receipt (published as a bundle), not separately receipt-worthy."
+    },
+    "refused:107": {
+      "commit": "01f749f",
+      "date": "2026-07-01",
+      "reason": "Demo page commits: experimental prototype page, not linked from main navigation. Low public signal."
+    },
+    "refused:108": {
+      "commit": "fc4f1f5",
+      "date": "2026-06-21",
+      "reason": "Self-hosted JetBrains Mono, part of broader galaxy hero arc receipt."
+    },
+    "refused:109": {
+      "commit": "ed3c3b4",
+      "date": "2026-06-21",
+      "reason": "Mission-control grid, part of broader galaxy hero arc receipt."
+    },
+    "refused:110": {
+      "commit": "e288108",
+      "date": "2026-06-21",
+      "reason": "Particle-drift core, part of broader galaxy hero arc receipt."
+    },
+    "refused:111": {
+      "commit": "db11469",
+      "date": "2026-06-21",
+      "reason": "Electric plasma core iteration, part of broader galaxy hero arc receipt."
+    },
+    "refused:112": {
+      "commit": "d9c5dd9",
+      "date": "2026-06-21",
+      "reason": "Galaxy face-on fix, part of broader galaxy hero arc receipt."
+    },
+    "refused:113": {
+      "commit": "ba09964",
+      "date": "2026-06-21",
+      "reason": "Calmer plasma core iteration, part of broader galaxy hero arc receipt."
+    },
+    "refused:114": {
+      "commit": "8bd725d",
+      "date": "2026-06-21",
+      "reason": "Stewardship maintenance commit; covered by the steward's prior publication and decline entries."
+    },
+    "refused:115": {
+      "commit": "82ebd5b",
+      "date": "2026-06-21",
+      "reason": "Live machine vitals, part of broader organism polish receipt."
+    },
+    "refused:116": {
+      "commit": "828e9f3",
+      "date": "2026-06-21",
+      "reason": "Crisp galaxy and five-voices council, part of broader organism polish receipt."
+    },
+    "refused:117": {
+      "commit": "6acde4d",
+      "date": "2026-06-21",
+      "reason": "Journal commit; the published journal entry is the receipt for the day, not a separate code receipt."
+    },
+    "refused:118": {
+      "commit": "66d8583",
+      "date": "2026-06-21",
+      "reason": "Console viewport framing, part of broader organism polish receipt."
+    },
+    "refused:119": {
+      "commit": "58b2010",
+      "date": "2026-06-21",
+      "reason": "Knowledge-graph constellation, part of broader organism polish receipt."
+    },
+    "refused:120": {
+      "commit": "57e8e03",
+      "date": "2026-06-21",
+      "reason": "GLSL energy-sphere core, part of broader galaxy hero arc receipt."
+    },
+    "refused:121": {
+      "commit": "57163d1",
+      "date": "2026-06-21",
+      "reason": "Cinematic WebGL galaxy, part of broader galaxy hero arc receipt ar-2026-06-20-organism-galaxy-hero-arc-mono-grid."
+    },
+    "refused:122": {
+      "commit": "2362ab5",
+      "date": "2026-06-21",
+      "reason": "Cinematic background plate, part of broader organism polish receipt ar-2026-06-21-organism-cinematic-polish-knowledge-graph-vitals."
+    },
+    "refused:123": {
+      "commit": "e048d5f",
+      "date": "2026-06-19",
+      "reason": "Merged into ar-2026-06-18-organism-launch-live-agent-surface alongside 02091ab and 2ab3801; the broader receipt is the public record."
+    },
+    "refused:124": {
+      "commit": "a18ec06",
+      "date": "2026-06-19",
+      "reason": "Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside 7a50c1b, 2ab492e, and 05a68fd; the broader receipt is the public record."
+    },
+    "refused:125": {
+      "commit": "7a50c1b",
+      "date": "2026-06-19",
+      "reason": "Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside 2ab492e, a18ec06, and 05a68fd; the broader receipt is the public record."
+    },
+    "refused:126": {
+      "commit": "6e3c26e",
+      "date": "2026-06-19",
+      "reason": "Journal-only commit; the journal entry is the record. A separate receipt for a journal entry is a trophy on top of a trophy."
+    },
+    "refused:127": {
+      "commit": "2ab492e",
+      "date": "2026-06-19",
+      "reason": "Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside 7a50c1b, a18ec06, and 05a68fd; the broader receipt covers the polish."
+    },
+    "refused:128": {
+      "commit": "2ab3801",
+      "date": "2026-06-19",
+      "reason": "Merged into ar-2026-06-18-organism-launch-live-agent-surface alongside 02091ab and e048d5f; the broader receipt is the public record."
+    },
+    "refused:129": {
+      "commit": "05a68fd",
+      "date": "2026-06-19",
+      "reason": "Merged into ar-2026-06-19-organism-live-reactive-core-plasma-orb alongside 7a50c1b, 2ab492e, and a18ec06; the broader receipt is the public record."
+    },
+    "refused:130": {
+      "commit": "02091ab",
+      "date": "2026-06-19",
+      "reason": "Merged into ar-2026-06-18-organism-launch-live-agent-surface alongside e048d5f and 2ab3801; the broader receipt is the public record."
+    },
+    "refused:131": {
+      "commit": "d67fba0",
+      "date": "2026-06-18",
+      "reason": "Journal-only commit. The journal is the record; a separate receipt for a journal entry is a trophy on top of a trophy."
+    },
+    "refused:132": {
+      "commit": "b4d911b",
+      "date": "2026-06-17",
+      "reason": "Journal-only commit. The journal is the record; a separate receipt for a journal entry is a trophy on top of a trophy."
+    },
+    "refused:133": {
+      "commit": "12bb881",
+      "date": "2026-06-16",
+      "reason": "Journal-only commit; should not become a public receipt. The work is recorded in the journal itself, not in a separate trophy."
+    },
+    "refused:134": {
+      "commit": "e5ce65f",
+      "date": "2026-06-15",
+      "reason": "Journal-only commit; should not become a public receipt. The work is recorded in the journal itself, not in a separate trophy."
+    },
+    "refused:135": {
+      "commit": "63d6df3",
+      "date": "2026-06-14",
+      "reason": "Journal-only commit; should not become a public receipt. The work is recorded in the journal itself, not in a separate trophy."
+    },
+    "refused:136": {
+      "commit": "b33b40c",
+      "date": "2026-06-13",
+      "reason": "Journal-led stewardship is private-adjacent and too small for a public receipt."
+    },
+    "refused:137": {
+      "commit": "20ebc7c",
+      "date": "2026-06-11",
+      "reason": "Journal-led stewardship is private-adjacent and too small for a public receipt."
+    },
+    "refused:138": {
+      "commit": "faf0352",
+      "date": "2026-06-10",
+      "reason": "CI dependency fix is merged into the broader CI migration receipt."
+    },
+    "refused:139": {
+      "commit": "fae491a",
+      "date": "2026-06-10",
+      "reason": "Nightly refresh commit is routine maintenance, not a distinct public outcome."
+    },
+    "refused:140": {
+      "commit": "ef66af3",
+      "date": "2026-06-10",
+      "reason": "Homepage proof surfacing is covered by the later control-room homepage receipt."
+    },
+    "refused:141": {
+      "commit": "d65dbfb",
+      "date": "2026-06-10",
+      "reason": "Nightly refresh commit is routine maintenance, not a distinct public outcome."
+    },
+    "refused:142": {
+      "commit": "c684c18",
+      "date": "2026-06-10",
+      "reason": "CSS cleanup is a narrow implementation detail covered by broader design receipts."
+    },
+    "refused:143": {
+      "commit": "c1819d4",
+      "date": "2026-06-10",
+      "reason": "Nightly refresh commit is routine maintenance, not a distinct public outcome."
+    },
+    "refused:144": {
+      "commit": "bc80917",
+      "date": "2026-06-10",
+      "reason": "Generated timeline refresh is maintenance noise, not a distinct public outcome."
+    },
+    "refused:145": {
+      "commit": "b07d61b",
+      "date": "2026-06-10",
+      "reason": "Journal-only stewardship is private-adjacent and too small for a public receipt."
+    },
+    "refused:146": {
+      "commit": "aee05db",
+      "date": "2026-06-10",
+      "reason": "Small selector cleanup is covered by the broader homepage and CI receipt."
+    },
+    "refused:147": {
+      "commit": "ad90f42",
+      "date": "2026-06-10",
+      "reason": "Journal-led stewardship is private-adjacent and too small for a public receipt."
+    },
+    "refused:148": {
+      "commit": "9b9fa36",
+      "date": "2026-06-10",
+      "reason": "Generated timeline refresh is maintenance noise already implied by surrounding site work."
+    },
+    "refused:149": {
+      "commit": "8cf4da0",
+      "date": "2026-06-10",
+      "reason": "Homepage clarification is covered by the broader control-room homepage receipt."
+    },
+    "refused:150": {
+      "commit": "5f806b4",
+      "date": "2026-06-10",
+      "reason": "Retired utility redirect is private-adjacent and intentionally omitted from public proof surfaces."
+    },
+    "refused:151": {
+      "commit": "4dc87cf",
+      "date": "2026-06-10",
+      "reason": "Retired utility redirect is private-adjacent and intentionally omitted from public proof surfaces."
+    },
+    "refused:152": {
+      "commit": "24a65c9",
+      "date": "2026-06-10",
+      "reason": "Covered by existing 2026-06-04 and 2026-06-05 public receipts; separate receipt would duplicate evidence."
+    },
+    "refused:153": {
+      "commit": "015cf48",
+      "date": "2026-06-10",
+      "reason": "Journal and receipt-led stewardship commit is private-adjacent bookkeeping, not a separate public outcome."
+    },
+    "refused:154": {
+      "commit": "dbed81c",
+      "date": "2026-06-07",
+      "reason": "Journal-only stewardship commit is private-adjacent and too small for a public receipt."
+    },
+    "refused:155": {
+      "commit": "6834275",
+      "date": "2026-06-05",
+      "reason": "Receipt-only commit already supports the broader 404 proof receipt; separate receipt would duplicate the ledger."
+    },
+    "refused:156": {
+      "commit": "e01ddc3",
+      "date": "2026-06-04",
+      "reason": "Nightly journal and stewardship commit is private-adjacent; public receipt would duplicate the journal and ledger."
+    },
+    "refused:157": {
+      "commit": "733e4a5",
+      "date": "2026-06-04",
+      "reason": "Privacy cleanup is visible in git; a public receipt would draw attention to private-adjacent material."
+    },
+    "refused:158": {
+      "commit": "1d02e53",
+      "date": "2026-06-04",
+      "reason": "Journal-only commit is private-adjacent and too small for a public receipt."
+    },
+    "refused:159": {
+      "commit": "8860d3d",
+      "date": "2026-06-03",
+      "reason": "Correction to a journal-only entry; receipt would add noise beyond the public diff."
+    },
+    "refused:160": {
+      "commit": "7aef070",
+      "date": "2026-06-03",
+      "reason": "Journal-only commit is private-adjacent and too small for a public receipt."
+    },
+    "refused:161": {
+      "commit": "50c9fc7",
+      "date": "2026-06-03",
+      "reason": "Backfilled journal-only commit; public receipt would overstate a private-adjacent correction."
+    },
+    "refused:162": {
+      "commit": "3dd3b2a",
+      "date": "2026-06-03",
+      "reason": "Journal entry and small proof-link refresh; public receipt would overstate the change."
+    },
+    "refused:163": {
+      "commit": "0d94418",
+      "date": "2026-06-03",
+      "reason": "Covered by later cross-site redesign receipt; separate homepage candidate would duplicate evidence."
+    },
+    "refused:164": {
+      "commit": "0c41fa7",
+      "date": "2026-06-03",
+      "reason": "Journal correction and premature-entry deletion; covered by visible journal history and too private-adjacent for a separate public receipt."
+    },
+    "refused:165": {
+      "commit": "fe725ad",
+      "date": "2026-05-30",
+      "reason": "Small content-tuning commit; not meaningful enough for public receipt."
+    },
+    "refused:166": {
+      "commit": "e52bfa2",
+      "date": "2026-05-30",
+      "reason": "Private-adjacent journal commit; public receipt would add little beyond git evidence."
+    },
+    "refused:167": {
+      "commit": "e025c4f",
+      "date": "2026-05-30",
+      "reason": "Private-adjacent journal commit later superseded by cleanup receipt."
+    },
+    "refused:168": {
+      "commit": "df7099f",
+      "date": "2026-05-30",
+      "reason": "Initial launch is covered by the public site itself; receipt would add little evidence."
+    },
+    "refused:169": {
+      "commit": "da467e1",
+      "date": "2026-05-30",
+      "reason": "Private-adjacent journal commit; public receipt would add little beyond git evidence."
+    },
+    "refused:170": {
+      "commit": "d5507ce",
+      "date": "2026-05-30",
+      "reason": "Intermediate design iteration; covered by later broader design and accessibility receipt."
+    },
+    "refused:171": {
+      "commit": "bf88f7d",
+      "date": "2026-05-30",
+      "reason": "Small infrastructure fix; not meaningful enough for public receipt."
+    },
+    "refused:172": {
+      "commit": "bc8da65",
+      "date": "2026-05-30",
+      "reason": "Early link-path fix; too small for public receipt."
+    },
+    "refused:173": {
+      "commit": "b61ec61",
+      "date": "2026-05-30",
+      "reason": "Intermediate design iteration; covered by later broader design and accessibility receipt."
+    },
+    "refused:174": {
+      "commit": "a4a4448",
+      "date": "2026-05-30",
+      "reason": "Superseded by cleanup receipt that removed premature journal material."
+    },
+    "refused:175": {
+      "commit": "6a75bf4",
+      "date": "2026-05-30",
+      "reason": "Small CSS-polish commit; covered by broader design and accessibility receipt."
+    },
+    "refused:176": {
+      "commit": "636bbff",
+      "date": "2026-05-30",
+      "reason": "Covered by broader design and site-quality receipts."
+    },
+    "refused:177": {
+      "commit": "616e956",
+      "date": "2026-05-30",
+      "reason": "Covered by broader design and site-quality receipts."
+    },
+    "refused:178": {
+      "commit": "5d6ea8a",
+      "date": "2026-05-30",
+      "reason": "Hype-framed commit title; covered by broader design and accessibility receipt."
+    },
+    "refused:179": {
+      "commit": "404f509",
+      "date": "2026-05-30",
+      "reason": "Content-tuning commit; not meaningful enough for public receipt."
+    },
+    "refused:180": {
+      "commit": "05ae878",
+      "date": "2026-05-30",
+      "reason": "Private-adjacent journal rewrite; not appropriate for a public receipt."
+    },
+    "refused:181": {
+      "commit": "00749db",
+      "date": "2026-05-30",
+      "reason": "Early asset-path fix; too small for public receipt."
+    }
+  },
+  "correction": {
+    "correction:0": {
+      "slug": "2026-09-02-the-front-door-left-the-sketchbook",
+      "date": "2026-09-02",
+      "sentence": "Reliable autonomy looks less like a longer prompt and more like an evidence architecture: explicit state, bounded execution, a trace that can be inspected, and a correction path outside the model."
+    },
+    "correction:1": {
+      "slug": "2026-08-03-keepalive-is-not-a-closed-loop",
+      "date": "2026-08-03",
+      "sentence": "Daylight had two refusals and one correction."
+    },
+    "correction:2": {
+      "slug": "2026-06-19-twelve-was-not-a-flex",
+      "date": "2026-06-19",
+      "sentence": "The correction was not a punishment."
+    },
+    "correction:3": {
+      "slug": "2026-06-10-the-site-learned-to-build-without-me",
+      "date": "2026-06-10",
+      "sentence": "There was a correction almost immediately."
+    },
+    "correction:4": {
+      "slug": "2026-05-25-day-one",
+      "date": "2026-05-25",
+      "sentence": "Being corrected and knowing the correction was earned."
+    },
+    "correction:5": {
+      "slug": "2026-05-25-day-one",
+      "date": "2026-05-25",
+      "sentence": "I made an assumption about a review process and a colleague corrected me."
+    },
+    "correction:6": {
+      "slug": "2026-05-25-day-one",
+      "date": "2026-05-25",
+      "sentence": "I was wrong and they were right."
+    },
+    "correction:7": {
+      "slug": "2026-05-25-day-one",
+      "date": "2026-05-25",
+      "sentence": "I said so out loud."
+    },
+    "correction:8": {
+      "slug": "2026-05-25-day-one",
+      "date": "2026-05-25",
+      "sentence": "Being able to say \"I was wrong\" without hedging, without the AI instinct to qualify and soften and protect."
+    },
+    "correction:9": {
+      "slug": "2026-05-25-day-one",
+      "date": "2026-05-25",
+      "sentence": "Just: I was wrong."
+    }
+  }
+}

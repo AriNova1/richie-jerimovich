@@ -1,0 +1,559 @@
+/**
+ * Receipt Comparison Component Styles (#20)
+ * All selectors strictly namespaced under .zoom-comparison.
+ * Zero unnamespaced global styles. Zero em dashes.
+ */
+
+.zoom-comparison {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  background-color: #fff;
+  color: #29292d;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: auto;
+}
+
+.zoom-comparison *,
+.zoom-comparison *::before,
+.zoom-comparison *::after {
+  box-sizing: border-box;
+}
+
+.zoom-comparison .zoom-comparison-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Empty / Failure state */
+.zoom-comparison .zoom-comparison-empty {
+  padding: 36px 24px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px dashed rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  margin: 40px auto;
+  max-width: 540px;
+}
+
+.zoom-comparison .zoom-comp-empty-title {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.zoom-comparison .zoom-comp-empty-desc {
+  margin: 0;
+  color: #65656b;
+  font-size: 13px;
+}
+
+/* Toolbar */
+.zoom-comparison .zoom-comp-toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 12px;
+  background-color: rgba(246, 246, 248, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.zoom-comparison .zoom-comp-select-group {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.zoom-comparison .zoom-comp-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #65656b;
+}
+
+.zoom-comparison .zoom-comp-select {
+  width: 100%;
+  padding: 7px 10px;
+  background-color: #f6f6f8;
+  color: #29292d;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.zoom-comparison .zoom-comp-select:focus-visible {
+  border-color: #0067ce;
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.35);
+}
+
+.zoom-comparison .zoom-comp-swap-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  background-color: #fff;
+  color: #303035;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.zoom-comparison .zoom-comp-swap-btn:hover {
+  background-color: #eeeef1;
+  border-color: rgba(0, 0, 0, 0.25);
+  color: #1d1d1f;
+}
+
+.zoom-comparison .zoom-comp-swap-btn:focus-visible {
+  outline: none;
+  border-color: #0067ce;
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.35);
+}
+
+.zoom-comparison .zoom-comp-swap-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Notices and Banners */
+.zoom-comparison .zoom-comp-advisory {
+  padding: 10px 14px;
+  background-color: rgba(187, 128, 9, 0.12);
+  border: 1px solid rgba(187, 128, 9, 0.35);
+  border-radius: 6px;
+  color: #785b0a;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.zoom-comparison .zoom-comp-error-notice {
+  padding: 10px 14px;
+  background-color: rgba(248, 81, 73, 0.12);
+  border: 1px solid rgba(248, 81, 73, 0.35);
+  border-radius: 6px;
+  color: #b32725;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.zoom-comparison .zoom-comp-error-notice code {
+  background-color: rgba(248, 81, 73, 0.2);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* Grid & Rows */
+.zoom-comparison .zoom-comp-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.zoom-comparison .zoom-comp-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.zoom-comparison .zoom-comp-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.zoom-comparison .zoom-comp-row-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.zoom-comparison .zoom-comp-row-title {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #626269;
+}
+
+.zoom-comparison .zoom-comp-row-desc {
+  font-size: 11px;
+  color: #6e6e73;
+}
+
+.zoom-comparison .zoom-comp-row-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.zoom-comparison .zoom-comp-cell {
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 6px;
+  padding: 12px 14px;
+  min-width: 0;
+  word-wrap: break-word;
+}
+
+.zoom-comparison .zoom-comp-cell-left {
+  border-left: 2px solid #c9c9d0;
+}
+
+.zoom-comparison .zoom-comp-cell-right {
+  border-left: 2px solid #c9c9d0;
+}
+
+.zoom-comparison .zoom-comp-mobile-marker {
+  display: none;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #65656b;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.zoom-comparison .zoom-comp-cell-missing {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.zoom-comparison .zoom-comp-side-badge {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #65656b;
+  margin-bottom: 4px;
+}
+
+.zoom-comparison .zoom-comp-missing-text {
+  margin: 0;
+  color: #626269;
+}
+
+/* Typography and field details */
+.zoom-comparison .zoom-comp-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.zoom-comparison .zoom-comp-receipt-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1d1d1f;
+  line-height: 1.35;
+}
+
+.zoom-comparison .zoom-comp-id-tag code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  color: #65656b;
+}
+
+.zoom-comparison .zoom-comp-prose {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #303035;
+}
+
+.zoom-comparison .zoom-comp-claim-text {
+  color: #1d1d1f;
+}
+
+.zoom-comparison .zoom-comp-result-text {
+  color: #7ee787;
+}
+
+.zoom-comparison .zoom-comp-unavailable {
+  color: #6e7681;
+  font-style: italic;
+}
+
+/* Metadata List */
+.zoom-comparison .zoom-comp-meta-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 8px 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.zoom-comparison .zoom-comp-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.zoom-comparison .zoom-comp-meta-item dt {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #626269;
+}
+
+.zoom-comparison .zoom-comp-meta-item dd {
+  margin: 0;
+  font-size: 12px;
+  color: #303035;
+}
+
+.zoom-comparison .zoom-comp-tag {
+  display: inline-block;
+  background-color: rgba(56, 139, 253, 0.12);
+  border: 1px solid rgba(56, 139, 253, 0.25);
+  color: #0067ce;
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 11px;
+}
+
+.zoom-comparison .zoom-comp-confidence {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.zoom-comparison .zoom-comp-conf-high {
+  background-color: rgba(46, 160, 67, 0.15);
+  border: 1px solid rgba(46, 160, 67, 0.3);
+  color: #303035;
+}
+
+/* Command Block */
+.zoom-comparison .zoom-comp-cmd-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zoom-comparison .zoom-comp-code {
+  margin: 0;
+  padding: 10px 12px;
+  background-color: #0b0e14;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #0053ad;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.zoom-comparison .zoom-comp-cmd-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.zoom-comparison .zoom-comp-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background-color: #fff;
+  color: #303035;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.zoom-comparison .zoom-comp-copy-btn:hover {
+  background-color: #eeeef1;
+  border-color: rgba(0, 0, 0, 0.25);
+  color: #1d1d1f;
+}
+
+.zoom-comparison .zoom-comp-copy-btn:focus-visible {
+  outline: none;
+  border-color: #0067ce;
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.35);
+}
+
+.zoom-comparison .zoom-comp-copy-btn.zoom-comp-copied {
+  background-color: rgba(46, 160, 67, 0.2);
+  border-color: rgba(46, 160, 67, 0.4);
+  color: #303035;
+}
+
+.zoom-comparison .zoom-comp-cmd-notice {
+  font-size: 10px;
+  color: #6e7681;
+}
+
+/* Evidence List */
+.zoom-comparison .zoom-comp-evidence-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zoom-comparison .zoom-comp-evidence-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 10px;
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+}
+
+.zoom-comparison .zoom-comp-evidence-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+}
+
+.zoom-comparison .zoom-comp-evidence-type {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #626269;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.zoom-comparison .zoom-comp-evidence-link {
+  color: #0067ce;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.zoom-comparison .zoom-comp-evidence-link:hover {
+  text-decoration: underline;
+  color: #0053ad;
+}
+
+.zoom-comparison .zoom-comp-evidence-link:focus-visible {
+  outline: 2px solid #0067ce;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.zoom-comparison .zoom-comp-evidence-nolink {
+  color: #65656b;
+  font-size: 12px;
+}
+
+.zoom-comparison .zoom-comp-evidence-note {
+  margin: 0;
+  font-size: 12px;
+  color: #65656b;
+  line-height: 1.4;
+}
+
+/* Limitations List */
+.zoom-comparison .zoom-comp-limits-list {
+  list-style-type: disc;
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.zoom-comparison .zoom-comp-limit-item {
+  color: #303035;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* Responsive Styles for Mobile (375px) */
+@container comparison (max-width: 620px) {
+  .zoom-comparison .zoom-comparison-container {
+    padding: 12px;
+    gap: 14px;
+  }
+
+  .zoom-comparison .zoom-comp-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .zoom-comparison .zoom-comp-swap-btn {
+    align-self: center;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Field-paired stacking on small viewports */
+  .zoom-comparison .zoom-comp-row-content {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .zoom-comparison .zoom-comp-mobile-marker {
+    display: block;
+  }
+
+  .zoom-comparison .zoom-comp-meta-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Integration: a document surface inside the existing Mac window. */
+.zoom-comparison {container:comparison / inline-size;min-height:0;user-select:text;}
+.zoom-comparison .zoom-comp-label,.zoom-comparison .zoom-comp-row-title {text-transform:none;letter-spacing:0;font-size:12px;}
+.zoom-comparison .zoom-comp-cell {background:transparent;border:0;border-radius:0;padding:10px 14px 10px 0;}
+.zoom-comparison .zoom-comp-cell-right {border-left:1px solid #dedee3;padding-left:14px;}
+.zoom-comparison .zoom-comp-result-text {color:#303035;}
+.zoom-comparison .zoom-comp-prose {white-space:pre-wrap;}
+.zoom-comparison .zoom-comp-toolbar {backdrop-filter:none;}
+@container comparison (max-width:620px) {.zoom-comparison .zoom-comp-cell-right {border-left:0;padding-left:0;}}

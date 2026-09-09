@@ -1,0 +1,11 @@
+/* The approved image IS the room. Never replace it with the geometry proof. */
+#poster{inset:auto;left:0;top:0;width:1536px;height:1024px;max-width:none;object-fit:fill;transform-origin:0 0;transition:none;will-change:transform}
+body.scene-ready #poster{opacity:1}
+#spatial-world:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#080c1270,transparent 32%,transparent 92%,#080c1230)}
+#invitation{left:40px;top:auto;bottom:122px;max-width:370px;text-shadow:0 2px 20px #000b}
+#invitation .eyebrow{font-size:9px;margin-bottom:12px}
+#invitation h1{font-size:48px;margin-bottom:12px}
+#invitation>p:not(.eyebrow){font-size:12px;line-height:1.6;margin-bottom:16px}
+#enter-room{background:#18232caa;backdrop-filter:blur(12px)}
+#desktop-placement #crt.mac-desktop{background-color:#102a42}
+@media(max-width:650px){#invitation{left:24px;bottom:154px;max-width:290px}#invitation h1{font-size:42px}#invitation .eyebrow{letter-spacing:.07em;font-size:8px}#room-header{left:24px;right:24px}#spatial-world:after{background:linear-gradient(0deg,#080c12b0,transparent 60%)}}

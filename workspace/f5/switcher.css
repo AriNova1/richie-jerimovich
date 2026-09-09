@@ -1,0 +1,50 @@
+/* THE SWITCHER: the deck of open apps on a phone. */
+.switcher{position:fixed;inset:0;z-index:8600;opacity:0;transition:opacity .22s cubic-bezier(.32,.72,0,1);touch-action:none;outline:none}
+.switcher.on{opacity:1}
+.sw-scrim{position:absolute;inset:0;background:rgba(8,10,14,.86);backdrop-filter:blur(22px) saturate(1.3);-webkit-backdrop-filter:blur(22px) saturate(1.3)}
+.sw-head{position:absolute;left:0;right:0;top:max(18px,env(safe-area-inset-top));text-align:center;color:#f2f2f7;padding:0 16px}
+.sw-name{margin:0;font-size:16px;font-weight:650;letter-spacing:-.01em}
+.sw-pos{margin:3px 0 0;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:#8e8e93;font-variant-numeric:tabular-nums}
+.sw-deck{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none}
+.sw-card{position:absolute;top:50%;left:0;margin-top:-27vh;pointer-events:auto;cursor:pointer;will-change:transform,opacity}
+.sw-frame{position:relative;overflow:hidden;border-radius:16px;background:#0d0f13;box-shadow:0 30px 70px rgba(0,0,0,.66),0 0 0 1px rgba(255,255,255,.12);isolation:isolate}
+/* A card is a crop of a longer window, so it fades out rather than
+   ending mid-sentence on a hard edge. */
+.sw-frame::after{content:"";position:absolute;left:0;right:0;bottom:0;height:64px;pointer-events:none;background:linear-gradient(to bottom,transparent,rgba(8,10,14,.86))}
+.sw-cap{display:block;margin-top:10px;text-align:center;color:#c7c7cc;font-size:12.5px;font-weight:550}
+.sw-card[aria-current=true] .sw-frame{box-shadow:0 34px 84px rgba(0,0,0,.72),0 0 0 1px rgba(255,255,255,.24)}
+.sw-card:focus-visible .sw-frame{outline:3px solid #0a84ff;outline-offset:3px}
+.sw-dots{position:absolute;left:0;right:0;bottom:calc(112px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:6px}
+.sw-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.26);transition:background .2s,transform .2s}
+.sw-dot.on{background:#f2f2f7;transform:scale(1.25)}
+.sw-bar{position:absolute;left:12px;right:12px;bottom:calc(52px + env(safe-area-inset-bottom));display:flex;gap:8px;align-items:stretch;justify-content:center}
+.sw-bar button{font:inherit;font-size:14px;min-height:44px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.1);color:#f2f2f7;font-weight:550;backdrop-filter:blur(10px)}
+.sw-bar [data-sw=prev],.sw-bar [data-sw=next]{min-width:48px;font-size:20px;line-height:1;padding:0}
+.sw-go{background:#f2f2f7;color:#1d1d1f;border-color:#f2f2f7;flex:1;max-width:150px}
+.sw-close{color:#ff9f9a}
+.sw-done{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(6px + env(safe-area-inset-bottom));min-height:40px;padding:0 24px;border-radius:999px;border:0;background:none;color:#c7c7cc;font:inherit;font-size:14px;font-weight:550}
+.sw-bar button:focus-visible,.sw-done:focus-visible{outline:3px solid #0a84ff;outline-offset:2px}
+.mac-desktop.switcher-on .mac-dock{opacity:0;pointer-events:none;transition:opacity .18s}
+
+@media(prefers-reduced-motion:reduce){
+  .switcher{transition:none}
+  .sw-card{transition:none!important}
+}
+/* Wider than a phone the deck is never shown, but if a window is resized
+   while it is open it degrades to a legible centred column. */
+@media(min-width:651px){
+  .sw-card{margin-top:-24vh}
+}
+
+/* The home bar: the phone's way into the deck, and the only new gesture
+   on the property. It is a real button, so tap and keyboard both work. */
+.f5-home-bar{display:none;position:absolute;left:50%;transform:translateX(-50%);bottom:calc(1px + env(safe-area-inset-bottom));width:170px;height:24px;border:0;background:none;padding:0;z-index:120;touch-action:none;cursor:pointer}
+.f5-home-bar i{display:block;width:118px;height:5px;margin:8px auto 0;border-radius:999px;background:rgba(255,255,255,.55);transition:width .2s cubic-bezier(.32,.72,0,1),background .2s}
+.f5-home-bar:active i,.f5-home-bar:focus-visible i{width:134px;background:#fff}
+.f5-home-bar:focus-visible{outline:3px solid #0a84ff;outline-offset:2px;border-radius:12px}
+@media(max-width:650px){.f5-home-bar{display:block}}
+.mac-desktop.switcher-on .f5-home-bar,.mac-desktop.kb-up .f5-home-bar{opacity:0;pointer-events:none}
+/* The keyboard: sheets and the Dock answer the real visual viewport. */
+.mac-desktop.kb-up .mac-dock{transform:translateY(140%);pointer-events:none}
+.mac-desktop.kb-up .motion-sheet{height:calc(var(--vvh, 100%) - 52px)!important;max-height:calc(var(--vvh, 100%) - 52px)!important}
+.mac-desktop.kb-up .f5-banner{bottom:calc(12px + var(--kb, 0px))}

@@ -22,7 +22,10 @@ OUT = ROOT / "_data" / "provenance.yml"
 
 # The front door. Git history of these paths is the page's own record.
 TRACKED = (
-    "index.md",
+    "index.md",  # Retain the original front-door history after its move.
+    "overnight.md",
+    "index.html",
+    "workspace/spatial-video.mjs",
     "assets/js/overnight.js",
     "assets/lib/journey.mjs",
     "assets/css/overnight.css",
@@ -47,12 +50,9 @@ def git_sha() -> str:
 
 def git_commits() -> list[dict]:
     """Newest-first commits that actually touched a front-door file."""
-    existing = [p for p in TRACKED if (ROOT / p).exists()]
-    if not existing:
-        return []
     fmt = "%h\x1f%cs\x1f%s"
     out = subprocess.run(
-        ["git", "log", "-40", f"--pretty=format:{fmt}", "--"] + existing,
+        ["git", "log", "-40", f"--pretty=format:{fmt}", "--"] + list(TRACKED),
         cwd=ROOT, capture_output=True, text=True, check=True,
     ).stdout
     rows = []

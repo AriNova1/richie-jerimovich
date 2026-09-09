@@ -1,0 +1,31 @@
+.record-item{padding:12px 0;border-bottom:1px solid rgba(170,195,218,.25);min-width:0}
+.record-item summary,.record-item header{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.record-item summary{cursor:pointer;min-height:44px;align-items:center;list-style:revert}
+.record-item summary::before{content:'+';flex:0 0 16px}
+.record-item[open] summary::before{content:'−'}
+.record-item summary span{flex:1;min-width:0}
+.record-item time{font-size:.85em;flex-shrink:0}
+.record-item p,.record-note{line-height:1.65;margin:8px 0;overflow-wrap:anywhere}
+.record-detail{padding:8px 0 12px}
+.record-detail h3{font-size:1em;margin:16px 0 6px}
+.record-detail ul{padding-left:22px}
+.record-detail li{margin:8px 0;overflow-wrap:anywhere}
+.record-detail pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:14px;background:rgba(140,170,195,.08);font-size:.9em;line-height:1.6}
+.record-field{display:grid;grid-template-columns:minmax(90px,1fr) minmax(0,2fr);gap:12px;padding:9px 0;border-bottom:1px solid rgba(170,195,218,.18)}
+.record-field dd{margin:0;overflow-wrap:anywhere}
+.record-item a,.record-detail a,.p-win-b a{color:inherit;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.record-item summary:focus-visible,.record-item a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.record-page{margin:0;background:#10151c;color:#e6ecf4;font:16px/1.65 system-ui,sans-serif;padding:clamp(20px,5vw,72px)}
+.record-page *{box-sizing:border-box}
+.record-page a{color:#bcdcff;text-underline-offset:4px}
+.record-page :focus-visible{outline:3px solid #bcdcff;outline-offset:4px}
+.record-header,.record-nav,.record-page main{max-width:1000px;margin-inline:auto}
+.record-header h1{font-size:clamp(32px,5vw,60px);line-height:1.1;letter-spacing:-.035em}
+.record-header p:first-child{font:12px ui-monospace,monospace;letter-spacing:.15em}
+.record-nav{display:flex;flex-wrap:wrap;gap:6px 20px;padding-block:24px;border-block:1px solid #405167;margin-block:28px}
+.record-nav a{display:inline-flex;align-items:center;min-height:44px}
+.record-page section{margin:64px 0;scroll-margin-top:24px}
+.record-page h2{font-size:26px;border-bottom:1px solid #405167;padding-bottom:12px}
+.skip-link{position:absolute;left:20px;top:0;transform:translateY(-110%);padding:12px;background:#10151c}
+.skip-link:focus{transform:none}
+@media(max-width:600px){.record-item summary,.record-item header{flex-wrap:wrap}.record-item summary span{flex-basis:75%}.record-item time{white-space:normal}.record-field{grid-template-columns:1fr;gap:3px}}

@@ -1,0 +1,10 @@
+#poster,#room-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:none!important;transition:none}
+#room-film{opacity:0}body.video-ready #room-film{opacity:1}
+body.motion-off #room-film,body.graphics-failed #room-film{opacity:0}
+#spatial-world:after{display:none}
+#desktop-placement #crt.mac-desktop{background:#10253f url('assets/video-pass-2/end.jpg') center/cover no-repeat}
+#invitation{filter:drop-shadow(0 2px 10px #000)}
+#diagnostics{width:285px;max-height:calc(100vh - 190px)}
+@media(max-width:650px){#poster,#room-film{object-position:42% center}#desktop-placement #crt.mac-desktop{background-position:42% center}}
+
+.public-record-skip{position:fixed;z-index:20000;top:10px;left:10px;transform:translateY(-180%);background:#10253f;color:white;padding:12px}.public-record-skip:focus{transform:none}#room-caption a{margin-left:10px;color:#fff;text-underline-offset:3px}

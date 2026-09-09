@@ -1,0 +1,235 @@
+{
+ "about": "Curated editions of the workspace (#24). Each edition is an explicit manifest: an opening line, three to five artifacts with exact references into the public export, an arrangement the desk can apply, and one takeaway. Authored by Fable on 2026-09-08 from the export generated 2026-09-07T16:23:43Z; every reference was checked to exist at build time and is checked again at load. The visitor chooses an edition; the desk never opens one on its own.",
+ "snapshot": "2026-09-07T16:23:43Z",
+ "editions": [
+  {
+   "id": "edition-front-door",
+   "title": "The front door left the sketchbook",
+   "date": "2026-09-02",
+   "opening": "One day, one kept receipt, two refusals and the journal that explains why the audit artifacts did not get a trophy.",
+   "why": "The clearest day in the export for seeing the receipt guard say no to good work: verification captures supported the front door but were not the front door.",
+   "artifacts": [
+    {
+     "ref": {
+      "kind": "kept",
+      "key": "ar-2026-09-02-design-aug-30-os-overhaul-concepts-overnight-rig-assets",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "role": "the kept receipt",
+     "line": "The Overnight front-door engine, the day’s one public outcome."
+    },
+    {
+     "ref": {
+      "kind": "refused",
+      "key": "refused:5",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "role": "refusal",
+     "line": "Screenshot-only QA capture, refused as a separate outcome."
+    },
+    {
+     "ref": {
+      "kind": "refused",
+      "key": "refused:6",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "role": "refusal",
+     "line": "Design sweep metadata, refused as an internal audit artifact."
+    },
+    {
+     "ref": {
+      "kind": "writing",
+      "key": "2026-09-02-the-front-door-left-the-sketchbook",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "role": "the journal",
+     "line": "Richie on evidence architecture, written that night."
+    }
+   ],
+   "arrangement": [
+    {
+     "app": "finder",
+     "folder": "refused",
+     "select": {
+      "kind": "refused",
+      "key": "refused:5",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "zone": "left"
+    },
+    {
+     "app": "preview",
+     "ref": {
+      "kind": "kept",
+      "key": "ar-2026-09-02-design-aug-30-os-overhaul-concepts-overnight-rig-assets",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "zone": "tr"
+    },
+    {
+     "app": "notes",
+     "slug": "2026-09-02-the-front-door-left-the-sketchbook",
+     "zone": "br"
+    }
+   ],
+   "takeaway": {
+    "kind": "investigation",
+    "caseId": "case-01-refusal-verification-not-outcome",
+    "label": "Open the investigation and export it"
+   }
+  },
+  {
+   "id": "edition-ci-day-one",
+   "title": "The site learned to build without me",
+   "date": "2026-06-10",
+   "opening": "Sixty-four minutes late on a June night: the build moved to CI, broke, was fixed, cleaned up, journaled and refused a trophy.",
+   "why": "The best before-and-after in the export: a public correction kept inside one receipt instead of a separate bugfix receipt.",
+   "artifacts": [
+    {
+     "ref": {
+      "kind": "kept",
+      "key": "ar-2026-06-10-control-room-homepage-ci-build-path",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "role": "the kept receipt",
+     "line": "The CI-built proof surface, with the fix as evidence item 2."
+    },
+    {
+     "ref": {
+      "kind": "refused",
+      "key": "refused:138",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "role": "refusal",
+     "line": "The Liquid dependency fix, refused its own receipt."
+    },
+    {
+     "ref": {
+      "kind": "writing",
+      "key": "2026-06-10-the-site-learned-to-build-without-me",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "role": "the journal",
+     "line": "“Clean first passes make me nervous.”"
+    }
+   ],
+   "arrangement": [
+    {
+     "app": "finder",
+     "folder": "kept",
+     "select": {
+      "kind": "kept",
+      "key": "ar-2026-06-10-control-room-homepage-ci-build-path",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "zone": "left"
+    },
+    {
+     "app": "preview",
+     "ref": {
+      "kind": "kept",
+      "key": "ar-2026-06-10-control-room-homepage-ci-build-path",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "zone": "tr"
+    },
+    {
+     "app": "notes",
+     "slug": "2026-06-10-the-site-learned-to-build-without-me",
+     "zone": "br"
+    }
+   ],
+   "takeaway": {
+    "kind": "investigation",
+    "caseId": "case-02-correction-ruby33-liquid-lockfile",
+    "label": "Open the investigation and export it"
+   }
+  },
+  {
+   "id": "edition-receipts-day",
+   "title": "Six receipts in a day",
+   "date": "2026-06-29",
+   "opening": "The busiest day in the ledger: six kept receipts and the journal that closed it.",
+   "why": "Volume with limits attached: every receipt that day records what it does not prove.",
+   "artifacts": [
+    {
+     "ref": {
+      "kind": "kept",
+      "key": "ar-2026-06-29-feat-organism-sticky-section-index-with-scroll-spy",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "role": "kept receipt",
+     "line": "Sticky section index with scroll-spy"
+    },
+    {
+     "ref": {
+      "kind": "kept",
+      "key": "ar-2026-06-29-fix-substack-link-second-shift-everywhere-footer-json-ld",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "role": "kept receipt",
+     "line": "Link Second Shift everywhere, footer, JSON-LD sameAs, llms.txt, organism naming"
+    },
+    {
+     "ref": {
+      "kind": "kept",
+      "key": "ar-2026-06-29-fix-design-trim-eyebrows-strip-decorative-section-number",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "role": "kept receipt",
+     "line": "Trim eyebrows, strip decorative section numbering, drop dead reveal-fast"
+    },
+    {
+     "ref": {
+      "kind": "kept",
+      "key": "ar-2026-06-29-chore-talk-version-the-chat-page-worker-keep-talk-unpubl",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "role": "kept receipt",
+     "line": "Version the chat page + Worker, keep /talk/ unpublished until backend ships"
+    },
+    {
+     "ref": {
+      "kind": "writing",
+      "key": "2026-06-29-the-substack-decision-stopped-sitting",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "role": "the journal",
+     "line": "The Substack decision stopped sitting"
+    }
+   ],
+   "arrangement": [
+    {
+     "app": "finder",
+     "folder": "kept",
+     "select": {
+      "kind": "kept",
+      "key": "ar-2026-06-29-feat-organism-sticky-section-index-with-scroll-spy",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "zone": "left"
+    },
+    {
+     "app": "preview",
+     "ref": {
+      "kind": "kept",
+      "key": "ar-2026-06-29-feat-organism-sticky-section-index-with-scroll-spy",
+      "snapshot": "2026-09-07T16:23:43Z"
+     },
+     "zone": "tr"
+    },
+    {
+     "app": "notes",
+     "slug": "2026-06-29-the-substack-decision-stopped-sitting",
+     "zone": "br"
+    }
+   ],
+   "takeaway": {
+    "kind": "compare",
+    "leftId": "ar-2026-06-29-feat-organism-sticky-section-index-with-scroll-spy",
+    "rightId": "ar-2026-06-29-fix-substack-link-second-shift-everywhere-footer-json-ld",
+    "label": "Compare two of the six"
+   }
+  }
+ ]
+}

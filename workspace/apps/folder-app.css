@@ -1,0 +1,59 @@
+/* The folder, opened. Paper on the left of the desk, not another list view. */
+.window-folder{left:19%;top:60px;width:min(760px,66%);height:calc(100% - 160px)}
+.folderapp{flex:1;min-width:0;overflow:auto;padding:26px 32px 40px;background:#f7f7f5;color:#1d1d1f}
+.fa-head{border-bottom:2px solid #1d1d1f;padding-bottom:18px}
+.fa-head h1{font-size:25px;letter-spacing:-.02em;line-height:1.2;margin:4px 0 10px;font-weight:650;max-width:24ch}
+.fa-lede{font-size:13px;line-height:1.6;color:#5d626b;margin:0 0 16px;max-width:62ch}
+.fa-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fa-actions button{font:inherit;font-size:13px;padding:7px 13px;border-radius:9px;border:1px solid rgba(0,0,0,.16);background:#fff;color:#1d1d1f;font-weight:550}
+.fa-actions button:hover:not(:disabled){background:#efefec}
+.fa-actions button:disabled{opacity:.4}
+.fa-actions [data-take]{background:#1d1d1f;border-color:#1d1d1f;color:#fff}
+.fa-actions [data-take]:hover:not(:disabled){background:#000}
+.fa-quiet{color:#8a8f98!important}
+.fa-status{font-size:12px;color:#5d626b;margin-left:2px}
+.fa-list{list-style:none;margin:0;padding:0}
+.fa-list li{display:grid;grid-template-columns:14px 30px 1fr auto;gap:0 12px;align-items:start;padding:15px 8px 15px 0;border-bottom:1px solid rgba(0,0,0,.09);background:#f7f7f5}
+.fa-list li.is-lifting{opacity:.35}
+.fa-list li.is-over{box-shadow:inset 0 2px 0 #1d6f43}
+.fa-grip{margin-top:6px;height:16px;border-radius:2px;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.28) 0 2px,transparent 2px 4px);cursor:grab}
+.fa-n{font:600 12px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1d6f43;font-variant-numeric:tabular-nums}
+.fa-open{font:inherit;font-size:15px;font-weight:600;letter-spacing:-.01em;text-align:left;background:none;border:0;padding:0;color:#1d1d1f;cursor:pointer;line-height:1.32}
+.fa-open:hover{text-decoration:underline}
+.fa-meta{margin:4px 0 0;font-size:12px;color:#5d626b}
+.fa-meta code{font-size:11.5px}
+.fa-how{margin:3px 0 0;font-size:12px;color:#8a8f98;font-style:italic}
+.fa-move{display:flex;gap:4px}
+.fa-move button{font:inherit;font-size:13px;width:28px;height:28px;border-radius:7px;border:1px solid rgba(0,0,0,.14);background:#fff;color:#3a3a3c}
+.fa-move button:disabled{opacity:.3}
+.fa-move [data-remove]{color:#b3261e}
+.fa-lost{margin-top:22px;padding:13px 15px;border-left:3px solid #c4903a;background:#fdf7ec;border-radius:0 8px 8px 0}
+.fa-lost h2{font-size:13px;margin:0 0 5px;font-weight:650}
+.fa-lost p{margin:0 0 6px;font-size:12.5px;color:#5d626b}
+.fa-lost ul{margin:0;padding-left:18px;font-size:12.5px}
+.fa-open:focus-visible,.fa-actions button:focus-visible,.fa-move button:focus-visible{outline:3px solid #0a84ff;outline-offset:2px}
+
+/* On the desk: a manila folder that visibly thickens as it fills. */
+.desk-folder{position:relative}
+.desk-folder .folder-stack{position:absolute;left:50%;top:6px;width:46px;height:34px;transform:translateX(-50%);pointer-events:none}
+.desk-folder .folder-stack i{position:absolute;left:3px;right:3px;top:0;height:34px;border-radius:3px 6px 4px 4px;background:#f3efe4;box-shadow:0 1px 0 rgba(0,0,0,.22)}
+.desk-folder .folder-stack i:nth-child(2){top:-2px;left:5px;right:5px;opacity:.85}
+.desk-folder .folder-stack i:nth-child(3){top:-4px;left:7px;right:7px;opacity:.7}
+.desk-folder .folder-count{position:absolute;top:2px;right:14px;min-width:19px;height:19px;padding:0 5px;border-radius:999px;background:#1d6f43;color:#fff;font:600 11px/19px ui-sans-serif,-apple-system,system-ui;text-align:center;font-variant-numeric:tabular-nums;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.desk-folder[data-count="0"] .folder-count{display:none}
+.mac-desktop[data-appearance=dark] .folderapp{background:#1b1b1d;color:#f5f5f7}
+.mac-desktop[data-appearance=dark] .fa-head{border-color:#f5f5f7}
+.mac-desktop[data-appearance=dark] .fa-list li{background:#1b1b1d;border-color:#ffffff14}
+.mac-desktop[data-appearance=dark] .fa-open,.mac-desktop[data-appearance=dark] .fa-actions button{color:#f5f5f7}
+.mac-desktop[data-appearance=dark] .fa-actions button{background:#2c2c2e;border-color:#ffffff22}
+.mac-desktop[data-appearance=dark] .fa-actions [data-take]{background:#f5f5f7;color:#1d1d1f}
+.mac-desktop[data-appearance=dark] .fa-move button{background:#2c2c2e;border-color:#ffffff22;color:#f5f5f7}
+@media(max-width:650px){
+  .window-folder{left:7px!important;top:42px!important;width:calc(100% - 14px)!important;height:calc(100% - 133px)!important}
+  .folderapp{padding:16px 14px 40px}
+  .fa-head h1{font-size:20px}
+  .fa-list li{grid-template-columns:22px 1fr;gap:0 10px}
+  .fa-grip{display:none}
+  .fa-move{grid-column:1/-1;margin-top:8px;justify-content:flex-end}
+  .fa-move button{width:36px;height:36px}
+}
