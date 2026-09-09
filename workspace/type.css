@@ -269,3 +269,4 @@ code, kbd, samp, .hash, .sha {
 /* Spotify: the movement notes are Richie writing about his own playlist.
    The track list is a media list and stays chrome. */
 .spotify-mv h2, .spotify-mv p, .spotify-head p, .spotify-note { font-family: var(--face-record); font-optical-sizing: auto; }
+.settings-address { font-family: var(--face-record); font-optical-sizing: auto; }

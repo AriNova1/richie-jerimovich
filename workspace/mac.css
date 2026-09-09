@@ -889,3 +889,8 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 /* A button that reads as a link, for pointing one instrument at another. */
 .terminal-link{background:none;border:0;padding:0;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .terminal-link:hover{text-decoration-thickness:2px}
+/* About This Mac lists the specifications of the one physical object on this
+   property that has anything to do with Richie. It is his address and it said
+   so nowhere. */
+.settings-address{margin:14px 0 4px;font-size:var(--t-body);line-height:var(--lh-read);color:var(--muted, #4a4a4f)}
+.settings-address em{font-style:normal;font-weight:600;color:inherit}

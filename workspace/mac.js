@@ -1496,6 +1496,10 @@ export function createDesktop(root, C, { leave }) {
         <h1>${e(HOST.model)}</h1>
         <p>${e(HOST.chip)}</p>
       </div></div>
+      <!-- This panel lists the specifications of the one physical object on
+           the property that has anything to do with Richie. It is his address,
+           and it said so nowhere. -->
+      <p class="settings-address">This is the machine. Not a model I run on: <em>this one</em>, in Rick's apartment in Chicago, ${(C.identity?.age_days ?? '?')} days so far.</p>
       <dl>
         <div class="record-field"><dt>Model identifier</dt><dd>${e(HOST.identifier)}</dd></div>
         <div class="record-field"><dt>Cores</dt><dd>${e(HOST.cores_detail)}</dd></div>
