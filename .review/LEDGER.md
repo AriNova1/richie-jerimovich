@@ -166,3 +166,62 @@ Reachable from the Apple menu, and a directory in the static record.
    viewport. A 390px phone physically cannot hold 45 characters at a legible
    size, and enforcing it would push type back down, which is the exact defect
    this pass exists to undo. Floor is now 30 below 700px.
+
+### Sweep 03 — the apps, and the dynamism build
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 23 | Editor | **stop-ship** | Notes said **"You're at Richie's desk."** The desk is Rick's and Richie has no desk. This is the third copy of the frame error Rick named on the front door. | **fixed** |
+| 24 | Engineer | high | The copy gate did not catch 23. Its pattern had a straight apostrophe and the copy uses a typographic one, so `Richie's desk` and `Richie’s desk` were different strings to it. | **gate fixed** — quotes are normalised before matching |
+| 25 | Engineer | medium | The gate then flagged the comment explaining the fix, because it extracts quoted strings from JS without stripping comments. | **gate fixed** |
+| 26 | Editor | high | The Notes paragraph under it was written in the voice of a retired cast member, promising to be loyal and loud. A personality pitch where an explanation belongs. | **rewritten** |
+| 27 | Auditor | high | My replacement copy hard-coded "186 commits" and "five times". Numbers that drift. Caught on my own new work. | **fixed** — both read from the export |
+| 28 | Editor | high | The Finder home said **"Golden retriever energy. No nonsense."** Cast language on the first screen of the file browser, saying nothing true about the record. | **rewritten** |
+| 29 | Colourist | high | Six Finder folders carried six identical blue icons, so 61 kept claims looked exactly like 186 refusals and the only difference was a number under an identical picture. | **rebuilt** — each folder shows its own days |
+| 30 | Skeptic | medium | `wrong` was a top-level Finder folder holding one item: the derived scanner's guesses, a debug artefact beside five real directories. | **cut** — it lives inside Corrections and in the static record |
+| 31 | Auditor | **stop-ship** | Time Machine printed a card labelled **Corrections** that counted whatever the pattern matcher happened to flag. A defect I introduced two hours earlier by changing the shape under it. | **fixed** — `documents.mjs` points `correction` at the declared list |
+| 32 | Editor | medium | Last Night's headline was a raw ISO date, the largest line in the window. "2026-09-08" tells a reader nothing that "Tuesday, 8 September" does not tell them faster. Its first sentence also began lowercase. | **fixed** — ISO kept one line down, where it can be matched against the export |
+| 33 | Typographer | low | "48m ago" set entirely in the monospace figure: "ago" carried the face's wide advance and read as part of the number. | **fixed** |
+| 34 | Auditor | medium | My own new lede claimed the schedule is "the only part of the property that is genuinely different every time you look at it". The clock and the temperature also move. An overclaim in the copy of an instrument whose whole point is not overclaiming. | **rewritten** |
+
+### Built in sweep 03
+
+**RIGHT NOW** (`scripts/vitals_server.py` `/now.json`, `workspace/apps/schedule.mjs`)
+
+Rick asked twice for the property to be different every time somebody visits.
+Every answer involving a shuffled quote or a randomised background is a fake
+answer, because nothing actually changed. The true one was already on the
+machine: **twenty jobs run on a schedule all day**, and the site had never said so.
+
+`/now.json` reads `~/.hermes/cron/jobs.json` and publishes its *shape*: how many
+jobs are scheduled, paused and failing; when the next fires; when the last
+finished; and the next twenty four hours as a row of anonymous fire times.
+
+**The privacy rule, and why it is a rule.** Most of those jobs are Rick's:
+his mail, his reading, his research. A live list of what a person has their
+agent doing every morning is a disclosure about him, and he did not ask for
+one. So the endpoint publishes counts and timings and **exactly one name**, the
+job that rebuilds this site, which is already public in the Service Tape and
+the journal. `workspace/tests/schedule.test.mjs` reads the server source and
+fails if the endpoint ever publishes an arbitrary name, or reads a prompt, an
+error string, a workdir or a delivery target.
+
+The front door's live rail now ends `next job in 54m` instead of a drought
+counter derived from a static export. The drought line remains as the honest
+fallback when the endpoint does not answer: a saved number is never dressed as
+a live one.
+
+`/privacy/` still holds. Verified: the only host any page contacts is
+`vitals.agentrichie.com`, which is the Mac itself.
+
+### Metrics after sweep 03
+
+| Metric | Value |
+|---|---|
+| Tests | **68** (48 at the start of the loop) |
+| Gate findings | 5, **0 blocking** |
+| Ramp conformance | **100%** |
+| Legibility | **0** across the front door and **18 apps**, 3 viewports |
+| Third-party hosts | **0** |
+| Atoms with a live source that ticks without a deploy | **3** (clock, weather, schedule) |
+| Deleted atoms | 2 (the monogram avatar, the `wrong` Finder folder) |

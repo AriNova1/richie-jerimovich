@@ -71,7 +71,13 @@ function visibleStrings(file) {
   const src = readFileSync(file, 'utf8');
   const ext = extname(file);
   const out = [];
-  const push = (text, line) => { const t = text.trim(); if (t.length > 2) out.push({ text: t, line }); };
+  /* A curly apostrophe is the same word to a reader and a different string to
+     a regex. "You're at Richie's desk." sat on the Notes app through a full
+     gate run because the pattern had a straight quote in it. Normalise. */
+  const push = (text, line) => {
+    const t = text.trim().replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"');
+    if (t.length > 2) out.push({ text: t, line });
+  };
   const lineOf = (idx) => src.slice(0, idx).split('\n').length;
 
   if (ext === '.html' || ext === '.md' || ext === '.markdown') {
@@ -81,7 +87,10 @@ function visibleStrings(file) {
     for (const m of body.matchAll(/(?:alt|title|aria-label|placeholder|content)="([^"]{3,})"/g)) push(m[1], lineOf(m.index));
     if (ext !== '.html') for (const m of body.matchAll(/^[^<\n][^\n]{3,}$/gm)) push(m[0], lineOf(m.index));
   } else {
-    for (const m of src.matchAll(/`([^`\\$]{4,})`|'([^'\\\n]{4,})'|"([^"\\\n]{4,})"/g)) {
+    /* A comment is not visible copy. Without this the gate flagged a comment
+       explaining a frame fix as the frame violation it was describing. */
+    const code = src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:'"`\\])\/\/[^\n]*/g, '$1');
+    for (const m of code.matchAll(/`([^`\\$]{4,})`|'([^'\\\n]{4,})'|"([^"\\\n]{4,})"/g)) {
       const s = m[1] ?? m[2] ?? m[3];
       /* selectors, urls, css, ids: not copy */
       if (/^[.#$]|^https?:|^\/|[{};]|^[a-z-]+$|^[A-Za-z0-9_-]+\.[a-z]{2,4}$|^\w+\/|px$|^data-/.test(s)) continue;

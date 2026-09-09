@@ -87,3 +87,50 @@ export function markLegend(corpus) {
   const m = markSummary(corpus);
   return `${m.days} days on this machine. ${m.cleared} of them cleared a receipt.`;
 }
+
+/* ── directory marks ─────────────────────────────────────────────────────
+   Six folders in the Finder carried six identical blue icons, so a folder
+   holding 61 kept claims looked exactly like one holding 186 refusals. The
+   count under the label was the only thing separating them, and a number
+   under an identical icon is not a difference anybody sees.
+
+   Each directory gets its own field of the same 107 days, lit on the days it
+   has something in it. Same primitive, same data, six different textures,
+   and every one of them true. */
+
+const DAY_MS = 86_400_000;
+const isoOf = (d) => d.toISOString().slice(0, 10);
+
+/** The set of dates a directory has content on. */
+export function directoryDays(corpus, key) {
+  switch (key) {
+    case 'kept':     return new Set(Object.keys(corpus.kept_by_date || {}));
+    case 'refused':  return new Set(Object.keys(corpus.refused_by_date || {}));
+    case 'writing':  return new Set((corpus.writing || []).map((w) => w.date));
+    case 'log':
+    case 'nights':   return new Set(Object.keys(corpus.days || {}));
+    case 'corrections': return new Set((corpus.corrections || []).map((c) => c.published));
+    case 'wrong':    return new Set((corpus.wrong || []).map((w) => w.date));
+    default:         return new Set();
+  }
+}
+
+/** A small square field for a folder icon. Deliberately unlabelled: the
+    folder's own name and count are directly underneath it. */
+export function directoryMark(corpus, key, { size = 46, gap = 0.22 } = {}) {
+  const since = corpus?.identity?.since;
+  if (!since) return '';
+  const start = new Date(`${since}T00:00:00Z`);
+  const lastDay = corpus.log?.[0]?.date ? new Date(`${corpus.log[0].date}T00:00:00Z`) : new Date();
+  const on = directoryDays(corpus, key);
+  const days = [];
+  for (let t = start.getTime(); t <= lastDay.getTime(); t += DAY_MS) days.push(on.has(isoOf(new Date(t))));
+  if (!days.length) return '';
+  const cols = Math.round(Math.sqrt(days.length * 1.15));
+  const rows = Math.ceil(days.length / cols);
+  const w = cols * (1 + gap) - gap, h = rows * (1 + gap) - gap;
+  const rects = days.map((lit, i) =>
+    `<rect x="${((i % cols) * (1 + gap)).toFixed(2)}" y="${(Math.floor(i / cols) * (1 + gap)).toFixed(2)}" width="1" height="1" rx="0.24" opacity="${lit ? 1 : 0.15}"/>`).join('');
+  const n = days.filter(Boolean).length;
+  return `<svg class="dir-mark" viewBox="0 0 ${w.toFixed(2)} ${h.toFixed(2)}" width="${size}" height="${(size * h / w).toFixed(1)}" role="img" aria-label="${n} of ${days.length} days have something in this directory" fill="currentColor" data-tier="derived">${rects}</svg>`;
+}

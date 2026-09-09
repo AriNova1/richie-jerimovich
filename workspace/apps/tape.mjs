@@ -106,6 +106,16 @@ export function mountTape(host, { corpus, initialState, onOpenDocument, onOpenSo
   }
   function stop() { playing = false; cancelAnimationFrame(raf); paint(); }
 
+  /* An ISO date is the right identifier and the wrong headline. It was the
+     largest line in the window, and "2026-09-08" tells a reader nothing that
+     "Monday, 8 September" does not tell them faster. The ISO stays, one line
+     down, where a reader who wants to match it against the export can. */
+  const humanDate = (iso) => {
+    const d = new Date(`${iso}T00:00:00`);
+    return Number.isNaN(+d) ? iso : d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+  };
+  const sentenceCase = (v) => String(v).charAt(0).toUpperCase() + String(v).slice(1);
+
   function render() {
     const t = tape(); const { total, showTotal, steps } = line();
     if (!t) { host.innerHTML = '<div class="tape"><p class="record-note">No recorded nights in this export.</p></div>'; return; }
@@ -113,8 +123,8 @@ export function mountTape(host, { corpus, initialState, onOpenDocument, onOpenSo
     host.innerHTML = `<div class="tape">
       <header class="tp-head">
         <p class="widget-kicker">Last night's service</p>
-        <h1>${e(t.date)}</h1>
-        <p class="tp-sub" data-tier="export">${e(t.trigger || 'trigger not recorded')} run. Started ${e(fmtClock(t.started))}, finished ${e(fmtClock(t.ended))} Chicago time. ${t.steps_ok} of ${t.steps_total} steps clean. Health ${e(t.health_verdict || 'not recorded')}.</p>
+        <h1>${e(humanDate(t.date))}</h1>
+        <p class="tp-sub" data-tier="export"><time>${e(t.date)}</time>. ${e(sentenceCase(t.trigger || 'trigger not recorded'))} run. Started ${e(fmtClock(t.started))}, finished ${e(fmtClock(t.ended))} Chicago time. ${t.steps_ok} of ${t.steps_total} steps clean. Health ${e(t.health_verdict || 'not recorded')}.</p>
         <p class="tp-note" data-tier="editorial">The run wrote this while it ran. It records to the whole second, so most of these steps share an offset and a true real-time replay would be over before you saw it. Each step is held for at least ${MIN_BEAT} ms and steps inside one recorded second play in the order they ran. Every duration printed on a row is the recorded one, not the paced one.</p>
         <div class="tp-transport">
           <button type="button" data-tp-play class="tp-play">Play the night</button>

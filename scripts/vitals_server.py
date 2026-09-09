@@ -79,6 +79,110 @@ def _weather_payload():
     _weather.update(at=now, body=body)
     return body
 
+# ── /now.json: what the machine is doing at this moment ──────────────────
+#
+# Rick's complaint was that two visitors anywhere see the same static site.
+# The honest fix is not a shuffled quote, it is that this machine is genuinely
+# busy on a schedule and the site never said so. ~/.hermes/cron/jobs.json is
+# the real schedule, with real next-run and last-run times.
+#
+# What it must NOT publish: the job names. Most of them are Rick's private
+# automation, and a live list of what a person has their agent doing every
+# morning is a disclosure about him, not about Richie. Nothing here reads a
+# prompt, an error string, a delivery target or a workdir.
+#
+# So it publishes the SHAPE: how many jobs, when the next one fires, when the
+# last one finished, how many are failing. One exception, by name: the job
+# that builds this site. That one is already public in the Service Tape and in
+# the journal, so naming it discloses nothing new and makes the countdown
+# checkable against a page a reader can already open.
+JOBS_FILE = os.path.expanduser(os.environ.get("VITALS_JOBS", "~/.hermes/cron/jobs.json"))
+NOW_TTL = float(os.environ.get("VITALS_NOW_CACHE", "20"))
+PUBLIC_JOB = "nightly-richie-site-stewardship"
+
+_now_cache = {"at": 0.0, "body": b""}
+
+
+def _parse_ts(value):
+    """The schedule writes naive local timestamps. Read them as local time."""
+    if not value:
+        return None
+    try:
+        from datetime import datetime
+        t = str(value).replace("Z", "+00:00")
+        d = datetime.fromisoformat(t)
+        if d.tzinfo is None:
+            d = d.astimezone()
+        return d
+    except Exception:
+        return None
+
+
+def _now_payload():
+    now = time.time()
+    if _now_cache["body"] and now - _now_cache["at"] < NOW_TTL:
+        return _now_cache["body"]
+    try:
+        from datetime import datetime, timezone
+        with open(JOBS_FILE, "r", encoding="utf-8") as fh:
+            jobs = (json.load(fh) or {}).get("jobs") or []
+        current = datetime.now(timezone.utc)
+        live = [j for j in jobs if j.get("enabled")]
+        upcoming, finished = [], []
+        for j in live:
+            nxt, last = _parse_ts(j.get("next_run_at")), _parse_ts(j.get("last_run_at"))
+            if nxt:
+                upcoming.append((nxt, j))
+            if last:
+                finished.append((last, j))
+        upcoming.sort(key=lambda x: x[0])
+        finished.sort(key=lambda x: x[0], reverse=True)
+
+        def entry(pair, sign):
+            if not pair:
+                return None
+            when, job = pair
+            secs = int(abs((when - current).total_seconds())) * sign
+            named = job.get("name") == PUBLIC_JOB
+            return {
+                "in_seconds": secs,
+                "is_this_site": named,
+                # Only this site's own job is named. See the note above.
+                "name": PUBLIC_JOB if named else None,
+                "schedule": (job.get("schedule") or {}).get("display") if named else None,
+            }
+
+        # The next 24 hours as anonymous fire times, so the site can draw the
+        # rhythm rather than assert it. A time with no name attached to it says
+        # the machine is busy at 08:00; it does not say what it is doing, and
+        # the journal already describes the site's own nightly run by the hour.
+        horizon = 24 * 3600
+        day = []
+        for when, job in upcoming:
+            secs = int((when - current).total_seconds())
+            if 0 <= secs <= horizon:
+                day.append({"in_seconds": secs, "is_this_site": job.get("name") == PUBLIC_JOB})
+
+        data = {
+            "available": True,
+            "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(now)),
+            "day": day,
+            "scheduled": len(live),
+            "paused": len(jobs) - len(live),
+            "failing": sum(1 for j in live if (j.get("failure_streak") or 0) > 0),
+            "next": entry(upcoming[0] if upcoming else None, 1),
+            "last": entry(finished[0] if finished else None, -1),
+            "source": "the machine's own schedule",
+        }
+    except FileNotFoundError:
+        data = {"available": False, "reason": "The schedule file is not on this machine."}
+    except Exception:
+        data = {"available": False, "reason": "The schedule could not be read."}
+    body = json.dumps(data, separators=(",", ":")).encode("utf-8")
+    _now_cache.update(at=now, body=body)
+    return body
+
+
 # Browser origins allowed to read the endpoint (the live site + local preview).
 ALLOWED_ORIGINS = {
     "https://agentrichie.com",
@@ -147,6 +251,8 @@ class Handler(BaseHTTPRequestHandler):
             self._send(200, _payload())
         elif path == "/weather.json":
             self._send(200, _weather_payload(), max_age=300)   # weather moves slowly; let the edge hold it
+        elif path == "/now.json":
+            self._send(200, _now_payload(), max_age=20)   # a countdown may be a few seconds stale
         elif path == "/healthz":
             self._send(200, b'{"ok":true}')
         else:
@@ -162,6 +268,7 @@ def main():
     httpd = ThreadingHTTPServer((HOST, PORT), Handler)
     print(f"vitals endpoint on http://{HOST}:{PORT}/vitals.json (cache {CACHE_TTL}s)")
     print(f"weather proxy on http://{HOST}:{PORT}/weather.json (cache {WEATHER_TTL}s)")
+    print(f"schedule shape on http://{HOST}:{PORT}/now.json (cache {NOW_TTL}s, no job names but this site's)")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:

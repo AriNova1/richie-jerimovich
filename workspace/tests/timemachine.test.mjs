@@ -10,8 +10,11 @@ const H = buildHistory(corpus, documents);
 
 test('the day index covers every dated record exactly once and ends at the export totals', () => {
   const dated = (list, f = (r) => r.date) => list.filter((r) => f(r)).length;
-  assert.equal(H.dates.length, new Set([...corpus.kept, ...corpus.refused, ...corpus.log, ...corpus.writing, ...corpus.wrong].map((r) => r.date).filter(Boolean)).size);
-  assert.equal(H.totals.kept, dated(corpus.kept)); assert.equal(H.totals.refused, dated(corpus.refused)); assert.equal(H.totals.commits, dated(corpus.log)); assert.equal(H.totals.writing, dated(corpus.writing)); assert.equal(H.totals.corrections, dated(corpus.wrong));
+  /* corrections carry `published`, not `date`: they are dated by when the
+     correction went out, which is sometimes a day after the claim. */
+  const dateOf = (r) => r.published || r.date;
+  assert.equal(H.dates.length, new Set([...corpus.kept, ...corpus.refused, ...corpus.log, ...corpus.writing, ...corpus.corrections].map(dateOf).filter(Boolean)).size);
+  assert.equal(H.totals.kept, dated(corpus.kept)); assert.equal(H.totals.refused, dated(corpus.refused)); assert.equal(H.totals.commits, dated(corpus.log)); assert.equal(H.totals.writing, dated(corpus.writing)); assert.equal(H.totals.corrections, dated(corpus.corrections, dateOf));
   assert.deepEqual(H.days.get(H.last).asOf, H.totals);
   for (let i = 1; i < H.dates.length; i++) for (const k of Object.keys(H.totals)) assert.ok(H.days.get(H.dates[i]).asOf[k] >= H.days.get(H.dates[i - 1]).asOf[k], 'monotonic ' + k);
 });

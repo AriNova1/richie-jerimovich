@@ -212,3 +212,13 @@ code, kbd, samp, .hash, .sha {
 /* A legend explains the instrument; it is chrome, not evidence. */
 .widget-mark-key { font-family: var(--face-chrome); font-size-adjust: none; letter-spacing: 0; }
 .cx-head h1, .q-head h1, .tp-head h1 { font-family: var(--face-record); font-optical-sizing: auto; font-weight: 400; }
+
+/* The Finder home speaks in Richie's voice about the record; the folder
+   labels underneath are the file system and stay chrome. */
+.finder-home-head h1, .finder-voice { font-family: var(--face-record); font-optical-sizing: auto; }
+.finder-home-head h1 { font-weight: 500; letter-spacing: -.02em; }
+.finder-folder small { font-variant-numeric: tabular-nums; }
+.sc-head h1, .sc-lede, .sc-why, .cx-head h1 { font-family: var(--face-record); font-optical-sizing: auto; }
+.sc-head h1 { font-weight: 400; }
+.sc-big, .sc-nums dd { font-family: var(--face-evidence); font-size-adjust: none; letter-spacing: -.02em; }
+.sc-tag, .sc-fine, .sc-band-key, .sc-foot, .sc-day h2 { font-family: var(--face-chrome); font-size-adjust: none; letter-spacing: 0; }

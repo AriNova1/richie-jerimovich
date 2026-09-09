@@ -784,3 +784,16 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 .wk{width:8px;height:8px;border-radius:2px;background:#ffd9a0;flex:0 0 auto}
 .wk-cleared{opacity:1}.wk-weighed{opacity:.44}.wk-silent{opacity:.16}
 .wk-days{flex-basis:100%;opacity:.62}
+/* ── directory marks in the Finder ──────────────────────────────────────
+   Six folders carried six identical blue icons, so 61 kept claims looked
+   exactly like 186 refusals and the only difference was a number under an
+   identical picture. Each folder now shows its own days across the same
+   107, lit where it has something. Same primitive as the account picture. */
+.ff-mark{display:grid;place-items:center;width:60px;height:60px;padding:5px;border-radius:12px;background:color-mix(in srgb,currentColor 6%,transparent);border:1px solid color-mix(in srgb,currentColor 11%,transparent)}
+.ff-mark svg{display:block;width:52px;height:auto;color:#2d7ff0}
+.finder-folder:hover .ff-mark{background:color-mix(in srgb,currentColor 10%,transparent)}
+.mac-desktop[data-appearance="dark"] .ff-mark svg{color:#68b0ff}
+/* Right Now and Corrections both read top to bottom and want the height, not
+   the width. The default 596px cut the schedule band in half. */
+.window-schedule{left:16%;top:64px;width:min(820px,72%);height:min(760px,calc(100% - 140px))}
+.window-corrections{left:14%;top:56px;width:min(860px,74%);height:min(800px,calc(100% - 130px))}

@@ -4,7 +4,11 @@ const specs = Object.freeze({
   writing: { field: 'writing', folder: 'writing', key: r => r.slug || r.file },
   commit: { field: 'log', folder: 'log', key: r => r.sha },
   refused: { field: 'refused', folder: 'refused', key: (_r, i) => `refused:${i}` },
-  correction: { field: 'wrong', folder: 'wrong', key: (_r, i) => `correction:${i}` },
+  /* Points at the declared corrections, not at the derived scanner's guesses.
+     Time Machine was printing a card labelled "Corrections" that counted
+     whatever the pattern matcher happened to flag that build. */
+  correction: { field: 'corrections', folder: 'corrections', key: r => r.id },
+  flagged: { field: 'wrong', folder: 'wrong', key: (_r, i) => `flagged:${i}` },
 });
 export const documentKindForFolder = folder => Object.keys(specs).find(k => specs[k].folder === folder) || null;
 const validString = s => typeof s === 'string' && s.length > 0 && s.length <= 4096;
@@ -37,8 +41,8 @@ export function createDocumentLibrary(corpus) {
       if (!validString(key)) continue; // A record without identity is not silently assigned a stable ID.
       const ref = Object.freeze({kind, key, snapshot});
       const entry = Object.freeze({ref, record, index, field: spec.field, folder: spec.folder,
-        title: record.title || record.reason || record.subject || record.sentence || key,
-        date: record.date || null});
+        title: record.headline || record.title || record.reason || record.subject || record.sentence || key,
+        date: record.published || record.date || null});
       entries.push(entry); all.push(entry);
       // Preserve ambiguity instead of choosing whichever duplicate happened to arrive last.
       if (lookup.has(key)) lookup.set(key, null); else lookup.set(key, entry);

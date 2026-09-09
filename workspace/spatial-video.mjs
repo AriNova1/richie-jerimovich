@@ -145,6 +145,27 @@ function paintInvitation(){
   counts.dataset.tier='derived';
  }
 }
+/* The schedule, read from the machine itself. This is the only clause on the
+   front door that a second visitor an hour later will see differently for a
+   reason other than the clock. It is allowed to be absent: an endpoint that
+   does not answer prints nothing rather than a saved number dressed as live. */
+let liveNow=null;
+async function loadNow(){
+ try{
+  const r=await fetch('https://vitals.agentrichie.com/now.json',{cache:'no-store'});
+  if(!r.ok)throw 0;
+  const j=await r.json();
+  liveNow=j&&j.available?j:null;
+ }catch{liveNow=null;}
+ paintLive();
+}
+function relShort(sec){
+ const s=Math.max(0,Math.round(Math.abs(sec)));
+ if(s<60)return `${s}s`;
+ const h=Math.floor(s/3600),m=Math.floor(s/60)%60;
+ if(h>=24)return `${Math.floor(h/24)}d`;
+ return h?(m?`${h}h ${m}m`:`${h}h`):`${m}m`;
+}
 function paintLive(){
  const el=$('[data-room-live]');if(!el||!corpusData)return;
  const {label,hour}=chicagoNow();
@@ -153,9 +174,12 @@ function paintLive(){
  const bits=[`${label} in Chicago`];
  if(liveTemp!=null)bits.push(`${liveTemp}°C`);
  bits.push(part);
- if(d)bits.push(d.days===0?'a receipt cleared today':d.days===1?'1 day since a receipt cleared':`${d.days} days since a receipt cleared`);
+ if(liveNow&&liveNow.next)bits.push(`next job in ${relShort(liveNow.next.in_seconds)}`);
+ else if(d)bits.push(d.days===0?'a receipt cleared today':d.days===1?'1 day since a receipt cleared':`${d.days} days since a receipt cleared`);
  el.textContent=bits.join('  ·  ');
- el.title=d?`Last kept receipt: ${d.last}. Counted from the dated records in the export.`:'';
+ el.title=liveNow
+  ?`${liveNow.scheduled} jobs on this machine's schedule. Read live from vitals.agentrichie.com, which is the Mac itself.`
+  :(d?`Last kept receipt: ${d.last}. Counted from the dated records in the export.`:'');
 }
 /* ── The Mac mini, pointed at ──────────────────────────────────────
    Where the mini sits in the source frame, measured off the image, not
@@ -252,7 +276,7 @@ async function initialize(){
  }catch(e){errors.push(e.message);status.textContent='Workspace could not load. Use Open workspace to try the direct route.';entry.disabled=true;return;}
  try{await poster.decode();document.body.classList.add('photo-ready');}
  catch(e){errors.push('Room image unavailable');graphicsFailed=true;document.body.classList.add('graphics-failed');status.textContent='Room image unavailable. The workspace remains available.';}
- progress=0;syncScroll(0);draw();miniCopy(corpusData);placeMini();paintInvitation();paintLive();liveWeather();setInterval(paintLive,20000);requestAnimationFrame(()=>miniMarker?.classList.add('on'));if(!motionOff())loadVideo();if(params.get('p'))go(Number(params.get('p')),{instant:true});
+ progress=0;syncScroll(0);draw();miniCopy(corpusData);placeMini();paintInvitation();paintLive();liveWeather();loadNow();setInterval(paintLive,20000);setInterval(loadNow,60000);requestAnimationFrame(()=>miniMarker?.classList.add('on'));if(!motionOff())loadVideo();if(params.get('p'))go(Number(params.get('p')),{instant:true});
 }
 window.__spatial={ready:false,go,snapshot,dispose(){disposed=true;if(raf)cancelAnimationFrame(raf);abort.abort();clearTimeout(videoTimer);seeks.stop();film.pause();film.removeAttribute('src');film.load();desktop?.dispose();document.documentElement.style.overflowY='';}};
 initialize().then(()=>{window.__spatial.ready=true;});

@@ -32,7 +32,7 @@ const args = process.argv.slice(2);
 const URL_ = args.find((a) => !a.startsWith('--')) || 'http://127.0.0.1:4713/';
 const SCROLL = args.includes('--scroll');
 const DESKTOP = args.includes('--desktop');
-const APPS = ['finder', 'notes', 'messages', 'settings', 'activity', 'hermes', 'terminal', 'contacts', 'voices', 'spotify', 'timemachine', 'folder', 'questions', 'corrections', 'tape', 'trash', 'claude'];
+const APPS = ['finder', 'notes', 'messages', 'settings', 'activity', 'hermes', 'terminal', 'contacts', 'voices', 'spotify', 'timemachine', 'folder', 'questions', 'corrections', 'schedule', 'tape', 'trash', 'claude'];
 const SIZES = [[1440, 900, 'desktop'], [1024, 768, 'tablet'], [390, 844, 'phone']];
 const MIN_PX = 12;
 

@@ -1,0 +1,37 @@
+/* A schedule is a shape in time, so it is drawn as one. The band is the next
+   twenty four hours; each mark is a job firing; the gold one is this site. */
+.schedule{padding:26px 30px 32px;max-width:720px;margin:0 auto}
+.sc-head h1{margin:6px 0 12px;font-size:var(--t-h2);line-height:var(--lh-tight);letter-spacing:-.02em;font-weight:400}
+.sc-lede{margin:0 0 22px;font-size:var(--t-body);line-height:var(--lh-read);max-width:60ch;opacity:.88}
+
+.sc-nums{display:flex;flex-wrap:wrap;gap:8px 30px;margin:0 0 22px;padding:14px 0;border-top:1px solid color-mix(in srgb,currentColor 14%,transparent);border-bottom:1px solid color-mix(in srgb,currentColor 14%,transparent)}
+.sc-nums div{display:grid;gap:2px}
+.sc-nums dt{margin:0;font-size:var(--t-micro);letter-spacing:.08em;text-transform:uppercase;opacity:.6}
+.sc-nums dd{margin:0;font-size:var(--t-h2);line-height:1;font-variant-numeric:tabular-nums}
+.sc-nums .is-bad{color:#c4553d}
+
+.sc-clocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:0 0 26px}
+.sc-clock{padding:16px 18px;border-radius:13px;background:color-mix(in srgb,currentColor 5%,transparent);border:1px solid color-mix(in srgb,currentColor 11%,transparent)}
+.sc-tag{margin:0 0 6px;font-size:var(--t-micro);letter-spacing:.09em;text-transform:uppercase;opacity:.6}
+.sc-big{margin:0 0 8px;font-size:var(--t-h1);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.sc-fine{margin:0;font-size:var(--t-fine);line-height:var(--lh-snug);opacity:.76}
+.sc-fine code{font-size:inherit}
+
+.sc-day h2{margin:0 0 12px;font-size:var(--t-lead);font-weight:400}
+.sc-band{position:relative;height:52px;border-radius:10px;background:linear-gradient(to right,color-mix(in srgb,currentColor 11%,transparent),color-mix(in srgb,currentColor 4%,transparent));overflow:hidden}
+.sc-band-now{position:absolute;top:0;bottom:0;width:2px;background:currentColor;opacity:.55}
+.sc-tick{position:absolute;top:9px;bottom:9px;width:3px;margin-left:-1.5px;border-radius:2px;background:currentColor;opacity:.5}
+.sc-tick.is-site{top:0;bottom:0;width:4px;opacity:1;background:#d9a441;box-shadow:0 0 0 3px color-mix(in srgb,#d9a441 26%,transparent)}
+.sc-band-key{display:flex;justify-content:space-between;margin:6px 0 10px;font-size:var(--t-micro);opacity:.55}
+.sc-empty{margin:0;font-size:var(--t-fine);opacity:.7}
+
+.sc-why{margin:24px 0 0;padding:15px 17px;border-radius:12px;background:color-mix(in srgb,currentColor 4%,transparent);font-size:var(--t-fine);line-height:var(--lh-read);opacity:.88;max-width:66ch}
+.sc-why strong{font-weight:600}
+.sc-error{margin:0 0 18px;font-size:var(--t-fine);line-height:var(--lh-read);opacity:.85}
+.sc-foot{margin:22px 0 0;font-size:var(--t-micro);line-height:var(--lh-read);opacity:.66}
+.sc-foot code{font-size:inherit}
+
+@media(max-width:760px){ .schedule{padding:20px 18px 26px} .sc-big{font-size:var(--t-h2)} }
+/* "ago" is a word, not a measurement. Set in the monospace figure it carried
+   the face's wide advance and read as part of the number. */
+.sc-big small{font-family:var(--face-chrome);font-size:var(--t-sub);letter-spacing:0;opacity:.62;margin-left:2px}

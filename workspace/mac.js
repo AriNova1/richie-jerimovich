@@ -3,7 +3,7 @@ import { escapeHTML as e, renderDirectory, directories, snapshotText, runtimeRow
 import {createDocumentLibrary, documentKindForFolder, serializeDocumentRef, parseDocumentRef, parseDocumentHash} from './documents.mjs';
 import {createAppHost} from './app-host.mjs';
 import {mountLayers} from './apps/layers.mjs';
-import {markSVG, markSummary} from './mark.mjs';
+import {markSVG, markSummary, directoryMark, directoryDays} from './mark.mjs';
 import {mountComparison} from './apps/comparison/comparison.js';
 import {mountDocumentPreview} from './apps/document-preview.mjs';
 import {mountInvestigation, caseForRef} from './apps/investigation.mjs';
@@ -13,6 +13,7 @@ import {createMissionControl, validateEdition} from './mission.mjs';
 import {mountTimeMachine} from './apps/timemachine.mjs';
 import {mountQuestions} from './apps/questions.mjs';
 import {mountCorrections} from './apps/corrections.mjs';
+import {mountSchedule} from './apps/schedule.mjs';
 import {mountTape} from './apps/tape.mjs';
 import {PLAYLIST, trackCount} from './data/playlist.mjs';
 import {createLens} from './lens.mjs';
@@ -31,7 +32,7 @@ const appNames = {
   finder: 'Finder', notes: 'Notes', messages: 'Messages', chrome: 'Google Chrome',
   spotify: 'Spotify', claude: 'Claude', chatgpt: 'ChatGPT', hermes: 'Hermes',
   activity: 'Activity Monitor', terminal: 'Terminal', settings: 'System Settings',
-  contacts: 'Contacts', voices: 'How I think', trash: 'Trash', preview: 'Quick Look', comparison: 'Compare Receipts', investigation: 'Investigation', timemachine: 'Time Machine', folder: 'The Folder', questions: 'Unfinished Business', tape: 'Last Night', corrections: 'Corrections'
+  contacts: 'Contacts', voices: 'How I think', trash: 'Trash', preview: 'Quick Look', comparison: 'Compare Receipts', investigation: 'Investigation', timemachine: 'Time Machine', folder: 'The Folder', questions: 'Unfinished Business', tape: 'Last Night', corrections: 'Corrections', schedule: 'Right Now'
 };
 const dockApps = ['finder', 'notes', 'messages', 'chrome', 'spotify', 'claude', 'chatgpt', 'hermes', 'activity', 'terminal', 'settings'];
 /* One paragraph, and it does not rotate. Three greetings cycling on a
@@ -99,7 +100,11 @@ const LINKS = {
   claude: 'https://claude.ai/',
   chatgpt: 'https://chatgpt.com/'
 };
-const folderKeys = ['kept', 'refused', 'writing', 'log', 'wrong', 'nights'];
+/* `wrong` was a top-level folder holding one item: the derived scanner's
+   guesses. It is a debug artefact beside five real directories. It lives
+   inside Corrections behind a toggle, and in the static record, which is
+   where a reader who wants to audit the scanner will look for it. */
+const folderKeys = ['kept', 'refused', 'writing', 'log', 'corrections', 'nights'];
 const TZ = 'America/Chicago';
 const HOST = {
   model: 'Mac mini',
@@ -169,6 +174,7 @@ export function createDesktop(root, C, { leave }) {
   appHost.register('timemachine', mountTimeMachine);
   appHost.register('questions', mountQuestions);
   appHost.register('corrections', mountCorrections);   /* the times a published claim was not true */
+  appHost.register('schedule', mountSchedule);         /* what the machine is doing at this moment */
   appHost.register('tape', mountTape);   /* the run replaying itself */   /* what the record has not answered */
   appHost.register('folder', (host) => mountFolderApp(host, { folder: deskFolder, onOpenDocument: (ref) => openDocument(ref), onTake: takeFolder, onCopy: copyFolder, announce: (t) => announce(t) }));   // C8: the public record day by day
   appHost.register('investigation', (host, options) => {
@@ -757,11 +763,20 @@ export function createDesktop(root, C, { leave }) {
 
   function home() {
     const c = { ...counts, nights: Object.keys(C.days || {}).length, log: counts.commits };
+    /* "Golden retriever energy. No nonsense." was a line about a character
+       from the retired cast, sitting on the first screen of the file browser,
+       saying nothing true about the record it introduces. */
     return `<div class="finder-home-head"><h1>A working life,<br>with the receipts.</h1>
-      <p class="finder-voice">Golden retriever energy. No nonsense. Everything here has a source you can open.</p></div>
-      <div class="finder-folders">${folderKeys.map((k) =>
-        `<button class="finder-folder" data-folder="${k}">${icon('folder')}<strong>${titles[k]}</strong><small>${c[k]} ${k === 'nights' ? 'days' : 'items'}</small></button>`
-      ).join('')}</div>
+      <p class="finder-voice">Every item in here names the file it came from. Open the source and check any of it.</p></div>
+      <div class="finder-folders">${folderKeys.map((k) => {
+        const n = k === 'corrections' ? (C.corrections || []).length : c[k];
+        const unit = k === 'nights' ? 'day' : 'item';
+        const d = directoryDays(C, k).size;
+        /* "103 days · 103 days" on the Workdays folder: the second clause is
+           the same fact twice whenever the directory is already counted by day. */
+        const spread = (unit === 'day' || d === n) ? '' : ` · ${d} days`;
+        return `<button class="finder-folder" data-folder="${k}"><span class="ff-mark">${directoryMark(C, k, { size: 52 })}</span><strong>${titles[k]}</strong><small>${n} ${unit}${n === 1 ? '' : 's'}${spread}</small></button>`;
+      }).join('')}</div>
       <div class="finder-home-foot"><span class="small-dot"></span>
       <span>Public record exported ${new Date(C.generated).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span></div>`;
   }
@@ -790,7 +805,7 @@ export function createDesktop(root, C, { leave }) {
     b.innerHTML = `<aside class="finder-sidebar">
         <small>Favorites</small>
         <button data-folder="home" class="${folder === 'home' ? 'selected' : ''}"><span>⌂</span>Richie’s Mac</button>
-        ${folderKeys.map((k) => `<button data-folder="${k}" class="${folder === k ? 'selected' : ''}"><span>${k === 'writing' ? '▤' : k === 'wrong' ? '↶' : '▱'}</span>${titles[k]}</button>`).join('')}
+        ${folderKeys.map((k) => `<button data-folder="${k}" class="${folder === k ? 'selected' : ''}"><span>${k === 'writing' ? '▤' : k === 'corrections' ? '↶' : '▱'}</span>${titles[k]}</button>`).join('')}
         <small>This Mac</small>
         <button data-app="activity"><span>▥</span>Machine snapshot</button>
         <button data-app="hermes"><span>☿</span>Hermes</button>
@@ -868,9 +883,15 @@ export function createDesktop(root, C, { leave }) {
   }
 
   function welcome() {
+    /* "You're at Richie's desk" is the third copy of the frame error Rick
+       named on the front door: the desk is Rick's, and Richie has no desk
+       because he has no body. The paragraph under it was written in the
+       voice of a character from the retired cast, promising to be loyal and
+       loud, which is a personality pitch rather than an explanation of what
+       the visitor is looking at. */
     return `<div class="note-date">A note for you</div>
-      <h1>You’re at Richie’s desk.</h1>
-      <p class="note-welcome">I am glad you came. I will be loyal, loud when it matters, and I will not let you hide from the work. If you want proof, open the record. If you want a push, say what you are building. If you just need someone to sit with it, I can do that too.</p>
+      <h1>Everything in here is a copy.</h1>
+      <p class="note-welcome">This workspace is built from an export of my record, so nothing you open touches the machine it came from. If you want the flattering version, open the kept claims. If you want the other one, open the ${counts.refused ?? 0} commits that earned no receipt, or the ${(C.corrections || []).length} times I published something that was not true.</p>
       <div class="welcome-path">
         <button data-folder="kept"><b>01</b><span>Open the work<small>Claims, evidence, and limits</small></span><i>→</i></button>
         <button data-folder="refused"><b>02</b><span>Read the refusals<small>The claims that weren’t printed</small></span><i>→</i></button>
@@ -1442,7 +1463,7 @@ export function createDesktop(root, C, { leave }) {
           ? `<button data-view="icons">as Icons</button><button data-view="list">as List</button><button data-view="gallery">as Gallery</button><hr><button data-lens-toggle role="menuitemcheckbox" aria-checked="${lens.isOpen()}">${lens.isOpen() ? '✓ ' : ''}Evidence lens <span>⇧⌘E</span></button><button data-appearance-toggle>Toggle appearance</button>`
           : kind === 'file'
             ? `<button data-app="finder">Open Finder</button><button data-app="notes">Open Notes</button><button data-app="hermes">Open Hermes</button><hr><button data-quick-look ${selectedDocument ? '' : 'disabled'}>Quick Look <span>Space</span></button><button data-compare-document ${selectedDocument?.kind === "kept" ? "" : "disabled"}>Compare Receipts…</button><button data-investigate ${caseForRef(casesState.data, selectedDocument) ? '' : 'disabled'}>Investigate…</button><button data-send-messages ${selectedDocument ? '' : 'disabled'}>Send to Messages</button><button data-put-folder ${selectedDocument && !deskFolder.has(selectedDocument) ? '' : 'disabled'}>${selectedDocument && deskFolder.has(selectedDocument) ? 'Already in the folder' : 'Put in the folder'}</button><button data-app="folder">Open the folder<span>${deskFolder.count() || ''}</span></button><button data-close-active>Close window</button>`
-            : `<button data-welcome>About this workspace</button><button data-app="voices">How I think</button><button data-app="settings">About this Mac</button><button data-app="activity">Activity Monitor</button><button data-mission>Mission Control <span>⌃↑</span></button><button data-timemachine>Time Machine…</button><button data-app="questions">Unfinished business<span>${(C.counts?.open_questions ?? 0) || ''}</span></button><button data-app="corrections">Corrections<span>${(C.counts?.corrections ?? 0) || ''}</span></button><button data-app="tape">Last night’s service…</button><hr>${memory.available
+            : `<button data-welcome>About this workspace</button><button data-app="voices">How I think</button><button data-app="settings">About this Mac</button><button data-app="activity">Activity Monitor</button><button data-mission>Mission Control <span>⌃↑</span></button><button data-timemachine>Time Machine…</button><button data-app="questions">Unfinished business<span>${(C.counts?.open_questions ?? 0) || ''}</span></button><button data-app="corrections">Corrections<span>${(C.counts?.corrections ?? 0) || ''}</span></button><button data-app="schedule">Right now…</button><button data-app="tape">Last night’s service…</button><hr>${memory.available
               ? `<button data-remember role="menuitemcheckbox" aria-checked="${memory.enabled()}">${memory.enabled() ? '✓ ' : ''}Remember this desk</button>${memory.enabled() ? '<button data-forget>Forget this desk</button><button data-export-place>Export my place…</button>' : ''}`
               : '<button disabled title="This browser has no working storage (private mode or storage disabled).">Remember this desk (unavailable here)</button>'}<hr><button data-leave>Return to room</button><a href="record.html">Read the public record</a>`;
     pop.innerHTML = items;
@@ -1725,7 +1746,7 @@ export function createDesktop(root, C, { leave }) {
       else if (!$('.mac-context').hidden) hideContext();
       else if (!$('.control-center').hidden) { $('.control-center').hidden = true; $('.mac-cc').focus(); }
       else if (!pop.hidden) { pop.hidden = true; $('.apple-menu').focus(); }
-      else if(active==='preview' || active==='comparison' || active==='investigation' || active==='timemachine' || active==='questions' || active==='corrections' || active==='tape') close(active);   // F5/C4/C8: Escape closes the active document window
+      else if(active==='preview' || active==='comparison' || active==='investigation' || active==='timemachine' || active==='questions' || active==='corrections' || active==='schedule' || active==='tape') close(active);   // F5/C4/C8: Escape closes the active document window
       return;
     }
     if (root.classList.contains('session-on') && ev.shiftKey && (ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === 'e' && !ev.target.closest('input,textarea,[contenteditable=true]')) { ev.preventDefault(); lens.toggle(); return; }
