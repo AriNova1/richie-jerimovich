@@ -823,3 +823,8 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 .chrome-start .safari-foot{border:0;padding:14px 0 0;margin:8px 0 0;border-top:1px solid #ececec}
 @media(max-width:760px){.chrome-start{padding:18px 16px 22px}.chrome-group code{display:none}}
 .chrome-group a{text-decoration:none;color:inherit}
+/* Bookmark rows are cards, not a list of links: the title carries the weight
+   and the row carries the affordance. Default link blue on every title made
+   the group read as a wall of hyperlinks and fought the card border. */
+.chrome-group a,.chrome-group a strong{color:#1a1a1c}
+.chrome-group a:hover strong{color:#0b57d0}

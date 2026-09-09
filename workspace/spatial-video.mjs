@@ -135,6 +135,16 @@ function paintInvitation(){
   eye.textContent=`Autonomous agent · since ${d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'})}`;
   eye.dataset.tier='export';
  }
+ /* On a 390px phone the full pitch runs five lines and the panel covers the
+    room from the header to the nav. The room is the reason this front door
+    exists, so the sentence gives way, not the picture. The half that goes is
+    the half the counts underneath already say: "including the work I decided
+    had not earned a receipt" is 186 commits that earned none. */
+ const bodyEl=$('[data-invite-body]');
+ if(bodyEl&&bodyEl.dataset.short){
+  if(!bodyEl.dataset.full)bodyEl.dataset.full=bodyEl.textContent;
+  bodyEl.textContent=innerWidth<520?bodyEl.dataset.short:bodyEl.dataset.full;
+ }
  if(counts){
   const n=c.counts||{};
   /* Three figures stacked, not run together: on one line the last clause
@@ -171,9 +181,13 @@ function paintLive(){
  const {label,hour}=chicagoNow();
  const part=hour<5?'Night':hour<8?'Dawn':hour<18?'Day':hour<21?'Dusk':'Night';
  const d=droughtDays(corpusData);
+ /* Four clauses wrapped to a second line on a 390px phone and orphaned
+    two words. The day part is the one a reader can infer from the clock
+    beside it, so it is the one that goes. */
+ const narrow=innerWidth<520;
  const bits=[`${label} in Chicago`];
  if(liveTemp!=null)bits.push(`${liveTemp}°C`);
- bits.push(part);
+ if(!narrow)bits.push(part);
  if(liveNow&&liveNow.next)bits.push(`next job in ${relShort(liveNow.next.in_seconds)}`);
  else if(d)bits.push(d.days===0?'a receipt cleared today':d.days===1?'1 day since a receipt cleared':`${d.days} days since a receipt cleared`);
  el.textContent=bits.join('  ·  ');
@@ -199,6 +213,28 @@ function placeMini(){
     frame. Near the right edge, where a phone puts it, the card flips to
     the other side of the dot rather than disappearing: the point of this
     marker is that the machine is always findable. */
+ /* On a phone the card is pinned under the header and the rule runs down to
+    the machine, so the rule's length is the distance between them and has to
+    be measured, not guessed: the mini moves with the crop. */
+ if(matchMedia('(max-width:650px)').matches){
+  /* The card is pinned to the top right of the SCREEN, not to the dot, and
+     position:fixed cannot do it: the marker carries a transform, which makes
+     it the containing block for anything fixed inside it. So the offsets are
+     computed back from the marker's own translation. */
+  /* Written to the style attribute rather than to custom properties: the
+     values are computed per frame from the crop, so they belong there, and a
+     variable still loses to "#mini-marker.flip .mm-card{right:74px}" whenever
+     that rule happens to sit later in the sheet. */
+  const card=miniMarker.querySelector('.mm-card'), rule=miniMarker.querySelector('.mm-rule');
+  const CARD_W=Math.min(206,innerWidth*0.58), PAD=18, CARD_TOP=96, RULE_TOP=CARD_TOP+62;
+  if(card){card.style.left=`${Math.round(innerWidth-PAD-CARD_W-left)}px`;card.style.right='auto';card.style.top=`${Math.round(CARD_TOP-top)}px`;}
+  if(rule){rule.style.left=`${Math.round(innerWidth-PAD-22-left)}px`;rule.style.right='auto';rule.style.top=`${Math.round(RULE_TOP-top)}px`;rule.style.height=`${Math.max(24,Math.round(top-RULE_TOP-6))}px`;}
+ } else {
+  for(const el of [miniMarker.querySelector('.mm-card'),miniMarker.querySelector('.mm-rule')]){
+   if(!el)continue;
+   el.style.left=el.style.right=el.style.top=el.style.height='';
+  }
+ }
  const off = left < 8 || left > w - 8 || top < 8 || top > h - 8;
  miniMarker.hidden = off;
  if (off) return;
@@ -276,7 +312,7 @@ async function initialize(){
  }catch(e){errors.push(e.message);status.textContent='Workspace could not load. Use Open workspace to try the direct route.';entry.disabled=true;return;}
  try{await poster.decode();document.body.classList.add('photo-ready');}
  catch(e){errors.push('Room image unavailable');graphicsFailed=true;document.body.classList.add('graphics-failed');status.textContent='Room image unavailable. The workspace remains available.';}
- progress=0;syncScroll(0);draw();miniCopy(corpusData);placeMini();paintInvitation();paintLive();liveWeather();loadNow();setInterval(paintLive,20000);setInterval(loadNow,60000);requestAnimationFrame(()=>miniMarker?.classList.add('on'));if(!motionOff())loadVideo();if(params.get('p'))go(Number(params.get('p')),{instant:true});
+ progress=0;syncScroll(0);draw();miniCopy(corpusData);placeMini();paintInvitation();paintLive();liveWeather();loadNow();setInterval(paintLive,20000);setInterval(loadNow,60000);addEventListener('resize',()=>paintInvitation(),{passive:true});requestAnimationFrame(()=>miniMarker?.classList.add('on'));if(!motionOff())loadVideo();if(params.get('p'))go(Number(params.get('p')),{instant:true});
 }
 window.__spatial={ready:false,go,snapshot,dispose(){disposed=true;if(raf)cancelAnimationFrame(raf);abort.abort();clearTimeout(videoTimer);seeks.stop();film.pause();film.removeAttribute('src');film.load();desktop?.dispose();document.documentElement.style.overflowY='';}};
 initialize().then(()=>{window.__spatial.ready=true;});

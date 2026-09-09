@@ -259,3 +259,32 @@ have was Richie's own back catalogue in it.
 |---|---|---|
 | Shipped surfaces reachable in 3 clicks | **1** | **16** |
 | Unreachable | **16** | **0** |
+
+### Sweep 05 — the interior pages, and the phone
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 45 | Engineer | **stop-ship** | **The legibility tool was reporting garbage.** It scraped the first three numbers out of the computed colour string; `color-mix()` resolves to `color(srgb 0.65 0.35 0.21)`, whose components run 0 to 1, and read as 0-255 they gave ink `#0.c72d905c...` and ratios of 1.11:1 for text that reads perfectly well. **Every previous contrast reading on a surface using a modern colour function was invalid.** Fourteen of `/about/`'s twenty three findings were the tool. | **fixed** — every colour resolved through a 1×1 canvas, which is the browser's own answer |
+| 46 | Typographer | **stop-ship** | The fifteen interior pages had never been audited. **318 legibility failures on production**, 65 on `/organism/` alone. 192 declarations below the 12px floor, in thirteen values from 0.56rem (9px) to 0.78rem, across the stylesheets and the inline styles in four markdown pages. | **fixed** — one small step at the floor, 0.8125rem on a phone |
+| 47 | Auditor | **stop-ship** | **The property disagreed with itself about its headline number.** `/organism/` published "59 kept, 106 refused, 64% of commits declined" while the front door and the record published 61 and 186. The console counted `timeline.yml`, which holds the most recent 200 rows, not the ledgers. Both pages looked equally confident. | **fixed**, and guarded by `tests/counts-agree.test.mjs` |
+| 48 | Editor | high | That same figure was labelled "% of commits declined" when its denominator is commits weighed for a receipt, not all commits. | **relabelled** |
+| 49 | Editor | medium | `/inside/` said "First visit **on record**." The mechanism is localStorage and the code says so in a comment. On this property "record" means the public record. | **fixed** — "First time on this browser", which is precisely what it knows |
+| 50 | Engineer | high | The stylesheet cache key had not been bumped. The comment above it records what happened last time: `/rewind/`'s tape overlay shipped with no styles at all, including no `pointer-events:none`, on a layer covering the readout. | **bumped** |
+| 51 | Colourist | **stop-ship** | **On a 390px phone the marker card sat on top of the invitation**, covering three lines of the sentence that explains the property. Measured: card at x 100-350 over a panel at x 24-314. | **fixed** — the card goes above everything, pinned under the header, with the rule drawn down to the machine |
+| 52 | Engineer | high | The card could not be pinned with `position:fixed`: the marker carries a transform, which makes it the containing block for anything fixed inside it. Then a custom property lost to `#mini-marker.flip .mm-card{right:74px}` at specificity (1,2,0), and the card landed 100px left of the maths. **Same trap that took `.tp-play` to 1.08:1 in August.** | **fixed** — computed offsets written to the style attribute, where per-frame values belong |
+| 53 | Colourist | high | On a phone the invitation covered the room from the header to the nav. **The photoreal room is the reason the front door exists and it was invisible on a phone.** | **fixed** — the pitch gives way, not the picture. The half that goes is the half the counts underneath already say. |
+| 54 | Colourist | medium | `#journey-nav` and `#room-caption` overlapped by 9px. | **fixed** |
+| 55 | Typographer | medium | The live rail wrapped to a second line and orphaned two words. | **fixed** — the day part drops below 520px, being the clause a reader can infer from the clock beside it |
+| 56 | Skeptic | medium | On a phone the "Skip to the desktop" pill was the loudest thing on the screen, louder than the action the front door is asking for. | **fixed** |
+| 57 | Colourist | low | Bookmark titles took the default link blue, so a set of cards read as a wall of hyperlinks. | **fixed** |
+
+### Metrics after sweep 05
+
+| Metric | Value |
+|---|---|
+| Interior page legibility findings | **318 → 6** (and the 6 are on pages the local build could not regenerate) |
+| Workspace legibility | **0**, 18 apps, 3 viewports, with a colour parser that now works |
+| Tests | **75** |
+| Gate findings | 5, **0 blocking** |
+| Places the headline number is published | **4**, all agreeing, guarded by a test |
+| Phone layout collisions on the front door | **2 → 0** |

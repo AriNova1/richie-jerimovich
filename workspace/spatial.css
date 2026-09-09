@@ -54,8 +54,8 @@ body.graphics-failed #journey-nav,body.motion-off #journey-nav{display:none}
 #room-header{left:22px;right:22px;top:20px;font-size:var(--t-fine);flex-wrap:wrap;gap:6px}
 #invitation{left:18px;top:auto;bottom:126px;max-width:none;right:18px;padding:18px 18px 20px}
 #invitation .eyebrow{font-size:var(--t-micro);margin:0 0 12px}
-#journey-nav{left:18px;bottom:58px;padding:6px 12px}
-#room-caption{left:18px;right:18px;bottom:14px;font-size:var(--t-micro);max-width:none;text-align:left}
+#journey-nav{left:18px;bottom:82px;padding:6px 12px}   /* the caption began 9px inside the nav */
+#room-caption{left:18px;right:18px;bottom:14px;font-size:var(--t-micro);max-width:none;text-align:left;display:grid;gap:3px;justify-items:start}
 #poster{object-position:43% center}
 #return-room{bottom:82px;right:10px}
 #diagnostics{top:58px;right:10px;width:270px}
@@ -79,8 +79,21 @@ body.graphics-failed #journey-nav,body.motion-off #journey-nav{display:none}
 .mm-title{margin:0 0 5px;font-size:var(--t-lead);font-weight:600;letter-spacing:-.01em}
 .mm-line{margin:0;font-size:var(--t-fine);line-height:1.5;color:#f2ebdd}
 @media(max-width:650px){
-.mm-rule{width:1px;height:26px;left:0;top:-26px;background:linear-gradient(to top,#f7f1e7cc,#f7f1e733)}
-.mm-card{left:auto;right:-6px;top:-104px;width:min(250px,70vw);text-align:right;padding:10px 12px}
+
+/* Measured on a 390px phone: the card sat at x 100-350 over an invitation
+     panel at x 24-314, covering three lines of the pitch. There is nowhere on
+     a 390px screen for a 250px card beside a 290px panel, so it stops trying
+     to sit beside the dot and goes above everything instead: pinned under the
+     header on the right, with the rule drawn down to the machine. The dot
+     still points; nothing lands on the sentence that explains the property. */
+  /* Scoped through #mini-marker, and through .flip too, because
+     "#mini-marker.flip .mm-card{right:74px}" outside this block is
+     specificity (1,2,0) and beat a bare .mm-card. The card landed 100px left
+     of where the maths put it and the rule pointed at nothing. Scope, do not
+     reach for !important: the same trap took .tp-play to 1.08:1 in August. */
+  #mini-marker .mm-card,#mini-marker.flip .mm-card{position:absolute;left:var(--mm-card-x,0);right:auto;top:var(--mm-card-y,0);width:min(206px,58vw);text-align:right;padding:9px 11px}
+  #mini-marker .mm-rule,#mini-marker.flip .mm-rule{position:absolute;left:var(--mm-rule-x,0);right:auto;top:var(--mm-rule-y,0);width:1px;height:var(--mm-drop,120px);background:linear-gradient(to bottom,#f7f1e7d9,#f7f1e77a 55%,#f7f1e7cc);box-shadow:0 0 6px #0009}
+  .mm-line{display:none}
 .mm-title{font-size:var(--t-lead)}
 .mm-line{font-size:var(--t-fine)}
 }
@@ -90,8 +103,8 @@ body.graphics-failed #journey-nav,body.motion-off #journey-nav{display:none}
 #mini-marker.flip .mm-rule{left:auto;right:5px}
 #mini-marker.flip .mm-card{left:auto;right:74px;text-align:right}
 @media(max-width:650px){
-#mini-marker.flip .mm-rule{left:0;right:auto;width:1px}
-#mini-marker.flip .mm-card{right:-6px}
+
+
 }
 #room-live{margin:0;font-size:var(--t-fine);letter-spacing:.02em;color:#e6ddcd;text-shadow:0 1px 12px #000;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:52vw}
 @media(max-width:900px){
@@ -110,7 +123,11 @@ body.graphics-failed #journey-nav,body.motion-off #journey-nav{display:none}
 .ic-row i{font-style:normal;color:#d8cfbe}
 #room-caption a{color:#fff;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:650px){
-#direct-entry{font-size:var(--t-fine)}
+/* On a phone this filled pill was the loudest thing on the screen, louder
+     than "Go into the machine", which is the action the front door is asking
+     for. A skip link should be findable, not first. */
+  #direct-entry{font-size:var(--t-fine);background:none;backdrop-filter:none;border-radius:0;border-bottom:1px solid #ffffff5c;padding:4px 0;color:#efe7d9}
+  #direct-entry span{margin-left:8px}
 #invitation .invite-body{font-size:var(--t-body);margin:0 0 14px}
 .invite-counts{font-size:var(--t-fine);margin:0 0 18px}
 #journey-nav button{font-size:var(--t-fine)}
