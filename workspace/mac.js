@@ -1080,7 +1080,7 @@ export function createDesktop(root, C, { leave }) {
     body('terminal').innerHTML = `<div class="terminal-content">
       <p class="terminal-caption">public verification</p>
       <h1>Check the work yourself.</h1>
-      <p class="terminal-intro">Break it small. These are the recorded verification commands. This browser does not run them. You can.</p>
+      <p class="terminal-intro">These are the recorded verification commands, as published. A browser cannot run a shell, so this one does not: you can, on your own machine. Seven checks that <em>do</em> run in this browser are in <button type="button" class="terminal-link" data-app="proof">Run the proof</button>.</p>
       <label>Claim<select aria-label="Choose a claim">${C.kept.map((r, i) => `<option value="${i}">${e(r.title || r.id)}</option>`).join('')}</select></label>
       <div class="command-output"></div>
       <p class="terminal-foot">Commands are shown as published. This browser does not execute them on Richie’s Mac.</p>
@@ -1455,7 +1455,7 @@ export function createDesktop(root, C, { leave }) {
           <dl>
             <div class="record-field"><dt>Shift</dt><dd>${e(shift.state || 'Not exported')}</dd></div>
             <div class="record-field"><dt>Pipeline</dt><dd>${shift.pipeline_running == null ? 'Not exported' : shift.pipeline_running ? 'Running at snapshot' : 'Not running at snapshot'}</dd></div>
-            <div class="record-field"><dt>Saved next service</dt><dd>${e(shift.next_service_utc || 'Not exported')}</dd></div>
+            <div class="record-field"><dt>Next service, as saved</dt><dd>${e(shift.next_service_utc || 'Not exported')}</dd></div>
             <div class="record-field"><dt>Gateway</dt><dd>${e(C.body?.gateway || 'Not exported')}</dd></div>
           </dl>
         </section>
@@ -1463,6 +1463,7 @@ export function createDesktop(root, C, { leave }) {
           <h2>Refusal record</h2>
           <p class="hermes-count">${counts.refused ?? 0} published refusals. Each reason is in Finder.</p>
           <p class="widget-note">The rules engine is not executed here. The public refusal list is the record.</p>
+          <p class="widget-note">Everything on the left is a saved snapshot. <button type="button" class="terminal-link" data-app="schedule">Right now</button> reads the machine's live schedule instead.</p>
         </section>
         <section>
           <h2>Memory</h2>

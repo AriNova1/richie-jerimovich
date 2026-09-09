@@ -886,3 +886,6 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
   .growth-spark svg{width:100%}
   .growth-note{grid-row:3}
 }
+/* A button that reads as a link, for pointing one instrument at another. */
+.terminal-link{background:none;border:0;padding:0;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.terminal-link:hover{text-decoration-thickness:2px}

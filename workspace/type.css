@@ -265,3 +265,7 @@ code, kbd, samp, .hash, .sha {
   --e-exit:  cubic-bezier(.4, 0, 1, 1);      /* accelerating: leaving        */
   --e-move:  cubic-bezier(.32, .72, 0, 1);   /* both ends: travelling        */
 }
+
+/* Spotify: the movement notes are Richie writing about his own playlist.
+   The track list is a media list and stays chrome. */
+.spotify-mv h2, .spotify-mv p, .spotify-head p, .spotify-note { font-family: var(--face-record); font-optical-sizing: auto; }
