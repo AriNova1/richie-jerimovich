@@ -243,3 +243,5 @@ code, kbd, samp, .hash, .sha {
 .tour-body h2, .tour-body p { font-family: var(--face-record); font-optical-sizing: auto; }
 .tour-count { font-family: var(--face-evidence); font-size-adjust: 0.52; }
 .tour-bar button { font-family: var(--face-chrome); }
+.growth-head strong { font-family: var(--face-chrome); }
+.growth-now, .growth-note { font-family: var(--face-evidence); font-size-adjust: 0.52; letter-spacing: 0; }

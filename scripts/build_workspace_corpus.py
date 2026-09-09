@@ -368,6 +368,17 @@ def main():
             "shift": agent.get("shift") or {},
             "health": (organism.get("health") or {}),
             "activity": (organism.get("activity") or {}),
+            # Twenty eight daily snapshots of what the machine holds and does.
+            # It was sitting in _data/organism_history.yml, read only by the
+            # /organism/ page, while Activity Monitor in the workspace showed
+            # a list of rows with no shape to them and no yesterday.
+            "history": [
+                {k: r.get(k) for k in
+                 ("date", "facts", "kg_edges", "gists", "working",
+                  "sessions", "loops_active", "ran_24h", "ok_24h", "commits")}
+                for r in (load("organism_history.yml") or [])
+                if r.get("date")
+            ],
         },
         "projects": [
             {"name": p.get("name"), "status": p.get("status"),

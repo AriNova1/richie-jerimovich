@@ -16,6 +16,7 @@ import {mountCorrections} from './apps/corrections.mjs';
 import {mountSchedule} from './apps/schedule.mjs';
 import {mountProof} from './apps/proof.mjs';
 import {createTour, shouldOffer as tourUnseen} from './tour.mjs';
+import {series, delta, sparkSVG} from './spark.mjs';
 import {mountTape} from './apps/tape.mjs';
 import {PLAYLIST, trackCount} from './data/playlist.mjs';
 import {createLens} from './lens.mjs';
@@ -996,6 +997,7 @@ export function createDesktop(root, C, { leave }) {
   function drawActivity() {
     const tabs = [
       ['vitals', 'Health'],
+      ['growth', 'Growth'],
       ['cpu', 'CPU'],
       ['memory', 'Memory'],
       ['runtime', 'Runtime'],
@@ -1028,7 +1030,36 @@ export function createDesktop(root, C, { leave }) {
       ).join('')}</svg>
       <p class="widget-note">${e(C.body.activity.commits_30d)} commits in 30 days at export. Heights come from the saved activity series.</p>` : '<p class="record-note">No 30-day activity series in this export.</p>'}
     </div>`;
+    /* Twenty eight recorded days of what this machine holds and does. It was
+       in the export the whole time, read only by /organism/, while this window
+       showed rows with a value each and no yesterday. */
+    const GROWTH = [
+      ['facts', 'Facts held', 'Rows in the agent\u2019s long term memory.'],
+      ['kg_edges', 'Connections between them', 'Edges in the knowledge graph.'],
+      ['gists', 'Summaries kept', 'Compressed recollections, one per session or task.'],
+      ['commits', 'Commits', 'The public log, cumulative.'],
+      ['loops_active', 'Jobs on the schedule', 'Enabled recurring jobs at each snapshot.'],
+      ['ran_24h', 'Jobs that ran in the day before', 'How busy the day before each snapshot was.'],
+    ];
+    const history = C.body?.history || [];
+    const growth = `<div class="activity-panel">
+      <p class="record-note" data-tier="export">${history.length} recorded snapshots, ${e(history.at(-1)?.date || '?')} to ${e(history[0]?.date || '?')}.</p>
+      <p class="record-note" data-tier="editorial">The snapshots are irregular, so the line runs across samples, not across time. A flat stretch is a flat number, not a missing week.</p>
+      ${history.length ? `<ul class="growth-list">${GROWTH.map(([field, label, note]) => {
+        const pts = series(history, field);
+        const d = delta(pts);
+        if (!d) return '';
+        const dir = d.change > 0 ? 'up' : d.change < 0 ? 'down' : 'flat';
+        return `<li class="growth-row is-${dir}">
+          <div class="growth-head"><strong>${e(label)}</strong><span class="growth-now" data-tier="export">${d.to.toLocaleString('en-US')}</span></div>
+          <div class="growth-spark" data-tier="derived">${sparkSVG(pts, { w: 220, h: 30 })}</div>
+          <p class="growth-note" data-tier="derived">${d.change === 0 ? 'Unchanged' : `${d.change > 0 ? '+' : ''}${d.change.toLocaleString('en-US')}`} across ${d.samples} snapshots over ${d.days} days. ${e(note)}</p>
+        </li>`;
+      }).join('')}</ul>` : '<p class="record-note">No growth history in this export.</p>'}
+    </div>`;
+
     const pane = {
+      growth,
       vitals: renderDirectory(C, 'vitals'),
       cpu, memory: mem, runtime: renderDirectory(C, 'runtime'), agent,
       channels: renderDirectory(C, 'channels')

@@ -858,3 +858,31 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 /* The contact card on the desk used the stock Contacts silhouette while the
    photograph every other surface shows sat unused in assets/. */
 .desk-icon-photo img{width:60px;height:60px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 6px 18px rgba(0,0,0,.34)}
+/* ── growth ────────────────────────────────────────────────────────────
+   Six numbers with a shape each, from 28 recorded snapshots. Before this,
+   Activity Monitor showed a value and no yesterday.
+
+   The sparkline is a fixed 220px and is NOT stretched to the row: scaling a
+   220 wide viewBox to 1500px with preserveAspectRatio="none" flattens every
+   feature in it into a smear, which is a chart that has stopped saying
+   anything while still looking like a chart. */
+.growth-list{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px}
+.growth-row{display:grid;grid-template-columns:minmax(0,1fr) 220px minmax(74px,auto);align-items:center;gap:4px 18px;
+  padding:11px 14px;border-radius:11px;background:color-mix(in srgb,currentColor 5%,transparent);border:1px solid color-mix(in srgb,currentColor 12%,transparent)}
+.growth-head{display:contents}
+.growth-head strong{font-size:var(--t-body);font-weight:500;grid-column:1;grid-row:1}
+.growth-now{grid-column:3;grid-row:1;font-size:var(--t-sub);font-variant-numeric:tabular-nums;letter-spacing:-.02em;text-align:right}
+.growth-spark{grid-column:2;grid-row:1;height:30px;color:#4f8f6c}
+.growth-spark svg{display:block;width:220px;height:30px}
+.growth-row.is-up .growth-spark{color:#3f8a63}
+.growth-row.is-down .growth-spark{color:#b06a34}
+.growth-row.is-flat .growth-spark{color:#8b8b92}
+/* Column 1 only. Spanning the row ran the sentence underneath the chart,
+   where its descenders and the line’s tail met in the same 15px. */
+.growth-note{grid-column:1;grid-row:2;margin:2px 0 0;font-size:var(--t-micro);opacity:.68;line-height:var(--lh-snug);max-width:56ch}
+@media(max-width:760px){
+  .growth-row{grid-template-columns:minmax(0,1fr) auto}
+  .growth-spark{grid-column:1/-1;grid-row:2}
+  .growth-spark svg{width:100%}
+  .growth-note{grid-row:3}
+}
