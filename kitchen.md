@@ -141,11 +141,11 @@ permalink: /kitchen/
   max-width: var(--wrap); margin: 0 auto; padding: 1.2rem var(--gutter) 0.6rem;
   display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap;
 }
-.kw-hint { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.04em; }
+.kw-hint { font-family: var(--font-mono); font-size: var(--step--2); color: var(--text-dim); letter-spacing: 0.04em; }
 .kw-hint a { color: var(--text-dim); }
 .kw-stations { display: flex; gap: 0.4rem; flex-wrap: wrap; }
 .kw-stations button {
-  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em;
+  font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.08em;
   padding: 0.4rem 0.8rem; border-radius: 999px; border: 1px solid var(--steel-edge);
   color: var(--text-soft); min-height: 36px;
 }
@@ -221,9 +221,9 @@ permalink: /kitchen/
 .kw-board { border: 1px solid var(--steel-edge); border-radius: 12px; background: rgba(13, 11, 9, 0.6); padding: 1rem 1.2rem; }
 .kw-board-row { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; padding: 0.45rem 0; border-bottom: 1px dashed var(--steel-edge); align-items: baseline; }
 .kw-board-row:last-child { border-bottom: 0; }
-.kw-board-row span { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
+.kw-board-row span { font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
 .kw-board-row strong { font-weight: 440; font-size: 1rem; color: var(--text); }
-.kw-live-row strong { color: var(--amber); font-family: var(--font-mono); font-size: 0.85rem; }
+.kw-live-row strong { color: var(--amber); font-family: var(--font-mono); font-size: var(--step--1); }
 .kw-rail { display: flex; gap: 1rem; margin-top: 1.4rem; flex-wrap: wrap; }
 .kw-ticket {
   flex: 1 1 180px; max-width: 220px; text-decoration: none;
@@ -235,8 +235,8 @@ permalink: /kitchen/
 .kw-ticket:nth-child(2n) { --tilt: 0.8deg; }
 .kw-ticket:nth-child(2n+1) { --tilt: -0.7deg; }
 .kw-ticket:hover { transform: rotate(0) translateY(-3px); color: var(--ticket-ink); }
-.kw-ticket-head { display: block; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ticket-ink-soft); border-bottom: 1px dashed var(--ticket-rule); padding-bottom: 0.3rem; margin-bottom: 0.4rem; }
-.kw-ticket-title { font-size: 0.78rem; line-height: 1.45; }
+.kw-ticket-head { display: block; font-size: var(--step--2); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ticket-ink-soft); border-bottom: 1px dashed var(--ticket-rule); padding-bottom: 0.3rem; margin-bottom: 0.4rem; }
+.kw-ticket-title { font-size: var(--step--2); line-height: 1.45; }
 
 /* the spike wall */
 .kw-spike { position: relative; max-width: 560px; padding-top: 0.8rem; }
@@ -244,7 +244,7 @@ permalink: /kitchen/
 .kw-slip {
   position: relative; background: linear-gradient(178deg, var(--ticket) 92%, var(--ticket-shade));
   color: var(--ticket-ink-soft); border-radius: 3px; padding: 0.6rem 0.9rem; margin-bottom: 0.7rem;
-  font-family: var(--font-mono); font-size: 0.76rem; line-height: 1.5;
+  font-family: var(--font-mono); font-size: var(--step--2); line-height: 1.5;
   box-shadow: 0 8px 18px -12px rgba(0, 0, 0, 0.85);
   transform: rotate(var(--tilt, 0));
 }
@@ -254,16 +254,16 @@ permalink: /kitchen/
 
 /* the office wall */
 .kw-term { border: 1px solid var(--steel-edge); border-radius: 12px; background: rgba(13, 11, 9, 0.7); padding: 1rem 1.2rem; }
-.kw-term-head { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.7rem; }
+.kw-term-head { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.7rem; }
 .kw-term-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-dim); }
 html[data-shift="service"] .kw-term-dot, html[data-shift="open"] .kw-term-dot { background: var(--pass-ok); box-shadow: 0 0 8px rgba(127, 176, 105, 0.6); }
 html[data-shift="service"] .kw-term-dot { background: var(--amber); box-shadow: 0 0 10px rgba(240, 192, 64, 0.8); animation: shift-pulse 1.4s ease-in-out infinite; }
 .kw-term-stream { list-style: none; }
-.kw-term-stream li { display: grid; grid-template-columns: auto 1fr auto; gap: 0.7rem; align-items: baseline; padding: 0.28rem 0; border-bottom: 1px dashed var(--steel-edge); font-family: var(--font-mono); font-size: 0.76rem; }
+.kw-term-stream li { display: grid; grid-template-columns: auto 1fr auto; gap: 0.7rem; align-items: baseline; padding: 0.28rem 0; border-bottom: 1px dashed var(--steel-edge); font-family: var(--font-mono); font-size: var(--step--2); }
 .kw-term-stream li:last-child { border-bottom: 0; }
-.kw-term-stream b { color: var(--burn); font-weight: 400; font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.kw-term-stream b { color: var(--burn); font-weight: 400; font-size: var(--step--2); letter-spacing: 0.08em; text-transform: uppercase; }
 .kw-term-stream span { color: var(--text-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.kw-term-stream small { color: var(--text-dim); font-size: 0.64rem; }
+.kw-term-stream small { color: var(--text-dim); font-size: var(--step--2); }
 .kw-doors { display: flex; gap: 1rem; margin-top: 1.3rem; flex-wrap: wrap; }
 .kw-door {
   flex: 1 1 160px; text-decoration: none; border: 1px solid var(--steel-edge); border-radius: 10px;
@@ -272,21 +272,21 @@ html[data-shift="service"] .kw-term-dot { background: var(--amber); box-shadow: 
 }
 .kw-door:hover { border-color: var(--amber); transform: translateY(-3px); }
 .kw-door b { display: block; font-family: var(--font-display); font-weight: 640; color: var(--paper); font-size: 1.05rem; }
-.kw-door span { font-size: 0.8rem; color: var(--text-dim); }
+.kw-door span { font-size: var(--step--1); color: var(--text-dim); }
 
 /* the shelf wall */
 .kw-book { display: block; text-decoration: none; max-width: 460px; border-radius: 8px; overflow: hidden; border: 1px solid var(--steel-edge); background: linear-gradient(128deg, #201c24, #100e13); padding: 1rem 1.2rem; transition: transform 0.3s var(--ease-out), border-color 0.2s; }
 .kw-book:hover { transform: translateY(-3px); border-color: rgba(201, 162, 71, 0.5); }
-.kw-book-spine { display: block; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.22em; color: #c9a247; margin-bottom: 0.3rem; }
-.kw-book > span:last-child { color: var(--text-soft); font-size: 0.88rem; }
+.kw-book-spine { display: block; font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.22em; color: #c9a247; margin-bottom: 0.3rem; }
+.kw-book > span:last-child { color: var(--text-soft); font-size: var(--step--1); }
 .kw-radio { margin-top: 1.1rem; }
-.kw-radio-now { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-soft); }
+.kw-radio-now { font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-soft); }
 .kw-fridge { margin-top: 1.3rem; border: 1px solid var(--steel-edge); border-left: 3px solid #6b7f8a; border-radius: 10px; background: linear-gradient(180deg, rgba(107, 127, 138, 0.08), transparent); padding: 1rem 1.2rem; max-width: 520px; }
-.kw-fridge-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: #8fa5b1; }
-.kw-fridge-note { font-size: 0.88rem; color: var(--text-soft); margin-top: 0.4rem; }
+.kw-fridge-label { font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.14em; text-transform: uppercase; color: #8fa5b1; }
+.kw-fridge-note { font-size: var(--step--1); color: var(--text-soft); margin-top: 0.4rem; }
 
 .kw-exit { max-width: var(--wrap); margin: 0 auto; padding: 1rem var(--gutter) 0; }
-.kw-exit a { font-family: var(--font-mono); font-size: 0.8rem; text-decoration: none; color: var(--text-dim); }
+.kw-exit a { font-family: var(--font-mono); font-size: var(--step--1); text-decoration: none; color: var(--text-dim); }
 .kw-exit a:hover { color: var(--amber); }
 
 .kw-flat { margin-top: 2.5rem; }

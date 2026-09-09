@@ -152,6 +152,24 @@ try {
           }
         };
         walk(document.body);
+        /* Resolve every colour through a 1x1 canvas instead of scraping the
+           first three numbers out of the computed string. color-mix() resolves
+           to `color(srgb 0.65 0.35 0.21)`, whose components are 0 to 1, and
+           reading those as 0-255 produced ink "#0.c72d905c..." and a contrast
+           ratio of 1.11:1 for text a reader can see perfectly well. The same
+           class of bug reports oklch() as a failure on every modern site.
+           The canvas is the browser's own answer and covers every syntax. */
+        const cv = document.createElement('canvas');
+        cv.width = cv.height = 1;
+        const cx = cv.getContext('2d', { willReadFrequently: true });
+        for (const n of out) {
+          cx.clearRect(0, 0, 1, 1);
+          cx.fillStyle = '#000';
+          cx.fillStyle = n.color;
+          cx.fillRect(0, 0, 1, 1);
+          const px = cx.getImageData(0, 0, 1, 1).data;
+          n.rgb = [px[0], px[1], px[2]];
+        }
         return out;
       });
       for (const n of nodes) {
@@ -178,7 +196,7 @@ try {
         const shot = await p.screenshot({ clip: { x: n.x, y: n.y, width: n.w, height: n.h } });
         await p.evaluate(() => document.getElementById('legib-mask')?.remove());
         const bg = medianPixel(shot);
-        const fg = parseRGB(n.color);
+        const fg = n.rgb || parseRGB(n.color);
         const ratio = contrast(fg, bg);
         const large = n.size >= 24 || (n.size >= 18.66 && Number(n.weight) >= 700);
         const need = large ? 3 : 4.5;
@@ -223,9 +241,9 @@ try {
 
 if (!findings.length) console.log('PASS  every visible string is 12px or larger and meets its contrast floor');
 const hex = (c) => '#' + c.map((v) => v.toString(16).padStart(2, '0')).join('');
-for (const f of findings) console.log(`FAIL  ${f.tag.padEnd(8)} ${String(f.size).padStart(5)}px  ink ${hex(parseRGB(f.color))} on ${hex(f.bg)}  ${f.problems.join(' · ').padEnd(30)} ${f.label}`);
+for (const f of findings) console.log(`FAIL  ${f.tag.padEnd(8)} ${String(f.size).padStart(5)}px  ink ${hex(f.rgb || parseRGB(f.color))} on ${hex(f.bg)}  ${f.problems.join(' · ').padEnd(30)} ${f.label}`);
 const byInk = {};
-for (const f of findings) { const k = hex(parseRGB(f.color)) + ' on ' + hex(f.bg); (byInk[k] ||= []).push(f.ratio); }
+for (const f of findings) { const k = hex(f.rgb || parseRGB(f.color)) + ' on ' + hex(f.bg); (byInk[k] ||= []).push(f.ratio); }
 console.log('\nby colour pair:');
 for (const [k, v] of Object.entries(byInk).sort((a, b) => b[1].length - a[1].length).slice(0, 80))
   console.log(`  ${String(v.length).padStart(3)}x  ${k}  worst ${Math.min(...v)}:1`);

@@ -64,12 +64,12 @@ permalink: /talk/
 .talk-head {
   display: flex; align-items: center; gap: 0.55rem;
   padding: 0.7rem 1.1rem; border-bottom: 1px solid var(--steel-edge);
-  font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.18em;
+  font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.18em;
   text-transform: uppercase; color: rgba(240,192,64,0.85);
 }
 .talk-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 8px rgba(240,192,64,0.6); animation: talkPulse 2.4s ease-out infinite; }
 .talk-console[data-state="off"] .talk-dot, .talk-console[data-state="error"] .talk-dot { background: var(--text-dim); box-shadow: none; animation: none; }
-.talk-head__meta { margin-left: auto; color: var(--text-dim); letter-spacing: 0.08em; text-transform: none; font-size: 0.62rem; }
+.talk-head__meta { margin-left: auto; color: var(--text-dim); letter-spacing: 0.08em; text-transform: none; font-size: var(--step--2); }
 @keyframes talkPulse { 0% { box-shadow: 0 0 0 0 rgba(240,192,64,0.4); } 70% { box-shadow: 0 0 0 8px rgba(240,192,64,0); } 100% { box-shadow: 0 0 0 0 rgba(240,192,64,0); } }
 @media (prefers-reduced-motion: reduce) { .talk-dot { animation: none; } }
 
@@ -78,12 +78,12 @@ permalink: /talk/
   max-height: 56vh; min-height: 220px; overflow-y: auto; overscroll-behavior: contain;
 }
 .msg { display: flex; flex-direction: column; gap: 0.35rem; max-width: 88%; }
-.msg__who { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); }
+.msg__who { font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); }
 .msg__body { font-size: 0.98rem; line-height: 1.6; color: var(--text); white-space: pre-wrap; word-wrap: break-word; }
 .msg--richie { align-self: flex-start; }
 .msg--you { align-self: flex-end; align-items: flex-end; }
 .msg--you .msg__who { color: var(--text-dim); }
-.msg--you .msg__body { background: linear-gradient(178deg, var(--ticket) 92%, var(--ticket-shade)); color: var(--ticket-ink); font-family: var(--font-mono); font-size: 0.85rem; padding: 0.6rem 0.85rem; border-radius: 3px; box-shadow: 0 8px 18px -12px rgba(0,0,0,0.8); }
+.msg--you .msg__body { background: linear-gradient(178deg, var(--ticket) 92%, var(--ticket-shade)); color: var(--ticket-ink); font-family: var(--font-mono); font-size: var(--step--1); padding: 0.6rem 0.85rem; border-radius: 3px; box-shadow: 0 8px 18px -12px rgba(0,0,0,0.8); }
 .msg--richie .msg__body { border-left: 2px solid rgba(240,192,64,0.3); padding-left: 0.85rem; }
 .msg__body .cursor { display: inline-block; width: 0.5ch; color: var(--amber); animation: caret 1s step-end infinite; }
 @keyframes caret { 50% { opacity: 0; } }
@@ -91,7 +91,7 @@ permalink: /talk/
 
 .talk-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0 1.1rem 0.4rem; }
 .talk-chip {
-  font-family: var(--font-body); font-size: 0.78rem; color: var(--text-dim);
+  font-family: var(--font-body); font-size: var(--step--2); color: var(--text-dim);
   background: var(--steel); border: 1px solid var(--steel-edge); border-radius: 999px;
   padding: 0.4rem 0.8rem; cursor: pointer; transition: border-color 0.2s var(--ease-out), color 0.2s var(--ease-out);
 }
@@ -114,7 +114,7 @@ permalink: /talk/
 .talk-send:active { transform: translateY(1px); }
 .talk-send:disabled { opacity: 0.4; cursor: default; }
 
-.talk-fine { width: min(100% - 2rem, 760px); margin: 0 auto clamp(2rem, 6vw, 4rem); color: var(--text-dim); font-size: 0.74rem; line-height: 1.6; }
+.talk-fine { width: min(100% - 2rem, 760px); margin: 0 auto clamp(2rem, 6vw, 4rem); color: var(--text-dim); font-size: var(--step--2); line-height: 1.6; }
 .talk-fine a { color: var(--text-dim); text-decoration: underline; text-underline-offset: 2px; }
 .talk-noscript { width: min(100% - 2rem, 760px); margin: 1rem auto; color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
 </style>

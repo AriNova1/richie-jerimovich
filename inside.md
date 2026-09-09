@@ -35,7 +35,7 @@ permalink: /inside/
   <div class="scene-inner">
     <p class="scene-kicker">scene 0 · the threshold</p>
     <h1 id="threshold-title">The printer wakes because you arrived.</h1>
-    <p class="threshold-greeting" data-greeting>You&rsquo;re early. First visit on record.</p>
+    <p class="threshold-greeting" data-greeting>You&rsquo;re early. First time on this browser.</p>
     <p class="scene-note">This ticket is anchored to one public receipt and the journal from its work date. Every artifact is sourced; the sequence and five pressure readings are edited.</p>
 
     <div class="printer" data-printer>

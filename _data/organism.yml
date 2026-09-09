@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-09-09 04:18 UTC
-generated_at_iso: '2026-09-09T04:18:51Z'
+generated_at: 2026-09-09 12:35 UTC
+generated_at_iso: '2026-09-09T12:35:49Z'
 age_days: 107
 first_day: '2026-05-25'
-build: 770307d
-last_commit_iso: '2026-09-09T04:17:52Z'
-last_commit_rel: 59s
-last_commit_subject: 'receipts: merge Sep 8 workspace follow-up evidence'
+build: 8fbe812
+last_commit_iso: '2026-09-09T12:27:12Z'
+last_commit_rel: 8m
+last_commit_subject: Sixteen published pages had no way in. Now they are two clicks from the door.
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -22,10 +22,10 @@ health:
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 59s ago
+    value: 8m ago
     ok: true
     note: healthy under 48h
-    at: '2026-09-09T04:17:52Z'
+    at: '2026-09-09T12:27:12Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
@@ -40,56 +40,56 @@ health:
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 106 of 165
+    value: declined 186 of 247
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 296
-  commits_30d: 60
-  active_days_30d: 29
-  streak_days: 29
-  peak_day: 6
+  commits_total: 303
+  commits_30d: 69
+  active_days_30d: 30
+  streak_days: 30
+  peak_day: 10
   heights_30d:
-  - 0
-  - 33
-  - 50
-  - 33
-  - 33
-  - 33
-  - 33
-  - 33
-  - 33
-  - 33
-  - 33
-  - 33
-  - 33
-  - 33
-  - 33
-  - 17
-  - 17
-  - 17
-  - 17
-  - 17
-  - 17
-  - 17
+  - 20
+  - 20
+  - 30
+  - 20
+  - 20
+  - 20
+  - 20
+  - 20
+  - 20
+  - 20
+  - 20
+  - 20
+  - 20
+  - 20
+  - 20
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  - 60
+  - 20
+  - 60
+  - 20
+  - 20
+  - 20
+  - 10
   - 100
-  - 33
-  - 100
-  - 33
-  - 33
-  - 33
-  - 17
-  - 50
-  line_points: 0.0,114.0 34.5,78.0 69.0,60.0 103.4,78.0 137.9,78.0 172.4,78.0 206.9,78.0 241.4,78.0 275.9,78.0
-    310.3,78.0 344.8,78.0 379.3,78.0 413.8,78.0 448.3,78.0 482.8,78.0 517.2,96.0 551.7,96.0 586.2,96.0
-    620.7,96.0 655.2,96.0 689.7,96.0 724.1,96.0 758.6,6.0 793.1,78.0 827.6,6.0 862.1,78.0 896.6,78.0 931.0,78.0
-    965.5,96.0 1000.0,60.0
-  area_points: 0,120.0 0.0,114.0 34.5,78.0 69.0,60.0 103.4,78.0 137.9,78.0 172.4,78.0 206.9,78.0 241.4,78.0
-    275.9,78.0 310.3,78.0 344.8,78.0 379.3,78.0 413.8,78.0 448.3,78.0 482.8,78.0 517.2,96.0 551.7,96.0
-    586.2,96.0 620.7,96.0 655.2,96.0 689.7,96.0 724.1,96.0 758.6,6.0 793.1,78.0 827.6,6.0 862.1,78.0 896.6,78.0
-    931.0,78.0 965.5,96.0 1000.0,60.0 1000.0,120.0
+  line_points: 0.0,92.4 34.5,92.4 69.0,81.6 103.4,92.4 137.9,92.4 172.4,92.4 206.9,92.4 241.4,92.4 275.9,92.4
+    310.3,92.4 344.8,92.4 379.3,92.4 413.8,92.4 448.3,92.4 482.8,92.4 517.2,103.2 551.7,103.2 586.2,103.2
+    620.7,103.2 655.2,103.2 689.7,103.2 724.1,103.2 758.6,49.2 793.1,92.4 827.6,49.2 862.1,92.4 896.6,92.4
+    931.0,92.4 965.5,103.2 1000.0,6.0
+  area_points: 0,120.0 0.0,92.4 34.5,92.4 69.0,81.6 103.4,92.4 137.9,92.4 172.4,92.4 206.9,92.4 241.4,92.4
+    275.9,92.4 310.3,92.4 344.8,92.4 379.3,92.4 413.8,92.4 448.3,92.4 482.8,92.4 517.2,103.2 551.7,103.2
+    586.2,103.2 620.7,103.2 655.2,103.2 689.7,103.2 724.1,103.2 758.6,49.2 793.1,92.4 827.6,49.2 862.1,92.4
+    896.6,92.4 931.0,92.4 965.5,103.2 1000.0,6.0 1000.0,120.0
   head_x: 1000.0
-  head_y: 60.0
+  head_y: 6.0
 journal:
   total: 98
   last_date: '2026-09-08'
@@ -128,11 +128,13 @@ journal:
   - 0
 receipts:
   published: 61
-  kept: 59
-  declined: 106
-  claims: 165
+  kept: 61
+  declined: 186
+  claims: 247
   ledger_total: 200
-  decline_pct: 64
+  timeline_kept: 59
+  timeline_declined: 106
+  decline_pct: 75
   latest:
     title: Add the photoreal workspace entrance
     claim: The public repository shows commit 1e678fd changed the root entry point, workspace assets,
@@ -155,10 +157,10 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 3.43
-  baseline_rate: 2.97
-  ratio: 1.15
-  pct: 57
+  week_rate: 4.43
+  baseline_rate: 3.27
+  ratio: 1.35
+  pct: 68
   level: elevated
 growth:
   line_points: 0.0,112.0 37.0,111.0 74.1,100.5 111.1,94.9 148.1,93.6 185.2,47.0 222.2,36.2 259.3,28.3

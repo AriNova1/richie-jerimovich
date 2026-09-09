@@ -188,7 +188,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
 }
 .jb-ui-label {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--step--2);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(244,240,231,0.35);
@@ -197,7 +197,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
 .jb-ui-btn {
   font: inherit;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--step--2);
   letter-spacing: 0.08em;
   color: rgba(244,240,231,0.5);
   background: rgba(255,255,255,0.03);
@@ -607,7 +607,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
 .jb-btn {
   font: inherit;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--step--2);
   letter-spacing: 0.08em;
   color: var(--text-muted);
   background: rgba(11,11,14,0.55);
@@ -622,7 +622,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
 .jb-btn:hover { color: var(--accent); border-color: rgba(240,192,64,0.4); }
 .jb-counter {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: var(--step--2);
   letter-spacing: 0.1em;
   color: var(--text-muted);
   min-width: 9ch;
@@ -635,7 +635,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
   bottom: 0.45rem;
   text-align: center;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--step--2);
   color: rgba(244,240,231,0.35);
   z-index: 20;
 }

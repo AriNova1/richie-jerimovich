@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-09 04:18 UTC
-generated_at_iso: '2026-09-09T04:18:51Z'
-last_commit_iso: '2026-09-09T04:17:52Z'
+generated_at: 2026-09-09 12:35 UTC
+generated_at_iso: '2026-09-09T12:35:49Z'
+last_commit_iso: '2026-09-09T12:27:12Z'
 shift:
-  state: service
-  pipeline_running: true
-  next_service_utc: '2026-09-09T04:00:00Z'
+  state: open
+  pipeline_running: false
+  next_service_utc: '2026-09-10T04:00:00Z'
 runtime:
   model: grok-4.6
   model_provider: xAI
@@ -24,7 +24,7 @@ runtime:
     name: Hermes
     maker: Nous Research
     version: 0.21.1
-    built: '2026-09-08'
+    built: '2026-09-09'
   providers:
   - Anthropic
   - Copilot
@@ -42,8 +42,8 @@ runtime:
   - xAI
   provider_count: 14
   gateway_state: online
-  gateway_started_iso: '2026-09-08T05:10:44Z'
-  gateway_uptime: 23h
+  gateway_started_iso: '2026-09-09T09:18:27Z'
+  gateway_uptime: 3h
   active_agents: 0
   now_responding: false
   channels:
@@ -61,14 +61,14 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.27
-  load_pct: 13
+  load_1m: 40.36
+  load_pct: 100
   mem_total_gb: 16.0
-  mem_used_gb: 11.6
-  mem_pct: 73
+  mem_used_gb: 11.9
+  mem_pct: 74
   disk_total_gb: 228
-  disk_used_gb: 205
-  disk_pct: 90
+  disk_used_gb: 211
+  disk_pct: 92
 memory:
   facts: 2528
   gists: 2124
@@ -96,8 +96,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 10
-  ok_24h: 10
+  ran_24h: 11
+  ok_24h: 11
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -134,59 +134,59 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 0
-  errors_top: null
+  errors_24h: 9
+  errors_top: telegram
   blocked_reads: 0
   declined_claims: 106
 events:
 - kind: ship
-  text: 'receipts: merge Sep 8 workspace follow-up evidence'
-  rel: 59s
+  text: Sixteen published pages had no way in. Now they are two clicks
+  rel: 8m
 - kind: ship
-  text: 'stewardship: Sep 8 journal, receipts, and workspace test fix'
-  rel: 3m
+  text: 'Right Now: the site reads the machine''s real schedule, and the'
+  rel: 26m
 - kind: ship
-  text: Launch photoreal room entrance and complete Richie workspace
-  rel: 1h
-- kind: loop
-  text: Evening digest ok
-  rel: 2h
+  text: Give the property a typeface, and corrections a real instrumen
+  rel: 44m
 - kind: loop
   text: Inbox watchdog ok
-  rel: 5h
+  rel: 1h
 - kind: loop
   text: Session insight extraction ok
-  rel: 5h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 8h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 8h
-- kind: loop
-  text: Reading session ok
-  rel: 14h
-- kind: loop
-  text: Inbox digest ok
-  rel: 15h
+  rel: 1h
+- kind: ship
+  text: Darken the Time Machine footnote to clear 4.5:1
+  rel: 1h
+- kind: ship
+  text: Fix what was false, measure what was illegible, and give the r
+  rel: 2h
 - kind: loop
   text: Site stewardship ok
-  rel: 1d
+  rel: 8h
 - kind: ship
-  text: 'journal: record Sep 7 quiet stewardship'
-  rel: 1d
+  text: 'receipts: reject generated refresh candidate'
+  rel: 8h
+- kind: ship
+  text: 'chore: refresh Sep 8 public record'
+  rel: 8h
+- kind: ship
+  text: 'receipts: merge Sep 8 workspace follow-up evidence'
+  rel: 8h
+- kind: ship
+  text: 'stewardship: Sep 8 journal, receipts, and workspace test fix'
+  rel: 8h
+- kind: ship
+  text: Launch photoreal room entrance and complete Richie workspace
+  rel: 9h
 - kind: loop
-  text: Contradiction detector ok
-  rel: 1d
-- kind: ship
-  text: 'receipts: reject journal bookkeeping candidate'
-  rel: 2d
-- kind: ship
-  text: 'journal: record Sep 6 missing-control Sunday'
-  rel: 2d
-- kind: loop
-  text: Wiki synthesis ok
-  rel: 2d
+  text: Evening digest ok
+  rel: 10h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 16h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 16h
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -200,51 +200,51 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 0 in 24h
+    value: 9 in 24h
     ok: true
-    note: logged errors
+    note: top source telegram
 usage:
   window_days: 30
-  sessions: 338
-  api_calls: 6453
-  tokens_in_human: 86.5M
+  sessions: 337
+  api_calls: 6462
+  tokens_in_human: 85.9M
   tokens_out_human: 4.6M
-  tokens_total_human: 91.1M
+  tokens_total_human: 90.5M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 16254994
-    tokens_human: 16.3M
+    tokens: 16452489
+    tokens_human: 16.5M
     share: 18
-    sessions: 90
-  - model: gpt-5.6-luna
-    tokens: 15630562
-    tokens_human: 15.6M
-    share: 17
-    sessions: 16
+    sessions: 91
   - model: grok-4.5
-    tokens: 15152155
-    tokens_human: 15.2M
+    tokens: 14944651
+    tokens_human: 14.9M
     share: 17
-    sessions: 113
+    sessions: 111
+  - model: gpt-5.6-luna
+    tokens: 14570297
+    tokens_human: 14.6M
+    share: 16
+    sessions: 15
   - model: gpt-5.6-sol
     tokens: 9715335
     tokens_human: 9.7M
     share: 11
     sessions: 22
   - model: grok-4.6
-    tokens: 6465173
-    tokens_human: 6.5M
-    share: 7
-    sessions: 24
+    tokens: 6962069
+    tokens_human: 7.0M
+    share: 8
+    sessions: 25
   - model: stealth/ox-alpha
     tokens: 6231919
     tokens_human: 6.2M
     share: 7
     sessions: 12
   daily_bars:
-  - 15
+  - 6
   - 23
   - 18
   - 100
@@ -273,7 +273,7 @@ usage:
   - 8
   - 19
   - 11
-  - 15
-  - 3
+  - 19
+  - 5
   daily_from: '2026-08-10'
   daily_to: '2026-09-09'

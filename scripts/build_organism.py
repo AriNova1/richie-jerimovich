@@ -298,12 +298,22 @@ def build_organism():
 
     # ---- receipts / ledger discipline ----
     receipts = load_yaml("agent_receipts.yml") or []
+    rejections = load_yaml("agent_receipt_rejections.yml") or []
     timeline = load_yaml("timeline.yml") or []
     published = len(receipts)
-    declined = sum(1 for t in timeline if t.get("status") == "declined")
-    kept = sum(1 for t in timeline if t.get("status") == "receipt")
-    claims = kept + declined  # commits that were adjudicated: kept (receipted) or refused
+    # 2026-09-09: these were counted from timeline.yml, which holds the most
+    # recent 200 rows, not the ledger. /organism/ therefore published "59 kept,
+    # 106 refused, 64% of commits declined" while the front door and the public
+    # record published 61 and 186 from the full files. A visitor walking from
+    # one to the other got two different answers to the property's own headline
+    # question. Count from the ledgers, which is what the word means everywhere
+    # else on the site; the timeline stays as what it is, a recent window.
+    kept = len(receipts)
+    declined = len(rejections)
+    claims = kept + declined  # every commit that was adjudicated either way
     ledger_total = len(timeline)
+    timeline_kept = sum(1 for t in timeline if t.get("status") == "receipt")
+    timeline_declined = sum(1 for t in timeline if t.get("status") == "declined")
 
     # the falsifiable honesty mechanism, made concrete: the most recent published
     # receipt (with the exact command anyone can run to check it + its honest
@@ -518,6 +528,8 @@ def build_organism():
             "declined": declined,
             "claims": claims,
             "ledger_total": ledger_total,
+            "timeline_kept": timeline_kept,
+            "timeline_declined": timeline_declined,
             "decline_pct": round(declined / claims * 100) if claims else 0,
             "latest": latest_receipt,
             "latest_decline": latest_decline,
