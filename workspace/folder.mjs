@@ -19,6 +19,7 @@
    than silently producing a shorter document.
    ══════════════════════════════════════════════════════════════════ */
 import { serializeDocumentRef, parseDocumentRef } from './documents.mjs';
+import { journalBody } from './journal.mjs';
 
 export const FOLDER_VERSION = 1;
 const LIMIT = 40;
@@ -108,7 +109,13 @@ export function bodyOf(entry) {
       break;
     case 'refused': put('Commit', r.commit); put('Published reason', r.reason || 'Reason not exported'); break;
     case 'commit': put('Subject', r.subject); put('SHA', entry.ref.key); break;
-    case 'writing': put('Excerpt', (r.paras || []).join('\n\n') || 'Paragraphs not exported'); put('Source file', r.file); break;
+    case 'writing': {
+      /* The whole entry travels, not the first fourteen paragraphs. */
+      const b = journalBody(entry.ref.key);
+      put('Entry', b.state === 'ready' ? b.paras.join('\n\n') : 'The complete entry was not loaded when this folder was taken. It is at the source file below.');
+      if (b.state === 'ready') put('Length', `${b.paras.length} paragraphs, ${r.words ?? b.words ?? '?'} words`);
+      put('Source file', r.file); break;
+    }
     case 'correction': put('What changed', r.sentence); put('Source file', r.file); break;
     default: break;
   }

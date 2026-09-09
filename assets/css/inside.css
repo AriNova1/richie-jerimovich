@@ -155,11 +155,11 @@ html.inside-motion .anim.inside-visible { opacity: 1; transform: none; }
   border-radius: var(--r-card);
   padding: 1rem 1.2rem;
 }
-.p-mike { --pressure-color: var(--v-mike); }
-.p-beard { --pressure-color: var(--v-beard); }
-.p-rocky { --pressure-color: var(--v-rocky); }
-.p-sean { --pressure-color: var(--v-sean); }
-.p-richie { --pressure-color: var(--v-richie); }
+.p-mike { --pressure-color: var(--v-angle); }
+.p-beard { --pressure-color: var(--v-signal); }
+.p-rocky { --pressure-color: var(--v-hands); }
+.p-sean { --pressure-color: var(--v-truth); }
+.p-richie { --pressure-color: var(--v-heart); }
 .pressure-behavior {
   display: block; font-style: normal; font-family: var(--font-mono);
   font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;

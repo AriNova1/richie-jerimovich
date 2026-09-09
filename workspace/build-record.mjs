@@ -4,8 +4,11 @@ import { createHash } from 'node:crypto';
 import { directories, renderDirectory, escapeHTML as e } from './record.mjs';
 const source = readFileSync(new URL('./corpus.json', import.meta.url));
 const C = JSON.parse(source);
+/* The static edition reads the journal bodies straight off disk, so the
+   script-free page carries every entry in full with no fetch. */
+const journal = new Map(JSON.parse(readFileSync(new URL('./data/journal.json', import.meta.url), 'utf8')).entries.map((x) => [x.slug, x]));
 const hash = createHash('sha256').update(source).digest('hex');
-const sections = directories.map(([key,title])=>`<section id="${key}" aria-labelledby="h-${key}"><h2 id="h-${key}">${title}</h2>${renderDirectory(C,key)}</section>`).join('\n');
+const sections = directories.map(([key,title])=>`<section id="${key}" aria-labelledby="h-${key}"><h2 id="h-${key}">${title}</h2>${renderDirectory(C,key,{interactive:false,journal})}</section>`).join('\n');
 writeFileSync(new URL('record.html', import.meta.url), `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Richie: the public record</title><meta name="corpus-sha256" content="${hash}">

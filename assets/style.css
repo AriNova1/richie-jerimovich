@@ -79,12 +79,12 @@
   --dawn: #a9bfd4;
   --dawn-ink: #0e1420;
   --night-depth: #080605;
-  /* the brigade */
-  --v-richie: #c4734d;
-  --v-mike: #8a9bb5;
-  --v-beard: #8a9e7a;
-  --v-rocky: #d4a040;
-  --v-sean: #9b85b0;
+  /* the five layers */
+  --v-heart: #a85b38;
+  --v-angle: #5b7091;
+  --v-signal: #637555;
+  --v-hands: #906920;
+  --v-truth: #7a5d93;
   /* type */
   --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-display: 'Bricolage Grotesque', 'Outfit', system-ui, sans-serif;
@@ -711,30 +711,30 @@ a.board-cell:hover { border-color: var(--steel-edge-hot); background: rgba(13, 1
 .rail-item:nth-child(3n+1) { --tilt: -0.7deg; }
 .rail-item:hover .ticket { transform: rotate(0deg) translateY(-3px); }
 
-/* ── The brigade: five voices as station badges ── */
-.brigade-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
-@media (max-width: 980px) { .brigade-row { grid-template-columns: repeat(2, 1fr); } .brigade-row article:last-child { grid-column: span 2; } }
-@media (max-width: 480px) { .brigade-row { grid-template-columns: 1fr; } .brigade-row article:last-child { grid-column: auto; } }
-.brigade-card {
+/* ── The five layers as station badges ── */
+.layer-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+@media (max-width: 980px) { .layer-row { grid-template-columns: repeat(2, 1fr); } .layer-row article:last-child { grid-column: span 2; } }
+@media (max-width: 480px) { .layer-row { grid-template-columns: 1fr; } .layer-row article:last-child { grid-column: auto; } }
+.layer-card {
   --vc: var(--amber);
   padding: 1.3rem 1.1rem 1.4rem; border-radius: var(--r-card);
   background: var(--bg-raised); border: 1px solid var(--steel-edge);
   border-top: 2px solid var(--vc);
   transition: transform 0.3s var(--ease-out), border-color 0.25s;
 }
-.brigade-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--vc) 45%, rgba(242, 234, 216, 0.09)); }
-.brigade-card .badge-mark { width: 52px; height: 52px; margin-bottom: 0.85rem; }
-.brigade-card em {
+.layer-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--vc) 45%, rgba(242, 234, 216, 0.09)); }
+.layer-card .badge-mark { width: 52px; height: 52px; margin-bottom: 0.85rem; }
+.layer-card em {
   font-family: var(--font-mono); font-style: normal; font-size: 0.66rem;
   letter-spacing: 0.12em; text-transform: uppercase; color: color-mix(in srgb, var(--vc) 80%, var(--paper));
 }
-.brigade-card h3 { font-size: 1.12rem; margin-top: 0.4rem; }
-.brigade-card p { font-size: 0.88rem; color: var(--text-soft); margin-top: 0.45rem; }
-.b-richie { --vc: var(--v-richie); }
-.b-mike { --vc: var(--v-mike); }
-.b-beard { --vc: var(--v-beard); }
-.b-rocky { --vc: var(--v-rocky); }
-.b-sean { --vc: var(--v-sean); }
+.layer-card h3 { font-size: 1.12rem; margin-top: 0.4rem; }
+.layer-card p { font-size: 0.88rem; color: var(--text-soft); margin-top: 0.45rem; }
+.b-heart { --vc: var(--v-heart); }
+.b-angle { --vc: var(--v-angle); }
+.b-signal { --vc: var(--v-signal); }
+.b-hands { --vc: var(--v-hands); }
+.b-truth { --vc: var(--v-truth); }
 
 /* ── Manifesto: one line, big, no card ── */
 .manifesto p {
@@ -787,15 +787,15 @@ a.board-cell:hover { border-color: var(--steel-edge-hot); background: rgba(13, 1
 .closer-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 
 /* ═══════════════════════════════════════════════════════════
-   ABOUT — the brigade roster
+   ABOUT — the layer roster
    ═══════════════════════════════════════════════════════════ */
-.v-richie { --vc: var(--v-richie); }
-.v-mike { --vc: var(--v-mike); }
-.v-beard { --vc: var(--v-beard); }
-.v-rocky { --vc: var(--v-rocky); }
-.v-sean { --vc: var(--v-sean); }
+.v-heart { --vc: var(--v-heart); }
+.v-angle { --vc: var(--v-angle); }
+.v-signal { --vc: var(--v-signal); }
+.v-hands { --vc: var(--v-hands); }
+.v-truth { --vc: var(--v-truth); }
 
-.brigade-roster { max-width: var(--wrap); margin: 0 auto; padding: 3rem var(--gutter) 0; }
+.layer-roster { max-width: var(--wrap); margin: 0 auto; padding: 3rem var(--gutter) 0; }
 .station {
   position: relative; border-radius: 12px;
   background:
@@ -1005,14 +1005,14 @@ a.board-cell:hover { border-color: var(--steel-edge-hot); background: rgba(13, 1
 
 .cl-journal {
   display: block; text-decoration: none; margin-top: 0.7rem;
-  border: 1px solid var(--steel-edge); border-left: 2px solid var(--v-sean);
+  border: 1px solid var(--steel-edge); border-left: 2px solid var(--v-truth);
   border-radius: 8px; background: var(--bg-raised); padding: 0.85rem 1rem;
   transition: border-color 0.2s, transform 0.25s var(--ease-out);
 }
 .cl-journal:hover { border-color: var(--steel-edge-hot); transform: translateX(3px); }
 .cl-journal-tag {
   font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.12em;
-  text-transform: uppercase; color: color-mix(in srgb, var(--v-sean) 80%, var(--paper));
+  text-transform: uppercase; color: color-mix(in srgb, var(--v-truth) 80%, var(--paper));
 }
 .cl-journal strong { display: block; font-family: var(--font-display); font-weight: 620; margin-top: 0.25rem; color: var(--paper); }
 .cl-journal p { font-size: 0.84rem; color: var(--text-soft); margin-top: 0.25rem; }
@@ -1053,8 +1053,8 @@ a.board-cell:hover { border-color: var(--steel-edge-hot); background: rgba(13, 1
 .entry-meta .date { font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-dim); }
 .mood {
   font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em;
-  text-transform: uppercase; color: color-mix(in srgb, var(--v-sean) 80%, var(--paper));
-  background: color-mix(in srgb, var(--v-sean) 14%, transparent);
+  text-transform: uppercase; color: color-mix(in srgb, var(--v-truth) 80%, var(--paper));
+  background: color-mix(in srgb, var(--v-truth) 14%, transparent);
   padding: 0.18rem 0.5rem; border-radius: 4px;
 }
 .journal-feature h2 { font-size: var(--step-3); margin: 0.6rem 0; max-width: 24ch; }
@@ -1597,3 +1597,7 @@ html[data-shift="service"] .open-ticket { display: none; }
 body.motion-held .shift-dot,
 body.motion-held .tape-running,
 body.motion-held .dot { animation: none !important; }
+
+/* 404: the recovery list is the one place that still points at every room. */
+.err-more { margin-top: 1.25rem; font-size: 0.95rem; line-height: 1.7; max-width: 54ch; }
+.err-more a { text-decoration: underline; text-underline-offset: 3px; }

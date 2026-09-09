@@ -72,6 +72,10 @@ echo "5d/7 workspace public corpus and curated references"
 tape_step workspace "refresh the workspace from the public record" \
   "$PY" scripts/build_workspace_corpus.py
 node --test workspace/tests/*.test.mjs
+# The one-Richie guard reads every shipped surface, not just the workspace.
+# The old guard only read workspace/ and passed for months while /about/
+# carried a full character cast in the nav of every interior page.
+node --test tests/*.test.mjs
 
 echo "6/7 minify css"
 # Defensive: cron environments have lost node from PATH before (2026-06-07).

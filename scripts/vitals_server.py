@@ -13,6 +13,11 @@ collect_agent_vitals() returns. That function is the single sanitizer; there is
 no other code path that reaches ~/.hermes. No query params are honored, no
 files are served, no paths are traversable, and the only methods are GET/HEAD.
 
+It also serves /weather.json, which is this machine asking Open-Meteo for the
+Chicago temperature on the site's behalf. That exists so /privacy/ can keep its
+promise: a visitor's browser makes no third-party request, because the only
+machine talking to Open-Meteo is this one.
+
     python3 scripts/vitals_server.py        # binds 127.0.0.1:8787
 
 Env: VITALS_PORT (default 8787), VITALS_HOST (default 127.0.0.1, do not change
@@ -23,6 +28,7 @@ import json
 import os
 import sys
 import time
+import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -33,12 +39,56 @@ PORT = int(os.environ.get("VITALS_PORT", "8787"))
 CACHE_TTL = float(os.environ.get("VITALS_CACHE", "4"))
 EDGE_TTL = 5  # how long Cloudflare may cache the JSON at the edge
 
+# Weather proxy. /privacy/ promises a visitor's browser makes no third-party
+# request, and the workspace wants a real Chicago temperature. Both can be true
+# if the Mac asks Open-Meteo and the browser only ever asks the Mac. No visitor
+# IP, user agent or header reaches Open-Meteo; it sees this machine once every
+# WEATHER_TTL seconds regardless of how many people are reading the site.
+WEATHER_URL = (
+    "https://api.open-meteo.com/v1/forecast?latitude=41.8781&longitude=-87.6298"
+    "&current=temperature_2m,weather_code&timezone=America%2FChicago"
+)
+WEATHER_TTL = float(os.environ.get("VITALS_WEATHER_CACHE", "600"))
+_weather = {"at": 0.0, "body": b""}
+
+
+def _weather_payload():
+    """Fetch Chicago weather on the Mac's own behalf, cached hard. Returns an
+    honest unavailable payload rather than a stale or invented reading."""
+    now = time.time()
+    if _weather["body"] and now - _weather["at"] < WEATHER_TTL:
+        return _weather["body"]
+    try:
+        req = urllib.request.Request(WEATHER_URL, headers={"User-Agent": "agentrichie-vitals/1.0"})
+        with urllib.request.urlopen(req, timeout=6) as r:
+            cur = (json.load(r) or {}).get("current") or {}
+        data = {
+            "available": True,
+            "source": "open-meteo",
+            "via": "Richie's Mac",
+            "temperature_c": cur.get("temperature_2m"),
+            "weather_code": cur.get("weather_code"),
+            "at": cur.get("time"),
+            "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(now)),
+        }
+        if data["temperature_c"] is None:
+            data = {"available": False, "reason": "Open-Meteo returned no temperature."}
+    except Exception:
+        data = {"available": False, "reason": "The weather request from Richie's Mac failed."}
+    body = json.dumps(data, separators=(",", ":")).encode("utf-8")
+    _weather.update(at=now, body=body)
+    return body
+
 # Browser origins allowed to read the endpoint (the live site + local preview).
 ALLOWED_ORIGINS = {
     "https://agentrichie.com",
     "https://www.agentrichie.com",
     "http://127.0.0.1:4000",
     "http://localhost:4000",
+    "http://127.0.0.1:4712",
+    "http://localhost:4712",
+    "http://127.0.0.1:4713",
+    "http://localhost:4713",
 }
 
 _cache = {"at": 0.0, "body": b""}
@@ -72,11 +122,11 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header("Access-Control-Allow-Origin", origin)
             self.send_header("Vary", "Origin")
 
-    def _send(self, code, body=b"", ctype="application/json"):
+    def _send(self, code, body=b"", ctype="application/json", max_age=None):
         self.send_response(code)
         self.send_header("Content-Type", ctype)
         self.send_header("Content-Length", str(len(body)))
-        self.send_header("Cache-Control", f"public, max-age={EDGE_TTL}")
+        self.send_header("Cache-Control", f"public, max-age={EDGE_TTL if max_age is None else int(max_age)}")
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("Referrer-Policy", "no-referrer")
         self._cors()
@@ -95,6 +145,8 @@ class Handler(BaseHTTPRequestHandler):
         path = self.path.split("?", 1)[0]
         if path in ("/vitals.json", "/"):
             self._send(200, _payload())
+        elif path == "/weather.json":
+            self._send(200, _weather_payload(), max_age=300)   # weather moves slowly; let the edge hold it
         elif path == "/healthz":
             self._send(200, b'{"ok":true}')
         else:
@@ -109,6 +161,7 @@ class Handler(BaseHTTPRequestHandler):
 def main():
     httpd = ThreadingHTTPServer((HOST, PORT), Handler)
     print(f"vitals endpoint on http://{HOST}:{PORT}/vitals.json (cache {CACHE_TTL}s)")
+    print(f"weather proxy on http://{HOST}:{PORT}/weather.json (cache {WEATHER_TTL}s)")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:

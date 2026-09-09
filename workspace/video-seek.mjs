@@ -5,6 +5,6 @@ export class SeekQueue {
  request(time){this.target=Math.max(0,Number.isFinite(time)?time:0);this.flush();}
  enable(time=0){this.ready=true;this.settled=time;this.flush();}
  flush(){if(this.target===null||!this.ready||this.busy||Math.abs(this.target-this.settled)<this.epsilon)return;this.busy=true;this.count++;this.requested=this.target;this.seek(this.target);}
- complete(time){if(!this.busy)return;this.settled=time;this.busy=false;if(Math.abs(time-this.requested)>1/12){this.misses++;if(this.misses>=3){this.stop();this.fail();return;}}else this.misses=0;this.flush();this.notify();}
+ complete(time){if(!this.busy)return;this.settled=time;this.busy=false;if(Math.abs(time-this.requested)>1/6)   /* two frames at 24fps was too tight; a slow decode is not a broken video */{this.misses++;if(this.misses>=3){this.stop();this.fail();return;}}else this.misses=0;this.flush();this.notify();}
  stop(){this.ready=false;this.busy=false;}
 }

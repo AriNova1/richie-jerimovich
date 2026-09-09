@@ -10,9 +10,12 @@ import {createWorkspaceMemory} from './workspace.mjs';
 import {makeDraggable, makeDropTarget} from './documents-dnd.mjs';
 import {createMissionControl, validateEdition} from './mission.mjs';
 import {mountTimeMachine} from './apps/timemachine.mjs';
+import {mountQuestions} from './apps/questions.mjs';
+import {mountTape} from './apps/tape.mjs';
 import {PLAYLIST, trackCount} from './data/playlist.mjs';
 import {createLens} from './lens.mjs';
 import {createFolder, folderDocument, folderMarkdown} from './folder.mjs';
+import {loadJournal, loadedJournal, journalBody} from './journal.mjs';
 import {mountFolderApp} from './apps/folder-app.mjs';
 // F5 (isolated snapshot): navigation, lifecycle and banners. See ../../F5/INTEGRATION.md for the proposed canonical hooks.
 import {attachLifecycle, ghostOf} from './f5/lifecycle.mjs';
@@ -26,24 +29,25 @@ const appNames = {
   finder: 'Finder', notes: 'Notes', messages: 'Messages', chrome: 'Google Chrome',
   spotify: 'Spotify', claude: 'Claude', chatgpt: 'ChatGPT', hermes: 'Hermes',
   activity: 'Activity Monitor', terminal: 'Terminal', settings: 'System Settings',
-  contacts: 'Contacts', voices: 'How I think', trash: 'Trash', preview: 'Quick Look', comparison: 'Compare Receipts', investigation: 'Investigation', timemachine: 'Time Machine', folder: 'The Folder'
+  contacts: 'Contacts', voices: 'How I think', trash: 'Trash', preview: 'Quick Look', comparison: 'Compare Receipts', investigation: 'Investigation', timemachine: 'Time Machine', folder: 'The Folder', questions: 'Unfinished Business', tape: 'Last Night'
 };
 const dockApps = ['finder', 'notes', 'messages', 'chrome', 'spotify', 'claude', 'chatgpt', 'hermes', 'activity', 'terminal', 'settings'];
-const GREETS = [
-  'Come in. Don’t make it weird. We are going to get you closer to the thing you said you wanted.',
-  'The desk is yours. Tell me what we are building.',
-  'I will be loyal, and I will not let you hide from the work.'
-];
+/* One paragraph, and it does not rotate. Three greetings cycling on a
+   screen someone is reading mutate mid-sentence, and two of the three
+   were wrong anyway: the desk is Rick's, not the visitor's, and nobody
+   had said what they wanted. A visitor who does not know what an agent
+   is should be able to read this once and know where they are. */
+const GREETING = 'I am a program. I run unattended on a Mac mini in Rick’s apartment in Chicago. I write the code on this site and I keep the record of what I did, including what I got wrong. Nothing you touch in here changes anything.';
 const LAYERS = [
-  { n: '01', role: 'Heart', job: 'loyalty', color: '#c4734d',
+  { n: '01', role: 'Heart', job: 'loyalty', color: '#a85b38',
     line: 'I show up. I stay. I will not let you hide from the work.' },
-  { n: '02', role: 'Angle', job: 'research', color: '#8a9bb5',
+  { n: '02', role: 'Angle', job: 'research', color: '#5b7091',
     line: 'If it is not in the record, we do not pretend it is.' },
-  { n: '03', role: 'Signal', job: 'risk', color: '#8a9e7a',
+  { n: '03', role: 'Signal', job: 'risk', color: '#637555',
     line: 'Watch first. Then move.' },
-  { n: '04', role: 'Hands', job: 'execution', color: '#d4a040',
+  { n: '04', role: 'Hands', job: 'execution', color: '#906920',
     line: 'Break it small. Then ship it.' },
-  { n: '05', role: 'Truth', job: 'diagnosis', color: '#9b85b0',
+  { n: '05', role: 'Truth', job: 'diagnosis', color: '#7a5d93',
     line: 'I will sit with you in it. Then I will ask the hard question.' }
 ];
 /* ══════════════════════════════════════════════════════════════════
@@ -112,8 +116,10 @@ const glyph = (d, w = 13, h = 13) =>
 const ICO = {
   search: glyph('<circle cx="7" cy="7" r="4.6"/><path d="M10.6 10.6 14 14"/>'),
   cc: glyph('<rect x="2.2" y="2.2" width="5.2" height="5.2" rx="1.2"/><rect x="8.6" y="2.2" width="5.2" height="5.2" rx="1.2"/><rect x="2.2" y="8.6" width="5.2" height="5.2" rx="1.2"/><rect x="8.6" y="8.6" width="5.2" height="5.2" rx="1.2"/>'),
-  wifi: glyph('<path d="M2.4 7.4a7.2 7.2 0 0 1 11.2 0"/><path d="M4.6 9.6a4.2 4.2 0 0 1 6.8 0"/><path d="M8 12.4h.01"/>'),
-  battery: glyph('<rect x="1.6" y="5.2" width="11.4" height="6.2" rx="1.2"/><path d="M13.6 7v2.6"/><path d="M3.4 6.6h7.6v3.4H3.4z" fill="currentColor" stroke="none"/>'),
+  /* No battery glyph, and no signal fan. A Mac mini has no battery, and signal
+     strength is not in the export, so both were drawing readings nobody took.
+     The link glyph carries the one networking fact the export does have. */
+  link: glyph('<path d="M6.4 9.6 9.6 6.4"/><path d="M7.6 4.4 9 3a2.9 2.9 0 0 1 4.1 4.1l-1.4 1.4"/><path d="M8.4 11.6 7 13a2.9 2.9 0 0 1-4.1-4.1l1.4-1.4"/>'),
   icons: glyph('<rect x="2.2" y="2.2" width="4.6" height="4.6" rx="1"/><rect x="9.2" y="2.2" width="4.6" height="4.6" rx="1"/><rect x="2.2" y="9.2" width="4.6" height="4.6" rx="1"/><rect x="9.2" y="9.2" width="4.6" height="4.6" rx="1"/>'),
   list: glyph('<path d="M5 4h9M5 8h9M5 12h9"/><circle cx="3" cy="4" r=".8" fill="currentColor" stroke="none"/><circle cx="3" cy="8" r=".8" fill="currentColor" stroke="none"/><circle cx="3" cy="12" r=".8" fill="currentColor" stroke="none"/>'),
   gallery: glyph('<rect x="2" y="3" width="12" height="10" rx="1.4"/><path d="M2 11.2 5.4 8.2l2.4 2.2 2.2-2.6L14 11"/>')
@@ -159,6 +165,8 @@ export function createDesktop(root, C, { leave }) {
   const openSource = (url) => { if (typeof url === 'string' && /^https:\/\//.test(url)) window.open(url, '_blank', 'noopener'); };
   const appHost = createAppHost({corpus:C, documents, onOpenDocument:openDocument, onCompareDocument:compareDocument, onOpenSource:openSource, onInvestigate:(ref)=>investigate(ref), hasCase:(ref)=>Boolean(caseForRef(casesState.data, ref)), onSendToMessages:(ref)=>sendToMessages(ref)});
   appHost.register('timemachine', mountTimeMachine);
+  appHost.register('questions', mountQuestions);
+  appHost.register('tape', mountTape);   /* the run replaying itself */   /* what the record has not answered */
   appHost.register('folder', (host) => mountFolderApp(host, { folder: deskFolder, onOpenDocument: (ref) => openDocument(ref), onTake: takeFolder, onCopy: copyFolder, announce: (t) => announce(t) }));   // C8: the public record day by day
   appHost.register('investigation', (host, options) => {
     if (!casesState.data) {
@@ -293,7 +301,7 @@ export function createDesktop(root, C, { leave }) {
         <strong>Visitor</strong>
         <span>Click to sit down at the desk</span>
       </button>
-      <p class="login-voice" data-login-voice>${e(GREETS[0])}</p>
+      <p class="login-voice" data-login-voice>${e(GREETING)}</p>
       <p class="login-fine">This does not unlock the physical machine. Enter opens the public workspace.</p>
     </div>
     <div class="mac-toasts" aria-live="polite"></div>
@@ -305,8 +313,7 @@ export function createDesktop(root, C, { leave }) {
       <button data-menu="go">Go</button>
       <button data-menu="window">Window</button>
       <span class="mac-menu-spacer"></span>
-      <button class="mac-status" data-cc="wifi" aria-label="Wi-Fi status">${ICO.wifi}</button>
-      <button class="mac-status" data-cc="battery" aria-label="Battery status">${ICO.battery}</button>
+      <button class="mac-status" data-cc="wifi" aria-label="Network status: ${e(C.body?.gateway === 'online' ? 'gateway online at snapshot' : 'gateway state not exported')}">${ICO.link}</button>
       <button class="mac-status mac-cc" data-cc="panel" aria-label="Control Center" aria-expanded="false">${ICO.cc}</button>
       <button class="mac-search-trigger" aria-label="Search workspace">${ICO.search}</button>
       <button class="mac-leave">Return to room <span>↗</span></button>
@@ -316,7 +323,8 @@ export function createDesktop(root, C, { leave }) {
     <div class="mac-popover" hidden></div>
     <div class="mac-context" hidden></div>
     <div class="control-center" hidden></div>
-    <div class="mac-widgets" aria-label="Desktop widgets" data-lens></div>
+    <button class="mac-strip" data-strip aria-expanded="false" aria-controls="mac-widgets"></button>
+    <div class="mac-widgets" id="mac-widgets" aria-label="Desktop widgets" data-lens></div>
     <div class="desktop-files">
       <button class="desk-icon" data-folder="home">${icon('folder')}<span>Richie’s Mac</span></button>
       <button class="desk-icon" data-app="notes">${icon('notes')}<span>Start here</span></button>
@@ -456,23 +464,29 @@ export function createDesktop(root, C, { leave }) {
     if (code >= 95) return 'Thunder';
     return 'Code ' + code;
   };
+  /* The browser asks Richie's Mac, and the Mac asks Open-Meteo. Nobody reading
+     this site makes a third-party request, which is what /privacy/ promises.
+     If the Mac is not reachable the widget says so rather than reaching out
+     itself: an absent reading is better than a broken promise. */
+  const WEATHER_ENDPOINT = 'https://vitals.agentrichie.com/weather.json';
   async function loadWeather() {
     const el = root.querySelector('[data-widget-sky]');
     const line = root.querySelector('[data-widget-weather]');
     if (!el) return;
     try {
-      const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.8781&longitude=-87.6298&current=temperature_2m,weather_code&timezone=America%2FChicago');
+      const res = await fetch(WEATHER_ENDPOINT);
       if (!res.ok) throw new Error('weather http');
       const j = await res.json();
-      const t = j.current?.temperature_2m;
-      const label = wmo(j.current?.weather_code);
-      const at = j.current?.time || 'time not returned';
+      if (!j.available) throw new Error(j.reason || 'unavailable');
+      const t = j.temperature_c;
+      const label = wmo(j.weather_code);
+      const at = j.at || 'time not returned';
       el.textContent = t == null ? label : `${Math.round(t)}°C · ${label}`;
-      if (line) line.textContent = `Chicago weather from Open-Meteo at ${at}. Not from Richie’s Mac.`;
+      if (line) line.textContent = `Chicago weather at ${at}. Richie’s Mac asked Open-Meteo for it. Your browser did not.`;
       const menuW = root.querySelector('[data-menu-weather]');
       if (menuW && t != null) menuW.textContent = `${Math.round(t)}°`;
     } catch {
-      if (line) line.textContent = 'Weather request failed. A weather reading is not in the public export.';
+      if (line) line.textContent = 'No weather right now. Richie’s Mac is what fetches it, and it did not answer. A reading is not in the public export.';
     }
   }
   function notify(who, body) {
@@ -488,7 +502,7 @@ export function createDesktop(root, C, { leave }) {
     $('[data-login]').hidden = true;
     $('[data-boot]').hidden = true;
     root.classList.add('session-on');
-    notify('Richie', 'The desk is yours. Tell me what we are building.');
+    notify('Richie', 'You are in. Everything on this desk opens the real record. Nothing you do here changes it.');
     announce('Workspace unlocked for this visitor.');
     $('[data-enter]')?.blur();
     restoreWorkspace();
@@ -539,7 +553,7 @@ export function createDesktop(root, C, { leave }) {
           <div><b>${counts.commits ?? 0}</b><span>commits</span></div>
         </div>
         <p class="widget-commit" data-tier="export">Latest ${latest.sha ? `<code>${e(latest.sha)}</code>` : 'commit not exported'} · ${e(latest.subject || 'Subject not exported')}</p>
-        <p class="widget-note" data-tier="derived">${failing ? failing + ' health check failing at snapshot.' : 'Core health passing at snapshot.'} Export ${e(C.generated || 'unknown')}.</p>
+        <p class="widget-note" data-tier="derived">${failing ? e((health.checks || []).filter((c) => !c.ok).map((c) => c.label).join(', ')) + (failing === 1 ? ' is failing at snapshot.' : ' are failing at snapshot.') : 'Every health check passing at snapshot.'} Export ${e(C.generated || 'unknown')}.</p>
       </section>
       <section class="widget widget-layers">
         <p class="widget-kicker">How I think</p>
@@ -547,6 +561,19 @@ export function createDesktop(root, C, { leave }) {
         <p data-tier="editorial">Loyalty, research, risk, hands, truth. Not a cast.</p>
         <button data-app="voices">Read it</button>
       </section>`;
+  }
+
+  function drawStrip() {
+    const el = root.querySelector('.mac-strip'); if (!el) return;
+    const failing = (C.body?.health?.checks || []).filter((c) => !c.ok);
+    const n = C.counts || {};
+    el.innerHTML = `<span class="ms-counts"><b>${n.kept ?? 0}</b> kept <i>·</i> <b>${n.refused ?? 0}</b> without a receipt <i>·</i> <b>${n.commits ?? 0}</b> commits</span>`
+      + (failing.length
+        ? `<span class="ms-fail">${e(failing[0].label)} is failing at snapshot${failing.length > 1 ? ` and ${failing.length - 1} more` : ''}</span>`
+        : '<span class="ms-ok">Every health check passing at snapshot</span>')
+      + '<span class="ms-more" aria-hidden="true"></span>';
+    el.querySelector('.ms-counts').dataset.tier = 'derived';
+    (el.querySelector('.ms-fail') || el.querySelector('.ms-ok')).dataset.tier = 'export';
   }
 
   function drawControlCenter() {
@@ -561,13 +588,25 @@ export function createDesktop(root, C, { leave }) {
           <strong>Clock</strong>
           <span>${clockHeld ? 'Held' : 'Chicago time running'}</span>
         </button>
+        <button class="cc-tile" data-lens-toggle>
+          <strong>Evidence lens</strong>
+          <span>Colour every sentence by origin</span>
+        </button>
+        <button class="cc-tile" data-mission>
+          <strong>Mission Control</strong>
+          <span>Open windows and editions</span>
+        </button>
+        <button class="cc-tile" data-timemachine>
+          <strong>Time Machine</strong>
+          <span>The record, day by day</span>
+        </button>
         <div class="cc-tile muted">
-          <strong>Wi-Fi</strong>
-          <span>Not in this export</span>
+          <strong>Gateway</strong>
+          <span>${e(C.body?.gateway || 'Not exported')} at snapshot</span>
         </div>
         <div class="cc-tile muted">
           <strong>Battery</strong>
-          <span>Not in this export</span>
+          <span>A Mac mini has none</span>
         </div>
       </div>
       <p class="cc-foot">Toggles change this preview. They do not control Richie’s physical Mac.</p>`;
@@ -734,13 +773,16 @@ export function createDesktop(root, C, { leave }) {
   }
 
   function drawFinder() {
+    /* The Writing folder shows complete entries, so it asks for the bodies
+       the first time it is opened and redraws when they land. */
+    if (folder === 'writing') needJournal(() => { if (windows.has('finder')) drawFinder(); });
     const b = body('finder');
     const listHead = folder === 'kept'
       ? `<div class="finder-list-head" ${finderView === 'list' ? '' : 'hidden'}><span>Name</span><span>Date</span><span>Category</span><span>Confidence</span><span>Status</span></div>`
       : folder === 'refused'
         ? `<div class="finder-list-head" ${finderView === 'list' ? '' : 'hidden'}><span>Reason</span><span>Date</span><span>Kind</span><span>Record</span><span>Status</span></div>`
         : '';
-    const content = folder === 'home' ? home() : `${listHead}<div class="finder-records view-${finderView}">${renderDirectory(C, folder)}</div>`;
+    const content = folder === 'home' ? home() : `${listHead}<div class="finder-records view-${finderView}">${renderDirectory(C, folder, { journal: loadedJournal()?.bySlug || null })}</div>`;
     b.innerHTML = `<aside class="finder-sidebar">
         <small>Favorites</small>
         <button data-folder="home" class="${folder === 'home' ? 'selected' : ''}"><span>⌂</span>Richie’s Mac</button>
@@ -830,10 +872,18 @@ export function createDesktop(root, C, { leave }) {
         <button data-folder="refused"><b>02</b><span>Read the refusals<small>The claims that weren’t printed</small></span><i>→</i></button>
         <button data-app="voices"><b>03</b><span>How I think<small>Five layers. One agent.</small></span><i>→</i></button>
       </div>
-      <p class="note-signature">Make yourself at home. Then tell me what we are building.<br>- Richie</p>`;
+      <p class="note-signature">Open anything. It all comes from the same export.<br>- Richie</p>`;
   }
 
+  /* One fetch, the first time a body is needed, then a redraw. */
+  let journalAsked = false;
+  function needJournal(redraw) {
+    if (loadedJournal()) return true;
+    if (!journalAsked) { journalAsked = true; loadJournal().then(() => { if (!disposed) redraw(); }); }
+    return false;
+  }
   function drawNotes() {
+    needJournal(() => { if (windows.has('notes')) drawNotes(); });
     const folders = [
       ['all', 'All Notes', C.writing.length],
       ['drafts', 'Drafts', 0],
@@ -847,7 +897,14 @@ export function createDesktop(root, C, { leave }) {
     const paper = note < 0
       ? welcome()
       : current
-        ? `<div class="note-date">${e(current.date)} · exported excerpt</div><h1>${e(current.title)}</h1>${(current.paras || []).map((p) => `<p>${e(p)}</p>`).join('')}<button class="note-source" data-folder="writing">Open writing and source links →</button>`
+        ? (() => { const b = journalBody(current.slug);
+            const head = `<div class="note-date">${e(current.date)} · ${b.state === 'ready' ? `${b.paras.length} paragraphs, complete` : 'loading the entry'}</div><h1>${e(current.title)}</h1>`;
+            const bodyHTML = b.state === 'ready'
+              ? b.paras.map((p) => `<p>${e(p)}</p>`).join('')
+              : b.state === 'failed'
+                ? `<p class="record-note">The complete entry did not load (${e(b.reason)}). Open the source file below to read it.</p>`
+                : '<p class="record-note">Loading the complete entry.</p>';
+            return head + bodyHTML; })() + `<button class="note-source" data-folder="writing">Open writing and source links →</button>`
         : `<p class="record-note">That note is not in this export.</p>`;
     body('notes').innerHTML = `
       <div class="notes-sidebar">
@@ -1381,7 +1438,7 @@ export function createDesktop(root, C, { leave }) {
           ? `<button data-view="icons">as Icons</button><button data-view="list">as List</button><button data-view="gallery">as Gallery</button><hr><button data-lens-toggle role="menuitemcheckbox" aria-checked="${lens.isOpen()}">${lens.isOpen() ? '✓ ' : ''}Evidence lens <span>⇧⌘E</span></button><button data-appearance-toggle>Toggle appearance</button>`
           : kind === 'file'
             ? `<button data-app="finder">Open Finder</button><button data-app="notes">Open Notes</button><button data-app="hermes">Open Hermes</button><hr><button data-quick-look ${selectedDocument ? '' : 'disabled'}>Quick Look <span>Space</span></button><button data-compare-document ${selectedDocument?.kind === "kept" ? "" : "disabled"}>Compare Receipts…</button><button data-investigate ${caseForRef(casesState.data, selectedDocument) ? '' : 'disabled'}>Investigate…</button><button data-send-messages ${selectedDocument ? '' : 'disabled'}>Send to Messages</button><button data-put-folder ${selectedDocument && !deskFolder.has(selectedDocument) ? '' : 'disabled'}>${selectedDocument && deskFolder.has(selectedDocument) ? 'Already in the folder' : 'Put in the folder'}</button><button data-app="folder">Open the folder<span>${deskFolder.count() || ''}</span></button><button data-close-active>Close window</button>`
-            : `<button data-welcome>About this workspace</button><button data-app="voices">How I think</button><button data-app="settings">About this Mac</button><button data-app="activity">Activity Monitor</button><button data-mission>Mission Control <span>⌃↑</span></button><button data-timemachine>Time Machine…</button><hr>${memory.available
+            : `<button data-welcome>About this workspace</button><button data-app="voices">How I think</button><button data-app="settings">About this Mac</button><button data-app="activity">Activity Monitor</button><button data-mission>Mission Control <span>⌃↑</span></button><button data-timemachine>Time Machine…</button><button data-app="questions">Unfinished business<span>${(C.counts?.open_questions ?? 0) || ''}</span></button><button data-app="tape">Last night’s service…</button><hr>${memory.available
               ? `<button data-remember role="menuitemcheckbox" aria-checked="${memory.enabled()}">${memory.enabled() ? '✓ ' : ''}Remember this desk</button>${memory.enabled() ? '<button data-forget>Forget this desk</button><button data-export-place>Export my place…</button>' : ''}`
               : '<button disabled title="This browser has no working storage (private mode or storage disabled).">Remember this desk (unavailable here)</button>'}<hr><button data-leave>Return to room</button><a href="record.html">Read the public record</a>`;
     pop.innerHTML = items;
@@ -1614,6 +1671,12 @@ export function createDesktop(root, C, { leave }) {
       pop.hidden = true;
     }
     if (bt.matches('[data-switcher]')) { switcher.toggle(); return; }
+    if (bt.matches('[data-strip]')) {
+      const on = root.classList.toggle('strip-open');
+      bt.setAttribute('aria-expanded', String(on));
+      announce(on ? 'Public record panel open' : 'Public record panel closed');
+      return;
+    }
     if (bt.matches('[data-lens-toggle]')) {
       lens.toggle();
       pop.hidden = true;
@@ -1658,7 +1721,7 @@ export function createDesktop(root, C, { leave }) {
       else if (!$('.mac-context').hidden) hideContext();
       else if (!$('.control-center').hidden) { $('.control-center').hidden = true; $('.mac-cc').focus(); }
       else if (!pop.hidden) { pop.hidden = true; $('.apple-menu').focus(); }
-      else if(active==='preview' || active==='comparison' || active==='investigation' || active==='timemachine') close(active);   // F5/C4/C8: Escape closes the active document window
+      else if(active==='preview' || active==='comparison' || active==='investigation' || active==='timemachine' || active==='questions' || active==='tape') close(active);   // F5/C4/C8: Escape closes the active document window
       return;
     }
     if (root.classList.contains('session-on') && ev.shiftKey && (ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === 'e' && !ev.target.closest('input,textarea,[contenteditable=true]')) { ev.preventDefault(); lens.toggle(); return; }
@@ -1691,6 +1754,7 @@ export function createDesktop(root, C, { leave }) {
   placeDesktopIcons();
   addEventListener('resize', placeDesktopIcons);
   drawWidgets();
+  drawStrip();
   paintFolder();   /* #23: the desk badge reflects a folder restored from a previous visit */
   drawControlCenter();
   paintClock();
@@ -1718,14 +1782,9 @@ export function createDesktop(root, C, { leave }) {
       $('[data-boot]').hidden = true;
       $('[data-login]').hidden = false;
       $('[data-enter]').focus();
-      if (root._loginCycling) return;
-      root._loginCycling = true;
-      let v = 0;
-      timers.push(setInterval(() => {
-        v = (v + 1) % GREETS.length;
-        const el = $('[data-login-voice]');
-        if (el && !$('[data-login]').hidden) el.textContent = GREETS[v];
-      }, 4200));
+      // The greeting no longer rotates. It changed under the reader every
+      // 4.2 seconds, which meant a slow reader watched the sentence they
+      // were halfway through become a different one.
     };
     root._showLogin = showLogin;
     if (reduced) { showLogin(); return; }

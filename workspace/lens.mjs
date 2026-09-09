@@ -32,7 +32,7 @@ export const TIERS = {
   derived:   { label: 'Derived',         pill: 'derived',   color: '#64d2ff', note: 'Computed from dated records. Not itself a stored value.' },
   git:       { label: 'Git clone only',  pill: 'git clone', color: '#bf5af2', note: 'Confirmed in the local repository clone, not carried by the export.' },
   editorial: { label: 'Written here',    pill: 'editorial', color: '#ffd60a', note: 'Interpretation, not a record. Authored for this property.' },
-  live:      { label: 'Fetched live',    pill: 'live',      color: '#ff9f0a', note: 'Requested now from a named third party. Not the record, and not read off Richie\'s Mac.' },
+  live:      { label: 'Fetched live',    pill: 'live',      color: '#ff9f0a', note: 'Fetched now through Richie\'s Mac from a named source. Not part of the export.' },
   chrome:    { label: 'Interface',       pill: 'interface', color: '#8e8e93', note: 'A control or a label. Asserts nothing, so it is not scanned.' }
 };
 export const UNSOURCED = { label: 'Unsourced', color: '#ff453a', note: 'Prose with no declared origin. This is a defect, not a category.' };

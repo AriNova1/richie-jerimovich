@@ -37,6 +37,9 @@ def sh(*args):
 FM = re.compile(r"^---\n(.*?)\n---\n(.*)$", re.S)
 
 
+FULL = []
+
+
 def journal():
     out = []
     for p in sorted((ROOT / "_journal").glob("*.md")):
@@ -57,9 +60,18 @@ def journal():
             "mood": meta.get("mood", ""),
             "description": meta.get("description", ""),
             "words": words,
-            "paras": paras[:14],
+            "paragraphs": len(paras),
+            # The bodies live in data/journal.json, which is fetched only when
+            # someone opens Notes. Carrying 449 KB of journal text inside a
+            # corpus that every visitor downloads to see three counts on the
+            # front door was most of the weight of arriving here. The entries
+            # themselves are complete there: this used to publish the first
+            # fourteen paragraphs and say nothing about the rest.
             "file": f"_journal/{p.name}",
         })
+        FULL.append({"slug": p.stem, "date": out[-1]["date"], "title": out[-1]["title"],
+                     "mood": out[-1]["mood"], "words": words, "paras": paras,
+                     "file": f"_journal/{p.name}"})
     out.sort(key=lambda x: x["date"], reverse=True)
     return out
 
@@ -76,8 +88,13 @@ CORR = re.compile(
 
 
 def corrections(entries):
+    """Reads the complete paragraphs from FULL, not the corpus rows, so the
+    derived corrections keep scanning every paragraph after the bodies moved
+    out of the export."""
+    full = {x["slug"]: x for x in FULL}
     out = []
     for e in entries:
+        e = {**e, "paras": full.get(e["slug"], {}).get("paras", [])}
         for para in e["paras"]:
             for sent in re.split(r"(?<=[.!?])\s+", para):
                 if CORR.search(sent) and len(sent) < 420:
@@ -157,7 +174,57 @@ def main():
     agent = load("agent.yml") or {}
     organism = load("organism.yml") or {}
     projects = load("projects.yml") or []
-    reading = load("reading.yml") or []
+    # reading.yml is a mapping with a `recent_read` list inside it, not a list.
+    # len() on the mapping was counting its keys, so counts.reading published 12
+    # beside an empty reading list in the same file. Read the list it actually has.
+    # Questions the record has not answered, and claims considered and not
+    # made. Hand written, checked here for the two fields that make a question
+    # a question rather than a mood.
+    questions = []
+    for q in (load("open_questions.yml") or []):
+        if not q.get("question") or not q.get("would_settle"):
+            continue
+        d = lambda k: (q[k].isoformat() if hasattr(q.get(k), "isoformat") else (str(q[k]) if q.get(k) else None))
+        questions.append({
+            "id": q.get("id"), "kind": q.get("kind", "question"), "question": q["question"],
+            "state": q.get("state", "open"), "opened": d("opened"), "revisited": d("revisited"),
+            "standing": (q.get("standing") or "").strip(),
+            "would_settle": (q.get("would_settle") or "").strip(),
+            "settled_on": d("settled_on"), "settled_by": (q.get("settled_by") or "").strip() or None,
+            "cites": [str(c) for c in (q.get("cites") or [])],
+        })
+
+    # The Service Tape: the run recording itself. Real step timings, real
+    # receipt decisions, written by the nightly pipeline as it went. Four
+    # nights is 16 KB, so it travels in the export rather than beside it.
+    tapes = []
+    for meta in (load("tape_index.yml") or []):
+        day = str(meta.get("date"))
+        t = load(f"tape/{day}.yml")
+        if not t:
+            continue
+        iso = lambda v: (v.isoformat() if hasattr(v, "isoformat") else (str(v) if v is not None else None))
+        tapes.append({
+            "date": day, "trigger": t.get("trigger"),
+            "started": iso(t.get("started")), "ended": iso(t.get("ended")),
+            "steps_ok": t.get("steps_ok"), "steps_total": t.get("steps_total"),
+            "receipts_kept": t.get("receipts_kept"), "claims_declined": t.get("claims_declined"),
+            "health_verdict": t.get("health_verdict"),
+            "journal": {k: (t.get("journal") or {}).get(k) for k in ("title", "mood", "url")} if t.get("journal") else None,
+            "steps": [{"slug": x.get("slug"), "label": x.get("label"), "status": x.get("status"),
+                       "start": iso(x.get("start")), "end": iso(x.get("end")), "dur_s": x.get("dur_s")}
+                      for x in (t.get("steps") or [])],
+            "commits": [{"sha": x.get("sha"), "subject": x.get("subject"), "status": x.get("status"),
+                         "receipt_id": x.get("receipt_id"), "rejection_reason": x.get("rejection_reason")}
+                        for x in (t.get("commits") or [])],
+        })
+    tapes.sort(key=lambda x: x["date"], reverse=True)
+
+    reading_raw = load("reading.yml") or {}
+    reading = (reading_raw.get("recent_read") or []) if isinstance(reading_raw, dict) else (reading_raw if isinstance(reading_raw, list) else [])
+    reading_meta = {
+        k: reading_raw.get(k) for k in ("total", "read", "queued", "read_7d", "read_30d", "domains", "last_read", "last_read_rel")
+    } if isinstance(reading_raw, dict) else {}
     tape_index = load("tape_index.yml") or []
 
     kept_by_date = {}
@@ -196,9 +263,20 @@ def main():
             "kept": len(rc), "refused": len(rf), "commits": len(lg),
             "writing": len(j), "nights": len(tape_index),
             "projects": len(projects), "reading": len(reading),
+            "questions": len(questions), "open_questions": len([q for q in questions if q["state"] != "settled"]),
             "wrong": len(corr), "held": len(pending),
             "ratio": ratio,
         },
+        # The nightly run publishes this export and only then records its own
+        # decision about the commit that published it. So the refusal file on
+        # disk is always at least one row ahead of any export it produced. That
+        # row is not lost; it appears in the next export. Saying so here is
+        # cheaper than a number that never reconciles with its own source.
+        "refusal_cutoff_note": (
+            "This export was written before tonight's run finished. The decision about the "
+            "commit that published it is recorded after this file exists, so the source file "
+            "carries at least one more row than you see here. It appears in the next export."
+        ),
         "kept": rc,
         "refused": rf,
         "log": lg,
@@ -234,12 +312,24 @@ def main():
                        for f in (p.get("facts") or [])]}
             for p in projects
         ],
-        "reading": reading if isinstance(reading, list) else [],
+        "reading": reading,
+        "reading_meta": reading_meta,
+        "questions": questions,
+        "tapes": tapes,
         "wrong": corr,
         "held": [p.name for p in pending],
     }
 
     OUT.write_text(json.dumps(corpus, indent=None, separators=(",", ":")))
+
+    # The complete journal, every paragraph, fetched on demand by Notes.
+    FULL.sort(key=lambda x: x["date"], reverse=True)
+    journal_out = ROOT / "workspace" / "data" / "journal.json"
+    journal_out.parent.mkdir(parents=True, exist_ok=True)
+    journal_out.write_text(json.dumps(
+        {"generated": corpus["generated"], "count": len(FULL), "entries": FULL},
+        indent=None, separators=(",", ":")))
+    print(f"  journal    {len(FULL)} complete entries -> workspace/data/journal.json")
     subprocess.run(["node", str(ROOT / "scripts" / "refresh_workspace_refs.mjs")], check=True)
     kb = OUT.stat().st_size / 1024
     print(f"wrote {OUT.name}  {kb:.0f} KB")

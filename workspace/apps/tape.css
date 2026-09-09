@@ -1,0 +1,66 @@
+/* Last night's service: a transport and a real timeline. */
+.window-tape{left:16%;top:58px;width:min(840px,70%);height:calc(100% - 158px)}
+.window-tape .mac-window-body{background:#0f1117}
+.tape{flex:1;min-width:0;overflow:auto;padding:26px 32px 40px;color:#e9e9ee;
+  background:radial-gradient(120% 90% at 50% 0%,#1b2030 0%,#0f1117 62%)}
+.tp-head{border-bottom:1px solid #ffffff1f;padding-bottom:18px}
+.tp-head h1{font-size:30px;letter-spacing:-.02em;margin:4px 0 10px;font-weight:650;font-variant-numeric:tabular-nums}
+.tp-sub{margin:0 0 8px;font-size:13.5px;line-height:1.6;color:#c8c8d2;max-width:70ch}
+.tp-note{margin:0 0 16px;font-size:12.5px;line-height:1.55;color:#8f8fa0;max-width:66ch}
+.tp-transport{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+/* Scoped under .tape so it beats mac.css .mac-desktop button{color:inherit},
+   which is (0,1,1) and was making this button ink on its own fill at 1.08:1. */
+.tape .tp-play{font:inherit;font-size:13.5px;font-weight:550;padding:9px 16px;border-radius:10px;border:1px solid #ffffff26;
+  background:#f2f2f7;color:#12141a;min-width:150px}
+.tape .tp-play[aria-pressed=true]{background:#2a2e3a;color:#f2f2f7}
+.tp-scrub{flex:1;min-width:180px;accent-color:#64d2ff;height:26px}
+.tp-read{font-size:12.5px;color:#a9a9b8;font-variant-numeric:tabular-nums;min-width:210px}
+.tp-nights{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.tp-nights button{font:inherit;font-size:12.5px;padding:5px 11px;border-radius:999px;border:1px solid #ffffff24;
+  background:#1c2029;color:#c8c8d2;font-variant-numeric:tabular-nums}
+.tp-nights button[aria-pressed=true]{background:#f2f2f7;color:#12141a;border-color:#f2f2f7;font-weight:600}
+.tape .tp-play:focus-visible,.tp-nights button:focus-visible,.tp-scrub:focus-visible{outline:3px solid #64d2ff;outline-offset:2px}
+
+.tp-steps{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:2px}
+.tp-step{display:grid;grid-template-columns:16px 74px 1fr auto auto;gap:12px;align-items:baseline;
+  padding:9px 10px;border-radius:8px;font-size:13px;transition:background .18s,opacity .18s}
+.tp-step[data-state=waiting]{opacity:.42}
+.tp-step[data-state=running]{background:#1e2634;opacity:1}
+.tp-step[data-state=done]{opacity:1}
+.tp-dot{width:9px;height:9px;border-radius:50%;background:#4a4f5e;align-self:center;transition:background .18s,box-shadow .18s}
+.tp-step[data-state=running] .tp-dot{background:#64d2ff;box-shadow:0 0 12px #64d2ff}
+.tp-step[data-state=done] .tp-dot{background:#32d74b}
+.tp-when{color:#8f8fa0;font-variant-numeric:tabular-nums;font-size:12.5px}
+.tp-label{color:#e9e9ee}
+.tp-took{color:#a9a9b8;font-variant-numeric:tabular-nums;font-size:12.5px}
+.tp-status{font-size:12px;letter-spacing:.05em;text-transform:uppercase;font-weight:600;color:#9fe1cb}
+.tp-status.is-fail,.tp-status.is-error{color:#ffb4ae}
+.tp-progress{height:3px;border-radius:2px;background:#ffffff14;margin:14px 0 0;overflow:hidden}
+.tp-progress i{display:block;height:100%;background:linear-gradient(to right,#64d2ff,#32d74b);transform-origin:0 50%;transform:scaleX(0)}
+
+.tp-out{margin-top:26px;padding-top:18px;border-top:1px solid #ffffff1f}
+.tp-out h2{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:#8f8fa0;margin:0 0 12px;font-weight:600}
+.tp-commits{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.tp-commits li{padding:12px 14px;border-radius:10px;background:#171b23;border-left:3px solid #4a4f5e}
+.tp-commits li.is-receipt{border-left-color:#32d74b}
+.tp-commits li.is-plain{border-left-color:#3a3f4c}
+.tp-commits li.is-declined{border-left-color:#ff9f0a}
+.tp-c-head{margin:0 0 5px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;font-size:12.5px}
+.tp-c-head code{font-size:12.5px;color:#e9e9ee}
+.tp-c-verdict{font-size:12px;letter-spacing:.05em;text-transform:uppercase;font-weight:650;color:#9fe1cb}
+.is-declined .tp-c-verdict{color:#ffc978}
+.is-plain .tp-c-verdict{color:#9a9aa8}
+.tp-c-rid{font-size:12px;color:#9fe1cb}
+.tp-c-subject{margin:0;font-size:13.5px;color:#e9e9ee}
+.tp-c-why{margin:6px 0 0;font-size:12.5px;line-height:1.55;color:#a9a9b8;max-width:70ch}
+.tp-journal{margin:16px 0 0;font-size:13px;color:#c8c8d2}
+.tp-foot{margin-top:22px;font-size:12.5px;color:#8f8fa0}
+@media(prefers-reduced-motion:reduce){.tp-step,.tp-dot,.tp-progress i{transition:none}}
+@media(max-width:650px){
+  .window-tape{left:7px!important;width:calc(100% - 14px)!important}
+  .tape{padding:16px 14px 40px}
+  .tp-head h1{font-size:25px}
+  .tp-step{grid-template-columns:14px 1fr;gap:8px}
+  .tp-when,.tp-took,.tp-status{grid-column:2;font-size:12px}
+  .tp-read{min-width:0;flex:1 0 100%}
+}

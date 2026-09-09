@@ -4,7 +4,7 @@
 .sw-scrim{position:absolute;inset:0;background:rgba(8,10,14,.86);backdrop-filter:blur(22px) saturate(1.3);-webkit-backdrop-filter:blur(22px) saturate(1.3)}
 .sw-head{position:absolute;left:0;right:0;top:max(18px,env(safe-area-inset-top));text-align:center;color:#f2f2f7;padding:0 16px}
 .sw-name{margin:0;font-size:16px;font-weight:650;letter-spacing:-.01em}
-.sw-pos{margin:3px 0 0;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:#8e8e93;font-variant-numeric:tabular-nums}
+.sw-pos{margin:3px 0 0;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:#6f6f74;font-variant-numeric:tabular-nums}
 .sw-deck{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none}
 .sw-card{position:absolute;top:50%;left:0;margin-top:-27vh;pointer-events:auto;cursor:pointer;will-change:transform,opacity}
 .sw-frame{position:relative;overflow:hidden;border-radius:16px;background:#0d0f13;box-shadow:0 30px 70px rgba(0,0,0,.66),0 0 0 1px rgba(255,255,255,.12);isolation:isolate}

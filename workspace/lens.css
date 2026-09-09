@@ -51,11 +51,11 @@
 .lens-row dt{display:flex;align-items:center;gap:8px;font-weight:600;color:#f2f2f7;font-size:12.5px}
 .lens-row dt i{width:8px;height:8px;border-radius:2px;background:var(--c);box-shadow:0 0 9px -1px var(--c);flex:none}
 .lens-row dd{margin:0;font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:#fff;line-height:1}
-.lens-row p{grid-column:1/-1;margin:4px 0 0;font-size:11.5px;line-height:1.45;color:#8e8e93}
+.lens-row p{grid-column:1/-1;margin:4px 0 0;font-size:12.5px;line-height:1.45;color:#6f6f74}
 .lens-row.is-alarm{background:rgba(70,18,16,.92)}
 .lens-row.is-alarm dd{color:#ff453a}
 .lens-row.is-alarm p{color:#ffb4ae}
-.lens-rule{margin:11px 0 0;font-size:11px;line-height:1.5;color:#8e8e93}
+.lens-rule{margin:11px 0 0;font-size:12.5px;line-height:1.5;color:#6f6f74}
 .lens-esc{color:#636366}
 
 .mac-desktop.lens-on .mac-window{transition:none}

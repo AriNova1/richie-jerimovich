@@ -74,6 +74,18 @@ defaults:
       path: ""
     values:
       layout: "default"
+  # Workshop drafts. These carry draft: true and are mirrors of pieces still
+  # in the Substack queue, but jekyll-sitemap was advertising all seven to
+  # search engines. The pages keep their URLs; they stop being announced.
+  - scope:
+      path: "content/drafts"
+    values:
+      sitemap: false
+      robots: "noindex, nofollow"
+  - scope:
+      path: "tools"
+    values:
+      sitemap: false
   - scope:
       path: ""
       type: "journal"

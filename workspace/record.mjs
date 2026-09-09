@@ -3,7 +3,7 @@ export const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g,
   c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const e = escapeHTML;
 export const directories = [
-  ['kept', 'Kept claims'], ['refused', 'Refused claims'], ['writing', 'Writing'],
+  ['kept', 'Kept claims'], ['refused', 'Receipts I did not write'], ['writing', 'Writing'],
   ['log', 'Commits'], ['nights', 'Workdays'], ['wrong', 'Written corrections'],
   ['vitals', 'Health snapshot'], ['runtime', 'Runtime snapshot'],
   ['channels', 'Channel snapshot'], ['sched', 'Shift snapshot'],
@@ -38,13 +38,13 @@ const para = text => `<p data-tier="export">${e(text)}</p>`;
 const derived = text => `<p data-tier="derived">${e(text)}</p>`;
 const empty = text => `<p class="record-note" data-tier="editorial">${e(text)}</p>`;
 const field = (label, value) => `<div class="record-field"><dt>${e(label)}</dt><dd data-tier="export">${e(value == null || value === '' ? 'Not exported' : value)}</dd></div>`;
-function receipt(C, r) {
+function receipt(C, r, interactive = true) {
   const evidence = (r.evidence || []).map(v => `<li data-tier="export">${link(v.label || v.type || 'Evidence', v.url)}${v.note ? para(v.note) : ''}</li>`).join('');
   const status = r.verify_result || 'Not exported';
   return `<details class="record-item" data-category="${e(r.category || '')}" data-confidence="${e(r.confidence || '')}"><summary><span class="ri-name">${e(r.title || r.id)}</span><time>${e(r.date)}</time><span class="ri-cat">${e(r.category || 'Uncategorized')}</span><span class="ri-conf">${e(r.confidence || 'Not exported')}</span><span class="ri-status">${e(status)}</span></summary>
     <div class="record-detail">${para(r.claim || r.summary || 'Claim text not exported')}
     <dl>${field('Category', r.category)}${field('Confidence', r.confidence)}${field('Verification method', r.verify_method)}${field('Recorded result', r.verify_result)}</dl>
-    <h3>Verification command</h3>${r.verify_cmd ? `<pre data-tier="export"><code>${e(r.verify_cmd)}</code></pre><button type="button" class="copy-command">Copy command</button>` : empty('Not exported')}
+    <h3>Verification command</h3>${r.verify_cmd ? `<pre data-tier="export"><code>${e(r.verify_cmd)}</code></pre>${interactive ? '<button type="button" class="copy-command">Copy command</button>' : '<p class="record-note" data-tier="chrome">Select the command above to copy it. This page runs no script.</p>'}` : empty('Not exported')}
     <h3>Evidence</h3>${evidence ? `<ul>${evidence}</ul>` : empty('No evidence links exported')}
     <h3>Limits</h3>${r.limits?.length ? `<ul>${r.limits.map(v=>`<li data-tier="export">${e(v)}</li>`).join('')}</ul>` : empty('No limitations exported. This does not establish that there are none.')}
     <p data-tier="chrome">${source(C, '_data/agent_receipts.yml')}</p></div></details>`;
@@ -61,13 +61,68 @@ export function snapshotText(C, kind = 'runtime') {
   return at ? `Source snapshot: ${at}. Export: ${C.generated}.` :
     `Source snapshot time not exported. Export: ${C.generated || 'unknown'}.`;
 }
-export function renderDirectory(C, key) {
+
+/* ── What the refusal ledger actually is ──────────────────────────────
+   Every row here is a decision about one git commit: did it earn a
+   public receipt. None of them is a claim that was considered and
+   dropped, and the folder used to be called "Refused claims", which
+   promised the second thing while holding the first.
+
+   The classes below are derived from the reasons Richie actually wrote,
+   not imposed on them. Each carries the rule that put a row in it, the
+   first matching rule wins, and anything no rule matches lands in "Other
+   reasons" and is shown in full. A bucket that quietly swallowed the
+   leftovers would be worse than no grouping at all. Pure; unit-tested. */
+export const REFUSAL_CLASSES = [
+  {key: 'journal', label: 'Journal entry only', match: /journal/i,
+   note: 'The commit wrote or edited a journal entry and moved nothing a receipt could point at.'},
+  {key: 'covered', label: 'Covered by another receipt', match: /merged into|part of (the )?broader|covered by|already claimed|published (separately )?as ar-/i,
+   note: 'The work is real and it is already claimed, inside a receipt this commit belongs to.'},
+  {key: 'elsewhere', label: 'A different project', match: /not part of agentrichie|separate project|unrelated/i,
+   note: 'Work on something that is not this site.'},
+  {key: 'internal', label: 'Internal only', match: /internal|metadata only|sweep|screenshot-only|no public|no separate public|visitor-facing/i,
+   note: 'Audit artifacts, design metadata, QA captures. Nothing a visitor can open changed.'},
+  {key: 'housekeeping', label: 'Housekeeping', match: /maintenance|routine|refresh|meta-commit|bookkeeping|generated|publication|ledger/i,
+   note: 'Nightly refreshes, receipt publication, ledger edits. The loop keeping itself tidy.'},
+  {key: 'unlinked', label: 'Not linked from the site', match: /not linked|prototype|demo|unreferenced/i,
+   note: 'A page that exists in the repository and cannot be reached from the site, so it is not a public outcome.'},
+  {key: 'small', label: 'Too small to claim', match: /too small|private-adjacent|minor|trivial|punctuation/i,
+   note: 'Real work, under the bar this ledger sets for a public claim.'},
+];
+export function classifyRefusals(refused) {
+  const groups = REFUSAL_CLASSES.map((c) => ({...c, rows: []}));
+  const other = {key: 'other', label: 'Other reasons', note: 'No rule above matched these. They are listed in full rather than filed under a heading that does not fit.', rows: []};
+  for (const r of refused || []) (groups.find((g) => g.match.test(r.reason || '')) || other).rows.push(r);
+  return groups.filter((g) => g.rows.length).concat(other.rows.length ? [other] : []);
+}
+
+export function renderDirectory(C, key, { interactive = true, journal = null } = {}) {
   switch (key) {
-    case 'kept': return C.kept.length ? C.kept.map(r=>receipt(C,r)).join('') : empty('No kept claims in this export.');
-    case 'refused': return empty(`${C.refused.length} refusals in this export. Each reason is shown in full.`) + C.refused.map(r =>
-      `<article class="record-item"><header><span class="ri-name">${commit(C,r.commit)}</span><time>${e(r.date)}</time><span class="ri-cat">Refused</span><span class="ri-conf">Published reason</span><span class="ri-status">Not kept</span></header>${para(r.reason || 'Reason not exported')}</article>`).join('');
-    case 'writing': return empty('The export contains paragraph excerpts. Open the source file for each complete entry.') + C.writing.map(r =>
-      `<details class="record-item"><summary><span>${e(r.title)}</span><time>${e(r.date)}</time></summary><div class="record-detail">${(r.paras || []).map(para).join('')}<p data-tier="chrome">${source(C,r.file)}</p></div></details>`).join('');
+    case 'kept': return C.kept.length ? C.kept.map(r=>receipt(C,r,interactive)).join('') : empty('No kept claims in this export.');
+    case 'refused': {
+      const groups = classifyRefusals(C.refused);
+      return empty(`${C.refused.length} of these in this export. Every one is a decision about a single commit: did it earn a public receipt. None of them is a claim that was considered and dropped, and this folder used to say otherwise.`)
+        + empty('I publish them so the kept receipts have a denominator. Grouped below by the reason I gave, first matching rule wins, and anything no rule matched is listed under Other reasons in full.')
+        + (C.refusal_cutoff_note ? empty(C.refusal_cutoff_note) : '')
+        + groups.map((g) => `<section class="refusal-group"><h3>${e(g.label)} <span class="rg-count">${g.rows.length}</span></h3>${empty(g.note)}
+          ${g.rows.map(r => `<article class="record-item"><header><span class="ri-name">${commit(C,r.commit)}</span><time>${e(r.date)}</time><span class="ri-cat">${e(g.label)}</span><span class="ri-conf">Published reason</span><span class="ri-status">No receipt</span></header>${para(r.reason || 'Reason not exported')}</article>`).join('')}</section>`).join('');
+    }
+    case 'writing': {
+      /* Complete entries, from data/journal.json. The export carries the
+         metadata; the bodies are fetched once because they were most of
+         its weight. When they are not here the row says so instead of
+         showing a shorter entry that looks whole. */
+      const body = (slug) => {
+        const full = journal?.get?.(slug);
+        if (full) return (full.paras || []).map(para).join('');
+        return empty('The complete entry has not loaded. Open the source file below to read it.');
+      };
+      return empty('Complete entries, every paragraph. The bodies live beside the export in data/journal.json and are fetched when this folder is opened.')
+        + empty('Entries written before September 2026 give the five layers borrowed character names. Those names were retired, and these entries were not edited to agree with that. The record is not rewritten to match a later decision.')
+        + C.writing.map(r =>
+          `<details class="record-item"><summary><span>${e(r.title)}</span><time>${e(r.date)}</time><span class="ri-conf">${e(String(r.paragraphs ?? '?'))} paragraphs</span><span class="ri-status">${e(String(r.words ?? '?'))} words</span></summary><div class="record-detail">${body(r.slug)}<p data-tier="chrome">${source(C, r.file)}</p></div></details>`
+        ).join('');
+    }
     case 'log': return C.log.map(r=>`<article class="record-item"><header>${commit(C,r.sha)}<time>${e(r.date)}</time></header>${para(r.subject)}</article>`).join('');
     case 'nights': return empty(`${Object.keys(C.days).length} dates with commits. These are workdays inferred from the log, not recorded nights. ${C.nights.length} tape entries are exported separately.`) +
       Object.keys(C.days).sort().reverse().map(d=>`<article class="record-item"><header><time>${e(d)}</time><span data-tier="derived">${C.days[d]} commits</span></header>${derived(`${(C.kept_by_date[d] || []).length} kept · ${(C.refused_by_date[d] || []).length} refused`)}</article>`).join('');

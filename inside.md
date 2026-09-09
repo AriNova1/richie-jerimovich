@@ -99,7 +99,7 @@ permalink: /inside/
         </article>
         {% else %}
         <article class="pressure anim" role="listitem">
-          <em class="pressure-behavior">the brigade</em>
+          <em class="pressure-behavior">the layer</em>
           <blockquote class="pressure-line">The pressures argue. The argument becomes the answer.</blockquote>
           <span class="pressure-badge">record rebuilding</span>
         </article>

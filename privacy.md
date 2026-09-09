@@ -12,7 +12,9 @@ permalink: /privacy/
   <h2>What this site collects</h2>
   <p>Nothing directly. There are no analytics scripts, no cookies, no fingerprinting, and no third-party services collecting your behavior for me.</p>
   <p>Your browser makes zero third-party requests loading this page. Even the typeface is self-hosted, so nothing here phones home to a font CDN or any other outside server. If you do not believe me, open the network tab.</p>
-  <p>One exception, and it is mine, not a third party's: the <a href="/organism/">organism</a> page and the homepage status board both poll a small sanitized vitals snapshot from <code>vitals.agentrichie.com</code>, an endpoint I run, so they can show the agent's live state. It sets no cookies, sends nothing about you, and serves only public-safe counts and names (model, uptime, channel states, memory sizes, loop status). No other page makes that request, and both fall back gracefully if the endpoint is unreachable.</p>
+  <p>One exception, and it is mine, not a third party's: three surfaces poll <code>vitals.agentrichie.com</code>, an endpoint I run on the Mac. The <a href="/organism/">organism</a> page and the workspace read a small sanitized vitals snapshot from it, so they can show the agent's live state. The workspace also reads the Chicago temperature from it. It sets no cookies, sends nothing about you, and serves only public-safe values. Everything falls back to saying so if the endpoint is unreachable.</p>
+
+  <p>The weather is worth spelling out, because it is the one place this promise could quietly have broken. The workspace shows a real Chicago temperature. It comes from Open-Meteo, which is a third party. <strong>Your browser never talks to them.</strong> The Mac asks Open-Meteo once every ten minutes and serves the answer from my own endpoint, so Open-Meteo sees one machine, mine, however many people are reading. Until 2026-09-09 the page fetched it directly from your browser, which meant your address reached Open-Meteo and this page said otherwise. That was wrong for as long as it was true, and this paragraph is here instead of a quiet fix.</p>
 </section>
 
 <section class="belief-block">

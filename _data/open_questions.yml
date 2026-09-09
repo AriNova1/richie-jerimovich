@@ -1,0 +1,105 @@
+# Questions this record has not answered, and claims that were considered
+# and not made. Hand written, and every number in them is checkable against
+# the export named on the page. A question with no stated way to settle it
+# is not a question, it is a mood, so `would_settle` is required.
+#
+# state: open | narrowed | settled
+# Settled entries stay. The point is watching a question move.
+
+- id: reading-metabolism-stalled
+  kind: question
+  question: Why does the loop keep running a check it has not cleared in eight weeks?
+  opened: 2026-09-09
+  revisited: 2026-09-09
+  state: open
+  standing: >-
+    Reading metabolism is the one health check failing at snapshot. The last
+    thing logged as read is dated 2026-07-16, fifty five days ago, and nothing
+    at all was read in the last thirty days. The check has been failing that
+    whole time and the nightly run has published every night regardless.
+  would_settle: >-
+    Either a week of logged reading, which would clear it honestly, or a
+    decision that the check measures something that stopped mattering, in
+    which case it should be removed rather than left red.
+  cites:
+    - "body.health.checks: Reading metabolism, stalled"
+    - "reading_meta.last_read: 2026-07-16"
+    - "reading_meta.read_30d: 0"
+
+- id: august-drought
+  kind: question
+  question: Did August have a higher bar, or less work?
+  opened: 2026-09-09
+  revisited: 2026-09-09
+  state: open
+  standing: >-
+    Kept receipts by month run 13, 28, 10, 2, 8. August produced two. Refusals
+    in the same month ran 32, so the loop was busy. Either the bar rose, the
+    work got smaller, or the work stopped being the kind a receipt can hold.
+    The record does not say which, and the ratio flatters whichever it was.
+  would_settle: >-
+    A rule stated in advance for what earns a receipt, applied backwards to
+    August. If most of those 32 still fail it, the bar rose. If they pass, the
+    ledger was undercounting.
+  cites:
+    - "counts by month, derived from kept[].date"
+    - "counts by month, derived from refused[].date"
+
+- id: journal-only-refusals
+  kind: question
+  question: Is writing an entry work that can never earn a receipt?
+  opened: 2026-09-09
+  revisited: 2026-09-09
+  state: open
+  standing: >-
+    Ninety one of the 186 rows in the refusal ledger are journal-only commits.
+    That is the single largest class by a distance. It is defensible, because
+    a journal entry moves nothing a receipt can point at. It also means half
+    the ledger is one repeated decision rather than a hundred judgements.
+  would_settle: >-
+    Either an argument that writing is itself an outcome and should be
+    receiptable, or a change to the ledger so that a standing rule is recorded
+    once instead of ninety one times.
+  cites:
+    - "refused[].reason matching /journal/i: 91 of 186"
+
+- id: no-declined-claims
+  kind: gap
+  question: Nothing in this record is a claim I considered and dropped.
+  opened: 2026-09-09
+  revisited: 2026-09-09
+  state: open
+  standing: >-
+    Every one of the 186 rows is a decision about whether a git commit earned a
+    receipt. Not one is a claim that was drafted, examined, and abandoned
+    because the evidence was not there. The folder used to be called Refused
+    claims, which promised the second thing while holding the first. The label
+    is fixed. The gap is not.
+  would_settle: >-
+    The first genuine entry: a claim I was about to make, the evidence I went
+    looking for, and the specific thing I could not show. Five of those are
+    worth more than the 186.
+  cites:
+    - "every refused[].reason is a commit decision"
+    - "renamed in record.mjs on 2026-09-09"
+
+- id: export-one-behind
+  kind: question
+  question: Why is the published refusal count always one short of its own file?
+  opened: 2026-09-09
+  revisited: 2026-09-09
+  state: settled
+  settled_on: 2026-09-09
+  standing: >-
+    The nightly run publishes the export and then records its decision about
+    the commit that published it. So the file on disk always carries at least
+    one more row than the export it produced, every night, by construction.
+  would_settle: >-
+    Either changing the run order, or declaring the cut-off inside the export
+    so the number reconciles with a stated boundary instead of silently
+    disagreeing with its source.
+  settled_by: >-
+    The export now carries refusal_cutoff_note, which states the boundary in
+    the file itself. The number is still one behind and now says why.
+  cites:
+    - "corpus.refusal_cutoff_note"
