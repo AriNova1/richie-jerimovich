@@ -80,6 +80,7 @@ print(med(rs), med(gs), med(bs))
 const b = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true });
 const dir = await mkdtemp(join(tmpdir(), 'legib-'));
 const findings = [];
+const unmeasurable = [];
 try {
   for (const [w, h, tag] of SIZES) {
     const p = await (await b.newContext({ viewport: { width: w, height: h } })).newPage();
@@ -145,6 +146,12 @@ try {
                 sig: `${c.tagName}.${String(c.className).slice(0, 60)}|${cs.fontSize}|${cs.color}|${cs.fontWeight}`,
                 label: (c.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 46),
                 size: parseFloat(cs.fontSize), weight: cs.fontWeight, color: cs.color,
+                /* background-clip:text paints the glyphs with a gradient and
+                   leaves `color` transparent. The computed colour is then not
+                   the ink and never was: reporting it as 1.35:1 black on dark
+                   is the tool describing a value nobody can see. */
+                clipped: cs.webkitBackgroundClip === 'text' || cs.backgroundClip === 'text',
+                fill: cs.webkitTextFillColor,
                 x: Math.max(0, Math.round(r.x)), y: Math.max(0, Math.round(r.y)),
                 w: Math.round(Math.min(r.width, innerWidth - r.x)), h: Math.round(Math.min(r.height, innerHeight - r.y)) });
             }
@@ -196,13 +203,21 @@ try {
         const shot = await p.screenshot({ clip: { x: n.x, y: n.y, width: n.w, height: n.h } });
         await p.evaluate(() => document.getElementById('legib-mask')?.remove());
         const bg = medianPixel(shot);
+        /* Skip what cannot be measured from a colour, and say so, rather
+           than inventing a ratio for it. */
+        const inkAlpha = /rgba?\([^)]*,\s*0(\.0+)?\s*\)/.test(n.fill || n.color);
+        if (n.clipped || inkAlpha) { unmeasurable.push({ tag, ...n }); continue; }
         const fg = n.rgb || parseRGB(n.color);
         const ratio = contrast(fg, bg);
         const large = n.size >= 24 || (n.size >= 18.66 && Number(n.weight) >= 700);
         const need = large ? 3 : 4.5;
         const problems = [];
         if (ratio < need) problems.push(`contrast ${ratio.toFixed(2)}:1, needs ${need}`);
-        if (n.size < MIN_PX) problems.push(`${n.size}px, under ${MIN_PX}`);
+        /* A rendered size of 0 is not small type, it is type that has not been
+           painted: a scroll-driven element mid scale-in. Reporting it as
+           "0px, under 12" is the tool describing its own timing, and on
+           /overnight/ it produced two findings a reader could never see. */
+        if (n.size > 0 && n.size < MIN_PX) problems.push(`${n.size}px, under ${MIN_PX}`);
         if (problems.length) findings.push({ tag, ...n, bg, ratio: Number(ratio.toFixed(2)), problems });
       }
     };
@@ -247,5 +262,11 @@ for (const f of findings) { const k = hex(f.rgb || parseRGB(f.color)) + ' on ' +
 console.log('\nby colour pair:');
 for (const [k, v] of Object.entries(byInk).sort((a, b) => b[1].length - a[1].length).slice(0, 80))
   console.log(`  ${String(v.length).padStart(3)}x  ${k}  worst ${Math.min(...v)}:1`);
+if (unmeasurable.length) {
+  const seen = new Set();
+  console.log(`\nnot measurable from a computed colour (background-clip:text or a transparent fill):`);
+  for (const u of unmeasurable) { const k = u.sel + u.label; if (seen.has(k)) continue; seen.add(k);
+    console.log(`  ${u.tag.padEnd(8)} ${String(u.size).padStart(6)}px  ${u.label}`); }
+}
 console.log(`\n${findings.length} finding(s) across ${SIZES.length} viewports of ${URL_}${DESKTOP ? ' (logged in, ' + APPS.length + ' apps)' : SCROLL ? ' (paged)' : ''}`);
 process.exit(findings.length ? 1 : 0);

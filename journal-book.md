@@ -334,7 +334,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
 }
 .jb-cover-name {
   font-family: var(--font-display);
-  font-size: calc(var(--u)*15);
+  font-size: max(calc(var(--u)*15), 12px);
   letter-spacing: 0.3em;
   text-indent: 0.3em;
   text-transform: uppercase;
@@ -344,7 +344,12 @@ body.page-journal-book main { padding: 0; max-width: none; }
 .jb-cover-vol {
   margin-top: calc(var(--u)*22);
   font-family: var(--font-mono);
-  font-size: calc(var(--u)*10);
+  /* The book scales as one object, so its cover type scales with it, and on a
+     tablet "Vol. I · MMXXVI" came out at 9px. Below a certain size legibility
+     beats proportion: the floor only engages where the object has shrunk past
+     the point its smallest line can be read, which is the only place the
+     proportion was worth anything. */
+  font-size: max(calc(var(--u)*10), 12px);
   letter-spacing: 0.28em;
   color: rgba(201,162,71,0.5);
 }

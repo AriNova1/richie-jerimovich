@@ -75,6 +75,9 @@
      on the dark ground and 2.55:1 on #f1e9d7, so one token was doing two jobs
      and failing one of them. Measured, not eyeballed: this is 4.80:1. */
   --burn-on-paper: #9a5316;
+  /* Amber is the system's accent and it clears 11:1 on the dark ground. On
+     the cream ticket it is 1.42:1, which is not a colour, it is an absence. */
+  --amber-on-paper: #7d5f10;
   --alarm: #e5484d;
   --alarm-soft: rgba(229, 72, 77, 0.14);
   --pass-ok: #7fb069;
@@ -282,6 +285,15 @@ footer.site-foot {
   background: rgba(242, 234, 216, 0.03);
 }
 .btn-wire:hover { border-color: var(--amber); color: var(--amber); background: transparent; }
+
+/* Every paper surface redefines the two accents rather than every rule on it
+   remembering to. One token was doing two jobs: --burn clears 11:1 on the dark
+   ground and 2.57:1 on cream, --amber 11:1 and 1.42:1. Redefining inside the
+   scope means a rule written later on a ticket cannot get it wrong. */
+.ticket, .printer-ticket, .ticket-face, .spike-slip, .pass .tk, .ask-card, .receipt-card {
+  --burn: var(--burn-on-paper);
+  --amber: var(--amber-on-paper);
+}
 
 /* ── The ticket: cream paper object, the system's signature material ── */
 .ticket {
