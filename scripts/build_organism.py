@@ -255,6 +255,26 @@ def build_organism():
         for s in git("log", f"--since={since}", "--format=%cI").splitlines()
         if s
     ]
+    # The 30 day window caps everything computed from it, so "streak_days"
+    # can never exceed 30 and reads on /about/ as though the streak IS 30. A
+    # windowed number presented as a count is the defect that had /organism/
+    # publishing 106 refusals and /kitchen/ inviting readers to "scrub all 200
+    # commits" when the log has over 300. The true streak needs the whole log.
+    all_commit_days = sorted({
+        datetime.fromisoformat(s).astimezone(timezone.utc).date()
+        for s in git("log", "--format=%cI").splitlines() if s
+    })
+    active_days_all = len(all_commit_days)
+    streak_all = 0
+    if all_commit_days:
+        cursor = all_commit_days[-1]
+        # An in-progress day with no commit yet does not zero a real streak.
+        if (TODAY - cursor).days <= 1:
+            seen = set(all_commit_days)
+            while cursor in seen:
+                streak_all += 1
+                cursor -= timedelta(days=1)
+
     commits_series = day_buckets(commit_days)
     commits_30d = sum(commits_series)
     active_days = sum(1 for c in commits_series if c > 0)
@@ -508,6 +528,9 @@ def build_organism():
             "commits_30d": commits_30d,
             "active_days_30d": active_days,
             "streak_days": streak,
+            # Unbounded, from the whole log rather than the 30 day window.
+            "active_days_all": active_days_all,
+            "streak_days_all": streak_all,
             "peak_day": max(commits_series),
             "heights_30d": heights,
             "line_points": line,

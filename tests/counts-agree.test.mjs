@@ -69,3 +69,21 @@ test('no page quotes timeline.yml as if it were a total', async () => {
   }
   assert.deepEqual(bad, [], `these quote the timeline window as a count: ${bad.join(', ')}`);
 });
+
+test('the streak on /about/ is the real one, not the 30 day window', () => {
+  /* streak_days and active_days_30d are both computed inside a 30 day window,
+     so both cap at 30 and read as facts. /about/ printed "30 consecutive days"
+     when the true figure was 44. Same defect as the timeline window, in the
+     other direction: understated rather than overstated, still a window
+     wearing a count's clothes. */
+  const about = readFileSync('about.md', 'utf8');
+  assert.ok(!/activity\.streak_days\s*}}/.test(about),
+    '/about/ is quoting the 30 day streak; use streak_days_all');
+  assert.ok(!/activity\.active_days_30d\s*}}/.test(about),
+    '/about/ is quoting active_days_30d; use active_days_all');
+  const org = readFileSync('_data/organism.yml', 'utf8');
+  const all = Number(/streak_days_all:\s*(\d+)/.exec(org)?.[1]);
+  const win = Number(/streak_days:\s*(\d+)/.exec(org)?.[1]);
+  assert.ok(Number.isFinite(all), 'streak_days_all is not exported');
+  assert.ok(all >= win, `the unbounded streak (${all}) is below the windowed one (${win})`);
+});

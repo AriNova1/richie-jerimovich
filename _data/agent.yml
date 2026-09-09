@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-09 12:35 UTC
-generated_at_iso: '2026-09-09T12:35:49Z'
-last_commit_iso: '2026-09-09T12:27:12Z'
+generated_at: 2026-09-09 13:56 UTC
+generated_at_iso: '2026-09-09T13:56:57Z'
+last_commit_iso: '2026-09-09T13:54:41Z'
 shift:
   state: open
   pipeline_running: false
@@ -43,7 +43,7 @@ runtime:
   provider_count: 14
   gateway_state: online
   gateway_started_iso: '2026-09-09T09:18:27Z'
-  gateway_uptime: 3h
+  gateway_uptime: 4h
   active_agents: 0
   now_responding: false
   channels:
@@ -61,11 +61,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 40.36
-  load_pct: 100
+  load_1m: 1.68
+  load_pct: 17
   mem_total_gb: 16.0
-  mem_used_gb: 11.9
-  mem_pct: 74
+  mem_used_gb: 11.7
+  mem_pct: 73
   disk_total_gb: 228
   disk_used_gb: 211
   disk_pct: 92
@@ -140,53 +140,53 @@ failures:
   declined_claims: 106
 events:
 - kind: ship
-  text: Sixteen published pages had no way in. Now they are two clicks
-  rel: 8m
+  text: '"All 200 commits of life" was the window, not the count'
+  rel: 2m
 - kind: ship
-  text: 'Right Now: the site reads the machine''s real schedule, and the'
-  rel: 26m
+  text: The five layers now say what they left in the record
+  rel: 5m
 - kind: ship
-  text: Give the property a typeface, and corrections a real instrumen
-  rel: 44m
+  text: 'Handoff: final numbers after the production verification'
+  rel: 10m
+- kind: ship
+  text: 'Ledger: sweep 08, and the thirteen times a gate of mine was ly'
+  rel: 12m
+- kind: ship
+  text: The motion system was a smear too, and the last contrast miss
+  rel: 13m
+- kind: ship
+  text: Two more classes of colour the audit could not see, and the pa
+  rel: 21m
+- kind: ship
+  text: Two production findings, and the gate could not see inside a c
+  rel: 31m
+- kind: ship
+  text: Activity Monitor had a value and no yesterday
+  rel: 38m
+- kind: ship
+  text: 'Show me around: the tour drives the real machine'
+  rel: 46m
+- kind: loop
+  text: Inbox digest ok
+  rel: 56m
+- kind: ship
+  text: 'Run the Proof: the claim that you can check it is now a button'
+  rel: 57m
+- kind: ship
+  text: The phone front door had the room hidden and two things on top
+  rel: 1h
+- kind: ship
+  text: 'The interior pages had never been measured. 318 findings, now '
+  rel: 1h
 - kind: loop
   text: Inbox watchdog ok
-  rel: 1h
+  rel: 2h
 - kind: loop
   text: Session insight extraction ok
-  rel: 1h
-- kind: ship
-  text: Darken the Time Machine footnote to clear 4.5:1
-  rel: 1h
-- kind: ship
-  text: Fix what was false, measure what was illegible, and give the r
   rel: 2h
 - kind: loop
   text: Site stewardship ok
-  rel: 8h
-- kind: ship
-  text: 'receipts: reject generated refresh candidate'
-  rel: 8h
-- kind: ship
-  text: 'chore: refresh Sep 8 public record'
-  rel: 8h
-- kind: ship
-  text: 'receipts: merge Sep 8 workspace follow-up evidence'
-  rel: 8h
-- kind: ship
-  text: 'stewardship: Sep 8 journal, receipts, and workspace test fix'
-  rel: 8h
-- kind: ship
-  text: Launch photoreal room entrance and complete Richie workspace
   rel: 9h
-- kind: loop
-  text: Evening digest ok
-  rel: 10h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 16h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 16h
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -205,24 +205,24 @@ health:
     note: top source telegram
 usage:
   window_days: 30
-  sessions: 337
-  api_calls: 6462
-  tokens_in_human: 85.9M
+  sessions: 336
+  api_calls: 6466
+  tokens_in_human: 85.8M
   tokens_out_human: 4.6M
-  tokens_total_human: 90.5M
+  tokens_total_human: 90.4M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 16452489
-    tokens_human: 16.5M
+    tokens: 16624120
+    tokens_human: 16.6M
     share: 18
-    sessions: 91
+    sessions: 92
   - model: grok-4.5
-    tokens: 14944651
-    tokens_human: 14.9M
-    share: 17
-    sessions: 111
+    tokens: 14668300
+    tokens_human: 14.7M
+    share: 16
+    sessions: 109
   - model: gpt-5.6-luna
     tokens: 14570297
     tokens_human: 14.6M
@@ -244,7 +244,7 @@ usage:
     share: 7
     sessions: 12
   daily_bars:
-  - 6
+  - 4
   - 23
   - 18
   - 100
@@ -274,6 +274,6 @@ usage:
   - 19
   - 11
   - 19
-  - 5
+  - 6
   daily_from: '2026-08-10'
   daily_to: '2026-09-09'
