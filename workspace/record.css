@@ -15,24 +15,24 @@
 .record-field dd{margin:0;overflow-wrap:anywhere}
 .record-item a,.record-detail a,.p-win-b a{color:inherit;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
 .record-item summary:focus-visible,.record-item a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
-.record-page{margin:0;background:#10151c;color:#e6ecf4;font:16px/1.65 system-ui,sans-serif;padding:clamp(20px,5vw,72px)}
+.record-page{margin:0;background:#10151c;color:#e6ecf4;font:var(--t-lead)/1.65 var(--face-record);padding:clamp(20px,5vw,72px)}
 .record-page *{box-sizing:border-box}
 .record-page a{color:#bcdcff;text-underline-offset:4px}
 .record-page :focus-visible{outline:3px solid #bcdcff;outline-offset:4px}
 .record-header,.record-nav,.record-page main{max-width:1000px;margin-inline:auto}
 .record-header h1{font-size:clamp(32px,5vw,60px);line-height:1.1;letter-spacing:-.035em}
-.record-header p:first-child{font:12px ui-monospace,monospace;letter-spacing:.15em}
+.record-header p:first-child{font:var(--t-micro) var(--face-evidence);letter-spacing:.15em}
 .record-nav{display:flex;flex-wrap:wrap;gap:6px 20px;padding-block:24px;border-block:1px solid #405167;margin-block:28px}
 .record-nav a{display:inline-flex;align-items:center;min-height:44px}
 .record-page section{margin:64px 0;scroll-margin-top:24px}
-.record-page h2{font-size:26px;border-bottom:1px solid #405167;padding-bottom:12px}
+.record-page h2{font-size:var(--t-h2);border-bottom:1px solid #405167;padding-bottom:12px}
 .skip-link{position:absolute;left:20px;top:0;transform:translateY(-110%);padding:12px;background:#10151c}
 .skip-link:focus{transform:none}
 @media(max-width:600px){.record-item summary,.record-item header{flex-wrap:wrap}.record-item summary span{flex-basis:75%}.record-item time{white-space:normal}.record-field{grid-template-columns:1fr;gap:3px}}
 
 /* The refusal ledger, grouped by the reason Richie gave. */
 .refusal-group { margin: 26px 0 0; }
-.refusal-group h3 { font-size: 13px; font-weight: 650; margin: 0 0 4px; display: flex; align-items: baseline; gap: 8px; }
-.rg-count { font: 500 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace; padding: 2px 7px; border-radius: 999px;
+.refusal-group h3 { font-size:var(--t-fine); font-weight: 650; margin: 0 0 4px; display: flex; align-items: baseline; gap: 8px; }
+.rg-count { font:500 var(--t-micro)/1 var(--face-evidence); padding: 2px 7px; border-radius: 999px;
   background: rgba(127,127,127,.16); font-variant-numeric: tabular-nums; }
 .refusal-group > .record-note:first-of-type { margin-top: 0; }

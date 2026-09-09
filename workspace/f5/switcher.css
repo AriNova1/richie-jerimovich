@@ -3,26 +3,26 @@
 .switcher.on{opacity:1}
 .sw-scrim{position:absolute;inset:0;background:rgba(8,10,14,.86);backdrop-filter:blur(22px) saturate(1.3);-webkit-backdrop-filter:blur(22px) saturate(1.3)}
 .sw-head{position:absolute;left:0;right:0;top:max(18px,env(safe-area-inset-top));text-align:center;color:#f2f2f7;padding:0 16px}
-.sw-name{margin:0;font-size:16px;font-weight:650;letter-spacing:-.01em}
-.sw-pos{margin:3px 0 0;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:#6f6f74;font-variant-numeric:tabular-nums}
+.sw-name{margin:0;font-size:var(--t-lead);font-weight:650;letter-spacing:-.01em}
+.sw-pos{margin:3px 0 0;font-size:var(--t-fine);letter-spacing:.09em;text-transform:uppercase;color:#6f6f74;font-variant-numeric:tabular-nums}
 .sw-deck{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none}
 .sw-card{position:absolute;top:50%;left:0;margin-top:-27vh;pointer-events:auto;cursor:pointer;will-change:transform,opacity}
 .sw-frame{position:relative;overflow:hidden;border-radius:16px;background:#0d0f13;box-shadow:0 30px 70px rgba(0,0,0,.66),0 0 0 1px rgba(255,255,255,.12);isolation:isolate}
 /* A card is a crop of a longer window, so it fades out rather than
    ending mid-sentence on a hard edge. */
 .sw-frame::after{content:"";position:absolute;left:0;right:0;bottom:0;height:64px;pointer-events:none;background:linear-gradient(to bottom,transparent,rgba(8,10,14,.86))}
-.sw-cap{display:block;margin-top:10px;text-align:center;color:#c7c7cc;font-size:12.5px;font-weight:550}
+.sw-cap{display:block;margin-top:10px;text-align:center;color:#c7c7cc;font-size:var(--t-fine);font-weight:550}
 .sw-card[aria-current=true] .sw-frame{box-shadow:0 34px 84px rgba(0,0,0,.72),0 0 0 1px rgba(255,255,255,.24)}
 .sw-card:focus-visible .sw-frame{outline:3px solid #0a84ff;outline-offset:3px}
 .sw-dots{position:absolute;left:0;right:0;bottom:calc(112px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:6px}
 .sw-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.26);transition:background .2s,transform .2s}
 .sw-dot.on{background:#f2f2f7;transform:scale(1.25)}
 .sw-bar{position:absolute;left:12px;right:12px;bottom:calc(52px + env(safe-area-inset-bottom));display:flex;gap:8px;align-items:stretch;justify-content:center}
-.sw-bar button{font:inherit;font-size:14px;min-height:44px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.1);color:#f2f2f7;font-weight:550;backdrop-filter:blur(10px)}
-.sw-bar [data-sw=prev],.sw-bar [data-sw=next]{min-width:48px;font-size:20px;line-height:1;padding:0}
+.sw-bar button{font:inherit;font-size:var(--t-body);min-height:44px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.1);color:#f2f2f7;font-weight:550;backdrop-filter:blur(10px)}
+.sw-bar [data-sw=prev],.sw-bar [data-sw=next]{min-width:48px;font-size:var(--t-sub);line-height:1;padding:0}
 .sw-go{background:#f2f2f7;color:#1d1d1f;border-color:#f2f2f7;flex:1;max-width:150px}
 .sw-close{color:#ff9f9a}
-.sw-done{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(6px + env(safe-area-inset-bottom));min-height:40px;padding:0 24px;border-radius:999px;border:0;background:none;color:#c7c7cc;font:inherit;font-size:14px;font-weight:550}
+.sw-done{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(6px + env(safe-area-inset-bottom));min-height:40px;padding:0 24px;border-radius:999px;border:0;background:none;color:#c7c7cc;font:inherit;font-size:var(--t-body);font-weight:550}
 .sw-bar button:focus-visible,.sw-done:focus-visible{outline:3px solid #0a84ff;outline-offset:2px}
 .mac-desktop.switcher-on .mac-dock{opacity:0;pointer-events:none;transition:opacity .18s}
 

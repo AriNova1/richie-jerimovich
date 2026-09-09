@@ -13,7 +13,7 @@
   background-color: #fff;
   color: #29292d;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size:var(--t-fine);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -48,7 +48,7 @@
 
 .zoom-comparison .zoom-comp-empty-title {
   margin: 0 0 8px 0;
-  font-size: 16px;
+  font-size:var(--t-lead);
   font-weight: 600;
   color: #1d1d1f;
 }
@@ -56,7 +56,7 @@
 .zoom-comparison .zoom-comp-empty-desc {
   margin: 0;
   color: #65656b;
-  font-size: 13px;
+  font-size:var(--t-fine);
 }
 
 /* Toolbar */
@@ -85,7 +85,7 @@
 }
 
 .zoom-comparison .zoom-comp-label {
-  font-size: 12.5px;
+  font-size:var(--t-fine);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -99,7 +99,7 @@
   color: #29292d;
   border: 1px solid rgba(0, 0, 0, 0.18);
   border-radius: 6px;
-  font-size: 13px;
+  font-size:var(--t-fine);
   line-height: 1.4;
   outline: none;
   cursor: pointer;
@@ -125,7 +125,7 @@
   color: #303035;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 6px;
-  font-size: 12px;
+  font-size:var(--t-micro);
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
@@ -144,7 +144,7 @@
 }
 
 .zoom-comparison .zoom-comp-swap-icon {
-  font-size: 14px;
+  font-size:var(--t-body);
   line-height: 1;
 }
 
@@ -155,7 +155,7 @@
   border: 1px solid rgba(187, 128, 9, 0.35);
   border-radius: 6px;
   color: #785b0a;
-  font-size: 12px;
+  font-size:var(--t-micro);
   line-height: 1.4;
 }
 
@@ -165,7 +165,7 @@
   border: 1px solid rgba(248, 81, 73, 0.35);
   border-radius: 6px;
   color: #b32725;
-  font-size: 12px;
+  font-size:var(--t-micro);
   line-height: 1.4;
 }
 
@@ -204,7 +204,7 @@
 
 .zoom-comparison .zoom-comp-row-title {
   margin: 0;
-  font-size: 12.5px;
+  font-size:var(--t-fine);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
@@ -212,7 +212,7 @@
 }
 
 .zoom-comparison .zoom-comp-row-desc {
-  font-size: 12.5px;
+  font-size:var(--t-fine);
   color: #67676b;
 }
 
@@ -241,7 +241,7 @@
 
 .zoom-comparison .zoom-comp-mobile-marker {
   display: none;
-  font-size: 12px;
+  font-size:var(--t-micro);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -257,7 +257,7 @@
 }
 
 .zoom-comparison .zoom-comp-side-badge {
-  font-size: 12px;
+  font-size:var(--t-micro);
   font-weight: 600;
   text-transform: uppercase;
   color: #65656b;
@@ -278,7 +278,7 @@
 
 .zoom-comparison .zoom-comp-receipt-title {
   margin: 0;
-  font-size: 15px;
+  font-size:var(--t-body);
   font-weight: 600;
   color: #1d1d1f;
   line-height: 1.35;
@@ -286,13 +286,13 @@
 
 .zoom-comparison .zoom-comp-id-tag code {
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: 12.5px;
+  font-size:var(--t-fine);
   color: #65656b;
 }
 
 .zoom-comparison .zoom-comp-prose {
   margin: 0;
-  font-size: 13px;
+  font-size:var(--t-fine);
   line-height: 1.5;
   color: #303035;
 }
@@ -326,7 +326,7 @@
 }
 
 .zoom-comparison .zoom-comp-meta-item dt {
-  font-size: 12px;
+  font-size:var(--t-micro);
   font-weight: 600;
   text-transform: uppercase;
   color: #626269;
@@ -334,7 +334,7 @@
 
 .zoom-comparison .zoom-comp-meta-item dd {
   margin: 0;
-  font-size: 12px;
+  font-size:var(--t-micro);
   color: #303035;
 }
 
@@ -345,14 +345,14 @@
   color: #0067ce;
   border-radius: 4px;
   padding: 1px 6px;
-  font-size: 12.5px;
+  font-size:var(--t-fine);
 }
 
 .zoom-comparison .zoom-comp-confidence {
   display: inline-block;
   padding: 1px 6px;
   border-radius: 4px;
-  font-size: 12.5px;
+  font-size:var(--t-fine);
   font-weight: 500;
 }
 
@@ -376,7 +376,7 @@
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 6px;
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  font-size: 12px;
+  font-size:var(--t-micro);
   line-height: 1.45;
   color: #0053ad;
   overflow-x: auto;
@@ -400,7 +400,7 @@
   color: #303035;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
-  font-size: 12.5px;
+  font-size:var(--t-fine);
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
@@ -425,7 +425,7 @@
 }
 
 .zoom-comparison .zoom-comp-cmd-notice {
-  font-size: 12px;
+  font-size:var(--t-micro);
   color: #6e7681;
 }
 
@@ -457,7 +457,7 @@
 }
 
 .zoom-comparison .zoom-comp-evidence-type {
-  font-size: 12px;
+  font-size:var(--t-micro);
   font-weight: 600;
   text-transform: uppercase;
   color: #626269;
@@ -470,7 +470,7 @@
   color: #0067ce;
   text-decoration: none;
   font-weight: 500;
-  font-size: 12px;
+  font-size:var(--t-micro);
   word-break: break-all;
 }
 
@@ -487,12 +487,12 @@
 
 .zoom-comparison .zoom-comp-evidence-nolink {
   color: #65656b;
-  font-size: 12px;
+  font-size:var(--t-micro);
 }
 
 .zoom-comparison .zoom-comp-evidence-note {
   margin: 0;
-  font-size: 12px;
+  font-size:var(--t-micro);
   color: #65656b;
   line-height: 1.4;
 }
@@ -509,7 +509,7 @@
 
 .zoom-comparison .zoom-comp-limit-item {
   color: #303035;
-  font-size: 12px;
+  font-size:var(--t-micro);
   line-height: 1.45;
 }
 
@@ -550,7 +550,7 @@
 
 /* Integration: a document surface inside the existing Mac window. */
 .zoom-comparison {container:comparison / inline-size;min-height:0;user-select:text;}
-.zoom-comparison .zoom-comp-label,.zoom-comparison .zoom-comp-row-title {text-transform:none;letter-spacing:0;font-size:12px;}
+.zoom-comparison .zoom-comp-label,.zoom-comparison .zoom-comp-row-title {text-transform:none;letter-spacing:0;font-size:var(--t-micro);}
 .zoom-comparison .zoom-comp-cell {background:transparent;border:0;border-radius:0;padding:10px 14px 10px 0;}
 .zoom-comparison .zoom-comp-cell-right {border-left:1px solid #dedee3;padding-left:14px;}
 .zoom-comparison .zoom-comp-result-text {color:#303035;}

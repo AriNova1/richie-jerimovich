@@ -80,29 +80,70 @@ def journal():
 # Derived, not curated: sentences in the journal that state a reversal
 # outright. The demo says so on the pane, because a derived list that
 # claims to be curated is exactly the kind of thing this site refuses.
-CORR = re.compile(
-    r"(?<![A-Za-z])(I was wrong|I had it backwards|I got it wrong|I overclaimed|"
-    r"I was overstating|corrected me|I said so out loud|walked (?:it|that) back|"
-    r"the correction was|a correction|one correction|two corrections)",
+#
+# 2026-09-09: the old pattern matched the WORD, not the meaning. It listed
+# "a correction path outside the model" as an admission of error. That is a
+# sentence about how to design a system, and putting it on a wall labelled
+# "where I was wrong" is closer to inventing a claim than reporting one.
+# It also emitted one row per sentence, so six separate sentences from a
+# single entry rendered as six identical-looking cards with the same title
+# and the same date, which read as a bug and wasted the best material on
+# the property.
+#
+# The rule now: an admission needs a first-person subject and a reversal.
+# Anything that only mentions correction as a concept is not an admission.
+ADMITS = re.compile(
+    r"(?<![A-Za-z])("
+    r"I was wrong|I had it backwards|I got it wrong|I got that wrong|"
+    r"I overclaimed|I was overstating|I overstated|I understated|"
+    r"I had assumed|I assumed wrong|my mistake|my error|"
+    r"I mis(?:read|took|judged|understood|counted|labelled|labeled)|"
+    r"I claimed .{0,60}(?:and it was not|but it was not|which was not)|"
+    r"walked (?:it|that|the claim) back|"
+    r"(?:Rick|he|she|they|a colleague|the reviewer) corrected me|corrected me|"
+    r"turned out (?:to be )?wrong|turned out not to be|"
+    r"that was not true|it was not true|I should not have"
+    r")",
+    re.I)
+
+# Sentences that talk ABOUT correction as a mechanism, not about having been
+# wrong. Checked first: one of these vetoes a match.
+NOT_ADMISSION = re.compile(
+    r"correction path|correction loop|self[- ]correction|correction mechanism|"
+    r"a correction path|error correction|correction budget",
     re.I)
 
 
 def corrections(entries):
-    """Reads the complete paragraphs from FULL, not the corpus rows, so the
+    """One row per journal ENTRY that contains an admission, carrying every
+    admitting sentence from that entry plus the paragraph each sat in.
+
+    Reads the complete paragraphs from FULL, not the corpus rows, so the
     derived corrections keep scanning every paragraph after the bodies moved
     out of the export."""
     full = {x["slug"]: x for x in FULL}
     out = []
     for e in entries:
-        e = {**e, "paras": full.get(e["slug"], {}).get("paras", [])}
-        for para in e["paras"]:
+        paras = full.get(e["slug"], {}).get("paras", [])
+        found = []
+        for para in paras:
             for sent in re.split(r"(?<=[.!?])\s+", para):
-                if CORR.search(sent) and len(sent) < 420:
-                    out.append({
-                        "date": e["date"], "slug": e["slug"],
-                        "title": e["title"], "file": e["file"],
-                        "sentence": sent.strip(),
-                    })
+                sent = sent.strip()
+                if not sent or len(sent) >= 420:
+                    continue
+                if NOT_ADMISSION.search(sent):
+                    continue
+                if not ADMITS.search(sent):
+                    continue
+                if any(f["sentence"] == sent for f in found):
+                    continue
+                found.append({"sentence": sent, "para": para.strip()})
+        if not found:
+            continue
+        out.append({
+            "date": e["date"], "slug": e["slug"], "title": e["title"],
+            "file": e["file"], "admissions": found, "count": len(found),
+        })
     out.sort(key=lambda x: x["date"], reverse=True)
     return out
 
@@ -194,6 +235,30 @@ def main():
             "cites": [str(c) for c in (q.get("cites") or [])],
         })
 
+    # Declared corrections. Hand written because no pattern catches the real
+    # forms: the strongest one on the property opens "**Correction (June
+    # 19):**" and the derived scanner missed it in both directions, first by
+    # matching the word "correction" anywhere and then by demanding "I was
+    # wrong". tests/corrections.test.mjs holds every quote to the journal file
+    # it names, verbatim, so hand written does not mean unchecked.
+    declared = []
+    for c in (load("corrections.yml") or []):
+        if not c.get("quote") or not c.get("source"):
+            continue
+        d = lambda k: (c[k].isoformat() if hasattr(c.get(k), "isoformat") else (str(c[k]) if c.get(k) else None))
+        declared.append({
+            "id": c.get("id"), "published": d("published"), "corrects": d("corrects"),
+            "source": c["source"], "headline": (c.get("headline") or "").strip(),
+            "claimed": (c.get("claimed") or "").strip(),
+            "corrected": (c.get("corrected") or "").strip(),
+            "how_found": (c.get("how_found") or "").strip(),
+            "cost": (c.get("cost") or "").strip(),
+            "quote": " ".join((c.get("quote") or "").split()),
+            "kept_in_place": bool(c.get("kept_in_place")),
+            "kept_because": " ".join((c.get("kept_because") or "").split()) or None,
+        })
+    declared.sort(key=lambda x: x["published"] or "", reverse=True)
+
     # The Service Tape: the run recording itself. Real step timings, real
     # receipt decisions, written by the nightly pipeline as it went. Four
     # nights is 16 KB, so it travels in the export rather than beside it.
@@ -264,7 +329,7 @@ def main():
             "writing": len(j), "nights": len(tape_index),
             "projects": len(projects), "reading": len(reading),
             "questions": len(questions), "open_questions": len([q for q in questions if q["state"] != "settled"]),
-            "wrong": len(corr), "held": len(pending),
+            "wrong": len(corr), "corrections": len(declared), "held": len(pending),
             "ratio": ratio,
         },
         # The nightly run publishes this export and only then records its own
@@ -317,6 +382,7 @@ def main():
         "questions": questions,
         "tapes": tapes,
         "wrong": corr,
+        "corrections": declared,
         "held": [p.name for p in pending],
     }
 

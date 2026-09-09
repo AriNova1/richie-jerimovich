@@ -3,6 +3,7 @@ import { escapeHTML as e, renderDirectory, directories, snapshotText, runtimeRow
 import {createDocumentLibrary, documentKindForFolder, serializeDocumentRef, parseDocumentRef, parseDocumentHash} from './documents.mjs';
 import {createAppHost} from './app-host.mjs';
 import {mountLayers} from './apps/layers.mjs';
+import {markSVG, markSummary} from './mark.mjs';
 import {mountComparison} from './apps/comparison/comparison.js';
 import {mountDocumentPreview} from './apps/document-preview.mjs';
 import {mountInvestigation, caseForRef} from './apps/investigation.mjs';
@@ -11,6 +12,7 @@ import {makeDraggable, makeDropTarget} from './documents-dnd.mjs';
 import {createMissionControl, validateEdition} from './mission.mjs';
 import {mountTimeMachine} from './apps/timemachine.mjs';
 import {mountQuestions} from './apps/questions.mjs';
+import {mountCorrections} from './apps/corrections.mjs';
 import {mountTape} from './apps/tape.mjs';
 import {PLAYLIST, trackCount} from './data/playlist.mjs';
 import {createLens} from './lens.mjs';
@@ -29,7 +31,7 @@ const appNames = {
   finder: 'Finder', notes: 'Notes', messages: 'Messages', chrome: 'Google Chrome',
   spotify: 'Spotify', claude: 'Claude', chatgpt: 'ChatGPT', hermes: 'Hermes',
   activity: 'Activity Monitor', terminal: 'Terminal', settings: 'System Settings',
-  contacts: 'Contacts', voices: 'How I think', trash: 'Trash', preview: 'Quick Look', comparison: 'Compare Receipts', investigation: 'Investigation', timemachine: 'Time Machine', folder: 'The Folder', questions: 'Unfinished Business', tape: 'Last Night'
+  contacts: 'Contacts', voices: 'How I think', trash: 'Trash', preview: 'Quick Look', comparison: 'Compare Receipts', investigation: 'Investigation', timemachine: 'Time Machine', folder: 'The Folder', questions: 'Unfinished Business', tape: 'Last Night', corrections: 'Corrections'
 };
 const dockApps = ['finder', 'notes', 'messages', 'chrome', 'spotify', 'claude', 'chatgpt', 'hermes', 'activity', 'terminal', 'settings'];
 /* One paragraph, and it does not rotate. Three greetings cycling on a
@@ -166,6 +168,7 @@ export function createDesktop(root, C, { leave }) {
   const appHost = createAppHost({corpus:C, documents, onOpenDocument:openDocument, onCompareDocument:compareDocument, onOpenSource:openSource, onInvestigate:(ref)=>investigate(ref), hasCase:(ref)=>Boolean(caseForRef(casesState.data, ref)), onSendToMessages:(ref)=>sendToMessages(ref)});
   appHost.register('timemachine', mountTimeMachine);
   appHost.register('questions', mountQuestions);
+  appHost.register('corrections', mountCorrections);   /* the times a published claim was not true */
   appHost.register('tape', mountTape);   /* the run replaying itself */   /* what the record has not answered */
   appHost.register('folder', (host) => mountFolderApp(host, { folder: deskFolder, onOpenDocument: (ref) => openDocument(ref), onTake: takeFolder, onCopy: copyFolder, announce: (t) => announce(t) }));   // C8: the public record day by day
   appHost.register('investigation', (host, options) => {
@@ -297,12 +300,12 @@ export function createDesktop(root, C, { leave }) {
     <div class="mac-login" data-login hidden>
       <p class="login-kicker">Richie’s Mac · Chicago</p>
       <button class="login-card" data-enter>
-        <span class="login-avatar" aria-hidden="true">R</span>
+        <span class="login-avatar" data-login-mark></span>
         <strong>Visitor</strong>
-        <span>Click to sit down at the desk</span>
+        <span>Click to open the public workspace</span>
       </button>
       <p class="login-voice" data-login-voice>${e(GREETING)}</p>
-      <p class="login-fine">This does not unlock the physical machine. Enter opens the public workspace.</p>
+      <p class="login-fine">This does not unlock the physical machine. It opens a copy of what Richie published.</p>
     </div>
     <div class="mac-toasts" aria-live="polite"></div>
     <header class="mac-menu">
@@ -538,10 +541,10 @@ export function createDesktop(root, C, { leave }) {
       <section class="widget widget-machine">
         <p class="widget-kicker">This Mac</p>
         <h2>${e(HOST.chip)}</h2>
-        <p data-tier="export">${e(HOST.model)} · ${e(HOST.cores_detail)}</p>
+        <p data-tier="export">${e(HOST.model)} · ${sys.cores == null ? 'cores not exported' : sys.cores + ' cores'}</p>
         <dl>
-          <div><dt>Memory at snapshot</dt><dd data-tier="export">${e(mem)}</dd></div>
-          <div><dt>Load average</dt><dd data-tier="export">${sys.load_1m == null ? 'Not exported' : sys.load_1m} · ${sys.load_pct == null ? 'Not exported' : sys.load_pct + '%'}</dd></div>
+          <div><dt>Memory</dt><dd data-tier="export">${e(mem)}</dd></div>
+          <div><dt>Load</dt><dd data-tier="export">${sys.load_1m == null ? 'Not exported' : sys.load_1m} · ${sys.load_pct == null ? 'Not exported' : sys.load_pct + '%'}</dd></div>
         </dl>
         <p class="widget-note" data-tier="export">Snapshot ${e(C.source_snapshots?.runtime || 'time not exported')}. Not a live meter.</p>
       </section>
@@ -552,8 +555,9 @@ export function createDesktop(root, C, { leave }) {
           <div><b>${counts.refused ?? 0}</b><span>refused</span></div>
           <div><b>${counts.commits ?? 0}</b><span>commits</span></div>
         </div>
+        <div class="widget-mark">${markSVG(C, { cols: 27, size: 360 })}<p class="widget-mark-key" data-tier="derived"><span class="wk-pair"><i class="wk wk-cleared"></i>cleared a receipt</span><span class="wk-pair"><i class="wk wk-weighed"></i>weighed, declined</span><span class="wk-pair"><i class="wk wk-silent"></i>silent</span><span class="wk-days">one square is one day since 25 May</span></p></div>
         <p class="widget-commit" data-tier="export">Latest ${latest.sha ? `<code>${e(latest.sha)}</code>` : 'commit not exported'} · ${e(latest.subject || 'Subject not exported')}</p>
-        <p class="widget-note" data-tier="derived">${failing ? e((health.checks || []).filter((c) => !c.ok).map((c) => c.label).join(', ')) + (failing === 1 ? ' is failing at snapshot.' : ' are failing at snapshot.') : 'Every health check passing at snapshot.'} Export ${e(C.generated || 'unknown')}.</p>
+        <p class="widget-note" data-tier="derived">${failing ? `${failing} health check${failing === 1 ? '' : 's'} failing at snapshot: ` + e((health.checks || []).filter((c) => !c.ok).map((c) => c.label).join(', ')) + '.' : 'Every health check passing at snapshot.'} Export ${e(C.generated || 'unknown')}.</p>
       </section>
       <section class="widget widget-layers">
         <p class="widget-kicker">How I think</p>
@@ -1438,7 +1442,7 @@ export function createDesktop(root, C, { leave }) {
           ? `<button data-view="icons">as Icons</button><button data-view="list">as List</button><button data-view="gallery">as Gallery</button><hr><button data-lens-toggle role="menuitemcheckbox" aria-checked="${lens.isOpen()}">${lens.isOpen() ? '✓ ' : ''}Evidence lens <span>⇧⌘E</span></button><button data-appearance-toggle>Toggle appearance</button>`
           : kind === 'file'
             ? `<button data-app="finder">Open Finder</button><button data-app="notes">Open Notes</button><button data-app="hermes">Open Hermes</button><hr><button data-quick-look ${selectedDocument ? '' : 'disabled'}>Quick Look <span>Space</span></button><button data-compare-document ${selectedDocument?.kind === "kept" ? "" : "disabled"}>Compare Receipts…</button><button data-investigate ${caseForRef(casesState.data, selectedDocument) ? '' : 'disabled'}>Investigate…</button><button data-send-messages ${selectedDocument ? '' : 'disabled'}>Send to Messages</button><button data-put-folder ${selectedDocument && !deskFolder.has(selectedDocument) ? '' : 'disabled'}>${selectedDocument && deskFolder.has(selectedDocument) ? 'Already in the folder' : 'Put in the folder'}</button><button data-app="folder">Open the folder<span>${deskFolder.count() || ''}</span></button><button data-close-active>Close window</button>`
-            : `<button data-welcome>About this workspace</button><button data-app="voices">How I think</button><button data-app="settings">About this Mac</button><button data-app="activity">Activity Monitor</button><button data-mission>Mission Control <span>⌃↑</span></button><button data-timemachine>Time Machine…</button><button data-app="questions">Unfinished business<span>${(C.counts?.open_questions ?? 0) || ''}</span></button><button data-app="tape">Last night’s service…</button><hr>${memory.available
+            : `<button data-welcome>About this workspace</button><button data-app="voices">How I think</button><button data-app="settings">About this Mac</button><button data-app="activity">Activity Monitor</button><button data-mission>Mission Control <span>⌃↑</span></button><button data-timemachine>Time Machine…</button><button data-app="questions">Unfinished business<span>${(C.counts?.open_questions ?? 0) || ''}</span></button><button data-app="corrections">Corrections<span>${(C.counts?.corrections ?? 0) || ''}</span></button><button data-app="tape">Last night’s service…</button><hr>${memory.available
               ? `<button data-remember role="menuitemcheckbox" aria-checked="${memory.enabled()}">${memory.enabled() ? '✓ ' : ''}Remember this desk</button>${memory.enabled() ? '<button data-forget>Forget this desk</button><button data-export-place>Export my place…</button>' : ''}`
               : '<button disabled title="This browser has no working storage (private mode or storage disabled).">Remember this desk (unavailable here)</button>'}<hr><button data-leave>Return to room</button><a href="record.html">Read the public record</a>`;
     pop.innerHTML = items;
@@ -1721,7 +1725,7 @@ export function createDesktop(root, C, { leave }) {
       else if (!$('.mac-context').hidden) hideContext();
       else if (!$('.control-center').hidden) { $('.control-center').hidden = true; $('.mac-cc').focus(); }
       else if (!pop.hidden) { pop.hidden = true; $('.apple-menu').focus(); }
-      else if(active==='preview' || active==='comparison' || active==='investigation' || active==='timemachine' || active==='questions' || active==='tape') close(active);   // F5/C4/C8: Escape closes the active document window
+      else if(active==='preview' || active==='comparison' || active==='investigation' || active==='timemachine' || active==='questions' || active==='corrections' || active==='tape') close(active);   // F5/C4/C8: Escape closes the active document window
       return;
     }
     if (root.classList.contains('session-on') && ev.shiftKey && (ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === 'e' && !ev.target.closest('input,textarea,[contenteditable=true]')) { ev.preventDefault(); lens.toggle(); return; }
@@ -1781,6 +1785,15 @@ export function createDesktop(root, C, { leave }) {
       if (root.classList.contains('session-on')) return;
       $('[data-boot]').hidden = true;
       $('[data-login]').hidden = false;
+      /* The account picture. Not a monogram: a program has no face, and an
+         orange circle with an R in it is what you draw when you have decided
+         not to draw anything. See mark.mjs. */
+      const mark = $('[data-login-mark]');
+      if (mark && !mark.firstChild) {
+        mark.innerHTML = markSVG(C, { size: 96 });
+        const m = markSummary(C);
+        mark.title = `${m.days} days. ${m.cleared} cleared a receipt.`;
+      }
       $('[data-enter]').focus();
       // The greeting no longer rotates. It changed under the reader every
       // 4.2 seconds, which meant a slow reader watched the sentence they

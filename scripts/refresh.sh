@@ -76,6 +76,10 @@ node --test workspace/tests/*.test.mjs
 # The old guard only read workspace/ and passed for months while /about/
 # carried a full character cast in the nav of every interior page.
 node --test tests/*.test.mjs
+# Type and copy gates. They block on stop-ship and high only: a gate that
+# fails the build on taste is a gate somebody switches off. See
+# .review/STANDARD.md for what these can and cannot decide.
+node scripts/review/gates.mjs
 
 echo "6/7 minify css"
 # Defensive: cron environments have lost node from PATH before (2026-06-07).

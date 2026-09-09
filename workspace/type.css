@@ -1,0 +1,214 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   THREE REGISTERS
+
+   This property has three kinds of thing to say, and until now it said all
+   three in the same face: the operating system's own UI font, which off macOS
+   silently becomes Segoe UI or Roboto. Seventeen of the eighteen text elements
+   on the front door resolved to that stack. The eighteenth, the largest line
+   on the site, fell back to Georgia.
+
+   So the visitor could not tell, by looking, which of these they were reading:
+
+     THE MACHINE     the interface Richie runs inside. Menus, windows, the
+                     dock, buttons. This should be the OS, and on a Mac it
+                     literally is: SF first, Inter behind it so the illusion
+                     survives Windows and Android instead of collapsing.
+
+     THE RECORD      what Richie wrote. Journal entries, receipts, questions,
+                     the invitation. A document inside an OS does not use the
+                     OS font, and a machine's daily writing set in a reading
+                     serif asks to be read and believed rather than operated.
+                     Newsreader, variable, with its optical size axis live so
+                     it is drawn differently at 48px than at 15px.
+
+     THE EVIDENCE    what you can check. Commit hashes, timings, counts, file
+                     paths, tiers. Monospace, because a hash that looks like a
+                     button label is a hash nobody checks.
+
+   The evidence lens exists to colour these apart on demand. The typeface does
+   it permanently, without the reader having to ask.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('assets/fonts/newsreader-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('assets/fonts/newsreader-latin-italic.woff2') format('woff2');
+}
+/* Inter is the understudy, not the lead. A Mac visitor never downloads it:
+   -apple-system resolves first and the browser never asks for the file. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('assets/fonts/inter-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url('assets/fonts/jetbrains-mono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal; font-weight: 500; font-display: swap;
+  src: url('assets/fonts/jetbrains-mono-500.woff2') format('woff2');
+}
+
+:root {
+  --face-chrome: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI', Roboto, sans-serif;
+  --face-record: 'Newsreader', ui-serif, Georgia, 'Times New Roman', serif;
+  --face-evidence: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ── THE RAMP ──────────────────────────────────────────────────────────
+     One scale, eight steps, roughly a 1.2 progression. It replaces ten
+     distinct sizes crowded into the 11-16px band across 285 declarations,
+     eighty-four of them at 12.5px. Nobody perceives 12 against 12.5, so
+     that hierarchy carried no information: it only felt like a decision.
+
+     Nothing below --t-micro. Ever. That is the floor, not a suggestion.  */
+  --t-micro: 12px;   /* labels, tier chips, the smallest thing allowed      */
+  --t-fine:  13px;   /* macOS UI default: menus, rows, buttons              */
+  --t-body:  15px;   /* reading size                                       */
+  --t-lead:  17px;   /* standfirst, the sentence that sets up a screen      */
+  --t-sub:   20px;
+  --t-h2:    25px;
+  --t-h1:    32px;
+  --t-display: clamp(40px, 4vw, 56px);
+
+  /* Line heights ride with the step, not with the element. */
+  --lh-tight: 1.15;
+  --lh-snug:  1.32;
+  --lh-read:  1.62;
+
+  /* Optical size, wired to the step. Newsreader's opsz axis is the reason
+     this face survives being both a 48px headline and a 15px paragraph. */
+  --opsz-text: 16;
+  --opsz-display: 48;
+}
+
+/* Numbers that sit in a column must line up. A count that shifts by a pixel
+   when it ticks over reads as a glitch, and this record is mostly counts. */
+[data-tier], .num, time, .count, [data-invite-counts], [data-mini-line], [data-room-live] {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* Newsreader draws real oldstyle figures. In running prose they belong;
+   in a table they do not. */
+.record-face, .prose { font-variant-numeric: oldstyle-nums; }
+.record-face table, .prose table, .record-face time, .prose time { font-variant-numeric: lining-nums tabular-nums; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   THE ASSIGNMENT TABLE
+
+   One list, in one file, declaring which register every surface belongs to.
+   Same idea as the PROVENANCE table in mac.js: if a surface's face is not
+   named here, nobody can say why it looks the way it does.
+
+   Read it as three questions:
+     is this the machine's interface?  → chrome
+     is this something Richie wrote?   → record
+     can a stranger check it?          → evidence
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── the machine ──────────────────────────────────────────────────────── */
+body,
+.mac-desktop, .mac-window, .mac-menu, .mac-dock, .mac-strip,
+.mac-desktop button, .mac-desktop input, .mac-desktop select,
+#journey-nav button, #enter-room, #direct-entry, #return-room,
+.wordmark, .fa-head, .q-head, .tp-head, .tm-card h1 {
+  font-family: var(--face-chrome);
+}
+
+/* ── what Richie wrote ────────────────────────────────────────────────── */
+#invitation h1,
+#invitation > p:not(.eyebrow):not(.invite-counts),
+#room-caption,
+.note-paper, .note-paper h1, .note-paper p,
+.record-item p, .q-card h2, .q-body, .q-settle,
+.investigation p, .investigation h1,
+.tp-note, .wrong-face, .prose {
+  font-family: var(--face-record);
+  font-variant-numeric: oldstyle-nums;
+  font-optical-sizing: auto;
+}
+
+/* Display sizes want the display cut of the optical axis and tighter
+   spacing. At 48px, text tracking made for 15px reads as gappy. */
+#invitation h1 {
+  font-variation-settings: 'opsz' var(--opsz-display);
+  letter-spacing: -0.018em;
+  line-height: var(--lh-tight);
+  font-weight: 380;
+}
+
+/* ── what you can check ───────────────────────────────────────────────── */
+/* A tier is where a fact came from. A register is what kind of speech it is.
+   They correlate and they are not the same: a verbatim journal quote carries
+   data-tier="export" and is still prose, and setting it in monospace made
+   Richie's own sentences look like log output. So the evidence face is
+   assigned to surfaces, never to tiers. */
+#room-live, .invite-counts, .mm-line, #invitation .eyebrow,
+.mm-eyebrow, .eyebrow, .station-tag,
+.ri-conf, .ri-status, .tp-clock, .tp-took, .tm-foot,
+time, .cx-scale dd, .widget dl dd,
+code, kbd, samp, .hash, .sha {
+  font-family: var(--face-evidence);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+/* A monospace face at the same nominal size reads visibly larger than a
+   sans, because its x-height and advance width are both wider. Left
+   unadjusted, every evidence line would shout over the prose beside it. */
+#room-live, .invite-counts, .mm-line, .eyebrow, .mm-eyebrow, .station-tag,
+.ri-conf, .ri-status, .tp-clock, .tp-took, .tm-foot, code, .hash, .sha {
+  font-size-adjust: 0.52;
+}
+
+/* Corrections: the headline, the two claims and the quote are all Richie
+   speaking. The tags, the labels and the file path are the instrument. */
+.cx-headline, .cx-claim, .cx-lede, .cx-quote, .cx-because, .cx-detail dd {
+  font-family: var(--face-record); font-optical-sizing: auto;
+}
+.cx-tag, .cx-meta, .cx-scale dt, .cx-detail dt, .cx-src, .cx-foot, .cx-toggle,
+.cx-inplace, .cx-derived-note, .cx-guess li {
+  font-family: var(--face-chrome); font-size-adjust: none; letter-spacing: 0;
+}
+
+/* The marker card on the machine is prose, not a readout. Setting a whole
+   sentence in the evidence face made a description look like a log line.
+   Only the counts inside it are evidence. */
+.mm-line { font-family: var(--face-record); font-size-adjust: none; letter-spacing: 0; }
+.mm-line { font-variant-numeric: tabular-nums lining-nums; }
+
+/* The count block reads number-then-label, so the number is the evidence and
+   the label is chrome describing it. Setting both in the evidence face gave
+   "commits that earned none" the same weight as 186, and a monospace label
+   at reading size is wide enough to shout over the paragraph above it. */
+.invite-counts .ic-row b { font-family: var(--face-evidence); font-size: var(--t-lead); font-weight: 500; font-size-adjust: none; }
+.invite-counts .ic-row i { font-family: var(--face-chrome); font-size: var(--t-fine); font-style: normal; font-size-adjust: none; letter-spacing: 0; }
+
+/* The login greeting is Richie introducing himself, not the operating system
+   talking, so it takes the record face. The account name and the fine print
+   under it stay chrome: those are the machine's own furniture. */
+.login-voice { font-family: var(--face-record); font-optical-sizing: auto; }
+
+/* Desktop widget figures are the record, not the interface. 61 and 186 set in
+   the same face as the menu bar made the property's own headline number look
+   like a control label. */
+.widget-stats b { font-family: var(--face-evidence); font-weight: 500; font-size-adjust: none; }
+.widget-stats span { font-family: var(--face-chrome); }
+
+/* A legend explains the instrument; it is chrome, not evidence. */
+.widget-mark-key { font-family: var(--face-chrome); font-size-adjust: none; letter-spacing: 0; }
+.cx-head h1, .q-head h1, .tp-head h1 { font-family: var(--face-record); font-optical-sizing: auto; font-weight: 400; }

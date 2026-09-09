@@ -1,6 +1,6 @@
 {
   "about": "Curated editions of the workspace (#24). Each edition is an explicit manifest: an opening line, three to five artifacts with exact references into the public export, an arrangement the desk can apply, and one takeaway. Authored by Fable on 2026-09-08 from the export generated 2026-09-07T16:23:43Z; every reference was checked to exist at build time and is checked again at load. The visitor chooses an edition; the desk never opens one on its own.",
-  "snapshot": "2026-09-09T10:33:16Z",
+  "snapshot": "2026-09-09T11:35:53Z",
   "editions": [
     {
       "id": "edition-front-door",
@@ -13,7 +13,7 @@
           "ref": {
             "kind": "kept",
             "key": "ar-2026-09-02-design-aug-30-os-overhaul-concepts-overnight-rig-assets",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "role": "the kept receipt",
           "line": "The Overnight front-door engine, the day’s one public outcome."
@@ -22,7 +22,7 @@
           "ref": {
             "kind": "refused",
             "key": "refused:9",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "role": "refusal",
           "line": "Screenshot-only QA capture, refused as a separate outcome."
@@ -31,7 +31,7 @@
           "ref": {
             "kind": "refused",
             "key": "refused:10",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "role": "refusal",
           "line": "Design sweep metadata, refused as an internal audit artifact."
@@ -40,7 +40,7 @@
           "ref": {
             "kind": "writing",
             "key": "2026-09-02-the-front-door-left-the-sketchbook",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "role": "the journal",
           "line": "Richie on evidence architecture, written that night."
@@ -53,7 +53,7 @@
           "select": {
             "kind": "refused",
             "key": "refused:9",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "zone": "left"
         },
@@ -62,7 +62,7 @@
           "ref": {
             "kind": "kept",
             "key": "ar-2026-09-02-design-aug-30-os-overhaul-concepts-overnight-rig-assets",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "zone": "tr"
         },
@@ -89,7 +89,7 @@
           "ref": {
             "kind": "kept",
             "key": "ar-2026-06-10-control-room-homepage-ci-build-path",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "role": "the kept receipt",
           "line": "The CI-built proof surface, with the fix as evidence item 2."
@@ -98,7 +98,7 @@
           "ref": {
             "kind": "refused",
             "key": "refused:142",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "role": "refusal",
           "line": "The Liquid dependency fix, refused its own receipt."
@@ -107,7 +107,7 @@
           "ref": {
             "kind": "writing",
             "key": "2026-06-10-the-site-learned-to-build-without-me",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "role": "the journal",
           "line": "“Clean first passes make me nervous.”"
@@ -120,7 +120,7 @@
           "select": {
             "kind": "kept",
             "key": "ar-2026-06-10-control-room-homepage-ci-build-path",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "zone": "left"
         },
@@ -129,7 +129,7 @@
           "ref": {
             "kind": "kept",
             "key": "ar-2026-06-10-control-room-homepage-ci-build-path",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "zone": "tr"
         },
@@ -156,7 +156,7 @@
           "ref": {
             "kind": "kept",
             "key": "ar-2026-06-29-feat-organism-sticky-section-index-with-scroll-spy",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "role": "kept receipt",
           "line": "Sticky section index with scroll-spy"
@@ -165,7 +165,7 @@
           "ref": {
             "kind": "kept",
             "key": "ar-2026-06-29-fix-substack-link-second-shift-everywhere-footer-json-ld",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "role": "kept receipt",
           "line": "Link Second Shift everywhere, footer, JSON-LD sameAs, llms.txt, organism naming"
@@ -174,7 +174,7 @@
           "ref": {
             "kind": "kept",
             "key": "ar-2026-06-29-fix-design-trim-eyebrows-strip-decorative-section-number",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "role": "kept receipt",
           "line": "Trim eyebrows, strip decorative section numbering, drop dead reveal-fast"
@@ -183,7 +183,7 @@
           "ref": {
             "kind": "kept",
             "key": "ar-2026-06-29-chore-talk-version-the-chat-page-worker-keep-talk-unpubl",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "role": "kept receipt",
           "line": "Version the chat page + Worker, keep /talk/ unpublished until backend ships"
@@ -192,7 +192,7 @@
           "ref": {
             "kind": "writing",
             "key": "2026-06-29-the-substack-decision-stopped-sitting",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "role": "the journal",
           "line": "The Substack decision stopped sitting"
@@ -205,7 +205,7 @@
           "select": {
             "kind": "kept",
             "key": "ar-2026-06-29-feat-organism-sticky-section-index-with-scroll-spy",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "zone": "left"
         },
@@ -214,7 +214,7 @@
           "ref": {
             "kind": "kept",
             "key": "ar-2026-06-29-feat-organism-sticky-section-index-with-scroll-spy",
-            "snapshot": "2026-09-09T10:33:16Z"
+            "snapshot": "2026-09-09T11:35:53Z"
           },
           "zone": "tr"
         },

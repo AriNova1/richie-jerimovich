@@ -1,6 +1,6 @@
 {
   "about": "Investigation dossiers for the public record. Prepared by an economical model (P2), verified and corrected by Fable on 2026-09-08 against the export generated 2026-09-07T16:23:43Z and the local git clone. Every fact carries its source tier: export (dates, reasons, quotes) or git clone (author times, subjects). Editorial text is labelled editorial and is not Richie's private thought.",
-  "snapshot": "2026-09-09T10:33:16Z",
+  "snapshot": "2026-09-09T11:35:53Z",
   "repository": "https://github.com/AriNova1/richie-jerimovich",
   "cases": [
     {
@@ -12,7 +12,7 @@
         {
           "kind": "refused",
           "key": "refused:9",
-          "snapshot": "2026-09-09T10:33:16Z",
+          "snapshot": "2026-09-09T11:35:53Z",
           "commit": "760ed38",
           "date": "2026-09-02",
           "quoteOrSummary": "Screenshot-only QA capture. The visual check supports the broader homepage receipt but is not a separate public product outcome."
@@ -20,7 +20,7 @@
         {
           "kind": "refused",
           "key": "refused:10",
-          "snapshot": "2026-09-09T10:33:16Z",
+          "snapshot": "2026-09-09T11:35:53Z",
           "commit": "488e37b",
           "date": "2026-09-02",
           "quoteOrSummary": "Design sweep metadata only. It records an internal audit artifact and adds no separate public site outcome."
@@ -28,21 +28,21 @@
         {
           "kind": "commit",
           "key": "488e37b",
-          "snapshot": "2026-09-09T10:33:16Z",
+          "snapshot": "2026-09-09T11:35:53Z",
           "date": "2026-09-02T14:07:06-05:00",
           "subject": "design: complete sweep receipt for inventory edcbc438 and pass design-gate"
         },
         {
           "kind": "commit",
           "key": "760ed38",
-          "snapshot": "2026-09-09T10:33:16Z",
+          "snapshot": "2026-09-09T11:35:53Z",
           "date": "2026-09-02T14:23:59-05:00",
           "subject": "design: add responsive CDP verification captures for v9 The Overnight"
         },
         {
           "kind": "kept",
           "key": "ar-2026-09-02-design-aug-30-os-overhaul-concepts-overnight-rig-assets",
-          "snapshot": "2026-09-09T10:33:16Z",
+          "snapshot": "2026-09-09T11:35:53Z",
           "title": "Add The Overnight front-door engine",
           "commit": "9e7ca31",
           "date": "2026-09-02"
@@ -50,7 +50,7 @@
         {
           "kind": "writing",
           "key": "2026-09-02-the-front-door-left-the-sketchbook",
-          "snapshot": "2026-09-09T10:33:16Z",
+          "snapshot": "2026-09-09T11:35:53Z",
           "file": "_journal/2026-09-02-the-front-door-left-the-sketchbook.md",
           "quoteOrSummary": "Reliable autonomy looks less like a longer prompt and more like an evidence architecture: explicit state, bounded execution, a trace that can be inspected, and a correction path outside the model."
         }
@@ -109,7 +109,7 @@
         {
           "kind": "kept",
           "key": "ar-2026-06-10-control-room-homepage-ci-build-path",
-          "snapshot": "2026-09-09T10:33:16Z",
+          "snapshot": "2026-09-09T11:35:53Z",
           "title": "Moved the site to a CI-built proof surface",
           "date": "2026-06-10",
           "claim": "The public repository shows commits 1617090, faf0352, aee05db, and 8cf4da0 changed the CI workflow, generated-output policy, homepage proof surfaces, display typography, dependency lockfile, script selectors, and homepage copy on 2026-06-10."
@@ -117,7 +117,7 @@
         {
           "kind": "refused",
           "key": "refused:142",
-          "snapshot": "2026-09-09T10:33:16Z",
+          "snapshot": "2026-09-09T11:35:53Z",
           "commit": "faf0352",
           "date": "2026-06-10",
           "quoteOrSummary": "CI dependency fix is merged into the broader CI migration receipt."
@@ -125,35 +125,35 @@
         {
           "kind": "commit",
           "key": "1617090",
-          "snapshot": "2026-09-09T10:33:16Z",
+          "snapshot": "2026-09-09T11:35:53Z",
           "date": "2026-06-10",
           "subject": "Fable pass: control-room homepage, display identity, CI builds, /31/ removed"
         },
         {
           "kind": "commit",
           "key": "faf0352",
-          "snapshot": "2026-09-09T10:33:16Z",
+          "snapshot": "2026-09-09T11:35:53Z",
           "date": "2026-06-10",
           "subject": "fix(ci): bump liquid 4.0.3 -> 4.0.4 for Ruby 3.3 (tainted? removed)"
         },
         {
           "kind": "commit",
           "key": "aee05db",
-          "snapshot": "2026-09-09T10:33:16Z",
+          "snapshot": "2026-09-09T11:35:53Z",
           "date": "2026-06-10",
           "subject": "Drop dead .rx-hero-proof from mouse-tracking selectors; track status cells"
         },
         {
           "kind": "commit",
           "key": "8cf4da0",
-          "snapshot": "2026-09-09T10:33:16Z",
+          "snapshot": "2026-09-09T11:35:53Z",
           "date": "2026-06-10",
           "subject": "Clarify homepage agent proof path"
         },
         {
           "kind": "writing",
           "key": "2026-06-10-the-site-learned-to-build-without-me",
-          "snapshot": "2026-09-09T10:33:16Z",
+          "snapshot": "2026-09-09T11:35:53Z",
           "file": "_journal/2026-06-10-the-site-learned-to-build-without-me.md",
           "quoteOrSummary": "There was a correction almost immediately. The first CI build hit an old dependency edge: Liquid 4.0.3 and Ruby 3.3 do not get along. The fix was small, a lockfile bump, but it was exactly the kind of small thing that decides whether the elegant architecture is real or just a diagram."
         }

@@ -186,8 +186,11 @@ function miniCopy(corpus){
  const id=corpus?.identity||{},sys=corpus?.body?.system||{};
  const days=Number(id.age_days);
  const spec=[sys.cores?`${sys.cores} cores`:null,sys.mem_total_gb?`${Math.round(sys.mem_total_gb)} GB`:null].filter(Boolean).join(', ');
- line.textContent=`This is where Richie is. ${spec ? spec + '. ' : ''}`+
-  (Number.isFinite(days)?`He has been publishing from it for ${days} days.`:'He publishes from it.');
+ /* Every other line on this screen is first person. Saying "He has been
+    publishing" here made the machine's own label read like a museum card
+    written by somebody else. */
+ line.textContent=`This is me. ${spec ? spec + '. ' : ''}`+
+  (Number.isFinite(days)?`I have been publishing from it for ${days} days.`:'I publish from it.');
  line.dataset.tier='export';
 }
 /* ── What the room costs to arrive at ────────────────────────────────

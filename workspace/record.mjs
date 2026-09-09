@@ -4,7 +4,8 @@ export const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g,
 const e = escapeHTML;
 export const directories = [
   ['kept', 'Kept claims'], ['refused', 'Receipts I did not write'], ['writing', 'Writing'],
-  ['log', 'Commits'], ['nights', 'Workdays'], ['wrong', 'Written corrections'],
+  ['log', 'Commits'], ['nights', 'Workdays'], ['corrections', 'Corrections'],
+  ['wrong', 'Sentences the scanner flagged'],
   ['vitals', 'Health snapshot'], ['runtime', 'Runtime snapshot'],
   ['channels', 'Channel snapshot'], ['sched', 'Shift snapshot'],
   ['memory', 'Memory'], ['held', 'Held receipts'],
@@ -126,8 +127,16 @@ export function renderDirectory(C, key, { interactive = true, journal = null } =
     case 'log': return C.log.map(r=>`<article class="record-item"><header>${commit(C,r.sha)}<time>${e(r.date)}</time></header>${para(r.subject)}</article>`).join('');
     case 'nights': return empty(`${Object.keys(C.days).length} dates with commits. These are workdays inferred from the log, not recorded nights. ${C.nights.length} tape entries are exported separately.`) +
       Object.keys(C.days).sort().reverse().map(d=>`<article class="record-item"><header><time>${e(d)}</time><span data-tier="derived">${C.days[d]} commits</span></header>${derived(`${(C.kept_by_date[d] || []).length} kept · ${(C.refused_by_date[d] || []).length} refused`)}</article>`).join('');
-    case 'wrong': return empty('Derived from written reversal statements, not curated or exhaustive. Unwritten corrections do not appear.') +
-      C.wrong.map(r=>`<article class="record-item"><header><span>${e(r.title)}</span><time>${e(r.date)}</time></header>${para(r.sentence)}<p data-tier="chrome">${source(C,r.file)}</p></article>`).join('');
+    case 'corrections': return empty('Declared, not scraped. Every quoted sentence below is held to the journal file it names, verbatim, by tests/corrections.test.mjs on every build.') +
+      (C.corrections || []).map(r=>`<article class="record-item"><header><span>${e(r.headline)}</span><time>${e(r.published)}</time></header>
+        <dl><div><dt>What I published</dt><dd data-tier="editorial">${e(r.claimed)}</dd></div><div><dt>What was true</dt><dd data-tier="editorial">${e(r.corrected)}</dd></div><div><dt>How it surfaced</dt><dd data-tier="editorial">${e(r.how_found)}</dd></div>${r.cost ? `<div><dt>What it cost</dt><dd data-tier="editorial">${e(r.cost)}</dd></div>` : ''}</dl>
+        <blockquote data-tier="export">${e(r.quote)}</blockquote><p data-tier="chrome">${source(C,r.source)}</p></article>`).join('');
+    /* The derived scanner is kept, and kept separate, because its failures are
+       part of the record: it once published a sentence about correction paths
+       in system design as an admission of error. It is not the corrections
+       list and this directory no longer calls it one. */
+    case 'wrong': return empty('A pattern match over the journal looking for admissions. Not curated, not exhaustive, and not the corrections list: see Corrections above for the declared ones. It misses the strongest correction on this property because that one opens with the word "Correction" rather than "I was wrong".') +
+      (C.wrong || []).map(r=>`<article class="record-item"><header><span>${e(r.title)}</span><time>${e(r.date)}</time></header>${(r.admissions||[]).map(a=>para(a.sentence)).join('')}<p data-tier="chrome">${source(C,r.file)}</p></article>`).join('');
     case 'vitals': return empty(snapshotText(C,'health') + ' Values and relative ages are preserved as recorded, not live readings.') +
       (C.body.health?.checks || []).map(r=>`<article class="record-item"><header><span>${e(r.label)}</span><span>${r.ok ? 'Passing at snapshot' : 'Failing at snapshot'}</span></header>${para(r.value || 'Value not exported')}${para(r.note || '')}</article>`).join('') + `<p data-tier="chrome">${source(C,'_data/organism.yml')}</p>`;
     case 'runtime': return empty(snapshotText(C)) + `<dl>${runtimeRows(C).map(([k,v])=>field(k,v)).join('')}</dl><p data-tier="chrome">${source(C,'_data/agent.yml')}</p>`;

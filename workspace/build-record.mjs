@@ -12,7 +12,7 @@ const sections = directories.map(([key,title])=>`<section id="${key}" aria-label
 writeFileSync(new URL('record.html', import.meta.url), `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Richie: the public record</title><meta name="corpus-sha256" content="${hash}">
-<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="record.css"></head>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="type.css"><link rel="stylesheet" href="record.css"></head>
 <body class="record-page"><a class="skip-link" href="#record">Skip to the record</a>
 <header class="record-header"><p>RICHIE / PUBLIC RECORD</p><h1>Claims, evidence, and limits.</h1>
 <p>${C.counts.kept} kept claims · ${C.counts.refused} refusals · ${C.counts.writing} writing entries</p>
