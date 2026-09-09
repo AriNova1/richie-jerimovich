@@ -368,3 +368,40 @@ which is the correct failure.
 | Apps on the desktop | **19** (15 at the start) |
 | Findings logged this session | **61** |
 | Gate corrections logged | **10** |
+
+### Sweep 08 — the interior pages finished, and motion
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 62 | Engineer | **high** | **A third colour class the audit could not read.** `background-clip:text` paints the glyphs with a gradient and leaves `color` transparent. The journal book's cover title is gold on dark leather; the tool read `rgba(0,0,0,0)` and reported black on near-black at 1.35:1 across three viewports. | **fixed** — clipped and transparent inks are reported as **not measurable**, never given an invented ratio |
+| 63 | Engineer | medium | It reported `0px, under 12` on `/overnight/` for two scroll-driven elements mid scale-in. A rendered size of zero is type that has not been painted; the finding was the tool describing its own timing. | **fixed** |
+| 64 | Engineer | **high** | **The type gate could not see inside a `clamp()`.** `clamp(0.7rem, 1.6vw, 0.85rem)` renders at 11.2px on a narrow screen and reads in the source as a considered fluid decision. The gate reported 100% conformance over a rule that was under the floor on every phone. | **fixed** — it reads clamp minimums; the two that existed are fixed |
+| 65 | Colourist | **high** | **One accent doing two jobs.** `--burn` clears 11:1 on the dark ground and 2.57:1 on the cream ticket; `--amber` 11:1 and 1.42:1, which is not a colour, it is an absence. | **fixed** — paper variants, redefined inside each paper scope so a rule written on a ticket later cannot get it wrong |
+| 66 | Typographer | medium | `code` was sized `0.85em`. An em multiplies whatever it lands in, so inside `--step--1` body copy it compounded to 10.7px while every rule involved looked fine on its own. | **fixed** — `max(0.85em, var(--step--2))`, the floor stated rather than assumed |
+| 67 | Typographer | medium | The bound book scales as one object, so its cover type scales with it and "Vol. I · MMXXVI" came out at 9px on a tablet. | **fixed** — below a certain size legibility beats proportion, and the floor only engages where the object has shrunk past the point that proportion was worth anything |
+| 68 | Motion Director | **high** | **The motion system was a smear.** Fifteen distinct durations, four of them (120, 140, 150, 160ms) inside a 40ms band across eighteen declarations and three more (180, 200, 220) across seventeen. Five easing curves for three jobs. Same disease as the type ramp, in a seat I had never actually sat in. | **fixed** — three durations mapped to what moves, three easings mapped to which way |
+| 69 | Colourist | medium | A colour mixed 80% toward paper landed at 4.41:1 on the kitchen's ground. A near miss is a fail. | **fixed** — 75% is 4.86:1 and looks the same |
+
+### The interior pages, start to finish
+
+| pass | findings on production |
+|---|---|
+| before anything | **318** |
+| after the step collapse and the colour parser fix | 27 |
+| after the paper accents, the em floor and the book | **1** |
+| after the last colour mix | **0** |
+
+### Gate corrections, final count for the session
+
+**Thirteen.** Each is written down with the findings it invalidated. Four of
+them were in the legibility audit alone: a colour parser reading 0-1 floats as
+0-255, a straight apostrophe where the copy has a typographic one, a rendered
+size of zero read as small type, and `background-clip:text` read as black ink.
+Two were in the type gate: a phone rule compared against nothing, and a
+`clamp()` whose floor it could not see. One was in the reach gate reading
+`getAttribute` where it needed `.href`. One was a check in Run the Proof that
+compared a value against itself and could not fail.
+
+**This is the number I would look at first if I were Rick.** Every clean board
+above is worth exactly as much as the instruments behind it, and thirteen times
+today an instrument was lying.
