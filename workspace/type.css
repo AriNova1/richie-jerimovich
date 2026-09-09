@@ -233,3 +233,9 @@ code, kbd, samp, .hash, .sha {
 .chrome-start h1, .chrome-lede, .chrome-group strong { font-family: var(--face-record); font-optical-sizing: auto; }
 .chrome-group span, .chrome-group h2, .chrome-url, .chrome-home { font-family: var(--face-chrome); font-size-adjust: none; letter-spacing: 0; }
 .chrome-group code, .chrome-url { font-family: var(--face-evidence); font-size-adjust: 0.52; }
+
+/* Run the proof: the headline and the lede are Richie; the check names and
+   the methods are the instrument; the readings are evidence. */
+.pf-head h1, .pf-lede, .pf-external p { font-family: var(--face-record); font-optical-sizing: auto; }
+.pf-check h2, .pf-q, .pf-external h2, .pf-go, .pf-foot { font-family: var(--face-chrome); font-size-adjust: none; letter-spacing: 0; }
+.pf-method code, .pf-ms, .pf-detail, .pf-score { font-family: var(--face-evidence); font-size-adjust: 0.52; }

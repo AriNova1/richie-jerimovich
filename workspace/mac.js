@@ -14,6 +14,7 @@ import {mountTimeMachine} from './apps/timemachine.mjs';
 import {mountQuestions} from './apps/questions.mjs';
 import {mountCorrections} from './apps/corrections.mjs';
 import {mountSchedule} from './apps/schedule.mjs';
+import {mountProof} from './apps/proof.mjs';
 import {mountTape} from './apps/tape.mjs';
 import {PLAYLIST, trackCount} from './data/playlist.mjs';
 import {createLens} from './lens.mjs';
@@ -32,7 +33,7 @@ const appNames = {
   finder: 'Finder', notes: 'Notes', messages: 'Messages', chrome: 'Google Chrome',
   spotify: 'Spotify', claude: 'Claude', chatgpt: 'ChatGPT', hermes: 'Hermes',
   activity: 'Activity Monitor', terminal: 'Terminal', settings: 'System Settings',
-  contacts: 'Contacts', voices: 'How I think', trash: 'Trash', preview: 'Quick Look', comparison: 'Compare Receipts', investigation: 'Investigation', timemachine: 'Time Machine', folder: 'The Folder', questions: 'Unfinished Business', tape: 'Last Night', corrections: 'Corrections', schedule: 'Right Now'
+  contacts: 'Contacts', voices: 'How I think', trash: 'Trash', preview: 'Quick Look', comparison: 'Compare Receipts', investigation: 'Investigation', timemachine: 'Time Machine', folder: 'The Folder', questions: 'Unfinished Business', tape: 'Last Night', corrections: 'Corrections', schedule: 'Right Now', proof: 'Run the Proof'
 };
 const dockApps = ['finder', 'notes', 'messages', 'chrome', 'spotify', 'claude', 'chatgpt', 'hermes', 'activity', 'terminal', 'settings'];
 /* One paragraph, and it does not rotate. Three greetings cycling on a
@@ -175,6 +176,7 @@ export function createDesktop(root, C, { leave }) {
   appHost.register('questions', mountQuestions);
   appHost.register('corrections', mountCorrections);   /* the times a published claim was not true */
   appHost.register('schedule', mountSchedule);         /* what the machine is doing at this moment */
+  appHost.register('proof', mountProof);               /* the checks, run in the reader's own browser */
   appHost.register('tape', mountTape);   /* the run replaying itself */   /* what the record has not answered */
   appHost.register('folder', (host) => mountFolderApp(host, { folder: deskFolder, onOpenDocument: (ref) => openDocument(ref), onTake: takeFolder, onCopy: copyFolder, announce: (t) => announce(t) }));   // C8: the public record day by day
   appHost.register('investigation', (host, options) => {
@@ -674,7 +676,7 @@ export function createDesktop(root, C, { leave }) {
     w.dataset.appId = id;
     w.setAttribute('aria-label', appNames[id]);
     w.tabIndex = -1;
-    const tag = id === 'activity' ? 'Saved snapshot' : id === 'terminal' ? 'Verification commands' : id === 'hermes' ? 'Harness snapshot' : id === 'settings' ? 'About this Mac' : id === 'chrome' ? 'His own site' : id === 'schedule' ? 'Live from the machine' : id === 'corrections' ? 'Declared, quote checked' : '';
+    const tag = id === 'activity' ? 'Saved snapshot' : id === 'terminal' ? 'Verification commands' : id === 'hermes' ? 'Harness snapshot' : id === 'settings' ? 'About this Mac' : id === 'chrome' ? 'His own site' : id === 'schedule' ? 'Live from the machine' : id === 'proof' ? 'Runs in your browser' : id === 'corrections' ? 'Declared, quote checked' : '';
     w.innerHTML = `<header class="mac-titlebar">
       <div class="traffic">
         <button class="close" aria-label="Close ${appNames[id]}"><span>×</span></button>
@@ -811,6 +813,7 @@ export function createDesktop(root, C, { leave }) {
         <button data-app="schedule"><span>◷</span>Right now</button>
         <button data-app="hermes"><span>☿</span>Hermes</button>
         <button data-app="terminal"><span>›_</span>Verification</button>
+        <button data-app="proof"><span>✓</span>Run the proof</button>
         <small>On the site</small>
         <button data-app="chrome"><span>◎</span>Everything I published</button>
         <a href="record.html"><span>↗</span>Public record</a>
@@ -1525,7 +1528,7 @@ export function createDesktop(root, C, { leave }) {
           ? `<button data-view="icons">as Icons</button><button data-view="list">as List</button><button data-view="gallery">as Gallery</button><hr><button data-lens-toggle role="menuitemcheckbox" aria-checked="${lens.isOpen()}">${lens.isOpen() ? '✓ ' : ''}Evidence lens <span>⇧⌘E</span></button><button data-appearance-toggle>Toggle appearance</button>`
           : kind === 'file'
             ? `<button data-app="finder">Open Finder</button><button data-app="notes">Open Notes</button><button data-app="hermes">Open Hermes</button><hr><button data-quick-look ${selectedDocument ? '' : 'disabled'}>Quick Look <span>Space</span></button><button data-compare-document ${selectedDocument?.kind === "kept" ? "" : "disabled"}>Compare Receipts…</button><button data-investigate ${caseForRef(casesState.data, selectedDocument) ? '' : 'disabled'}>Investigate…</button><button data-send-messages ${selectedDocument ? '' : 'disabled'}>Send to Messages</button><button data-put-folder ${selectedDocument && !deskFolder.has(selectedDocument) ? '' : 'disabled'}>${selectedDocument && deskFolder.has(selectedDocument) ? 'Already in the folder' : 'Put in the folder'}</button><button data-app="folder">Open the folder<span>${deskFolder.count() || ''}</span></button><button data-close-active>Close window</button>`
-            : `<button data-welcome>About this workspace</button><button data-app="voices">How I think</button><button data-app="settings">About this Mac</button><button data-app="activity">Activity Monitor</button><button data-mission>Mission Control <span>⌃↑</span></button><button data-timemachine>Time Machine…</button><button data-app="questions">Unfinished business<span>${(C.counts?.open_questions ?? 0) || ''}</span></button><button data-app="corrections">Corrections<span>${(C.counts?.corrections ?? 0) || ''}</span></button><button data-app="schedule">Right now…</button><button data-app="tape">Last night’s service…</button><hr>${memory.available
+            : `<button data-welcome>About this workspace</button><button data-app="voices">How I think</button><button data-app="settings">About this Mac</button><button data-app="activity">Activity Monitor</button><button data-mission>Mission Control <span>⌃↑</span></button><button data-timemachine>Time Machine…</button><button data-app="questions">Unfinished business<span>${(C.counts?.open_questions ?? 0) || ''}</span></button><button data-app="corrections">Corrections<span>${(C.counts?.corrections ?? 0) || ''}</span></button><button data-app="schedule">Right now…</button><button data-app="proof">Run the proof…</button><button data-app="tape">Last night’s service…</button><hr>${memory.available
               ? `<button data-remember role="menuitemcheckbox" aria-checked="${memory.enabled()}">${memory.enabled() ? '✓ ' : ''}Remember this desk</button>${memory.enabled() ? '<button data-forget>Forget this desk</button><button data-export-place>Export my place…</button>' : ''}`
               : '<button disabled title="This browser has no working storage (private mode or storage disabled).">Remember this desk (unavailable here)</button>'}<hr><button data-leave>Return to room</button><a href="record.html">Read the public record</a>`;
     pop.innerHTML = items;
@@ -1808,7 +1811,7 @@ export function createDesktop(root, C, { leave }) {
       else if (!$('.mac-context').hidden) hideContext();
       else if (!$('.control-center').hidden) { $('.control-center').hidden = true; $('.mac-cc').focus(); }
       else if (!pop.hidden) { pop.hidden = true; $('.apple-menu').focus(); }
-      else if(active==='preview' || active==='comparison' || active==='investigation' || active==='timemachine' || active==='questions' || active==='corrections' || active==='schedule' || active==='tape') close(active);   // F5/C4/C8: Escape closes the active document window
+      else if(active==='preview' || active==='comparison' || active==='investigation' || active==='timemachine' || active==='questions' || active==='corrections' || active==='schedule' || active==='proof' || active==='tape') close(active);   // F5/C4/C8: Escape closes the active document window
       return;
     }
     if (root.classList.contains('session-on') && ev.shiftKey && (ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === 'e' && !ev.target.closest('input,textarea,[contenteditable=true]')) { ev.preventDefault(); lens.toggle(); return; }

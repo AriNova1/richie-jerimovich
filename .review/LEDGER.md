@@ -288,3 +288,41 @@ have was Richie's own back catalogue in it.
 | Gate findings | 5, **0 blocking** |
 | Places the headline number is published | **4**, all agreeing, guarded by a test |
 | Phone layout collisions on the front door | **2 → 0** |
+
+### Sweep 06 — RUN THE PROOF
+
+The property's whole claim is that a stranger can check it. Every receipt
+carries a verification command. The record says "download the export and check
+any line." None of that was ever something a visitor could do while standing
+here: they could read an assertion that the assertion was checkable.
+
+**Seven checks, run in the reader's own browser, on the files the page was
+built from.** Nothing precomputed, nothing staged. Each fetches, computes and
+reports, with the method printed beside it and the time it took.
+
+| Check | What it would catch |
+|---|---|
+| The export has not been edited | SHA-256 of `corpus.json` against the digest in `record.html` |
+| The counts are counted, not typed | `counts.kept` disagreeing with `kept.length` |
+| Every quoted correction is verbatim | a correction quoting a sentence nobody wrote |
+| No kept claim without evidence | a receipt published with an empty evidence list |
+| Every refusal names its commit | a refusal with no commit or no reason |
+| The account picture is drawn from the record | a lit square with no dated row behind it |
+| Every entry names its source file | writing the reader cannot open the source of |
+
+**One check has to leave the site**, and it is a button, not a default.
+`/privacy/` promises this site contacts nothing but the Mac it runs on, and a
+promise with an exception the reader did not choose is not a promise.
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 58 | Auditor | **high** | **One of the seven checks could not fail.** The mark check compared the mark against `kept_by_date`, which is the index the mark itself reads, so emptying it moved both sides together and the check stayed green. A decoration wearing a tick, inside the instrument whose entire subject is falsifiability. | **fixed** — it now compares against the `kept` and `refused` lists, which are different fields from a different file |
+
+`workspace/tests/proof.test.mjs` corrupts one thing at a time and asserts the
+matching check goes red. That test is what found 58. It is also what would stop
+a future edit quietly turning a check into a decoration.
+
+The whole set was falsified end to end in a real browser as well: intercepting
+the `corpus.json` fetch and tampering with one field made exactly the expected
+check go red, plus the hash check every time, which is correct because any edit
+to the export changes its digest.
