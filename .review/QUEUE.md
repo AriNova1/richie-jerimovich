@@ -3,28 +3,31 @@
 Append-only during a sweep. A tangent found mid-sweep is written here and left.
 Dropping an item is a ruling and gets a line in the ledger, not silence.
 
-## Building now
-- [x] Harness: STANDARD, css-model, gate-type, gate-copy, gate-live
-- [ ] **T1 · Two-register type system** (ledger 01, 02, 03) — the chrome is the OS, the record is a document; they must not be the same face
-- [ ] **T2 · One ramp** (04, 11) — kill 12.5px, collapse 10 sizes to a scale
-- [ ] **T3 · Frame violation in the aria-label** (07)
-- [ ] **T4 · `#return-room` at 10px + 11 sub-floor source rules** (05, 06)
-- [ ] **T5 · Corrections: fix the false positive, rebuild the surface** (08, 09)
+## Done in the 2026-09-09 run
+- [x] Harness: STANDARD, LEDGER, css-model, gate-type, gate-copy, gate-live, gate-reach, gate-motion, computed-diff, flatten-css, shot, contact-sheet, apply-ramp, audit-site
+- [x] **Three-register type system** and one eight-step ramp, 100% conformance
+- [x] **THE MARK** — the account picture and the Finder folder icons drawn from the record
+- [x] **CORRECTIONS** — declared, quote checked against the journal on every build
+- [x] **RIGHT NOW** — `/now.json` publishes the machine's live schedule, names withheld
+- [x] **THE BROWSER** — 16 orphaned pages reachable, measured at 0 by `gate-reach`
+- [x] **RUN THE PROOF** — seven falsifiable checks in the reader's own browser
+- [x] **SHOW ME AROUND** — the tour drives the real windows
+- [x] **GROWTH** — 28 recorded snapshots as sparklines in Activity Monitor
+- [x] Interior pages: 318 legibility findings on production to 0
+- [x] Motion scale: 15 durations to 3, 5 easings to 3
+- [x] `/about/` rewritten to the ruling: five pressures, each with the record it left
 
-## Ambitious builds on the table
-Ranked by value per unit of risk. Each gets the eight seats after it is built.
-
-1. **RIGHT NOW** — the site reflects what the machine is actually doing at this
-   moment, read from the real cron schedule and real last-run times. Answers the
-   dynamism complaint with nothing invented. Changes hour to hour, not per deploy.
-2. **THE WRONG WALL** — the property's whole thesis is "I publish what I refused
-   to claim." The 10 real admissions are its sharpest material and they render as
-   six identical-looking fragments in a folder. Give them an instrument.
-3. **RUN THE PROOF** — a visitor verifies one claim themselves against the git
-   clone, in the browser. Turns an assertion into a demonstration.
-4. **THE DENSITY FIELD** — 107 days, 299 commits, 61 receipts, 186 refusals as
-   one continuous field rather than day cards. Needs to prove it is not a third
+## Still on the table
+1. **THE DENSITY FIELD** — 107 days, 319 commits, 61 receipts, 186 refusals as
+   one continuous field rather than day cards. Has to prove it is not a third
    history instrument beside Time Machine and rewind before it earns a line.
+2. **The journal reading experience.** 98 entries are the largest body of
+   Richie's voice on the property and the best they get is a `<details>` list in
+   Finder or a separate flip book. Nothing in the workspace is built for reading
+   at length.
+3. **The dock's borrowed apps.** Chrome now carries the back catalogue and
+   Spotify carries the playlist. Claude, ChatGPT and Messages open real windows
+   but none of them has been through the eight seats.
 
 ## Rulings still owed to Rick (do not build unasked)
 - `/about/`: five characters wearing the word "layers" (ledger 10). Rename was
