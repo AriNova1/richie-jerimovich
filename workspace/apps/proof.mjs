@@ -115,17 +115,29 @@ export function buildChecks({ corpus, corpusText, statedHash }) {
       id: 'mark',
       name: 'The account picture is drawn from the record, not decorated',
       question: 'Do the days lit in the mark correspond to days the ledgers actually have entries on?',
-      method: 'Rebuild the day states from the export and check the lit days against kept_by_date and refused_by_date.',
+      method: 'Rebuild the day states from the receipt and refusal rows and check every square against them.',
       async run() {
         /* Built from the kept and refused LISTS, not from kept_by_date, which
            is what the mark itself reads. Comparing a derived index against the
            same derived index passes whatever you do to it: emptying
            kept_by_date moved both sides together and the check stayed green.
            workspace/tests/proof.test.mjs caught that, which is the whole
-           reason the falsification tests exist. */
+           reason the falsification tests exist.
+
+           On 2026-09-09 this check failed on nine squares, correctly. Both
+           ledgers were put on the commit clock, and this check was still
+           reading each refusal's `date`, which is the day the judgment was
+           written rather than the day of the commit it concerns. It now reads
+           `commit_date` for the same reason the mark does, and stays on the
+           row rather than the index. Its results before that date were
+           measured against a calendar the mark no longer uses. */
         const days = markDays(corpus);
-        const kept = new Set((corpus.kept || []).map((k) => k.date));
-        const refused = new Set((corpus.refused || []).map((r) => r.date));
+        /* Both sides resolved through the commit log, so the check and the
+           mark are answering "which day" the same way. */
+        const when = new Map((corpus.log || []).map((c) => [c.sha, c.date]));
+        const dayOf = (sha, fallback) => (sha && when.get(sha)) || fallback;
+        const kept = new Set((corpus.kept || []).map((k) => dayOf(k.commit, k.date)));
+        const refused = new Set((corpus.refused || []).map((r) => dayOf(r.commit, r.commit_date || r.date)));
         const wrong = days.filter((d) =>
           (d.state === 'cleared') !== kept.has(d.date) ||
           (d.state === 'weighed') !== (!kept.has(d.date) && refused.has(d.date)));

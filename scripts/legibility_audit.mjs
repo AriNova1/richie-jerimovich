@@ -22,6 +22,7 @@
    one measurement instead of 186, and every distinct design decision is
    still measured once per viewport.
    ══════════════════════════════════════════════════════════════════ */
+import { readFileSync } from 'node:fs';
 import { chromium } from '/Users/rickt/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -32,7 +33,23 @@ const args = process.argv.slice(2);
 const URL_ = args.find((a) => !a.startsWith('--')) || 'http://127.0.0.1:4713/';
 const SCROLL = args.includes('--scroll');
 const DESKTOP = args.includes('--desktop');
-const APPS = ['finder', 'notes', 'messages', 'settings', 'activity', 'hermes', 'terminal', 'contacts', 'voices', 'spotify', 'timemachine', 'folder', 'questions', 'corrections', 'schedule', 'proof', 'tape', 'trash', 'claude'];
+/* The app list used to be typed here, nineteen names long. It was written
+   when there were nineteen apps, and every window added after that was
+   invisible to this gate by default: chrome, chatgpt, comparison,
+   investigation and the rate had never once been measured. A hardcoded list
+   of surfaces is a gate that quietly stops covering the property.
+
+   It is now read out of the workspace's own name table, so a new app is
+   measured the moment it is named, and this throws rather than silently
+   shrinking if that table is ever restructured. */
+const APPS = (() => {
+  const src = readFileSync('workspace/mac.js', 'utf8');
+  const block = /const appNames = \{([\s\S]*?)\n\};/.exec(src);
+  if (!block) throw new Error('legibility_audit: cannot find appNames in workspace/mac.js');
+  const ids = [...block[1].matchAll(/(^|[\s,{])([a-z][a-z0-9]*)\s*:/g)].map((m) => m[2]);
+  if (ids.length < 15) throw new Error(`legibility_audit: appNames yielded only ${ids.length} apps`);
+  return [...new Set(ids)];
+})();
 const SIZES = [[1440, 900, 'desktop'], [1024, 768, 'tablet'], [390, 844, 'phone']];
 const MIN_PX = 12;
 

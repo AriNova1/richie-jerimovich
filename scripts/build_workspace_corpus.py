@@ -148,6 +148,23 @@ def corrections(entries):
     return out
 
 
+# ── the commit calendar ──────────────────────────────────────────────────
+# Read once and shared. Both ledgers are filed against it so that "what
+# happened on this day" means the same thing on every surface that asks.
+_COMMIT_DAYS = None
+
+
+def commit_dates():
+    global _COMMIT_DAYS
+    if _COMMIT_DAYS is None:
+        _COMMIT_DAYS = {}
+        for line in sh("git", "log", "--format=%h\x1f%cs", "--no-merges").splitlines():
+            parts = line.split("\x1f")
+            if len(parts) == 2:
+                _COMMIT_DAYS[parts[0]] = parts[1]
+    return _COMMIT_DAYS
+
+
 # ── receipts / refusals ──────────────────────────────────────────────────
 def receipts():
     out = []
@@ -158,8 +175,20 @@ def receipts():
                        "url": e.get("url", ""), "note": e.get("evidence_note", "")})
         v = r.get("verification") or {}
         wd = r.get("work_date")
+        # The commit this receipt is a receipt for. Every one of the 61 names
+        # at least one in its evidence, and for 60 of them it lands on the same
+        # day as work_date; the sixty first is a day out. Filing by the commit
+        # keeps this index on the same calendar as the refusals and the log.
+        sha = ""
+        for e in (r.get("evidence") or []):
+            m = re.search(r"\b([0-9a-f]{7,40})\b",
+                          f"{e.get('label','')} {e.get('url','')} {e.get('evidence_note','')}")
+            if m:
+                sha = m.group(1)
+                break
         out.append({
             "id": r.get("id"),
+            "commit": sha,
             "title": r.get("title", ""),
             "date": wd.isoformat() if hasattr(wd, "isoformat") else str(wd),
             "category": r.get("category", ""),
@@ -183,7 +212,10 @@ def refusals():
         d = r.get("rejected_date")
         out.append({
             "commit": str(r.get("commit", "")),
+            # The day the judgment was written. Kept, because it is a real
+            # fact and because the lag between the two is itself informative.
             "date": d.isoformat() if hasattr(d, "isoformat") else str(d),
+            "commit_date": commit_dates().get(str(r.get("commit", ""))),
             "reason": (r.get("reason") or "").strip(),
         })
     out.sort(key=lambda x: x["date"], reverse=True)
@@ -292,12 +324,44 @@ def main():
     } if isinstance(reading_raw, dict) else {}
     tape_index = load("tape_index.yml") or []
 
+    # ── one clock ────────────────────────────────────────────────────────
+    #
+    # These two indexes answer "what happened on this day", and until
+    # 2026-09-09 they answered it from two different calendars. A receipt was
+    # filed under its work_date, which is the day the work was committed. A
+    # refusal was filed under its rejected_date, which is the day the judgment
+    # was written down, and that lags the commit by up to eight days.
+    #
+    # THE MARK reads both, and reads its other two states straight from the
+    # commit log, so a day whose commits were all later declined was drawn
+    # "worked, nothing published" while the day the note was typed was drawn
+    # "weighed and declined". Nine days out of 108 were wearing the wrong
+    # state, and the dimmer one. The rate instrument would have inherited the
+    # same smear: nineteen refusals sat in the wrong month.
+    #
+    # Both are now filed under the date of the commit they concern, which is
+    # the one calendar they share and the one the reader can check in the log.
+    # The judgment date is not lost: it stays on each refusal as `date`.
+    commit_day = {r["sha"]: r["date"] for r in lg}
+
+    def by_commit(sha, fallback):
+        """Resolve a short sha against the published log, either direction."""
+        if not sha:
+            return fallback
+        if sha in commit_day:
+            return commit_day[sha]
+        head = sha[:7]
+        for k, v in commit_day.items():
+            if k.startswith(head) or sha.startswith(k[:7]):
+                return v
+        return fallback
+
     kept_by_date = {}
     for r in rc:
-        kept_by_date.setdefault(r["date"], []).append(r["id"])
+        kept_by_date.setdefault(by_commit(r.get("commit"), r["date"]), []).append(r["id"])
     ref_by_date = {}
     for r in rf:
-        ref_by_date.setdefault(r["date"], []).append(r["commit"])
+        ref_by_date.setdefault(r.get("commit_date") or r["date"], []).append(r["commit"])
 
     first = lg[-1]["date"] if lg else "2026-05-25"
     today = datetime.date.today()

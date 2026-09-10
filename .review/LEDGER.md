@@ -511,6 +511,39 @@ This is the argument for reading a page before deleting it. The retirement was
 the cheap part; the page had a true sentence on it that nothing else on the
 property was still saying.
 
+### Sweep 13 — THE RATE, and the two calendars underneath it
+
+Rick picked the density field. The Skeptic would not have it: the property
+already has four ways to look at its own history, and a field of days shaded by
+volume is THE MARK with more ink levels. What survived the objection was a
+different instrument entirely, because there was one question the property asks
+on its front door and answers nowhere.
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 103 | Skeptic | **high** | The front door claims he counts refusals as carefully as receipts and prints one ratio, 3.0. **Nothing on this property ever checked whether that ratio held.** It does not: on the commit calendar it runs 1.3, 2.7, 4.8, **16.5**, 1.5 across five months. In August he committed 60 times, ordinary volume for this machine, and kept **two** receipts. An average printed as a habit is the same defect as a window printed as a total. | **built** — THE RATE, the one window here that can tell you the headline is hiding something |
+| 104 | Auditor | **high** | **The two ledgers were on two calendars.** A receipt was filed under its work date, which is the day of its commit. A refusal was filed under the day the judgment was typed, which lags the commit by up to eight days. Nineteen refusals sat in the wrong month, and the rate instrument would have inherited every one of them. | **fixed** — both are filed against the commit log, the one calendar they share and the one a reader can check |
+| 105 | Auditor | **high** | The same defect had already reached THE MARK, whose whole claim is that the state is read and not chosen. It read `worked` and `silent` from the commit log and `weighed` from the judgment date. **Nine days of 108 were wearing the wrong state, and the dimmer one**: days whose commits were all declined were drawn as "worked, nothing published". `worked` was never 10 days. It is 1. | **fixed backwards over the mark, the folder icons, the login screen and the widget** |
+| 106 | Engineer | medium | The proof check for the mark failed on those nine squares, correctly, and was still reading the judgment date. It was re-clocked rather than relaxed, and its results before 2026-09-09 were measured against a calendar the mark no longer uses. | **re-clocked, and both of its sides now resolve through the log** |
+| 107 | Auditor | **high** | **The legibility gate's app list was typed by hand.** Nineteen names, written when there were nineteen apps. Chrome, ChatGPT, Compare Receipts, Investigation and the new window had **never once been measured**. A hardcoded list of surfaces is a gate that quietly stops covering the property. | **fixed** — the list is read out of the workspace's own name table, and the gate throws rather than shrinking if that table changes |
+| 108 | Colourist | medium | Widening it found five real failures immediately, all in Chrome, live since Sweep 04: a section heading at **4.45:1** and a path at **3.38:1**, both 12px, both under the floor. | **fixed** — both now use the neutral that window already had, so the palette shrank rather than grew |
+| 109 | Colourist | medium | My own first draft of the chart filled the peak month's refused band in red, which made one colour mean "refused" in four columns and "this is the peak" in the fifth. | **fixed** — one channel, one meaning; the emphasis is on the number, which is what the peak is a peak of |
+| 110 | Skeptic | medium | My own first draft drew a column as kept plus refused and labelled the axis volume. August judges 35 of its 60 commits, so a quarter of the month was missing from a chart claiming to show the month. | **fixed** — three bands, and the column is every commit |
+| 111 | Engineer | medium | The peak marker outlined the full height container rather than the bars, so a 60 commit month was drawn inside a box as tall as the 115 commit one. | **fixed** — the marker hugs the column's own total |
+| 112 | Engineer | **high** | **A falsification run caught my own guard being weaker than it looked.** The test meant to defend the clock could not tell the difference when the log lookup was removed, because the fixture's row date and its commit date agreed. A test that cannot fail is not a test. | **fixed** — a fixture whose row date contradicts the log, asserting the log wins |
+
+**Why this is not a fifth history browser.** Time Machine opens a date. The
+rewind scrubs the log. THE MARK shows what kind of day each day was. Growth
+shows counts over snapshots. All four answer *what happened when*. This one
+answers *is the claim this property is built on true over time*, and it can come
+back no. That is the whole reason it earns a window.
+
+**No classifier.** The peak month's copy reports that 30 of its 33 refusal
+reasons contain the literal word "journal", says that it is a count of a word
+and not a reading of them, and prints all 33 for the reader. Pattern-matching
+meaning out of prose is how the corrections list came to publish "a correction
+path outside the model" as an admission of error.
+
 ---
 
 ## Where the run ended
@@ -525,15 +558,17 @@ property was still saying.
 | Workspace legibility, 19 apps × 3 viewports | 0 on a broken tool | **0** on a working one |
 | Shipped surfaces unreachable from the front door | **16** | **0** |
 | Places the headline number is published | 4, two disagreeing | 4, agreeing, guarded by a test |
-| Apps on the desktop | 15 | **19** |
+| Apps on the desktop | 15 | **20** |
 | Dock apps that hold nothing | **2** | **0** |
 | Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
-| Tests | 48 | **125** |
+| Tests | 48 | **138** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **102** |
+| Findings logged | — | **112** |
 | Published surfaces contradicting another surface of the same property | **2** | **0**, both guarded by tests |
 | Rooms on the property | **2** | **1** |
-| **Times an instrument of mine was lying** | — | **15** |
+| Apps the legibility gate actually measures | **19**, typed by hand | **25**, read from the workspace |
+| Calendars the two ledgers are filed against | **2** | **1** |
+| **Times an instrument of mine was lying** | — | **17** |
 
 The last row is the one to read first. Every clean number above it is worth
 exactly what the instrument behind it is worth.
