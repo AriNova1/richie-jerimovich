@@ -17,7 +17,7 @@
 
    usage: node scripts/review/gate-voice.mjs [http://127.0.0.1:4716/] [--falsify] */
 import { chromium } from '/Users/rickt/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
-import { readFileSync, mkdirSync } from 'node:fs';
+import { mkdirSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -27,7 +27,11 @@ const args = process.argv.slice(2);
 const BASE = args.find((a) => a.startsWith('http')) || 'http://127.0.0.1:4716/';
 const FALSIFY = args.includes('--falsify');
 const OUT = join(tmpdir(), 'gate-voice'); mkdirSync(OUT, { recursive: true });
-const corpus = JSON.parse(readFileSync(new URL('../../workspace/corpus.json', import.meta.url), 'utf8'));
+/* The corpus the PAGE loaded, from the same origin, not the one in this
+   clone. CI regenerates the export on every deploy, so production is a day
+   ahead of any checkout by the evening; a gate that holds the page to a
+   stale file reports a defect that is its own. */
+const corpus = await (await fetch(BASE + 'workspace/corpus.json?gate=' + Date.now())).json();
 const results = [];
 const check = (ok, what, detail = '') => { results.push({ ok, what, detail }); console.log(`${ok ? '  ✓' : '  ✗'} ${what}${detail ? `  (${detail})` : ''}`); return ok; };
 

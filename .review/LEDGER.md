@@ -611,6 +611,7 @@ there.
 | 133 | Engineer | medium | **My first measuring instrument lied on its first run.** A colour threshold found nothing at frame 0, where the mini is plainly there, and from frame 63 returned confident boxes on the keyboard. The mini is warm grey on warm wood under a warm lamp: its dark bins are the desk's bright bins. **The nineteenth.** | **fixed** — replaced by correlation against the machine's own appearance, with a montage of eight frames a human checks, and a browser gate (`gate-voice.mjs`, 51 checks) that samples the pixels under the rendered dot and was made to fail four ways on purpose |
 | 134 | Skeptic | medium | On a phone the card hid its line entirely, because in August there was no room beside the invitation. The invitation is gone by .24 and the line stayed hidden for the other 76%. | **fixed** — the line shows once the invitation has gone; the pin under the header stays, the rule goes when the machine leaves the crop |
 | 135 | Auditor | low | A faded caption is still a link. `#room-caption` went to opacity 0 at .32 and kept "Read the public record" live under the exact spot the card now rests on. | **fixed** — inert when faded, as the invitation already was |
+| 136 | Engineer | low | **My own gate held the page to the wrong corpus.** It read `corpus.json` from the clone and compared it with a page that had loaded the export CI regenerates on every deploy. Run against production the evening after a commit, it reported two failures that were entirely its own: 108 days on the page, 107 in the file. | **fixed** — the gate fetches the corpus from the origin it is testing; re-run on production, 49 of 49 |
 
 ---
 
@@ -631,7 +632,7 @@ there.
 | Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
 | Tests | 48 | **159** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **135** |
+| Findings logged | — | **136** |
 | Published surfaces contradicting another surface of the same property | **2** | **0**, both guarded by tests |
 | Rooms on the property | **2** | **1** |
 | Apps the legibility gate actually measures | **19**, typed by hand | **25**, read from the workspace |
