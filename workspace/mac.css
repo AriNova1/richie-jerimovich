@@ -300,7 +300,8 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 .contact-links span{color:#6f6f74;font-size:var(--t-micro)}
 .vcard-link,.note-form button,.spotify-open,.model-app a{display:inline-block;margin-top:8px;padding:8px 12px;border-radius:8px;background:#0067d0;color:#fff!important;text-decoration:none;border:0}
 .note-form{padding:0 18px 18px;display:flex;flex-direction:column;gap:10px}
-.note-form textarea,.note-form input{width:100%;border:1px solid #ddd;border-radius:8px;padding:8px;font:inherit;font-size:var(--t-lead)}
+.note-form textarea,.note-form input{width:100%;border:1px solid #d0d0d5;background:#fff;color:#1d1d1f;border-radius:8px;padding:8px;font:inherit;font-size:var(--t-lead)}
+.note-form textarea::placeholder,.note-form input::placeholder{color:#67676b}
 .window-contacts{left:28%;top:12%;width:480px;height:560px}
 .contacts-shell{overflow:auto;width:100%}
 .window-spotify{left:14%;top:64px;width:min(880px,78%);height:calc(100% - 160px);background:#121212;color:#fff}
@@ -432,6 +433,17 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 .mac-desktop ::-webkit-scrollbar-track{background:transparent}
 
 /* Dark windows */
+/* The room sets color-scheme:dark on :root, and until 2026-09-10 the workspace
+   inherited it. Every form control without an explicit background rendered with
+   the dark user-agent style: the note to Rick was two near-black boxes inside a
+   white pane. It only happened coming through the room, because desktop.html
+   does not load the room stylesheet, so the two doors rendered the same window
+   differently and every gate had only ever seen the other one.
+
+   The workspace now states its own scheme, so the controls inside it follow the
+   appearance the workspace is actually in. */
+.mac-desktop[data-appearance=light]{color-scheme:light}
+.mac-desktop[data-appearance=dark]{color-scheme:dark}
 .mac-desktop[data-appearance=dark]{--window:#2c2c2e;--titlebar:#3a3a3c;--text:#f5f5f7;--muted:#75757a;--hairline:#ffffff1a;--stroke:#ffffff22}
 .mac-desktop[data-appearance=dark] .mac-menu{color:#f5f5f7;background:rgba(30,30,32,.55)}
 .mac-desktop[data-appearance=dark] .mac-menu button:hover{background:#ffffff18}

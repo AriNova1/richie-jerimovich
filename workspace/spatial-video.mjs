@@ -61,7 +61,7 @@ function go(p,{instant=false}={}){
  if(instant||graphicsFailed||motionOff()){tween=null;progress=p;syncScroll(p);draw();return;}
  tween={from:progress,to:p,start:performance.now(),duration:Math.max(400,Math.abs(p-progress)*8000)};schedule();
 }
-function leave(){bypassVideo=false;go(.48);}
+function leave(){bypassVideo=false;go(0);}  /* all the way out to the room, not the desk: leaving means leaving */
 function snapshot(){return {viewport:[innerWidth,innerHeight],mode:'video candidate 2',testOverrides:{motion:params.get('motion')},ownershipHistory:ownershipHistory.slice(-8),progress:Number(progress.toFixed(5)),owner,mounts,projection,rafPending:Boolean(raf),errors:[...errors],desktopSession:root.classList.contains('session-on')};}
 on(entry,'click',()=>{buildDesktop();go(1);});on(back,'click',leave);document.querySelectorAll('[data-stop]').forEach(b=>on(b,'click',()=>go(Number(b.dataset.stop))));
 on($('#direct-entry'),'click',e=>{if(!buildDesktop())return;e.preventDefault();bypassVideo=true;go(1,{instant:true});});

@@ -575,6 +575,16 @@ each of its five guards was broken on purpose and watched to fail.
 | 119 | Skeptic | **high** | The door counter opened on 2026-09-09 and read **57** by the next morning. Almost all of it was this site's own gates: the legibility audit alone loads the workspace three times per run, once per viewport, and it ran many times that day. Every one was a real open, which is what the counter claims to count, and **none of them was a person, which is the only thing the number is for.** A true measurement of the wrong thing is still the wrong answer. | **fixed at the cause** — the browser declines to count itself when it is being driven by automation, which every standards-following driver announces |
 | 120 | Editor | medium | Resetting the count silently would have been the same defect as a quiet fix: a reader who saw 57 and then zero deserves the reason more than they deserve the number. | **the first day's file is set aside rather than deleted, and `/privacy/` carries the whole account, dated** |
 
+### Sweep 15 — four things Rick saw that no gate did
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 121 | Auditor | **high** | **The two doors rendered different rooms.** `spatial.css` sets `color-scheme: dark` on `:root`. The workspace inherited it, so every form control without an explicit background got the dark user-agent style: the note to Rick was two near-black boxes in a white pane. It happened only coming through the room, because `desktop.html` does not load that stylesheet. **Every gate on this property audits `desktop.html`, so none of them had ever seen the document most visitors get.** | **fixed** — the workspace states its own scheme, and `scripts/review/gate-entry.mjs` opens both doors, walks the same apps, and diffs computed paint |
+| 122 | Colourist | medium | The iMessage composer set an explicit white background and the note form beside it set none. One had been protected from the inherited scheme by accident. | **fixed** — both explicit, placeholder included |
+| 123 | Editor | **high** | **The dock carried a drawn human face.** Ten product marks and one piece of character art, unlabelled, on a property whose entire argument is that Richie does not have a face. A stranger scanning the dock reads it as him. | **fixed** — the dock carries the ☿ glyph this site already uses for Hermes in the Finder sidebar; Nous Research's own mark stays inside the Hermes window, where it is labelled and credited |
+| 124 | Skeptic | medium | **"Back to the room" went to the desk.** `leave()` called `go(.48)`, the desk stop, not `go(0)`. Leaving the machine put you two feet away from it rather than back where you came in. | **fixed** — verified landing on stop 0 |
+| 125 | Engineer | low | My own first draft of the two-doors gate sampled everything inside `#crt`, so it compared the traffic lights of windows left open behind the current one and reported **91 differences that were entirely about which window had focus**. A gate that reports focus state as a paint defect is noise, and noise is how a real finding gets missed. | **fixed** — scoped to the window under test; proved by removing the colour-scheme declaration and watching it report 116 |
+
 ---
 
 ## Where the run ended
@@ -594,14 +604,15 @@ each of its five guards was broken on purpose and watched to fail.
 | Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
 | Tests | 48 | **144** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **120** |
+| Findings logged | — | **125** |
 | Published surfaces contradicting another surface of the same property | **2** | **0**, both guarded by tests |
 | Rooms on the property | **2** | **1** |
 | Apps the legibility gate actually measures | **19**, typed by hand | **25**, read from the workspace |
 | Calendars the two ledgers are filed against | **2** | **1** |
 | Characters per line in the journal, desktop | **132** | **69** |
 | Type size of the longest prose on the property | **12px** | **17px** |
-| **Times an instrument of mine was lying** | — | **17** |
+| Ways into the workspace that render identically | **1 of 2** | **2 of 2**, guarded |
+| **Times an instrument of mine was lying** | — | **18** |
 
 The last row is the one to read first. Every clean number above it is worth
 exactly what the instrument behind it is worth.

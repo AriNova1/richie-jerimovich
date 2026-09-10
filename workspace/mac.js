@@ -1459,7 +1459,13 @@ export function createDesktop(root, C, { leave }) {
     const checks = health.checks || [];
     body('hermes').innerHTML = `<div class="hermes-shell">
       <header class="hermes-head">
-        ${icon('hermes', 'hermes-mark')}
+        ${/* Nous Research's own mark, here, where it is labelled and credited.
+             It used to be the dock icon as well, unlabelled, which put a drawn
+             human face in a row of product marks on a property whose whole
+             argument is that Richie does not have one. A stranger scanning the
+             dock read it as him. The dock now carries the glyph this site
+             already uses for Hermes in the Finder sidebar. */''}
+        <img class="hermes-mark" src="assets/hermes-nous.png" alt="The Hermes mark, by Nous Research" draggable="false">
         <div>
           <p class="widget-kicker">Harness</p>
           <h1>Hermes Agent</h1>
