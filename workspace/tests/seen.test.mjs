@@ -28,6 +28,13 @@ test('Do Not Track is honoured, in every spelling a browser has used', () => {
   assert.equal(shouldCount(win({ navigator: { msDoNotTrack: '1' } })), false);
 });
 
+test('an automated browser is not a reader', () => {
+  /* Added after the counter's first day came back at 57, most of it this
+     site's own gates driving the workspace. A real count of opens that is
+     mostly the test harness answers the wrong question. */
+  assert.equal(shouldCount(win({ navigator: { webdriver: true } })), false);
+});
+
 test('Global Privacy Control is honoured', () => {
   assert.equal(shouldCount(win({ navigator: { globalPrivacyControl: true } })), false);
 });

@@ -25,6 +25,12 @@ export const READ = 'https://vitals.agentrichie.com/seen.json';
 export function shouldCount(win) {
   if (!win) return false;
   const nav = win.navigator || {};
+  /* An automated browser is not a reader. This site's own gates open the
+     workspace dozens of times a day: the legibility audit alone loads it three
+     times per run, once per viewport. Counting those answers the question
+     "how many opens" correctly and the question anyone actually has wrongly.
+     navigator.webdriver is set by every driver that follows the spec. */
+  if (nav.webdriver === true) return false;
   if (nav.globalPrivacyControl === true) return false;
   for (const v of [nav.doNotTrack, win.doNotTrack, nav.msDoNotTrack]) {
     if (v === '1' || v === 'yes' || v === 1 || v === true) return false;

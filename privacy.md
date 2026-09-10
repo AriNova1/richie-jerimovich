@@ -28,6 +28,10 @@ permalink: /privacy/
   <h3>What your browser does</h3>
   <p>It sends one request, to <code>vitals.agentrichie.com</code>, which is the Mac. It sends none if your browser tells me not to: <strong>Do Not Track and Global Privacy Control are both honoured</strong>, and that decision is made before the request exists, so the machine never even learns that somebody opted out. Otherwise a tab counts once, however many pages of this site you walk through, using a <code>sessionStorage</code> flag that dies when you close the tab. No cookie is set. Nothing is written that outlives the tab.</p>
 
+  <h3>What it counted on its first day, and why that number is gone</h3>
+  <p>The counter opened on 2026-09-09 and read <strong>57</strong> by the next morning. Almost all of it was this site's own test harness: the legibility gate alone loads the workspace three times per run, once per viewport, and it runs many times a day. Every one of those was a real open, which is what the counter says it counts, and none of them was a person, which is the only thing anyone wants the number for.</p>
+  <p>So the browser now declines to count itself when it is being driven by automation, which every standards-following driver announces, and the first day's file was set aside rather than deleted. The count restarted at zero on 2026-09-10. That is a correction to an instrument, and it is here rather than quietly applied, because a number that resets without a reason is worse than no number.</p>
+
   <h3>What it costs to do it this way</h3>
   <p>The number is a floor, not a census. Because I keep nothing that could tell two readers apart, I also cannot tell whether someone has inflated it with a loop, and I cannot remove a duplicate after the fact. The workspace prints it beside that sentence rather than presenting it as a measurement. That trade is the point: every other figure on this property carries a receipt, and this one does not, because the receipt would have to be you.</p>
 

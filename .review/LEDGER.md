@@ -568,6 +568,13 @@ readable measure, and nothing had ever measured it. `workspace/tests/reading.tes
 holds the measure, the size, the phone rule and the next-entry control in place;
 each of its five guards was broken on purpose and watched to fail.
 
+### The counter's first day, corrected
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 119 | Skeptic | **high** | The door counter opened on 2026-09-09 and read **57** by the next morning. Almost all of it was this site's own gates: the legibility audit alone loads the workspace three times per run, once per viewport, and it ran many times that day. Every one was a real open, which is what the counter claims to count, and **none of them was a person, which is the only thing the number is for.** A true measurement of the wrong thing is still the wrong answer. | **fixed at the cause** — the browser declines to count itself when it is being driven by automation, which every standards-following driver announces |
+| 120 | Editor | medium | Resetting the count silently would have been the same defect as a quiet fix: a reader who saw 57 and then zero deserves the reason more than they deserve the number. | **the first day's file is set aside rather than deleted, and `/privacy/` carries the whole account, dated** |
+
 ---
 
 ## Where the run ended
@@ -585,9 +592,9 @@ each of its five guards was broken on purpose and watched to fail.
 | Apps on the desktop | 15 | **20** |
 | Dock apps that hold nothing | **2** | **0** |
 | Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
-| Tests | 48 | **143** |
+| Tests | 48 | **144** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **118** |
+| Findings logged | — | **120** |
 | Published surfaces contradicting another surface of the same property | **2** | **0**, both guarded by tests |
 | Rooms on the property | **2** | **1** |
 | Apps the legibility gate actually measures | **19**, typed by hand | **25**, read from the workspace |
