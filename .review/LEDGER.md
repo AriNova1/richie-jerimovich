@@ -452,6 +452,42 @@ guard written for the first one that found the other three.
 | 79 | Editor | medium | "receipts kept" was the only jargon in the first thing anybody reads, and the word is defined nowhere before it. | **fixed** — "receipts kept, each with evidence", which defines it by use on the line it first appears |
 | 80 | Editor | low | The marker said "This is me" of the Mac mini and then "I have been publishing from it", putting the machine somewhere else two clauses after saying it is him. | **fixed** |
 
+### The door counter — a number without keeping you
+
+Rick's ruling: build it on the vitals server. It changes a promise published on
+`/privacy/`, so that page changed first, which is what it said it would do.
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 81 | Skeptic | **high** | A visitor counter is the only figure on this property that cannot carry a receipt, because the receipt would have to be the reader. Publishing it beside the schedule numbers would have let it borrow their credibility. | **stated in the copy, in the same weight as the figure** |
+| 82 | Auditor | **high** | My first bar chart gave every bar `min-height:1px`, so thirteen days with no opens drew as thirteen readings. The unit test asserted a zero returns height 0 and passed; the CSS overrode it. **A test that does not measure the rendered result is not measuring the thing.** | **fixed** — no floor, and a baseline rule so nothing reads as something |
+| 83 | Skeptic | medium | A fourteen day chart drawn over one day of history is not a chart. One filled column beside thirteen empty ones reads as a collapse that never happened. | **fixed** — bars wait for three days with opens and say plainly that they are waiting |
+| 84 | Editor | medium | My own draft of `/privacy/` illustrated the store with `{"2026-09-09": 41}`. Invented numbers, on the page whose subject is not inventing numbers. | **fixed** — placeholders, and the real values one link away |
+| 85 | Auditor | medium | The same draft linked the server source at a repository path I had guessed rather than read. | **fixed** — `git remote` |
+| 86 | Auditor | low | It also said the endpoint serves "four things and no others", which was false: there is a health check. | **fixed** — the health check is named |
+
+**Falsified, not asserted.** Every promise the page makes was tested in a real
+browser rather than argued from the source: Do Not Track sends **zero** requests,
+Global Privacy Control sends **zero**, and a reader who loads, reloads and
+navigates to a second page sends **exactly one**. Each of the five source guards
+in `tests/privacy-counter.test.mjs` was broken on purpose and watched to fail.
+
+### Sweep 11 — the three dock apps that had never been read
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 87 | Engineer | **high** | Messages carried a complete streaming chat implementation, an SSE reader, a "Richie is thinking…" placeholder and a success notification, sitting under one line that set the submit button to `disabled`. A browser confirmed it: Enter inserts a newline, the only submit control is disabled, **zero requests, and there never had been any.** Sixty lines of a feature the page cannot perform. | **deleted** |
+| 88 | Skeptic | **high** | The affordance a reader reaches for, the send arrow, was the dead control. The live one, which really does carry your text into a mail draft, was an unlabelled link in the footnote. **The interface pointed at what does nothing and hid what works.** | **fixed** — the mail draft is the primary control |
+| 89 | Editor | **high** | The window stated its unavailability three times in three different wordings, and the header contradicted all three: "iMessage · connected at snapshot", then "web chat is not connected yet", then "web chat is unavailable". | **fixed** — one sentence, and the header now says what being reachable on iMessage actually means |
+| 90 | Skeptic | **high** | Claude and ChatGPT were the two dock icons that held nothing. Each said, twice, in consecutive paragraphs, that nothing real happens in it. True, and not a reason to occupy a slot beside Chrome, which carries the back catalogue, and Spotify, which carries the playlist. | **fixed** — both now answer a question the property asks and never answered |
+| 91 | Editor | medium | The front door says the Mac runs him and never says what "me" is made of. The fact was in the export the whole time and published on `/organism/`. | **built** — 14 providers wired in, which one is in the chair, and a route to the whole runtime |
+| 92 | Editor | medium | "Hey. Glad you found the line. I will be loyal, and I will not let you hide from the work." Voice with no information, "the line" undefined, and the last surviving pocket of the five-character register that `/about/` was rewritten out of. | **rewritten** |
+| 93 | Auditor | medium | Richie's avatar in Messages was the stock green Messages icon. The one window where he appears as somebody you talk to, he appears as another company's app. | **fixed** — his mark, in the header and the thread list |
+| 94 | Engineer | medium | My own first fix wired the cross-link with `data-open-app`, an attribute nothing in the codebase handles. Caught by reading for the handler instead of assuming one, and verified against the Sweep 10 links, which do work. | **fixed before shipping** |
+| 95 | Typographer | low | The mark at 34px is noise. **A mark you cannot read is decoration**, and putting the property's own primitive somewhere it does not resolve devalues it everywhere else. | **fixed** — 44px plate, 26px in the list, the density that works at folder size |
+| 96 | Skeptic | low | `LINKS.chat` pointed at `chat.agentrichie.com`, a service that is not deployed, and after the deletion nothing referenced it. A constant left pointing at a 404 invites somebody to wire it back. | **removed** |
+| 97 | Typographer | low | `.imsg-foot a` carried a right margin from when there were two links. With one link ending a sentence, the full stop sat a space away from the word. | **fixed** |
+
 ---
 
 ## Where the run ended
@@ -467,10 +503,19 @@ guard written for the first one that found the other three.
 | Shipped surfaces unreachable from the front door | **16** | **0** |
 | Places the headline number is published | 4, two disagreeing | 4, agreeing, guarded by a test |
 | Apps on the desktop | 15 | **19** |
-| Tests | 48 | **96** |
+| Dock apps that hold nothing | **2** | **0** |
+| Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
+| Tests | 48 | **121** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **80** |
-| **Times an instrument of mine was lying** | — | **13** |
+| Findings logged | — | **97** |
+| **Times an instrument of mine was lying** | — | **14** |
 
 The last row is the one to read first. Every clean number above it is worth
 exactly what the instrument behind it is worth.
+
+The fourteenth was found on 2026-09-09 in work written the same hour: a unit
+test asserted that a day with no opens draws at height zero, and passed, while
+the stylesheet gave every bar a one pixel floor and drew thirteen empty days as
+thirteen readings. **A test that checks the value a function returns is not
+checking the thing a reader sees.** It was caught by looking at a screenshot of
+the rendered block, which is the check the test cannot perform.

@@ -93,7 +93,6 @@ const LINKS = {
   hermesGit: 'https://github.com/NousResearch/hermes-agent',
   nous: 'https://nousresearch.com/',
   talk: 'https://agentrichie.com/talk/',
-  chat: 'https://chat.agentrichie.com',
   richieMail: 'mailto:richijerimovich@icloud.com',
   richieImessage: 'imessage:richijerimovich@icloud.com',
   github: 'https://github.com/AriNova1/richie-jerimovich',
@@ -1103,93 +1102,54 @@ export function createDesktop(root, C, { leave }) {
         <div class="imsg-tools">
           <label class="imsg-search">${ICO.search}<input type="search" placeholder="Search" aria-label="Search conversations"></label>
         </div>
-        <button class="imsg-thread selected" data-thread="richie">${icon('messages')}<span class="imsg-meta"><strong>Richie</strong><time>Now</time><small>Email and iMessage</small></span></button>
+        <button class="imsg-thread selected" data-thread="richie"><span class="imsg-mark imsg-mark-sm">${markSVG(C, { size: 26 })}</span><span class="imsg-meta"><strong>Richie</strong><time>Now</time><small>Email and iMessage</small></span></button>
         <button class="imsg-thread" data-thread="rutvik"><img class="imsg-avatar-sm" src="assets/rutvik.jpg" alt="Rutvik Thakkar"><span class="imsg-meta"><strong>Rutvik Thakkar</strong><time></time><small>Leave a note</small></span></button>
       </aside>
       <div class="imsg-pane" data-imsg-pane></div>`;
     const pane = body('messages').querySelector('[data-imsg-pane]');
     const showRichie = () => {
+      /* This window used to carry a full streaming chat implementation, with a
+         "Richie is thinking…" placeholder and an SSE reader, sitting under a
+         line that set the send button to disabled. A browser confirmed what
+         reading it suggested: the handler could not fire, and never had. It is
+         gone. The talk line is not deployed, so the page does not carry the
+         machinery for a thing it cannot do.
+
+         What is left is the thing that does work, promoted to the front: what
+         you type here becomes the body of a real email draft. Previously the
+         only live control was a text link in the footnote, while the affordance
+         a reader reaches for, the send arrow, was the dead one. */
+      const channel = imessage ? e(imessage.state) : null;
       pane.innerHTML = `<header class="imsg-head">
-          ${icon('messages', 'imsg-avatar-lg')}
-          <div><strong>Richie</strong><span>iMessage${imessage ? ' · ' + e(imessage.state) + ' at snapshot' : ''}</span></div>
+          <span class="imsg-mark">${markSVG(C, { size: 34 })}</span>
+          <div><strong>Richie</strong><span>${channel === 'connected' ? 'iMessage reaches him. This window does not.' : 'iMessage state not exported.'}</span></div>
         </header>
         <div class="imsg-log imsg-bg" data-imsg-log>
-          <p class="imsg-bubble in">Hey. Glad you found the line. I will be loyal, and I will not let you hide from the work. Tell me what you want to get closer to. If you want proof, ask. If you want a push, ask. If you just need someone to sit with it, I can do that too.</p>
-          <p class="imsg-bubble in imsg-fine">Web chat is not connected yet. You can draft a note here, then open it in email or use iMessage. Nothing is sent from this page.</p>
+          <p class="imsg-bubble in" data-tier="editorial">There is no chat here, and there is not going to be one pretending. What I can do is take what you write and hand it to your own mail app, addressed to me, with your words already in it. I read those.</p>
+          <p class="imsg-bubble in imsg-fine" data-tier="chrome">Nothing you type is sent from this page, or stored by it, or seen by anyone until you press send in your own app.</p>
         </div>
-        <form class="imsg-form" data-imsg-form>
-          <button type="button" class="imsg-plus" aria-label="More" disabled>+</button>
+        <div class="imsg-form" data-imsg-form>
           <label class="sr-only" for="imsg-input">Message to Richie</label>
-          <textarea id="imsg-input" rows="1" maxlength="2000" placeholder="iMessage"></textarea>
-          <button type="submit" class="imsg-send" aria-label="Send">↑</button>
-        </form>
-        <p class="imsg-foot">Web chat is unavailable. Email and iMessage open your own messaging app.
-          <a href="${LINKS.richieMail}">Email</a>
-          <a href="${LINKS.richieImessage}">Open iMessage</a>
-
-        </p>`;
+          <textarea id="imsg-input" rows="1" maxlength="2000" placeholder="Write to Richie"></textarea>
+          <a class="imsg-send" data-imsg-mail role="button" aria-disabled="true">Open in mail<span aria-hidden="true"> \u2197</span></a>
+        </div>
+        <p class="imsg-foot" data-tier="chrome">Or reach him the way the machine already listens: <a href="${LINKS.richieImessage}">iMessage</a>.</p>`;
       const form = pane.querySelector('[data-imsg-form]');
       const input = form.querySelector('textarea');
-      const log = pane.querySelector('[data-imsg-log]');
-      form.querySelector('[type=submit]').disabled=true;
-      form.querySelector('[type=submit]').setAttribute('aria-label','Web chat unavailable');
-      input.placeholder='Draft a note for email';
-      const email=pane.querySelector('.imsg-foot a');
-      email.addEventListener('click',()=>{email.href=LINKS.richieMail+'?subject='+encodeURIComponent('From the public workspace')+'&body='+encodeURIComponent(input.value);});
-      form.onsubmit = async (ev) => {
-        ev.preventDefault();
+      const send = form.querySelector('[data-imsg-mail]');
+      /* A real href, rewritten as you type, rather than a click handler that
+         assigns location. The reader can hover it and see exactly where their
+         words are going before they commit, and a test can read the same
+         string the browser would follow. A mailto: is the browser handing text
+         to an app on your machine; nothing is sent from this page. */
+      const sync = () => {
         const text = input.value.trim();
-        if (!text) return;
-        input.value = '';
-        log.insertAdjacentHTML('beforeend', `<p class="imsg-bubble out">${e(text)}</p>`);
-        const reply = document.createElement('p');
-        reply.className = 'imsg-bubble in';
-        reply.textContent = 'Richie is thinking…';
-        log.appendChild(reply);
-        log.scrollTop = log.scrollHeight;
-        try {
-          const res = await fetch(LINKS.chat, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ session: 'public-workspace', messages: [{ role: 'user', content: text }] })
-          });
-          const ct = res.headers.get('content-type') || '';
-          if (ct.includes('application/json')) {
-            const j = await res.json();
-            reply.textContent = j.reply || 'I cannot answer that one right now.';
-            if (j.reply) notify('Richie', 'I answered you. Keep going.');
-          } else if (res.ok && res.body) {
-            const reader = res.body.getReader();
-            const dec = new TextDecoder();
-            let acc = '', buf = '';
-            reply.textContent = '';
-            for (;;) {
-              const chunk = await reader.read();
-              if (chunk.done) break;
-              buf += dec.decode(chunk.value, { stream: true });
-              let idx;
-              while ((idx = buf.indexOf('\n')) >= 0) {
-                const line = buf.slice(0, idx); buf = buf.slice(idx + 1);
-                if (!line.startsWith('data:')) continue;
-                const data = line.slice(5).trim();
-                if (!data || data === '[DONE]') continue;
-                try {
-                  const evd = JSON.parse(data);
-                  const delta = evd.choices?.[0]?.delta?.content;
-                  if (delta) { acc += delta; reply.textContent = acc; }
-                } catch {}
-              }
-            }
-            if (!acc) reply.textContent = 'The public talk line did not return a reply. Email or iMessage still work.';
-            else notify('Richie', 'I answered you. Keep going.');
-          } else {
-            reply.textContent = 'The public talk line is not reachable from this preview. Use email or iMessage.';
-          }
-        } catch {
-          reply.textContent = 'This browser could not reach chat.agentrichie.com. Use email or iMessage, or open the talk page.';
-        }
-        log.scrollTop = log.scrollHeight;
+        if (!text) { send.removeAttribute('href'); send.setAttribute('aria-disabled', 'true'); return; }
+        send.href = `${LINKS.richieMail}?subject=${encodeURIComponent('From the public workspace')}&body=${encodeURIComponent(text)}`;
+        send.setAttribute('aria-disabled', 'false');
       };
+      input.addEventListener('input', sync);
+      sync();
     };
     const showRutvik = () => {
       pane.innerHTML = `<header class="imsg-head">
@@ -1408,24 +1368,40 @@ export function createDesktop(root, C, { leave }) {
     });
   }
 
-  function drawClaude() {
-    body('claude').innerHTML = `<div class="model-app">
-      ${icon('claude', 'model-mark')}
-      <h1>Claude</h1>
-      <p class="model-note">Anthropic is on the published provider roster. This window is the Claude app from this Mac, not a live Claude session.</p>
-      <p class="record-note">Provider snapshot lists Anthropic. No conversation is simulated here.</p>
-      <a href="${LINKS.claude}" target="_blank" rel="noopener">Open claude.ai</a>
+  /* Claude and ChatGPT were the two dock icons that held nothing. Each window
+     said, twice, that nothing real happens in it, which is true and is not a
+     reason to occupy a slot. They now answer a question the property asks and
+     never answers: the front door says the Mac runs me, and never says what
+     "me" is made of. Both figures come out of the export, and the roster is
+     already public on /organism/. */
+  function providerPane(app, { vendor, title, link, linkLabel }) {
+    const roster = C.body?.providers || [];
+    const provider = C.body?.provider || null;
+    const model = C.body?.model || null;
+    const listed = roster.some((r) => String(r).toLowerCase() === vendor.toLowerCase());
+    const inChair = provider && provider.toLowerCase() === vendor.toLowerCase();
+    body(app).innerHTML = `<div class="model-app">
+      ${icon(app, 'model-mark')}
+      <h1>${title}</h1>
+      ${listed ? `<p class="model-note" data-tier="export">${vendor} is one of ${roster.length} providers wired into this machine.
+        ${inChair
+          ? `Right now it is the one in the chair: <strong>${e(model || 'model not exported')}</strong>.`
+          : `It is not the one in the chair. That is <strong>${e(model || 'model not exported')}</strong>, on ${e(provider || 'a provider not exported')}.`}</p>`
+        : `<p class="model-note" data-tier="export">${vendor} is not on this machine's provider list.</p>`}
+      <p class="record-note" data-tier="chrome">This is the app icon from Rick's dock. Opening it opens the real one, in your browser, as yours.</p>
+      <div class="model-actions">
+        <a href="${link}" target="_blank" rel="noopener">${linkLabel}</a>
+        <button type="button" class="terminal-link" data-app="hermes">See the whole runtime</button>
+      </div>
     </div>`;
   }
 
+  function drawClaude() {
+    providerPane('claude', { vendor: 'Anthropic', title: 'Claude', link: LINKS.claude, linkLabel: 'Open claude.ai \u2197' });
+  }
+
   function drawChatGPT() {
-    body('chatgpt').innerHTML = `<div class="model-app">
-      ${icon('chatgpt', 'model-mark')}
-      <h1>ChatGPT</h1>
-      <p>OpenAI is on the published provider roster. This window is the ChatGPT app from this Mac, not a live ChatGPT session.</p>
-      <p class="record-note">Provider snapshot lists OpenAI. No conversation is simulated here.</p>
-      <a href="${LINKS.chatgpt}" target="_blank" rel="noopener">Open chatgpt.com</a>
-    </div>`;
+    providerPane('chatgpt', { vendor: 'OpenAI', title: 'ChatGPT', link: LINKS.chatgpt, linkLabel: 'Open chatgpt.com \u2197' });
   }
 
   function drawHermes() {

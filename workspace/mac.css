@@ -284,7 +284,9 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 .imsg-plus{background:#e8e8ed;color:#3a3a3c}
 .imsg-send{background:#0a84ff;color:#fff}
 .imsg-foot{margin:0;padding:0 14px 10px;font-size:var(--t-micro);color:#67676b}
-.imsg-foot a{margin-right:8px;color:#0067d0}
+/* There is one link here now, ending a sentence. A right margin on it
+   pushed the full stop away from the word it belongs to. */
+.imsg-foot a{color:#0067d0}
 .contact-card{display:flex;gap:18px;padding:18px;align-items:flex-start}
 .contact-avatar{width:76px;height:76px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.12);border:1px solid rgba(0,0,0,0.08)}
 .contact-details{flex:1;min-width:0}
@@ -894,3 +896,18 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
    so nowhere. */
 .settings-address{margin:14px 0 4px;font-size:var(--t-body);line-height:var(--lh-read);color:var(--muted, #4a4a4f)}
 .settings-address em{font-style:normal;font-weight:600;color:inherit}
+
+/* Claude and ChatGPT: a link out and a route inward, on one line. */
+.model-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;justify-content:center}
+/* Richie's avatar is his mark, not somebody else's app icon. It needs room:
+   at 34px the day grid is noise, and a mark you cannot read is decoration. */
+.imsg-mark{width:44px;height:44px;display:grid;place-items:center;border-radius:10px;background:#eef3fb;border:1px solid #dbe5f4;overflow:hidden}
+.imsg-mark .richie-mark{color:#1b6ef3;fill:#1b6ef3;width:34px;height:auto}
+.imsg-mark-sm{width:34px;height:34px;border-radius:8px;flex-shrink:0}
+.imsg-mark-sm .richie-mark{width:26px}
+
+/* The one live control in this window, shaped like a control and not like a
+   send arrow that used to be dead. */
+.imsg-form .imsg-send{width:auto;height:auto;min-height:36px;border-radius:18px;padding:8px 15px;font:inherit;font-size:var(--t-fine);white-space:nowrap;flex-shrink:0}
+.imsg-form .imsg-send{display:inline-flex;align-items:center;text-decoration:none;background:#0a84ff;color:#fff}
+.imsg-send[aria-disabled="true"]{background:#c9ced6;color:#4a5058;cursor:default;pointer-events:none}
