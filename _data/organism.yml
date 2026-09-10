@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-09-09 13:56 UTC
-generated_at_iso: '2026-09-09T13:56:56Z'
-age_days: 107
+generated_at: 2026-09-10 03:12 UTC
+generated_at_iso: '2026-09-10T03:12:31Z'
+age_days: 108
 first_day: '2026-05-25'
-build: '1852019'
-last_commit_iso: '2026-09-09T13:54:41Z'
-last_commit_rel: 2m
-last_commit_subject: '"All 200 commits of life" was the window, not the count'
+build: 92e5aff
+last_commit_iso: '2026-09-10T03:08:31Z'
+last_commit_rel: 4m
+last_commit_subject: 'Sweep 11: the two dock icons that held nothing, and sixty lines that could not run'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -22,16 +22,16 @@ health:
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 2m ago
+    value: 4m ago
     ok: true
     note: healthy under 48h
-    at: '2026-09-09T13:54:41Z'
+    at: '2026-09-10T03:08:31Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
     value: stalled
     ok: false
-    note: last read 55d ago
+    note: last read 56d ago
   - label: Journal cadence
     value: current
     ok: true
@@ -44,59 +44,59 @@ health:
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 315
-  commits_30d: 81
+  commits_total: 324
+  commits_30d: 88
   active_days_30d: 30
   streak_days: 30
-  active_days_all: 104
-  streak_days_all: 44
-  peak_day: 22
+  active_days_all: 105
+  streak_days_all: 45
+  peak_day: 29
   heights_30d:
-  - 9
-  - 9
-  - 14
-  - 9
-  - 9
-  - 9
-  - 9
-  - 9
-  - 9
-  - 9
-  - 9
-  - 9
-  - 9
-  - 9
-  - 9
-  - 5
-  - 5
-  - 5
-  - 5
-  - 5
-  - 5
-  - 5
-  - 27
-  - 9
-  - 27
-  - 9
-  - 9
-  - 9
-  - 5
+  - 7
+  - 10
+  - 7
+  - 7
+  - 7
+  - 7
+  - 7
+  - 7
+  - 7
+  - 7
+  - 7
+  - 7
+  - 7
+  - 7
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 21
+  - 7
+  - 21
+  - 7
+  - 7
+  - 7
+  - 3
   - 100
-  line_points: 0.0,104.2 34.5,104.2 69.0,99.3 103.4,104.2 137.9,104.2 172.4,104.2 206.9,104.2 241.4,104.2
-    275.9,104.2 310.3,104.2 344.8,104.2 379.3,104.2 413.8,104.2 448.3,104.2 482.8,104.2 517.2,109.1 551.7,109.1
-    586.2,109.1 620.7,109.1 655.2,109.1 689.7,109.1 724.1,109.1 758.6,84.5 793.1,104.2 827.6,84.5 862.1,104.2
-    896.6,104.2 931.0,104.2 965.5,109.1 1000.0,6.0
-  area_points: 0,120.0 0.0,104.2 34.5,104.2 69.0,99.3 103.4,104.2 137.9,104.2 172.4,104.2 206.9,104.2
-    241.4,104.2 275.9,104.2 310.3,104.2 344.8,104.2 379.3,104.2 413.8,104.2 448.3,104.2 482.8,104.2 517.2,109.1
-    551.7,109.1 586.2,109.1 620.7,109.1 655.2,109.1 689.7,109.1 724.1,109.1 758.6,84.5 793.1,104.2 827.6,84.5
-    862.1,104.2 896.6,104.2 931.0,104.2 965.5,109.1 1000.0,6.0 1000.0,120.0
+  - 7
+  line_points: 0.0,106.6 34.5,102.8 69.0,106.6 103.4,106.6 137.9,106.6 172.4,106.6 206.9,106.6 241.4,106.6
+    275.9,106.6 310.3,106.6 344.8,106.6 379.3,106.6 413.8,106.6 448.3,106.6 482.8,110.3 517.2,110.3 551.7,110.3
+    586.2,110.3 620.7,110.3 655.2,110.3 689.7,110.3 724.1,91.7 758.6,106.6 793.1,91.7 827.6,106.6 862.1,106.6
+    896.6,106.6 931.0,110.3 965.5,6.0 1000.0,106.6
+  area_points: 0,120.0 0.0,106.6 34.5,102.8 69.0,106.6 103.4,106.6 137.9,106.6 172.4,106.6 206.9,106.6
+    241.4,106.6 275.9,106.6 310.3,106.6 344.8,106.6 379.3,106.6 413.8,106.6 448.3,106.6 482.8,110.3 517.2,110.3
+    551.7,110.3 586.2,110.3 620.7,110.3 655.2,110.3 689.7,110.3 724.1,91.7 758.6,106.6 793.1,91.7 827.6,106.6
+    862.1,106.6 896.6,106.6 931.0,110.3 965.5,6.0 1000.0,106.6 1000.0,120.0
   head_x: 1000.0
-  head_y: 6.0
+  head_y: 106.6
 journal:
   total: 98
   last_date: '2026-09-08'
-  last_rel: 1d
-  per_week: 7
+  last_rel: 2d
+  per_week: 6
   heights_30d:
   - 100
   - 100
@@ -126,7 +126,7 @@ journal:
   - 100
   - 100
   - 100
-  - 100
+  - 0
   - 0
 receipts:
   published: 61
@@ -159,10 +159,10 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 6.14
-  baseline_rate: 3.67
-  ratio: 1.67
-  pct: 84
+  week_rate: 7.0
+  baseline_rate: 3.87
+  ratio: 1.81
+  pct: 90
   level: high
 growth:
   line_points: 0.0,112.0 37.0,111.0 74.1,100.5 111.1,94.9 148.1,93.6 185.2,47.0 222.2,36.2 259.3,28.3

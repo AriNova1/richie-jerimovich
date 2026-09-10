@@ -365,6 +365,16 @@ def main():
             "channels": (agent.get("runtime") or {}).get("channels") or [],
             "providers": (agent.get("runtime") or {}).get("providers") or [],
             "system": agent.get("system") or {},
+            # Which memory store the counts describe, and when that store last
+            # moved, read from the file's own modification time. mnemosyne was
+            # decommissioned on 2026-07-02 and every surface kept drawing its
+            # final values as a rising line. A window that can read the date
+            # does not need to be told the store is frozen.
+            "memory": {
+                k: (agent.get("memory") or {}).get(k)
+                for k in ("facts", "kg_edges", "gists", "working", "store", "measured_at")
+                if (agent.get("memory") or {}).get(k) is not None
+            },
             "shift": agent.get("shift") or {},
             "health": (organism.get("health") or {}),
             "activity": (organism.get("activity") or {}),

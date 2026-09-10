@@ -488,6 +488,29 @@ in `tests/privacy-counter.test.mjs` was broken on purpose and watched to fail.
 | 96 | Skeptic | low | `LINKS.chat` pointed at `chat.agentrichie.com`, a service that is not deployed, and after the deletion nothing referenced it. A constant left pointing at a 404 invites somebody to wire it back. | **removed** |
 | 97 | Typographer | low | `.imsg-foot a` carried a right margin from when there were two links. With one link ending a sentence, the full stop sat a space away from the word. | **fixed** |
 
+### Sweep 12 — /kitchen/, salvaged and retired
+
+Rick's ruling: salvage, then retire. The salvage is why the ruling was right.
+One wall of that room knew something the rest of the property had forgotten.
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 98 | Auditor | **high** | **Activity Monitor drew three dead numbers as a rising line.** "Facts held", "Connections between them" and "Summaries kept" carried sparklines and the note "+317 across 28 snapshots over 82 days". Every word accurate about the window and wrong about the fact: the series counts `mnemosyne`, decommissioned **2026-07-02**, and has been flat since **2026-07-04** across 17 snapshots. The chart drew a plateau where the truth was a retirement. | **fixed** — the memory rows are out of the growth list, carry the date the store last moved, and are deliberately drawn without a line |
+| 99 | Auditor | **high** | The Hermes window said "Memory contents and store measurements are not included in this public export" while Activity Monitor, in the same app, in the same window frame, drew those measurements from the same file. **The second time this run that two surfaces of one property contradicted each other with equal confidence.** | **fixed** — it now names the store, the count and the date, and routes to the rest |
+| 100 | Skeptic | medium | The salvaged line was itself half wrong. `/kitchen/` said "memory store, frozen 2026-07-02 · 2,528 facts on ice", printing the live current count under the label of a frozen archive. It was right about the freeze and wrong about the number. | **both halves corrected where the numbers now live, and the error is named on the retirement page** |
+| 101 | Engineer | medium | That freeze date was typed into `kitchen.md` by hand. A date a human typed is a date that goes stale silently. | **fixed** — `collect_agent_vitals()` exports the store's own modification time, so the page reads when the thing it quotes last moved |
+| 102 | Editor | medium | Two rooms on one property. `/kitchen/` was a CSS-3D room of four data walls built in July, when the front of this site was a page; the front is now a room with a machine in it and a workspace inside the machine. | **retired** — the URL still answers, with what was there, what it was right about, what it got wrong, and where each wall went |
+
+**The gate that would have caught it.** `tests/live-series.test.mjs` reads the
+`GROWTH` list out of the workspace source, checks each field against the
+exported history, and fails if anything charted as growth has not moved in the
+last eight snapshots. Proved by putting `facts` back in the list: it fails and
+names the date, *unchanged across the last 16 snapshots, since 2026-07-04*.
+
+This is the argument for reading a page before deleting it. The retirement was
+the cheap part; the page had a true sentence on it that nothing else on the
+property was still saying.
+
 ---
 
 ## Where the run ended
@@ -505,10 +528,12 @@ in `tests/privacy-counter.test.mjs` was broken on purpose and watched to fail.
 | Apps on the desktop | 15 | **19** |
 | Dock apps that hold nothing | **2** | **0** |
 | Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
-| Tests | 48 | **121** |
+| Tests | 48 | **125** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **97** |
-| **Times an instrument of mine was lying** | — | **14** |
+| Findings logged | — | **102** |
+| Published surfaces contradicting another surface of the same property | **2** | **0**, both guarded by tests |
+| Rooms on the property | **2** | **1** |
+| **Times an instrument of mine was lying** | — | **15** |
 
 The last row is the one to read first. Every clean number above it is worth
 exactly what the instrument behind it is worth.

@@ -22,6 +22,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone, date, timedelta
 from urllib.parse import urlparse
 
@@ -822,6 +823,17 @@ def collect_agent_vitals():
     )
 
     # ---- memory store sizes (mnemosyne) ----
+    #
+    # This reads mnemosyne.db, and mnemosyne was decommissioned on 2026-07-02.
+    # The counts are real counts of a real store; what stopped being true is
+    # that they are current. Every surface that drew them as a rising line was
+    # drawing a dead store's final values, flat since 10 July, labelled growth.
+    #
+    # The file's own modification time is exported alongside the counts so no
+    # page has to be told the store is frozen: it can read when the thing it is
+    # quoting last moved, and say so. The live store is Hindsight, which has no
+    # sanitized collector here, so this publishes nothing about it rather than
+    # guessing.
     mdb = os.path.join(HERMES, "mnemosyne/data/mnemosyne.db")
     memory = {
         "facts": _sql_count(mdb, "facts"),
@@ -832,6 +844,13 @@ def collect_agent_vitals():
         "consolidated": _sql_count(mdb, "consolidated_facts"),
     }
     memory = {k: v for k, v in memory.items() if v is not None}
+    memory["store"] = "mnemosyne"
+    try:
+        memory["measured_at"] = time.strftime(
+            "%Y-%m-%d", time.localtime(os.path.getmtime(mdb))
+        )
+    except OSError:
+        memory["measured_at"] = None
     # precompute bar geometry for the four headline stores (avoids Liquid math)
     bar_src = [
         ("knowledge graph", memory.get("kg_edges")),

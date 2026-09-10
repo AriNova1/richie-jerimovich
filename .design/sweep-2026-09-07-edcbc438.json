@@ -1,0 +1,537 @@
+{
+  "property": "richie-jerimovich",
+  "date": "2026-09-07",
+  "inventoryHash": "edcbc4388bafa860",
+  "session": "2026-09-07 Sequoia Mac rebuild",
+  "work": "Take over THE ZOOM Mac prototype and rebuild it as a Sequoia desktop: Chicago wallpaper, glass menu bar and Dock, Control Center, desktop widgets, Finder list/icon/gallery views, three-pane Notes, Activity/Terminal/Hermes/Safari/Settings, ultrawide tiling, and a regenerated 3D monitor plate. Data remains corpus.json plus labeled host telemetry.",
+  "constraints": [],
+  "craft": [
+    {
+      "family": "direction",
+      "applied": "apple-design",
+      "note": "Sequoia materials, squircle Dock, Control Center, and desktop widgets follow apple-design plus frontend-design. The owner asked for a faithful Mac mini workspace, not an unbranded schematic."
+    },
+    {
+      "family": "motion",
+      "applied": "emil-animation-framework",
+      "note": "Pointer capture still drags 1:1. Dock hover is a short ease-out scale gated to fine pointers. Keyboard Spotlight has no animation. Reduced motion kills ornamental transform."
+    },
+    {
+      "family": "type",
+      "applied": "better-typography",
+      "note": "SF-system stack, tabular numbers on the Chicago clock, 16px search inputs on mobile, tighter tracking on Finder and Notes display headings, measure capped in the welcome note."
+    },
+    {
+      "family": "color",
+      "applied": "apple-design",
+      "note": "Neutral Sequoia windows, #0071e3 selection, warm Notes paper, Chicago dusk wallpaper as the only chromatic field. Widgets use translucent dark glass over the photograph."
+    },
+    {
+      "family": "layout",
+      "applied": "better-layout",
+      "note": "Widgets occupy the left column from 1280px. Finder stops short of Notes. 32:9 leaves the skyline visible. 375px collapses to one window, a folder drawer, and a reachable Dock."
+    },
+    {
+      "family": "a11y",
+      "applied": "better-accessibility",
+      "note": "Named traffic lights, focus-visible rings, Hold the clock in Control Center for the auto-updating time, reduced-motion and reduced-transparency paths, and the script-free record remain."
+    },
+    {
+      "family": "copy",
+      "applied": "frontend-design",
+      "note": "Weather, Wi-Fi, battery, live CPU graphs, and live agent sessions are stated as not exported. Terminal keeps the banner that the browser does not execute commands on Richie’s Mac."
+    }
+  ],
+  "looked": {
+    "shots": [
+      "/Users/rickt/workspace/richie-jerimovich/.concept-preview/v2/zoom/outputs/desktop-1440.png",
+      "/Users/rickt/workspace/richie-jerimovich/.concept-preview/v2/zoom/outputs/desktop-ultrawide.png",
+      "/Users/rickt/workspace/richie-jerimovich/.concept-preview/v2/zoom/outputs/desktop-32-9.png",
+      "/Users/rickt/workspace/richie-jerimovich/.concept-preview/v2/zoom/outputs/finder-gallery.png",
+      "/Users/rickt/workspace/richie-jerimovich/.concept-preview/v2/zoom/outputs/notes.png",
+      "/Users/rickt/workspace/richie-jerimovich/.concept-preview/v2/zoom/outputs/hermes.png",
+      "/Users/rickt/workspace/richie-jerimovich/.concept-preview/v2/zoom/outputs/activity-cpu.png",
+      "/Users/rickt/workspace/richie-jerimovich/.concept-preview/v2/zoom/outputs/settings.png",
+      "/Users/rickt/workspace/richie-jerimovich/.concept-preview/v2/zoom/outputs/control-center.png",
+      "/Users/rickt/workspace/richie-jerimovich/.concept-preview/v2/zoom/outputs/mobile-welcome.png",
+      "/Users/rickt/workspace/richie-jerimovich/.concept-preview/v2/zoom/outputs/mobile-receipt.png"
+    ],
+    "saw": "1440 desktop now includes a Sequoia Dock with Messages, Chrome, Spotify, Claude, ChatGPT, and the official Hermes Agent mascot. Desktop icons sit under the widgets and drag. Messages has a Richie public talk thread and a Rutvik Thakkar contact card with mailto. Hermes credits Nous Research and links hermes-agent.nousresearch.com. Spotify states that no public playlist URL is in the export.",
+    "mobile": "375x812 welcome note is full-width and readable. Kept-claim receipt expands with category, confidence, recorded result and verification command. Dock remains reachable. No horizontal overflow in the Playwright check.",
+    "bar": "This is a convincing Sequoia software prototype of Richie’s public Mac, not a claim of live execution on the machine. Hardware fields are labeled as a preview-time host read. Native Apple icons remain preview-only with redistribution rights not established. The 3D room is unchanged except for the regenerated monitor plate."
+  },
+  "verdicts": [
+    {
+      "asset": "ECC",
+      "verdict": "rejected",
+      "reason": "Harness configuration is outside this desktop pass; window interaction and record navigation were implemented in the existing preview.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "ai-design-skills",
+      "verdict": "rejected",
+      "reason": "The owner supplied a specific Mac direction. Apple design guidance was applied instead of choosing a broader visual style from this pack.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "ai-website-cloner-template",
+      "verdict": "rejected",
+      "reason": "The implementation uses the existing public record and spatial navigation; a cloned website template would replace that useful foundation.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "animate-text",
+      "verdict": "rejected",
+      "reason": "Headlines are static and readable at entry. Letter choreography would delay arrival at the workspace without explaining anything.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "anthropic-skills",
+      "verdict": "rejected",
+      "reason": "No asset from this broad package was imported; the available frontend-design skill informed composition directly outside the arsenal copy.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "base-ui",
+      "verdict": "rejected",
+      "reason": "Native buttons, details, search inputs and selects cover the current controls. A component abstraction is not needed to make these controls functional.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "better-harness",
+      "verdict": "rejected",
+      "reason": "No harness product or tooling surface was changed. The task is the visitor-facing desktop and its entry journey.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "border-beam",
+      "verdict": "rejected",
+      "reason": "Animated borders would turn quiet Mac windows into attention effects. Window focus is already communicated by shadow and traffic-light state.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "calicastle-skills",
+      "verdict": "rejected",
+      "reason": "This pass applied the available Apple design skill to window mechanics. No separate package from this collection was incorporated.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "canvas-ui",
+      "verdict": "rejected",
+      "reason": "The desktop must allow selection, links, native scrolling and keyboard focus. Its content is DOM, with only a distant screenshot on the 3D monitor.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "cinematic-scroll-prompt-kit",
+      "verdict": "rejected",
+      "reason": "The owner specifically redirected work away from the physical room. The existing camera route was retained while a direct desktop entry was added.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "circle-loaders",
+      "verdict": "rejected",
+      "reason": "Opening the workspace requires no decorative loading cycle; the actual record fetch has a plain failure path and a direct record link.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-ascii-dissolve",
+      "verdict": "rejected",
+      "reason": "An ASCII transition would reproduce the coded visual treatment the owner rejected. The photographic wallpaper remains continuous into the desktop.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-dataviz-deep",
+      "verdict": "rejected",
+      "reason": "The saved health and runtime data have no time series. Adding charts would imply observations absent from the export.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-figma",
+      "verdict": "rejected",
+      "reason": "No Figma document is being delivered. Actual browser windows and screenshots are the reviewable source of this iteration.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-product-design",
+      "verdict": "rejected",
+      "reason": "The current request specifies the OS direction; Apple interaction guidance and rendered frontend review were used for this bounded replacement.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-remotion",
+      "verdict": "rejected",
+      "reason": "There is no video deliverable or timeline in the Mac pass. The visitor manipulates actual windows at their own pace.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "diffusionstudio-skills",
+      "verdict": "rejected",
+      "reason": "The desktop wallpaper is a single generated still; compositing a video would add motion unrelated to reading the record.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "dither-kit",
+      "verdict": "rejected",
+      "reason": "Pixel dithering would undermine the photographic landscape and native system chrome requested by the owner.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "emil-skills",
+      "verdict": "rejected",
+      "reason": "Window dragging is direct pointer manipulation. Apple-design supplied the immediate response and reduced-motion decisions in this iteration.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "fancy-components",
+      "verdict": "rejected",
+      "reason": "Marketing effects and novelty controls would pull this desktop away from familiar Mac navigation and quiet reading.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "fudge-design-md",
+      "verdict": "rejected",
+      "reason": "The direction is recorded in the local ZOOM direction file. Importing another site design document would obscure the new owner override.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "gc-minimal-zine-poster",
+      "verdict": "rejected",
+      "reason": "A poster is a fixed editorial artifact. These folders need searchable, selectable documents with source links.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "illo-skill",
+      "verdict": "rejected",
+      "reason": "Illustrated scenery would conflict with the requested realism. The wallpaper uses a generated photographic landscape instead.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "interior",
+      "verdict": "rejected",
+      "reason": "The broader interaction reference was not imported; direct window movement, resize and restore were implemented against the Apple design skill.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "jakubkrehel-skills",
+      "verdict": "rejected",
+      "reason": "The entry is deliberately short, with direct access to the desktop and record. No marketing-page conversion pattern was added.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "liquid-glass-carousel",
+      "verdict": "rejected",
+      "reason": "The Dock is an application launcher, not a gallery. Refraction through a moving carousel would make its targets less predictable.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "loading-ui",
+      "verdict": "rejected",
+      "reason": "A synthetic loading animation would suggest a boot process that is not occurring. Only actual fetch state is represented.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "lucide-animated",
+      "verdict": "rejected",
+      "reason": "The local preview uses native Mac icon artwork. Animated line icons would mix a different visual system into the Dock.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "marketingskills",
+      "verdict": "rejected",
+      "reason": "No signup, campaign or sales funnel is part of the public record. The welcome note explains how to explore the work.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "mattpocock-skills",
+      "verdict": "rejected",
+      "reason": "Type-system changes are unrelated to this design iteration. The existing JavaScript modules remain the implementation boundary.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "mengto-sketchbook",
+      "verdict": "rejected",
+      "reason": "Writing is presented as a Notes reading view. Page curl and magnification would introduce a second document metaphor.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "metal-fx",
+      "verdict": "rejected",
+      "reason": "Liquid-metal button effects would make the Mac chrome feel ornamental. The current controls use quiet native-like materials.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "mint-bookshelf",
+      "verdict": "rejected",
+      "reason": "A bookshelf duplicates the existing writing archive with a different browsing model. Notes keeps the desktop vocabulary coherent.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "motion",
+      "verdict": "rejected",
+      "reason": "No library was imported for direct manipulation. Pointer capture tracks dragging and native CSS handles restrained hover response.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "no-ai-slop",
+      "verdict": "rejected",
+      "reason": "This package was not invoked in the current pass. Copy was written directly from the public record and checked in rendered entry and Notes views.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "openship",
+      "verdict": "rejected",
+      "reason": "The workspace has no orders, shopping cart or fulfillment surface. Its receipts document published claims.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "originkit",
+      "verdict": "rejected",
+      "reason": "The owner asked for ordinary Mac navigation. Decorative backgrounds and showcase effects are not used in Finder or the Dock.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "originkit-local",
+      "verdict": "rejected",
+      "reason": "No local registry component was copied into this pass. The desktop uses bespoke DOM windows and native preview artwork.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "paper-shaders",
+      "verdict": "rejected",
+      "reason": "Notes uses flat paper color and legible text, while the desktop uses a raster photograph-style asset. A procedural surface is unnecessary.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "pixel2motion",
+      "verdict": "rejected",
+      "reason": "No still-to-video sequence is part of this iteration. Desktop movement comes from the visitor moving real controls.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "pringles-reference",
+      "verdict": "rejected",
+      "reason": "A product marketing reference does not supply the Finder, Notes or window-management behavior this request requires.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "react-bits",
+      "verdict": "rejected",
+      "reason": "Text effects and animated backgrounds would not improve record discovery. This pass prioritizes working folders and full-width mobile reading.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "reel-engine",
+      "verdict": "rejected",
+      "reason": "The experience does not scrub a movie. The retained camera and direct desktop route respond to navigation actions.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "refactoring-ui-plugin",
+      "verdict": "rejected",
+      "reason": "The Apple design skill supplied the hierarchy for system controls. No SaaS component review was applied from this package.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "reference-captures",
+      "verdict": "rejected",
+      "reason": "Historical captures were read as project history, not imported as design assets. New screenshots show the actual Mac implementation.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "scroll-world",
+      "verdict": "rejected",
+      "reason": "The physical scene is pending reference photos. This pass preserves its camera route and removes the requirement to traverse it first.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "system-design-101",
+      "verdict": "rejected",
+      "reason": "The machine snapshot is a reading of exported fields, not a distributed-systems diagram or architecture explainer.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "taste-skill",
+      "verdict": "rejected",
+      "reason": "The owner explicitly chose authentic macOS. General stylistic exploration was subordinate to that concrete visual target.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "thinking-orbs",
+      "verdict": "rejected",
+      "reason": "No thought indicator is warranted by saved records. An animated orb would imply live agent activity the page does not receive.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "toolcraft-canary",
+      "verdict": "rejected",
+      "reason": "The visitor-facing workspace displays published static records rather than running arbitrary tools, so a tool canary monitor is irrelevant to reading claims and notes.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "transitions-dev",
+      "verdict": "rejected",
+      "reason": "The existing spatial transition remains in place. Apple-design guided direct window motion and reduced-motion behavior for the new desktop.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "ui-ux-pro-max-skill",
+      "verdict": "rejected",
+      "reason": "Choosing a style from a general catalogue would dilute the requested native Mac direction. Mobile layout was assessed in actual 375px captures.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "vercel-agent-skills",
+      "verdict": "rejected",
+      "reason": "The work remains a local prototype. No Vercel deployment, configuration or production route was changed.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "vercel-design-md",
+      "verdict": "rejected",
+      "reason": "The new local direction document and implementation record carry the owner override. No external design schema was required.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "vgpu",
+      "verdict": "rejected",
+      "reason": "No generated 3D asset was commissioned during this software pass; the physical setup awaits the owner photographs.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "video-shotcraft",
+      "verdict": "rejected",
+      "reason": "There are no new shots rendered to video. Desktop screenshots and interactive window behavior are the review artifacts.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "video-use",
+      "verdict": "rejected",
+      "reason": "The desktop does not include playback media. A single wallpaper and genuine app artwork provide the current visual assets.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "x-algorithm",
+      "verdict": "rejected",
+      "reason": "Search returns matching public records without ranking a social feed. The site has no algorithmic recommendation surface.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    }
+  ]
+}

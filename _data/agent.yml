@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-09 13:56 UTC
-generated_at_iso: '2026-09-09T13:56:57Z'
-last_commit_iso: '2026-09-09T13:54:41Z'
+generated_at: 2026-09-10 03:12 UTC
+generated_at_iso: '2026-09-10T03:12:31Z'
+last_commit_iso: '2026-09-10T03:08:31Z'
 shift:
   state: open
   pipeline_running: false
@@ -24,7 +24,7 @@ runtime:
     name: Hermes
     maker: Nous Research
     version: 0.21.1
-    built: '2026-09-09'
+    built: '2026-09-10'
   providers:
   - Anthropic
   - Copilot
@@ -42,8 +42,8 @@ runtime:
   - xAI
   provider_count: 14
   gateway_state: online
-  gateway_started_iso: '2026-09-09T09:18:27Z'
-  gateway_uptime: 4h
+  gateway_started_iso: '2026-09-10T01:54:17Z'
+  gateway_uptime: 1h
   active_agents: 0
   now_responding: false
   channels:
@@ -61,14 +61,14 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.68
-  load_pct: 17
+  load_1m: 6.37
+  load_pct: 64
   mem_total_gb: 16.0
-  mem_used_gb: 11.7
-  mem_pct: 73
+  mem_used_gb: 12.0
+  mem_pct: 75
   disk_total_gb: 228
-  disk_used_gb: 211
-  disk_pct: 92
+  disk_used_gb: 198
+  disk_pct: 87
 memory:
   facts: 2528
   gists: 2124
@@ -76,6 +76,8 @@ memory:
   kg_edges: 2537
   long_term: 107
   consolidated: 353
+  store: mnemosyne
+  measured_at: '2026-07-02'
   total: 4652
   bars:
   - label: knowledge graph
@@ -134,59 +136,59 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 9
-  errors_top: telegram
+  errors_24h: 40
+  errors_top: hermes_plugins
   blocked_reads: 0
   declined_claims: 106
 events:
 - kind: ship
-  text: '"All 200 commits of life" was the window, not the count'
-  rel: 2m
+  text: 'Sweep 11: the two dock icons that held nothing, and sixty line'
+  rel: 4m
 - kind: ship
-  text: The five layers now say what they left in the record
-  rel: 5m
-- kind: ship
-  text: 'Handoff: final numbers after the production verification'
-  rel: 10m
-- kind: ship
-  text: 'Ledger: sweep 08, and the thirteen times a gate of mine was ly'
-  rel: 12m
-- kind: ship
-  text: The motion system was a smear too, and the last contrast miss
-  rel: 13m
-- kind: ship
-  text: Two more classes of colour the audit could not see, and the pa
-  rel: 21m
-- kind: ship
-  text: Two production findings, and the gate could not see inside a c
-  rel: 31m
-- kind: ship
-  text: Activity Monitor had a value and no yesterday
-  rel: 38m
-- kind: ship
-  text: 'Show me around: the tour drives the real machine'
-  rel: 46m
+  text: A number without keeping you
+  rel: 16m
 - kind: loop
-  text: Inbox digest ok
-  rel: 56m
-- kind: ship
-  text: 'Run the Proof: the claim that you can check it is now a button'
-  rel: 57m
-- kind: ship
-  text: The phone front door had the room hidden and two things on top
-  rel: 1h
-- kind: ship
-  text: 'The interior pages had never been measured. 318 findings, now '
+  text: Evening digest ok
   rel: 1h
 - kind: loop
   text: Inbox watchdog ok
-  rel: 2h
+  rel: 4h
 - kind: loop
   text: Session insight extraction ok
-  rel: 2h
+  rel: 4h
+- kind: ship
+  text: 'Ledger: sweep 10, and where the run ended'
+  rel: 12h
+- kind: ship
+  text: The thesis was the last clause of the fourth sentence
+  rel: 12h
+- kind: ship
+  text: 'Queue: what the 2026-09-09 run closed, and what is still on th'
+  rel: 13h
 - kind: loop
-  text: Site stewardship ok
-  rel: 9h
+  text: Reading session ok
+  rel: 13h
+- kind: ship
+  text: About This Mac lists his address and never said so
+  rel: 13h
+- kind: ship
+  text: Terminal and Run the Proof answer the same question and did no
+  rel: 13h
+- kind: ship
+  text: 'Ledger: sweep 09, the windowed count in four shapes'
+  rel: 13h
+- kind: ship
+  text: The streak was capped at 30 by the window it was computed in
+  rel: 13h
+- kind: ship
+  text: '"All 200 commits of life" was the window, not the count'
+  rel: 13h
+- kind: ship
+  text: The five layers now say what they left in the record
+  rel: 13h
+- kind: ship
+  text: 'Handoff: final numbers after the production verification'
+  rel: 13h
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -200,42 +202,42 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 9 in 24h
-    ok: true
-    note: top source telegram
+    value: 40 in 24h
+    ok: false
+    note: top source hermes_plugins
 usage:
   window_days: 30
-  sessions: 336
-  api_calls: 6466
-  tokens_in_human: 85.8M
+  sessions: 334
+  api_calls: 6484
+  tokens_in_human: 86.2M
   tokens_out_human: 4.6M
-  tokens_total_human: 90.4M
+  tokens_total_human: 90.8M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 16624120
-    tokens_human: 16.6M
-    share: 18
-    sessions: 92
-  - model: grok-4.5
-    tokens: 14668300
-    tokens_human: 14.7M
-    share: 16
-    sessions: 109
+    tokens: 17088972
+    tokens_human: 17.1M
+    share: 19
+    sessions: 94
   - model: gpt-5.6-luna
     tokens: 14570297
     tokens_human: 14.6M
     share: 16
     sessions: 15
+  - model: grok-4.5
+    tokens: 14068134
+    tokens_human: 14.1M
+    share: 15
+    sessions: 105
   - model: gpt-5.6-sol
     tokens: 9715335
     tokens_human: 9.7M
     share: 11
     sessions: 22
   - model: grok-4.6
-    tokens: 6962069
-    tokens_human: 7.0M
+    tokens: 7491001
+    tokens_human: 7.5M
     share: 8
     sessions: 25
   - model: stealth/ox-alpha
@@ -244,7 +246,6 @@ usage:
     share: 7
     sessions: 12
   daily_bars:
-  - 4
   - 23
   - 18
   - 100
@@ -273,7 +274,8 @@ usage:
   - 8
   - 19
   - 11
-  - 19
-  - 6
-  daily_from: '2026-08-10'
-  daily_to: '2026-09-09'
+  - 22
+  - 9
+  - 3
+  daily_from: '2026-08-11'
+  daily_to: '2026-09-10'

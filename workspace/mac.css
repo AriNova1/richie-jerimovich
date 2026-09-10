@@ -911,3 +911,13 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 .imsg-form .imsg-send{width:auto;height:auto;min-height:36px;border-radius:18px;padding:8px 15px;font:inherit;font-size:var(--t-fine);white-space:nowrap;flex-shrink:0}
 .imsg-form .imsg-send{display:inline-flex;align-items:center;text-decoration:none;background:#0a84ff;color:#fff}
 .imsg-send[aria-disabled="true"]{background:#c9ced6;color:#4a5058;cursor:default;pointer-events:none}
+
+/* Memory, as last measured. Deliberately not a chart: the series behind these
+   is flat because the store was retired, and a flat line reads as a plateau. */
+.frozen{margin:22px 0 0;padding:18px 0 0;border-top:1px solid color-mix(in srgb,currentColor 16%,transparent)}
+.frozen h2{margin:0 0 8px;font-size:var(--t-lead);font-weight:400}
+.frozen-rows{display:grid;gap:12px;margin:14px 0 12px}
+.frozen-row{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:2px 14px}
+.frozen-row dt{margin:0;font-size:var(--t-body)}
+.frozen-row dd{margin:0;font-size:var(--t-sub);font-variant-numeric:tabular-nums;opacity:.62}
+.frozen-row p{grid-column:1/-1;margin:0;font-size:var(--t-fine);opacity:.6}

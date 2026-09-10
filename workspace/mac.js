@@ -1032,15 +1032,42 @@ export function createDesktop(root, C, { leave }) {
     /* Twenty eight recorded days of what this machine holds and does. It was
        in the export the whole time, read only by /organism/, while this window
        showed rows with a value each and no yesterday. */
+    /* Split by what the number still describes. The first three read a store
+       that was decommissioned, and a sparkline of a dead store is a line that
+       stopped for a reason nobody was told. */
     const GROWTH = [
-      ['facts', 'Facts held', 'Rows in the agent\u2019s long term memory.'],
-      ['kg_edges', 'Connections between them', 'Edges in the knowledge graph.'],
-      ['gists', 'Summaries kept', 'Compressed recollections, one per session or task.'],
       ['commits', 'Commits', 'The public log, cumulative.'],
       ['loops_active', 'Jobs on the schedule', 'Enabled recurring jobs at each snapshot.'],
       ['ran_24h', 'Jobs that ran in the day before', 'How busy the day before each snapshot was.'],
     ];
+    const FROZEN = [
+      ['facts', 'Facts held', 'Rows in long term memory.'],
+      ['kg_edges', 'Connections between them', 'Edges in the knowledge graph.'],
+      ['gists', 'Summaries kept', 'Compressed recollections, one per session or task.'],
+    ];
     const history = C.body?.history || [];
+    /* The memory rows, told the truth. They were in the growth list with
+       sparklines and a "+317 over 82 days" note, which was accurate about the
+       window and wrong about the fact: every one of those 317 landed before
+       10 July and nothing has moved since, because the store they count was
+       decommissioned. The counts are real counts of a real store. What stopped
+       being true is that they are current. */
+    const frozenPanel = () => {
+      const mem = C.body?.memory || {};
+      const rows = FROZEN.filter(([f]) => mem[f] != null);
+      if (!rows.length) return '';
+      const at = mem.measured_at;
+      const still = history.filter((r) => at && r.date > at && r.facts != null).length;
+      return `<section class="frozen">
+        <h2>Memory, as last measured</h2>
+        <p class="record-note" data-tier="editorial">These count <code>${e(mem.store || 'a store')}</code>, which stopped changing on <strong>${e(at || 'a date not exported')}</strong>. They are real counts of a real store and they are not current: the file has not been written since, so a line drawn through them would be flat by ${still ? `all ${still} snapshot${still === 1 ? '' : 's'} taken after that date` : 'construction'} and would look like a plateau rather than a decommissioning. No line is drawn.</p>
+        <dl class="frozen-rows">${rows.map(([f, label, note]) =>
+          `<div class="frozen-row"><dt>${e(label)}</dt><dd data-tier="export">${mem[f].toLocaleString('en-US')}</dd><p data-tier="editorial">${e(note)}</p></div>`
+        ).join('')}</dl>
+        <p class="record-note" data-tier="editorial">What replaced it is not measured here. There is no sanitized collector for the live store, so this publishes nothing about it rather than guessing at it.</p>
+      </section>`;
+    };
+
     const growth = `<div class="activity-panel">
       <p class="record-note" data-tier="export">${history.length} recorded snapshots, ${e(history.at(-1)?.date || '?')} to ${e(history[0]?.date || '?')}.</p>
       <p class="record-note" data-tier="editorial">The snapshots are irregular, so the line runs across samples, not across time. A flat stretch is a flat number, not a missing week.</p>
@@ -1055,6 +1082,7 @@ export function createDesktop(root, C, { leave }) {
           <p class="growth-note" data-tier="derived">${d.change === 0 ? 'Unchanged' : `${d.change > 0 ? '+' : ''}${d.change.toLocaleString('en-US')}`} across ${d.samples} snapshots over ${d.days} days. ${e(note)}</p>
         </li>`;
       }).join('')}</ul>` : '<p class="record-note">No growth history in this export.</p>'}
+      ${frozenPanel()}
     </div>`;
 
     const pane = {
@@ -1257,7 +1285,7 @@ export function createDesktop(root, C, { leave }) {
     ['Housekeeping', [
       ['/privacy/', 'Privacy', 'What this site does and does not send anywhere.'],
       ['/overnight/', 'The old front door', 'Retired, left at its URL. The argument is still worth reading.'],
-      ['/kitchen/', 'The kitchen', 'An earlier room, built in CSS. Superseded by the one you walked through.'],
+      ['/kitchen/', 'The walk-in, retired', 'A CSS room that stood here for seven weeks. What it was right about, and where each wall went.'],
     ]],
   ];
 
@@ -1443,7 +1471,16 @@ export function createDesktop(root, C, { leave }) {
         </section>
         <section>
           <h2>Memory</h2>
-          <p class="hermes-memory">Memory contents and store measurements are not included in this public export.</p>
+          ${(() => {
+            const mem = C.body?.memory || {};
+            /* This section used to say measurements were not in the export.
+               They were: Activity Monitor was drawing them as a rising line in
+               the same window frame, reading the same file. Two surfaces of one
+               property, equally confident, disagreeing. */
+            if (mem.facts == null) return '<p class="hermes-memory" data-tier="export">No store measurement in this export.</p>';
+            return `<p class="hermes-memory" data-tier="export">${mem.facts.toLocaleString('en-US')} facts, as of ${e(mem.measured_at || 'a date not exported')}. That store was retired, so the number is a final reading and not a current one. <button type="button" class="terminal-link" data-app="activity">The rest of it</button>.</p>
+            <p class="widget-note" data-tier="editorial">What memory <em>holds</em> is not published, and will not be: it is full of Rick. What it <em>weighs</em> is, and now says when it was weighed.</p>`;
+          })()}
         </section>
         <section>
           <h2>Channels</h2>
