@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { relTime, bandMarks, readState } from '../apps/schedule.mjs';
+import { relTime, bandMarks, readState, doorBars, shouldDrawBars } from '../apps/schedule.mjs';
 
 test('relTime never prints a bare zero for something that has not happened', () => {
   assert.equal(relTime(0), '0s');
@@ -50,4 +50,46 @@ test('the published payload never carries a job name that is not this site', asy
     'the endpoint must not publish an arbitrary job name');
   assert.ok(!/j\.get\("prompt"\)|j\.get\("last_error"\)|j\.get\("workdir"\)|j\.get\("deliver"\)/.test(src),
     'the endpoint must not read a prompt, an error string, a workdir or a delivery target');
+});
+
+/* The door bars. A chart of counts must not flatter a quiet week, and must not
+   draw a real day as nothing or a zero as something. */
+test('bar heights are relative to the busiest day in the window', () => {
+  const bars = doorBars([{ date: 'a', count: 10 }, { date: 'b', count: 5 }, { date: 'c', count: 0 }]);
+  assert.equal(bars[0].h, 1);
+  assert.equal(bars[1].h, 0.5);
+});
+
+test('a day with opens is never drawn as nothing', () => {
+  const bars = doorBars([{ date: 'a', count: 400 }, { date: 'b', count: 1 }]);
+  assert.ok(bars[1].h >= 0.08, `a real day was drawn at ${bars[1].h}`);
+});
+
+test('a true zero is drawn as zero, not as the floor', () => {
+  const bars = doorBars([{ date: 'a', count: 9 }, { date: 'b', count: 0 }]);
+  assert.equal(bars[1].h, 0);
+});
+
+test('an all-quiet window draws flat rather than dividing by zero', () => {
+  const bars = doorBars([{ date: 'a', count: 0 }, { date: 'b', count: 0 }]);
+  assert.deepEqual(bars.map((b) => b.h), [0, 0]);
+});
+
+test('no data means no bars, never a shape', () => {
+  assert.deepEqual(doorBars(null), []);
+  assert.deepEqual(doorBars([]), []);
+});
+
+test('one day of history draws no chart', () => {
+  assert.equal(shouldDrawBars([{ date: 'a', count: 6 }]), false);
+  assert.equal(shouldDrawBars([{ date: 'a', count: 6 }, { date: 'b', count: 0 }]), false);
+});
+
+test('three days with opens is enough for a shape to mean something', () => {
+  assert.equal(shouldDrawBars([{ date: 'a', count: 1 }, { date: 'b', count: 0 }, { date: 'c', count: 4 }, { date: 'd', count: 2 }]), true);
+});
+
+test('an empty window draws no chart', () => {
+  assert.equal(shouldDrawBars([]), false);
+  assert.equal(shouldDrawBars(null), false);
 });

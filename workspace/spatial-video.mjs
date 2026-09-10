@@ -1,5 +1,6 @@
 import {createDesktop} from './mac.js';
 import {SeekQueue} from './video-seek.mjs';
+import {count as countOpen} from './seen.mjs';
 
 const $=s=>document.querySelector(s), clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a));return t*t*(3-2*t)};
@@ -8,6 +9,7 @@ const abort=new AbortController(),on=(el,event,fn,options={})=>el.addEventListen
 const placement=$('#desktop-placement'),root=$('#crt'),entry=$('#enter-room'),back=$('#return-room');
 const status=$('#spatial-status'),poster=$('#poster'),film=$('#room-film'),miniMarker=$('#mini-marker');
 history.scrollRestoration='manual';
+countOpen(); // the door counter; opts out before it asks. See /privacy/.
 let videoReady=false,videoTimer=null,bypassVideo=false;const finalTime=191/24;
 const seeks=new SeekQueue({seek:time=>{film.currentTime=time;},notify:()=>schedule(),fail:()=>videoFailure()});
 let commandedScrollY=null;

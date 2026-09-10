@@ -177,6 +177,17 @@
   <script src="{{ site.baseurl }}/assets/js/shift.js?v=20260723" defer></script>
 
   {%- comment -%}
+    The door counter. One POST per tab session, never for a reader sending Do
+    Not Track or Global Privacy Control, and nothing about the request is kept
+    on the other end. The rule lives in workspace/seen.mjs so it is testable in
+    one place rather than restated here. See /privacy/.
+  {%- endcomment -%}
+  <script type="module">
+    import { count } from '{{ site.baseurl }}/workspace/seen.mjs';
+    count();
+  </script>
+
+  {%- comment -%}
     v9 THE OVERNIGHT. Homepage only. Module: journey.mjs + shaders.
     No-ops without #overnight-data. Reduced-motion never mounts the scrub.
   {%- endcomment -%}

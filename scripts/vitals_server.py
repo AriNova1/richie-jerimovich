@@ -27,6 +27,7 @@ unless you know why), VITALS_CACHE (server-side cache seconds, default 4).
 import json
 import os
 import sys
+import threading
 import time
 import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -183,6 +184,117 @@ def _now_payload():
     return body
 
 
+# ── /seen: the one number on this property with no receipt behind it ─────
+#
+# Rick asked twice for visitor numbers. Every honest version of that needs a
+# counter somewhere, and this site is static, so the counter has to be here.
+#
+# What this stores, in full: a date and an integer, per day. That is the whole
+# schema. No address, no user agent, no referrer, no path, no session id, no
+# hash of any of those, and nothing that could be joined back to a person
+# later. There is deliberately no way to answer "was this the same reader as
+# yesterday", because answering it would mean keeping the thing that answers
+# it.
+#
+# The cost of that choice, stated rather than hidden: this number can be
+# inflated by anyone willing to open tabs, and I cannot tell that it has been.
+# It is a floor, not a census, and the surface that publishes it says so.
+#
+# The browser only beacons once per tab session, and not at all if the reader
+# sends Do Not Track or Global Privacy Control. Both of those are decided in
+# the browser, before the request exists, so the server never learns that a
+# person opted out either.
+SEEN_FILE = os.path.expanduser(os.environ.get("VITALS_SEEN", "~/.agentrichie/seen.json"))
+SEEN_KEEP_DAYS = int(os.environ.get("VITALS_SEEN_DAYS", "60"))
+SEEN_RATE = float(os.environ.get("VITALS_SEEN_RATE", "6"))  # increments per second, whole server
+_seen_lock = threading.Lock()
+_seen_bucket = {"at": 0.0, "tokens": SEEN_RATE}
+_seen_cache = {"at": 0.0, "body": b""}
+
+
+def _seen_load():
+    try:
+        with open(SEEN_FILE, "r", encoding="utf-8") as fh:
+            raw = json.load(fh) or {}
+    except Exception:
+        raw = {}
+    days = raw.get("days")
+    if not isinstance(days, dict):
+        days = {}
+    # Re-read the file through the only shape it is allowed to have, so a
+    # hand-edited or corrupted store cannot smuggle a field past this.
+    clean = {}
+    for k, v in days.items():
+        if isinstance(k, str) and len(k) == 10 and k[4] == "-" and k[7] == "-":
+            try:
+                clean[k] = max(0, int(v))
+            except Exception:
+                pass
+    since = raw.get("since")
+    if not (isinstance(since, str) and len(since) == 10):
+        since = min(clean) if clean else time.strftime("%Y-%m-%d")
+    return {"since": since, "days": clean}
+
+
+def _seen_save(state):
+    d = os.path.dirname(SEEN_FILE)
+    if d and not os.path.isdir(d):
+        os.makedirs(d, exist_ok=True)
+    tmp = SEEN_FILE + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as fh:
+        json.dump({"since": state["since"], "days": state["days"]}, fh, separators=(",", ":"))
+    os.replace(tmp, SEEN_FILE)
+
+
+def _seen_allow(now):
+    """A whole-server ceiling on increments per second. It cannot tell one
+    client from another, on purpose, so it blunts a loop rather than a person."""
+    b = _seen_bucket
+    b["tokens"] = min(SEEN_RATE, b["tokens"] + (now - b["at"]) * SEEN_RATE)
+    b["at"] = now
+    if b["tokens"] < 1:
+        return False
+    b["tokens"] -= 1
+    return True
+
+
+def _seen_bump():
+    now = time.time()
+    today = time.strftime("%Y-%m-%d")
+    with _seen_lock:
+        if not _seen_allow(now):
+            return
+        state = _seen_load()
+        state["days"][today] = state["days"].get(today, 0) + 1
+        if SEEN_KEEP_DAYS > 0 and len(state["days"]) > SEEN_KEEP_DAYS:
+            for k in sorted(state["days"])[:-SEEN_KEEP_DAYS]:
+                state["days"].pop(k, None)
+        _seen_save(state)
+        _seen_cache["body"] = b""
+
+
+def _seen_payload():
+    now = time.time()
+    if _seen_cache["body"] and now - _seen_cache["at"] < 15:
+        return _seen_cache["body"]
+    with _seen_lock:
+        state = _seen_load()
+    days = state["days"]
+    today = time.strftime("%Y-%m-%d")
+    data = {
+        "available": True,
+        "total": sum(days.values()),
+        "today": days.get(today, 0),
+        "since": state["since"],
+        "days": [{"date": k, "count": days[k]} for k in sorted(days)],
+        "counts": "opens, not people",
+        "note": "One date and one integer per day is the whole store.",
+    }
+    body = json.dumps(data, separators=(",", ":")).encode("utf-8")
+    _seen_cache.update(at=now, body=body)
+    return body
+
+
 # Browser origins allowed to read the endpoint (the live site + local preview).
 ALLOWED_ORIGINS = {
     "https://agentrichie.com",
@@ -241,7 +353,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_OPTIONS(self):  # CORS preflight
         self.send_response(204)
         self._cors()
-        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS")
+        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, POST, OPTIONS")
         self.send_header("Access-Control-Max-Age", "86400")
         self.end_headers()
 
@@ -253,12 +365,28 @@ class Handler(BaseHTTPRequestHandler):
             self._send(200, _weather_payload(), max_age=300)   # weather moves slowly; let the edge hold it
         elif path == "/now.json":
             self._send(200, _now_payload(), max_age=20)   # a countdown may be a few seconds stale
+        elif path == "/seen.json":
+            self._send(200, _seen_payload(), max_age=15)
         elif path == "/healthz":
             self._send(200, b'{"ok":true}')
         else:
             self._send(404, b'{"error":"not found"}')
 
     do_HEAD = do_GET
+
+    def do_POST(self):
+        """The only write this server has. It reads no body and no headers
+        beyond the CORS origin: there is nothing about the request worth
+        keeping, so nothing about it is kept."""
+        if self.path.split("?", 1)[0] != "/seen":
+            self._send(404, b'{"error":"not found"}')
+            return
+        origin = self.headers.get("Origin", "")
+        if origin not in ALLOWED_ORIGINS:
+            self._send(403, b'{"error":"origin"}')
+            return
+        _seen_bump()
+        self._send(200, _seen_payload(), max_age=0)
 
     def log_message(self, *args):
         pass  # stay quiet; no request logging of client data
@@ -269,6 +397,7 @@ def main():
     print(f"vitals endpoint on http://{HOST}:{PORT}/vitals.json (cache {CACHE_TTL}s)")
     print(f"weather proxy on http://{HOST}:{PORT}/weather.json (cache {WEATHER_TTL}s)")
     print(f"schedule shape on http://{HOST}:{PORT}/now.json (cache {NOW_TTL}s, no job names but this site's)")
+    print(f"door counter on http://{HOST}:{PORT}/seen.json (store: {SEEN_FILE}, a date and an integer)")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:

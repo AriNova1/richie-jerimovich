@@ -35,3 +35,15 @@
 /* "ago" is a word, not a measurement. Set in the monospace figure it carried
    the face's wide advance and read as part of the number. */
 .sc-big small{font-family:var(--face-chrome);font-size:var(--t-sub);letter-spacing:0;opacity:.62;margin-left:2px}
+
+/* The door. Its own rule above it, because the numbers in it are a different
+   kind of thing from the machine's own: those can be checked against a file
+   and this one cannot. */
+.sc-door{margin:26px 0 0;padding:20px 0 0;border-top:1px solid color-mix(in srgb,currentColor 14%,transparent)}
+.sc-door h2{margin:0 0 12px;font-size:var(--t-lead);font-weight:400}
+.sc-nums-door{margin:0 0 16px}
+.sc-bars{display:flex;align-items:flex-end;gap:4px;height:52px;padding:0;border-bottom:1px solid color-mix(in srgb,currentColor 22%,transparent)}
+/* No min-height: a day with no opens must draw as nothing against the
+   baseline, or the chart is inventing readings it does not have. */
+.sc-bar{flex:1;min-width:4px;height:var(--h);border-radius:2px 2px 0 0;background:color-mix(in srgb,currentColor 34%,transparent)}
+.sc-bar:last-child{background:color-mix(in srgb,currentColor 62%,transparent)}
