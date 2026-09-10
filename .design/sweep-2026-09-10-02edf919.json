@@ -1,0 +1,541 @@
+{
+  "property": "richie-jerimovich",
+  "date": "2026-09-10",
+  "inventoryHash": "02edf919847bef85",
+  "session": "dbd0be7c-6dd0-4f2b-bc3a-6d1d63dae1cb",
+  "work": "The voice on the way in: the mini marker rides a measured track of the machine through the walk-in footage, says four lines read from the export, and comes to rest when the machine leaves the frame.",
+  "constraints": [
+    "The front door is a hand-written ES-module page over a scroll-scrubbed video, with no bundler, no React, no Tailwind and no build step; a component that mounts as React, a Tailwind snippet or an ESM-only package with its own toolchain cannot mount here without adding the toolchain the property has refused.",
+    "Every visible fact must trace to the corpus export or the git clone and no metric may be simulated; an asset whose output is generated or decorative content (illustrations, shader fields, dithered textures, generated frames, dataviz of an invented series, reference captures of other people's sites) has nothing true to put on this surface.",
+    "This session's surface is one label riding a moving photograph plus four sentences: no section, no hero, no pricing, no form, no new page and no deployment change, so anything built for landing pages, marketing sections, carousels, loaders or shipping pipelines has no surface to land on."
+  ],
+  "craft": [
+    {
+      "family": "direction",
+      "applied": "design-director",
+      "note": "Read the master guide's register test, motion laws and signature moves before building. The conception came from a standing constraint: the machine is the only thing in the room that may speak, so the label rides it."
+    },
+    {
+      "family": "motion",
+      "applied": "emil-animation-framework",
+      "note": "Three transitions, all on transform and opacity, on the property's named ease; the crossfade ease-out at 350ms; the flip by transform so the card travels rather than jumps; reduced motion switches every one of them off."
+    },
+    {
+      "family": "type",
+      "applied": "",
+      "note": "No type was set. The card keeps its three registers from type.css (micro eyebrow, lead title, fine line); the legibility audit measured 0 findings across three viewports of the room after the change."
+    },
+    {
+      "family": "color",
+      "applied": "",
+      "note": "No colour was added. The card's ground was measured on the rendered frames it now sits over: 9.56:1 on the desk, 14.5:1 and 15.7:1 over the blue screen, by modal-ground histogram of screenshots."
+    },
+    {
+      "family": "layout",
+      "applied": "",
+      "note": "Placement is computed, not composed: beside the dot on whichever side fits, detached when neither side or the height will hold it, resting at the caption's old seat. The August phone pin is kept."
+    },
+    {
+      "family": "a11y",
+      "applied": "",
+      "note": "The live region hears each line once at its band edge (SC 4.1.3), the faded caption is inert so its link cannot be hit through the card, the marker stays aria-hidden, and every transition is off under prefers-reduced-motion (SC 2.3.3)."
+    },
+    {
+      "family": "copy",
+      "applied": "",
+      "note": "Four sentences in the first person, no em dashes, none claiming a thing in the room, every figure read from the export at render time; a test pins each figure to the corpus and the copy gate found nothing."
+    }
+  ],
+  "looked": {
+    "shots": [
+      "/Users/rickt/workspace/richie-jerimovich/.design/shots/voice-20260910-desk-1440-six-stops.png",
+      "/Users/rickt/workspace/richie-jerimovich/.design/shots/voice-20260910-phone-390-four-stops.png",
+      "/Users/rickt/workspace/richie-jerimovich/.design/shots/voice-20260910-track-montage-1080.png"
+    ],
+    "saw": "Six desktop stops at 1440x900: the card sits right of the dot on the machine at .1 and .3, slides to its left at .45 as the machine nears the right edge, is still attached at .5 with the dot on the front face of the box, detaches by .6 and rests 40px in and 43px up saying the screen line, and at .8 says the counts line while the header and nav have faded. The rendered dot maps back to the measured track within 0.6px of the frame at every stop, and a green box drawn from the track sits on the machine in all eight frames of the tracking montage.",
+    "mobile": "At 390x844 the card is pinned under the header on the right with the rule drawn down to the dot at the right edge of the crop at p=0 and .06; by .3 the machine has left the crop, the dot and rule are gone, the card has not moved and now shows its line; at .8 it shows the counts line, 141px tall, with the header faded.",
+    "bar": "Clears the bar this session set: a stranger pausing the frame at .45 sees a label on the one physical thing the site is allowed to point at, in the site's own hand, saying whose desk this is. It does not clear the whole brief: the arrival window inside still has no motion design, and the walk in is a label that follows and speaks, not a typographic set piece. Evidence: 51 browser-gate checks with four deliberate misses caught, 159 tests, 0 legibility findings on the room."
+  },
+  "verdicts": [
+    {
+      "asset": "ECC",
+      "verdict": "rejected",
+      "reason": "Codex harness configuration: hooks, agents, settings. The only harness work this session was a git pre-commit receipt, which lives in design-director; nothing in ECC touches what a visitor sees on the walk in.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "ai-design-skills",
+      "verdict": "rejected",
+      "reason": "Style-picking for a new product surface. The register was fixed before the session began: a label that rides a photograph, in the property's own paper-on-glass card. There was no style to pick.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "ai-website-cloner-template",
+      "verdict": "rejected",
+      "reason": "Clones a marketing site into a template. The room is footage of Rick's desk with one label on it; there is no site to clone and no template to fill.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "animate-text",
+      "verdict": "rejected",
+      "reason": "Curated text animations. The lines must be readable the moment they appear; the one motion on the text is a 350ms fade, spent once per band.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "anthropic-skills",
+      "verdict": "rejected",
+      "reason": "Checked its document skills for a way to publish the measurement record. The record is a JSON file held to the module by a unit test, which is a stronger receipt than a document would be.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "base-ui",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "better-harness",
+      "verdict": "rejected",
+      "reason": "Configures the coding harness. This session's harness work was the design-gate receipt and a Range-capable static server for the browser gate, both outside its scope.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "border-beam",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "calicastle-skills",
+      "verdict": "rejected",
+      "reason": "Landing-page sections, pricing tables, testimonial layouts. The walk in has none of those shapes; its one element is a leader line from a dot to a card.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "canvas-ui",
+      "verdict": "rejected",
+      "reason": "A canvas UI kit. The one canvas in this session is offscreen and belongs to the gate: it draws the video frame so the pixels under the dot can be read. Nothing is drawn for a visitor.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "cinematic-scroll-prompt-kit",
+      "verdict": "rejected",
+      "reason": "Prompts for authoring scroll-driven cinema. The scroll-scrubbed footage already existed; this session added a label that follows an object inside it, which the kit has no pattern for.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "circle-loaders",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 2,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-ascii-dissolve",
+      "verdict": "rejected",
+      "reason": "A dissolve effect for hero copy. The four lines have to be readable the instant they appear at a band edge; a dissolve would spend the reader's dwell on the effect.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-dataviz-deep",
+      "verdict": "rejected",
+      "reason": "Charts for series. The only figures on the walk in are three counts in one sentence, read from the export; a chart of three integers is decoration.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-figma",
+      "verdict": "rejected",
+      "reason": "Figma round trips. No Figma file exists for the room; the label's geometry is computed per frame from a measured track, not drawn.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-product-design",
+      "verdict": "rejected",
+      "reason": "Product-design process from scratch. The brief was Rick's, in writing, and the conception fell out of a standing constraint: the machine is the only thing in the room that may speak.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "codex-remotion",
+      "verdict": "rejected",
+      "reason": "Renders video with Remotion. The footage is the given; the session measured it rather than made any.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "diffusionstudio-skills",
+      "verdict": "rejected",
+      "reason": "Browser video editing. The footage was not edited: it was decoded with ffmpeg to measure where the machine is in each frame.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "dither-kit",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "emil-skills",
+      "verdict": "used",
+      "reason": "Decided the three transitions: the detach glide and the flip slide on the property's named ease at .5s, transform and opacity only; the line crossfade at 350ms ease-out, spent once per band; nothing animates left, top or width.",
+      "basis": null,
+      "escalation": "",
+      "file": "workspace/spatial.css"
+    },
+    {
+      "asset": "fancy-components",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "fudge-design-md",
+      "verdict": "rejected",
+      "reason": "A DESIGN.md generator. The property's design law is type.css, the review standard and the master guide; a second constitution would compete with them.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "gc-minimal-zine-poster",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "illo-skill",
+      "verdict": "rejected",
+      "reason": "Generates illustrations. The property's rule is that nothing physical is invented; an illustration of Rick's room would be a claim about a room that exists.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "interior",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "jakubkrehel-skills",
+      "verdict": "rejected",
+      "reason": "Motion and 3D recipes for React portfolios. The one moving thing here is a fixed-position marker whose transform is written from a rAF loop the page already owned.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "liquid-glass-carousel",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 2,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "loading-ui",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 2,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "lucide-animated",
+      "verdict": "rejected",
+      "reason": "Animated icon demo. The card carries an eyebrow, a title and a sentence, no icon; the dot is a ten pixel circle with a border.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "marketingskills",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 2,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "mattpocock-skills",
+      "verdict": "rejected",
+      "reason": "TypeScript and testing practice. The module is untyped ES by the property's choice; its tests are node:test, fifteen of them, including one that holds the table to the measurement on disk.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "mengto-sketchbook",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "metal-fx",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "microkit",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "mint-bookshelf",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "motion",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "no-ai-slop",
+      "verdict": "rejected",
+      "reason": "Not run as a skill. The four sentences went through the property's own copy gate (zero findings on the module) and a test that forbids em dashes and any claim to a thing in the room.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "openship",
+      "verdict": "rejected",
+      "reason": "Ship tooling. Deployment here is a git push to GitHub Pages behind the pre-commit receipt; nothing else is in the loop.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "originkit",
+      "verdict": "rejected",
+      "reason": "The registry endpoint fails at the TLS handshake on this network (an SNI-level block, recorded before), and its catalogue is React components, which cannot mount here anyway.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "originkit-local",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "paper-shaders",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "pixel2motion",
+      "verdict": "rejected",
+      "reason": "Logo fitting and brand motion. The only mark in the session is a dot and a rule; there is no logo to fit.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "pringles-reference",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "react-bits",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 0,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "reel-engine",
+      "verdict": "rejected",
+      "reason": "Makes reels. The session produced verification montages with ffmpeg's tile filter, which is the record a reviewer needs, not a reel.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "refactoring-ui-plugin",
+      "verdict": "rejected",
+      "reason": "Hierarchy, spacing, shadow and contrast rules. The card inherited all of that from the August marker; the change was where it goes and what it says, and contrast was measured on the rendered frames rather than reasoned about.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "reference-captures",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "scroll-world",
+      "verdict": "rejected",
+      "reason": "Read for a caption-on-scroll pattern. Its captions pin to sections of a document; this one pins to a measured object in footage and detaches when the object leaves.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "system-design-101",
+      "verdict": "rejected",
+      "reason": "System design diagrams. There is no system to diagram; the whole flow is one measured table and one placement function.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "taste-skill",
+      "verdict": "rejected",
+      "reason": "A rubric for choosing between directions. There was one direction, derived from the constraint that only the machine may speak; nothing was up for choosing.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "thinking-orbs",
+      "verdict": "rejected",
+      "reason": "Thought-orb loading states for agent UIs. The machine on the walk in is not thinking live; it is being pointed at, and a live-looking orb would be a simulated signal.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "toolcraft-canary",
+      "verdict": "rejected",
+      "reason": "A canary workspace for tool testing; not a design asset for anything a visitor sees.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "transitions-dev",
+      "verdict": "rejected",
+      "reason": "Read the catalogue for a leader-line or label transition; nothing fits an element that follows footage per frame. The two transitions used are on the property's own named ease.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "ui-ux-pro-max-skill",
+      "verdict": "rejected",
+      "reason": "Framework and layout selection per platform. The platform and the layout were fixed; the session computed a position, it did not choose a layout.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "vercel-agent-skills",
+      "verdict": "rejected",
+      "reason": "Vercel deployment skills. The property is GitHub Pages; Vercel is not in the path.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "vercel-design-md",
+      "verdict": "rejected",
+      "reason": "A DESIGN.md generator for product teams. The law for this surface is already written down in type.css and the review standard, and it is enforced by gates rather than by a document.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "vgpu",
+      "verdict": "rejected",
+      "reason": "",
+      "basis": 1,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "video-shotcraft",
+      "verdict": "rejected",
+      "reason": "Shot craft for making video. The footage is fixed; the session's video work was measurement, not making.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "video-use",
+      "verdict": "rejected",
+      "reason": "Video understanding for agents returns descriptions. This needed coordinates: where the machine is in each of 36 frames, to a pixel, which a correlation tracker gives and a description cannot.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    },
+    {
+      "asset": "x-algorithm",
+      "verdict": "rejected",
+      "reason": "The X ranking algorithm. Nothing on the walk in is ranked or fed.",
+      "basis": null,
+      "escalation": "",
+      "file": ""
+    }
+  ]
+}

@@ -598,6 +598,20 @@ with a desk in it, what am I supposed to do.
 | 129 | Auditor | medium | The greeting advertised the number of checks as a typed `7`. A greeting that promises seven checks while the app ships six is the smallest possible version of the defect this property is about. | **fixed** — `buildChecks(...).length` |
 | 130 | Engineer | **high** | **I reached past the system that owns the property, twice.** First a CSS `translate` for centring, which compounded with the spring's inline transform and put the window off centre with its titlebar under the menu bar. Then raw `style.left`/`style.top`, which a mounted window overwrites on the next frame because the motion controller owns left, top, width and height. `setRect` is the supported way in. **Same family of mistake as the mini marker in August.** | **fixed** — placed through the window system's own API, which also correctly no-ops on a phone |
 
+### Sweep 17 — the voice on the way in
+
+Rick's brief, second half: meeting the agent who greets you and guides you.
+The greeting inside answered "where am I" after the fact. This is the way
+there.
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 131 | Stranger | **high** | **Between the invitation fading out (.24) and the desktop taking over (1), nothing on the property said a word.** Three quarters of the walk in was a camera move with a wordmark, a clock and three nav buttons. | **fixed** — four lines from the machine, one at a time, at the bands where the picture changes: what is Rick's, that the box has no screen of its own, what is in here, come in. Every figure read from the export at render time |
+| 132 | Editor | **high** | **The marker switched itself off the moment the camera moved**, and its own comment said why: "it stops matching the frame, so it goes rather than drifts." The one thing in the room that may be pointed at was pointed at for 5% of the journey. | **fixed** — the machine's position is measured through the footage (`scripts/mini_track.mjs`, cross-correlation against its own first frame, scale searched per step, 36 keyframes, the 720 cut agreeing within 3px); the marker rides it for 52% of the journey until it leaves the frame, then the dot and rule go and the card comes to rest where the caption sat and keeps talking. State is a function of progress, so scrubbing back re-attaches |
+| 133 | Engineer | medium | **My first measuring instrument lied on its first run.** A colour threshold found nothing at frame 0, where the mini is plainly there, and from frame 63 returned confident boxes on the keyboard. The mini is warm grey on warm wood under a warm lamp: its dark bins are the desk's bright bins. **The nineteenth.** | **fixed** — replaced by correlation against the machine's own appearance, with a montage of eight frames a human checks, and a browser gate (`gate-voice.mjs`, 51 checks) that samples the pixels under the rendered dot and was made to fail four ways on purpose |
+| 134 | Skeptic | medium | On a phone the card hid its line entirely, because in August there was no room beside the invitation. The invitation is gone by .24 and the line stayed hidden for the other 76%. | **fixed** — the line shows once the invitation has gone; the pin under the header stays, the rule goes when the machine leaves the crop |
+| 135 | Auditor | low | A faded caption is still a link. `#room-caption` went to opacity 0 at .32 and kept "Read the public record" live under the exact spot the card now rests on. | **fixed** — inert when faded, as the invitation already was |
+
 ---
 
 ## Where the run ended
@@ -615,9 +629,9 @@ with a desk in it, what am I supposed to do.
 | Apps on the desktop | 15 | **20** |
 | Dock apps that hold nothing | **2** | **0** |
 | Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
-| Tests | 48 | **144** |
+| Tests | 48 | **159** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **130** |
+| Findings logged | — | **135** |
 | Published surfaces contradicting another surface of the same property | **2** | **0**, both guarded by tests |
 | Rooms on the property | **2** | **1** |
 | Apps the legibility gate actually measures | **19**, typed by hand | **25**, read from the workspace |
@@ -625,7 +639,9 @@ with a desk in it, what am I supposed to do.
 | Characters per line in the journal, desktop | **132** | **69** |
 | Type size of the longest prose on the property | **12px** | **17px** |
 | Ways into the workspace that render identically | **1 of 2** | **2 of 2**, guarded |
-| **Times an instrument of mine was lying** | — | **18** |
+| Progress through the walk in during which the machine is pointed at | 5% | **52%**, until it leaves the frame |
+| Sentences said between the invitation fading and the desktop | **0** | **3** |
+| **Times an instrument of mine was lying** | — | **19** |
 
 The last row is the one to read first. Every clean number above it is worth
 exactly what the instrument behind it is worth.

@@ -1,6 +1,7 @@
 import {createDesktop} from './mac.js';
 import {SeekQueue} from './video-seek.mjs';
 import {count as countOpen} from './seen.mjs';
+import {miniAt, voiceAt} from './mini-track.mjs';
 
 const $=s=>document.querySelector(s), clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a));return t*t*(3-2*t)};
@@ -31,10 +32,11 @@ function setOwner(next){
 }
 function draw(){
  const p=progress;
- /* The marker belongs to the room at rest. The moment the camera starts
-    moving it stops matching the frame, so it goes rather than drifts. */
  if(p>0.55)buildDesktop();   /* scrolling in counts as committing, not only the buttons */
- if(miniMarker)miniMarker.classList.toggle('on',p<0.05&&!graphicsFailed);
+ /* The marker used to switch off the moment the camera moved, because it
+    could not follow the machine. Now it can: it rides the measured track
+    until the mini leaves the frame, then comes to rest and keeps talking. */
+ placeMini();speak(p);
  if(!motionOff()&&!graphicsFailed)seeks.request(clamp(p/.94)*finalTime);
  const landed=videoReady&&!seeks.busy&&Math.abs(seeks.settled-finalTime)<1/24;
  const handover=graphicsFailed||motionOff()||bypassVideo?(p===1?1:0):landed?smooth(.94,1,p):0;
@@ -45,7 +47,7 @@ function draw(){
  const intro=1-smooth(.025,.24,p);$('#invitation').style.opacity=intro;$('#invitation').style.transform=`translateY(${-20*(1-intro)}px)`;$('#invitation').inert=intro<.05;
  $('#room-header').style.opacity=1-smooth(.68,.86,p);$('#room-header').inert=p>.83;
  $('#journey-nav').style.opacity=1-smooth(.75,.91,p);$('#journey-nav').inert=p>.9;
- $('#room-caption').style.opacity=1-smooth(.1,.32,p);
+ {const cap=$('#room-caption'),co=1-smooth(.1,.32,p);cap.style.opacity=co;cap.inert=co<.05;}   /* a faded link is still a link, and the card now rests where it was */
  document.querySelectorAll('[data-stop]').forEach(b=>{const selected=p<.25?b.dataset.stop==='0':p<.85?b.dataset.stop==='0.48':b.dataset.stop==='1';if(selected)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
  setOwner(p===1&&handover===1?'desktop':p<.18?'room':p<.78?'approach':'handover');
  if(debug){$('#debug-progress').value=p;$('#debug-readout').textContent=JSON.stringify(snapshot(),null,2);}
@@ -68,7 +70,7 @@ on($('#direct-entry'),'click',e=>{if(!buildDesktop())return;e.preventDefault();b
 on(window,'scroll',()=>{if(owner!=='desktop'&&(commandedScrollY===null||Math.abs(scrollY-commandedScrollY)>1)){commandedScrollY=null;schedule();}},{passive:true});
 on(window,'wheel',()=>{if(owner!=='desktop'){tween=null;commandedScrollY=null;}},{passive:true});on(window,'touchstart',()=>{if(owner!=='desktop'){tween=null;commandedScrollY=null;}},{passive:true});
 on(window,'keydown',e=>{if(owner==='desktop'||e.target.closest('input,textarea,select'))return;if(e.key==='Escape'){e.preventDefault();go(0,{instant:true});}if(e.key==='ArrowDown'||e.key==='PageDown'){e.preventDefault();go(progress<.4?.48:1,{instant:true});}if(e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();go(0,{instant:true});}});
-on(window,'resize',()=>{placeMini();if(owner==='desktop'){progress=1;draw()}else{syncScroll(progress);schedule();}});
+on(window,'resize',()=>{measureCard();placeMini();if(owner==='desktop'){progress=1;draw()}else{syncScroll(progress);schedule();}});
 on(document,'visibilitychange',()=>{if(document.hidden&&raf){cancelAnimationFrame(raf);raf=0;}else schedule();});
 on(reduce,'change',()=>{document.body.classList.toggle('motion-off',motionOff());if(motionOff()){tween=null;progress=owner==='desktop'?1:0;window.scrollTo(0,0);draw();}else {loadVideo();schedule();}});
 on(film,'seeked',()=>seeks.complete(film.currentTime));
@@ -197,63 +199,81 @@ function paintLive(){
   ?`${liveNow.scheduled} jobs on this machine's schedule. Read live from vitals.agentrichie.com, which is the Mac itself.`
   :(d?`Last kept receipt: ${d.last}. Counted from the dated records in the export.`:'');
 }
-/* ── The Mac mini, pointed at ──────────────────────────────────────
-   Where the mini sits in the source frame, measured off the image, not
-   guessed: the small silver box on the desk right of centre. The image
-   is object-fit:cover, so its on-screen position depends on the
-   viewport, and this repeats the browser's own cover maths rather than
-   assuming the picture fills the window. object-position is 50% on a
-   desktop and 42% on a phone, matching spatial-video.css. */
-const MINI = {x: 0.540, y: 0.606};
+/* ── The Mac mini, followed ────────────────────────────────────────
+   Where the machine is in each frame comes from the measured track in
+   mini-track.mjs, not from a guess. The footage is object-fit:cover, so
+   its on-screen position depends on the viewport, and this repeats the
+   browser's own cover maths rather than assuming the picture fills the
+   window. object-position is 50% on a desktop and 42% on a phone,
+   matching spatial-video.css.
+
+   The marker has two states and one rule. Attached: the dot sits on the
+   machine, the rule runs to the card, and all three move with the frame.
+   Detached: the machine has left the frame, or the card cannot sit beside
+   it without leaving the viewport, so the dot and the rule go and the card
+   comes to rest at the bottom right, where the caption sat before it
+   faded. The state is a function of progress, so scrubbing back re-attaches. */
+let cardW=264,cardH=90,phoneOrigin={x:0,y:0};
+function measureCard(){const card=miniMarker?.querySelector('.mm-card');if(!card)return;cardW=card.offsetWidth||cardW;cardH=card.offsetHeight||cardH;}
 function placeMini(){
  if(!miniMarker||!poster.naturalWidth)return;
+ miniMarker.hidden=graphicsFailed;if(graphicsFailed)return;
+ const p=progress,k=miniAt(p);
  const w=innerWidth,h=innerHeight,W=poster.naturalWidth,H=poster.naturalHeight;
  const scale=Math.max(w/W,h/H),dw=W*scale,dh=H*scale;
- const px=matchMedia('(max-width:650px)').matches?0.42:0.5;
- const left=(w-dw)*px+MINI.x*dw, top=(h-dh)*0.5+MINI.y*dh;
- /* Only hide it when the crop has genuinely put the mini outside the
-    frame. Near the right edge, where a phone puts it, the card flips to
-    the other side of the dot rather than disappearing: the point of this
-    marker is that the machine is always findable. */
- /* On a phone the card is pinned under the header and the rule runs down to
-    the machine, so the rule's length is the distance between them and has to
-    be measured, not guessed: the mini moves with the crop. */
- if(matchMedia('(max-width:650px)').matches){
+ const phone=matchMedia('(max-width:650px)').matches,px=phone?0.42:0.5;
+ const card=miniMarker.querySelector('.mm-card'),rule=miniMarker.querySelector('.mm-rule');
+ let left=0,top=0,on=false;
+ if(k){left=(w-dw)*px+k.x*dw;top=(h-dh)*0.5+k.y*dh;on=!(left<8||left>w-8||top<8||top>h-8);}
+ if(on&&!phone){
+  /* Beside the dot, on whichever side has room. Past the right edge the card
+     slides to the left of the dot (a transform, so it travels rather than
+     jumps); if neither side or the height will hold it, the voice detaches. */
+  const flip=left+74+cardW>w-8;
+  miniMarker.classList.toggle('flip',flip);
+  on=(flip?left-74-cardW>=8:true)&&top-30>=8&&top-30+cardH<=h-8;
+ }
+ miniMarker.classList.toggle('detached',!on);
+ miniMarker.style.setProperty('--mm-fade',String(1-smooth(.80,.93,p)));
+ if(phone){
   /* The card is pinned to the top right of the SCREEN, not to the dot, and
      position:fixed cannot do it: the marker carries a transform, which makes
      it the containing block for anything fixed inside it. So the offsets are
-     computed back from the marker's own translation. */
+     computed back from the marker's own translation. When the machine leaves
+     the crop the origin freezes where it was, so the card stays put and only
+     the dot and the rule go. */
   /* Written to the style attribute rather than to custom properties: the
      values are computed per frame from the crop, so they belong there, and a
      variable still loses to "#mini-marker.flip .mm-card{right:74px}" whenever
      that rule happens to sit later in the sheet. */
-  const card=miniMarker.querySelector('.mm-card'), rule=miniMarker.querySelector('.mm-rule');
-  const CARD_W=Math.min(206,innerWidth*0.58), PAD=18, CARD_TOP=96, RULE_TOP=CARD_TOP+62;
-  if(card){card.style.left=`${Math.round(innerWidth-PAD-CARD_W-left)}px`;card.style.right='auto';card.style.top=`${Math.round(CARD_TOP-top)}px`;}
-  if(rule){rule.style.left=`${Math.round(innerWidth-PAD-22-left)}px`;rule.style.right='auto';rule.style.top=`${Math.round(RULE_TOP-top)}px`;rule.style.height=`${Math.max(24,Math.round(top-RULE_TOP-6))}px`;}
- } else {
-  for(const el of [miniMarker.querySelector('.mm-card'),miniMarker.querySelector('.mm-rule')]){
-   if(!el)continue;
-   el.style.left=el.style.right=el.style.top=el.style.height='';
-  }
+  if(on)phoneOrigin={x:left,y:top};
+  const o=phoneOrigin,CARD_W=Math.min(206,innerWidth*0.58),PAD=18,CARD_TOP=96,RULE_TOP=CARD_TOP+62;
+  miniMarker.style.transform=`translate(${Math.round(o.x)}px,${Math.round(o.y)}px)`;
+  if(card){card.style.left=`${Math.round(innerWidth-PAD-CARD_W-o.x)}px`;card.style.right='auto';card.style.top=`${Math.round(CARD_TOP-o.y)}px`;}
+  if(rule&&on){rule.style.left=`${Math.round(innerWidth-PAD-22-left)}px`;rule.style.right='auto';rule.style.top=`${Math.round(RULE_TOP-top)}px`;rule.style.height=`${Math.max(24,Math.round(top-RULE_TOP-6))}px`;}
+  return;
  }
- const off = left < 8 || left > w - 8 || top < 8 || top > h - 8;
- miniMarker.hidden = off;
- if (off) return;
- miniMarker.classList.toggle('flip', left > w - 300);
- miniMarker.style.transform=`translate(${Math.round(left)}px,${Math.round(top)}px)`;
+ for(const el of [card,rule]){if(!el)continue;el.style.left=el.style.right=el.style.top=el.style.height='';}
+ if(on){miniMarker.style.transform=`translate(${Math.round(left)}px,${Math.round(top)}px)`;return;}
+ /* At rest: bottom right, 40px in and 43px up, the caption's old seat. The
+    card keeps its side of the origin so the glide there is one transform. */
+ const flipped=miniMarker.classList.contains('flip');
+ const ox=flipped?(w-40)+74:(w-40-cardW)-74,oy=(h-43-cardH)+30;
+ miniMarker.style.transform=`translate(${Math.round(ox)}px,${Math.round(oy)}px)`;
 }
-function miniCopy(corpus){
+/* One line at a time, from the machine. The text changes only at a band
+   edge, and the live region hears it then, so a screen reader gets the walk
+   in as four sentences rather than a stream. */
+let spoken=null;
+function speak(p){
+ const v=corpusData?voiceAt(p,corpusData):null;if(!v||v.key===spoken)return;
  const line=$('[data-mini-line]');if(!line)return;
- const id=corpus?.identity||{},sys=corpus?.body?.system||{};
- const days=Number(id.age_days);
- const spec=[sys.cores?`${sys.cores} cores`:null,sys.mem_total_gb?`${Math.round(sys.mem_total_gb)} GB`:null].filter(Boolean).join(', ');
- /* Every other line on this screen is first person. Saying "He has been
-    publishing" here made the machine's own label read like a museum card
-    written by somebody else. */
- line.textContent=`This is me. ${spec ? spec + '. ' : ''}`+
-  (Number.isFinite(days)?`${days} days in here so far.`:'This is where the record is written.');
- line.dataset.tier='export';
+ const first=spoken===null;spoken=v.key;
+ line.textContent=v.text;line.dataset.tier=v.tier;
+ miniMarker?.classList.toggle('speaking',v.key!=='rest');
+ if(!first&&!reduce.matches)line.animate([{opacity:0},{opacity:1}],{duration:350,easing:'ease-out'});
+ if(!first)status.textContent=v.text;
+ measureCard();
 }
 /* ── What the room costs to arrive at ────────────────────────────────
    The entrance was fetching a 20.8 MB all-intra 1080p file on every
@@ -314,7 +334,7 @@ async function initialize(){
  }catch(e){errors.push(e.message);status.textContent='Workspace could not load. Use Open workspace to try the direct route.';entry.disabled=true;return;}
  try{await poster.decode();document.body.classList.add('photo-ready');}
  catch(e){errors.push('Room image unavailable');graphicsFailed=true;document.body.classList.add('graphics-failed');status.textContent='Room image unavailable. The workspace remains available.';}
- progress=0;syncScroll(0);draw();miniCopy(corpusData);placeMini();paintInvitation();paintLive();liveWeather();loadNow();setInterval(paintLive,20000);setInterval(loadNow,60000);addEventListener('resize',()=>paintInvitation(),{passive:true});requestAnimationFrame(()=>miniMarker?.classList.add('on'));if(!motionOff())loadVideo();if(params.get('p'))go(Number(params.get('p')),{instant:true});
+ progress=0;syncScroll(0);draw();paintInvitation();paintLive();liveWeather();loadNow();setInterval(paintLive,20000);setInterval(loadNow,60000);addEventListener('resize',()=>paintInvitation(),{passive:true});requestAnimationFrame(()=>miniMarker?.classList.add('on'));if(!motionOff())loadVideo();if(params.get('p'))go(Number(params.get('p')),{instant:true});
 }
 window.__spatial={ready:false,go,snapshot,dispose(){disposed=true;if(raf)cancelAnimationFrame(raf);abort.abort();clearTimeout(videoTimer);seeks.stop();film.pause();film.removeAttribute('src');film.load();desktop?.dispose();document.documentElement.style.overflowY='';}};
 initialize().then(()=>{window.__spatial.ready=true;});
