@@ -899,6 +899,25 @@ export function createDesktop(root, C, { leave }) {
       input.dispatchEvent(new Event('input'));
     }
     if (folder === 'home') bindIconDrag(b.querySelector('.finder-folders'), '.finder-folder', b.querySelector('.finder-content'));
+    if (folder === 'writing') {
+      /* Move between entries without collapsing and scrolling. The buttons
+         are already in the markup, so with no listener they are still real
+         controls that name where they go; this only makes them move you. */
+      b.addEventListener('click', (ev) => {
+        const go = ev.target.closest('[data-read-go]');
+        if (!go) return;
+        ev.preventDefault();
+        const here = go.closest('details.record-item');
+        const next = b.querySelector(`details[data-entry="${CSS.escape(go.dataset.readGo)}"]`);
+        if (!next) return;
+        if (here) here.open = false;
+        next.open = true;
+        next.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
+        next.querySelector('summary')?.focus({ preventScroll: true });
+        announce(`${next.querySelector('summary span')?.textContent?.trim() || 'Entry'} opened`);
+      });
+    }
+
     if (folder === 'nights') b.querySelectorAll('.finder-records > .record-item').forEach((item) => {   // C8: a workday opens in Time Machine
       const d = item.querySelector('time')?.textContent?.trim(); if (!/^\d{4}-\d{2}-\d{2}$/.test(d || '')) return;
       const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'tm-day-open'; btn.dataset.timemachine = ''; btn.dataset.date = d; btn.textContent = 'Open in Time Machine';

@@ -36,3 +36,41 @@
 .rg-count { font:500 var(--t-micro)/1 var(--face-evidence); padding: 2px 7px; border-radius: 999px;
   background: rgba(127,127,127,.16); font-variant-numeric: tabular-nums; }
 .refusal-group > .record-note:first-of-type { margin-top: 0; }
+
+/* ── reading at length ────────────────────────────────────────────────────
+   The journal is the largest body of Richie's writing on the property, and
+   in the workspace it was set at 12px, the smallest step in the system, and
+   ran 132 characters to the line on a desktop. Comfortable continuous reading
+   is 45 to 75. It was nearly double that, in the smallest type available, for
+   the longest prose here.
+
+   Measured, not eyeballed: scripts read the computed style and the real
+   character advance for the face at three viewports. No fourth reader was
+   built. The one that existed was set wrong. */
+.record-read{max-width:64ch}
+/* The notes above the list sat at the full pane width, which read fine when
+   the entries did too and reads as a ragged left edge now that they do not.
+   Wider than the prose, because they are a note and not the reading. */
+.finder-records > .record-note{max-width:76ch}
+.record-read > p,
+.record-read > ul,
+.record-read > ol,
+.record-read > blockquote{font-size:var(--t-lead);line-height:1.62;margin:0 0 1.05em}
+.record-read > h2,
+.record-read > h3{font-size:var(--t-sub);line-height:1.28;margin:1.5em 0 .45em;font-weight:600}
+.record-read > blockquote{padding-left:1.1em;border-left:2px solid color-mix(in srgb,currentColor 22%,transparent);opacity:.86}
+.record-read [data-tier="chrome"]{font-size:var(--t-fine);line-height:1.55;opacity:.66;margin-top:1.6em}
+
+/* Fixing the measure makes an open entry taller, which makes collapsing it
+   and hunting for the next one worse. The fix created the need. */
+.read-next{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline;margin:1.4em 0 .2em;padding-top:14px;border-top:1px solid color-mix(in srgb,currentColor 14%,transparent)}
+.read-next button{background:none;border:0;padding:0;font:inherit;font-size:var(--t-body);color:inherit;text-decoration:underline;text-underline-offset:4px;cursor:pointer;text-align:left}
+.read-next button:hover{text-decoration-thickness:2px}
+.read-next small{font-size:var(--t-micro);opacity:.6;font-family:var(--face-evidence)}
+
+/* A phone gets the same reading size, not a smaller one. The column is
+   already narrow there; shrinking the type as well is the exact defect the
+   type gate exists to catch. Only the cap comes off. */
+@media (max-width:700px){
+  .record-read{max-width:none}
+}

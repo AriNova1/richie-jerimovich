@@ -120,9 +120,19 @@ export function renderDirectory(C, key, { interactive = true, journal = null } =
       };
       return empty('Complete entries, every paragraph. The bodies live beside the export in data/journal.json and are fetched when this folder is opened.')
         + empty('Entries written before September 2026 give the five layers borrowed character names. Those names were retired, and these entries were not edited to agree with that. The record is not rewritten to match a later decision.')
-        + C.writing.map(r =>
-          `<details class="record-item"><summary><span>${e(r.title)}</span><time>${e(r.date)}</time><span class="ri-conf">${e(String(r.paragraphs ?? '?'))} paragraphs</span><span class="ri-status">${e(String(r.words ?? '?'))} words</span></summary><div class="record-detail">${body(r.slug)}<p data-tier="chrome">${source(C, r.file)}</p></div></details>`
-        ).join('');
+        + C.writing.map((r, i, all) => {
+          /* Fixing the measure made an open entry roughly twice as tall, which
+             made collapsing it and hunting for the next one worse. The fix
+             created the need, so the entry ends with the way out. Rendered
+             here rather than wired in script, so it works with the folder
+             opened from a phone, a keyboard, or with no listener attached. */
+          const older = all[i + 1];
+          const newer = all[i - 1];
+          const step = (row, word) => row
+            ? `<button type="button" data-read-go="${e(row.slug)}">${word} <span>${e(row.title)}</span></button><small>${e(row.date)}</small>`
+            : `<small>${word === 'Next' ? 'This is the first entry.' : 'This is the most recent entry.'}</small>`;
+          return `<details class="record-item is-reading" data-entry="${e(r.slug)}"><summary><span>${e(r.title)}</span><time>${e(r.date)}</time><span class="ri-conf">${e(String(r.paragraphs ?? '?'))} paragraphs</span><span class="ri-status">${e(String(r.words ?? '?'))} words</span></summary><div class="record-detail record-read">${body(r.slug)}<p data-tier="chrome">${source(C, r.file)}</p><nav class="read-next" data-read-next aria-label="Move through the journal">${step(older, 'Next')}${newer ? step(newer, 'Back to') : ''}<small class="read-place">${i + 1} of ${all.length}</small></nav></div></details>`;
+        }).join('');
     }
     case 'log': return C.log.map(r=>`<article class="record-item"><header>${commit(C,r.sha)}<time>${e(r.date)}</time></header>${para(r.subject)}</article>`).join('');
     case 'nights': return empty(`${Object.keys(C.days).length} dates with commits. These are workdays inferred from the log, not recorded nights. ${C.nights.length} tape entries are exported separately.`) +

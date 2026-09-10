@@ -544,6 +544,30 @@ and not a reading of them, and prints all 33 for the reader. Pattern-matching
 meaning out of prose is how the corrections list came to publish "a correction
 path outside the model" as an admission of error.
 
+### Sweep 14 — the journal, and the fourth reader that was not built
+
+Rick picked the journal reading experience. The Skeptic's objection was that
+three readers already exist: `/journal/`, the bound edition at `/journal/book/`,
+and the Writing folder in the workspace. A fourth is vanity.
+
+The objection held, and the queue's description of the third one was wrong. It
+is not a `<details>` list. It is complete entries, every paragraph, set in the
+record face. **It was set wrong, and measuring it is what showed that.**
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 113 | Typographer | **high** | The journal in the workspace ran **132 characters to the line** on a desktop and 111 on a tablet. Comfortable continuous reading is 45 to 75. It was at nearly double the top of that range, for the longest prose on the property. | **fixed** — capped, and measured back at **69** |
+| 114 | Typographer | **high** | It was set at **12px**, the smallest step in the whole type system, the one meant for micro labels. A thousand word essay was being read at label size. | **fixed** — `--t-lead`, 17px, with leading to match |
+| 115 | Skeptic | medium | Fixing the measure makes an open entry roughly twice as tall, which makes collapsing it and hunting for the next one worse. **The fix created the need.** | **built** — every entry ends with the next one by name, a way back, and its place in the 98 |
+| 116 | Engineer | low | My own first draft of that fix gave phones `--t-body`, which is a **shrink** from the reading size. Phones get the same type or larger; that is the rule, and I wrote the violation into the same edit that fixed the measure. | **fixed before shipping**, and a test now fails on any font-size inside that media block |
+| 117 | Typographer | low | With the prose constrained, the two notes above the list still ran the full pane, so the folder had two left edges and no rhythm. | **fixed** — notes capped wider than the prose, because they are a note and not the reading |
+| 118 | Auditor | — | **Nearly logged a false finding.** The first phone probe reported the journal unreachable, because it looked for the sidebar, which is correctly hidden on phones. The folder grid is the route and it works. Checked before writing it down. | **not a defect** |
+
+**No new reader.** The one that existed was set at label size and double the
+readable measure, and nothing had ever measured it. `workspace/tests/reading.test.mjs`
+holds the measure, the size, the phone rule and the next-entry control in place;
+each of its five guards was broken on purpose and watched to fail.
+
 ---
 
 ## Where the run ended
@@ -561,13 +585,15 @@ path outside the model" as an admission of error.
 | Apps on the desktop | 15 | **20** |
 | Dock apps that hold nothing | **2** | **0** |
 | Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
-| Tests | 48 | **138** |
+| Tests | 48 | **143** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **112** |
+| Findings logged | — | **118** |
 | Published surfaces contradicting another surface of the same property | **2** | **0**, both guarded by tests |
 | Rooms on the property | **2** | **1** |
 | Apps the legibility gate actually measures | **19**, typed by hand | **25**, read from the workspace |
 | Calendars the two ledgers are filed against | **2** | **1** |
+| Characters per line in the journal, desktop | **132** | **69** |
+| Type size of the longest prose on the property | **12px** | **17px** |
 | **Times an instrument of mine was lying** | — | **17** |
 
 The last row is the one to read first. Every clean number above it is worth
