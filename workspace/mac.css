@@ -938,3 +938,32 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 .frozen-row dt{margin:0;font-size:var(--t-body)}
 .frozen-row dd{margin:0;font-size:var(--t-sub);font-variant-numeric:tabular-nums;opacity:.62}
 .frozen-row p{grid-column:1/-1;margin:0;font-size:var(--t-fine);opacity:.6}
+
+/* ── the greeting ─────────────────────────────────────────────────────────
+   The first window a stranger sees. It opens itself, in the middle, because
+   the middle of the screen was wallpaper and the only instruction on the
+   property was a corner toast telling you to go find a menu item. */
+/* No translate for centring. WindowMotion writes an inline transform for the
+   open spring, and a translate here compounds with it: the window landed off
+   centre with its titlebar under the menu bar. Same trap as the mini marker in
+   August. The offsets are computed and written to the style attribute. */
+.window-notes.is-greeting .mac-window-body{overflow-y:auto}
+.window-notes.is-greeting .note-paper{height:auto;min-height:0;overflow:visible}
+.note-mark-key{font-size:var(--t-fine);opacity:.72}
+.welcome-mark{margin:0 0 18px;color:#8a6a2f;line-height:0}
+.welcome-mark svg{width:100%;height:auto;max-width:340px}
+/* A lead-in, not a heading: it was set in caps at full width and read as a
+   second title competing with the one above it. */
+.welcome-lead{margin:24px 0 6px;font-size:var(--t-micro);letter-spacing:.1em;text-transform:uppercase;opacity:.55}
+.welcome-tour{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.welcome-tour:hover{text-decoration-thickness:2px}
+.mac-desktop[data-appearance=dark] .welcome-mark{color:#d8b268}
+
+/* The banner carried a letter in a circle, the one monogram THE MARK had not
+   yet replaced. It now carries the mark, at a size where the grid still reads. */
+.toast-mark{display:grid;place-items:center;overflow:hidden}
+.toast-mark svg{width:22px;height:auto;color:#8a6a2f}
+
+@media (max-width:700px){
+  .window-notes.is-greeting{left:3%;right:3%;top:56px;translate:none;width:auto;max-height:calc(100% - 130px)}
+}

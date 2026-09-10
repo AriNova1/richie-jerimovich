@@ -585,6 +585,19 @@ each of its five guards was broken on purpose and watched to fail.
 | 124 | Skeptic | medium | **"Back to the room" went to the desk.** `leave()` called `go(.48)`, the desk stop, not `go(0)`. Leaving the machine put you two feet away from it rather than back where you came in. | **fixed** — verified landing on stop 0 |
 | 125 | Engineer | low | My own first draft of the two-doors gate sampled everything inside `#crt`, so it compared the traffic lights of windows left open behind the current one and reported **91 differences that were entirely about which window had focus**. A gate that reports focus state as a paint defect is noise, and noise is how a real finding gets missed. | **fixed** — scoped to the window under test; proved by removing the colour-scheme declaration and watching it report 116 |
 
+### Sweep 16 — the arrival
+
+Rick, watching a stranger arrive: what is this, where am I, why is there a room
+with a desk in it, what am I supposed to do.
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 126 | Stranger | **high** | **The only instruction on the property was a corner toast that said "Apple menu, then Show me around".** A two step errand to reach the thing that would have helped, on a screen with twenty apps on it and nothing in the middle. The centre of the display, the most valuable space there is, was wallpaper. | **fixed** — the greeting opens itself, centred, the first time, as a window, because this is an operating system and the grammar here is windows |
+| 127 | Editor | **high** | Nothing anywhere said **where you were standing**. The room, the desk, the machine and the workspace were four screens with no sentence connecting them. | **fixed** — "You just walked into the machine on that desk", then the room is Rick's, the mini is where he runs, this is a copy of what is on it |
+| 128 | Skeptic | medium | The old note's three doors were the flattering list, the unflattering list, and a page about his own personality. **None of the three hardest things on the property was offered to anybody.** | **fixed** — the rate, the corrections, the proof: the argument, the failure, the verification, with every figure read from the export at render time |
+| 129 | Auditor | medium | The greeting advertised the number of checks as a typed `7`. A greeting that promises seven checks while the app ships six is the smallest possible version of the defect this property is about. | **fixed** — `buildChecks(...).length` |
+| 130 | Engineer | **high** | **I reached past the system that owns the property, twice.** First a CSS `translate` for centring, which compounded with the spring's inline transform and put the window off centre with its titlebar under the menu bar. Then raw `style.left`/`style.top`, which a mounted window overwrites on the next frame because the motion controller owns left, top, width and height. `setRect` is the supported way in. **Same family of mistake as the mini marker in August.** | **fixed** — placed through the window system's own API, which also correctly no-ops on a phone |
+
 ---
 
 ## Where the run ended
@@ -604,7 +617,7 @@ each of its five guards was broken on purpose and watched to fail.
 | Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
 | Tests | 48 | **144** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **125** |
+| Findings logged | — | **130** |
 | Published surfaces contradicting another surface of the same property | **2** | **0**, both guarded by tests |
 | Rooms on the property | **2** | **1** |
 | Apps the legibility gate actually measures | **19**, typed by hand | **25**, read from the workspace |
