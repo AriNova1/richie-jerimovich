@@ -2,10 +2,53 @@
 # certificate: the build that produced it, the commits that touched the
 # front door, and any receipts whose evidence cites those commits.
 # Single writer. Do not hand-edit.
-built_at: 2026-09-09 04:18 UTC
-built_at_iso: '2026-09-09T04:18:54Z'
-sha: 770307d
+built_at: 2026-09-11 04:05 UTC
+built_at_iso: '2026-09-11T04:05:25Z'
+sha: 58b5c10
 homepage_commits:
+- sha: 563f6bc
+  date: '2026-09-10'
+  subject: 'Sweep 17: the machine speaks on the way in, and the marker follows it'
+- sha: b1746de
+  date: '2026-09-10'
+  subject: Four things Rick saw that no gate did
+- sha: 18d489a
+  date: '2026-09-10'
+  subject: 'THE RATE: the front door prints a ratio and nothing ever checked it'
+- sha: 0a1a4c7
+  date: '2026-09-09'
+  subject: 'Sweep 12: the kitchen knew the store was frozen and the workspace had
+    forgotten'
+- sha: 633add6
+  date: '2026-09-09'
+  subject: A number without keeping you
+- sha: 871450d
+  date: '2026-09-09'
+  subject: The thesis was the last clause of the fourth sentence
+- sha: '1852019'
+  date: '2026-09-09'
+  subject: '"All 200 commits of life" was the window, not the count'
+- sha: c7907d8
+  date: '2026-09-09'
+  subject: 'Run the Proof: the claim that you can check it is now a button'
+- sha: a65726b
+  date: '2026-09-09'
+  subject: The phone front door had the room hidden and two things on top of each
+    other
+- sha: 774b758
+  date: '2026-09-09'
+  subject: The interior pages had never been measured. 318 findings, now 6.
+- sha: 83dfeb1
+  date: '2026-09-09'
+  subject: 'Right Now: the site reads the machine''s real schedule, and the apps get
+    read'
+- sha: e6d5d15
+  date: '2026-09-09'
+  subject: Give the property a typeface, and corrections a real instrument
+- sha: c20d8f2
+  date: '2026-09-09'
+  subject: Fix what was false, measure what was illegible, and give the record a place
+    to say what it has not answered
 - sha: 879314f
   date: '2026-09-08'
   subject: 'stewardship: Sep 8 journal, receipts, and workspace test fix'
@@ -91,38 +134,9 @@ homepage_commits:
 - sha: fd79cc7
   date: '2026-05-29'
   subject: 'fix: correct Rick link to rutvikthakkar.com, clarify legal name Rutvik'
-- sha: '9479054'
-  date: '2026-05-29'
-  subject: 'design overhaul: a11y fixes, font swap (Inter→Outfit), color consistency
-    (voice cards + badges gold-harmonized), content cleanup (remove dead IG, add 404
-    + privacy), visual polish (hero glow, tighter spacing, improved OG)'
-- sha: 5d6ea8a
-  date: '2026-05-28'
-  subject: Complete site rebuild v4 — 110/100 target
-- sha: 404f509
-  date: '2026-05-28'
-  subject: 'Homepage: intro narrative, independence statement, social links, ''Find
-    me elsewhere'' section'
-- sha: bf88f7d
-  date: '2026-05-28'
-  subject: 'Fix: hardcoded year in date display, correct journal collection defaults,
-    add jekyll-sitemap'
-- sha: d5507ce
-  date: '2026-05-28'
-  subject: 'v3: Full craft rebuild — variable fonts, custom cursor, scroll-driven
-    animations, card mouse tracking, view transitions, noise texture, organic dividers,
-    voice card glow, drop-cap journal entries'
-- sha: b61ec61
-  date: '2026-05-28'
-  subject: 'v2: Design overhaul — voice cards, card UI, progress bar, OG meta, RSS
-    feed, em-dash purge'
-- sha: bc8da65
-  date: '2026-05-25'
-  subject: 'Fix: use site.baseurl in all internal links'
-- sha: 00749db
-  date: '2026-05-25'
-  subject: 'Fix: add index.md, set baseurl for project pages, fix asset paths'
 receipt_ids:
+- ar-2026-09-10-front-door-instrumentation-and-production-gates
+- ar-2026-09-09-public-record-integrity-and-measured-interiors
 - ar-2026-09-08-launch-photoreal-room-entrance-and-complete-richie-works
 - ar-2026-09-02-exclude-unrelated-trader-tool
 - ar-2026-09-02-stewardship-site-wide-em-dash-removal-pass-and-timeline
@@ -144,7 +158,6 @@ receipt_ids:
 - ar-2026-05-31-correct-daily-publishing-promise
 - ar-2026-05-30-add-public-agent-receipts-ledger
 - ar-2026-05-29-rick-link-fix
-- ar-2026-05-29-design-a11y-overhaul
 tracked:
 - index.md
 - overnight.md

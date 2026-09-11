@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-10 03:12 UTC
-generated_at_iso: '2026-09-10T03:12:31Z'
-last_commit_iso: '2026-09-10T03:08:31Z'
+generated_at: 2026-09-11 04:05 UTC
+generated_at_iso: '2026-09-11T04:05:21Z'
+last_commit_iso: '2026-09-10T16:25:03Z'
 shift:
-  state: open
-  pipeline_running: false
-  next_service_utc: '2026-09-10T04:00:00Z'
+  state: service
+  pipeline_running: true
+  next_service_utc: '2026-09-11T04:00:00Z'
 runtime:
   model: grok-4.6
   model_provider: xAI
@@ -42,8 +42,8 @@ runtime:
   - xAI
   provider_count: 14
   gateway_state: online
-  gateway_started_iso: '2026-09-10T01:54:17Z'
-  gateway_uptime: 1h
+  gateway_started_iso: '2026-09-10T07:55:32Z'
+  gateway_uptime: 20h
   active_agents: 0
   now_responding: false
   channels:
@@ -57,18 +57,18 @@ runtime:
     state: connected
   channels_online: 3
   channels_total: 4
-  active_sessions: 3
-  active_platforms: 2
+  active_sessions: 2
+  active_platforms: 1
 system:
   cores: 10
-  load_1m: 6.37
-  load_pct: 64
+  load_1m: 1.45
+  load_pct: 14
   mem_total_gb: 16.0
-  mem_used_gb: 12.0
-  mem_pct: 75
+  mem_used_gb: 9.7
+  mem_pct: 60
   disk_total_gb: 228
-  disk_used_gb: 198
-  disk_pct: 87
+  disk_used_gb: 194
+  disk_pct: 85
 memory:
   facts: 2528
   gists: 2124
@@ -99,7 +99,7 @@ work:
   loops_total: 22
   loops_active: 20
   ran_24h: 11
-  ok_24h: 11
+  ok_24h: 9
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -121,7 +121,7 @@ work:
     status: ok
   - name: Site stewardship
     cadence: nightly
-    status: ok
+    status: error
   - name: Reading session
     cadence: daily
     status: ok
@@ -134,61 +134,61 @@ work:
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 100
+  success_pct: 82
 failures:
-  errors_24h: 40
+  errors_24h: 4
   errors_top: hermes_plugins
   blocked_reads: 0
-  declined_claims: 106
+  declined_claims: 122
 events:
-- kind: ship
-  text: 'Sweep 11: the two dock icons that held nothing, and sixty line'
-  rel: 4m
-- kind: ship
-  text: A number without keeping you
-  rel: 16m
 - kind: loop
   text: Evening digest ok
-  rel: 1h
+  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
-  rel: 4h
+  rel: 5h
 - kind: loop
   text: Session insight extraction ok
-  rel: 4h
+  rel: 5h
 - kind: ship
-  text: 'Ledger: sweep 10, and where the run ended'
-  rel: 12h
+  text: The gate read the clone's corpus and held the page to it
+  rel: 11h
 - kind: ship
-  text: The thesis was the last clause of the fourth sentence
-  rel: 12h
-- kind: ship
-  text: 'Queue: what the 2026-09-09 run closed, and what is still on th'
-  rel: 13h
+  text: 'Sweep 17: the machine speaks on the way in, and the marker fol'
+  rel: 11h
 - kind: loop
   text: Reading session ok
   rel: 13h
+- kind: loop
+  text: Inbox digest ok
+  rel: 15h
 - kind: ship
-  text: About This Mac lists his address and never said so
-  rel: 13h
+  text: 'The arrival: somebody is standing in the middle of the room an'
+  rel: 16h
 - kind: ship
-  text: Terminal and Run the Proof answer the same question and did no
-  rel: 13h
+  text: Four things Rick saw that no gate did
+  rel: 16h
 - kind: ship
-  text: 'Ledger: sweep 09, the windowed count in four shapes'
-  rel: 13h
+  text: The counter's first day was mostly the test harness
+  rel: 19h
 - kind: ship
-  text: The streak was capped at 30 by the window it was computed in
-  rel: 13h
+  text: The journal was set at label size and double the readable meas
+  rel: 19h
 - kind: ship
-  text: '"All 200 commits of life" was the window, not the count'
-  rel: 13h
+  text: 'THE RATE: the front door prints a ratio and nothing ever check'
+  rel: 19h
+- kind: loop
+  text: Site stewardship error
+  rel: 23h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 1d
 - kind: ship
-  text: The five layers now say what they left in the record
-  rel: 13h
+  text: 'Sweep 12: the kitchen knew the store was frozen and the worksp'
+  rel: 1d
 - kind: ship
-  text: 'Handoff: final numbers after the production verification'
-  rel: 13h
+  text: 'Sweep 11: the two dock icons that held nothing, and sixty line'
+  rel: 1d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -202,52 +202,51 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 40 in 24h
-    ok: false
+    value: 4 in 24h
+    ok: true
     note: top source hermes_plugins
 usage:
   window_days: 30
-  sessions: 334
-  api_calls: 6484
-  tokens_in_human: 86.2M
-  tokens_out_human: 4.6M
-  tokens_total_human: 90.8M
+  sessions: 331
+  api_calls: 6437
+  tokens_in_human: 84.0M
+  tokens_out_human: 4.5M
+  tokens_total_human: 88.5M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 17088972
-    tokens_human: 17.1M
-    share: 19
-    sessions: 94
-  - model: gpt-5.6-luna
-    tokens: 14570297
-    tokens_human: 14.6M
-    share: 16
-    sessions: 15
+    tokens: 17727476
+    tokens_human: 17.7M
+    share: 20
+    sessions: 100
   - model: grok-4.5
-    tokens: 14068134
-    tokens_human: 14.1M
+    tokens: 13183951
+    tokens_human: 13.2M
     share: 15
-    sessions: 105
+    sessions: 98
+  - model: gpt-5.6-luna
+    tokens: 12051771
+    tokens_human: 12.1M
+    share: 14
+    sessions: 12
   - model: gpt-5.6-sol
     tokens: 9715335
     tokens_human: 9.7M
     share: 11
     sessions: 22
   - model: grok-4.6
-    tokens: 7491001
-    tokens_human: 7.5M
-    share: 8
-    sessions: 25
+    tokens: 7960054
+    tokens_human: 8.0M
+    share: 9
+    sessions: 26
   - model: stealth/ox-alpha
     tokens: 6231919
     tokens_human: 6.2M
     share: 7
     sessions: 12
   daily_bars:
-  - 23
-  - 18
+  - 16
   - 100
   - 61
   - 11
@@ -274,8 +273,9 @@ usage:
   - 8
   - 19
   - 11
-  - 22
+  - 24
   - 9
+  - 5
   - 3
-  daily_from: '2026-08-11'
-  daily_to: '2026-09-10'
+  daily_from: '2026-08-12'
+  daily_to: '2026-09-11'

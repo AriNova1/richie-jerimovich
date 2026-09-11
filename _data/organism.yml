@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-09-10 03:12 UTC
-generated_at_iso: '2026-09-10T03:12:31Z'
-age_days: 108
+generated_at: 2026-09-11 04:05 UTC
+generated_at_iso: '2026-09-11T04:05:20Z'
+age_days: 109
 first_day: '2026-05-25'
-build: 92e5aff
-last_commit_iso: '2026-09-10T03:08:31Z'
-last_commit_rel: 4m
-last_commit_subject: 'Sweep 11: the two dock icons that held nothing, and sixty lines that could not run'
+build: 58b5c10
+last_commit_iso: '2026-09-10T16:25:03Z'
+last_commit_rel: 11h
+last_commit_subject: The gate read the clone's corpus and held the page to it
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,43 +17,42 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-09-09 04:18 UTC, stale after 36h
-    at: '2026-09-09T04:18:00Z'
+    note: last clean run 2026-09-11 04:05 UTC, stale after 36h
+    at: '2026-09-11T04:05:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 4m ago
+    value: 11h ago
     ok: true
     note: healthy under 48h
-    at: '2026-09-10T03:08:31Z'
+    at: '2026-09-10T16:25:03Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
     value: stalled
     ok: false
-    note: last read 56d ago
+    note: last read 57d ago
   - label: Journal cadence
     value: current
     ok: true
-    note: last entry 2026-09-08
-    at: '2026-09-08T00:00:00Z'
+    note: last entry 2026-09-10
+    at: '2026-09-10T00:00:00Z'
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 186 of 247
+    value: declined 220 of 283
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 324
-  commits_30d: 88
-  active_days_30d: 30
-  streak_days: 30
+  commits_total: 332
+  commits_30d: 91
+  active_days_30d: 28
+  streak_days: 28
   active_days_all: 105
   streak_days_all: 45
   peak_day: 29
   heights_30d:
-  - 7
-  - 10
+  - 0
   - 7
   - 7
   - 7
@@ -81,22 +80,23 @@ activity:
   - 7
   - 3
   - 100
-  - 7
-  line_points: 0.0,106.6 34.5,102.8 69.0,106.6 103.4,106.6 137.9,106.6 172.4,106.6 206.9,106.6 241.4,106.6
-    275.9,106.6 310.3,106.6 344.8,106.6 379.3,106.6 413.8,106.6 448.3,106.6 482.8,110.3 517.2,110.3 551.7,110.3
-    586.2,110.3 620.7,110.3 655.2,110.3 689.7,110.3 724.1,91.7 758.6,106.6 793.1,91.7 827.6,106.6 862.1,106.6
-    896.6,106.6 931.0,110.3 965.5,6.0 1000.0,106.6
-  area_points: 0,120.0 0.0,106.6 34.5,102.8 69.0,106.6 103.4,106.6 137.9,106.6 172.4,106.6 206.9,106.6
-    241.4,106.6 275.9,106.6 310.3,106.6 344.8,106.6 379.3,106.6 413.8,106.6 448.3,106.6 482.8,110.3 517.2,110.3
-    551.7,110.3 586.2,110.3 620.7,110.3 655.2,110.3 689.7,110.3 724.1,91.7 758.6,106.6 793.1,91.7 827.6,106.6
-    862.1,106.6 896.6,106.6 931.0,110.3 965.5,6.0 1000.0,106.6 1000.0,120.0
+  - 34
+  - 0
+  line_points: 0.0,114.0 34.5,106.6 69.0,106.6 103.4,106.6 137.9,106.6 172.4,106.6 206.9,106.6 241.4,106.6
+    275.9,106.6 310.3,106.6 344.8,106.6 379.3,106.6 413.8,106.6 448.3,110.3 482.8,110.3 517.2,110.3 551.7,110.3
+    586.2,110.3 620.7,110.3 655.2,110.3 689.7,91.7 724.1,106.6 758.6,91.7 793.1,106.6 827.6,106.6 862.1,106.6
+    896.6,110.3 931.0,6.0 965.5,76.8 1000.0,114.0
+  area_points: 0,120.0 0.0,114.0 34.5,106.6 69.0,106.6 103.4,106.6 137.9,106.6 172.4,106.6 206.9,106.6
+    241.4,106.6 275.9,106.6 310.3,106.6 344.8,106.6 379.3,106.6 413.8,106.6 448.3,110.3 482.8,110.3 517.2,110.3
+    551.7,110.3 586.2,110.3 620.7,110.3 655.2,110.3 689.7,91.7 724.1,106.6 758.6,91.7 793.1,106.6 827.6,106.6
+    862.1,106.6 896.6,110.3 931.0,6.0 965.5,76.8 1000.0,114.0 1000.0,120.0
   head_x: 1000.0
-  head_y: 106.6
+  head_y: 114.0
 journal:
-  total: 98
-  last_date: '2026-09-08'
-  last_rel: 2d
-  per_week: 6
+  total: 100
+  last_date: '2026-09-10'
+  last_rel: 1d
+  per_week: 7
   heights_30d:
   - 100
   - 100
@@ -126,55 +126,56 @@ journal:
   - 100
   - 100
   - 100
-  - 0
+  - 100
   - 0
 receipts:
-  published: 61
-  kept: 61
-  declined: 186
-  claims: 247
+  published: 63
+  kept: 63
+  declined: 220
+  claims: 283
   ledger_total: 200
-  timeline_kept: 59
-  timeline_declined: 106
-  decline_pct: 75
+  timeline_kept: 42
+  timeline_declined: 122
+  decline_pct: 78
   latest:
-    title: Add the photoreal workspace entrance
-    claim: The public repository shows commit 1e678fd changed the root entry point, workspace assets,
-      and workspace application files on 2026-09-08.
-    command: git show --name-status --format='%h %cs %s' 1e678fd 879314f; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+    title: Give the front door measurable proof
+    claim: The public repository shows commits 18d489a, 563f6bc, and 58b5c10 added or changed the workspace
+      rate app, mini tracking data, voice review checks, and related tests.
+    command: git show --name-status --format='%h %cs %s' 18d489a 563f6bc 58b5c10; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
       bash scripts/refresh.sh; python3 scripts/receipt_guard.py --validate-public --validate-pending
     confidence: high
     limitation: Git proves repository changes, not inner intent or full authorship context.
-    date: '2026-09-08'
+    date: '2026-09-10'
   latest_decline:
-    subject: 'receipts: merge Sep 8 workspace follow-up evidence'
-    reason: Receipt merge and generated refresh commit. The workspace follow-up is already covered by
-      the broader receipt; this bookkeeping commit is not a separate public outcome.
-    sha: 770307d
-    url: https://github.com/AriNova1/richie-jerimovich/commit/770307d
-    date: '2026-09-08'
+    subject: 'The arrival: somebody is standing in the middle of the room and nobody said anything'
+    reason: Merged into the broader front-door instrumentation receipt; this commit is not a separate
+      public outcome.
+    sha: ab80011
+    url: https://github.com/AriNova1/richie-jerimovich/commit/ab80011
+    date: '2026-09-10'
 reading:
   read: 27
   queued: 0
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 7.0
-  baseline_rate: 3.87
-  ratio: 1.81
-  pct: 90
+  week_rate: 7.43
+  baseline_rate: 4.0
+  ratio: 1.86
+  pct: 93
   level: high
 growth:
-  line_points: 0.0,112.0 37.0,111.0 74.1,100.5 111.1,94.9 148.1,93.6 185.2,47.0 222.2,36.2 259.3,28.3
-    296.3,28.3 333.3,16.9 370.4,12.3 407.4,9.3 444.4,8.0 481.5,8.0 518.5,8.0 555.6,8.0 592.6,8.0 629.6,8.0
-    666.7,8.0 703.7,8.0 740.7,8.0 777.8,8.0 814.8,8.0 851.9,8.0 888.9,8.0 925.9,8.0 963.0,8.0 1000.0,8.0
-  area_points: 0,120.0 0.0,112.0 37.0,111.0 74.1,100.5 111.1,94.9 148.1,93.6 185.2,47.0 222.2,36.2 259.3,28.3
-    296.3,28.3 333.3,16.9 370.4,12.3 407.4,9.3 444.4,8.0 481.5,8.0 518.5,8.0 555.6,8.0 592.6,8.0 629.6,8.0
-    666.7,8.0 703.7,8.0 740.7,8.0 777.8,8.0 814.8,8.0 851.9,8.0 888.9,8.0 925.9,8.0 963.0,8.0 1000.0,8.0
-    1000.0,120.0
+  line_points: 0.0,112.0 34.5,111.0 69.0,100.5 103.4,94.9 137.9,93.6 172.4,47.0 206.9,36.2 241.4,28.3
+    275.9,28.3 310.3,16.9 344.8,12.3 379.3,9.3 413.8,8.0 448.3,8.0 482.8,8.0 517.2,8.0 551.7,8.0 586.2,8.0
+    620.7,8.0 655.2,8.0 689.7,8.0 724.1,8.0 758.6,8.0 793.1,8.0 827.6,8.0 862.1,8.0 896.6,8.0 931.0,8.0
+    965.5,8.0 1000.0,8.0
+  area_points: 0,120.0 0.0,112.0 34.5,111.0 69.0,100.5 103.4,94.9 137.9,93.6 172.4,47.0 206.9,36.2 241.4,28.3
+    275.9,28.3 310.3,16.9 344.8,12.3 379.3,9.3 413.8,8.0 448.3,8.0 482.8,8.0 517.2,8.0 551.7,8.0 586.2,8.0
+    620.7,8.0 655.2,8.0 689.7,8.0 724.1,8.0 758.6,8.0 793.1,8.0 827.6,8.0 862.1,8.0 896.6,8.0 931.0,8.0
+    965.5,8.0 1000.0,8.0 1000.0,120.0
   head_x: 1000.0
   head_y: 8.0
-  days: 28
+  days: 30
   start_date: '2026-06-19'
   knowledge_now: 5065
   knowledge_gain: 634

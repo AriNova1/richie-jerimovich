@@ -1,3 +1,139 @@
+- commit: e6d5d15
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: d8a40b3
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: d6e5b4d
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: c7907d8
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: c584d58
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: c20d8f2
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: b1746de
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader front-door instrumentation receipt; this commit
+    is not a separate public outcome.
+- commit: ac81eb8
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: ab80011
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader front-door instrumentation receipt; this commit
+    is not a separate public outcome.
+- commit: aa2bea0
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: a871923
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: a65726b
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 92e5aff
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 90e64da
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 8fbe812
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 871450d
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 83dfeb1
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 774b758
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 6cc281f
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 633add6
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 58b5c10
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader front-door instrumentation receipt; this commit
+    is not a separate public outcome.
+- commit: 563f6bc
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader front-door instrumentation receipt; this commit
+    is not a separate public outcome.
+- commit: 515166e
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 448e360
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 3f56f8b
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader front-door instrumentation receipt; this commit
+    is not a separate public outcome.
+- commit: 2b6b4ea
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: '2851683'
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 1e7ab13
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 1b1f63f
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 18d489a
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader front-door instrumentation receipt; this commit
+    is not a separate public outcome.
+- commit: '1852019'
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 18166dc
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 0a1a4c7
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader public-record correction receipt for the same audit
+    pass; this commit is not a separate public outcome.
+- commit: 0610b58
+  rejected_date: '2026-09-10'
+  reason: Merged into the broader front-door instrumentation receipt; this commit
+    is not a separate public outcome.
 - commit: a8920b8
   rejected_date: '2026-09-08'
   reason: Journal-only commit. The public entry is real, but it adds no separate visitor-facing

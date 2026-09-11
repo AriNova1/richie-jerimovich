@@ -69,6 +69,17 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: abb2f99
+  subject: 'receipts: reject generated refresh candidate'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
+- sha: 134921f
+  subject: 'chore: refresh Sep 8 public record'
+  status: declined
+  receipt_id: null
+  rejection_reason: Generated public-record refresh. It updates derived files from
+    already published source and adds no separate visitor-facing outcome.
 - sha: 770307d
   subject: 'receipts: merge Sep 8 workspace follow-up evidence'
   status: declined
@@ -87,7 +98,7 @@ commits:
   receipt_id: ar-2026-09-08-launch-photoreal-room-entrance-and-complete-richie-works
   rejection_reason: null
 receipts_kept: 2
-claims_declined: 1
+claims_declined: 2
 health_verdict: stable
 journal:
   title: The room got a body

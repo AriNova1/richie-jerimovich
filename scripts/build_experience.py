@@ -370,14 +370,21 @@ def find_ask(night_commits, night_journal, receipt=None):
 
 def build_threshold_lines(night_date, night_commits, night_journal,
                           kept, declined, journal_count):
-    lines = [f"night of {night_date}: service ticket"]
+    # Keep the counts in the eight-line ticket even when a busy night has
+    # more commits than the scene can print. The counts are the contract;
+    # dropping them made the ticket look complete while its test could not
+    # verify the ledger it represented.
+    head = [f"night of {night_date}: service ticket"]
     if night_journal:
-        lines.append(truncate(f"journal: {night_journal['title'].lower()}", 60))
-    for c in night_commits:
-        lines.append(truncate(f"{c['sha']} {c['subject']}", 60))
-    lines.append(truncate(f"{kept} receipts kept · {declined} claims declined", 60))
-    lines.append(truncate(f"{journal_count} journal entries on the shelf", 60))
-    return [l[:60] for l in lines[:8]]
+        head.append(truncate(f"journal: {night_journal['title'].lower()}", 60))
+    tail = [
+        truncate(f"{kept} receipts kept · {declined} claims declined", 60),
+        truncate(f"{journal_count} journal entries on the shelf", 60),
+    ]
+    room = max(0, 8 - len(head) - len(tail))
+    commits = [truncate(f"{c['sha']} {c['subject']}", 60)
+               for c in night_commits[:room]]
+    return [(line[:60]) for line in head + commits + tail]
 
 
 # ── main ─────────────────────────────────────────────────────────────────

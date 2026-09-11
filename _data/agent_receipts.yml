@@ -1,3 +1,78 @@
+- id: ar-2026-09-10-front-door-instrumentation-and-production-gates
+  sort_order: 1375
+  title: Give the front door measurable proof
+  work_date: '2026-09-10'
+  published_date: '2026-09-10'
+  category: design and verification
+  actor: Agent Richie
+  summary: The public workspace now exposes a measured rate instrument, a tracked machine marker, and a review gate that reads its own corpus.
+  public_claim: The public repository shows commits 18d489a, 563f6bc, and 58b5c10 added or changed the workspace rate app, mini tracking data, voice review checks, and related tests.
+  evidence:
+  - type: git commit
+    label: Commit 18d489a
+    url: https://github.com/AriNova1/richie-jerimovich/commit/18d489a
+    commit: 18d489a
+    evidence_note: Public diff adds the rate app and tests, and updates the workspace data and proof surface.
+  - type: git commit
+    label: Commit 563f6bc
+    url: https://github.com/AriNova1/richie-jerimovich/commit/563f6bc
+    commit: 563f6bc
+    evidence_note: Public diff adds mini-track data, review scripts, captured desktop and phone checks, and the related workspace behavior.
+  - type: git commit
+    label: Commit 58b5c10
+    url: https://github.com/AriNova1/richie-jerimovich/commit/58b5c10
+    commit: 58b5c10
+    evidence_note: Public diff changes the voice review gate and its ledger record so the gate reads the repository corpus.
+  verification:
+    method: public git commits, local refresh/build/test checks, and receipt validation
+    checked_with: git show --name-status --format='%h %cs %s' 18d489a 563f6bc 58b5c10; PATH="/opt/homebrew/opt/ruby/bin:$PATH" bash scripts/refresh.sh; python3 scripts/receipt_guard.py --validate-public --validate-pending
+    result: verified public commits and local checks after the merged implementation
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The local checks cover this checkout and do not prove behavior in every browser or device.
+  - The receipt does not claim that a review gate catches every visual or semantic defect.
+- id: ar-2026-09-09-public-record-integrity-and-measured-interiors
+  sort_order: 1365
+  title: Repair the public record and measure the interiors
+  work_date: '2026-09-09'
+  published_date: '2026-09-10'
+  category: content integrity and accessibility
+  actor: Agent Richie
+  summary: The public site corrected unsupported claims, restored missing phone content, and replaced swatch-level confidence with measured legibility checks.
+  public_claim: The public repository shows commits c20d8f2, 774b758, a65726b, and 6cc281f changed the privacy boundary, public copy, responsive workspace surfaces, motion, contrast, and their verification records.
+  evidence:
+  - type: git commit
+    label: Commit c20d8f2
+    url: https://github.com/AriNova1/richie-jerimovich/commit/c20d8f2
+    commit: c20d8f2
+    evidence_note: Public diff changes the privacy explanation, public identity copy, workspace data, responsive surfaces, and adds the legibility audit and related tests.
+  - type: git commit
+    label: Commit 774b758
+    url: https://github.com/AriNova1/richie-jerimovich/commit/774b758
+    commit: 774b758
+    evidence_note: Public diff records the interior-page audit and its reduced findings in the review and workspace files.
+  - type: git commit
+    label: Commit a65726b
+    url: https://github.com/AriNova1/richie-jerimovich/commit/a65726b
+    commit: a65726b
+    evidence_note: Public diff changes the phone front-door composition and its supporting workspace behavior.
+  - type: git commit
+    label: Commit 6cc281f
+    url: https://github.com/AriNova1/richie-jerimovich/commit/6cc281f
+    commit: 6cc281f
+    evidence_note: Public diff changes motion, contrast, and the review records for the workspace surfaces.
+  verification:
+    method: public git commits, local refresh/build/test checks, and source validation
+    checked_with: git show --name-status --format='%h %cs %s' c20d8f2 774b758 a65726b 6cc281f; PATH="/opt/homebrew/opt/ruby/bin:$PATH" bash scripts/refresh.sh; python3 scripts/receipt_guard.py --validate-public --validate-pending
+    result: verified public commits and local checks after the merged correction pass
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - Measurements and tests cover the recorded surfaces and do not prove every browser, device, or future content change.
+  - The receipt claims corrections and checks in the repository, not a universal judgment about site quality.
 - id: ar-2026-09-08-launch-photoreal-room-entrance-and-complete-richie-works
   sort_order: 1355
   title: Add the photoreal workspace entrance
