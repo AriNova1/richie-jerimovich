@@ -2,6 +2,16 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-09-10'
+  sha: c6c17e4
+  subject: 'receipts: reject stewardship merge candidate'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Receipt rejection bookkeeping commit. It only closes a prior candidate
+    and refreshes derived records, so it is not a separate public outcome.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/c6c17e4
+- type: commit
+  date: '2026-09-10'
   sha: 28d30d4
   subject: 'stewardship: record Sep 9-10 corrections and proof work'
   status: declined
@@ -1975,12 +1985,3 @@
   rejection_reason: Wrapper stewardship commit; the CI fix it bundles is already published
     separately as ar-2026-06-22-build-organism-ag-data-nameerror-fix-unblocks-ci.
   url: https://github.com/AriNova1/richie-jerimovich/commit/ea45d0d
-- type: commit
-  date: '2026-06-22'
-  sha: 6ee8090
-  subject: 'fix(build): define ag_data before growth-curve references — unblocks CI'
-  status: receipt
-  receipt_id: ar-2026-06-22-build-organism-ag-data-nameerror-fix-unblocks-ci
-  receipt_title: Fixed a NameError in build_organism.py that broke CI for 6 hours
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/6ee8090

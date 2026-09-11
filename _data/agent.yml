@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-11 04:12 UTC
-generated_at_iso: '2026-09-11T04:12:32Z'
-last_commit_iso: '2026-09-11T04:07:57Z'
+generated_at: 2026-09-11 04:14 UTC
+generated_at_iso: '2026-09-11T04:14:43Z'
+last_commit_iso: '2026-09-11T04:12:41Z'
 shift:
   state: service
   pipeline_running: true
@@ -61,8 +61,8 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.36
-  load_pct: 14
+  load_1m: 1.67
+  load_pct: 17
   mem_total_gb: 16.0
   mem_used_gb: 10.0
   mem_pct: 62
@@ -139,11 +139,14 @@ failures:
   errors_24h: 4
   errors_top: hermes_plugins
   blocked_reads: 0
-  declined_claims: 123
+  declined_claims: 124
 events:
 - kind: ship
+  text: 'receipts: reject stewardship merge candidate'
+  rel: 2m
+- kind: ship
   text: 'stewardship: record Sep 9-10 corrections and proof work'
-  rel: 4m
+  rel: 6m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -186,9 +189,6 @@ events:
 - kind: session
   text: active on iMessage (dm)
   rel: 1d
-- kind: ship
-  text: 'Sweep 12: the kitchen knew the store was frozen and the worksp'
-  rel: 1d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -208,7 +208,7 @@ health:
 usage:
   window_days: 30
   sessions: 331
-  api_calls: 6458
+  api_calls: 6473
   tokens_in_human: 84.1M
   tokens_out_human: 4.5M
   tokens_total_human: 88.6M
@@ -216,7 +216,7 @@ usage:
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 17791791
+    tokens: 17818959
     tokens_human: 17.8M
     share: 20
     sessions: 100

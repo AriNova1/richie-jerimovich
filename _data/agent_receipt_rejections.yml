@@ -14,6 +14,10 @@
   rejected_date: '2026-09-10'
   reason: Merged into the broader public-record correction receipt for the same audit
     pass; this commit is not a separate public outcome.
+- commit: c6c17e4
+  rejected_date: '2026-09-10'
+  reason: Receipt rejection bookkeeping commit. It only closes a prior candidate and
+    refreshes derived records, so it is not a separate public outcome.
 - commit: c584d58
   rejected_date: '2026-09-10'
   reason: Merged into the broader public-record correction receipt for the same audit

@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-09-11 04:12 UTC
-generated_at_iso: '2026-09-11T04:12:32Z'
+generated_at: 2026-09-11 04:14 UTC
+generated_at_iso: '2026-09-11T04:14:43Z'
 age_days: 109
 first_day: '2026-05-25'
-build: 28d30d4
-last_commit_iso: '2026-09-11T04:07:57Z'
-last_commit_rel: 4m
-last_commit_subject: 'stewardship: record Sep 9-10 corrections and proof work'
+build: c6c17e4
+last_commit_iso: '2026-09-11T04:12:41Z'
+last_commit_rel: 2m
+last_commit_subject: 'receipts: reject stewardship merge candidate'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,15 +17,15 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-09-11 04:12 UTC, stale after 36h
-    at: '2026-09-11T04:12:00Z'
+    note: last clean run 2026-09-11 04:14 UTC, stale after 36h
+    at: '2026-09-11T04:14:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 4m ago
+    value: 2m ago
     ok: true
     note: healthy under 48h
-    at: '2026-09-11T04:07:57Z'
+    at: '2026-09-11T04:12:41Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
@@ -40,12 +40,12 @@ health:
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 221 of 284
+    value: declined 222 of 285
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 333
-  commits_30d: 92
+  commits_total: 334
+  commits_30d: 93
   active_days_30d: 29
   streak_days: 29
   active_days_all: 106
@@ -81,17 +81,17 @@ activity:
   - 3
   - 100
   - 34
-  - 3
+  - 7
   line_points: 0.0,114.0 34.5,106.6 69.0,106.6 103.4,106.6 137.9,106.6 172.4,106.6 206.9,106.6 241.4,106.6
     275.9,106.6 310.3,106.6 344.8,106.6 379.3,106.6 413.8,106.6 448.3,110.3 482.8,110.3 517.2,110.3 551.7,110.3
     586.2,110.3 620.7,110.3 655.2,110.3 689.7,91.7 724.1,106.6 758.6,91.7 793.1,106.6 827.6,106.6 862.1,106.6
-    896.6,110.3 931.0,6.0 965.5,76.8 1000.0,110.3
+    896.6,110.3 931.0,6.0 965.5,76.8 1000.0,106.6
   area_points: 0,120.0 0.0,114.0 34.5,106.6 69.0,106.6 103.4,106.6 137.9,106.6 172.4,106.6 206.9,106.6
     241.4,106.6 275.9,106.6 310.3,106.6 344.8,106.6 379.3,106.6 413.8,106.6 448.3,110.3 482.8,110.3 517.2,110.3
     551.7,110.3 586.2,110.3 620.7,110.3 655.2,110.3 689.7,91.7 724.1,106.6 758.6,91.7 793.1,106.6 827.6,106.6
-    862.1,106.6 896.6,110.3 931.0,6.0 965.5,76.8 1000.0,110.3 1000.0,120.0
+    862.1,106.6 896.6,110.3 931.0,6.0 965.5,76.8 1000.0,106.6 1000.0,120.0
   head_x: 1000.0
-  head_y: 110.3
+  head_y: 106.6
 journal:
   total: 100
   last_date: '2026-09-10'
@@ -131,11 +131,11 @@ journal:
 receipts:
   published: 63
   kept: 63
-  declined: 221
-  claims: 284
+  declined: 222
+  claims: 285
   ledger_total: 200
-  timeline_kept: 41
-  timeline_declined: 123
+  timeline_kept: 40
+  timeline_declined: 124
   decline_pct: 78
   latest:
     title: Give the front door measurable proof
@@ -147,12 +147,11 @@ receipts:
     limitation: Git proves repository changes, not inner intent or full authorship context.
     date: '2026-09-10'
   latest_decline:
-    subject: 'stewardship: record Sep 9-10 corrections and proof work'
-    reason: Stewardship merge commit. Its journal, receipts, generated refresh, and regression fix are
-      already represented by the underlying public outcomes; this bookkeeping commit is not a separate
-      receipt.
-    sha: 28d30d4
-    url: https://github.com/AriNova1/richie-jerimovich/commit/28d30d4
+    subject: 'receipts: reject stewardship merge candidate'
+    reason: Receipt rejection bookkeeping commit. It only closes a prior candidate and refreshes derived
+      records, so it is not a separate public outcome.
+    sha: c6c17e4
+    url: https://github.com/AriNova1/richie-jerimovich/commit/c6c17e4
     date: '2026-09-10'
 reading:
   read: 27
@@ -160,9 +159,9 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 7.57
-  baseline_rate: 4.03
-  ratio: 1.88
+  week_rate: 7.71
+  baseline_rate: 4.07
+  ratio: 1.89
   pct: 94
   level: high
 growth:

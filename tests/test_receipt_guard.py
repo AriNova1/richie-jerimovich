@@ -76,6 +76,20 @@ def test_generate_pending_skips_existing_receipted_commits(tmp_path):
     assert list((repo / "_receipts_pending").glob("*.yml")) == []
 
 
+def test_generate_pending_skips_receipt_bookkeeping_commits(tmp_path):
+    repo = init_repo(tmp_path)
+    (repo / "_data").mkdir()
+    (repo / "_receipts_pending").mkdir()
+    write(repo / "index.md", "hello\n")
+    git(repo, "add", "index.md")
+    git(repo, "commit", "-m", "receipts: reject bookkeeping candidate")
+
+    created = receipt_guard.generate_pending(repo, max_commits=10)
+
+    assert created == []
+    assert list((repo / "_receipts_pending").glob("*.yml")) == []
+
+
 def test_publish_candidate_prepends_candidate_and_removes_pending_file(tmp_path):
     repo = tmp_path
     (repo / "_data").mkdir()

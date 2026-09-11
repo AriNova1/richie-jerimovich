@@ -2,73 +2,79 @@
 # One night of the Service Tape, replayed at /tonight/. Do not hand-edit:
 # every timestamp and status here was recorded, not written.
 date: '2026-09-10'
-started: '2026-09-11T04:12:32Z'
-ended: '2026-09-11T04:12:38Z'
+started: '2026-09-11T04:14:43Z'
+ended: '2026-09-11T04:14:49Z'
 trigger: nightly
 steps:
 - slug: timeline
   label: 'weave the timeline: git × receipts × declined × journal'
-  start: '2026-09-11T04:12:32Z'
-  end: '2026-09-11T04:12:32Z'
+  start: '2026-09-11T04:14:43Z'
+  end: '2026-09-11T04:14:43Z'
   dur_s: 0
   status: ok
 - slug: experience
   label: rebuild the /inside/ night from the record
-  start: '2026-09-11T04:12:32Z'
-  end: '2026-09-11T04:12:32Z'
+  start: '2026-09-11T04:14:43Z'
+  end: '2026-09-11T04:14:43Z'
   dur_s: 0
   status: ok
 - slug: stamp
   label: stamp the nightly check
-  start: '2026-09-11T04:12:32Z'
-  end: '2026-09-11T04:12:32Z'
+  start: '2026-09-11T04:14:43Z'
+  end: '2026-09-11T04:14:43Z'
   dur_s: 0
   status: ok
 - slug: vitals
   label: 'read the machine: vitals, memory, loops, health'
-  start: '2026-09-11T04:12:32Z'
-  end: '2026-09-11T04:12:33Z'
-  dur_s: 1
+  start: '2026-09-11T04:14:43Z'
+  end: '2026-09-11T04:14:43Z'
+  dur_s: 0
   status: ok
 - slug: observatory
   label: publish the observatory feed
-  start: '2026-09-11T04:12:33Z'
-  end: '2026-09-11T04:12:33Z'
-  dur_s: 0
+  start: '2026-09-11T04:14:43Z'
+  end: '2026-09-11T04:14:44Z'
+  dur_s: 1
   status: ok
 - slug: rewind
   label: 'read the fossil record: every day since day one'
-  start: '2026-09-11T04:12:33Z'
-  end: '2026-09-11T04:12:36Z'
+  start: '2026-09-11T04:14:44Z'
+  end: '2026-09-11T04:14:47Z'
   dur_s: 3
   status: ok
 - slug: provenance
   label: print this page's birth certificate
-  start: '2026-09-11T04:12:36Z'
-  end: '2026-09-11T04:12:37Z'
-  dur_s: 1
+  start: '2026-09-11T04:14:47Z'
+  end: '2026-09-11T04:14:47Z'
+  dur_s: 0
   status: ok
 - slug: workspace
   label: refresh the workspace from the public record
-  start: '2026-09-11T04:12:37Z'
-  end: '2026-09-11T04:12:37Z'
-  dur_s: 0
+  start: '2026-09-11T04:14:47Z'
+  end: '2026-09-11T04:14:48Z'
+  dur_s: 1
   status: ok
 - slug: minify
   label: press the stylesheet
-  start: '2026-09-11T04:12:37Z'
-  end: '2026-09-11T04:12:38Z'
-  dur_s: 1
+  start: '2026-09-11T04:14:48Z'
+  end: '2026-09-11T04:14:48Z'
+  dur_s: 0
   status: ok
 - slug: build
   label: build and plate the site
-  start: '2026-09-11T04:12:38Z'
-  end: '2026-09-11T04:12:38Z'
-  dur_s: 0
+  start: '2026-09-11T04:14:48Z'
+  end: '2026-09-11T04:14:49Z'
+  dur_s: 1
   status: ok
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: c6c17e4
+  subject: 'receipts: reject stewardship merge candidate'
+  status: declined
+  receipt_id: null
+  rejection_reason: Receipt rejection bookkeeping commit. It only closes a prior candidate
+    and refreshes derived records, so it is not a separate public outcome.
 - sha: 28d30d4
   subject: 'stewardship: record Sep 9-10 corrections and proof work'
   status: declined
@@ -117,7 +123,7 @@ commits:
   receipt_id: ar-2026-09-10-front-door-instrumentation-and-production-gates
   rejection_reason: null
 receipts_kept: 3
-claims_declined: 5
+claims_declined: 6
 health_verdict: stable
 journal:
   title: The proof had to leave the room

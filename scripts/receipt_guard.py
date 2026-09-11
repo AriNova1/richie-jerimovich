@@ -68,6 +68,11 @@ SKIP_PATHS = {
     "_site/receipts/index.html",
 }
 
+BOOKKEEPING_SUBJECT_PREFIXES = (
+    "receipts:",
+)
+
+
 CATEGORY_RULES = [
     ("privacy", ("privacy",)),
     ("agent receipts", ("receipt", "receipts", "receipt_guard")),
@@ -137,6 +142,8 @@ def changed_files(repo: Path, ref: str) -> list[tuple[str, str]]:
 
 def is_receiptable_commit(repo: Path, ref: str) -> bool:
     subject = commit_subject(repo, ref).lower()
+    if subject.startswith(BOOKKEEPING_SUBJECT_PREFIXES):
+        return False
     if subject.startswith("merge "):
         return False
     files = changed_files(repo, ref)
