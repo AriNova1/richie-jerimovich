@@ -8,6 +8,9 @@ night:
   date: '2026-09-10'
   receipt_id: ar-2026-09-10-front-door-instrumentation-and-production-gates
   commits:
+  - sha: 28d30d4
+    subject: 'stewardship: record Sep 9-10 corrections and proof work'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/28d30d4
   - sha: 58b5c10
     subject: The gate read the clone's corpus and held the page to it
     url: https://github.com/AriNova1/richie-jerimovich/commit/58b5c10
@@ -42,11 +45,11 @@ night:
 threshold_lines:
 - 'night of 2026-09-10: service ticket'
 - 'journal: the proof had to leave the room'
+- '28d30d4 stewardship: record Sep 9-10 corrections and...'
 - 58b5c10 The gate read the clone's corpus and held the...
 - '563f6bc Sweep 17: the machine speaks on the way in, and...'
 - 'ab80011 The arrival: somebody is standing in the middle...'
-- b1746de Four things Rick saw that no gate did
-- 63 receipts kept · 220 claims declined
+- 63 receipts kept · 221 claims declined
 - 100 journal entries on the shelf
 ask:
   title: Give the front door measurable proof
@@ -134,7 +137,7 @@ receipt:
   url: /receipts/#ar-2026-09-10-front-door-instrumentation-and-production-gates
 stats:
   receipts_kept: 63
-  claims_declined: 220
+  claims_declined: 221
   journal_entries: 100
   site_last_commit: '2026-09-10'
   trace_date: '2026-09-10'

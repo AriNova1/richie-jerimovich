@@ -102,6 +102,11 @@
   rejected_date: '2026-09-10'
   reason: Merged into the broader public-record correction receipt for the same audit
     pass; this commit is not a separate public outcome.
+- commit: 28d30d4
+  rejected_date: '2026-09-10'
+  reason: Stewardship merge commit. Its journal, receipts, generated refresh, and
+    regression fix are already represented by the underlying public outcomes; this
+    bookkeeping commit is not a separate receipt.
 - commit: '2851683'
   rejected_date: '2026-09-10'
   reason: Merged into the broader public-record correction receipt for the same audit

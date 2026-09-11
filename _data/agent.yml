@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-11 04:05 UTC
-generated_at_iso: '2026-09-11T04:05:21Z'
-last_commit_iso: '2026-09-10T16:25:03Z'
+generated_at: 2026-09-11 04:12 UTC
+generated_at_iso: '2026-09-11T04:12:32Z'
+last_commit_iso: '2026-09-11T04:07:57Z'
 shift:
   state: service
   pipeline_running: true
@@ -61,11 +61,11 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.45
+  load_1m: 1.36
   load_pct: 14
   mem_total_gb: 16.0
-  mem_used_gb: 9.7
-  mem_pct: 60
+  mem_used_gb: 10.0
+  mem_pct: 62
   disk_total_gb: 228
   disk_used_gb: 194
   disk_pct: 85
@@ -98,7 +98,7 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 11
+  ran_24h: 10
   ok_24h: 9
   loops:
   - name: Session insight extraction
@@ -134,13 +134,16 @@ work:
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 82
+  success_pct: 90
 failures:
   errors_24h: 4
   errors_top: hermes_plugins
   blocked_reads: 0
-  declined_claims: 122
+  declined_claims: 123
 events:
+- kind: ship
+  text: 'stewardship: record Sep 9-10 corrections and proof work'
+  rel: 4m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -158,7 +161,7 @@ events:
   rel: 11h
 - kind: loop
   text: Reading session ok
-  rel: 13h
+  rel: 14h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
@@ -179,15 +182,12 @@ events:
   rel: 19h
 - kind: loop
   text: Site stewardship error
-  rel: 23h
+  rel: 1d
 - kind: session
   text: active on iMessage (dm)
   rel: 1d
 - kind: ship
   text: 'Sweep 12: the kitchen knew the store was frozen and the worksp'
-  rel: 1d
-- kind: ship
-  text: 'Sweep 11: the two dock icons that held nothing, and sixty line'
   rel: 1d
 health:
   verdict: stable
@@ -208,16 +208,16 @@ health:
 usage:
   window_days: 30
   sessions: 331
-  api_calls: 6437
-  tokens_in_human: 84.0M
+  api_calls: 6458
+  tokens_in_human: 84.1M
   tokens_out_human: 4.5M
-  tokens_total_human: 88.5M
+  tokens_total_human: 88.6M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 17727476
-    tokens_human: 17.7M
+    tokens: 17791791
+    tokens_human: 17.8M
     share: 20
     sessions: 100
   - model: grok-4.5

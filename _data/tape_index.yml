@@ -5,7 +5,7 @@
   steps_ok: 10
   steps_total: 10
   receipts_kept: 3
-  claims_declined: 4
+  claims_declined: 5
   journal_title: The proof had to leave the room
   health_verdict: stable
 - date: '2026-09-08'

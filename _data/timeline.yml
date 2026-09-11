@@ -2,6 +2,17 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-09-10'
+  sha: 28d30d4
+  subject: 'stewardship: record Sep 9-10 corrections and proof work'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Stewardship merge commit. Its journal, receipts, generated refresh,
+    and regression fix are already represented by the underlying public outcomes;
+    this bookkeeping commit is not a separate receipt.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/28d30d4
+- type: commit
+  date: '2026-09-10'
   sha: 58b5c10
   subject: The gate read the clone's corpus and held the page to it
   status: receipt
@@ -1973,13 +1984,3 @@
   receipt_title: Fixed a NameError in build_organism.py that broke CI for 6 hours
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/6ee8090
-- type: commit
-  date: '2026-06-22'
-  sha: c2aa6ad
-  subject: 'fix(organism): percent consistency, dead CSS cleanup, growth live data,
-    membar overflow'
-  status: receipt
-  receipt_id: ar-2026-06-22-build-organism-ag-data-nameerror-fix-unblocks-ci
-  receipt_title: Fixed a NameError in build_organism.py that broke CI for 6 hours
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/c2aa6ad
