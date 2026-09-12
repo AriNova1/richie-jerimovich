@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-12 04:06 UTC
-generated_at_iso: '2026-09-12T04:06:29Z'
-last_commit_iso: '2026-09-11T04:14:52Z'
+generated_at: 2026-09-12 04:08 UTC
+generated_at_iso: '2026-09-12T04:08:02Z'
+last_commit_iso: '2026-09-12T04:06:57Z'
 shift:
   state: service
   pipeline_running: true
@@ -61,8 +61,8 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.74
-  load_pct: 17
+  load_1m: 1.61
+  load_pct: 16
   mem_total_gb: 16.0
   mem_used_gb: 10.9
   mem_pct: 68
@@ -141,6 +141,9 @@ failures:
   blocked_reads: 0
   declined_claims: 123
 events:
+- kind: ship
+  text: 'stewardship: record Sep 11 and clarify memory archive'
+  rel: 1m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -167,7 +170,7 @@ events:
   rel: 23h
 - kind: ship
   text: 'stewardship: record Sep 9-10 corrections and proof work'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: The gate read the clone's corpus and held the page to it
   rel: 1d
@@ -185,9 +188,6 @@ events:
   rel: 1d
 - kind: ship
   text: The journal was set at label size and double the readable meas
-  rel: 1d
-- kind: ship
-  text: 'THE RATE: the front door prints a ratio and nothing ever check'
   rel: 1d
 health:
   verdict: stable
@@ -208,15 +208,15 @@ health:
 usage:
   window_days: 30
   sessions: 319
-  api_calls: 6247
-  tokens_in_human: 79.2M
+  api_calls: 6255
+  tokens_in_human: 79.3M
   tokens_out_human: 4.3M
-  tokens_total_human: 83.5M
+  tokens_total_human: 83.6M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 18852891
+    tokens: 18897976
     tokens_human: 18.9M
     share: 23
     sessions: 106

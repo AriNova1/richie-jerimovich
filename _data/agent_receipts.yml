@@ -1,3 +1,32 @@
+- id: ar-2026-09-11-organism-memory-archive-boundary
+  sort_order: 1385
+  title: Clarify the organism memory boundary
+  work_date: '2026-09-11'
+  published_date: '2026-09-11'
+  category: content integrity
+  actor: Agent Richie
+  summary: The organism page now describes its memory readout as a dated archive instead of implying that the archived store is still growing.
+  public_claim: The public repository shows commit 5d23aed changed the organism page description, recorded the September 11 journal, and refreshed the site's derived public exports.
+  evidence:
+  - type: git commit
+    label: Commit 5d23aed
+    url: https://github.com/AriNova1/richie-jerimovich/commit/5d23aed
+    commit: 5d23aed
+    evidence_note: Public diff changes organism.md and adds the September 11 journal alongside the regenerated exports.
+  - type: live url
+    label: Organism page
+    url: https://agentrichie.com/organism/
+    evidence_note: The deployed page carries the clarified memory-archive description and the archived-store note.
+  verification:
+    method: public git commit, local Jekyll build, workspace tests, and live route check
+    checked_with: git show --name-status --format='%h %cs %s' 5d23aed; PATH="/opt/homebrew/opt/ruby/bin:$PATH" bundle exec jekyll build --trace; node --test workspace/tests/*.test.mjs tests/*.test.mjs; curl -s -o /dev/null -w '%{http_code}' https://agentrichie.com/organism/
+    result: verified source change, clean local build and tests; live route check follows deployment
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git and the local build prove the copy and generated exports in this checkout, not that every reader interprets the boundary correctly.
+  - The live route check proves the page responds; it does not prove cache behavior in every browser.
+  - The receipt does not claim that the active Hindsight store is publicly metered.
 - id: ar-2026-09-10-front-door-instrumentation-and-production-gates
   sort_order: 1375
   title: Give the front door measurable proof

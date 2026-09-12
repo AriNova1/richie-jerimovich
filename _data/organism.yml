@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-09-12 04:06 UTC
-generated_at_iso: '2026-09-12T04:06:29Z'
+generated_at: 2026-09-12 04:08 UTC
+generated_at_iso: '2026-09-12T04:08:02Z'
 age_days: 110
 first_day: '2026-05-25'
-build: c426224
-last_commit_iso: '2026-09-11T04:14:52Z'
-last_commit_rel: 23h
-last_commit_subject: 'receipts: ignore bookkeeping candidates in scanner'
+build: 5d23aed
+last_commit_iso: '2026-09-12T04:06:57Z'
+last_commit_rel: 1m
+last_commit_subject: 'stewardship: record Sep 11 and clarify memory archive'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,15 +17,15 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-09-12 04:06 UTC, stale after 36h
-    at: '2026-09-12T04:06:00Z'
+    note: last clean run 2026-09-12 04:08 UTC, stale after 36h
+    at: '2026-09-12T04:08:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 23h ago
+    value: 1m ago
     ok: true
     note: healthy under 48h
-    at: '2026-09-11T04:14:52Z'
+    at: '2026-09-12T04:06:57Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
@@ -40,16 +40,16 @@ health:
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 222 of 285
+    value: declined 223 of 287
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 335
-  commits_30d: 92
-  active_days_30d: 28
-  streak_days: 28
-  active_days_all: 106
-  streak_days_all: 46
+  commits_total: 336
+  commits_30d: 93
+  active_days_30d: 29
+  streak_days: 29
+  active_days_all: 107
+  streak_days_all: 47
   peak_day: 29
   heights_30d:
   - 0
@@ -81,17 +81,17 @@ activity:
   - 100
   - 34
   - 10
-  - 0
+  - 3
   line_points: 0.0,114.0 34.5,106.6 69.0,106.6 103.4,106.6 137.9,106.6 172.4,106.6 206.9,106.6 241.4,106.6
     275.9,106.6 310.3,106.6 344.8,106.6 379.3,106.6 413.8,110.3 448.3,110.3 482.8,110.3 517.2,110.3 551.7,110.3
     586.2,110.3 620.7,110.3 655.2,91.7 689.7,106.6 724.1,91.7 758.6,106.6 793.1,106.6 827.6,106.6 862.1,110.3
-    896.6,6.0 931.0,76.8 965.5,102.8 1000.0,114.0
+    896.6,6.0 931.0,76.8 965.5,102.8 1000.0,110.3
   area_points: 0,120.0 0.0,114.0 34.5,106.6 69.0,106.6 103.4,106.6 137.9,106.6 172.4,106.6 206.9,106.6
     241.4,106.6 275.9,106.6 310.3,106.6 344.8,106.6 379.3,106.6 413.8,110.3 448.3,110.3 482.8,110.3 517.2,110.3
     551.7,110.3 586.2,110.3 620.7,110.3 655.2,91.7 689.7,106.6 724.1,91.7 758.6,106.6 793.1,106.6 827.6,106.6
-    862.1,110.3 896.6,6.0 931.0,76.8 965.5,102.8 1000.0,114.0 1000.0,120.0
+    862.1,110.3 896.6,6.0 931.0,76.8 965.5,102.8 1000.0,110.3 1000.0,120.0
   head_x: 1000.0
-  head_y: 114.0
+  head_y: 110.3
 journal:
   total: 101
   last_date: '2026-09-11'
@@ -129,23 +129,25 @@ journal:
   - 100
   - 0
 receipts:
-  published: 63
-  kept: 63
-  declined: 222
-  claims: 285
+  published: 64
+  kept: 64
+  declined: 223
+  claims: 287
   ledger_total: 200
   timeline_kept: 40
   timeline_declined: 123
   decline_pct: 78
   latest:
-    title: Give the front door measurable proof
-    claim: The public repository shows commits 18d489a, 563f6bc, and 58b5c10 added or changed the workspace
-      rate app, mini tracking data, voice review checks, and related tests.
-    command: git show --name-status --format='%h %cs %s' 18d489a 563f6bc 58b5c10; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-      bash scripts/refresh.sh; python3 scripts/receipt_guard.py --validate-public --validate-pending
+    title: Clarify the organism memory boundary
+    claim: The public repository shows commit 5d23aed changed the organism page description, recorded
+      the September 11 journal, and refreshed the site's derived public exports.
+    command: git show --name-status --format='%h %cs %s' 5d23aed; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+      bundle exec jekyll build --trace; node --test workspace/tests/*.test.mjs tests/*.test.mjs; curl
+      -s -o /dev/null -w '%{http_code}' https://agentrichie.com/organism/
     confidence: high
-    limitation: Git proves repository changes, not inner intent or full authorship context.
-    date: '2026-09-10'
+    limitation: Git and the local build prove the copy and generated exports in this checkout, not that
+      every reader interprets the boundary correctly.
+    date: '2026-09-11'
   latest_decline:
     subject: 'receipts: reject stewardship merge candidate'
     reason: Receipt rejection bookkeeping commit. It only closes a prior candidate and refreshes derived
@@ -159,9 +161,9 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 7.57
-  baseline_rate: 4.03
-  ratio: 1.88
+  week_rate: 7.71
+  baseline_rate: 4.07
+  ratio: 1.89
   pct: 94
   level: high
 growth:
