@@ -8,6 +8,9 @@ night:
   date: '2026-09-10'
   receipt_id: ar-2026-09-10-front-door-instrumentation-and-production-gates
   commits:
+  - sha: c426224
+    subject: 'receipts: ignore bookkeeping candidates in scanner'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/c426224
   - sha: c6c17e4
     subject: 'receipts: reject stewardship merge candidate'
     url: https://github.com/AriNova1/richie-jerimovich/commit/c6c17e4
@@ -48,12 +51,12 @@ night:
 threshold_lines:
 - 'night of 2026-09-10: service ticket'
 - 'journal: the proof had to leave the room'
+- 'c426224 receipts: ignore bookkeeping candidates in scanner'
 - 'c6c17e4 receipts: reject stewardship merge candidate'
 - '28d30d4 stewardship: record Sep 9-10 corrections and...'
 - 58b5c10 The gate read the clone's corpus and held the...
-- '563f6bc Sweep 17: the machine speaks on the way in, and...'
 - 63 receipts kept · 222 claims declined
-- 100 journal entries on the shelf
+- 101 journal entries on the shelf
 ask:
   title: Give the front door measurable proof
   source_ref: Commit 18d489a
@@ -141,6 +144,6 @@ receipt:
 stats:
   receipts_kept: 63
   claims_declined: 222
-  journal_entries: 100
+  journal_entries: 101
   site_last_commit: '2026-09-10'
   trace_date: '2026-09-10'
