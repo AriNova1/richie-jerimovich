@@ -581,7 +581,7 @@ each of its five guards was broken on purpose and watched to fail.
 |---|---|---|---|---|
 | 121 | Auditor | **high** | **The two doors rendered different rooms.** `spatial.css` sets `color-scheme: dark` on `:root`. The workspace inherited it, so every form control without an explicit background got the dark user-agent style: the note to Rick was two near-black boxes in a white pane. It happened only coming through the room, because `desktop.html` does not load that stylesheet. **Every gate on this property audits `desktop.html`, so none of them had ever seen the document most visitors get.** | **fixed** — the workspace states its own scheme, and `scripts/review/gate-entry.mjs` opens both doors, walks the same apps, and diffs computed paint |
 | 122 | Colourist | medium | The iMessage composer set an explicit white background and the note form beside it set none. One had been protected from the inherited scheme by accident. | **fixed** — both explicit, placeholder included |
-| 123 | Editor | **high** | **The dock carried a drawn human face.** Ten product marks and one piece of character art, unlabelled, on a property whose entire argument is that Richie does not have a face. A stranger scanning the dock reads it as him. | **fixed** — the dock carries the ☿ glyph this site already uses for Hermes in the Finder sidebar; Nous Research's own mark stays inside the Hermes window, where it is labelled and credited |
+| 123 | Editor | **high** | **The dock carried a drawn human face.** Ten product marks and one piece of character art, unlabelled, on a property whose entire argument is that Richie does not have a face. A stranger scanning the dock reads it as him. | ~~fixed~~ **wrong, reverted 2026-09-13.** Rick: the mark was never the issue and was done correctly for what it was meant to be. I read a deliberate mark as an accident and missed the defect that was actually in the screenshot (137). The Nous Research mark is back in the dock |
 | 124 | Skeptic | medium | **"Back to the room" went to the desk.** `leave()` called `go(.48)`, the desk stop, not `go(0)`. Leaving the machine put you two feet away from it rather than back where you came in. | **fixed** — verified landing on stop 0 |
 | 125 | Engineer | low | My own first draft of the two-doors gate sampled everything inside `#crt`, so it compared the traffic lights of windows left open behind the current one and reported **91 differences that were entirely about which window had focus**. A gate that reports focus state as a paint defect is noise, and noise is how a real finding gets missed. | **fixed** — scoped to the window under test; proved by removing the colour-scheme declaration and watching it report 116 |
 
@@ -613,6 +613,17 @@ there.
 | 135 | Auditor | low | A faded caption is still a link. `#room-caption` went to opacity 0 at .32 and kept "Read the public record" live under the exact spot the card now rests on. | **fixed** — inert when faded, as the invitation already was |
 | 136 | Engineer | low | **My own gate held the page to the wrong corpus.** It read `corpus.json` from the clone and compared it with a page that had loaded the export CI regenerates on every deploy. Run against production the evening after a commit, it reported two failures that were entirely its own: 108 days on the page, 107 in the file. | **fixed** — the gate fetches the corpus from the origin it is testing; re-run on production, 49 of 49 |
 
+### Sweep 18 — the dock holds still
+
+Rick, with the same screenshot as Sweep 15 and a second one of a real Mac
+dock: the issue was never the Hermes mark.
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 137 | Engineer | medium | **Dock icons rose under the pointer and the raise was clipped by the bar's own top edge.** Two sources, stacked: a Gaussian in `mac.js` writing an inline transform on every mousemove (peak 1.38x and 8px up, measured), and a CSS hover rule underneath it (1.12x and 6px). A Mac dock does not lift an icon when the pointer arrives; the label above it is the hover. Rick saw this in the screenshot he sent on 2026-09-10; I saw a face. | **fixed** — both gone, and the press scale with them: a Mac gives no press feedback on a dock icon. Measured after: hovered transform `none`, same 52px box, label at opacity 1, nothing above the bar |
+| 138 | Skeptic | medium | **When a screenshot has a hover state in it, the hover state is the first candidate.** Sweep 15 removed a deliberate mark on a screenshot that contained an interaction defect, and the ledger recorded it as a high finding, fixed. The record now says wrong. | **recorded** — 123 struck through, not deleted |
+| 139 | Engineer | **high** | **`scripts/review/flatten-css.mjs` is a rewriter and I had been running it as a check.** Bare, it writes the flattened file over the input. On 2026-09-10 it rewrote `spatial.css` and the commit shipped that rewrite: the rule set was unchanged, but every explanatory comment in the file (the August phone-card measurement, the `!important` trap, the skip-link note) was deleted from the record. On 2026-09-13 it rewrote `mac.css`, 569 lines including the removal of `@import comparison.css`, caught before commit only because the rule count moved on a file nobody had edited. **The twentieth instrument, and the first one that edited the property.** | **fixed** — `mac.css` restored from HEAD with the three intended edits re-applied; `spatial.css` rebuilt from the pre-rewrite base plus the Sweep 17 edits, and its flattened output shown identical to HEAD's rule for rule; the script is only ever run with an output path now |
+
 ---
 
 ## Where the run ended
@@ -632,7 +643,7 @@ there.
 | Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
 | Tests | 48 | **159** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **136** |
+| Findings logged | — | **139** |
 | Published surfaces contradicting another surface of the same property | **2** | **0**, both guarded by tests |
 | Rooms on the property | **2** | **1** |
 | Apps the legibility gate actually measures | **19**, typed by hand | **25**, read from the workspace |
@@ -642,7 +653,7 @@ there.
 | Ways into the workspace that render identically | **1 of 2** | **2 of 2**, guarded |
 | Progress through the walk in during which the machine is pointed at | 5% | **52%**, until it leaves the frame |
 | Sentences said between the invitation fading and the desktop | **0** | **3** |
-| **Times an instrument of mine was lying** | — | **19** |
+| **Times an instrument of mine was lying** | — | **20** |
 
 The last row is the one to read first. Every clean number above it is worth
 exactly what the instrument behind it is worth.

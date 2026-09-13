@@ -1528,7 +1528,7 @@ export function createDesktop(root, C, { leave }) {
              argument is that Richie does not have one. A stranger scanning the
              dock read it as him. The dock now carries the glyph this site
              already uses for Hermes in the Finder sidebar. */''}
-        <img class="hermes-mark" src="assets/hermes-nous.png" alt="The Hermes mark, by Nous Research" draggable="false">
+        <img class="hermes-mark" src="assets/hermes.png" alt="The Hermes mark, by Nous Research" draggable="false">
         <div>
           <p class="widget-kicker">Harness</p>
           <h1>Hermes Agent</h1>
@@ -2006,20 +2006,11 @@ export function createDesktop(root, C, { leave }) {
   drawControlCenter();
   paintClock();
   loadWeather();
-  const dock = $('.mac-dock');
-  listen(dock, 'mousemove', (ev) => {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    dock.querySelectorAll('button,a').forEach((b) => {
-      const r = b.getBoundingClientRect();
-      const d = Math.abs(ev.clientX - (r.left + r.width / 2));
-      const s = 1 + 0.38 * Math.exp(-(d * d) / (2 * 64 * 64));
-      const img = b.querySelector('img, svg');
-      if (img) img.style.transform = `translateY(${(s - 1) * -22}px) scale(${s})`;
-    });
-  });
-  listen(dock, 'mouseleave', () => {
-    dock.querySelectorAll('img, svg').forEach((img) => { img.style.transform = ''; });
-  });
+  /* No magnification. A Mac dock does not lift an icon when the pointer
+     arrives (magnification is off by default, and even on, the bar grows
+     with the icons); the label above the icon is the hover. The Gaussian
+     that lived here peaked at 1.38x and 8px up, and the bar's own top edge
+     clipped it. Rick, 2026-09-13. */
   (function boot() {
     const bar = $('[data-boot-bar] i');
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
