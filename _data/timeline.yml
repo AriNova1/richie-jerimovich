@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-09-11'
+  sha: 772c6a6
+  subject: 'receipts: publish memory archive boundary'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/772c6a6
+- type: commit
+  date: '2026-09-11'
   sha: 5d23aed
   subject: 'stewardship: record Sep 11 and clarify memory archive'
   status: receipt
@@ -1971,14 +1980,3 @@
   receipt_title: null
   rejection_reason: Trivial comment cleanup, no user-facing change.
   url: https://github.com/AriNova1/richie-jerimovich/commit/c498788
-- type: commit
-  date: '2026-06-23'
-  sha: a32d187
-  subject: 'stewardship: nightly audit Jun 23 — journal entry + worker exclude + refreshed
-    data'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Stewardship maintenance commit; data refresh + journal entry,
-    the journal entry is the day's receipt.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/a32d187

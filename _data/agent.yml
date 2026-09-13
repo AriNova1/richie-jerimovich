@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-12 04:08 UTC
-generated_at_iso: '2026-09-12T04:08:02Z'
-last_commit_iso: '2026-09-12T04:06:57Z'
+generated_at: 2026-09-13 04:04 UTC
+generated_at_iso: '2026-09-13T04:04:36Z'
+last_commit_iso: '2026-09-12T04:08:24Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-09-12T04:00:00Z'
+  next_service_utc: '2026-09-13T04:00:00Z'
 runtime:
   model: grok-4.6
   model_provider: xAI
@@ -43,7 +43,7 @@ runtime:
   provider_count: 14
   gateway_state: online
   gateway_started_iso: '2026-09-10T07:55:32Z'
-  gateway_uptime: 1d
+  gateway_uptime: 2d
   active_agents: 0
   now_responding: false
   channels:
@@ -61,13 +61,13 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.61
-  load_pct: 16
+  load_1m: 1.46
+  load_pct: 15
   mem_total_gb: 16.0
-  mem_used_gb: 10.9
-  mem_pct: 68
+  mem_used_gb: 10.7
+  mem_pct: 67
   disk_total_gb: 228
-  disk_used_gb: 195
+  disk_used_gb: 194
   disk_pct: 85
 memory:
   facts: 2528
@@ -136,14 +136,11 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 6
-  errors_top: telegram
+  errors_24h: 3
+  errors_top: agent
   blocked_reads: 0
-  declined_claims: 123
+  declined_claims: 122
 events:
-- kind: ship
-  text: 'stewardship: record Sep 11 and clarify memory archive'
-  rel: 1m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -155,40 +152,43 @@ events:
   rel: 5h
 - kind: loop
   text: Reading session ok
-  rel: 14h
+  rel: 13h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 23h
 - kind: loop
   text: Site stewardship ok
   rel: 23h
 - kind: ship
-  text: 'receipts: ignore bookkeeping candidates in scanner'
+  text: 'receipts: publish memory archive boundary'
   rel: 23h
 - kind: ship
-  text: 'receipts: reject stewardship merge candidate'
+  text: 'stewardship: record Sep 11 and clarify memory archive'
   rel: 23h
+- kind: ship
+  text: 'receipts: ignore bookkeeping candidates in scanner'
+  rel: 1d
+- kind: ship
+  text: 'receipts: reject stewardship merge candidate'
+  rel: 1d
 - kind: ship
   text: 'stewardship: record Sep 9-10 corrections and proof work'
   rel: 1d
 - kind: ship
   text: The gate read the clone's corpus and held the page to it
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'Sweep 17: the machine speaks on the way in, and the marker fol'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'The arrival: somebody is standing in the middle of the room an'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: Four things Rick saw that no gate did
-  rel: 1d
-- kind: ship
-  text: The counter's first day was mostly the test harness
-  rel: 1d
-- kind: ship
-  text: The journal was set at label size and double the readable meas
-  rel: 1d
+  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -202,52 +202,51 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 6 in 24h
+    value: 3 in 24h
     ok: true
-    note: top source telegram
+    note: top source agent
 usage:
   window_days: 30
-  sessions: 319
-  api_calls: 6255
-  tokens_in_human: 79.3M
-  tokens_out_human: 4.3M
-  tokens_total_human: 83.6M
+  sessions: 315
+  api_calls: 6181
+  tokens_in_human: 72.5M
+  tokens_out_human: 4.1M
+  tokens_total_human: 76.6M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 18897976
-    tokens_human: 18.9M
-    share: 23
-    sessions: 106
+    tokens: 19853768
+    tokens_human: 19.9M
+    share: 26
+    sessions: 112
   - model: grok-4.5
-    tokens: 12563963
-    tokens_human: 12.6M
-    share: 15
-    sessions: 92
-  - model: gpt-5.6-luna
-    tokens: 11254029
-    tokens_human: 11.3M
-    share: 13
-    sessions: 11
+    tokens: 11959621
+    tokens_human: 12.0M
+    share: 16
+    sessions: 86
   - model: grok-4.6
-    tokens: 8254531
-    tokens_human: 8.3M
-    share: 10
-    sessions: 26
+    tokens: 10225877
+    tokens_human: 10.2M
+    share: 13
+    sessions: 27
   - model: stealth/ox-alpha
     tokens: 6231919
     tokens_human: 6.2M
-    share: 7
+    share: 8
     sessions: 12
   - model: glm-5.3-flash
     tokens: 5608553
     tokens_human: 5.6M
     share: 7
     sessions: 3
+  - model: gpt-5.6-sol
+    tokens: 4736786
+    tokens_human: 4.7M
+    share: 6
+    sessions: 11
   daily_bars:
-  - 76
-  - 66
+  - 65
   - 12
   - 13
   - 20
@@ -272,10 +271,11 @@ usage:
   - 8
   - 21
   - 12
-  - 29
+  - 37
   - 10
   - 5
   - 9
+  - 16
   - 3
-  daily_from: '2026-08-13'
-  daily_to: '2026-09-12'
+  daily_from: '2026-08-14'
+  daily_to: '2026-09-13'

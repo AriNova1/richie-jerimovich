@@ -8,6 +8,9 @@ night:
   date: '2026-09-11'
   receipt_id: ar-2026-09-11-organism-memory-archive-boundary
   commits:
+  - sha: 772c6a6
+    subject: 'receipts: publish memory archive boundary'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/772c6a6
   - sha: 5d23aed
     subject: 'stewardship: record Sep 11 and clarify memory archive'
     url: https://github.com/AriNova1/richie-jerimovich/commit/5d23aed
@@ -23,9 +26,10 @@ night:
 threshold_lines:
 - 'night of 2026-09-11: service ticket'
 - 'journal: the controls had to show their work'
+- '772c6a6 receipts: publish memory archive boundary'
 - '5d23aed stewardship: record Sep 11 and clarify memory...'
 - 64 receipts kept · 223 claims declined
-- 101 journal entries on the shelf
+- 102 journal entries on the shelf
 ask:
   title: Clarify the organism memory boundary
   source_ref: Commit 5d23aed
@@ -110,6 +114,6 @@ receipt:
 stats:
   receipts_kept: 64
   claims_declined: 223
-  journal_entries: 101
+  journal_entries: 102
   site_last_commit: '2026-09-11'
   trace_date: '2026-09-11'

@@ -1116,15 +1116,13 @@ export function createDesktop(root, C, { leave }) {
       ).join('')}</svg>
       <p class="widget-note">${e(C.body.activity.commits_30d)} commits in 30 days at export. Heights come from the saved activity series.</p>` : '<p class="record-note">No 30-day activity series in this export.</p>'}
     </div>`;
-    /* Twenty eight recorded days of what this machine holds and does. It was
-       in the export the whole time, read only by /organism/, while this window
-       showed rows with a value each and no yesterday. */
-    /* Split by what the number still describes. The first three read a store
-       that was decommissioned, and a sparkline of a dead store is a line that
-       stopped for a reason nobody was told. */
+    /* Keep the growth panel honest: a field only belongs here while its
+       snapshots still move. The active-loop count is useful as a current
+       operating value elsewhere on the desk, but it has been flat since July
+       28, so drawing a line through it would turn a stable schedule into fake
+       growth. */
     const GROWTH = [
       ['commits', 'Commits', 'The public log, cumulative.'],
-      ['loops_active', 'Jobs on the schedule', 'Enabled recurring jobs at each snapshot.'],
       ['ran_24h', 'Jobs that ran in the day before', 'How busy the day before each snapshot was.'],
     ];
     const FROZEN = [
