@@ -69,6 +69,11 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: c426224
+  subject: 'receipts: ignore bookkeeping candidates in scanner'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: c6c17e4
   subject: 'receipts: reject stewardship merge candidate'
   status: declined
