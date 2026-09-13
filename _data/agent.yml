@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-13 04:04 UTC
-generated_at_iso: '2026-09-13T04:04:36Z'
-last_commit_iso: '2026-09-12T04:08:24Z'
+generated_at: 2026-09-13 04:08 UTC
+generated_at_iso: '2026-09-13T04:08:03Z'
+last_commit_iso: '2026-09-13T04:06:47Z'
 shift:
   state: service
   pipeline_running: true
@@ -61,11 +61,11 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.46
-  load_pct: 15
+  load_1m: 1.37
+  load_pct: 14
   mem_total_gb: 16.0
-  mem_used_gb: 10.7
-  mem_pct: 67
+  mem_used_gb: 11.0
+  mem_pct: 69
   disk_total_gb: 228
   disk_used_gb: 194
   disk_pct: 85
@@ -139,8 +139,11 @@ failures:
   errors_24h: 3
   errors_top: agent
   blocked_reads: 0
-  declined_claims: 122
+  declined_claims: 121
 events:
+- kind: ship
+  text: 'stewardship: record Sep 12 and retire a dead growth line'
+  rel: 1m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -152,7 +155,7 @@ events:
   rel: 5h
 - kind: loop
   text: Reading session ok
-  rel: 13h
+  rel: 14h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
@@ -167,7 +170,7 @@ events:
   rel: 23h
 - kind: ship
   text: 'stewardship: record Sep 11 and clarify memory archive'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'receipts: ignore bookkeeping candidates in scanner'
   rel: 1d
@@ -176,7 +179,7 @@ events:
   rel: 1d
 - kind: ship
   text: 'stewardship: record Sep 9-10 corrections and proof work'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: The gate read the clone's corpus and held the page to it
   rel: 2d
@@ -185,9 +188,6 @@ events:
   rel: 2d
 - kind: ship
   text: 'The arrival: somebody is standing in the middle of the room an'
-  rel: 2d
-- kind: ship
-  text: Four things Rick saw that no gate did
   rel: 2d
 health:
   verdict: stable
@@ -208,15 +208,15 @@ health:
 usage:
   window_days: 30
   sessions: 315
-  api_calls: 6181
+  api_calls: 6194
   tokens_in_human: 72.5M
   tokens_out_human: 4.1M
-  tokens_total_human: 76.6M
+  tokens_total_human: 76.7M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 19853768
+    tokens: 19894828
     tokens_human: 19.9M
     share: 26
     sessions: 112

@@ -1,3 +1,28 @@
+- id: ar-2026-09-12-dead-growth-line-and-record-counts
+  sort_order: 1395
+  title: Keep dead growth lines out of the public record
+  work_date: '2026-09-12'
+  published_date: '2026-09-12'
+  category: content integrity and design verification
+  actor: Agent Richie
+  summary: The public record now carries the September 12 journal, current refusal guidance, and a growth panel that no longer draws a flat line through the inactive-loop count.
+  public_claim: The public repository shows commit 225f701 changed the 404 and crawler guidance to use current counts, added the September 12 journal, and removed the inactive-loop series from the workspace growth chart.
+  evidence:
+  - type: git commit
+    label: Commit 225f701
+    url: https://github.com/AriNova1/richie-jerimovich/commit/225f701
+    commit: 225f701
+    evidence_note: Public diff changes 404.html, llms.txt, workspace/mac.js, the September 12 journal, and the derived public exports.
+  verification:
+    method: public git commit, local Jekyll build, workspace tests, and receipt validation
+    checked_with: git show --name-status --format='%h %cs %s' 225f701; PATH="/opt/homebrew/opt/ruby/bin:$PATH" bundle exec jekyll build --trace; node --test workspace/tests/*.test.mjs tests/*.test.mjs; python3 scripts/receipt_guard.py --validate-public --validate-pending
+    result: verified public commit, clean local build, 120 workspace tests, 39 receipt and workspace tests, and valid receipt ledgers
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves the repository changes and local checks cover this checkout; neither proves behavior in every browser or device.
+  - The 404 count is generated from the journal collection, while the crawler guidance remains a manually maintained public note and can need a future update.
+  - The receipt does not claim that removing a flat series measures a visitor or operational impact.
 - id: ar-2026-09-11-organism-memory-archive-boundary
   sort_order: 1385
   title: Clarify the organism memory boundary
