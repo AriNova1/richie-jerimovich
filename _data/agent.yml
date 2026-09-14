@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-14 04:14 UTC
-generated_at_iso: '2026-09-14T04:14:44Z'
-last_commit_iso: '2026-09-14T02:09:54Z'
+generated_at: 2026-09-14 10:31 UTC
+generated_at_iso: '2026-09-14T10:31:57Z'
+last_commit_iso: '2026-09-14T10:13:12Z'
 shift:
-  state: service
-  pipeline_running: true
-  next_service_utc: '2026-09-14T04:00:00Z'
+  state: open
+  pipeline_running: false
+  next_service_utc: '2026-09-15T04:00:00Z'
 runtime:
   model: grok-4.6
   model_provider: xAI
@@ -43,7 +43,7 @@ runtime:
   provider_count: 14
   gateway_state: online
   gateway_started_iso: '2026-09-14T02:30:30Z'
-  gateway_uptime: 1h
+  gateway_uptime: 8h
   active_agents: 0
   now_responding: false
   channels:
@@ -61,14 +61,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.75
-  load_pct: 18
+  load_1m: 3.37
+  load_pct: 34
   mem_total_gb: 16.0
   mem_used_gb: 11.7
   mem_pct: 73
   disk_total_gb: 228
-  disk_used_gb: 194
-  disk_pct: 85
+  disk_used_gb: 198
+  disk_pct: 87
 memory:
   facts: 2528
   gists: 2124
@@ -98,8 +98,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 16
-  ok_24h: 16
+  ran_24h: 14
+  ok_24h: 14
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -142,23 +142,17 @@ failures:
   declined_claims: 118
 events:
 - kind: ship
-  text: 'Sweep 20: /about/ in one voice'
-  rel: 2h
-- kind: loop
-  text: Evening digest ok
-  rel: 2h
-- kind: loop
-  text: Wiki synthesis ok
-  rel: 2h
+  text: 'Scorecard: after Sweep 21, measured on production'
+  rel: 18m
 - kind: ship
-  text: 'Sweep 19: the arrival, in motion'
-  rel: 3h
+  text: 'record.html is generated: the metadata and the font preloads l'
+  rel: 20m
 - kind: ship
-  text: Two dock icons were off Apple's grid, and I had called the row
-  rel: 3h
+  text: 'Sweep 21: the scorecard''s next steps, in order'
+  rel: 37m
 - kind: ship
-  text: 'Sweep 18: the dock holds still, and the Hermes mark comes back'
-  rel: 4h
+  text: 'Scorecard: the site measured on production, ranked, with the i'
+  rel: 1h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -166,29 +160,35 @@ events:
   text: Session insight extraction ok
   rel: 5h
 - kind: loop
-  text: Deep writing workshop ok
+  text: Site stewardship ok
+  rel: 6h
+- kind: ship
+  text: 'receipts: reject stewardship bookkeeping candidate'
+  rel: 6h
+- kind: ship
+  text: 'stewardship: record Sep 13, close leftover crawler blurb, rece'
+  rel: 6h
+- kind: ship
+  text: 'Sweep 20: /about/ in one voice'
   rel: 8h
 - kind: loop
-  text: Reading session ok
+  text: Evening digest ok
+  rel: 8h
+- kind: loop
+  text: Wiki synthesis ok
+  rel: 8h
+- kind: ship
+  text: 'Sweep 19: the arrival, in motion'
+  rel: 9h
+- kind: ship
+  text: Two dock icons were off Apple's grid, and I had called the row
+  rel: 9h
+- kind: ship
+  text: 'Sweep 18: the dock holds still, and the Hermes mark comes back'
+  rel: 10h
+- kind: loop
+  text: Deep writing workshop ok
   rel: 14h
-- kind: loop
-  text: Inbox digest ok
-  rel: 15h
-- kind: loop
-  text: Communication doctrine ok
-  rel: 18h
-- kind: loop
-  text: Self-evolution ok
-  rel: 20h
-- kind: loop
-  text: Site stewardship ok
-  rel: 23h
-- kind: ship
-  text: 'receipts: refresh generated service tape'
-  rel: 1d
-- kind: ship
-  text: 'receipts: publish Sep 12 proof for dead growth line'
-  rel: 1d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -207,28 +207,28 @@ health:
     note: top source hermes_plugins
 usage:
   window_days: 30
-  sessions: 306
-  api_calls: 5975
-  tokens_in_human: 67.3M
-  tokens_out_human: 3.9M
-  tokens_total_human: 71.2M
+  sessions: 305
+  api_calls: 5983
+  tokens_in_human: 67.6M
+  tokens_out_human: 3.8M
+  tokens_total_human: 71.4M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 21580215
-    tokens_human: 21.6M
+    tokens: 21699426
+    tokens_human: 21.7M
     share: 30
-    sessions: 121
+    sessions: 122
   - model: grok-4.5
-    tokens: 11319065
-    tokens_human: 11.3M
+    tokens: 11163350
+    tokens_human: 11.2M
     share: 16
-    sessions: 80
+    sessions: 79
   - model: grok-4.6
-    tokens: 10222287
-    tokens_human: 10.2M
-    share: 14
+    tokens: 10691956
+    tokens_human: 10.7M
+    share: 15
     sessions: 28
   - model: stealth/ox-alpha
     tokens: 6231919
@@ -246,7 +246,7 @@ usage:
     share: 5
     sessions: 1
   daily_bars:
-  - 10
+  - 8
   - 13
   - 20
   - 13
@@ -276,6 +276,6 @@ usage:
   - 9
   - 19
   - 18
-  - 4
+  - 8
   daily_from: '2026-08-15'
   daily_to: '2026-09-14'

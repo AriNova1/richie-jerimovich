@@ -1791,7 +1791,7 @@ export function createDesktop(root, C, { leave }) {
     spotOrigin = document.activeElement;
     spot.hidden = false;
     spotInput.value = '';
-    spot.querySelector('.spotlight-results').innerHTML = '<p>What are you actually looking for?</p>';
+    spot.querySelector('.spotlight-results').innerHTML = '<p>What are you looking for?</p>';
     spotInput.focus();
   }
   function hideSpot() { spot.hidden = true; spotOrigin?.focus(); }
@@ -1804,7 +1804,7 @@ export function createDesktop(root, C, { leave }) {
     const rows = q ? index.filter((r) => (r.text + ' ' + r.body).toLowerCase().includes(q)).slice(0, 12) : [];
     spot.querySelector('.spotlight-results').innerHTML = rows.length
       ? rows.map((r) => `<button data-result="${r.key}" data-document-ref="${e(serializeDocumentRef(r.ref))}">${icon(r.key === 'writing' ? 'notes' : 'folder')}<span>${e(r.text)}<small>${titles[r.key]}</small></span><i>↗</i></button>`).join('')
-      : `<p>${q ? 'That word is not in the public record.' : 'What are you actually looking for?'}</p>`;
+      : `<p>${q ? 'That word is not in the public record.' : 'What are you looking for?'}</p>`;
   };
 
   function setAppearance(next) {

@@ -276,12 +276,12 @@ function speak(p){
  measureCard();
 }
 /* ── What the room costs to arrive at ────────────────────────────────
-   The entrance was fetching a 20.8 MB all-intra 1080p file on every
+   The entrance was fetching a 20.8 MB all-intra 1080p file (re-encoded 2026-09-14 to 4.6 MB with an 8-frame GOP; the 720 cut to 2.4 MB) on every
    visit, with preload="auto", no smaller variant and no check on what
    the connection could carry. On a phone on a train that is the whole
    page before anything is on screen.
 
-   A phone gets the 4.5 MB 720p cut. Anyone who has asked their browser
+   A phone gets the 720p cut. Anyone who has asked their browser
    to save data, or is on a 2g or slow-3g connection, gets the poster
    and the direct route and is told why, because a still photograph
    with an explanation beats twenty megabytes they did not agree to. */

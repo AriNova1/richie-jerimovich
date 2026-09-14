@@ -660,6 +660,18 @@ Rick: "do the next steps in order." Measured on production first, then fixed.
 | 153 | Engineer | low | `record.html` shifted 0.25 at about one second on production: the self-hosted faces arriving under `font-display: swap`. | **fixed** — the three faces the page uses are preloaded, in the generator that writes the page (the first edit to the file itself was overwritten by the next deploy). Measured on production after: 0 layout shift in three runs, from 0.248 |
 | 154 | Skeptic | low | The scorecard called `/trader-desk/` a dead link. It is the one URL a kept receipt promises will return 404, and it does; the receipt's own check passes. The scorecard counted a promise kept as a defect. | **recorded** — noted on the scorecard; the receipt is not edited |
 
+### Sweep 22 — whatever else was left
+
+Rick: "address whatever else needs to be done but you haven't gotten to."
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 155 | Skeptic | **high** | **The playlist still named the five layers.** Six movement headers in the Spotify app ("Heart takes the first four", "Signal does not ask") and two notes in the third person about a layer, a day after the property was cut to one voice. The one-voice guard walked the workspace for the borrowed character names and never for the layer names. | **fixed** — first person, each movement labelled by its own moment, the edit recorded in the file's own provenance note; the playlist test now fails on any layer name or any "he" about one |
+| 156 | Engineer | medium | The walk in weighed 10.1 MB on a desktop (the code's own comment said 20.8) and 4.7 MB on a phone: an all-intra encode, one keyframe per frame, for footage that is scrubbed. | **fixed** — re-encoded at crf 24 with an 8-frame GOP: 4.6 MB and 2.4 MB. Same 192 frames; the mini tracker run on the new file agrees with the committed measurement within 1px; gate-voice 49 of 49 on it |
+| 157 | Editor | medium | The invitation body measured 43 characters per line against a 45 floor. My first fix loosened the phone inset on a diagnosis I had not measured; the cap was `spatial-photo.css` holding the panel at 370px on the desktop. | **fixed** — 400px, measured 47; the phone rule removed and its wrong comment with it |
+| 158 | Editor | low | Four "actually"s in shipped copy: two proof questions, the Spotlight prompt twice, one playlist note. | **fixed** — cut; the copy gate reads 0 findings for the first time |
+| 159 | Engineer | low | The live gate cannot run against a local origin: the vitals server allows only agentrichie.com, so eight CORS console errors block every local run while production shows none. The gate is right about production and wrong about where it can be pointed. | **recorded** — run it on production, or on a server on the allowed origin; not loosened |
+
 ---
 
 ## Where the run ended
@@ -679,7 +691,7 @@ Rick: "do the next steps in order." Measured on production first, then fixed.
 | Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
 | Tests | 48 | **159** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **154** |
+| Findings logged | — | **159** |
 | Published surfaces contradicting another surface of the same property | **2** | **0**, both guarded by tests |
 | Rooms on the property | **2** | **1** |
 | Apps the legibility gate actually measures | **19**, typed by hand | **25**, read from the workspace |

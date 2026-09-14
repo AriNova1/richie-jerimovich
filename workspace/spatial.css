@@ -118,7 +118,7 @@ body.graphics-failed #journey-nav,body.motion-off #journey-nav{display:none}
 #spatial-world::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(to bottom,rgba(8,10,14,.62) 0,rgba(8,10,14,.16) 16%,transparent 30%,transparent 58%,rgba(8,10,14,.42) 82%,rgba(8,10,14,.72) 100%)}
 #room-header,#invitation,#journey-nav,#mini-marker{color:#f9f5ee}
 #direct-entry:hover{background:rgba(10,12,16,.68)}
-#invitation .invite-body{font-size:var(--t-body);line-height:1.62;color:#f2ebdd;margin:0 0 16px;max-width:46ch}
+#invitation .invite-body{font-size:var(--t-body);line-height:1.62;color:#f2ebdd;margin:0 0 16px;max-width:52ch}   /* 46ch measured as 43 characters per line on the desktop; the floor is 45 */
 .invite-counts{margin:0 0 22px;display:grid;gap:3px;font-size:var(--t-fine);color:#e6ddcd;font-variant-numeric:tabular-nums}
 .ic-row{display:grid;grid-template-columns:44px 1fr;align-items:baseline;gap:10px}
 .ic-row b{font-weight:650;color:#fff;font-size:var(--t-body);text-align:right}

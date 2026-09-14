@@ -63,7 +63,7 @@ export function buildChecks({ corpus, corpusText, statedHash }) {
     {
       id: 'corrections',
       name: 'Every quoted correction is verbatim in the entry it names',
-      question: 'Did the sentences in Corrections actually get written on those days, in those files?',
+      question: 'Did the sentences in Corrections get written on those days, in those files?',
       method: 'Fetch data/journal.json and look for each quoted sentence in the entry it cites.',
       async run() {
         const list = corpus.corrections || [];
@@ -114,7 +114,7 @@ export function buildChecks({ corpus, corpusText, statedHash }) {
     {
       id: 'mark',
       name: 'The account picture is drawn from the record, not decorated',
-      question: 'Do the days lit in the mark correspond to days the ledgers actually have entries on?',
+      question: 'Do the days lit in the mark correspond to days the ledgers have entries on?',
       method: 'Rebuild the day states from the receipt and refusal rows and check every square against them.',
       async run() {
         /* Built from the kept and refused LISTS, not from kept_by_date, which

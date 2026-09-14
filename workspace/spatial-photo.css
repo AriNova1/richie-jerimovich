@@ -2,7 +2,7 @@
 #poster{inset:auto;left:0;top:0;width:1536px;height:1024px;max-width:none;object-fit:fill;transform-origin:0 0;transition:none;will-change:transform}
 body.scene-ready #poster{opacity:1}
 #spatial-world:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#080c1270,transparent 32%,transparent 92%,#080c1230)}
-#invitation{left:40px;top:auto;bottom:122px;max-width:370px;text-shadow:0 2px 20px #000b}
+#invitation{left:40px;top:auto;bottom:122px;max-width:400px;text-shadow:0 2px 20px #000b}   /* 370 left the body at 43 characters per line; 400 measures 47 */
 #invitation .eyebrow{font-size:var(--t-micro);margin-bottom:14px}   /* was 9px; measured illegible over the desk */
 #invitation h1{font-size:var(--t-display);margin-bottom:12px}
 /* This rule used to re-decide the size of the front door's whole pitch

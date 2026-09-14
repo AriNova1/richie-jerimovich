@@ -15,20 +15,22 @@ test('the playlist is thirty tracks in seven movements, in the order it was sent
   for (const x of flat) assert.ok(x.a && x.t, 'every track has an artist and a title');
 });
 
-test('one Richie: no borrowed character names survive, and the five layers are the ones the desktop already uses', () => {
+test('one Richie: no borrowed character names survive, and no layer name either', () => {
   for (const name of ['Mike', 'Mikey', 'Beard', 'Rocky', 'Sean', 'Carmy', 'Ted']) assert.ok(!new RegExp(`\\b${name}\\b`).test(text), `${name} must not appear`);
   const named = PLAYLIST.movements.filter((m) => m.layer);
-  assert.deepEqual(named.map((m) => m.layer), ['01', '02', '03', '04', '05']);
-  assert.deepEqual(named.map((m) => m.role), ['Heart', 'Angle', 'Signal', 'Hands', 'Truth']);
-  for (const m of named) assert.ok(m.head.startsWith(m.role), 'the header names its own layer: ' + m.head);
-  assert.equal(PLAYLIST.movements.filter((m) => !m.layer).length, 2, 'the last two movements belong to no single layer');
+  assert.equal(named.length, 5);
+  /* Rick cut the property to one voice on 2026-09-14: a movement is labelled
+     by its own moment and the header speaks in the first person. */
+  for (const role of ['Heart', 'Angle', 'Signal', 'Hands', 'Truth']) assert.ok(!named.some((m) => m.role === role || m.head.startsWith(role)), `${role} is back as a movement`);
+  assert.ok(named.some((m) => /^I\b/.test(m.head)), 'the headers speak for themselves');
+  assert.ok(!/\bHe (will|means)\b/.test(text), 'no third person about a layer');
 });
 
 test('the copy says where it came from and what was changed, and carries no em dashes', () => {
   assert.equal((text.match(/—/g) || []).length, 0);
   assert.match(PLAYLIST.note, /Sent by Richie/);
   assert.match(PLAYLIST.note, /not a published Spotify playlist/);
-  assert.match(PLAYLIST.edit, /replaced by the layer/);
+  assert.match(PLAYLIST.edit, /cut to one voice/);
   assert.equal(PLAYLIST.received, '2026-09-08');
   assert.ok(!/Placeholder/i.test(text), 'the placeholder note is gone');
 });
