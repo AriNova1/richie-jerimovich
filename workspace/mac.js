@@ -1528,7 +1528,7 @@ export function createDesktop(root, C, { leave }) {
              argument is that Richie does not have one. A stranger scanning the
              dock read it as him. The dock now carries the glyph this site
              already uses for Hermes in the Finder sidebar. */''}
-        <img class="hermes-mark" src="assets/hermes.png" alt="The Hermes mark, by Nous Research" draggable="false">
+        <img class="hermes-mark" src="assets/hermes-mark.png" alt="The Hermes mark, by Nous Research" draggable="false">
         <div>
           <p class="widget-kicker">Harness</p>
           <h1>Hermes Agent</h1>

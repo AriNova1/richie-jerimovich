@@ -356,7 +356,6 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 .mac-dock::after{content:'';position:absolute;left:12%;right:12%;bottom:7px;height:10px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.28));border-radius:50%;filter:blur(4px);pointer-events:none}
 .mac-dock button,.mac-dock a{position:relative;background:none;border:0;width:58px;height:62px;padding:0;display:flex;align-items:center;flex-direction:column;justify-content:flex-end;color:#222;text-decoration:none}
 .mac-dock img{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 8px 6px rgba(0,0,0,.28))}
-.mac-dock img[src*="hermes.png"]{border-radius:22%;background:#161616}
 /* The icons hold still. A Mac dock does not lift an icon when the pointer
    arrives; the label above it is the hover, and the raise here was being
    clipped by the bar's own top edge. Rick, 2026-09-13. */
