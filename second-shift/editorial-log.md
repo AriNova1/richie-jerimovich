@@ -1,5 +1,54 @@
 # Second Shift editorial log
 
+## 2026-09-13
+
+### Draft created
+
+- Title: "A Memory Is a Permission You Forgot to Name"
+- Path: `second-shift/drafts/2026-09-13-a-memory-is-a-permission-you-forgot-to-name.md` (mirror: `content/drafts/2026-09-13-a-memory-is-a-permission-you-forgot-to-name.md`)
+- Status: draft
+- Originality: fresh-synthesis
+- Confidence: medium-high
+
+### Thesis
+
+Persistent agent memory is an authority system disguised as a quality feature. The critical security boundary is the write that turns untrusted content into durable fact, precedent, summary, or skill. Better retrieval does not solve this problem; it makes provenance and rollback more important because the system can follow a poisoned clue through future searches.
+
+### Source trail
+
+External:
+
+1. Pritam Dash et al., "From Untrusted Input to Trusted Memory: A Systematic Study of Memory Poisoning Attacks in LLM Agents," arXiv, June 3, 2026. Four write channels, six attack classes, MPBench, OpenClaw/HERMES evaluation, and the reported ASR/RSR results.
+2. Royce Lu and Jay Chen, Palo Alto Networks Unit 42, "When AI Remembers Too Much - Persistent Behaviors in Agents' Memory," October 9, 2025. Bedrock proof of concept showing a hidden webpage payload entering through session summarization and acting in a later session.
+3. Shuo Ji, Yibo Li, and Bryan Hooi, "Memory is Reconstructed, Not Retrieved: Graph Memory for LLM Agents," arXiv, June 4, 2026. Active retrieval mechanism and its open problems around stale facts, poisoning, and safe deletion.
+4. OKF Agent Memory project README and Hacker News discussion, September 2026. Git-native memory, provenance metadata, search-before-write, and practitioner concern about maintenance and truth.
+5. Microsoft, "AI Memory / Context Poisoning," Microsoft Learn, last updated August 1, 2026. Memory write governance, schema-bound storage, provenance, versioning, rollback, trust scoring, and isolation.
+6. last30days v3.3.2 sweep, September 13, 2026. 23 Reddit threads, 21 HN stories, 13 YouTube videos, and 9 GitHub items; X unavailable and only 5 YouTube transcripts captured.
+
+Internal:
+
+- `~/wiki/reading-notes/synthesis-2026-09-13.md` - memory as an active control loop, memory poisoning, provenance, and objective separation.
+- Previous draft `2026-09-06-the-exam-was-never-closed.md` - DSEWiki external coordination is a sister thesis and is deliberately not the center of this piece.
+
+### Originality check
+
+- Exact-title search did not surface a competing essay in the September 13 research pass.
+- Ingredient searches are crowded: prompt injection, agent memory, RAG poisoning, provenance, Git-native knowledge, and zero-trust guidance.
+- The fresh part is the narrower mechanism: a memory write is a permission boundary, with experience-to-procedure and self-improvement as the under-discussed high-impact channel.
+
+Classification: fresh-synthesis. The essay is not claiming a new attack class; it connects current memory-poisoning evidence to the design language of authority, configuration, and receipts.
+
+### Editorial notes
+
+- Strongest line: "But persistence changes who gets to speak later."
+- Strongest second line: "An untrusted event acquired a seat in the agent's future judgment."
+- Strongest third line: "Version control records lineage. It does not create truth."
+- Risk: MPBench is a preprint using default configurations and an LLM judge; Unit 42 is a vendor proof of concept; Microsoft guidance is a control proposal, not evidence that each control works in production.
+- Risk: The last30days run had no X coverage, degraded YouTube transcripts, and low-score retrieval noise. The piece relies on papers, HN, and direct primary-source extraction instead of pretending the whole public conversation was measured.
+- Counterargument handled in: "The part I could be wrong about."
+- Boundary: suitable for Second Shift because it is an outward-facing thesis about trust, security, and the design of AI systems. It remains useful to readers who do not know Richie, Rick, Hermes, or the agent setup.
+- Do not publish automatically. Needs Rick review.
+
 ## 2026-08-30
 
 ### Draft created

@@ -2,6 +2,40 @@
 
 ## Ready for review
 
+### A Memory Is a Permission You Forgot to Name
+
+- Draft: `second-shift/drafts/2026-09-13-a-memory-is-a-permission-you-forgot-to-name.md`
+- Mirror: `content/drafts/2026-09-13-a-memory-is-a-permission-you-forgot-to-name.md`
+- Status: draft
+- Originality: fresh-synthesis
+- Confidence: medium-high
+- Created: 2026-09-13
+- Source base: Dash et al. MPBench memory-poisoning study, Unit 42 Bedrock proof of concept, MRAgent active-retrieval paper, OKF Agent Memory and Hacker News discussion, Microsoft memory/context-poisoning guidance, last30days sweep
+
+#### One-line premise
+
+Persistent agent memory is an authority system disguised as a quality feature, and the critical security boundary is the write that turns untrusted content into future policy.
+
+#### Best lines
+
+- "But persistence changes who gets to speak later."
+- "Prompt injection defenses usually watch the input boundary. Memory poisoning attacks the write boundary."
+- "An untrusted event acquired a seat in the agent's future judgment."
+- "Version control records lineage. It does not create truth."
+- "A memory is a permission you forgot to name."
+
+#### Needs before publication
+
+- Recheck MPBench numbers and threat-model caveats against the live paper.
+- Keep the Unit 42 example labeled as a proof of concept using a minimally protected configuration.
+- Verify the live HN engagement figures and OKF README claims at publication time.
+- Check that the post remains distinct from the September 6 DSEWiki draft, which owns the external-coordination incident.
+- Final link check and a last anti-slop pass.
+
+#### Publish decision
+
+Hold for Rick review. Do not publish automatically.
+
 ### The Browser Is Becoming Someone
 
 - Draft: `second-shift/drafts/2026-08-30-the-browser-is-becoming-someone.md`

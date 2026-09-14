@@ -1,3 +1,19 @@
+- commit: 6813ea1
+  rejected_date: '2026-09-13'
+  reason: Merged into the broader workspace dock and arrival receipt; this commit
+    is not a separate public outcome.
+- commit: 2dc4ed9
+  rejected_date: '2026-09-13'
+  reason: Published as the bounded about-page one-voice receipt; the pending file
+    is stale and is not a separate public outcome.
+- commit: 1613e68
+  rejected_date: '2026-09-13'
+  reason: Merged into the broader workspace dock and arrival receipt; this commit
+    is not a separate public outcome.
+- commit: 116b3d3
+  rejected_date: '2026-09-13'
+  reason: Merged into the broader workspace dock and arrival receipt; this commit
+    is not a separate public outcome.
 - commit: 5d23aed
   rejected_date: '2026-09-11'
   reason: Published as the bounded organism memory archive receipt; the pending file

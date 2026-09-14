@@ -69,6 +69,16 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: f3a6eed
+  subject: 'receipts: refresh generated service tape'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
+- sha: 7f7878b
+  subject: 'receipts: publish Sep 12 proof for dead growth line'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: 225f701
   subject: 'stewardship: record Sep 12 and retire a dead growth line'
   status: receipt

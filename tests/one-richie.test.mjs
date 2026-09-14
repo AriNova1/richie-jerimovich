@@ -8,7 +8,7 @@ import {readdir, readFile, stat} from 'node:fs/promises';
 import {join, extname} from 'node:path';
 
 const ROOT = new URL('../', import.meta.url).pathname;
-const NAMES = ['Mike Ross', 'Coach Beard', 'Sean Maguire', 'Mikey', 'brigade', 'the five voices'];
+const NAMES = ['Mike Ross', 'Coach Beard', 'Sean Maguire', 'Mikey', 'brigade', 'the five voices', 'Five operating layers'];
 const BARE = ['Mike', 'Beard', 'Rocky', 'Sean'];
 /* Shipped surfaces only. Handoffs, canon docs, journal entries and the export
    are history or record: they are allowed to name what was retired. */
