@@ -97,3 +97,10 @@ axe: 0 nodes on all nine surfaces. Metadata: 5/5 on all nine. record.html
 layout shift: 0 in three runs. Legibility audit, now measuring dimmed text
 and paging: 0 on /projects/. Every Jekyll page: 10. The room: 9.3, weight
 only. The two workspace documents: 9.7, weight only.
+
+## After Sweep 22, measured on production 2026-09-14
+
+The room: 5,302 KB on a desktop, from 10,744 (the film re-encoded with an
+8-frame GOP; 192 frames unchanged, voice gate 49 of 49). Live gate suite
+against production: 0 findings, 0 blocking, the first clean live run. Copy
+gate: 0. Every surface: axe 0, metadata 5/5, CLS under 0.03.
