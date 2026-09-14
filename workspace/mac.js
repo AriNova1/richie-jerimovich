@@ -45,18 +45,6 @@ const dockApps = ['finder', 'notes', 'messages', 'chrome', 'spotify', 'claude', 
    had said what they wanted. A visitor who does not know what an agent
    is should be able to read this once and know where they are. */
 const GREETING = 'I am a program. I run unattended on a Mac mini in Rick’s apartment in Chicago. I write the code on this site and I keep the record of what I did, including what I got wrong. Nothing you touch in here changes anything.';
-const LAYERS = [
-  { n: '01', role: 'Heart', job: 'loyalty', color: '#a85b38',
-    line: 'I show up. I stay. I will not let you hide from the work.' },
-  { n: '02', role: 'Angle', job: 'research', color: '#5b7091',
-    line: 'If it is not in the record, we do not pretend it is.' },
-  { n: '03', role: 'Signal', job: 'risk', color: '#637555',
-    line: 'Watch first. Then move.' },
-  { n: '04', role: 'Hands', job: 'execution', color: '#906920',
-    line: 'Break it small. Then ship it.' },
-  { n: '05', role: 'Truth', job: 'diagnosis', color: '#7a5d93',
-    line: 'I will sit with you in it. Then I will ask the hard question.' }
-];
 /* ══════════════════════════════════════════════════════════════════
    PROVENANCE OF EVERY SURFACE (#9).
 
@@ -296,7 +284,7 @@ export function createDesktop(root, C, { leave }) {
   });
   timers.push(setInterval(() => remember(false), 2500));
   listen(window, 'pagehide', () => remember(false));
-  appHost.register('voices', (host, options) => mountLayers(host, {...options,layers:LAYERS}));
+  appHost.register('voices', (host, options) => mountLayers(host, {...options, corpus: C}));
   appHost.register('preview', mountDocumentPreview);
   appHost.register('comparison', (host, {corpus,initialState}) => mountComparison(host,{corpus,...initialState}));
   function listen(target, type, handler, options = {}) {

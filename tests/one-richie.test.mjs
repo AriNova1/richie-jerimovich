@@ -55,15 +55,19 @@ test('the whole workspace tree is clean, not only the files the old guard read',
   assert.deepEqual(offenders, []);
 });
 
-test('about and the workspace widget agree on the five layer names, in order', async () => {
+test('about and the workspace widget are one voice: no named layers on either, and no typed count on about', async () => {
   const about = await readFile(join(ROOT, 'about.md'), 'utf8');
   const mac = await readFile(join(ROOT, 'workspace/mac.js'), 'utf8');
+  const widget = await readFile(join(ROOT, 'workspace/apps/layers.mjs'), 'utf8');
   const ROLES = ['Heart', 'Angle', 'Signal', 'Hands', 'Truth'];
   const inAbout = [...about.matchAll(/<h2>(\w+)<\/h2>/g)].map((m) => m[1]).filter((r) => ROLES.includes(r));
-  const layerBlock = mac.slice(mac.indexOf('const LAYERS'), mac.indexOf('const PROVENANCE'));
-  const inMac = [...layerBlock.matchAll(/role: '(\w+)'/g)].map((m) => m[1]);
-  assert.deepEqual(inAbout, ROLES, 'about.md lists the five layers in order');
-  assert.deepEqual(inMac, ROLES, 'the workspace widget lists the same five in the same order');
-  assert.ok(/Not a cast/i.test(mac), 'the workspace still says it out loud');
-  assert.ok(/not a cast/i.test(about), 'and so does about');
+  assert.deepEqual(inAbout, [], 'about.md names a layer as a heading');
+  assert.ok(!/const LAYERS/.test(mac) && !/role: '(Heart|Angle|Signal|Hands|Truth)'/.test(mac), 'the workspace still carries the five-layer table');
+  assert.ok(!/layer-list|layers\.map/.test(widget), 'the widget still lists layers');
+  assert.ok(/one mind/i.test(about) && /one mind/i.test(widget), 'both say it is one mind');
+  /* Every figure on /about/ is a Liquid expression over the data files. A bare
+     number in the prose is a number somebody typed, and the last one of those
+     ("after 107 days") was wrong within a day. */
+  const prose = about.replace(/^---[\s\S]*?---/, '').replace(/\{\{[^}]*\}\}/g, '').replace(/\d{4}-\d{2}-\d{2}/g, '');
+  assert.deepEqual(prose.match(/\b\d{2,}\b/g) || [], [], 'a typed count on /about/');
 });

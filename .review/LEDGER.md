@@ -636,6 +636,16 @@ Rick: "Now do the arrival window motion design."
 | 143 | Motion Director | medium | Reduced motion is an edition, not an apology: fill mode is `backwards`, so an element is only ever hidden during its own delay, and with animations off the page is simply there. Nothing is gated on a class-triggered transition. | **built** — verified: under `prefers-reduced-motion` every element is at its final opacity at t=0 |
 | 144 | Engineer | medium | My first gate probed single instants and reported the first square at 0.05 at 422ms while a continuous sample of the same page showed it landed at 400ms; and the listener that spends the delight sat on a node the paper re-renders, so the class never came off and the note replayed. | **fixed** — the gate samples every 50ms and asserts the order of events and each one's window; the listener is delegated to the window. `gate-arrival.mjs`: 13 checks, 7 of them fail with the animations switched off |
 
+### Sweep 20 — one voice
+
+Rick's ruling on the open item: "/about/, cut it to one voice."
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 145 | Editor | **high** | **/about/ taught five named layers as stations, each with a badge, and closed by apologising for them.** "Not a cast" was the tell: a layer with a name is a character with a smaller costume, and the workspace widget repeated the same five with colours and a footnote. | **cut** — one voice, first person: what I am, how I work (the same five pressures as sentences, each with its counted figure), one brief worked, who I work with, and what the page used to say. The widget says the same in short. `voice-badge.html` retired |
+| 146 | Auditor | medium | The old synthesis typed "after 107 days" into a page whose every other figure was counted; it was wrong within a day. | **fixed** — `organism.age_days`, and the guard test now fails on any bare number of two or more digits in the prose of /about/ |
+| 147 | Skeptic | low | The one-voice guard asserted that about and the widget listed the same five names in the same order, which is a test that the cast was consistent, not that it was gone. | **fixed** — it asserts no layer heading, no layer table, no layer list, and that both say one mind |
+
 ---
 
 ## Where the run ended
@@ -655,7 +665,7 @@ Rick: "Now do the arrival window motion design."
 | Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
 | Tests | 48 | **159** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **144** |
+| Findings logged | — | **147** |
 | Published surfaces contradicting another surface of the same property | **2** | **0**, both guarded by tests |
 | Rooms on the property | **2** | **1** |
 | Apps the legibility gate actually measures | **19**, typed by hand | **25**, read from the workspace |
