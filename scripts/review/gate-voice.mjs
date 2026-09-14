@@ -22,6 +22,7 @@ import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { miniAt, voiceAt, TRACK_END } from '../../workspace/mini-track.mjs';
+import { litAt, plateOpacity } from '../../workspace/plate.mjs';
 
 const args = process.argv.slice(2);
 const BASE = args.find((a) => a.startsWith('http')) || 'http://127.0.0.1:4716/';
@@ -125,6 +126,20 @@ async function open(vp) {
     const c = contrastOf(shot, r.card);
     check(c.ratio >= 4.5, `p=${p}: line contrast against the rendered ground`, `${c.ratio.toFixed(2)}:1 on ${c.ground.join(',')}`);
   }
+  /* The record written on the screen: none before the plate, the count the
+     mapping says in the middle, all of it before the handover, and the key
+     legible over whatever the frame is showing. */
+  const plateAt = async (p) => { await settle(page, p); return page.evaluate(() => { const pl = document.getElementById('record-plate'); const rects = [...pl.querySelectorAll('rect')]; const key = pl.querySelector('.rp-key').getBoundingClientRect(); return { op: Number(getComputedStyle(pl).opacity), n: rects.length, lit: rects.filter((r) => r.style.opacity !== '0').length, key: { left: key.left, top: key.top, w: key.width, h: key.height } }; }); };
+  const p50 = await plateAt(0.5);
+  check(p50.op === 0 && p50.lit === 0 && p50.n > 90, 'p=0.5: the plate is not there while the machine is', `opacity ${p50.op} lit ${p50.lit} of ${p50.n}`);
+  const p72 = await plateAt(0.72);
+  check(p72.op === 1 && Math.abs(p72.lit - litAt(0.72, p72.n)) <= 1 && p72.lit > 0 && p72.lit < p72.n, 'p=0.72: the record is part written, as the mapping says', `lit ${p72.lit} of ${p72.n}, expected ${litAt(0.72, p72.n)}`);
+  const shot72 = join(OUT, 'plate-0.72.png'); await page.screenshot({ path: shot72 });
+  const ck = contrastOf(shot72, p72.key); check(ck.ratio >= 4.5, 'p=0.72: the key is legible over the frame', `${ck.ratio.toFixed(2)}:1`);
+  const p93 = await plateAt(0.93);
+  check(p93.lit === p93.n, 'p=0.93: every square is lit before the desktop takes over', `${p93.lit} of ${p93.n}`);
+  const back = await plateAt(0.65);
+  check(back.lit === litAt(0.65, back.n) && back.lit < p93.n, 'scrolling back unwrites it', `${back.lit} of ${back.n}`);
   await settle(page, 0.93);
   const r93 = await read(page, []);
   check(r93.markerOpacity < 0.05, 'p=0.93: the marker has faded before the desktop takes over', String(r93.markerOpacity));

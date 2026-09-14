@@ -672,6 +672,15 @@ Rick: "address whatever else needs to be done but you haven't gotten to."
 | 158 | Editor | low | Four "actually"s in shipped copy: two proof questions, the Spotlight prompt twice, one playlist note. | **fixed** — cut; the copy gate reads 0 findings for the first time |
 | 159 | Engineer | low | The live gate cannot run against a local origin: the vitals server allows only agentrichie.com, so eight CORS console errors block every local run while production shows none. The gate is right about production and wrong about where it can be pointed. | **recorded** — run it on production, or on a server on the allowed origin; not loosened |
 
+### Sweep 23 — the walk in as a set piece
+
+Rick: "do the walk in as a set piece."
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 160 | Motion Director | **high** | **From the moment the machine left the frame to the handover, the walk in was a wallpaper with a caption on it.** Forty percent of the journey, the screen you are about to enter filling the picture, and the scroll spent nothing. | **built** — the record is written on the screen you are walking into: one square a day, 113 of them, lit in date order by the reader's own scroll from p=.56 to .90, ink from the export, none of it typed. Scroll back and it unwrites. The greeting inside then opens with the same mark at 132px, so the reader has already watched it written across the screen they came through. `plate.mjs` holds the mapping; five unit tests hold it to the track and the voice; gate-voice grew five checks (54 of 54), including that the key measures 15.7:1 over the wave and that scrubbing back unwrites |
+| 161 | Editor | low | The plate's first draft read the export from a variable that was out of scope at the call site and threw on load; the photograph run caught it before any gate did, because a page error is the first thing that script prints. | **fixed** |
+
 ---
 
 ## Where the run ended
@@ -689,9 +698,9 @@ Rick: "address whatever else needs to be done but you haven't gotten to."
 | Apps on the desktop | 15 | **20** |
 | Dock apps that hold nothing | **2** | **0** |
 | Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
-| Tests | 48 | **159** |
+| Tests | 48 | **164** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **159** |
+| Findings logged | — | **161** |
 | Published surfaces contradicting another surface of the same property | **2** | **0**, both guarded by tests |
 | Rooms on the property | **2** | **1** |
 | Apps the legibility gate actually measures | **19**, typed by hand | **25**, read from the workspace |
@@ -701,6 +710,7 @@ Rick: "address whatever else needs to be done but you haven't gotten to."
 | Ways into the workspace that render identically | **1 of 2** | **2 of 2**, guarded |
 | Progress through the walk in during which the machine is pointed at | 5% | **52%**, until it leaves the frame |
 | Sentences said between the invitation fading and the desktop | **0** | **3** |
+| Squares of the record written by scroll on the way in | **0** | **113**, every one from the export |
 | **Times an instrument of mine was lying** | — | **22** |
 
 The last row is the one to read first. Every clean number above it is worth

@@ -114,8 +114,14 @@ body.graphics-failed #journey-nav,body.motion-off #journey-nav{display:none}
 }
 @media(max-width:650px){
 #room-live{order:3;flex:1 0 100%;max-width:none;white-space:normal;font-size:var(--t-micro)}
+.rp-mark svg{width:92vw}
+.rp-key{max-width:none}
 }
 #spatial-world::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(to bottom,rgba(8,10,14,.62) 0,rgba(8,10,14,.16) 16%,transparent 30%,transparent 58%,rgba(8,10,14,.42) 82%,rgba(8,10,14,.72) 100%)}
+#record-plate{position:fixed;inset:0;z-index:8;display:grid;place-content:center;gap:18px;pointer-events:none;opacity:0;padding:0 5vw}
+.rp-mark{color:#e8c979;line-height:0;filter:drop-shadow(0 2px 14px #0009)}
+.rp-mark svg{width:min(62vw,900px);height:auto;display:block}
+.rp-key{margin:0;justify-self:center;max-width:52ch;text-align:center;font-size:var(--t-fine);line-height:1.5;color:#f2ebdd;text-shadow:0 1px 14px #000;padding:9px 14px;border-radius:10px;background:rgba(10,12,16,.62);backdrop-filter:blur(14px) saturate(1.2);border:1px solid rgba(255,255,255,.13)}
 #room-header,#invitation,#journey-nav,#mini-marker{color:#f9f5ee}
 #direct-entry:hover{background:rgba(10,12,16,.68)}
 #invitation .invite-body{font-size:var(--t-body);line-height:1.62;color:#f2ebdd;margin:0 0 16px;max-width:52ch}   /* 46ch measured as 43 characters per line on the desktop; the floor is 45 */

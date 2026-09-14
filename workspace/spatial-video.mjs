@@ -2,6 +2,8 @@ import {createDesktop} from './mac.js';
 import {SeekQueue} from './video-seek.mjs';
 import {count as countOpen} from './seen.mjs';
 import {miniAt, voiceAt} from './mini-track.mjs';
+import {litAt, plateOpacity} from './plate.mjs';
+import {markSVG, markSummary} from './mark.mjs';
 
 const $=s=>document.querySelector(s), clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a));return t*t*(3-2*t)};
@@ -36,7 +38,7 @@ function draw(){
  /* The marker used to switch off the moment the camera moved, because it
     could not follow the machine. Now it can: it rides the measured track
     until the mini leaves the frame, then comes to rest and keeps talking. */
- placeMini();speak(p);
+ placeMini();speak(p);writePlate(p);
  if(!motionOff()&&!graphicsFailed)seeks.request(clamp(p/.94)*finalTime);
  const landed=videoReady&&!seeks.busy&&Math.abs(seeks.settled-finalTime)<1/24;
  const handover=graphicsFailed||motionOff()||bypassVideo?(p===1?1:0):landed?smooth(.94,1,p):0;
@@ -318,6 +320,32 @@ function loadVideo(){
  videoTimer=setTimeout(videoFailure,12000);film.src=videoSource();film.load();
 }
 
+/* ── The record, written on the screen ───────────────────────────
+   See plate.mjs. The squares are set per frame from the reader's own
+   scroll position, only the ones that changed, so scrubbing back unwrites
+   them. An unlit square is opacity 0; a lit one falls back to the ink the
+   mark gave it, so nothing here decides what a day was worth. */
+const plate=$('#record-plate');let plateRects=[],plateLit=0;
+function mountPlate(c){
+ if(!plate||!c)return;
+ plate.querySelector('.rp-mark').innerHTML=markSVG(c,{cols:27,indexed:true,title:`${markSummary(c).days} days, one square each, lit by what the day produced.`});
+ plateRects=[...plate.querySelectorAll('rect')];
+ for(const r of plateRects)r.style.opacity='0';
+ const m=markSummary(c);
+ plate.querySelector('.rp-key').textContent=`${m.days} days on this machine. One square a day, lit by what it produced: ${m.cleared} cleared a receipt, ${m.weighed} weighed and declined, ${m.silent} silent.`;
+ plate.querySelector('.rp-key').dataset.tier='derived';
+}
+function writePlate(p){
+ if(!plate||!plateRects.length)return;
+ const lit=graphicsFailed||motionOff()?0:litAt(p,plateRects.length);
+ if(lit!==plateLit){
+  const [a,b]=lit>plateLit?[plateLit,lit]:[lit,plateLit];
+  for(let i=a;i<b;i++)plateRects[i].style.opacity=i<lit?'':'0';
+  plateLit=lit;
+ }
+ plate.style.opacity=String(graphicsFailed||motionOff()?0:plateOpacity(p));
+}
+
 let corpusData=null;
 function buildDesktop(){
  if(desktop||!corpusData)return desktop;
@@ -334,7 +362,7 @@ async function initialize(){
  }catch(e){errors.push(e.message);status.textContent='Workspace could not load. Use Open workspace to try the direct route.';entry.disabled=true;return;}
  try{await poster.decode();document.body.classList.add('photo-ready');}
  catch(e){errors.push('Room image unavailable');graphicsFailed=true;document.body.classList.add('graphics-failed');status.textContent='Room image unavailable. The workspace remains available.';}
- progress=0;syncScroll(0);draw();paintInvitation();paintLive();liveWeather();loadNow();setInterval(paintLive,20000);setInterval(loadNow,60000);addEventListener('resize',()=>paintInvitation(),{passive:true});requestAnimationFrame(()=>miniMarker?.classList.add('on'));if(!motionOff())loadVideo();if(params.get('p'))go(Number(params.get('p')),{instant:true});
+ mountPlate(corpusData);progress=0;syncScroll(0);draw();paintInvitation();paintLive();liveWeather();loadNow();setInterval(paintLive,20000);setInterval(loadNow,60000);addEventListener('resize',()=>paintInvitation(),{passive:true});requestAnimationFrame(()=>miniMarker?.classList.add('on'));if(!motionOff())loadVideo();if(params.get('p'))go(Number(params.get('p')),{instant:true});
 }
 window.__spatial={ready:false,go,snapshot,dispose(){disposed=true;if(raf)cancelAnimationFrame(raf);abort.abort();clearTimeout(videoTimer);seeks.stop();film.pause();film.removeAttribute('src');film.load();desktop?.dispose();document.documentElement.style.overflowY='';}};
 initialize().then(()=>{window.__spatial.ready=true;});
