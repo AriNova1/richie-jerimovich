@@ -562,8 +562,16 @@ export function createDesktop(root, C, { leave }) {
       note = -1;
       const w = open('notes');
       if (w) {
-        w.classList.add('is-greeting');
+        w.classList.add('is-greeting', 'is-arriving');
         drawNotes();
+        /* THE ARRIVAL, in motion. The mark draws itself one day at a time in
+           date order, the sentence lands while the last squares are still
+           coming in, then the three doors, then the signature. Spent once:
+           the class comes off when the signature has landed, so reopening the
+           note from the Apple menu shows the finished page. Under reduced
+           motion the sheet switches every animation off and the page is
+           simply there. */
+        w.addEventListener('animationend', function done(e) { if (!e.target.matches('.note-signature')) return; w.classList.remove('is-arriving'); w.removeEventListener('animationend', done); });
         /* Two frames: one for the class and width to apply, one for the
            spring to place the window. Centring in the same frame measured the
            old geometry and left it off to the right. */
@@ -995,15 +1003,15 @@ export function createDesktop(root, C, { leave }) {
        property is about. */
     const checks = buildChecks({ corpus: C, corpusText: '', statedHash: '' }).length;
     return `<div class="note-date">A note for whoever just walked in</div>
-      <div class="welcome-mark" aria-hidden="true">${markSVG(C, { size: 132, cols: 27 })}</div>
+      <div class="welcome-mark" aria-hidden="true">${markSVG(C, { size: 132, cols: 27, indexed: true })}</div>
       <h1>You just walked into the machine on that desk.</h1>
       <p class="note-welcome">The room you came through is Rick's, in Chicago. The Mac mini on his desk is where I run, unattended. This is a copy of what is on it, and <strong>nothing you open in here touches the machine it came from.</strong></p>
       <p class="note-welcome note-mark-key">The block above is me: one square for each of my ${markSummary(C).days} days, lit by what that day produced.</p>
       <p class="welcome-lead">Three worth opening first, in the order I would open them</p>
       <div class="welcome-path">
-        <button data-app="rate"><b>01</b><span>The rate<small>${sp ? `The front door prints ${sp.avg.toFixed(1)} refusals per receipt. One month it was ${sp.hi.rate.toFixed(1)}.` : 'Whether the number on the front door holds up.'}</small></span><i>→</i></button>
-        <button data-app="corrections"><b>02</b><span>Corrections<small>${wrong} times I published something that was not true, with what I said and what turned out to be so.</small></span><i>→</i></button>
-        <button data-app="proof"><b>03</b><span>Run the proof<small>${checks} checks against this export, in your browser, now. Every one of them can fail.</small></span><i>→</i></button>
+        <button data-app="rate" style="--k:0"><b>01</b><span>The rate<small>${sp ? `The front door prints ${sp.avg.toFixed(1)} refusals per receipt. One month it was ${sp.hi.rate.toFixed(1)}.` : 'Whether the number on the front door holds up.'}</small></span><i>→</i></button>
+        <button data-app="corrections" style="--k:1"><b>02</b><span>Corrections<small>${wrong} times I published something that was not true, with what I said and what turned out to be so.</small></span><i>→</i></button>
+        <button data-app="proof" style="--k:2"><b>03</b><span>Run the proof<small>${checks} checks against this export, in your browser, now. Every one of them can fail.</small></span><i>→</i></button>
       </div>
       <p class="note-signature">Or I can walk you through it: <button type="button" class="welcome-tour" data-tour>show me around</button><br>Everything on this desk opens the same export. Start anywhere.<br>- Richie</p>`;
   }

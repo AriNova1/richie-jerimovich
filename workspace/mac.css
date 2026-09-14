@@ -955,6 +955,21 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 .welcome-tour{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .welcome-tour:hover{text-decoration-thickness:2px}
 .mac-desktop[data-appearance=dark] .welcome-mark{color:#d8b268}
+/* The arrival. One signature moment: the record writes itself, one square a
+   day in date order, 8ms apart, on the token durations and the entering ease.
+   Everything else is a quiet rise in reading order. Fill mode is backwards, so
+   an element is only ever hidden during its own delay; with animations off it
+   is simply on the page. */
+@keyframes arrive-cell{from{opacity:0;transform:scale(.35)}to{opacity:var(--ink,1);transform:none}}
+@keyframes arrive-line{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.window-notes.is-arriving .welcome-mark rect{transform-box:fill-box;transform-origin:center;animation:arrive-cell var(--m-stage) var(--e-enter) backwards;animation-delay:calc(160ms + var(--i,0) * 8ms)}
+.window-notes.is-arriving .note-date{animation:arrive-line var(--m-move) var(--e-enter) backwards;animation-delay:120ms}
+.window-notes.is-arriving h1{animation:arrive-line var(--m-stage) var(--e-enter) backwards;animation-delay:900ms}
+.window-notes.is-arriving .note-welcome{animation:arrive-line var(--m-stage) var(--e-enter) backwards;animation-delay:1080ms}
+.window-notes.is-arriving .note-mark-key{animation-delay:1200ms}
+.window-notes.is-arriving .welcome-lead{animation:arrive-line var(--m-stage) var(--e-enter) backwards;animation-delay:1320ms}
+.window-notes.is-arriving .welcome-path button{animation:arrive-line var(--m-stage) var(--e-enter) backwards;animation-delay:calc(1380ms + var(--k,0) * 90ms)}
+.window-notes.is-arriving .note-signature{animation:arrive-line var(--m-stage) var(--e-enter) backwards;animation-delay:1700ms}
 
 /* The banner carried a letter in a circle, the one monogram THE MARK had not
    yet replaced. It now carries the mark, at a size where the grid still reads. */

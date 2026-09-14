@@ -55,7 +55,7 @@ const INK = { cleared: 1, weighed: 0.44, worked: 0.24, silent: 0.11 };
  * An SVG mark, sized in CSS pixels. `cols` fixes the grid width so the shape
  * stays recognisable as days accumulate; the block simply grows downward.
  */
-export function markSVG(corpus, { size = 88, cols = 0, gap = 0.18, colour = 'currentColor', title } = {}) {
+export function markSVG(corpus, { size = 88, cols = 0, gap = 0.18, colour = 'currentColor', title, indexed = false } = {}) {
   const days = markDays(corpus);
   if (!days.length) return '';
   /* Default to a near-square block so the mark keeps its shape as days
@@ -68,7 +68,11 @@ export function markSVG(corpus, { size = 88, cols = 0, gap = 0.18, colour = 'cur
   const rects = days.map((d, i) => {
     const x = (i % cols) * (cell + gap);
     const y = Math.floor(i / cols) * (cell + gap);
-    return `<rect x="${x.toFixed(2)}" y="${y.toFixed(2)}" width="${cell}" height="${cell}" rx="${(cell * 0.22).toFixed(2)}" opacity="${INK[d.state]}"><title>${d.date}: ${d.state}${d.n ? `, ${d.n} commit${d.n > 1 ? 's' : ''}` : ''}</title></rect>`;
+    /* indexed: each square carries its place in the sequence and its own ink,
+       so a stylesheet can draw the mark one day at a time, in date order, and
+       land every square on the opacity it already had. */
+    const seq = indexed ? ` style="--i:${i};--ink:${INK[d.state]}"` : '';
+    return `<rect x="${x.toFixed(2)}" y="${y.toFixed(2)}" width="${cell}" height="${cell}" rx="${(cell * 0.22).toFixed(2)}" opacity="${INK[d.state]}"${seq}><title>${d.date}: ${d.state}${d.n ? `, ${d.n} commit${d.n > 1 ? 's' : ''}` : ''}</title></rect>`;
   }).join('');
   const counted = days.reduce((a, d) => ({ ...a, [d.state]: (a[d.state] || 0) + 1 }), {});
   const label = title ?? `${days.length} days. ${counted.cleared || 0} cleared a receipt, ${counted.weighed || 0} weighed and declined, ${counted.worked || 0} worked without a candidate, ${counted.silent || 0} silent.`;

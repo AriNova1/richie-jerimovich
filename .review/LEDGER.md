@@ -626,6 +626,16 @@ dock: the issue was never the Hermes mark.
 | 140 | Engineer | **high** | **Two dock icons filled their canvas; the other nine sit on Apple's grid.** Every Apple file measures a 205px body on a 256 canvas, 80% with the shadow, so at 52px its top edge is 5px inside the box. `spotify.png` and `hermes.png` measured 1.000: full bleed. That is the "permanently raised" Rick saw, and the Hermes tile a different size. | **fixed** — `scripts/dock_grid.py` measures every dock icon and exits 1 for any off the grid; `--bake` fits a full-bleed file to the body box using Apple's own shadow silhouette (terminal.png for a squircle, chrome.png for a circle). After: 11 of 11 on the grid, Spotify's bbox identical to Chrome's, Hermes's identical to Terminal's. The CSS plate hack for the Hermes tile is gone; the window header uses the full-bleed mark |
 | 141 | Skeptic | **high** | **I looked at a screenshot of the dock and called the row uniform.** Two tiles were 5px taller than their neighbours and I reported "the icons hold still" and "nothing above the bar" from the picture. The pointer had stopped lifting them; the files were still lifting them. Rick saw it in one glance. **Measure, do not eyeball, again.** | **recorded** — the grid check runs with the sweep now, and the ledger says this happened twice |
 
+### Sweep 19 — the arrival, in motion
+
+Rick: "Now do the arrival window motion design."
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 142 | Motion Director | **high** | **The greeting appeared all at once.** A window opened with a block of 111 squares, a headline, two paragraphs and three doors already on it, so the one image on the property that is the record itself read as a decoration beside a heading. Nothing about the way it arrived said what it was. | **built** — one signature moment: the mark draws itself one square a day in date order, 8ms apart, on the token durations and the entering ease; the sentence lands while the last squares are still coming in; then the doors in reading order, then the signature. Under two seconds. Spent once: the class comes off when the signature lands, and reopening from the Apple menu shows the finished page |
+| 143 | Motion Director | medium | Reduced motion is an edition, not an apology: fill mode is `backwards`, so an element is only ever hidden during its own delay, and with animations off the page is simply there. Nothing is gated on a class-triggered transition. | **built** — verified: under `prefers-reduced-motion` every element is at its final opacity at t=0 |
+| 144 | Engineer | medium | My first gate probed single instants and reported the first square at 0.05 at 422ms while a continuous sample of the same page showed it landed at 400ms; and the listener that spends the delight sat on a node the paper re-renders, so the class never came off and the note replayed. | **fixed** — the gate samples every 50ms and asserts the order of events and each one's window; the listener is delegated to the window. `gate-arrival.mjs`: 13 checks, 7 of them fail with the animations switched off |
+
 ---
 
 ## Where the run ended
@@ -645,7 +655,7 @@ dock: the issue was never the Hermes mark.
 | Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
 | Tests | 48 | **159** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **141** |
+| Findings logged | — | **144** |
 | Published surfaces contradicting another surface of the same property | **2** | **0**, both guarded by tests |
 | Rooms on the property | **2** | **1** |
 | Apps the legibility gate actually measures | **19**, typed by hand | **25**, read from the workspace |
