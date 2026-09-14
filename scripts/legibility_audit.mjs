@@ -155,14 +155,23 @@ try {
             const visH = Math.min(r.bottom, innerHeight) - Math.max(r.top, 0);
             const visW = Math.min(r.right, innerWidth) - Math.max(r.left, 0);
             const mostlyVisible = r.height > 0 && r.width > 0 && visH / r.height > 0.75 && visW / r.width > 0.75 && visH >= 10;
-            const shown = onTop && mostlyVisible && eff > 0.95 && cs.visibility !== 'hidden' && cs.display !== 'none' && Number(cs.opacity) > 0.9
+            /* Dimmed text is still read. The audit used to skip anything under
+               0.95 effective opacity, so a label an author had faded to 0.55 was
+               never measured at all; axe caught four of them on /projects/ at
+               3.08:1 that this audit had passed. Now anything steadily visible
+               above 0.3 is measured, and its ink is composited through that
+               opacity before the ratio is taken. Under 0.3 is a transition. */
+            const shown = onTop && mostlyVisible && eff > 0.3 && cs.visibility !== 'hidden' && cs.display !== 'none'
               && r.width > 4 && r.height > 4;
             if (own && shown) {
               if (!c.id) c.setAttribute('data-legib', String(out.length));
               out.push({ sel: c.id ? '#' + c.id : `[data-legib="${out.length}"]`,
-                sig: `${c.tagName}.${String(c.className).slice(0, 60)}|${cs.fontSize}|${cs.color}|${cs.fontWeight}`,
+                /* eff is part of the signature: the same class dimmed by an
+                   ancestor is a different colour on the screen, and the dedupe
+                   was keeping the bright one and never measuring the dim one. */
+                sig: `${c.tagName}.${String(c.className).slice(0, 60)}|${cs.fontSize}|${cs.color}|${cs.fontWeight}|${eff.toFixed(2)}`,
                 label: (c.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 46),
-                size: parseFloat(cs.fontSize), weight: cs.fontWeight, color: cs.color,
+                size: parseFloat(cs.fontSize), weight: cs.fontWeight, color: cs.color, eff: Number(eff.toFixed(3)),
                 /* background-clip:text paints the glyphs with a gradient and
                    leaves `color` transparent. The computed colour is then not
                    the ink and never was: reporting it as 1.35:1 black on dark
@@ -208,7 +217,7 @@ try {
           let eff = 1;
           for (let a = el; a && a !== document.documentElement; a = a.parentElement) eff *= Number(getComputedStyle(a).opacity);
           const r = el.getBoundingClientRect();
-          return eff > 0.95 && r.width > 4 && r.height > 4 && r.top >= -1 && r.bottom <= innerHeight + 1;
+          return eff > 0.3 && r.width > 4 && r.height > 4 && r.top >= -1 && r.bottom <= innerHeight + 1;
         }, n.sel);
         if (!still) continue;
         await p.evaluate((sel) => {
@@ -224,7 +233,12 @@ try {
            than inventing a ratio for it. */
         const inkAlpha = /rgba?\([^)]*,\s*0(\.0+)?\s*\)/.test(n.fill || n.color);
         if (n.clipped || inkAlpha) { unmeasurable.push({ tag, ...n }); continue; }
-        const fg = n.rgb || parseRGB(n.color);
+        /* The ink as painted: the declared colour, through its own alpha and
+           every ancestor's opacity, over the ground it sits on. */
+        const declared = n.rgb || parseRGB(n.color);
+        const alphaIn = (/rgba?\([^)]*,\s*([\d.]+)\s*\)/.exec(n.color || '') || [])[1];
+        const cover = (n.eff ?? 1) * (alphaIn === undefined ? 1 : Number(alphaIn));
+        const fg = cover >= 0.999 ? declared : declared.map((c, k) => Math.round(c * cover + bg[k] * (1 - cover)));
         const ratio = contrast(fg, bg);
         const large = n.size >= 24 || (n.size >= 18.66 && Number(n.weight) >= 700);
         const need = large ? 3 : 4.5;
@@ -235,7 +249,7 @@ try {
            "0px, under 12" is the tool describing its own timing, and on
            /overnight/ it produced two findings a reader could never see. */
         if (n.size > 0 && n.size < MIN_PX) problems.push(`${n.size}px, under ${MIN_PX}`);
-        if (problems.length) findings.push({ tag, ...n, bg, ratio: Number(ratio.toFixed(2)), problems });
+        if (problems.length) findings.push({ tag, ...n, bg, ink: fg, ratio: Number(ratio.toFixed(2)), problems });
       }
     };
 
@@ -273,9 +287,9 @@ try {
 
 if (!findings.length) console.log('PASS  every visible string is 12px or larger and meets its contrast floor');
 const hex = (c) => '#' + c.map((v) => v.toString(16).padStart(2, '0')).join('');
-for (const f of findings) console.log(`FAIL  ${f.tag.padEnd(8)} ${String(f.size).padStart(5)}px  ink ${hex(f.rgb || parseRGB(f.color))} on ${hex(f.bg)}  ${f.problems.join(' · ').padEnd(30)} ${f.label}`);
+for (const f of findings) console.log(`FAIL  ${f.tag.padEnd(8)} ${String(f.size).padStart(5)}px  ink ${hex(f.ink || f.rgb || parseRGB(f.color))} on ${hex(f.bg)}  ${f.problems.join(' · ').padEnd(30)} ${f.label}`);
 const byInk = {};
-for (const f of findings) { const k = hex(f.rgb || parseRGB(f.color)) + ' on ' + hex(f.bg); (byInk[k] ||= []).push(f.ratio); }
+for (const f of findings) { const k = hex(f.ink || f.rgb || parseRGB(f.color)) + ' on ' + hex(f.bg); (byInk[k] ||= []).push(f.ratio); }
 console.log('\nby colour pair:');
 for (const [k, v] of Object.entries(byInk).sort((a, b) => b[1].length - a[1].length).slice(0, 80))
   console.log(`  ${String(v.length).padStart(3)}x  ${k}  worst ${Math.min(...v)}:1`);

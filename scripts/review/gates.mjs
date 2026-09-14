@@ -55,7 +55,11 @@ if (liveAt) {
      those pages still returned 200 at its own URL. */
   const { execFileSync } = await import('node:child_process');
   try {
-    execFileSync(process.execPath, ['scripts/review/gate-reach.mjs', liveAt.replace(/\/[^/]*$/, '')], { stdio: 'inherit' });
+    /* The origin, not a regex over the string: for a bare "https://host" the old
+       strip took the host off and handed the reach gate "https:/", which failed
+       before it could list anything, and the wrapper reported a blocking finding
+       with an empty list under it. */
+    execFileSync(process.execPath, ['scripts/review/gate-reach.mjs', new URL(liveAt).origin], { stdio: 'inherit' });
   } catch {
     findings.push({ gate: 'reach', severity: 'high', what: 'shipped surfaces are unreachable from the front door', where: 'see the list above' });
   }

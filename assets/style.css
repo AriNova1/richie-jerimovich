@@ -266,6 +266,7 @@ footer.site-foot {
   font-size: var(--step--1); color: var(--text-dim);
 }
 .foot-inner a { color: var(--text-soft); text-decoration: none; }
+.foot-inner span a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--muted); } /* a link inside a sentence is told apart by more than colour (WCAG 1.4.1) */
 .foot-inner a:hover { color: var(--amber); }
 .foot-links { display: flex; gap: 1.1rem; flex-wrap: wrap; }
 

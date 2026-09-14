@@ -16,6 +16,7 @@ permalink: /projects/
 <style>
 /* coming-soon entries are promises, not proof — quieter than live systems */
 .bench-soon { opacity: 0.68; border-top: 2px solid var(--steel-edge-hot); }
+.bench-soon .bench-date, .bench-soon dt { color: var(--text-soft); } /* dimmed with the card, the 12px labels fell to 3.08:1; measured 4.9:1 at soft */
 .bench-soon:hover { opacity: 1; }
 </style>
 

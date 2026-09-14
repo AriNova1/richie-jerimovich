@@ -440,6 +440,7 @@ body.inside #crt.mac-desktop>*{width:auto;max-width:none;margin:0}
 
    The workspace now states its own scheme, so the controls inside it follow the
    appearance the workspace is actually in. */
+.mac-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .mac-desktop[data-appearance=light]{color-scheme:light}
 .mac-desktop[data-appearance=dark]{color-scheme:dark}
 .mac-desktop[data-appearance=dark]{--window:#2c2c2e;--titlebar:#3a3a3c;--text:#f5f5f7;--muted:#75757a;--hairline:#ffffff1a;--stroke:#ffffff22}

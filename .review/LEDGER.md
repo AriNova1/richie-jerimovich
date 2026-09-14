@@ -646,6 +646,20 @@ Rick's ruling on the open item: "/about/, cut it to one voice."
 | 146 | Auditor | medium | The old synthesis typed "after 107 days" into a page whose every other figure was counted; it was wrong within a day. | **fixed** — `organism.age_days`, and the guard test now fails on any bare number of two or more digits in the prose of /about/ |
 | 147 | Skeptic | low | The one-voice guard asserted that about and the widget listed the same five names in the same order, which is a test that the cast was consistent, not that it was gone. | **fixed** — it asserts no layer heading, no layer table, no layer list, and that both say one mind |
 
+### Sweep 21 — the scorecard's list, in order
+
+Rick: "do the next steps in order." Measured on production first, then fixed.
+
+| # | Seat | Sev | Finding | Verdict |
+|---|---|---|---|---|
+| 148 | Auditor | medium | The footer's Privacy link sat inside a sentence at 1.78:1 against the words around it, told apart by colour alone. One axe node on every Jekyll page. | **fixed** — underlined, offset 3px, in the muted tone |
+| 149 | Auditor | medium | Four 12px labels on `/projects/` at 3.08:1: `--text-dim` at .55 inside a card dimmed to .68. | **fixed** — the labels take the soft tone inside a dimmed card; 4.9:1 measured |
+| 150 | Engineer | **high** | **The legibility audit could not see dimmed text, three ways.** It skipped anything under 0.95 effective opacity; its dedupe keyed on tag, class, size, colour and weight but not on the opacity an ancestor applied, so the bright copy of a class was measured and the dim one never; and it measured only the first screen unless asked to page. `/projects/` passed it with four failures on the page. **The twenty-first instrument.** | **fixed** — anything steadily above 0.3 is measured with its ink composited through the opacity, the signature carries the opacity, and the printout shows the ink as painted. Proved on the live page before the CSS fix: 3 findings, 0 after |
+| 151 | Engineer | medium | `gates.mjs --live` handed the reach gate `https:/` after a regex stripped the host off a bare origin, then reported a blocking "unreachable" finding with an empty list under it while the gate run directly found nothing unreachable. **The twenty-second.** | **fixed** — the wrapper passes `new URL(liveAt).origin` |
+| 152 | Stranger | medium | The two workspace documents had no description, canonical or og:image, and the desktop had no heading at all for anything that is not a browser. | **fixed** — both carry the three; the desktop has a visually hidden h1 |
+| 153 | Engineer | low | `record.html` shifted 0.25 at about one second on production: the self-hosted faces arriving under `font-display: swap`. | **built** — the three faces the page uses are preloaded; measured after deploy, below |
+| 154 | Skeptic | low | The scorecard called `/trader-desk/` a dead link. It is the one URL a kept receipt promises will return 404, and it does; the receipt's own check passes. The scorecard counted a promise kept as a defect. | **recorded** — noted on the scorecard; the receipt is not edited |
+
 ---
 
 ## Where the run ended
@@ -665,7 +679,7 @@ Rick's ruling on the open item: "/about/, cut it to one voice."
 | Unreachable code paths in a shipped window | **1**, 60 lines | **0** |
 | Tests | 48 | **159** |
 | Third-party hosts contacted | 0 | **0** |
-| Findings logged | — | **147** |
+| Findings logged | — | **154** |
 | Published surfaces contradicting another surface of the same property | **2** | **0**, both guarded by tests |
 | Rooms on the property | **2** | **1** |
 | Apps the legibility gate actually measures | **19**, typed by hand | **25**, read from the workspace |
@@ -675,7 +689,7 @@ Rick's ruling on the open item: "/about/, cut it to one voice."
 | Ways into the workspace that render identically | **1 of 2** | **2 of 2**, guarded |
 | Progress through the walk in during which the machine is pointed at | 5% | **52%**, until it leaves the frame |
 | Sentences said between the invitation fading and the desktop | **0** | **3** |
-| **Times an instrument of mine was lying** | — | **20** |
+| **Times an instrument of mine was lying** | — | **22** |
 
 The last row is the one to read first. Every clean number above it is worth
 exactly what the instrument behind it is worth.

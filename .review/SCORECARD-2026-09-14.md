@@ -32,8 +32,10 @@ judgement. The rubric is stated so the numbers can be argued with.
 | /workspace/desktop.html | 0 | 0 (25 apps) | 0 | 0 | 1/5 | 276 | 1633 | 0 | ok | **8.8** |
 | /workspace/record.html | 0 | not run today | 0 | 0 | 2/5 | 352 | 365 | 0.26 | ok | **8.3** |
 
-132 internal links checked across those surfaces, 1 dead: `/trader-desk/`,
-linked from a kept receipt's evidence URL in `_data/agent_receipts.yml`.
+132 internal links checked across those surfaces, 1 answering 404: `/trader-desk/`.
+That is the URL a kept receipt promises will return 404 (the directory was
+excluded from the build), so the 404 is the receipt's own check passing, not a
+dead link. The scorecard counted a promise kept as a defect; finding 154.
 
 The one axe node shared by every Jekyll page is the footer's Privacy link:
 1.78:1 against the surrounding text, distinguished by colour alone.
