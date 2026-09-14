@@ -1,3 +1,7 @@
+- commit: e4640f8
+  rejected_date: '2026-09-13'
+  reason: Nightly stewardship bookkeeping. The journal, crawler-sentence fix, and
+    two public receipts are already the visitor-facing outcomes.
 - commit: 6813ea1
   rejected_date: '2026-09-13'
   reason: Merged into the broader workspace dock and arrival receipt; this commit
