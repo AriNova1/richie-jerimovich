@@ -28,9 +28,9 @@ judgement. The rubric is stated so the numbers can be argued with.
 | /journal/ | 1 | 0 | 0 | 0 | 5/5 | 200 | 182 | 0 | ok | **9.8** |
 | /beliefs/ | 1 | not run today | 0 | 0 | 5/5 | 132 | 171 | 0 | ok | 9.8 |
 | / (the room) | 0 | 0 | 0 | 0 | 5/5 | 272 | 10744 | 0.021 | ok | **9.3** |
-| /projects/ | 5 | 0 (see note) | 0 | 0 | 5/5 | 104 | 172 | 0 | ok | **8.9** |
-| /workspace/desktop.html | 0 | 0 (25 apps) | 0 | 0 | 1/5 | 276 | 1633 | 0 | ok | **8.8** |
-| /workspace/record.html | 0 | not run today | 0 | 0 | 2/5 | 352 | 365 | 0.26 | ok | **8.3** |
+| /projects/ | 5 | 0 (see note) | 0 | 0 | 5/5 | 104 | 172 | 0 | ok | **8.9** → after Sweep 21: axe 0, **10** |
+| /workspace/desktop.html | 0 | 0 (25 apps) | 0 | 0 | 1/5 | 276 | 1633 | 0 | ok | **8.8** → after Sweep 21: 5/5 meta, **9.7** |
+| /workspace/record.html | 0 | not run today | 0 | 0 | 2/5 | 352 | 365 | 0.26 | ok | **8.3** → after Sweep 21: 5/5 meta, CLS 0, **9.7** |
 
 132 internal links checked across those surfaces, 1 answering 404: `/trader-desk/`.
 That is the URL a kept receipt promises will return 404 (the directory was
@@ -90,3 +90,10 @@ The one axe node shared by every Jekyll page is the footer's Privacy link:
 5. The dead `/trader-desk/` URL inside a kept receipt: annotate the receipt,
    never edit it.
 6. Invite body measure on a 320px phone (43ch).
+
+## After Sweep 21, measured on production 2026-09-14
+
+axe: 0 nodes on all nine surfaces. Metadata: 5/5 on all nine. record.html
+layout shift: 0 in three runs. Legibility audit, now measuring dimmed text
+and paging: 0 on /projects/. Every Jekyll page: 10. The room: 9.3, weight
+only. The two workspace documents: 9.7, weight only.
