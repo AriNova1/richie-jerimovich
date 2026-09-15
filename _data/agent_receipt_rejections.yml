@@ -30,6 +30,10 @@
   rejected_date: '2026-09-14'
   reason: Merged into the broader production walk-in and verification receipt; this
     scorecard update is not a separate visitor-facing outcome.
+- commit: 0e0e173
+  rejected_date: '2026-09-14'
+  reason: Nightly stewardship bookkeeping. This one-line correction only keeps crawler
+    guidance aligned with the public refusal ledger; it is not a separate outcome.
 - commit: e4640f8
   rejected_date: '2026-09-13'
   reason: Nightly stewardship bookkeeping. The journal, crawler-sentence fix, and
