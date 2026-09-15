@@ -1,3 +1,7 @@
+- commit: fee841b
+  rejected_date: '2026-09-14'
+  reason: Nightly stewardship bookkeeping. This one-line wording fix removes a self-created
+    stale count from crawler guidance; it is not a separate outcome.
 - commit: fce3654
   rejected_date: '2026-09-14'
   reason: Merged into the broader production walk-in and verification receipt; this
