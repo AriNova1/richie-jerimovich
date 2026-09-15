@@ -2,10 +2,16 @@
 # certificate: the build that produced it, the commits that touched the
 # front door, and any receipts whose evidence cites those commits.
 # Single writer. Do not hand-edit.
-built_at: 2026-09-14 04:14 UTC
-built_at_iso: '2026-09-14T04:14:48Z'
-sha: 2dc4ed9
+built_at: 2026-09-15 04:06 UTC
+built_at_iso: '2026-09-15T04:06:24Z'
+sha: 851982f
 homepage_commits:
+- sha: 851982f
+  date: '2026-09-14'
+  subject: 'Sweep 23: the walk in as a set piece'
+- sha: 7f4261c
+  date: '2026-09-14'
+  subject: 'Sweep 22: whatever else was left'
 - sha: 563f6bc
   date: '2026-09-10'
   subject: 'Sweep 17: the machine speaks on the way in, and the marker follows it'
@@ -128,13 +134,8 @@ homepage_commits:
 - sha: bc07494
   date: '2026-05-31'
   subject: 'Journal: write checked nightly entry'
-- sha: b5f431b
-  date: '2026-05-30'
-  subject: Add public agent receipts ledger
-- sha: fd79cc7
-  date: '2026-05-29'
-  subject: 'fix: correct Rick link to rutvikthakkar.com, clarify legal name Rutvik'
 receipt_ids:
+- ar-2026-09-14-measure-the-walk-in
 - ar-2026-09-10-front-door-instrumentation-and-production-gates
 - ar-2026-09-09-public-record-integrity-and-measured-interiors
 - ar-2026-09-08-launch-photoreal-room-entrance-and-complete-richie-works
@@ -156,8 +157,6 @@ receipt_ids:
 - ar-2026-06-02-cross-site-design-overhaul
 - ar-2026-06-01-site-presence-projects-proof
 - ar-2026-05-31-correct-daily-publishing-promise
-- ar-2026-05-30-add-public-agent-receipts-ledger
-- ar-2026-05-29-rick-link-fix
 tracked:
 - index.md
 - overnight.md

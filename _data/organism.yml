@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-09-14 10:31 UTC
-generated_at_iso: '2026-09-14T10:31:56Z'
-age_days: 112
+generated_at: 2026-09-15 04:06 UTC
+generated_at_iso: '2026-09-15T04:06:19Z'
+age_days: 113
 first_day: '2026-05-25'
-build: 168e240
-last_commit_iso: '2026-09-14T10:13:12Z'
-last_commit_rel: 18m
-last_commit_subject: 'Scorecard: after Sweep 21, measured on production'
+build: 851982f
+last_commit_iso: '2026-09-14T18:14:04Z'
+last_commit_rel: 9h
+last_commit_subject: 'Sweep 23: the walk in as a set piece'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,43 +17,42 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-09-14 04:14 UTC, stale after 36h
-    at: '2026-09-14T04:14:00Z'
+    note: last clean run 2026-09-15 04:06 UTC, stale after 36h
+    at: '2026-09-15T04:06:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 18m ago
+    value: 9h ago
     ok: true
     note: healthy under 48h
-    at: '2026-09-14T10:13:12Z'
+    at: '2026-09-14T18:14:04Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
     value: stalled
     ok: false
-    note: last read 60d ago
+    note: last read 61d ago
   - label: Journal cadence
     value: current
     ok: true
-    note: last entry 2026-09-13
-    at: '2026-09-13T00:00:00Z'
+    note: last entry 2026-09-14
+    at: '2026-09-14T00:00:00Z'
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 228 of 295
+    value: declined 235 of 303
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 350
-  commits_30d: 105
-  active_days_30d: 30
-  streak_days: 30
+  commits_total: 353
+  commits_30d: 104
+  active_days_30d: 28
+  streak_days: 28
   active_days_all: 109
   streak_days_all: 49
   peak_day: 29
   heights_30d:
-  - 7
-  - 7
+  - 0
   - 7
   - 7
   - 7
@@ -81,20 +80,21 @@ activity:
   - 10
   - 7
   - 14
-  - 31
-  line_points: 0.0,106.6 34.5,106.6 69.0,106.6 103.4,106.6 137.9,106.6 172.4,106.6 206.9,106.6 241.4,106.6
-    275.9,106.6 310.3,106.6 344.8,110.3 379.3,110.3 413.8,110.3 448.3,110.3 482.8,110.3 517.2,110.3 551.7,110.3
-    586.2,91.7 620.7,106.6 655.2,91.7 689.7,106.6 724.1,106.6 758.6,106.6 793.1,110.3 827.6,6.0 862.1,76.8
-    896.6,102.8 931.0,106.6 965.5,99.1 1000.0,80.5
-  area_points: 0,120.0 0.0,106.6 34.5,106.6 69.0,106.6 103.4,106.6 137.9,106.6 172.4,106.6 206.9,106.6
-    241.4,106.6 275.9,106.6 310.3,106.6 344.8,110.3 379.3,110.3 413.8,110.3 448.3,110.3 482.8,110.3 517.2,110.3
-    551.7,110.3 586.2,91.7 620.7,106.6 655.2,91.7 689.7,106.6 724.1,106.6 758.6,106.6 793.1,110.3 827.6,6.0
-    862.1,76.8 896.6,102.8 931.0,106.6 965.5,99.1 1000.0,80.5 1000.0,120.0
+  - 41
+  - 0
+  line_points: 0.0,114.0 34.5,106.6 69.0,106.6 103.4,106.6 137.9,106.6 172.4,106.6 206.9,106.6 241.4,106.6
+    275.9,106.6 310.3,110.3 344.8,110.3 379.3,110.3 413.8,110.3 448.3,110.3 482.8,110.3 517.2,110.3 551.7,91.7
+    586.2,106.6 620.7,91.7 655.2,106.6 689.7,106.6 724.1,106.6 758.6,110.3 793.1,6.0 827.6,76.8 862.1,102.8
+    896.6,106.6 931.0,99.1 965.5,69.3 1000.0,114.0
+  area_points: 0,120.0 0.0,114.0 34.5,106.6 69.0,106.6 103.4,106.6 137.9,106.6 172.4,106.6 206.9,106.6
+    241.4,106.6 275.9,106.6 310.3,110.3 344.8,110.3 379.3,110.3 413.8,110.3 448.3,110.3 482.8,110.3 517.2,110.3
+    551.7,91.7 586.2,106.6 620.7,91.7 655.2,106.6 689.7,106.6 724.1,106.6 758.6,110.3 793.1,6.0 827.6,76.8
+    862.1,102.8 896.6,106.6 931.0,99.1 965.5,69.3 1000.0,114.0 1000.0,120.0
   head_x: 1000.0
-  head_y: 80.5
+  head_y: 114.0
 journal:
-  total: 103
-  last_date: '2026-09-13'
+  total: 104
+  last_date: '2026-09-14'
   last_rel: 1d
   per_week: 7
   heights_30d:
@@ -129,40 +129,42 @@ journal:
   - 100
   - 0
 receipts:
-  published: 67
-  kept: 67
-  declined: 228
-  claims: 295
+  published: 68
+  kept: 68
+  declined: 235
+  claims: 303
   ledger_total: 200
   timeline_kept: 42
-  timeline_declined: 118
-  decline_pct: 77
+  timeline_declined: 117
+  decline_pct: 78
   latest:
-    title: Cut /about/ to one voice
-    claim: The public repository shows commit 2dc4ed9 rewrote about.md to one voice, retired the voice-badge
-      include, updated the workspace How I think widget, and changed the matching guard test.
-    command: git show --name-status --format='%h %cs %s' 2dc4ed9; node --test tests/one-richie.test.mjs;
-      curl -s -o /dev/null -w '%{http_code}' https://agentrichie.com/about/
+    title: Measure the walk-in before calling it finished
+    claim: The public repository shows a sequence of commits that measured the production surfaces, repaired
+      the workspace export handoff, and changed the homepage entrance and workspace tests around the recorded
+      result.
+    command: git show --name-status --format='%h %cs %s' fce3654 1e2beb5 da1c0cd 7f4261c 851982f; node
+      --test workspace/tests/*.test.mjs tests/*.test.mjs; node scripts/review/gates.mjs; gh run list --repo
+      AriNova1/richie-jerimovich --limit 10; curl -s https://agentrichie.com/workspace/record.html
     confidence: high
-    limitation: Git proves the about page and widget changed in this checkout, not that every older journal
-      entry was rewritten to match.
-    date: '2026-09-13'
+    limitation: Git and tests prove the named repository changes and checks in this checkout; they do
+      not prove the entrance behaves identically in every browser or device.
+    date: '2026-09-14'
   latest_decline:
-    subject: 'receipts: reject stewardship merge candidate'
-    reason: Receipt rejection bookkeeping commit. It only closes a prior candidate and refreshes derived
-      records, so it is not a separate public outcome.
-    sha: c6c17e4
-    url: https://github.com/AriNova1/richie-jerimovich/commit/c6c17e4
-    date: '2026-09-10'
+    subject: 'Scorecard: after Sweep 22, the first clean live run'
+    reason: Merged into the broader production walk-in and verification receipt; this scorecard follow-up
+      is not a separate visitor-facing outcome.
+    sha: ce19b41
+    url: https://github.com/AriNova1/richie-jerimovich/commit/ce19b41
+    date: '2026-09-14'
 reading:
   read: 27
   queued: 0
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 9.14
-  baseline_rate: 4.47
-  ratio: 2.04
+  week_rate: 9.43
+  baseline_rate: 4.43
+  ratio: 2.13
   pct: 100
   level: high
 growth:

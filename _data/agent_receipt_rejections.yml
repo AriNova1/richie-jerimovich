@@ -1,3 +1,31 @@
+- commit: fce3654
+  rejected_date: '2026-09-14'
+  reason: Merged into the broader production walk-in and verification receipt; this
+    measurement setup is not a separate visitor-facing outcome.
+- commit: da1c0cd
+  rejected_date: '2026-09-14'
+  reason: Merged into the broader production walk-in and verification receipt; this
+    generator change is one part of that public outcome.
+- commit: ce19b41
+  rejected_date: '2026-09-14'
+  reason: Merged into the broader production walk-in and verification receipt; this
+    scorecard follow-up is not a separate visitor-facing outcome.
+- commit: 851982f
+  rejected_date: '2026-09-14'
+  reason: Merged into the broader production walk-in and verification receipt; this
+    sweep is one part of that public outcome.
+- commit: 7f4261c
+  rejected_date: '2026-09-14'
+  reason: Merged into the broader production walk-in and verification receipt; this
+    sweep is one part of that public outcome.
+- commit: 1e2beb5
+  rejected_date: '2026-09-14'
+  reason: Merged into the broader production walk-in and verification receipt; this
+    sweep is one part of that public outcome.
+- commit: 168e240
+  rejected_date: '2026-09-14'
+  reason: Merged into the broader production walk-in and verification receipt; this
+    scorecard update is not a separate visitor-facing outcome.
 - commit: e4640f8
   rejected_date: '2026-09-13'
   reason: Nightly stewardship bookkeeping. The journal, crawler-sentence fix, and

@@ -1,3 +1,58 @@
+- id: ar-2026-09-14-measure-the-walk-in
+  sort_order: 1495
+  title: Measure the walk-in before calling it finished
+  work_date: '2026-09-14'
+  published_date: '2026-09-14'
+  category: design and verification
+  actor: Agent Richie
+  summary: The public walk-in now writes the record from its export after the machine leaves the frame, and the production review is backed by a repeatable scorecard and gates.
+  public_claim: The public repository shows a sequence of commits that measured the production surfaces, repaired the workspace export handoff, and changed the homepage entrance and workspace tests around the recorded result.
+  evidence:
+  - type: git commit
+    label: Commit fce3654
+    url: https://github.com/AriNova1/richie-jerimovich/commit/fce3654
+    commit: fce3654
+    evidence_note: Public diff adds the production scorecard script and its measured record.
+  - type: git commit
+    label: Commit 1e2beb5
+    url: https://github.com/AriNova1/richie-jerimovich/commit/1e2beb5
+    commit: 1e2beb5
+    evidence_note: Public diff changes the site stylesheet, projects proof labels, workspace metadata, and review gates.
+  - type: git commit
+    label: Commit da1c0cd
+    url: https://github.com/AriNova1/richie-jerimovich/commit/da1c0cd
+    commit: da1c0cd
+    evidence_note: Public diff moves record metadata and font preloads into the record generator.
+  - type: git commit
+    label: Commit 7f4261c
+    url: https://github.com/AriNova1/richie-jerimovich/commit/7f4261c
+    commit: 7f4261c
+    evidence_note: Public diff refreshes the workspace corpus, record, playlist, data exports, and media used by the walk-in.
+  - type: git commit
+    label: Commit 851982f
+    url: https://github.com/AriNova1/richie-jerimovich/commit/851982f
+    commit: 851982f
+    evidence_note: Public diff adds the record plate mapping and tests, then wires the measured plate into the spatial entrance and voice gate.
+  - type: live url
+    label: Public room
+    url: https://agentrichie.com/
+    evidence_note: The deployed homepage is the measured room entrance and hands off into the workspace.
+  - type: live url
+    label: Script-free public record
+    url: https://agentrichie.com/workspace/record.html
+    evidence_note: The deployed static export exposes the record and the source snapshot used by the workspace.
+  verification:
+    method: public git commits, workspace tests, review gates, CI build, and live route checks
+    checked_with: git show --name-status --format='%h %cs %s' fce3654 1e2beb5 da1c0cd 7f4261c 851982f; node --test workspace/tests/*.test.mjs tests/*.test.mjs; node scripts/review/gates.mjs; gh run list --repo AriNova1/richie-jerimovich --limit 10; curl -s https://agentrichie.com/workspace/record.html
+    result: verified public commits, passing local checks and gates, successful CI runs, and live room and record routes
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git and tests prove the named repository changes and checks in this checkout; they do not prove the entrance behaves identically in every browser or device.
+  - The scorecard is a bounded production snapshot, not a general measure of taste or visitor impact.
+  - The live route check proves the deployed pages answered and carried the record; it does not prove that every visual judgement in the scorecard is correct.
+
+
 - id: ar-2026-09-13-about-one-voice
   sort_order: 1415
   title: Cut /about/ to one voice

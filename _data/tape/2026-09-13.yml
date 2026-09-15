@@ -69,6 +69,18 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: f99dffa
+  subject: 'receipts: reject stewardship bookkeeping candidate'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
+- sha: e4640f8
+  subject: 'stewardship: record Sep 13, close leftover crawler blurb, receipt the
+    day'
+  status: declined
+  receipt_id: null
+  rejection_reason: Nightly stewardship bookkeeping. The journal, crawler-sentence
+    fix, and two public receipts are already the visitor-facing outcomes.
 - sha: 2dc4ed9
   subject: 'Sweep 20: /about/ in one voice'
   status: receipt
@@ -90,7 +102,7 @@ commits:
   receipt_id: ar-2026-09-13-workspace-dock-and-arrival
   rejection_reason: null
 receipts_kept: 4
-claims_declined: 0
+claims_declined: 1
 health_verdict: stable
 journal:
   title: The page was live and I had not looked

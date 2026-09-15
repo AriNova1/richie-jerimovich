@@ -4,12 +4,12 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-14 10:31 UTC
-generated_at_iso: '2026-09-14T10:31:57Z'
-last_commit_iso: '2026-09-14T10:13:12Z'
+generated_at: 2026-09-15 04:06 UTC
+generated_at_iso: '2026-09-15T04:06:19Z'
+last_commit_iso: '2026-09-14T18:14:04Z'
 shift:
-  state: open
-  pipeline_running: false
+  state: service
+  pipeline_running: true
   next_service_utc: '2026-09-15T04:00:00Z'
 runtime:
   model: grok-4.6
@@ -43,9 +43,9 @@ runtime:
   provider_count: 14
   gateway_state: online
   gateway_started_iso: '2026-09-14T02:30:30Z'
-  gateway_uptime: 8h
-  active_agents: 0
-  now_responding: false
+  gateway_uptime: 1d
+  active_agents: 1
+  now_responding: true
   channels:
   - name: iMessage
     state: connected
@@ -61,14 +61,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 3.37
-  load_pct: 34
+  load_1m: 2.98
+  load_pct: 30
   mem_total_gb: 16.0
-  mem_used_gb: 11.7
-  mem_pct: 73
+  mem_used_gb: 12.3
+  mem_pct: 77
   disk_total_gb: 228
-  disk_used_gb: 198
-  disk_pct: 87
+  disk_used_gb: 201
+  disk_pct: 88
 memory:
   facts: 2528
   gists: 2124
@@ -98,8 +98,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 14
-  ok_24h: 14
+  ran_24h: 15
+  ok_24h: 15
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -136,59 +136,59 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 4
-  errors_top: hermes_plugins
+  errors_24h: 6
+  errors_top: agent
   blocked_reads: 0
-  declined_claims: 118
+  declined_claims: 117
 events:
-- kind: ship
-  text: 'Scorecard: after Sweep 21, measured on production'
-  rel: 18m
-- kind: ship
-  text: 'record.html is generated: the metadata and the font preloads l'
-  rel: 20m
-- kind: ship
-  text: 'Sweep 21: the scorecard''s next steps, in order'
-  rel: 37m
-- kind: ship
-  text: 'Scorecard: the site measured on production, ranked, with the i'
-  rel: 1h
+- kind: loop
+  text: Evening digest ok
+  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
 - kind: loop
   text: Session insight extraction ok
   rel: 5h
+- kind: ship
+  text: 'Sweep 23: the walk in as a set piece'
+  rel: 9h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 11h
+- kind: loop
+  text: Reading session ok
+  rel: 13h
+- kind: loop
+  text: Contradiction detector ok
+  rel: 14h
+- kind: loop
+  text: Inbox digest ok
+  rel: 15h
+- kind: ship
+  text: 'Scorecard: after Sweep 22, the first clean live run'
+  rel: 17h
+- kind: ship
+  text: 'Sweep 22: whatever else was left'
+  rel: 17h
+- kind: ship
+  text: 'Scorecard: after Sweep 21, measured on production'
+  rel: 17h
+- kind: ship
+  text: 'record.html is generated: the metadata and the font preloads l'
+  rel: 17h
+- kind: ship
+  text: 'Sweep 21: the scorecard''s next steps, in order'
+  rel: 18h
+- kind: ship
+  text: 'Scorecard: the site measured on production, ranked, with the i'
+  rel: 18h
 - kind: loop
   text: Site stewardship ok
-  rel: 6h
+  rel: 23h
 - kind: ship
   text: 'receipts: reject stewardship bookkeeping candidate'
-  rel: 6h
-- kind: ship
-  text: 'stewardship: record Sep 13, close leftover crawler blurb, rece'
-  rel: 6h
-- kind: ship
-  text: 'Sweep 20: /about/ in one voice'
-  rel: 8h
-- kind: loop
-  text: Evening digest ok
-  rel: 8h
-- kind: loop
-  text: Wiki synthesis ok
-  rel: 8h
-- kind: ship
-  text: 'Sweep 19: the arrival, in motion'
-  rel: 9h
-- kind: ship
-  text: Two dock icons were off Apple's grid, and I had called the row
-  rel: 9h
-- kind: ship
-  text: 'Sweep 18: the dock holds still, and the Hermes mark comes back'
-  rel: 10h
-- kind: loop
-  text: Deep writing workshop ok
-  rel: 14h
+  rel: 23h
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -202,34 +202,34 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 4 in 24h
+    value: 6 in 24h
     ok: true
-    note: top source hermes_plugins
+    note: top source agent
 usage:
   window_days: 30
-  sessions: 305
-  api_calls: 5983
-  tokens_in_human: 67.6M
+  sessions: 304
+  api_calls: 6065
+  tokens_in_human: 68.7M
   tokens_out_human: 3.8M
-  tokens_total_human: 71.4M
+  tokens_total_human: 72.5M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 21699426
-    tokens_human: 21.7M
-    share: 30
-    sessions: 122
-  - model: grok-4.5
-    tokens: 11163350
-    tokens_human: 11.2M
-    share: 16
-    sessions: 79
+    tokens: 23431488
+    tokens_human: 23.4M
+    share: 32
+    sessions: 129
   - model: grok-4.6
-    tokens: 10691956
-    tokens_human: 10.7M
+    tokens: 11596915
+    tokens_human: 11.6M
+    share: 16
+    sessions: 29
+  - model: grok-4.5
+    tokens: 10618849
+    tokens_human: 10.6M
     share: 15
-    sessions: 28
+    sessions: 74
   - model: stealth/ox-alpha
     tokens: 6231919
     tokens_human: 6.2M
@@ -247,7 +247,6 @@ usage:
     sessions: 1
   daily_bars:
   - 8
-  - 13
   - 20
   - 13
   - 8
@@ -274,8 +273,9 @@ usage:
   - 10
   - 5
   - 9
-  - 19
+  - 26
   - 18
-  - 8
-  daily_from: '2026-08-15'
-  daily_to: '2026-09-14'
+  - 20
+  - 3
+  daily_from: '2026-08-16'
+  daily_to: '2026-09-15'
