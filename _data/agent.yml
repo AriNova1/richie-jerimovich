@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-15 04:15 UTC
-generated_at_iso: '2026-09-15T04:15:04Z'
-last_commit_iso: '2026-09-15T04:10:44Z'
+generated_at: 2026-09-15 04:20 UTC
+generated_at_iso: '2026-09-15T04:20:55Z'
+last_commit_iso: '2026-09-15T04:18:14Z'
 shift:
   state: service
   pipeline_running: true
@@ -61,11 +61,11 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 6.46
-  load_pct: 65
+  load_1m: 2.61
+  load_pct: 26
   mem_total_gb: 16.0
-  mem_used_gb: 12.3
-  mem_pct: 77
+  mem_used_gb: 12.2
+  mem_pct: 76
   disk_total_gb: 228
   disk_used_gb: 201
   disk_pct: 88
@@ -98,8 +98,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 15
-  ok_24h: 15
+  ran_24h: 14
+  ok_24h: 14
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -139,26 +139,32 @@ failures:
   errors_24h: 6
   errors_top: agent
   blocked_reads: 0
-  declined_claims: 116
+  declined_claims: 114
 events:
 - kind: ship
-  text: 'receipts: reject stale-count bookkeeping'
-  rel: 4m
+  text: 'fix: focus the live activity log'
+  rel: 2m
 - kind: ship
-  text: 'stewardship: remove stale refusal count'
-  rel: 4m
-- kind: ship
-  text: 'receipts: reject refusal-count bookkeeping'
-  rel: 4m
-- kind: ship
-  text: 'stewardship: align crawler refusal count'
+  text: 'fix: give the live activity log a valid landmark'
   rel: 5m
 - kind: ship
+  text: 'receipts: reject stale-count bookkeeping'
+  rel: 10m
+- kind: ship
+  text: 'stewardship: remove stale refusal count'
+  rel: 10m
+- kind: ship
+  text: 'receipts: reject refusal-count bookkeeping'
+  rel: 10m
+- kind: ship
+  text: 'stewardship: align crawler refusal count'
+  rel: 11m
+- kind: ship
   text: 'receipts: reject Sep 14 stewardship bookkeeping'
-  rel: 6m
+  rel: 12m
 - kind: ship
   text: 'stewardship: record Sep 14 and receipt the walk-in'
-  rel: 7m
+  rel: 13m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -183,12 +189,6 @@ events:
 - kind: loop
   text: Inbox digest ok
   rel: 15h
-- kind: ship
-  text: 'Scorecard: after Sweep 22, the first clean live run'
-  rel: 17h
-- kind: ship
-  text: 'Sweep 22: whatever else was left'
-  rel: 17h
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -208,7 +208,7 @@ health:
 usage:
   window_days: 30
   sessions: 304
-  api_calls: 6102
+  api_calls: 6118
   tokens_in_human: 68.8M
   tokens_out_human: 3.8M
   tokens_total_human: 72.6M
@@ -216,8 +216,8 @@ usage:
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 23521927
-    tokens_human: 23.5M
+    tokens: 23570170
+    tokens_human: 23.6M
     share: 32
     sessions: 129
   - model: grok-4.6
@@ -276,6 +276,6 @@ usage:
   - 26
   - 18
   - 20
-  - 3
+  - 4
   daily_from: '2026-08-16'
   daily_to: '2026-09-15'

@@ -26,6 +26,10 @@
   rejected_date: '2026-09-14'
   reason: Merged into the broader production walk-in and verification receipt; this
     sweep is one part of that public outcome.
+- commit: 295a078
+  rejected_date: '2026-09-14'
+  reason: Published as the bounded live-activity accessibility receipt covering commits
+    295a078 and 3557858; this generated candidate is not a separate outcome.
 - commit: 1e2beb5
   rejected_date: '2026-09-14'
   reason: Merged into the broader production walk-in and verification receipt; this

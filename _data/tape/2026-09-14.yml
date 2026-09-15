@@ -2,73 +2,83 @@
 # One night of the Service Tape, replayed at /tonight/. Do not hand-edit:
 # every timestamp and status here was recorded, not written.
 date: '2026-09-14'
-started: '2026-09-15T04:15:03Z'
-ended: '2026-09-15T04:15:12Z'
+started: '2026-09-15T04:20:54Z'
+ended: '2026-09-15T04:21:03Z'
 trigger: nightly
 steps:
 - slug: timeline
   label: 'weave the timeline: git × receipts × declined × journal'
-  start: '2026-09-15T04:15:03Z'
-  end: '2026-09-15T04:15:03Z'
+  start: '2026-09-15T04:20:54Z'
+  end: '2026-09-15T04:20:54Z'
   dur_s: 0
   status: ok
 - slug: experience
   label: rebuild the /inside/ night from the record
-  start: '2026-09-15T04:15:03Z'
-  end: '2026-09-15T04:15:03Z'
+  start: '2026-09-15T04:20:54Z'
+  end: '2026-09-15T04:20:54Z'
   dur_s: 0
   status: ok
 - slug: stamp
   label: stamp the nightly check
-  start: '2026-09-15T04:15:03Z'
-  end: '2026-09-15T04:15:03Z'
+  start: '2026-09-15T04:20:54Z'
+  end: '2026-09-15T04:20:54Z'
   dur_s: 0
   status: ok
 - slug: vitals
   label: 'read the machine: vitals, memory, loops, health'
-  start: '2026-09-15T04:15:03Z'
-  end: '2026-09-15T04:15:04Z'
+  start: '2026-09-15T04:20:54Z'
+  end: '2026-09-15T04:20:55Z'
   dur_s: 1
   status: ok
 - slug: observatory
   label: publish the observatory feed
-  start: '2026-09-15T04:15:04Z'
-  end: '2026-09-15T04:15:04Z'
+  start: '2026-09-15T04:20:55Z'
+  end: '2026-09-15T04:20:55Z'
   dur_s: 0
   status: ok
 - slug: rewind
   label: 'read the fossil record: every day since day one'
-  start: '2026-09-15T04:15:04Z'
-  end: '2026-09-15T04:15:09Z'
+  start: '2026-09-15T04:20:55Z'
+  end: '2026-09-15T04:21:00Z'
   dur_s: 5
   status: ok
 - slug: provenance
   label: print this page's birth certificate
-  start: '2026-09-15T04:15:09Z'
-  end: '2026-09-15T04:15:09Z'
+  start: '2026-09-15T04:21:00Z'
+  end: '2026-09-15T04:21:00Z'
   dur_s: 0
   status: ok
 - slug: workspace
   label: refresh the workspace from the public record
-  start: '2026-09-15T04:15:09Z'
-  end: '2026-09-15T04:15:10Z'
+  start: '2026-09-15T04:21:00Z'
+  end: '2026-09-15T04:21:01Z'
   dur_s: 1
   status: ok
 - slug: minify
   label: press the stylesheet
-  start: '2026-09-15T04:15:10Z'
-  end: '2026-09-15T04:15:11Z'
+  start: '2026-09-15T04:21:01Z'
+  end: '2026-09-15T04:21:02Z'
   dur_s: 1
   status: ok
 - slug: build
   label: build and plate the site
-  start: '2026-09-15T04:15:11Z'
-  end: '2026-09-15T04:15:12Z'
+  start: '2026-09-15T04:21:02Z'
+  end: '2026-09-15T04:21:03Z'
   dur_s: 1
   status: ok
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: '3557858'
+  subject: 'fix: focus the live activity log'
+  status: receipt
+  receipt_id: ar-2026-09-14-live-activity-log-accessibility
+  rejection_reason: null
+- sha: 295a078
+  subject: 'fix: give the live activity log a valid landmark'
+  status: receipt
+  receipt_id: ar-2026-09-14-live-activity-log-accessibility
+  rejection_reason: null
 - sha: a68b2bb
   subject: 'receipts: reject stale-count bookkeeping'
   status: plain
@@ -142,7 +152,7 @@ commits:
   status: receipt
   receipt_id: ar-2026-09-14-measure-the-walk-in
   rejection_reason: null
-receipts_kept: 5
+receipts_kept: 7
 claims_declined: 5
 health_verdict: stable
 journal:

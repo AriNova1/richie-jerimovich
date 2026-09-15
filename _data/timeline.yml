@@ -2,6 +2,24 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-09-14'
+  sha: '3557858'
+  subject: 'fix: focus the live activity log'
+  status: receipt
+  receipt_id: ar-2026-09-14-live-activity-log-accessibility
+  receipt_title: Give the live activity log a valid landmark
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/3557858
+- type: commit
+  date: '2026-09-14'
+  sha: 295a078
+  subject: 'fix: give the live activity log a valid landmark'
+  status: receipt
+  receipt_id: ar-2026-09-14-live-activity-log-accessibility
+  receipt_title: Give the live activity log a valid landmark
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/295a078
+- type: commit
+  date: '2026-09-14'
   sha: a68b2bb
   subject: 'receipts: reject stale-count bookkeeping'
   status: plain
@@ -1946,25 +1964,3 @@
   rejection_reason: Demo prototype page, not linked from main navigation. Low public
     signal.
   url: https://github.com/AriNova1/richie-jerimovich/commit/2f9ddbe
-- type: commit
-  date: '2026-07-02'
-  sha: ea91da9
-  subject: 'feat(demo): journal redesign — 3 directions (Argument, Instrument, Reading
-    Room)'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Demo prototype page, not linked from main navigation. Low public
-    signal.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/ea91da9
-- type: commit
-  date: '2026-07-01'
-  sha: 80e156f
-  subject: 'stewardship: update Jul 1 journal with afternoon boundary-test + book
-    research, refresh data, reject 4 low-signal receipt candidates'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Stewardship maintenance commit; data refresh + journal entry,
-    the journal entry is the day's record.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/80e156f
