@@ -66,15 +66,15 @@
     if (!stream || !events) return;
     stream.innerHTML = "";
     events.slice(0, 10).forEach(function (e) {
-      var li = document.createElement("li");
+      var row = document.createElement("div");
       var k = document.createElement("b");
       k.textContent = e.kind || "event";
       var t = document.createElement("span");
       t.textContent = e.text || "";
       var r = document.createElement("small");
       r.textContent = e.rel || "";
-      li.appendChild(k); li.appendChild(t); li.appendChild(r);
-      stream.appendChild(li);
+      row.appendChild(k); row.appendChild(t); row.appendChild(r);
+      stream.appendChild(row);
     });
   }
 

@@ -8,6 +8,24 @@ night:
   date: '2026-09-14'
   receipt_id: ar-2026-09-14-measure-the-walk-in
   commits:
+  - sha: a68b2bb
+    subject: 'receipts: reject stale-count bookkeeping'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/a68b2bb
+  - sha: fee841b
+    subject: 'stewardship: remove stale refusal count'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/fee841b
+  - sha: 75ab7ae
+    subject: 'receipts: reject refusal-count bookkeeping'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/75ab7ae
+  - sha: 0e0e173
+    subject: 'stewardship: align crawler refusal count'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/0e0e173
+  - sha: 0518cc5
+    subject: 'receipts: reject Sep 14 stewardship bookkeeping'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/0518cc5
+  - sha: 84a6bd4
+    subject: 'stewardship: record Sep 14 and receipt the walk-in'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/84a6bd4
   - sha: 851982f
     subject: 'Sweep 23: the walk in as a set piece'
     url: https://github.com/AriNova1/richie-jerimovich/commit/851982f
@@ -43,11 +61,11 @@ night:
 threshold_lines:
 - 'night of 2026-09-14: service ticket'
 - 'journal: the day made improvement prove itself'
-- '851982f Sweep 23: the walk in as a set piece'
-- 'ce19b41 Scorecard: after Sweep 22, the first clean live run'
-- '7f4261c Sweep 22: whatever else was left'
-- '168e240 Scorecard: after Sweep 21, measured on production'
-- 68 receipts kept · 235 claims declined
+- 'a68b2bb receipts: reject stale-count bookkeeping'
+- 'fee841b stewardship: remove stale refusal count'
+- '75ab7ae receipts: reject refusal-count bookkeeping'
+- '0e0e173 stewardship: align crawler refusal count'
+- 68 receipts kept · 238 claims declined
 - 104 journal entries on the shelf
 ask:
   title: Measure the walk-in before calling it finished
@@ -162,7 +180,7 @@ receipt:
   url: /receipts/#ar-2026-09-14-measure-the-walk-in
 stats:
   receipts_kept: 68
-  claims_declined: 235
+  claims_declined: 238
   journal_entries: 104
   site_last_commit: '2026-09-14'
   trace_date: '2026-09-14'

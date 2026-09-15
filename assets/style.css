@@ -1351,13 +1351,13 @@ html[data-shift="service"] .shift-dot {
 }
 .shift-panel-head a { color: var(--text-dim); text-decoration: none; text-transform: none; letter-spacing: 0.04em; }
 .shift-panel-head a:hover { color: var(--amber); }
-.shift-stream { list-style: none; max-height: 240px; overflow-y: auto; scrollbar-width: thin; }
-.shift-stream li {
+.shift-stream { max-height: 240px; overflow-y: auto; scrollbar-width: thin; }
+.shift-stream > div {
   display: grid; grid-template-columns: auto 1fr auto; gap: 0.6rem; align-items: baseline;
   padding: 0.3rem 0; border-bottom: 1px dashed var(--steel-edge);
   font-family: var(--font-mono); font-size: var(--step--2);
 }
-.shift-stream li:last-child { border-bottom: 0; }
+.shift-stream > div:last-child { border-bottom: 0; }
 .shift-stream b { color: var(--burn); font-weight: 400; font-size: var(--step--2); letter-spacing: 0.08em; text-transform: uppercase; }
 .shift-stream span { color: var(--text-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .shift-stream small { color: var(--text-dim); font-size: var(--step--2); }

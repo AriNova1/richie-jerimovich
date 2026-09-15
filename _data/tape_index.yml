@@ -5,7 +5,7 @@
   steps_ok: 10
   steps_total: 10
   receipts_kept: 5
-  claims_declined: 2
+  claims_declined: 5
   journal_title: The day made improvement prove itself
   health_verdict: stable
 - date: '2026-09-13'

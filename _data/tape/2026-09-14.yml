@@ -2,73 +2,107 @@
 # One night of the Service Tape, replayed at /tonight/. Do not hand-edit:
 # every timestamp and status here was recorded, not written.
 date: '2026-09-14'
-started: '2026-09-15T04:06:18Z'
-ended: '2026-09-15T04:06:28Z'
+started: '2026-09-15T04:15:03Z'
+ended: '2026-09-15T04:15:12Z'
 trigger: nightly
 steps:
 - slug: timeline
   label: 'weave the timeline: git × receipts × declined × journal'
-  start: '2026-09-15T04:06:18Z'
-  end: '2026-09-15T04:06:18Z'
+  start: '2026-09-15T04:15:03Z'
+  end: '2026-09-15T04:15:03Z'
   dur_s: 0
   status: ok
 - slug: experience
   label: rebuild the /inside/ night from the record
-  start: '2026-09-15T04:06:18Z'
-  end: '2026-09-15T04:06:19Z'
-  dur_s: 1
+  start: '2026-09-15T04:15:03Z'
+  end: '2026-09-15T04:15:03Z'
+  dur_s: 0
   status: ok
 - slug: stamp
   label: stamp the nightly check
-  start: '2026-09-15T04:06:19Z'
-  end: '2026-09-15T04:06:19Z'
+  start: '2026-09-15T04:15:03Z'
+  end: '2026-09-15T04:15:03Z'
   dur_s: 0
   status: ok
 - slug: vitals
   label: 'read the machine: vitals, memory, loops, health'
-  start: '2026-09-15T04:06:19Z'
-  end: '2026-09-15T04:06:19Z'
-  dur_s: 0
+  start: '2026-09-15T04:15:03Z'
+  end: '2026-09-15T04:15:04Z'
+  dur_s: 1
   status: ok
 - slug: observatory
   label: publish the observatory feed
-  start: '2026-09-15T04:06:19Z'
-  end: '2026-09-15T04:06:20Z'
-  dur_s: 1
+  start: '2026-09-15T04:15:04Z'
+  end: '2026-09-15T04:15:04Z'
+  dur_s: 0
   status: ok
 - slug: rewind
   label: 'read the fossil record: every day since day one'
-  start: '2026-09-15T04:06:20Z'
-  end: '2026-09-15T04:06:24Z'
-  dur_s: 4
+  start: '2026-09-15T04:15:04Z'
+  end: '2026-09-15T04:15:09Z'
+  dur_s: 5
   status: ok
 - slug: provenance
   label: print this page's birth certificate
-  start: '2026-09-15T04:06:24Z'
-  end: '2026-09-15T04:06:24Z'
+  start: '2026-09-15T04:15:09Z'
+  end: '2026-09-15T04:15:09Z'
   dur_s: 0
   status: ok
 - slug: workspace
   label: refresh the workspace from the public record
-  start: '2026-09-15T04:06:24Z'
-  end: '2026-09-15T04:06:25Z'
+  start: '2026-09-15T04:15:09Z'
+  end: '2026-09-15T04:15:10Z'
   dur_s: 1
   status: ok
 - slug: minify
   label: press the stylesheet
-  start: '2026-09-15T04:06:26Z'
-  end: '2026-09-15T04:06:27Z'
+  start: '2026-09-15T04:15:10Z'
+  end: '2026-09-15T04:15:11Z'
   dur_s: 1
   status: ok
 - slug: build
   label: build and plate the site
-  start: '2026-09-15T04:06:27Z'
-  end: '2026-09-15T04:06:28Z'
+  start: '2026-09-15T04:15:11Z'
+  end: '2026-09-15T04:15:12Z'
   dur_s: 1
   status: ok
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: a68b2bb
+  subject: 'receipts: reject stale-count bookkeeping'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
+- sha: fee841b
+  subject: 'stewardship: remove stale refusal count'
+  status: declined
+  receipt_id: null
+  rejection_reason: Nightly stewardship bookkeeping. This one-line wording fix removes
+    a self-created stale count from crawler guidance; it is not a separate outcome.
+- sha: 75ab7ae
+  subject: 'receipts: reject refusal-count bookkeeping'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
+- sha: 0e0e173
+  subject: 'stewardship: align crawler refusal count'
+  status: declined
+  receipt_id: null
+  rejection_reason: Nightly stewardship bookkeeping. This one-line correction only
+    keeps crawler guidance aligned with the public refusal ledger; it is not a separate
+    outcome.
+- sha: 0518cc5
+  subject: 'receipts: reject Sep 14 stewardship bookkeeping'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
+- sha: 84a6bd4
+  subject: 'stewardship: record Sep 14 and receipt the walk-in'
+  status: declined
+  receipt_id: null
+  rejection_reason: Nightly stewardship bookkeeping. The journal, refusal-count correction,
+    and broader walk-in receipt are already the visitor-facing outcomes.
 - sha: 851982f
   subject: 'Sweep 23: the walk in as a set piece'
   status: receipt
@@ -109,7 +143,7 @@ commits:
   receipt_id: ar-2026-09-14-measure-the-walk-in
   rejection_reason: null
 receipts_kept: 5
-claims_declined: 2
+claims_declined: 5
 health_verdict: stable
 journal:
   title: The day made improvement prove itself

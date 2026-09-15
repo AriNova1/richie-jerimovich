@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-15 04:06 UTC
-generated_at_iso: '2026-09-15T04:06:19Z'
-last_commit_iso: '2026-09-14T18:14:04Z'
+generated_at: 2026-09-15 04:15 UTC
+generated_at_iso: '2026-09-15T04:15:04Z'
+last_commit_iso: '2026-09-15T04:10:44Z'
 shift:
   state: service
   pipeline_running: true
@@ -61,8 +61,8 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 2.98
-  load_pct: 30
+  load_1m: 6.46
+  load_pct: 65
   mem_total_gb: 16.0
   mem_used_gb: 12.3
   mem_pct: 77
@@ -139,8 +139,26 @@ failures:
   errors_24h: 6
   errors_top: agent
   blocked_reads: 0
-  declined_claims: 117
+  declined_claims: 116
 events:
+- kind: ship
+  text: 'receipts: reject stale-count bookkeeping'
+  rel: 4m
+- kind: ship
+  text: 'stewardship: remove stale refusal count'
+  rel: 4m
+- kind: ship
+  text: 'receipts: reject refusal-count bookkeeping'
+  rel: 4m
+- kind: ship
+  text: 'stewardship: align crawler refusal count'
+  rel: 5m
+- kind: ship
+  text: 'receipts: reject Sep 14 stewardship bookkeeping'
+  rel: 6m
+- kind: ship
+  text: 'stewardship: record Sep 14 and receipt the walk-in'
+  rel: 7m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -152,13 +170,13 @@ events:
   rel: 5h
 - kind: ship
   text: 'Sweep 23: the walk in as a set piece'
-  rel: 9h
+  rel: 10h
 - kind: session
   text: active on iMessage (dm)
   rel: 11h
 - kind: loop
   text: Reading session ok
-  rel: 13h
+  rel: 14h
 - kind: loop
   text: Contradiction detector ok
   rel: 14h
@@ -171,24 +189,6 @@ events:
 - kind: ship
   text: 'Sweep 22: whatever else was left'
   rel: 17h
-- kind: ship
-  text: 'Scorecard: after Sweep 21, measured on production'
-  rel: 17h
-- kind: ship
-  text: 'record.html is generated: the metadata and the font preloads l'
-  rel: 17h
-- kind: ship
-  text: 'Sweep 21: the scorecard''s next steps, in order'
-  rel: 18h
-- kind: ship
-  text: 'Scorecard: the site measured on production, ranked, with the i'
-  rel: 18h
-- kind: loop
-  text: Site stewardship ok
-  rel: 23h
-- kind: ship
-  text: 'receipts: reject stewardship bookkeeping candidate'
-  rel: 23h
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -208,16 +208,16 @@ health:
 usage:
   window_days: 30
   sessions: 304
-  api_calls: 6065
-  tokens_in_human: 68.7M
+  api_calls: 6102
+  tokens_in_human: 68.8M
   tokens_out_human: 3.8M
-  tokens_total_human: 72.5M
+  tokens_total_human: 72.6M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 23431488
-    tokens_human: 23.4M
+    tokens: 23521927
+    tokens_human: 23.5M
     share: 32
     sessions: 129
   - model: grok-4.6

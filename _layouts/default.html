@@ -52,7 +52,7 @@
        returning visitor the previous sheet against the new markup, which is
        exactly how the /rewind/ tape overlay first appeared with no styles at
        all, including no pointer-events:none, on a layer covering the readout. -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260914-one-voice">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20260914-shift-log">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="{{ site.baseurl }}/journal/feed.xml">
   <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="{{ site.baseurl }}/receipts/feed.xml">
   <script type="application/ld+json">
@@ -171,10 +171,10 @@
     </button>
     <div class="shift-panel" id="shift-panel" data-shift-panel>
       <p class="shift-panel-head">the line, live <a href="/tonight/">last night's tape ↗</a></p>
-      <ul class="shift-stream" data-shift-stream role="log" aria-live="polite" aria-label="Live agent activity"></ul>
+      <div class="shift-stream" data-shift-stream role="log" aria-live="polite" aria-label="Live agent activity"></div>
     </div>
   </div>
-  <script src="{{ site.baseurl }}/assets/js/shift.js?v=20260723" defer></script>
+  <script src="{{ site.baseurl }}/assets/js/shift.js?v=20260914-shift-log" defer></script>
 
   {%- comment -%}
     The door counter. One POST per tab session, never for a reader sending Do

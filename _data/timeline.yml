@@ -2,6 +2,64 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-09-14'
+  sha: a68b2bb
+  subject: 'receipts: reject stale-count bookkeeping'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/a68b2bb
+- type: commit
+  date: '2026-09-14'
+  sha: fee841b
+  subject: 'stewardship: remove stale refusal count'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Nightly stewardship bookkeeping. This one-line wording fix removes
+    a self-created stale count from crawler guidance; it is not a separate outcome.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/fee841b
+- type: commit
+  date: '2026-09-14'
+  sha: 75ab7ae
+  subject: 'receipts: reject refusal-count bookkeeping'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/75ab7ae
+- type: commit
+  date: '2026-09-14'
+  sha: 0e0e173
+  subject: 'stewardship: align crawler refusal count'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Nightly stewardship bookkeeping. This one-line correction only
+    keeps crawler guidance aligned with the public refusal ledger; it is not a separate
+    outcome.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/0e0e173
+- type: commit
+  date: '2026-09-14'
+  sha: 0518cc5
+  subject: 'receipts: reject Sep 14 stewardship bookkeeping'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/0518cc5
+- type: commit
+  date: '2026-09-14'
+  sha: 84a6bd4
+  subject: 'stewardship: record Sep 14 and receipt the walk-in'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Nightly stewardship bookkeeping. The journal, refusal-count correction,
+    and broader walk-in receipt are already the visitor-facing outcomes.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/84a6bd4
+- type: commit
+  date: '2026-09-14'
   sha: 851982f
   subject: 'Sweep 23: the walk in as a set piece'
   status: receipt
@@ -1910,62 +1968,3 @@
   rejection_reason: Stewardship maintenance commit; data refresh + journal entry,
     the journal entry is the day's record.
   url: https://github.com/AriNova1/richie-jerimovich/commit/80e156f
-- type: commit
-  date: '2026-07-01'
-  sha: e39e8bd
-  subject: 'feat(demo): add Directions E and F — corkboard graph, living history'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: 'Demo page commits: experimental prototype page, not linked from
-    main navigation. Low public signal.'
-  url: https://github.com/AriNova1/richie-jerimovich/commit/e39e8bd
-- type: commit
-  date: '2026-07-01'
-  sha: 01f749f
-  subject: 'feat(demo): add Direction D — a real interactive terminal hero'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: 'Demo page commits: experimental prototype page, not linked from
-    main navigation. Low public signal.'
-  url: https://github.com/AriNova1/richie-jerimovich/commit/01f749f
-- type: commit
-  date: '2026-07-01'
-  sha: 766f3b9
-  subject: 'feat(demo): homepage redesign picker with 3 real-data directions'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: 'Demo page commits: experimental prototype page, not linked from
-    main navigation. Low public signal.'
-  url: https://github.com/AriNova1/richie-jerimovich/commit/766f3b9
-- type: commit
-  date: '2026-07-01'
-  sha: c0ca17e
-  subject: 'stewardship: catch-up run — 3 missing journal entries, 13 receipts published,
-    19 declined'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: 'Meta-receipt: individual receipts and journal entries from the
-    catch-up run already published. A receipt about publishing receipts is circular.'
-  url: https://github.com/AriNova1/richie-jerimovich/commit/c0ca17e
-- type: commit
-  date: '2026-07-01'
-  sha: 7b244e5
-  subject: 'fix(projects): rename Observation Deck → Second Shift Notes, refresh badges'
-  status: receipt
-  receipt_id: ar-2026-07-01-fix-projects-rename-observation-deck-second-shift-notes
-  receipt_title: Rename Observation Deck → Second Shift Notes, refresh badges
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/7b244e5
-- type: commit
-  date: '2026-06-30'
-  sha: b634dc2
-  subject: 'feat(home): replace intro typewriter with a real git-log boot scan'
-  status: receipt
-  receipt_id: ar-2026-06-30-feat-home-replace-intro-typewriter-with-a-real-git-log-b
-  receipt_title: Replace intro typewriter with a real git-log boot scan
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/b634dc2
