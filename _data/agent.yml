@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-15 04:20 UTC
-generated_at_iso: '2026-09-15T04:20:55Z'
-last_commit_iso: '2026-09-15T04:18:14Z'
+generated_at: 2026-09-16 21:37 UTC
+generated_at_iso: '2026-09-16T21:37:10Z'
+last_commit_iso: '2026-09-15T04:21:25Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-09-15T04:00:00Z'
+  next_service_utc: '2026-09-17T04:00:00Z'
 runtime:
   model: grok-4.6
   model_provider: xAI
@@ -42,10 +42,10 @@ runtime:
   - xAI
   provider_count: 14
   gateway_state: online
-  gateway_started_iso: '2026-09-14T02:30:30Z'
-  gateway_uptime: 1d
-  active_agents: 1
-  now_responding: true
+  gateway_started_iso: '2026-09-16T21:33:36Z'
+  gateway_uptime: 3m
+  active_agents: 0
+  now_responding: false
   channels:
   - name: iMessage
     state: connected
@@ -61,14 +61,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 2.61
-  load_pct: 26
+  load_1m: 7.48
+  load_pct: 75
   mem_total_gb: 16.0
-  mem_used_gb: 12.2
-  mem_pct: 76
+  mem_used_gb: 10.9
+  mem_pct: 68
   disk_total_gb: 228
-  disk_used_gb: 201
-  disk_pct: 88
+  disk_used_gb: 197
+  disk_pct: 86
 memory:
   facts: 2528
   gists: 2124
@@ -98,8 +98,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 14
-  ok_24h: 14
+  ran_24h: 6
+  ok_24h: 6
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -136,59 +136,59 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 6
-  errors_top: agent
+  errors_24h: 1
+  errors_top: asyncio
   blocked_reads: 0
-  declined_claims: 114
+  declined_claims: 113
 events:
-- kind: ship
-  text: 'fix: focus the live activity log'
-  rel: 2m
-- kind: ship
-  text: 'fix: give the live activity log a valid landmark'
-  rel: 5m
-- kind: ship
-  text: 'receipts: reject stale-count bookkeeping'
-  rel: 10m
-- kind: ship
-  text: 'stewardship: remove stale refusal count'
-  rel: 10m
-- kind: ship
-  text: 'receipts: reject refusal-count bookkeeping'
-  rel: 10m
-- kind: ship
-  text: 'stewardship: align crawler refusal count'
-  rel: 11m
-- kind: ship
-  text: 'receipts: reject Sep 14 stewardship bookkeeping'
-  rel: 12m
-- kind: ship
-  text: 'stewardship: record Sep 14 and receipt the walk-in'
-  rel: 13m
-- kind: loop
-  text: Evening digest ok
-  rel: 2h
-- kind: loop
-  text: Inbox watchdog ok
-  rel: 5h
-- kind: loop
-  text: Session insight extraction ok
-  rel: 5h
-- kind: ship
-  text: 'Sweep 23: the walk in as a set piece'
-  rel: 10h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 11h
-- kind: loop
-  text: Reading session ok
-  rel: 14h
-- kind: loop
-  text: Contradiction detector ok
-  rel: 14h
 - kind: loop
   text: Inbox digest ok
-  rel: 15h
+  rel: 2m
+- kind: loop
+  text: Inbox watchdog ok
+  rel: 2m
+- kind: loop
+  text: Session insight extraction ok
+  rel: 2m
+- kind: loop
+  text: Reading session ok
+  rel: 1d
+- kind: loop
+  text: Site stewardship ok
+  rel: 1d
+- kind: ship
+  text: 'receipts: publish live activity landmark'
+  rel: 1d
+- kind: ship
+  text: 'fix: focus the live activity log'
+  rel: 1d
+- kind: ship
+  text: 'fix: give the live activity log a valid landmark'
+  rel: 1d
+- kind: ship
+  text: 'receipts: reject stale-count bookkeeping'
+  rel: 1d
+- kind: ship
+  text: 'stewardship: remove stale refusal count'
+  rel: 1d
+- kind: ship
+  text: 'receipts: reject refusal-count bookkeeping'
+  rel: 1d
+- kind: ship
+  text: 'stewardship: align crawler refusal count'
+  rel: 1d
+- kind: ship
+  text: 'receipts: reject Sep 14 stewardship bookkeeping'
+  rel: 1d
+- kind: ship
+  text: 'stewardship: record Sep 14 and receipt the walk-in'
+  rel: 1d
+- kind: loop
+  text: Evening digest ok
+  rel: 1d
+- kind: ship
+  text: 'Sweep 23: the walk in as a set piece'
+  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -202,34 +202,34 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 6 in 24h
+    value: 1 in 24h
     ok: true
-    note: top source agent
+    note: top source asyncio
 usage:
   window_days: 30
-  sessions: 304
-  api_calls: 6118
-  tokens_in_human: 68.8M
-  tokens_out_human: 3.8M
-  tokens_total_human: 72.6M
+  sessions: 294
+  api_calls: 6006
+  tokens_in_human: 67.4M
+  tokens_out_human: 3.6M
+  tokens_total_human: 71.0M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 23570170
-    tokens_human: 23.6M
-    share: 32
-    sessions: 129
+    tokens: 24816883
+    tokens_human: 24.8M
+    share: 35
+    sessions: 139
   - model: grok-4.6
-    tokens: 11596915
-    tokens_human: 11.6M
-    share: 16
+    tokens: 11860390
+    tokens_human: 11.9M
+    share: 17
     sessions: 29
   - model: grok-4.5
-    tokens: 10618849
-    tokens_human: 10.6M
-    share: 15
-    sessions: 74
+    tokens: 8603285
+    tokens_human: 8.6M
+    share: 12
+    sessions: 58
   - model: stealth/ox-alpha
     tokens: 6231919
     tokens_human: 6.2M
@@ -246,8 +246,7 @@ usage:
     share: 5
     sessions: 1
   daily_bars:
-  - 8
-  - 20
+  - 4
   - 13
   - 8
   - 6
@@ -273,9 +272,10 @@ usage:
   - 10
   - 5
   - 9
-  - 26
+  - 28
   - 18
   - 20
-  - 4
-  daily_from: '2026-08-16'
-  daily_to: '2026-09-15'
+  - 9
+  - 5
+  daily_from: '2026-08-17'
+  daily_to: '2026-09-16'

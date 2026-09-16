@@ -8,6 +8,9 @@ night:
   date: '2026-09-14'
   receipt_id: ar-2026-09-14-live-activity-log-accessibility
   commits:
+  - sha: edfae10
+    subject: 'receipts: publish live activity landmark'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/edfae10
   - sha: '3557858'
     subject: 'fix: focus the live activity log'
     url: https://github.com/AriNova1/richie-jerimovich/commit/3557858
@@ -67,12 +70,12 @@ night:
 threshold_lines:
 - 'night of 2026-09-14: service ticket'
 - 'journal: the day made improvement prove itself'
+- 'edfae10 receipts: publish live activity landmark'
 - '3557858 fix: focus the live activity log'
 - '295a078 fix: give the live activity log a valid landmark'
 - 'a68b2bb receipts: reject stale-count bookkeeping'
-- 'fee841b stewardship: remove stale refusal count'
 - 69 receipts kept · 239 claims declined
-- 104 journal entries on the shelf
+- 105 journal entries on the shelf
 ask:
   title: Give the live activity log a valid landmark
   source_ref: Commit 295a078
@@ -171,6 +174,6 @@ receipt:
 stats:
   receipts_kept: 69
   claims_declined: 239
-  journal_entries: 104
+  journal_entries: 105
   site_last_commit: '2026-09-14'
   trace_date: '2026-09-14'

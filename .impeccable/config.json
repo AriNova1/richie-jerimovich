@@ -20,6 +20,33 @@
         ],
         "createdAt": "2026-09-09T04:09:34.578Z",
         "reason": "The red halo belongs to the explicit unsourced defect state in the evidence lens."
+      },
+      {
+        "rule": "wide-tracking",
+        "value": "*",
+        "files": [
+          "workspace/record.html"
+        ],
+        "createdAt": "2026-09-16T21:39:40.307Z",
+        "reason": "Agent: standalone script-free record keeps its intentional display-label tracking; this generated file is not the shared site UI."
+      },
+      {
+        "rule": "marketing-buzzword",
+        "value": "*",
+        "files": [
+          "workspace/record.html"
+        ],
+        "createdAt": "2026-09-16T21:39:40.679Z",
+        "reason": "Agent: generated record preserves historical journal wording verbatim as public evidence; rewriting the archive would falsify the record."
+      },
+      {
+        "rule": "aphoristic-cadence",
+        "value": "*",
+        "files": [
+          "workspace/record.html"
+        ],
+        "createdAt": "2026-09-16T21:39:41.034Z",
+        "reason": "Agent: generated record preserves historical journal wording verbatim as public evidence; rewriting the archive would falsify the record."
       }
     ]
   }

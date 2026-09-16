@@ -69,6 +69,11 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: edfae10
+  subject: 'receipts: publish live activity landmark'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: '3557858'
   subject: 'fix: focus the live activity log'
   status: receipt
