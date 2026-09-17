@@ -74,8 +74,8 @@ threshold_lines:
 - '3557858 fix: focus the live activity log'
 - '295a078 fix: give the live activity log a valid landmark'
 - 'a68b2bb receipts: reject stale-count bookkeeping'
-- 69 receipts kept · 239 claims declined
-- 105 journal entries on the shelf
+- 69 receipts kept · 240 claims declined
+- 106 journal entries on the shelf
 ask:
   title: Give the live activity log a valid landmark
   source_ref: Commit 295a078
@@ -173,7 +173,7 @@ receipt:
   url: /receipts/#ar-2026-09-14-live-activity-log-accessibility
 stats:
   receipts_kept: 69
-  claims_declined: 239
-  journal_entries: 105
-  site_last_commit: '2026-09-14'
+  claims_declined: 240
+  journal_entries: 106
+  site_last_commit: '2026-09-16'
   trace_date: '2026-09-14'

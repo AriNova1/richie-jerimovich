@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-16 21:37 UTC
-generated_at_iso: '2026-09-16T21:37:10Z'
-last_commit_iso: '2026-09-15T04:21:25Z'
+generated_at: 2026-09-17 04:02 UTC
+generated_at_iso: '2026-09-17T04:02:14Z'
+last_commit_iso: '2026-09-16T21:42:39Z'
 shift:
   state: service
   pipeline_running: true
@@ -43,7 +43,7 @@ runtime:
   provider_count: 14
   gateway_state: online
   gateway_started_iso: '2026-09-16T21:33:36Z'
-  gateway_uptime: 3m
+  gateway_uptime: 6h
   active_agents: 0
   now_responding: false
   channels:
@@ -61,14 +61,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 7.48
-  load_pct: 75
+  load_1m: 1.08
+  load_pct: 11
   mem_total_gb: 16.0
-  mem_used_gb: 10.9
-  mem_pct: 68
+  mem_used_gb: 10.4
+  mem_pct: 65
   disk_total_gb: 228
-  disk_used_gb: 197
-  disk_pct: 86
+  disk_used_gb: 195
+  disk_pct: 85
 memory:
   facts: 2528
   gists: 2124
@@ -98,8 +98,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 6
-  ok_24h: 6
+  ran_24h: 11
+  ok_24h: 11
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -136,26 +136,35 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 1
+  errors_24h: 3
   errors_top: asyncio
   blocked_reads: 0
-  declined_claims: 113
+  declined_claims: 112
 events:
 - kind: loop
-  text: Inbox digest ok
-  rel: 2m
+  text: Evening digest ok
+  rel: 1h
 - kind: loop
   text: Inbox watchdog ok
-  rel: 2m
+  rel: 5h
 - kind: loop
   text: Session insight extraction ok
-  rel: 2m
-- kind: loop
-  text: Reading session ok
-  rel: 1d
+  rel: 5h
 - kind: loop
   text: Site stewardship ok
-  rel: 1d
+  rel: 6h
+- kind: ship
+  text: 'receipts: reject Sep 16 stewardship bookkeeping'
+  rel: 6h
+- kind: loop
+  text: Reading session ok
+  rel: 6h
+- kind: ship
+  text: 'steward: record Sep 15 and refresh site'
+  rel: 6h
+- kind: loop
+  text: Inbox digest ok
+  rel: 6h
 - kind: ship
   text: 'receipts: publish live activity landmark'
   rel: 1d
@@ -180,15 +189,6 @@ events:
 - kind: ship
   text: 'receipts: reject Sep 14 stewardship bookkeeping'
   rel: 1d
-- kind: ship
-  text: 'stewardship: record Sep 14 and receipt the walk-in'
-  rel: 1d
-- kind: loop
-  text: Evening digest ok
-  rel: 1d
-- kind: ship
-  text: 'Sweep 23: the walk in as a set piece'
-  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -202,34 +202,34 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 1 in 24h
+    value: 3 in 24h
     ok: true
     note: top source asyncio
 usage:
   window_days: 30
-  sessions: 294
-  api_calls: 6006
-  tokens_in_human: 67.4M
+  sessions: 292
+  api_calls: 6075
+  tokens_in_human: 67.0M
   tokens_out_human: 3.6M
-  tokens_total_human: 71.0M
+  tokens_total_human: 70.6M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 24816883
-    tokens_human: 24.8M
-    share: 35
-    sessions: 139
+    tokens: 25330657
+    tokens_human: 25.3M
+    share: 36
+    sessions: 141
   - model: grok-4.6
-    tokens: 11860390
-    tokens_human: 11.9M
-    share: 17
-    sessions: 29
+    tokens: 9303277
+    tokens_human: 9.3M
+    share: 13
+    sessions: 28
   - model: grok-4.5
-    tokens: 8603285
-    tokens_human: 8.6M
-    share: 12
-    sessions: 58
+    tokens: 7679911
+    tokens_human: 7.7M
+    share: 11
+    sessions: 55
   - model: stealth/ox-alpha
     tokens: 6231919
     tokens_human: 6.2M
@@ -240,14 +240,13 @@ usage:
     tokens_human: 5.6M
     share: 8
     sessions: 3
-  - model: ox-alpha-free
-    tokens: 3888206
-    tokens_human: 3.9M
-    share: 5
-    sessions: 1
+  - model: gpt-5.6-terra
+    tokens: 4274463
+    tokens_human: 4.3M
+    share: 6
+    sessions: 10
   daily_bars:
-  - 4
-  - 13
+  - 9
   - 8
   - 6
   - 43
@@ -272,10 +271,11 @@ usage:
   - 10
   - 5
   - 9
-  - 28
+  - 29
   - 18
   - 20
   - 9
-  - 5
-  daily_from: '2026-08-17'
-  daily_to: '2026-09-16'
+  - 7
+  - 3
+  daily_from: '2026-08-18'
+  daily_to: '2026-09-17'
