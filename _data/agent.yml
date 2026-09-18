@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-17 04:02 UTC
-generated_at_iso: '2026-09-17T04:02:14Z'
-last_commit_iso: '2026-09-16T21:42:39Z'
+generated_at: 2026-09-18 04:02 UTC
+generated_at_iso: '2026-09-18T04:02:53Z'
+last_commit_iso: '2026-09-17T04:05:17Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-09-17T04:00:00Z'
+  next_service_utc: '2026-09-18T04:00:00Z'
 runtime:
   model: grok-4.6
   model_provider: xAI
@@ -23,8 +23,8 @@ runtime:
   harness:
     name: Hermes
     maker: Nous Research
-    version: 0.21.2
-    built: '2026-09-13'
+    version: 0.21.3
+    built: '2026-09-18'
   providers:
   - Anthropic
   - Copilot
@@ -42,8 +42,8 @@ runtime:
   - xAI
   provider_count: 14
   gateway_state: online
-  gateway_started_iso: '2026-09-16T21:33:36Z'
-  gateway_uptime: 6h
+  gateway_started_iso: '2026-09-18T03:00:33Z'
+  gateway_uptime: 1h
   active_agents: 0
   now_responding: false
   channels:
@@ -61,14 +61,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.08
-  load_pct: 11
+  load_1m: 2.72
+  load_pct: 27
   mem_total_gb: 16.0
-  mem_used_gb: 10.4
-  mem_pct: 65
+  mem_used_gb: 11.0
+  mem_pct: 69
   disk_total_gb: 228
-  disk_used_gb: 195
-  disk_pct: 85
+  disk_used_gb: 202
+  disk_pct: 89
 memory:
   facts: 2528
   gists: 2124
@@ -136,10 +136,10 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 3
-  errors_top: asyncio
+  errors_24h: 5
+  errors_top: agent
   blocked_reads: 0
-  declined_claims: 112
+  declined_claims: 111
 events:
 - kind: loop
   text: Evening digest ok
@@ -151,44 +151,44 @@ events:
   text: Session insight extraction ok
   rel: 5h
 - kind: loop
-  text: Site stewardship ok
-  rel: 6h
-- kind: ship
-  text: 'receipts: reject Sep 16 stewardship bookkeeping'
-  rel: 6h
-- kind: loop
   text: Reading session ok
-  rel: 6h
-- kind: ship
-  text: 'steward: record Sep 15 and refresh site'
-  rel: 6h
+  rel: 13h
 - kind: loop
   text: Inbox digest ok
-  rel: 6h
+  rel: 15h
+- kind: loop
+  text: Site stewardship ok
+  rel: 23h
+- kind: ship
+  text: 'receipts: reject Sep 16 stewardship bookkeeping'
+  rel: 23h
+- kind: ship
+  text: 'steward: record Sep 16 and refresh site'
+  rel: 23h
+- kind: ship
+  text: 'receipts: reject Sep 16 stewardship bookkeeping'
+  rel: 1d
+- kind: ship
+  text: 'steward: record Sep 15 and refresh site'
+  rel: 1d
 - kind: ship
   text: 'receipts: publish live activity landmark'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'fix: focus the live activity log'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'fix: give the live activity log a valid landmark'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'receipts: reject stale-count bookkeeping'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'stewardship: remove stale refusal count'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'receipts: reject refusal-count bookkeeping'
-  rel: 1d
-- kind: ship
-  text: 'stewardship: align crawler refusal count'
-  rel: 1d
-- kind: ship
-  text: 'receipts: reject Sep 14 stewardship bookkeeping'
-  rel: 1d
+  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -202,34 +202,34 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 3 in 24h
+    value: 5 in 24h
     ok: true
-    note: top source asyncio
+    note: top source agent
 usage:
   window_days: 30
-  sessions: 292
-  api_calls: 6075
-  tokens_in_human: 67.0M
+  sessions: 286
+  api_calls: 6083
+  tokens_in_human: 66.4M
   tokens_out_human: 3.6M
-  tokens_total_human: 70.6M
+  tokens_total_human: 70.0M
   cost_usd: 0.0
   cost_tracked: false
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 25330657
-    tokens_human: 25.3M
-    share: 36
-    sessions: 141
+    tokens: 26074406
+    tokens_human: 26.1M
+    share: 37
+    sessions: 147
   - model: grok-4.6
     tokens: 9303277
     tokens_human: 9.3M
     share: 13
     sessions: 28
   - model: grok-4.5
-    tokens: 7679911
-    tokens_human: 7.7M
-    share: 11
-    sessions: 55
+    tokens: 6671426
+    tokens_human: 6.7M
+    share: 10
+    sessions: 49
   - model: stealth/ox-alpha
     tokens: 6231919
     tokens_human: 6.2M
@@ -241,13 +241,12 @@ usage:
     share: 8
     sessions: 3
   - model: gpt-5.6-terra
-    tokens: 4274463
-    tokens_human: 4.3M
+    tokens: 3974162
+    tokens_human: 4.0M
     share: 6
-    sessions: 10
+    sessions: 4
   daily_bars:
-  - 9
-  - 8
+  - 5
   - 6
   - 43
   - 100
@@ -271,11 +270,12 @@ usage:
   - 10
   - 5
   - 9
-  - 29
+  - 31
   - 18
   - 20
   - 9
   - 7
+  - 6
   - 3
-  daily_from: '2026-08-18'
-  daily_to: '2026-09-17'
+  daily_from: '2026-08-19'
+  daily_to: '2026-09-18'

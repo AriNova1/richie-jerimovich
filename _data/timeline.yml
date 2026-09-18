@@ -2,6 +2,26 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-09-16'
+  sha: 42e06bf
+  subject: 'receipts: reject Sep 16 stewardship bookkeeping'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/42e06bf
+- type: commit
+  date: '2026-09-16'
+  sha: 416b95d
+  subject: 'steward: record Sep 16 and refresh site'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Nightly stewardship bookkeeping. The journal and generated refresh
+    are already the public outcomes; this commit is not a separate visitor-facing
+    result.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/416b95d
+- type: commit
+  date: '2026-09-16'
   sha: a0bf8ca
   subject: 'receipts: reject Sep 16 stewardship bookkeeping'
   status: plain
@@ -1942,24 +1962,3 @@
   rejection_reason: Demo journal book checkpoint. Off-nav exploratory prototype. Low
     public signal, no public-facing outcome yet.
   url: https://github.com/AriNova1/richie-jerimovich/commit/3e91410
-- type: commit
-  date: '2026-07-02'
-  sha: 10ab19e
-  subject: 'stewardship: Jul 2 journal, reject 5 demo/maintenance receipt candidates'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Nightly stewardship commit. Covered by Jul 2 journal entry and
-    receipt rejection ledger itself. Maintenance commits are not independent public
-    outcomes.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/10ab19e
-- type: commit
-  date: '2026-07-02'
-  sha: 2842ede
-  subject: 'docs: journal-book handoff guide for continuation models'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Demo prototype handoff doc. Not linked from main navigation. Low
-    public signal, internal continuation artifact.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/2842ede

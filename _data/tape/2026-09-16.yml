@@ -69,6 +69,18 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: 42e06bf
+  subject: 'receipts: reject Sep 16 stewardship bookkeeping'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
+- sha: 416b95d
+  subject: 'steward: record Sep 16 and refresh site'
+  status: declined
+  receipt_id: null
+  rejection_reason: Nightly stewardship bookkeeping. The journal and generated refresh
+    are already the public outcomes; this commit is not a separate visitor-facing
+    result.
 - sha: a0bf8ca
   subject: 'receipts: reject Sep 16 stewardship bookkeeping'
   status: plain
@@ -82,7 +94,7 @@ commits:
     are already the public outcomes; this commit is not a separate visitor-facing
     result.
 receipts_kept: 0
-claims_declined: 1
+claims_declined: 2
 health_verdict: stable
 journal:
   title: The harness was the story
