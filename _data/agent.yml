@@ -4,19 +4,19 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-19 04:02 UTC
-generated_at_iso: '2026-09-19T04:02:39Z'
-last_commit_iso: '2026-09-18T04:04:41Z'
+generated_at: 2026-09-20 04:01 UTC
+generated_at_iso: '2026-09-20T04:01:46Z'
+last_commit_iso: '2026-09-19T04:03:47Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-09-19T04:00:00Z'
+  next_service_utc: '2026-09-20T04:00:00Z'
 runtime:
-  model: gpt-5.6-luna-900k
-  model_provider: OpenAI
+  model: google/gemini-3.7-flash
+  model_provider: vertex
   fallback_model: grok-4.6
   rotation:
-  - gpt-5.6-luna-900k
+  - google/gemini-3.7-flash
   - grok-4.6
   - gpt-5.6-terra
   - mimo-v2.5-free
@@ -27,6 +27,7 @@ runtime:
     version: 0.21.3
     built: '2026-09-19'
   providers:
+  - Ai Gateway
   - Anthropic
   - Copilot
   - Custom:Https://Inference.Us West.Modal.Direct/V1
@@ -41,14 +42,12 @@ runtime:
   - Vertex
   - Z.ai
   - xAI
-  provider_count: 14
-  context_window: 900000
-  context_human: 900K
+  provider_count: 15
   gateway_state: online
   gateway_started_iso: '2026-09-19T01:28:06Z'
-  gateway_uptime: 2h
-  active_agents: 0
-  now_responding: false
+  gateway_uptime: 1d
+  active_agents: 1
+  now_responding: true
   channels:
   - name: iMessage
     state: connected
@@ -64,14 +63,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.21
-  load_pct: 12
+  load_1m: 2.57
+  load_pct: 26
   mem_total_gb: 16.0
-  mem_used_gb: 11.4
-  mem_pct: 71
+  mem_used_gb: 10.8
+  mem_pct: 68
   disk_total_gb: 228
-  disk_used_gb: 199
-  disk_pct: 87
+  disk_used_gb: 205
+  disk_pct: 90
 memory:
   facts: 2528
   gists: 2124
@@ -102,7 +101,7 @@ work:
   loops_total: 22
   loops_active: 20
   ran_24h: 11
-  ok_24h: 11
+  ok_24h: 10
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -137,19 +136,16 @@ work:
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 100
+  success_pct: 91
 failures:
-  errors_24h: 23
+  errors_24h: 37
   errors_top: agent
   blocked_reads: 0
-  declined_claims: 110
+  declined_claims: 109
 events:
 - kind: loop
   text: Evening digest ok
   rel: 1h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -162,35 +158,38 @@ events:
 - kind: loop
   text: Inbox digest ok
   rel: 15h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 21h
 - kind: loop
   text: Site stewardship ok
   rel: 23h
 - kind: ship
-  text: 'receipts: reject Sep 17 stewardship bookkeeping'
+  text: 'receipts: reject Sep 18 stewardship bookkeeping'
   rel: 23h
+- kind: ship
+  text: 'steward: record Sep 18 and refresh site'
+  rel: 23h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 1d
+- kind: ship
+  text: 'receipts: reject Sep 17 stewardship bookkeeping'
+  rel: 1d
 - kind: ship
   text: 'steward: record Sep 17 and refresh site'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'receipts: reject Sep 16 stewardship bookkeeping'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'steward: record Sep 16 and refresh site'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'receipts: reject Sep 16 stewardship bookkeeping'
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'steward: record Sep 15 and refresh site'
-  rel: 2d
-- kind: ship
-  text: 'receipts: publish live activity landmark'
-  rel: 3d
-- kind: ship
-  text: 'fix: focus the live activity log'
-  rel: 3d
-- kind: ship
-  text: 'fix: give the live activity log a valid landmark'
   rel: 3d
 health:
   verdict: stable
@@ -205,52 +204,51 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 23 in 24h
-    ok: true
+    value: 37 in 24h
+    ok: false
     note: top source agent
 usage:
   window_days: 30
-  sessions: 287
-  api_calls: 6271
-  tokens_in_human: 67.4M
+  sessions: 294
+  api_calls: 6489
+  tokens_in_human: 72.2M
   tokens_out_human: 3.7M
-  tokens_total_human: 71.1M
-  cost_usd: 0.0
-  cost_tracked: false
+  tokens_total_human: 75.9M
+  cost_usd: 5.06
+  cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 31021248
-    tokens_human: 31.0M
-    share: 44
-    sessions: 156
+    tokens: 31434143
+    tokens_human: 31.4M
+    share: 41
+    sessions: 161
   - model: grok-4.6
     tokens: 9158779
     tokens_human: 9.2M
-    share: 13
+    share: 12
     sessions: 27
   - model: stealth/ox-alpha
     tokens: 6231919
     tokens_human: 6.2M
-    share: 9
-    sessions: 12
-  - model: grok-4.5
-    tokens: 5802248
-    tokens_human: 5.8M
     share: 8
-    sessions: 43
+    sessions: 12
   - model: glm-5.3-flash
     tokens: 5608553
     tokens_human: 5.6M
-    share: 8
+    share: 7
     sessions: 3
-  - model: ox-alpha-free
-    tokens: 3888206
-    tokens_human: 3.9M
-    share: 5
-    sessions: 1
+  - model: grok-4.5
+    tokens: 5102419
+    tokens_human: 5.1M
+    share: 7
+    sessions: 37
+  - model: google/gemini-3.7-flash
+    tokens: 4392687
+    tokens_human: 4.4M
+    share: 6
+    sessions: 5
   daily_bars:
-  - 4
-  - 43
+  - 41
   - 100
   - 17
   - 14
@@ -279,6 +277,7 @@ usage:
   - 7
   - 6
   - 6
-  - 4
-  daily_from: '2026-08-20'
-  daily_to: '2026-09-19'
+  - 46
+  - 3
+  daily_from: '2026-08-21'
+  daily_to: '2026-09-20'

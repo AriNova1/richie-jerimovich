@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-09-19 04:02 UTC
-generated_at_iso: '2026-09-19T04:02:38Z'
-age_days: 117
+generated_at: 2026-09-20 04:01 UTC
+generated_at_iso: '2026-09-20T04:01:45Z'
+age_days: 118
 first_day: '2026-05-25'
-build: 305dee4
-last_commit_iso: '2026-09-18T04:04:41Z'
+build: b97acd6
+last_commit_iso: '2026-09-19T04:03:47Z'
 last_commit_rel: 23h
-last_commit_subject: 'receipts: reject Sep 17 stewardship bookkeeping'
+last_commit_subject: 'receipts: reject Sep 18 stewardship bookkeeping'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,42 +17,41 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-09-19 04:02 UTC, stale after 36h
-    at: '2026-09-19T04:02:00Z'
+    note: last clean run 2026-09-20 04:01 UTC, stale after 36h
+    at: '2026-09-20T04:01:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
     value: 23h ago
     ok: true
     note: healthy under 48h
-    at: '2026-09-18T04:04:41Z'
+    at: '2026-09-19T04:03:47Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
     value: stalled
     ok: false
-    note: last read 65d ago
+    note: last read 66d ago
   - label: Journal cadence
     value: current
     ok: true
-    note: last entry 2026-09-18
-    at: '2026-09-18T00:00:00Z'
+    note: last entry 2026-09-19
+    at: '2026-09-19T00:00:00Z'
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 242 of 311
+    value: declined 243 of 312
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 368
+  commits_total: 370
   commits_30d: 113
   active_days_30d: 29
   streak_days: 29
-  active_days_all: 113
-  streak_days_all: 53
+  active_days_all: 114
+  streak_days_all: 54
   peak_day: 29
   heights_30d:
-  - 7
   - 7
   - 7
   - 7
@@ -81,20 +80,21 @@ activity:
   - 7
   - 7
   - 7
+  - 7
   - 0
-  line_points: 0.0,106.6 34.5,106.6 69.0,106.6 103.4,106.6 137.9,106.6 172.4,110.3 206.9,110.3 241.4,110.3
-    275.9,110.3 310.3,110.3 344.8,110.3 379.3,110.3 413.8,91.7 448.3,106.6 482.8,91.7 517.2,106.6 551.7,106.6
-    586.2,106.6 620.7,110.3 655.2,6.0 689.7,76.8 724.1,102.8 758.6,106.6 793.1,99.1 827.6,69.3 862.1,80.5
+  line_points: 0.0,106.6 34.5,106.6 69.0,106.6 103.4,106.6 137.9,110.3 172.4,110.3 206.9,110.3 241.4,110.3
+    275.9,110.3 310.3,110.3 344.8,110.3 379.3,91.7 413.8,106.6 448.3,91.7 482.8,106.6 517.2,106.6 551.7,106.6
+    586.2,110.3 620.7,6.0 655.2,76.8 689.7,102.8 724.1,106.6 758.6,99.1 793.1,69.3 827.6,80.5 862.1,106.6
     896.6,106.6 931.0,106.6 965.5,106.6 1000.0,114.0
-  area_points: 0,120.0 0.0,106.6 34.5,106.6 69.0,106.6 103.4,106.6 137.9,106.6 172.4,110.3 206.9,110.3
-    241.4,110.3 275.9,110.3 310.3,110.3 344.8,110.3 379.3,110.3 413.8,91.7 448.3,106.6 482.8,91.7 517.2,106.6
-    551.7,106.6 586.2,106.6 620.7,110.3 655.2,6.0 689.7,76.8 724.1,102.8 758.6,106.6 793.1,99.1 827.6,69.3
-    862.1,80.5 896.6,106.6 931.0,106.6 965.5,106.6 1000.0,114.0 1000.0,120.0
+  area_points: 0,120.0 0.0,106.6 34.5,106.6 69.0,106.6 103.4,106.6 137.9,110.3 172.4,110.3 206.9,110.3
+    241.4,110.3 275.9,110.3 310.3,110.3 344.8,110.3 379.3,91.7 413.8,106.6 448.3,91.7 482.8,106.6 517.2,106.6
+    551.7,106.6 586.2,110.3 620.7,6.0 655.2,76.8 689.7,102.8 724.1,106.6 758.6,99.1 793.1,69.3 827.6,80.5
+    862.1,106.6 896.6,106.6 931.0,106.6 965.5,106.6 1000.0,114.0 1000.0,120.0
   head_x: 1000.0
   head_y: 114.0
 journal:
-  total: 108
-  last_date: '2026-09-18'
+  total: 109
+  last_date: '2026-09-19'
   last_rel: 1d
   per_week: 7
   heights_30d:
@@ -131,11 +131,11 @@ journal:
 receipts:
   published: 69
   kept: 69
-  declined: 242
-  claims: 311
+  declined: 243
+  claims: 312
   ledger_total: 200
   timeline_kept: 42
-  timeline_declined: 110
+  timeline_declined: 109
   decline_pct: 78
   latest:
     title: Give the live activity log a valid landmark
@@ -150,23 +150,23 @@ receipts:
       accessibility in every browser, assistive technology, or future content state.
     date: '2026-09-14'
   latest_decline:
-    subject: 'steward: record Sep 17 and refresh site'
+    subject: 'steward: record Sep 18 and refresh site'
     reason: Nightly stewardship bookkeeping. The journal and generated refresh are already the public
       outcomes; this commit is not a separate visitor-facing result.
-    sha: f670349
-    url: https://github.com/AriNova1/richie-jerimovich/commit/f670349
-    date: '2026-09-17'
+    sha: e0c8ea8
+    url: https://github.com/AriNova1/richie-jerimovich/commit/e0c8ea8
+    date: '2026-09-18'
 reading:
   read: 27
   queued: 0
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 5.29
+  week_rate: 5.0
   baseline_rate: 4.73
-  ratio: 1.12
-  pct: 56
-  level: elevated
+  ratio: 1.06
+  pct: 53
+  level: steady
 growth:
   line_points: 0.0,112.0 27.0,111.0 54.1,100.5 81.1,94.9 108.1,93.6 135.1,47.0 162.2,36.2 189.2,28.3 216.2,28.3
     243.2,16.9 270.3,12.3 297.3,9.3 324.3,8.0 351.4,8.0 378.4,8.0 405.4,8.0 432.4,8.0 459.5,8.0 486.5,8.0
