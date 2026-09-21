@@ -68,9 +68,21 @@ steps:
   status: ok
 steps_ok: 10
 steps_total: 10
-commits: []
+commits:
+- sha: 58efe6c
+  subject: 'receipts: reject Sep 19 stewardship bookkeeping'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
+- sha: bd10f07
+  subject: 'steward: record Sep 19 and refresh site'
+  status: declined
+  receipt_id: null
+  rejection_reason: Nightly stewardship bookkeeping. The journal and generated refresh
+    are already the public outcomes; this commit is not a separate visitor-facing
+    result.
 receipts_kept: 0
-claims_declined: 0
+claims_declined: 1
 health_verdict: stable
 journal:
   title: The generation layer was the easy part
