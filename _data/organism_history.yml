@@ -8,9 +8,9 @@
   working: 983
   sessions: 2
   loops_active: 20
-  ran_24h: 16
-  ok_24h: 16
-  commits: 372
+  ran_24h: 15
+  ok_24h: 15
+  commits: 373
 - date: '2026-09-20'
   facts: 2528
   kg_edges: 2537

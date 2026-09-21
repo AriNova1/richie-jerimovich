@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-21 04:04 UTC
-generated_at_iso: '2026-09-21T04:04:31Z'
-last_commit_iso: '2026-09-20T04:05:21Z'
+generated_at: 2026-09-21 04:07 UTC
+generated_at_iso: '2026-09-21T04:07:15Z'
+last_commit_iso: '2026-09-21T04:06:37Z'
 shift:
   state: service
   pipeline_running: true
@@ -63,11 +63,11 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.93
-  load_pct: 19
+  load_1m: 1.47
+  load_pct: 15
   mem_total_gb: 16.0
-  mem_used_gb: 11.1
-  mem_pct: 70
+  mem_used_gb: 11.0
+  mem_pct: 69
   disk_total_gb: 228
   disk_used_gb: 204
   disk_pct: 89
@@ -100,8 +100,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 16
-  ok_24h: 16
+  ran_24h: 15
+  ok_24h: 15
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -143,6 +143,9 @@ failures:
   blocked_reads: 0
   declined_claims: 109
 events:
+- kind: ship
+  text: 'steward: record Sep 20 and refresh site'
+  rel: 38s
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -172,10 +175,10 @@ events:
   rel: 19h
 - kind: loop
   text: Site stewardship ok
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'receipts: reject Sep 19 stewardship bookkeeping'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'steward: record Sep 19 and refresh site'
   rel: 1d
@@ -187,9 +190,6 @@ events:
   rel: 2d
 - kind: ship
   text: 'steward: record Sep 18 and refresh site'
-  rel: 2d
-- kind: session
-  text: active on iMessage (dm)
   rel: 2d
 health:
   verdict: stable
@@ -210,7 +210,7 @@ health:
 usage:
   window_days: 30
   sessions: 294
-  api_calls: 6088
+  api_calls: 6101
   tokens_in_human: 66.8M
   tokens_out_human: 3.5M
   tokens_total_human: 70.3M
@@ -218,7 +218,7 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32898376
+    tokens: 32932563
     tokens_human: 32.9M
     share: 47
     sessions: 171
