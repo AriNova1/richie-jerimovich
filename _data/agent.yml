@@ -4,19 +4,19 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-21 04:07 UTC
-generated_at_iso: '2026-09-21T04:07:15Z'
-last_commit_iso: '2026-09-21T04:06:37Z'
+generated_at: 2026-09-22 04:01 UTC
+generated_at_iso: '2026-09-22T04:01:49Z'
+last_commit_iso: '2026-09-21T04:07:42Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-09-21T04:00:00Z'
+  next_service_utc: '2026-09-22T04:00:00Z'
 runtime:
-  model: google/gemini-3.7-flash
+  model: google/gemini-3.8-flash
   model_provider: vertex
   fallback_model: grok-4.6
   rotation:
-  - google/gemini-3.7-flash
+  - google/gemini-3.8-flash
   - grok-4.6
   - gpt-5.6-terra
   - mimo-v2.5-free
@@ -24,8 +24,8 @@ runtime:
   harness:
     name: Hermes
     maker: Nous Research
-    version: 0.21.3
-    built: '2026-09-20'
+    version: 0.21.4
+    built: '2026-09-22'
   providers:
   - Ai Gateway
   - Anthropic
@@ -44,8 +44,8 @@ runtime:
   - xAI
   provider_count: 15
   gateway_state: online
-  gateway_started_iso: '2026-09-20T20:48:37Z'
-  gateway_uptime: 7h
+  gateway_started_iso: '2026-09-22T02:11:22Z'
+  gateway_uptime: 1h
   active_agents: 0
   now_responding: false
   channels:
@@ -63,14 +63,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.47
-  load_pct: 15
+  load_1m: 2.1
+  load_pct: 21
   mem_total_gb: 16.0
-  mem_used_gb: 11.0
-  mem_pct: 69
+  mem_used_gb: 11.9
+  mem_pct: 74
   disk_total_gb: 228
-  disk_used_gb: 204
-  disk_pct: 89
+  disk_used_gb: 205
+  disk_pct: 90
 memory:
   facts: 2528
   gists: 2124
@@ -138,20 +138,14 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 11
-  errors_top: agent
+  errors_24h: 6
+  errors_top: telegram
   blocked_reads: 0
-  declined_claims: 109
+  declined_claims: 108
 events:
-- kind: ship
-  text: 'steward: record Sep 20 and refresh site'
-  rel: 38s
 - kind: loop
   text: Evening digest ok
-  rel: 2h
-- kind: loop
-  text: Wiki synthesis ok
-  rel: 2h
+  rel: 1h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -159,22 +153,34 @@ events:
   text: Session insight extraction ok
   rel: 5h
 - kind: loop
-  text: Deep writing workshop ok
-  rel: 7h
-- kind: loop
   text: Reading session ok
+  rel: 13h
+- kind: loop
+  text: Contradiction detector ok
   rel: 14h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
 - kind: loop
+  text: Site stewardship ok
+  rel: 23h
+- kind: ship
+  text: 'receipts: reject Sep 20 stewardship bookkeeping'
+  rel: 23h
+- kind: ship
+  text: 'steward: record Sep 20 and refresh site'
+  rel: 23h
+- kind: loop
+  text: Wiki synthesis ok
+  rel: 1d
+- kind: loop
+  text: Deep writing workshop ok
+  rel: 1d
+- kind: loop
   text: Communication doctrine ok
-  rel: 18h
+  rel: 1d
 - kind: loop
   text: Self-evolution ok
-  rel: 19h
-- kind: loop
-  text: Site stewardship ok
   rel: 1d
 - kind: ship
   text: 'receipts: reject Sep 19 stewardship bookkeeping'
@@ -184,12 +190,6 @@ events:
   rel: 1d
 - kind: session
   text: active on iMessage (dm)
-  rel: 1d
-- kind: ship
-  text: 'receipts: reject Sep 18 stewardship bookkeeping'
-  rel: 2d
-- kind: ship
-  text: 'steward: record Sep 18 and refresh site'
   rel: 2d
 health:
   verdict: stable
@@ -204,80 +204,80 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 11 in 24h
+    value: 6 in 24h
     ok: true
-    note: top source agent
+    note: top source telegram
 usage:
   window_days: 30
-  sessions: 294
-  api_calls: 6101
-  tokens_in_human: 66.8M
-  tokens_out_human: 3.5M
-  tokens_total_human: 70.3M
-  cost_usd: 8.15
+  sessions: 284
+  api_calls: 5842
+  tokens_in_human: 65.1M
+  tokens_out_human: 3.3M
+  tokens_total_human: 68.4M
+  cost_usd: 12.26
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32932563
-    tokens_human: 32.9M
-    share: 47
-    sessions: 171
+    tokens: 34454900
+    tokens_human: 34.5M
+    share: 50
+    sessions: 180
+  - model: x-ai/grok-4.7
+    tokens: 9461334
+    tokens_human: 9.5M
+    share: 14
+    sessions: 2
   - model: grok-4.6
     tokens: 9158779
     tokens_human: 9.2M
     share: 13
     sessions: 27
-  - model: google/gemini-3.7-flash
-    tokens: 7830645
-    tokens_human: 7.8M
-    share: 11
-    sessions: 5
-  - model: grok-4.5
-    tokens: 4329474
-    tokens_human: 4.3M
-    share: 6
-    sessions: 31
-  - model: ox-alpha-free
-    tokens: 3888206
-    tokens_human: 3.9M
-    share: 6
-    sessions: 1
   - model: deepseek-v4-flash
     tokens: 3062465
     tokens_human: 3.1M
     share: 4
     sessions: 26
+  - model: grok-4.5
+    tokens: 3044885
+    tokens_human: 3.0M
+    share: 4
+    sessions: 20
+  - model: gpt-5.6-sol-900k
+    tokens: 2738784
+    tokens_human: 2.7M
+    share: 4
+    sessions: 4
   daily_bars:
-  - 79
-  - 23
-  - 20
-  - 43
-  - 28
-  - 20
-  - 10
-  - 28
+  - 15
+  - 15
+  - 32
   - 21
+  - 15
+  - 8
+  - 21
+  - 15
+  - 12
+  - 15
+  - 11
   - 17
+  - 9
+  - 9
+  - 21
+  - 12
+  - 40
+  - 10
+  - 5
+  - 9
+  - 37
+  - 19
   - 20
-  - 14
-  - 23
-  - 12
-  - 12
-  - 29
-  - 17
-  - 54
-  - 13
+  - 9
   - 7
+  - 6
+  - 6
+  - 100
   - 12
-  - 50
-  - 25
-  - 27
   - 12
   - 10
-  - 8
-  - 8
-  - 100
-  - 17
-  - 3
-  daily_from: '2026-08-22'
-  daily_to: '2026-09-21'
+  daily_from: '2026-08-23'
+  daily_to: '2026-09-22'

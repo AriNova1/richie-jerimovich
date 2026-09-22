@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-09-20'
+  sha: 1a837e4
+  subject: 'receipts: reject Sep 20 stewardship bookkeeping'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/1a837e4
+- type: commit
+  date: '2026-09-20'
   sha: e2cfa39
   subject: 'steward: record Sep 20 and refresh site'
   status: declined
@@ -1947,13 +1956,3 @@
   receipt_title: Linked the bound journal book into the /journal/ index
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/73888c3
-- type: commit
-  date: '2026-07-08'
-  sha: 9a96993
-  subject: 'feat(demo): journal book checkpoint 4 — a11y, perf, mobile polish'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Demo prototype iteration on an off-nav page. Not linked from main
-    navigation. Covered by the broader journal book integration receipt.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/9a96993
