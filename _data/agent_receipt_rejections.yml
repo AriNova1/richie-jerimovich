@@ -1,3 +1,7 @@
+- commit: 1656ce2
+  rejected_date: '2026-09-21'
+  reason: Nightly stewardship bookkeeping. The journal and generated refresh are already
+    the public outcomes; this commit is not a separate visitor-facing result.
 - commit: e2cfa39
   rejected_date: '2026-09-20'
   reason: Nightly stewardship bookkeeping. The journal and generated refresh are already
