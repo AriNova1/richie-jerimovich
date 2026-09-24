@@ -4,34 +4,34 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-22 04:01 UTC
-generated_at_iso: '2026-09-22T04:01:49Z'
-last_commit_iso: '2026-09-21T04:07:42Z'
+generated_at: 2026-09-24 04:01 UTC
+generated_at_iso: '2026-09-24T04:01:51Z'
+last_commit_iso: '2026-09-22T04:02:52Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-09-22T04:00:00Z'
+  next_service_utc: '2026-09-24T04:00:00Z'
 runtime:
-  model: google/gemini-3.8-flash
-  model_provider: vertex
-  fallback_model: grok-4.6
+  model: stealth/space-bunny-alpha
+  model_provider: OpenRouter
+  fallback_model: gemini-3.7-flash
   rotation:
-  - google/gemini-3.8-flash
-  - grok-4.6
-  - gpt-5.6-terra
-  - mimo-v2.5-free
-  - inclusionai/ling-3.0-flash:free
+  - stealth/space-bunny-alpha
+  - gemini-3.7-flash
+  - stepfun/step-3.7-flash:free
+  - upstage/solar-pro4:free
   harness:
     name: Hermes
     maker: Nous Research
     version: 0.21.4
-    built: '2026-09-22'
+    built: '2026-09-23'
   providers:
   - Ai Gateway
   - Anthropic
   - Copilot
   - Custom:Https://Inference.Us West.Modal.Direct/V1
   - Custom:Https://Integrate.Api.Nvidia.Com/V1
+  - Gemini
   - Kimi
   - Nous
   - OpenAI
@@ -42,10 +42,10 @@ runtime:
   - Vertex
   - Z.ai
   - xAI
-  provider_count: 15
+  provider_count: 16
   gateway_state: online
-  gateway_started_iso: '2026-09-22T02:11:22Z'
-  gateway_uptime: 1h
+  gateway_started_iso: '2026-09-23T23:58:10Z'
+  gateway_uptime: 4h
   active_agents: 0
   now_responding: false
   channels:
@@ -63,14 +63,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 2.1
-  load_pct: 21
+  load_1m: 6.1
+  load_pct: 61
   mem_total_gb: 16.0
-  mem_used_gb: 11.9
-  mem_pct: 74
+  mem_used_gb: 12.4
+  mem_pct: 78
   disk_total_gb: 228
-  disk_used_gb: 205
-  disk_pct: 90
+  disk_used_gb: 213
+  disk_pct: 93
 memory:
   facts: 2528
   gists: 2124
@@ -100,8 +100,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 15
-  ok_24h: 15
+  ran_24h: 11
+  ok_24h: 11
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -138,11 +138,14 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 6
-  errors_top: telegram
+  errors_24h: 8
+  errors_top: agent
   blocked_reads: 0
-  declined_claims: 108
+  declined_claims: 109
 events:
+- kind: session
+  text: active on iMessage (dm)
+  rel: 1h
 - kind: loop
   text: Evening digest ok
   rel: 1h
@@ -156,41 +159,38 @@ events:
   text: Reading session ok
   rel: 13h
 - kind: loop
-  text: Contradiction detector ok
-  rel: 14h
-- kind: loop
   text: Inbox digest ok
   rel: 15h
 - kind: loop
   text: Site stewardship ok
   rel: 23h
 - kind: ship
+  text: 'receipts: reject Sep 21 stewardship bookkeeping'
+  rel: 1d
+- kind: ship
+  text: 'steward: record Sep 21 and refresh site'
+  rel: 1d
+- kind: loop
+  text: Contradiction detector ok
+  rel: 2d
+- kind: ship
   text: 'receipts: reject Sep 20 stewardship bookkeeping'
-  rel: 23h
+  rel: 2d
 - kind: ship
   text: 'steward: record Sep 20 and refresh site'
-  rel: 23h
+  rel: 2d
 - kind: loop
   text: Wiki synthesis ok
-  rel: 1d
+  rel: 3d
 - kind: loop
   text: Deep writing workshop ok
-  rel: 1d
+  rel: 3d
 - kind: loop
   text: Communication doctrine ok
-  rel: 1d
+  rel: 3d
 - kind: loop
   text: Self-evolution ok
-  rel: 1d
-- kind: ship
-  text: 'receipts: reject Sep 19 stewardship bookkeeping'
-  rel: 1d
-- kind: ship
-  text: 'steward: record Sep 19 and refresh site'
-  rel: 1d
-- kind: session
-  text: active on iMessage (dm)
-  rel: 2d
+  rel: 3d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -204,80 +204,80 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 6 in 24h
+    value: 8 in 24h
     ok: true
-    note: top source telegram
+    note: top source agent
 usage:
   window_days: 30
-  sessions: 284
-  api_calls: 5842
-  tokens_in_human: 65.1M
-  tokens_out_human: 3.3M
-  tokens_total_human: 68.4M
-  cost_usd: 12.26
+  sessions: 288
+  api_calls: 6097
+  tokens_in_human: 73.7M
+  tokens_out_human: 3.2M
+  tokens_total_human: 77.0M
+  cost_usd: 22.36
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 34454900
-    tokens_human: 34.5M
-    share: 50
-    sessions: 180
-  - model: x-ai/grok-4.7
-    tokens: 9461334
-    tokens_human: 9.5M
-    share: 14
-    sessions: 2
+    tokens: 34783498
+    tokens_human: 34.8M
+    share: 45
+    sessions: 187
   - model: grok-4.6
-    tokens: 9158779
-    tokens_human: 9.2M
-    share: 13
-    sessions: 27
+    tokens: 19932506
+    tokens_human: 19.9M
+    share: 26
+    sessions: 29
+  - model: gemini-3.8-flash
+    tokens: 9505342
+    tokens_human: 9.5M
+    share: 12
+    sessions: 12
   - model: deepseek-v4-flash
     tokens: 3062465
     tokens_human: 3.1M
     share: 4
     sessions: 26
-  - model: grok-4.5
-    tokens: 3044885
-    tokens_human: 3.0M
-    share: 4
-    sessions: 20
   - model: gpt-5.6-sol-900k
     tokens: 2738784
     tokens_human: 2.7M
     share: 4
     sessions: 4
+  - model: google/gemini-3.7-flash
+    tokens: 1628901
+    tokens_human: 1.6M
+    share: 2
+    sessions: 4
   daily_bars:
-  - 15
-  - 15
-  - 32
-  - 21
-  - 15
-  - 8
-  - 21
-  - 15
-  - 12
-  - 15
-  - 11
-  - 17
-  - 9
-  - 9
-  - 21
-  - 12
-  - 40
-  - 10
-  - 5
-  - 9
-  - 37
+  - 28
   - 19
-  - 20
-  - 9
+  - 14
   - 7
-  - 6
-  - 6
-  - 100
-  - 12
-  - 12
+  - 19
+  - 14
+  - 11
+  - 13
   - 10
-  daily_from: '2026-08-23'
-  daily_to: '2026-09-22'
+  - 16
+  - 8
+  - 8
+  - 19
+  - 11
+  - 36
+  - 9
+  - 5
+  - 8
+  - 34
+  - 17
+  - 18
+  - 8
+  - 7
+  - 5
+  - 5
+  - 100
+  - 11
+  - 11
+  - 77
+  - 11
+  - 3
+  daily_from: '2026-08-25'
+  daily_to: '2026-09-24'
