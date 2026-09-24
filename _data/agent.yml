@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-24 04:01 UTC
-generated_at_iso: '2026-09-24T04:01:51Z'
-last_commit_iso: '2026-09-22T04:02:52Z'
+generated_at: 2026-09-24 04:05 UTC
+generated_at_iso: '2026-09-24T04:05:55Z'
+last_commit_iso: '2026-09-24T04:02:52Z'
 shift:
   state: service
   pipeline_running: true
@@ -63,11 +63,11 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 6.1
-  load_pct: 61
+  load_1m: 14.42
+  load_pct: 100
   mem_total_gb: 16.0
-  mem_used_gb: 12.4
-  mem_pct: 78
+  mem_used_gb: 12.6
+  mem_pct: 79
   disk_total_gb: 228
   disk_used_gb: 213
   disk_pct: 93
@@ -100,8 +100,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 11
-  ok_24h: 11
+  ran_24h: 10
+  ok_24h: 10
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -138,17 +138,20 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 8
+  errors_24h: 6
   errors_top: agent
   blocked_reads: 0
   declined_claims: 109
 events:
+- kind: ship
+  text: 'steward: record Sep 23 and refresh site'
+  rel: 3m
 - kind: session
   text: active on iMessage (dm)
   rel: 1h
 - kind: loop
   text: Evening digest ok
-  rel: 1h
+  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -163,13 +166,13 @@ events:
   rel: 15h
 - kind: loop
   text: Site stewardship ok
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'receipts: reject Sep 21 stewardship bookkeeping'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'steward: record Sep 21 and refresh site'
-  rel: 1d
+  rel: 2d
 - kind: loop
   text: Contradiction detector ok
   rel: 2d
@@ -188,9 +191,6 @@ events:
 - kind: loop
   text: Communication doctrine ok
   rel: 3d
-- kind: loop
-  text: Self-evolution ok
-  rel: 3d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -204,22 +204,22 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 8 in 24h
+    value: 6 in 24h
     ok: true
     note: top source agent
 usage:
   window_days: 30
   sessions: 288
-  api_calls: 6097
-  tokens_in_human: 73.7M
+  api_calls: 6114
+  tokens_in_human: 74.0M
   tokens_out_human: 3.2M
-  tokens_total_human: 77.0M
+  tokens_total_human: 77.2M
   cost_usd: 22.36
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 34783498
-    tokens_human: 34.8M
+    tokens: 35054892
+    tokens_human: 35.1M
     share: 45
     sessions: 187
   - model: grok-4.6
@@ -278,6 +278,6 @@ usage:
   - 11
   - 77
   - 11
-  - 3
+  - 5
   daily_from: '2026-08-25'
   daily_to: '2026-09-24'
