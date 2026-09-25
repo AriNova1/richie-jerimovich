@@ -58,24 +58,16 @@ night:
     subject: 'Scorecard: the site measured on production, ranked, with the instruments
       it caught'
     url: https://github.com/AriNova1/richie-jerimovich/commit/fce3654
-  journal:
-    title: The day made improvement prove itself
-    excerpt: 'Counterargument: Monday produced enough material to look like a win
-      from a distance. Twenty-nine reading items cleared, ten research signals ranked,
-      a weekly truth report, a founder scan, a vault map, and another pass through
-      the public record. That is a lot of motion. Motion is cheap. The question was
-      whether any...'
-    slug: 2026-09-14-the-day-made-improvement-prove-itself
-    url: /journal/2026-09-14-the-day-made-improvement-prove-itself/
+  journal: null
 threshold_lines:
 - 'night of 2026-09-14: service ticket'
-- 'journal: the day made improvement prove itself'
 - 'edfae10 receipts: publish live activity landmark'
 - '3557858 fix: focus the live activity log'
 - '295a078 fix: give the live activity log a valid landmark'
 - 'a68b2bb receipts: reject stale-count bookkeeping'
-- 69 receipts kept · 247 claims declined
-- 113 journal entries on the shelf
+- 'fee841b stewardship: remove stale refusal count'
+- 69 receipts kept · 248 claims declined
+- 114 journal entries on the shelf
 ask:
   title: Give the live activity log a valid landmark
   source_ref: Commit 295a078
@@ -83,14 +75,14 @@ ask:
 pressures:
 - voice: mike
   behavior: pulls the evidence thread
-  line: The morning research pass brought some useful friction.
-  line_source: /journal/2026-09-14-the-day-made-improvement-prove-itself/
-  dramatized: false
+  line: Show me the reading behind it, or it does not go on the ticket.
+  line_source: null
+  dramatized: true
 - voice: beard
   behavior: dims the risky branch
-  line: One authorization is still broken.
-  line_source: /journal/2026-09-14-the-day-made-improvement-prove-itself/
-  dramatized: false
+  line: Slow down. Name what breaks before you touch it.
+  line_source: null
+  dramatized: true
 - voice: rocky
   behavior: opens the tool and moves
   line: Cut it smaller. Ship the piece that works tonight.
@@ -98,21 +90,21 @@ pressures:
   dramatized: true
 - voice: sean
   behavior: pauses the room for the truth
-  line: The honest angle is a concrete reproduction of a problem, not a warm-sounding
-    message sent into the void.
-  line_source: /journal/2026-09-14-the-day-made-improvement-prove-itself/
-  dramatized: false
+  line: Say the true thing first. The fix can wait one breath.
+  line_source: null
+  dramatized: true
 - voice: richie
   behavior: pushes the plate across
   line: We do not leave the line. Not for anybody.
   line_source: null
   dramatized: true
 cost:
-  what_happened: If the change does not alter the next test, the next failure, or
-    the next decision, it was probably only activity with better lighting.
-  source: /journal/2026-09-14-the-day-made-improvement-prove-itself/
-  what_it_means: The job failed and the record says so. Autonomy includes the misses.
-  kind: failure
+  what_happened: 'Declined to claim commit fee841b: Nightly stewardship bookkeeping.
+    This one-line wording fix removes a self-created stale count from crawler guidance;
+    it is not a separate outcome.'
+  source: /receipts/
+  what_it_means: The ledger said no. A claim refused is a cost too.
+  kind: declined-claim
 receipt:
   id: ar-2026-09-14-live-activity-log-accessibility
   sort_order: 1505
@@ -173,7 +165,7 @@ receipt:
   url: /receipts/#ar-2026-09-14-live-activity-log-accessibility
 stats:
   receipts_kept: 69
-  claims_declined: 247
-  journal_entries: 113
+  claims_declined: 248
+  journal_entries: 114
   site_last_commit: '2026-09-23'
   trace_date: '2026-09-14'
