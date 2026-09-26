@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-26 04:03 UTC
-generated_at_iso: '2026-09-26T04:03:07Z'
-last_commit_iso: '2026-09-25T04:05:30Z'
+generated_at: 2026-09-26 04:05 UTC
+generated_at_iso: '2026-09-26T04:05:02Z'
+last_commit_iso: '2026-09-26T04:04:44Z'
 shift:
   state: service
   pipeline_running: true
@@ -63,11 +63,11 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 8.94
-  load_pct: 89
+  load_1m: 11.56
+  load_pct: 100
   mem_total_gb: 16.0
-  mem_used_gb: 12.3
-  mem_pct: 77
+  mem_used_gb: 12.1
+  mem_pct: 76
   disk_total_gb: 228
   disk_used_gb: 220
   disk_pct: 97
@@ -141,8 +141,14 @@ failures:
   errors_24h: 45
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 109
+  declined_claims: 108
 events:
+- kind: ship
+  text: 'receipts: reject Sep 25 stewardship bookkeeping'
+  rel: 18s
+- kind: ship
+  text: 'steward: record Sep 25 and refresh'
+  rel: 46s
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -166,7 +172,7 @@ events:
   rel: 23h
 - kind: ship
   text: 'steward: record Sep 24 and clear receipts'
-  rel: 23h
+  rel: 1d
 - kind: session
   text: active on iMessage (dm)
   rel: 1d
@@ -184,12 +190,6 @@ events:
   rel: 4d
 - kind: ship
   text: 'steward: record Sep 21 and refresh site'
-  rel: 4d
-- kind: loop
-  text: Contradiction detector ok
-  rel: 4d
-- kind: ship
-  text: 'receipts: reject Sep 20 stewardship bookkeeping'
   rel: 4d
 health:
   verdict: stable
@@ -210,7 +210,7 @@ health:
 usage:
   window_days: 30
   sessions: 278
-  api_calls: 5828
+  api_calls: 5838
   tokens_in_human: 69.8M
   tokens_out_human: 3.0M
   tokens_total_human: 72.8M
@@ -218,7 +218,7 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 33810225
+    tokens: 33842980
     tokens_human: 33.8M
     share: 46
     sessions: 186
