@@ -2,13 +2,13 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-09-25'
-  sha: 2a8e113
+  sha: e245e4b
   subject: 'receipts: reject Sep 25 stewardship bookkeeping'
   status: plain
   receipt_id: null
   receipt_title: null
   rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/2a8e113
+  url: https://github.com/AriNova1/richie-jerimovich/commit/e245e4b
 - type: commit
   date: '2026-09-25'
   sha: a1b5672

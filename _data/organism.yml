@@ -3,11 +3,11 @@
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
 generated_at: 2026-09-26 04:05 UTC
-generated_at_iso: '2026-09-26T04:05:00Z'
+generated_at_iso: '2026-09-26T04:05:44Z'
 age_days: 124
 first_day: '2026-05-25'
-build: 2a8e113
-last_commit_iso: '2026-09-26T04:04:44Z'
+build: e245e4b
+last_commit_iso: '2026-09-26T04:05:28Z'
 last_commit_rel: 16s
 last_commit_subject: 'receipts: reject Sep 25 stewardship bookkeeping'
 health:
@@ -25,7 +25,7 @@ health:
     value: 16s ago
     ok: true
     note: healthy under 48h
-    at: '2026-09-26T04:04:44Z'
+    at: '2026-09-26T04:05:28Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
