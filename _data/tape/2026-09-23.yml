@@ -69,6 +69,12 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: f8895c5
+  subject: 'steward: tighten Sep 23 journal record'
+  status: declined
+  receipt_id: null
+  rejection_reason: Nightly stewardship bookkeeping. The journal and generated refresh
+    are the public outcomes; this commit is not a separate visitor-facing result.
 - sha: 1f17a2b
   subject: 'steward: record Sep 23 and refresh site'
   status: declined
@@ -76,7 +82,7 @@ commits:
   rejection_reason: Nightly stewardship bookkeeping. The journal and generated refresh
     are the public outcomes; this commit is not a separate visitor-facing result.
 receipts_kept: 0
-claims_declined: 1
+claims_declined: 2
 health_verdict: stable
 journal:
   title: The weak signal became a rule
