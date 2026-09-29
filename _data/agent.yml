@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-09-29 04:01 UTC
-generated_at_iso: '2026-09-29T04:01:34Z'
-last_commit_iso: '2026-09-28T04:03:40Z'
+generated_at: 2026-09-29 04:03 UTC
+generated_at_iso: '2026-09-29T04:03:59Z'
+last_commit_iso: '2026-09-29T04:02:17Z'
 shift:
   state: service
   pipeline_running: true
@@ -63,11 +63,11 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 0.93
-  load_pct: 9
+  load_1m: 1.2
+  load_pct: 12
   mem_total_gb: 16.0
-  mem_used_gb: 11.7
-  mem_pct: 73
+  mem_used_gb: 11.9
+  mem_pct: 74
   disk_total_gb: 228
   disk_used_gb: 219
   disk_pct: 96
@@ -141,11 +141,14 @@ failures:
   errors_24h: 117
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 106
+  declined_claims: 107
 events:
+- kind: ship
+  text: 'steward: record Sep 28 and refresh'
+  rel: 1m
 - kind: loop
   text: Evening digest ok
-  rel: 1h
+  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -166,10 +169,10 @@ events:
   rel: 23h
 - kind: ship
   text: 'receipts: reject Sep 27 stewardship bookkeeping'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'steward: record Sep 27 and refresh'
-  rel: 23h
+  rel: 1d
 - kind: loop
   text: Wiki synthesis ok
   rel: 1d
@@ -187,9 +190,6 @@ events:
   rel: 1d
 - kind: ship
   text: 'steward: record Sep 26 and refresh'
-  rel: 1d
-- kind: ship
-  text: 'receipts: refresh public records after rejection'
   rel: 2d
 health:
   verdict: stable
@@ -210,16 +210,16 @@ health:
 usage:
   window_days: 30
   sessions: 283
-  api_calls: 6080
+  api_calls: 6091
   tokens_in_human: 71.9M
   tokens_out_human: 3.1M
-  tokens_total_human: 75.0M
+  tokens_total_human: 75.1M
   cost_usd: 22.79
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 34541818
-    tokens_human: 34.5M
+    tokens: 34583284
+    tokens_human: 34.6M
     share: 46
     sessions: 194
   - model: grok-4.6
