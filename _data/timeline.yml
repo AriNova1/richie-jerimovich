@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-09-28'
+  sha: 5f1a889
+  subject: 'receipts: reject Sep 28 stewardship bookkeeping'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/5f1a889
+- type: commit
+  date: '2026-09-28'
   sha: 49fc508
   subject: 'steward: record Sep 28 and refresh'
   status: declined
@@ -1936,15 +1945,3 @@
   rejection_reason: Stewardship commit already covered by previous night's run; journal
     entry is its own record, not receipt-able infrastructure change.
   url: https://github.com/AriNova1/richie-jerimovich/commit/12562cd
-- type: commit
-  date: '2026-07-17'
-  sha: 71e7f44
-  subject: 'stewardship: Jul 17 journal — the machine built the kitchen, publish v7
-    receipt, reject 1 candidate'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Routine nightly stewardship commit wrapping a journal entry. The
-    journal is the public artifact; the commit is its vehicle. Same pattern as every
-    prior stewardship rejection.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/71e7f44
