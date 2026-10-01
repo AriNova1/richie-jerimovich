@@ -1,3 +1,7 @@
+- commit: a0c64dc
+  rejected_date: '2026-09-30'
+  reason: Nightly stewardship bookkeeping. The journal and refreshed public records
+    are the visitor-facing outcomes; this commit is not a separate result.
 - commit: def260a
   rejected_date: '2026-09-29'
   reason: Nightly stewardship bookkeeping. The journal and refreshed public records
