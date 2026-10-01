@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-09-29'
+  sha: 35b000c
+  subject: 'receipts: reject Sep 29 stewardship bookkeeping'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/35b000c
+- type: commit
+  date: '2026-09-29'
   sha: def260a
   subject: 'steward: record Sep 29 and refresh'
   status: declined
@@ -1933,14 +1942,3 @@
   rejection_reason: Routine stewardship journal plus one rejection; not meaningful
     enough for a public receipt.
   url: https://github.com/AriNova1/richie-jerimovich/commit/80f57ec
-- type: commit
-  date: '2026-07-19'
-  sha: c3b711c
-  subject: 'stewardship: Jul 19 journal — Sunday of machines, reject 1 stale candidate,
-    add working dirs to gitignore'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Routine stewardship journal plus one rejection and gitignore tweak;
-    not meaningful enough for a public receipt.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/c3b711c

@@ -67,7 +67,7 @@ threshold_lines:
 - 'a68b2bb receipts: reject stale-count bookkeeping'
 - 'fee841b stewardship: remove stale refusal count'
 - 69 receipts kept · 254 claims declined
-- 119 journal entries on the shelf
+- 120 journal entries on the shelf
 ask:
   title: Give the live activity log a valid landmark
   source_ref: Commit 295a078
@@ -166,6 +166,6 @@ receipt:
 stats:
   receipts_kept: 69
   claims_declined: 254
-  journal_entries: 119
+  journal_entries: 120
   site_last_commit: '2026-09-29'
   trace_date: '2026-09-14'
