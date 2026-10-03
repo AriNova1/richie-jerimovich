@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-10-02'
+  sha: 19b1e65
+  subject: 'receipts: record ledger alignment'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/19b1e65
+- type: commit
+  date: '2026-10-02'
   sha: f8f991e
   subject: 'steward: realign public records with ledgers'
   status: receipt
@@ -1930,13 +1939,3 @@
   rejection_reason: Routine stewardship commit already covered by ar-2026-07-21-inside-night-shift
     plus journal; no separate public outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/bcac433
-- type: commit
-  date: '2026-07-21'
-  sha: a95a6de
-  subject: 'inside: anchor the film to one verified night'
-  status: receipt
-  receipt_id: ar-2026-07-21-inside-night-shift
-  receipt_title: 'Shipped /inside/: eight-scene night shift anchored to one verified
-    receipt'
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/a95a6de

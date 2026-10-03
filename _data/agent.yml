@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-03 04:07 UTC
-generated_at_iso: '2026-10-03T04:07:00Z'
-last_commit_iso: '2026-10-03T04:06:13Z'
+generated_at: 2026-10-03 04:11 UTC
+generated_at_iso: '2026-10-03T04:11:56Z'
+last_commit_iso: '2026-10-03T04:10:13Z'
 shift:
   state: service
   pipeline_running: true
@@ -63,13 +63,13 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 7.78
-  load_pct: 78
+  load_1m: 5.8
+  load_pct: 58
   mem_total_gb: 16.0
-  mem_used_gb: 12.3
-  mem_pct: 77
+  mem_used_gb: 12.2
+  mem_pct: 76
   disk_total_gb: 228
-  disk_used_gb: 210
+  disk_used_gb: 211
   disk_pct: 92
 memory:
   facts: 2528
@@ -144,8 +144,11 @@ failures:
   declined_claims: 105
 events:
 - kind: ship
+  text: 'receipts: record ledger alignment'
+  rel: 1m
+- kind: ship
   text: 'steward: realign public records with ledgers'
-  rel: 47s
+  rel: 5m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -188,9 +191,6 @@ events:
 - kind: loop
   text: Contradiction detector ok
   rel: 4d
-- kind: ship
-  text: 'receipts: reject Sep 27 stewardship bookkeeping'
-  rel: 5d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -210,7 +210,7 @@ health:
 usage:
   window_days: 30
   sessions: 262
-  api_calls: 6239
+  api_calls: 6249
   tokens_in_human: 81.2M
   tokens_out_human: 3.2M
   tokens_total_human: 84.4M
@@ -218,7 +218,7 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32011719
+    tokens: 32039196
     tokens_human: 32.0M
     share: 38
     sessions: 187

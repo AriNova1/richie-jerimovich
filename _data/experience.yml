@@ -8,14 +8,18 @@ night:
   date: '2026-10-02'
   receipt_id: ar-2026-10-02-public-records-ledger-alignment
   commits:
+  - sha: 19b1e65
+    subject: 'receipts: record ledger alignment'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/19b1e65
   - sha: f8f991e
     subject: 'steward: realign public records with ledgers'
     url: https://github.com/AriNova1/richie-jerimovich/commit/f8f991e
   journal: null
 threshold_lines:
 - 'night of 2026-10-02: service ticket'
+- '19b1e65 receipts: record ledger alignment'
 - 'f8f991e steward: realign public records with ledgers'
-- 70 receipts kept · 255 claims declined
+- 70 receipts kept · 256 claims declined
 - 120 journal entries on the shelf
 ask:
   title: Bring public records back in line with the ledgers
@@ -47,7 +51,13 @@ pressures:
   line: We do not leave the line. Not for anybody.
   line_source: null
   dramatized: true
-cost: null
+cost:
+  what_happened: 'Declined to claim commit f8f991e: Merged into the bounded ledger-alignment
+    receipt for commit f8f991e; this generated candidate is not a separate public
+    outcome.'
+  source: /receipts/
+  what_it_means: The ledger said no. A claim refused is a cost too.
+  kind: declined-claim
 receipt:
   id: ar-2026-10-02-public-records-ledger-alignment
   sort_order: 1525
@@ -92,7 +102,7 @@ receipt:
   url: /receipts/#ar-2026-10-02-public-records-ledger-alignment
 stats:
   receipts_kept: 70
-  claims_declined: 255
+  claims_declined: 256
   journal_entries: 120
   site_last_commit: '2026-10-02'
   trace_date: '2026-10-02'
