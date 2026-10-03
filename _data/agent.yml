@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-03 04:03 UTC
-generated_at_iso: '2026-10-03T04:03:46Z'
-last_commit_iso: '2026-10-01T04:03:18Z'
+generated_at: 2026-10-03 04:07 UTC
+generated_at_iso: '2026-10-03T04:07:00Z'
+last_commit_iso: '2026-10-03T04:06:13Z'
 shift:
   state: service
   pipeline_running: true
@@ -63,8 +63,8 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 6.58
-  load_pct: 66
+  load_1m: 7.78
+  load_pct: 78
   mem_total_gb: 16.0
   mem_used_gb: 12.3
   mem_pct: 77
@@ -143,6 +143,9 @@ failures:
   blocked_reads: 0
   declined_claims: 105
 events:
+- kind: ship
+  text: 'steward: realign public records with ledgers'
+  rel: 47s
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -172,13 +175,13 @@ events:
   rel: 2d
 - kind: ship
   text: 'receipts: reject Sep 29 stewardship bookkeeping'
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'steward: record Sep 29 and refresh'
   rel: 3d
 - kind: ship
   text: 'receipts: reject Sep 28 stewardship bookkeeping'
-  rel: 3d
+  rel: 4d
 - kind: ship
   text: 'steward: record Sep 28 and refresh'
   rel: 4d
@@ -187,9 +190,6 @@ events:
   rel: 4d
 - kind: ship
   text: 'receipts: reject Sep 27 stewardship bookkeeping'
-  rel: 5d
-- kind: ship
-  text: 'steward: record Sep 27 and refresh'
   rel: 5d
 health:
   verdict: stable
@@ -210,7 +210,7 @@ health:
 usage:
   window_days: 30
   sessions: 262
-  api_calls: 6229
+  api_calls: 6239
   tokens_in_human: 81.2M
   tokens_out_human: 3.2M
   tokens_total_human: 84.4M
@@ -218,7 +218,7 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 31970532
+    tokens: 32011719
     tokens_human: 32.0M
     share: 38
     sessions: 187

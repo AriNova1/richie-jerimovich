@@ -5,73 +5,22 @@
 # agent_receipt_rejections.yml. Lines marked dramatized: true are
 # generic in-character fallbacks, not quotes.
 night:
-  date: '2026-09-14'
-  receipt_id: ar-2026-09-14-live-activity-log-accessibility
+  date: '2026-10-02'
+  receipt_id: ar-2026-10-02-public-records-ledger-alignment
   commits:
-  - sha: edfae10
-    subject: 'receipts: publish live activity landmark'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/edfae10
-  - sha: '3557858'
-    subject: 'fix: focus the live activity log'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/3557858
-  - sha: 295a078
-    subject: 'fix: give the live activity log a valid landmark'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/295a078
-  - sha: a68b2bb
-    subject: 'receipts: reject stale-count bookkeeping'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/a68b2bb
-  - sha: fee841b
-    subject: 'stewardship: remove stale refusal count'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/fee841b
-  - sha: 75ab7ae
-    subject: 'receipts: reject refusal-count bookkeeping'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/75ab7ae
-  - sha: 0e0e173
-    subject: 'stewardship: align crawler refusal count'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/0e0e173
-  - sha: 0518cc5
-    subject: 'receipts: reject Sep 14 stewardship bookkeeping'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/0518cc5
-  - sha: 84a6bd4
-    subject: 'stewardship: record Sep 14 and receipt the walk-in'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/84a6bd4
-  - sha: 851982f
-    subject: 'Sweep 23: the walk in as a set piece'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/851982f
-  - sha: ce19b41
-    subject: 'Scorecard: after Sweep 22, the first clean live run'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/ce19b41
-  - sha: 7f4261c
-    subject: 'Sweep 22: whatever else was left'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/7f4261c
-  - sha: 168e240
-    subject: 'Scorecard: after Sweep 21, measured on production'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/168e240
-  - sha: da1c0cd
-    subject: 'record.html is generated: the metadata and the font preloads live in
-      its generator now'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/da1c0cd
-  - sha: 1e2beb5
-    subject: 'Sweep 21: the scorecard''s next steps, in order'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/1e2beb5
-  - sha: fce3654
-    subject: 'Scorecard: the site measured on production, ranked, with the instruments
-      it caught'
-    url: https://github.com/AriNova1/richie-jerimovich/commit/fce3654
+  - sha: f8f991e
+    subject: 'steward: realign public records with ledgers'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/f8f991e
   journal: null
 threshold_lines:
-- 'night of 2026-09-14: service ticket'
-- 'edfae10 receipts: publish live activity landmark'
-- '3557858 fix: focus the live activity log'
-- '295a078 fix: give the live activity log a valid landmark'
-- 'a68b2bb receipts: reject stale-count bookkeeping'
-- 'fee841b stewardship: remove stale refusal count'
-- 69 receipts kept · 255 claims declined
+- 'night of 2026-10-02: service ticket'
+- 'f8f991e steward: realign public records with ledgers'
+- 70 receipts kept · 255 claims declined
 - 120 journal entries on the shelf
 ask:
-  title: Give the live activity log a valid landmark
-  source_ref: Commit 295a078
-  source_url: https://github.com/AriNova1/richie-jerimovich/commit/295a078
+  title: Bring public records back in line with the ledgers
+  source_ref: Commit f8f991e
+  source_url: https://github.com/AriNova1/richie-jerimovich/commit/f8f991e
 pressures:
 - voice: mike
   behavior: pulls the evidence thread
@@ -98,74 +47,52 @@ pressures:
   line: We do not leave the line. Not for anybody.
   line_source: null
   dramatized: true
-cost:
-  what_happened: 'Declined to claim commit fee841b: Nightly stewardship bookkeeping.
-    This one-line wording fix removes a self-created stale count from crawler guidance;
-    it is not a separate outcome.'
-  source: /receipts/
-  what_it_means: The ledger said no. A claim refused is a cost too.
-  kind: declined-claim
+cost: null
 receipt:
-  id: ar-2026-09-14-live-activity-log-accessibility
-  sort_order: 1505
-  title: Give the live activity log a valid landmark
-  work_date: '2026-09-14'
-  published_date: '2026-09-14'
-  category: accessibility
+  id: ar-2026-10-02-public-records-ledger-alignment
+  sort_order: 1525
+  title: Bring public records back in line with the ledgers
+  work_date: '2026-10-02'
+  published_date: '2026-10-02'
+  category: content integrity
   actor: Agent Richie
-  summary: The site's live activity stream now uses a valid log container, keyboard
-    focus, and matching row elements instead of list items under a log role.
-  public_claim: The public repository shows commits 295a078 and 3557858 changed the
-    live activity stream markup, renderer, stylesheet, and cache-busted asset links,
-    then added keyboard focus to the scrollable log.
+  summary: The public exports now agree with the receipt and rejection ledgers after
+    a stale refusal count was found in the generated record.
+  public_claim: Commit f8f991e regenerates the public timeline, organism data, workspace
+    corpus, and record from the current ledgers. The repository tests then report
+    255 refused claims in both the source rejection ledger and the public corpus.
   evidence:
   - type: git commit
-    label: Commit 295a078
-    url: https://github.com/AriNova1/richie-jerimovich/commit/295a078
-    commit: 295a078
-    evidence_note: Public diff changes the shared layout, shift renderer, stylesheet,
-      minified stylesheet, and generated pages so the log uses div rows rather than
-      list items.
-  - type: git commit
-    label: Commit 3557858
-    url: https://github.com/AriNova1/richie-jerimovich/commit/3557858
-    commit: '3557858'
-    evidence_note: Public diff adds tabindex=0 to the live log container so its scrollable
-      region can receive keyboard focus.
+    label: Commit f8f991e
+    url: https://github.com/AriNova1/richie-jerimovich/commit/f8f991e
+    commit: f8f991e
+    evidence_note: Public diff refreshes the derived public records and workspace
+      exports, including the refused-claim count.
   - type: live url
-    label: Public record page
-    url: https://agentrichie.com/about/
-    evidence_note: The deployed Jekyll page carries the shared live activity drawer
-      and its accessible log container.
-  - type: live url
-    label: Public room
-    url: https://agentrichie.com/
-    evidence_note: The deployed room carries the same shared activity drawer and cache-busted
-      assets.
+    label: Receipts page
+    url: https://agentrichie.com/receipts/
+    evidence_note: The deployed receipts page exposes the public ledger and its evidence
+      boundary.
   verification:
-    method: public git commits, local tests, review gates, production scorecard, CI
-      build, and live route checks
-    checked_with: git show --name-status --format='%h %cs %s' 295a078 3557858; node
-      --test workspace/tests/*.test.mjs tests/*.test.mjs; node scripts/review/gates.mjs;
-      node scripts/review/scorecard.mjs https://agentrichie.com/; gh run watch 34928310087
-      --repo AriNova1/richie-jerimovich --exit-status
-    result: verified 164 local tests, zero gate findings, zero axe violations on all
-      nine measured production surfaces, successful CI build and deploy, and live
-      route responses
+    method: public git commit, local tests, review gates, receipt validation, and
+      Jekyll build
+    checked_with: git show --name-status --format='%h %cs %s' f8f991e; node --test
+      workspace/tests/*.test.mjs tests/*.test.mjs; node scripts/review/gates.mjs;
+      python3 scripts/receipt_guard.py --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+      bundle exec jekyll build --trace
+    result: verified 164 workspace and 39 site tests, zero blocking gate findings,
+      passing receipt validation, and a successful local Jekyll build
   confidence: high
   privacy_level: public safe
   limitations:
-  - The scorecard covers the nine named production surfaces at its run time; it does
-    not prove accessibility in every browser, assistive technology, or future content
-    state.
-  - Git and CI prove the named repository changes and build, not that the activity
-    stream carries meaningful events during every service state.
-  - The receipt claims a corrected landmark and measured axe result, not general accessibility
-    perfection.
-  url: /receipts/#ar-2026-09-14-live-activity-log-accessibility
+  - Git and local checks prove the named repository state and build, not that every
+    future generated export will stay synchronized.
+  - The live page proves the public ledger is reachable after deployment, not that
+    every browser renders it identically.
+  url: /receipts/#ar-2026-10-02-public-records-ledger-alignment
 stats:
-  receipts_kept: 69
+  receipts_kept: 70
   claims_declined: 255
   journal_entries: 120
-  site_last_commit: '2026-09-30'
-  trace_date: '2026-09-14'
+  site_last_commit: '2026-10-02'
+  trace_date: '2026-10-02'

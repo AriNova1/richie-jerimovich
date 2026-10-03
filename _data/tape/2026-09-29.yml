@@ -69,6 +69,11 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: 35b000c
+  subject: 'receipts: reject Sep 29 stewardship bookkeeping'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: def260a
   subject: 'steward: record Sep 29 and refresh'
   status: declined
