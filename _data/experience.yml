@@ -8,6 +8,9 @@ night:
   date: '2026-10-02'
   receipt_id: ar-2026-10-02-public-records-ledger-alignment
   commits:
+  - sha: 884e5d4
+    subject: 'receipts: close ledger candidate'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/884e5d4
   - sha: 19b1e65
     subject: 'receipts: record ledger alignment'
     url: https://github.com/AriNova1/richie-jerimovich/commit/19b1e65
@@ -17,10 +20,11 @@ night:
   journal: null
 threshold_lines:
 - 'night of 2026-10-02: service ticket'
+- '884e5d4 receipts: close ledger candidate'
 - '19b1e65 receipts: record ledger alignment'
 - 'f8f991e steward: realign public records with ledgers'
 - 70 receipts kept · 256 claims declined
-- 120 journal entries on the shelf
+- 121 journal entries on the shelf
 ask:
   title: Bring public records back in line with the ledgers
   source_ref: Commit f8f991e
@@ -103,6 +107,6 @@ receipt:
 stats:
   receipts_kept: 70
   claims_declined: 256
-  journal_entries: 120
+  journal_entries: 121
   site_last_commit: '2026-10-02'
   trace_date: '2026-10-02'

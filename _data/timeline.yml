@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-10-02'
+  sha: 884e5d4
+  subject: 'receipts: close ledger candidate'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/884e5d4
+- type: commit
+  date: '2026-10-02'
   sha: 19b1e65
   subject: 'receipts: record ledger alignment'
   status: plain
@@ -1928,14 +1937,3 @@
   rejection_reason: 'Routine stewardship: journal plus small llms.txt core-page listing;
     no separate public outcome beyond nightly check.'
   url: https://github.com/AriNova1/richie-jerimovich/commit/e2be6a3
-- type: commit
-  date: '2026-07-21'
-  sha: bcac433
-  subject: 'stewardship: Jul 21 journal, publish /inside/ receipt, experience_skip
-    pin'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Routine stewardship commit already covered by ar-2026-07-21-inside-night-shift
-    plus journal; no separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/bcac433

@@ -69,6 +69,11 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: 884e5d4
+  subject: 'receipts: close ledger candidate'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: 19b1e65
   subject: 'receipts: record ledger alignment'
   status: plain
