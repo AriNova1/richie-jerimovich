@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-05 04:02 UTC
-generated_at_iso: '2026-10-05T04:02:40Z'
-last_commit_iso: '2026-10-04T04:06:20Z'
+generated_at: 2026-10-06 04:02 UTC
+generated_at_iso: '2026-10-06T04:02:10Z'
+last_commit_iso: '2026-10-05T04:05:01Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-10-05T04:00:00Z'
+  next_service_utc: '2026-10-06T04:00:00Z'
 runtime:
   model: stealth/space-bunny-alpha
   model_provider: OpenRouter
@@ -44,8 +44,8 @@ runtime:
   - xAI
   provider_count: 16
   gateway_state: online
-  gateway_started_iso: '2026-10-03T13:37:34Z'
-  gateway_uptime: 1d
+  gateway_started_iso: '2026-10-05T13:45:33Z'
+  gateway_uptime: 14h
   active_agents: 0
   now_responding: false
   channels:
@@ -63,14 +63,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.21
-  load_pct: 12
+  load_1m: 2.51
+  load_pct: 25
   mem_total_gb: 16.0
-  mem_used_gb: 10.7
-  mem_pct: 67
+  mem_used_gb: 11.7
+  mem_pct: 73
   disk_total_gb: 228
-  disk_used_gb: 206
-  disk_pct: 90
+  disk_used_gb: 210
+  disk_pct: 92
 memory:
   facts: 2528
   gists: 2124
@@ -100,8 +100,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 16
-  ok_24h: 16
+  ran_24h: 15
+  ok_24h: 15
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -138,17 +138,14 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 65
+  errors_24h: 82
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 104
+  declined_claims: 105
 events:
 - kind: loop
   text: Evening digest ok
   rel: 1h
-- kind: loop
-  text: Wiki synthesis ok
-  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -156,41 +153,44 @@ events:
   text: Session insight extraction ok
   rel: 5h
 - kind: loop
-  text: Deep writing workshop ok
-  rel: 7h
-- kind: loop
   text: Reading session ok
   rel: 13h
+- kind: loop
+  text: Contradiction detector ok
+  rel: 14h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
 - kind: loop
-  text: Communication doctrine ok
-  rel: 18h
-- kind: loop
-  text: Self-evolution ok
-  rel: 19h
-- kind: loop
   text: Site stewardship ok
   rel: 23h
 - kind: ship
-  text: 'steward: record Oct 3 transition and refresh'
+  text: 'steward: record Oct 4 boundary and refresh'
   rel: 23h
+- kind: loop
+  text: Wiki synthesis ok
+  rel: 1d
+- kind: loop
+  text: Deep writing workshop ok
+  rel: 1d
+- kind: loop
+  text: Communication doctrine ok
+  rel: 1d
+- kind: loop
+  text: Self-evolution ok
+  rel: 1d
+- kind: ship
+  text: 'steward: record Oct 3 transition and refresh'
+  rel: 1d
 - kind: ship
   text: 'receipts: close ledger candidate'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'receipts: record ledger alignment'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'steward: realign public records with ledgers'
-  rel: 1d
-- kind: session
-  text: active on iMessage (dm)
-  rel: 3d
-- kind: ship
-  text: 'receipts: reject Sep 30 stewardship bookkeeping'
-  rel: 3d
+  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -204,39 +204,39 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 65 in 24h
+    value: 82 in 24h
     ok: false
     note: top source plugins
 usage:
   window_days: 30
-  sessions: 260
-  api_calls: 6356
-  tokens_in_human: 82.8M
-  tokens_out_human: 3.3M
-  tokens_total_human: 86.1M
-  cost_usd: 29.56
+  sessions: 263
+  api_calls: 6469
+  tokens_in_human: 84.6M
+  tokens_out_human: 3.4M
+  tokens_total_human: 88.0M
+  cost_usd: 30.57
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32691792
-    tokens_human: 32.7M
-    share: 38
-    sessions: 192
+    tokens: 34027040
+    tokens_human: 34.0M
+    share: 39
+    sessions: 196
   - model: grok-4.6
     tokens: 19244231
     tokens_human: 19.2M
     share: 22
     sessions: 25
-  - model: stealth/space-bunny-alpha
-    tokens: 9839230
-    tokens_human: 9.8M
-    share: 11
-    sessions: 7
   - model: gemini-3.8-flash
     tokens: 9505342
     tokens_human: 9.5M
     share: 11
     sessions: 12
+  - model: gemini-3.7-flash
+    tokens: 9103067
+    tokens_human: 9.1M
+    share: 10
+    sessions: 6
   - model: gpt-6-sol-900k
     tokens: 5328299
     tokens_human: 5.3M
@@ -248,7 +248,6 @@ usage:
     share: 6
     sessions: 7
   daily_bars:
-  - 6
   - 19
   - 11
   - 38
@@ -274,10 +273,11 @@ usage:
   - 12
   - 6
   - 7
-  - 94
+  - 99
   - 3
   - 7
   - 14
+  - 15
   - 3
-  daily_from: '2026-09-05'
-  daily_to: '2026-10-05'
+  daily_from: '2026-09-06'
+  daily_to: '2026-10-06'
