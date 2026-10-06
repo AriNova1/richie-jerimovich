@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-06 04:02 UTC
-generated_at_iso: '2026-10-06T04:02:10Z'
-last_commit_iso: '2026-10-05T04:05:01Z'
+generated_at: 2026-10-06 04:07 UTC
+generated_at_iso: '2026-10-06T04:07:45Z'
+last_commit_iso: '2026-10-06T04:06:18Z'
 shift:
   state: service
   pipeline_running: true
@@ -63,14 +63,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 2.51
-  load_pct: 25
+  load_1m: 4.59
+  load_pct: 46
   mem_total_gb: 16.0
-  mem_used_gb: 11.7
-  mem_pct: 73
+  mem_used_gb: 12.1
+  mem_pct: 75
   disk_total_gb: 228
-  disk_used_gb: 210
-  disk_pct: 92
+  disk_used_gb: 211
+  disk_pct: 93
 memory:
   facts: 2528
   gists: 2124
@@ -141,11 +141,14 @@ failures:
   errors_24h: 82
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 105
+  declined_claims: 106
 events:
+- kind: ship
+  text: 'steward: record Oct 5 and refresh'
+  rel: 1m
 - kind: loop
   text: Evening digest ok
-  rel: 1h
+  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -166,7 +169,7 @@ events:
   rel: 23h
 - kind: ship
   text: 'steward: record Oct 4 boundary and refresh'
-  rel: 23h
+  rel: 1d
 - kind: loop
   text: Wiki synthesis ok
   rel: 1d
@@ -181,15 +184,12 @@ events:
   rel: 1d
 - kind: ship
   text: 'steward: record Oct 3 transition and refresh'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'receipts: close ledger candidate'
   rel: 2d
 - kind: ship
   text: 'receipts: record ledger alignment'
-  rel: 2d
-- kind: ship
-  text: 'steward: realign public records with ledgers'
   rel: 2d
 health:
   verdict: stable
@@ -209,19 +209,19 @@ health:
     note: top source plugins
 usage:
   window_days: 30
-  sessions: 263
-  api_calls: 6469
-  tokens_in_human: 84.6M
-  tokens_out_human: 3.4M
-  tokens_total_human: 88.0M
+  sessions: 262
+  api_calls: 6444
+  tokens_in_human: 84.2M
+  tokens_out_human: 3.3M
+  tokens_total_human: 87.6M
   cost_usd: 30.57
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 34027040
-    tokens_human: 34.0M
-    share: 39
-    sessions: 196
+    tokens: 33624064
+    tokens_human: 33.6M
+    share: 38
+    sessions: 195
   - model: grok-4.6
     tokens: 19244231
     tokens_human: 19.2M
@@ -248,7 +248,7 @@ usage:
     share: 6
     sessions: 7
   daily_bars:
-  - 19
+  - 15
   - 11
   - 38
   - 9
