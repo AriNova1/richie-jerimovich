@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-10-06'
+  sha: bd3d62b
+  subject: 'receipts: publish Hindsight measurement'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/bd3d62b
+- type: commit
+  date: '2026-10-06'
   sha: a002f25
   subject: 'steward: record Oct 6 and meter Hindsight'
   status: receipt
@@ -1927,12 +1936,3 @@
   rejection_reason: Stewardship meta-commit publishing the already-covered timeline
     sort receipt; no separate public outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/5b1498e
-- type: commit
-  date: '2026-07-24'
-  sha: 1b84313
-  subject: 'stewardship: Jul 24 journal, fix timeline same-day sort, reject 1 candidate'
-  status: receipt
-  receipt_id: ar-2026-07-24-timeline-same-day-sort
-  receipt_title: Fix changelog/homepage latest-commit order on same-day history
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/1b84313

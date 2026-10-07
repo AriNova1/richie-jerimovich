@@ -877,7 +877,13 @@ def collect_agent_vitals():
     try:
         hist = load_yaml("organism_history.yml") or []
         today = now.date().isoformat()
-        prior = next((h for h in hist if h.get("date") and h["date"] < today), None)
+        prior = next(
+            (
+                h for h in hist
+                if h.get("date") and h["date"] < today and h.get("store") == memory.get("store")
+            ),
+            None,
+        )
         if prior:
             for k in ("facts", "kg_edges", "gists"):
                 if memory.get(k) is not None and prior.get(k) is not None:

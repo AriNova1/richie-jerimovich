@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-10-07 04:15 UTC
-generated_at_iso: '2026-10-07T04:15:15Z'
+generated_at: 2026-10-07 04:19 UTC
+generated_at_iso: '2026-10-07T04:19:02Z'
 age_days: 135
 first_day: '2026-05-25'
-build: a002f25
-last_commit_iso: '2026-10-07T04:14:18Z'
-last_commit_rel: 57s
-last_commit_subject: 'steward: record Oct 6 and meter Hindsight'
+build: bd3d62b
+last_commit_iso: '2026-10-07T04:18:36Z'
+last_commit_rel: 26s
+last_commit_subject: 'receipts: publish Hindsight measurement'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,15 +17,15 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-10-07 04:15 UTC, stale after 36h
-    at: '2026-10-07T04:15:00Z'
+    note: last clean run 2026-10-07 04:19 UTC, stale after 36h
+    at: '2026-10-07T04:19:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 57s ago
+    value: 26s ago
     ok: true
     note: healthy under 48h
-    at: '2026-10-07T04:14:18Z'
+    at: '2026-10-07T04:18:36Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
@@ -44,8 +44,8 @@ health:
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 400
-  commits_30d: 107
+  commits_total: 401
+  commits_30d: 108
   active_days_30d: 27
   streak_days: 5
   active_days_all: 130
@@ -81,17 +81,17 @@ activity:
   - 3
   - 3
   - 7
-  - 3
+  - 7
   line_points: 0.0,114.0 34.5,6.0 69.0,76.8 103.4,102.8 137.9,106.6 172.4,99.1 206.9,69.3 241.4,80.5 275.9,106.6
     310.3,106.6 344.8,106.6 379.3,106.6 413.8,106.6 448.3,106.6 482.8,106.6 517.2,114.0 551.7,106.6 586.2,106.6
     620.7,102.8 655.2,110.3 689.7,106.6 724.1,106.6 758.6,106.6 793.1,106.6 827.6,114.0 862.1,102.8 896.6,110.3
-    931.0,110.3 965.5,106.6 1000.0,110.3
+    931.0,110.3 965.5,106.6 1000.0,106.6
   area_points: 0,120.0 0.0,114.0 34.5,6.0 69.0,76.8 103.4,102.8 137.9,106.6 172.4,99.1 206.9,69.3 241.4,80.5
     275.9,106.6 310.3,106.6 344.8,106.6 379.3,106.6 413.8,106.6 448.3,106.6 482.8,106.6 517.2,114.0 551.7,106.6
     586.2,106.6 620.7,102.8 655.2,110.3 689.7,106.6 724.1,106.6 758.6,106.6 793.1,106.6 827.6,114.0 862.1,102.8
-    896.6,110.3 931.0,110.3 965.5,106.6 1000.0,110.3 1000.0,120.0
+    896.6,110.3 931.0,110.3 965.5,106.6 1000.0,106.6 1000.0,120.0
   head_x: 1000.0
-  head_y: 110.3
+  head_y: 106.6
 journal:
   total: 124
   last_date: '2026-10-06'
@@ -134,7 +134,7 @@ receipts:
   declined: 259
   claims: 330
   ledger_total: 200
-  timeline_kept: 36
+  timeline_kept: 35
   timeline_declined: 105
   decline_pct: 78
   latest:
@@ -161,9 +161,9 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 2.0
-  baseline_rate: 4.47
-  ratio: 0.45
-  pct: 22
+  week_rate: 2.14
+  baseline_rate: 4.5
+  ratio: 0.48
+  pct: 24
   level: low
 growth: null

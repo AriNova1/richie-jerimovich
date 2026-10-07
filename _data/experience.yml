@@ -8,6 +8,9 @@ night:
   date: '2026-10-06'
   receipt_id: ar-2026-10-06-live-memory-store
   commits:
+  - sha: bd3d62b
+    subject: 'receipts: publish Hindsight measurement'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/bd3d62b
   - sha: a002f25
     subject: 'steward: record Oct 6 and meter Hindsight'
     url: https://github.com/AriNova1/richie-jerimovich/commit/a002f25
@@ -23,6 +26,7 @@ night:
 threshold_lines:
 - 'night of 2026-10-06: service ticket'
 - 'journal: the screen lied politely'
+- 'bd3d62b receipts: publish Hindsight measurement'
 - 'a002f25 steward: record Oct 6 and meter Hindsight'
 - 71 receipts kept · 259 claims declined
 - 124 journal entries on the shelf

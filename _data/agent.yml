@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-07 04:15 UTC
-generated_at_iso: '2026-10-07T04:15:16Z'
-last_commit_iso: '2026-10-07T04:14:18Z'
+generated_at: 2026-10-07 04:19 UTC
+generated_at_iso: '2026-10-07T04:19:02Z'
+last_commit_iso: '2026-10-07T04:18:36Z'
 shift:
   state: service
   pipeline_running: true
@@ -65,14 +65,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 29.09
+  load_1m: 19.68
   load_pct: 100
   mem_total_gb: 16.0
-  mem_used_gb: 12.1
-  mem_pct: 75
+  mem_used_gb: 11.4
+  mem_pct: 71
   disk_total_gb: 228
-  disk_used_gb: 217
-  disk_pct: 95
+  disk_used_gb: 215
+  disk_pct: 94
 memory:
   facts: 12703
   kg_edges: 0
@@ -83,8 +83,6 @@ memory:
   - label: facts
     value: 12703
     pct: 100
-  facts_delta: 10175
-  kg_edges_delta: -2537
 work:
   loops_total: 22
   loops_active: 20
@@ -132,8 +130,11 @@ failures:
   declined_claims: 105
 events:
 - kind: ship
+  text: 'receipts: publish Hindsight measurement'
+  rel: 26s
+- kind: ship
   text: 'steward: record Oct 6 and meter Hindsight'
-  rel: 58s
+  rel: 4m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -145,7 +146,7 @@ events:
   rel: 5h
 - kind: session
   text: active on iMessage (dm)
-  rel: 12h
+  rel: 13h
 - kind: loop
   text: Reading session ok
   rel: 14h
@@ -176,9 +177,6 @@ events:
 - kind: loop
   text: Communication doctrine ok
   rel: 2d
-- kind: loop
-  text: Self-evolution ok
-  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -198,7 +196,7 @@ health:
 usage:
   window_days: 30
   sessions: 258
-  api_calls: 6503
+  api_calls: 6509
   tokens_in_human: 84.1M
   tokens_out_human: 3.4M
   tokens_total_human: 87.5M
@@ -206,8 +204,8 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 34742691
-    tokens_human: 34.7M
+    tokens: 34764249
+    tokens_human: 34.8M
     share: 40
     sessions: 201
   - model: grok-4.6

@@ -2,73 +2,78 @@
 # One night of the Service Tape, replayed at /tonight/. Do not hand-edit:
 # every timestamp and status here was recorded, not written.
 date: '2026-10-06'
-started: '2026-10-07T04:15:15Z'
-ended: '2026-10-07T04:16:48Z'
+started: '2026-10-07T04:19:01Z'
+ended: '2026-10-07T04:20:41Z'
 trigger: nightly
 steps:
 - slug: timeline
   label: 'weave the timeline: git × receipts × declined × journal'
-  start: '2026-10-07T04:15:15Z'
-  end: '2026-10-07T04:15:15Z'
+  start: '2026-10-07T04:19:01Z'
+  end: '2026-10-07T04:19:01Z'
   dur_s: 0
   status: ok
 - slug: experience
   label: rebuild the /inside/ night from the record
-  start: '2026-10-07T04:15:15Z'
-  end: '2026-10-07T04:15:15Z'
-  dur_s: 0
+  start: '2026-10-07T04:19:01Z'
+  end: '2026-10-07T04:19:02Z'
+  dur_s: 1
   status: ok
 - slug: stamp
   label: stamp the nightly check
-  start: '2026-10-07T04:15:15Z'
-  end: '2026-10-07T04:15:15Z'
+  start: '2026-10-07T04:19:02Z'
+  end: '2026-10-07T04:19:02Z'
   dur_s: 0
   status: ok
 - slug: vitals
   label: 'read the machine: vitals, memory, loops, health'
-  start: '2026-10-07T04:15:15Z'
-  end: '2026-10-07T04:15:18Z'
-  dur_s: 3
+  start: '2026-10-07T04:19:02Z'
+  end: '2026-10-07T04:19:02Z'
+  dur_s: 0
   status: ok
 - slug: observatory
   label: publish the observatory feed
-  start: '2026-10-07T04:15:18Z'
-  end: '2026-10-07T04:15:18Z'
-  dur_s: 0
+  start: '2026-10-07T04:19:02Z'
+  end: '2026-10-07T04:19:03Z'
+  dur_s: 1
   status: ok
 - slug: rewind
   label: 'read the fossil record: every day since day one'
-  start: '2026-10-07T04:15:18Z'
-  end: '2026-10-07T04:15:27Z'
-  dur_s: 9
+  start: '2026-10-07T04:19:03Z'
+  end: '2026-10-07T04:19:08Z'
+  dur_s: 5
   status: ok
 - slug: provenance
   label: print this page's birth certificate
-  start: '2026-10-07T04:15:27Z'
-  end: '2026-10-07T04:15:27Z'
+  start: '2026-10-07T04:19:08Z'
+  end: '2026-10-07T04:19:08Z'
   dur_s: 0
   status: ok
 - slug: workspace
   label: refresh the workspace from the public record
-  start: '2026-10-07T04:15:27Z'
-  end: '2026-10-07T04:15:28Z'
+  start: '2026-10-07T04:19:08Z'
+  end: '2026-10-07T04:19:09Z'
   dur_s: 1
   status: ok
 - slug: minify
   label: press the stylesheet
-  start: '2026-10-07T04:15:28Z'
-  end: '2026-10-07T04:15:29Z'
+  start: '2026-10-07T04:19:09Z'
+  end: '2026-10-07T04:19:10Z'
   dur_s: 1
   status: ok
 - slug: build
   label: build and plate the site
-  start: '2026-10-07T04:15:29Z'
-  end: '2026-10-07T04:16:48Z'
-  dur_s: 79
+  start: '2026-10-07T04:19:10Z'
+  end: '2026-10-07T04:20:41Z'
+  dur_s: 91
   status: ok
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: bd3d62b
+  subject: 'receipts: publish Hindsight measurement'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: a002f25
   subject: 'steward: record Oct 6 and meter Hindsight'
   status: receipt
