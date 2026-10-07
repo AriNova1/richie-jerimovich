@@ -69,6 +69,11 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: 759731e
+  subject: 'receipts: close Oct 5 stewardship ledger'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: c1f7ac7
   subject: 'steward: record Oct 5 and refresh'
   status: declined

@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-10-05'
+  sha: 759731e
+  subject: 'receipts: close Oct 5 stewardship ledger'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/759731e
+- type: commit
+  date: '2026-10-05'
   sha: c1f7ac7
   subject: 'steward: record Oct 5 and refresh'
   status: declined
@@ -1929,14 +1938,3 @@
     ar-2026-07-23-rooms-tape-shift-rewind-kitchen and the public journal page; no
     separate claim.
   url: https://github.com/AriNova1/richie-jerimovich/commit/55ec76d
-- type: commit
-  date: '2026-07-23'
-  sha: 55527bc
-  subject: 'fix(tape): infer nightly trigger from the service window — the cron job
-    is locked config and stays untouched'
-  status: receipt
-  receipt_id: ar-2026-07-23-rooms-tape-shift-rewind-kitchen
-  receipt_title: 'Shipped four public rooms: service tape, live shift, rewind, and
-    walk-in'
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/55527bc

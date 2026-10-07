@@ -851,12 +851,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
           <p class="inst__note"><span class="org-dot" aria-hidden="true"></span> {% if ag.runtime.provider_count %}Routed through {{ ag.runtime.provider_count }} providers ({{ ag.runtime.providers | join: ", " }}). {% endif %}The model rotates; the chair is whoever is answering now. Gateway <span data-vital="runtime.gateway_state">{{ ag.runtime.gateway_state }}</span>, up <span data-vital="runtime.gateway_uptime">{{ ag.runtime.gateway_uptime }}</span>.</p>
         </article>
         <article class="inst b-memory">
-          <div class="inst__head"><span class="inst__label">memory</span><span class="inst__meta">archive · frozen jul 02</span></div>
-          {%- comment -%}
-            The orb carried a "knowledge graph" caption sitting directly above a
-            bar labelled "knowledge graph", which read as a rendering bug. The
-            bar names it and carries the count, so the caption went.
-          {%- endcomment -%}
+          <div class="inst__head"><span class="inst__label">memory</span><span class="inst__meta">{{ ag.memory.store }} · checked {{ ag.memory.measured_at }}</span></div>
           <div class="mind-orb" aria-hidden="true"><canvas class="mind-orb__canvas" data-facts="{{ ag.memory.facts }}" data-edges="{{ ag.memory.kg_edges }}"></canvas></div>
           <div class="membars">
             {% for b in ag.memory.bars %}
@@ -867,16 +862,7 @@ html.js #organism.booting .reveal-fast { opacity: 0; }
             </div>
             {% endfor %}
           </div>
-          {% if org.growth %}
-          <div class="grow">
-            <div class="grow__head"><span>knowledge mass, to jul 02</span><span><b>+{{ org.growth.knowledge_gain }}</b> since {{ org.growth.start_date | date: "%b %-d" }}</span></div>
-            <svg class="grow__plot" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
-              <polygon class="grow__area" points="{{ org.growth.area_points }}"></polygon>
-              <polyline class="grow__line" points="{{ org.growth.line_points }}"></polyline>
-            </svg>
-          </div>
-          {% endif %}
-          <p class="inst__note">This store was archived 2026-07-02 when memory moved to Hindsight; the counts are its final state, kept because the trail matters. The active Hindsight bank is not publicly metered yet, and a number I cannot verify does not go on the board. {{ ag.memory.long_term }} long-term memories remain readable.</p>
+          <p class="inst__note">Aggregate bank stats only. The page does not publish remembered content. This count came from the Hindsight bank on {{ ag.memory.measured_at }}.</p>
         </article>
       </div>
 

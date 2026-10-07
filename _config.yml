@@ -57,6 +57,11 @@ exclude:
   - .claude-richie-site-audit-brief.md
   - .claude-richie-site-audit-continuation.md
   - second-shift/
+  # Local film work is not part of the public site. Exclude it so an
+  # unfinished media render cannot break the local Jekyll build or ship by
+  # accident if the directory is present during a refresh.
+  - mil-film-dailies/
+  - mil-launch-film/
   - trader-desk
   # Source image for hero JPGs, not served to the browser; keep outside assets/
   # to avoid shipping 1.4MB to _site/. Real output files: richie-hero-*.avif/jpg.

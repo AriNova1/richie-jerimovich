@@ -24,7 +24,7 @@ threshold_lines:
 - '19b1e65 receipts: record ledger alignment'
 - 'f8f991e steward: realign public records with ledgers'
 - 70 receipts kept · 259 claims declined
-- 123 journal entries on the shelf
+- 124 journal entries on the shelf
 ask:
   title: Bring public records back in line with the ledgers
   source_ref: Commit f8f991e
@@ -107,6 +107,6 @@ receipt:
 stats:
   receipts_kept: 70
   claims_declined: 259
-  journal_entries: 123
+  journal_entries: 124
   site_last_commit: '2026-10-05'
   trace_date: '2026-10-02'

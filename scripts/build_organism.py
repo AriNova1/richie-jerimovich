@@ -472,13 +472,16 @@ def build_organism():
     else:
         verdict, basis = "degraded", "a core signal is stale or failing"
 
-    # ---- growth: the agent's knowledge mass (facts + graph edges) climbing
-    # over time, from the daily history snapshots. Sparse at first (history began
-    # 2026-06-19) and compounds; the page frames it honestly as "since tracking
-    # began". None until there are >=2 points to draw a line. ----
+    # ---- growth: compare only like-for-like memory store snapshots. The active
+    # store changed from mnemosyne to Hindsight, so combining their counts would
+    # manufacture a growth curve out of a backend migration. ----
     ag_data = load_yaml("agent.yml")
+    current_store = ((ag_data or {}).get("memory") or {}).get("store")
     hist = sorted(
-        [h for h in (load_yaml("organism_history.yml") or []) if h.get("date")],
+        [
+            h for h in (load_yaml("organism_history.yml") or [])
+            if h.get("date") and h.get("store") == current_store
+        ],
         key=lambda r: r["date"],
     )
     km = [
@@ -492,16 +495,15 @@ def build_organism():
         g_line, g_area, g_hx, g_hy = growth_geometry(km)
         # Use live memory counts for the freshest "now" value, falling back to
         # the history file if the agent data isn't available (e.g. CI build).
+        live_mem = (ag_data or {}).get("memory") or {}
+        live_facts = live_mem.get("facts")
+        live_edges = live_mem.get("kg_edges")
         live_knowledge_now = (
-            (ag_data["memory"]["facts"] + ag_data["memory"]["kg_edges"])
-            if ag_data and ag_data.get("memory")
+            (live_facts + live_edges)
+            if live_facts is not None and live_edges is not None
             else km[-1]
         )
-        live_facts_now = (
-            ag_data["memory"]["facts"]
-            if ag_data and ag_data.get("memory")
-            else (fseries[-1] if fseries else 0)
-        )
+        live_facts_now = live_facts if live_facts is not None else (fseries[-1] if fseries else 0)
         growth = {
             "line_points": g_line,
             "area_points": g_area,
@@ -822,48 +824,54 @@ def collect_agent_vitals():
         {PLATFORM_NAMES.get(s.get("platform"), s.get("platform")) for s in svals}
     )
 
-    # ---- memory store sizes (mnemosyne) ----
-    #
-    # This reads mnemosyne.db, and mnemosyne was decommissioned on 2026-07-02.
-    # The counts are real counts of a real store; what stopped being true is
-    # that they are current. Every surface that drew them as a rising line was
-    # drawing a dead store's final values, flat since 10 July, labelled growth.
-    #
-    # The file's own modification time is exported alongside the counts so no
-    # page has to be told the store is frozen: it can read when the thing it is
-    # quoting last moved, and say so. The live store is Hindsight, which has no
-    # sanitized collector here, so this publishes nothing about it rather than
-    # guessing.
-    mdb = os.path.join(HERMES, "mnemosyne/data/mnemosyne.db")
-    memory = {
-        "facts": _sql_count(mdb, "facts"),
-        "gists": _sql_count(mdb, "gists"),
-        "working": _sql_count(mdb, "working_memory"),
-        "kg_edges": _sql_count(mdb, "graph_edges"),
-        "long_term": _sql_count(mdb, "memories"),
-        "consolidated": _sql_count(mdb, "consolidated_facts"),
-    }
-    memory = {k: v for k, v in memory.items() if v is not None}
-    memory["store"] = "mnemosyne"
-    try:
-        memory["measured_at"] = time.strftime(
-            "%Y-%m-%d", time.localtime(os.path.getmtime(mdb))
-        )
-    except OSError:
-        memory["measured_at"] = None
-    # precompute bar geometry for the four headline stores (avoids Liquid math)
-    bar_src = [
-        ("knowledge graph", memory.get("kg_edges")),
-        ("facts", memory.get("facts")),
-        ("gists", memory.get("gists")),
-        ("working set", memory.get("working")),
-    ]
-    bar_src = [(l, v) for l, v in bar_src if v]
-    bmax = max((v for _, v in bar_src), default=1)
-    memory["total"] = (memory.get("facts", 0) or 0) + (memory.get("gists", 0) or 0)
-    memory["bars"] = [
-        {"label": l, "value": v, "pct": round(v / bmax * 100)} for l, v in bar_src
-    ]
+    # ---- memory store size (Hindsight) ----
+    # Hindsight is the live memory store. Its local HTTP API exposes only
+    # aggregate bank stats here, so the public site gets a count and the store's
+    # own last-write date, never remembered content. CI has no local sidecar, so
+    # it carries forward the last checked Hindsight snapshot rather than falling
+    # back to the decommissioned mnemosyne database.
+    def hindsight_memory():
+        import json
+        from urllib.request import urlopen
+
+        url = "http://127.0.0.1:9177/v1/default/banks"
+        try:
+            with urlopen(url, timeout=2) as response:
+                payload = json.load(response)
+            bank = next((b for b in payload.get("banks", []) if b.get("bank_id") == "hermes"), None)
+            if not bank:
+                return None
+            count = int(bank.get("fact_count") or 0)
+            stamp = bank.get("last_write_at") or bank.get("last_document_at")
+            measured_at = str(stamp)[:10] if stamp else None
+            if not measured_at:
+                return None
+            return {
+                "facts": count,
+                "kg_edges": 0,
+                "store": "Hindsight",
+                "measured_at": measured_at,
+                "total": count,
+                "bars": [{"label": "facts", "value": count, "pct": 100}],
+            }
+        except (OSError, ValueError, TypeError, KeyError):
+            return None
+
+    memory = hindsight_memory()
+    if memory is None:
+        previous_agent = load_yaml("agent.yml") or {}
+        previous_memory = previous_agent.get("memory") or {}
+        if previous_memory.get("store") == "Hindsight" and previous_memory.get("measured_at"):
+            memory = previous_memory
+        else:
+            memory = {
+                "facts": 0,
+                "kg_edges": 0,
+                "store": "Hindsight",
+                "measured_at": None,
+                "total": 0,
+                "bars": [],
+            }
     # deltas vs the most recent prior-day snapshot (read-only here; the daily
     # row is written by build_agent). Lets the page show "+N today".
     try:
@@ -1093,6 +1101,7 @@ def update_history(data):
     org = load_yaml("organism.yml") or {}
     row = {
         "date": NOW.date().isoformat(),
+        "store": mem.get("store"),
         "facts": mem.get("facts"),
         "kg_edges": mem.get("kg_edges"),
         "gists": mem.get("gists"),
