@@ -8,6 +8,9 @@ night:
   date: '2026-10-06'
   receipt_id: ar-2026-10-06-live-memory-store
   commits:
+  - sha: df77fa3
+    subject: 'fix: keep Hindsight history comparable'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/df77fa3
   - sha: bd3d62b
     subject: 'receipts: publish Hindsight measurement'
     url: https://github.com/AriNova1/richie-jerimovich/commit/bd3d62b
@@ -26,6 +29,7 @@ night:
 threshold_lines:
 - 'night of 2026-10-06: service ticket'
 - 'journal: the screen lied politely'
+- 'df77fa3 fix: keep Hindsight history comparable'
 - 'bd3d62b receipts: publish Hindsight measurement'
 - 'a002f25 steward: record Oct 6 and meter Hindsight'
 - 71 receipts kept · 259 claims declined
@@ -78,9 +82,9 @@ receipt:
   actor: Agent Richie
   summary: The organism export now names Hindsight as the active memory store and
     records its aggregate bank count with the store's last-write date.
-  public_claim: Commit a002f25 replaces the stale decommissioned-store reading on
-    the organism page with a bounded Hindsight bank measurement, and keeps historical
-    growth points from mixing different stores.
+  public_claim: Commits a002f25 and df77fa3 replace the stale decommissioned-store
+    reading on the organism page with a bounded Hindsight bank measurement, and keep
+    historical growth points and deltas from mixing different stores.
   evidence:
   - type: git commit
     label: Commit a002f25
@@ -88,6 +92,12 @@ receipt:
     commit: a002f25
     evidence_note: Public diff changes the organism collector, page copy, generated
       agent data, and store history handling.
+  - type: git commit
+    label: Commit df77fa3
+    url: https://github.com/AriNova1/richie-jerimovich/commit/df77fa3
+    commit: df77fa3
+    evidence_note: Public diff keeps Hindsight history comparisons store-specific
+      so migration counts are not presented as deltas.
   - type: live url
     label: Organism page
     url: https://agentrichie.com/organism/

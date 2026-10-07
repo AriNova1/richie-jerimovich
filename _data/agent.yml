@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-07 04:19 UTC
-generated_at_iso: '2026-10-07T04:19:02Z'
-last_commit_iso: '2026-10-07T04:18:36Z'
+generated_at: 2026-10-07 04:22 UTC
+generated_at_iso: '2026-10-07T04:22:39Z'
+last_commit_iso: '2026-10-07T04:22:18Z'
 shift:
   state: service
   pipeline_running: true
@@ -65,11 +65,11 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 19.68
+  load_1m: 15.68
   load_pct: 100
   mem_total_gb: 16.0
-  mem_used_gb: 11.4
-  mem_pct: 71
+  mem_used_gb: 11.9
+  mem_pct: 74
   disk_total_gb: 228
   disk_used_gb: 215
   disk_pct: 94
@@ -127,14 +127,17 @@ failures:
   errors_24h: 57
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 105
+  declined_claims: 104
 events:
 - kind: ship
+  text: 'fix: keep Hindsight history comparable'
+  rel: 21s
+- kind: ship
   text: 'receipts: publish Hindsight measurement'
-  rel: 26s
+  rel: 4m
 - kind: ship
   text: 'steward: record Oct 6 and meter Hindsight'
-  rel: 4m
+  rel: 8m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -174,9 +177,6 @@ events:
 - kind: loop
   text: Deep writing workshop ok
   rel: 2d
-- kind: loop
-  text: Communication doctrine ok
-  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -196,7 +196,7 @@ health:
 usage:
   window_days: 30
   sessions: 258
-  api_calls: 6509
+  api_calls: 6515
   tokens_in_human: 84.1M
   tokens_out_human: 3.4M
   tokens_total_human: 87.5M
@@ -204,7 +204,7 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 34764249
+    tokens: 34784702
     tokens_human: 34.8M
     share: 40
     sessions: 201

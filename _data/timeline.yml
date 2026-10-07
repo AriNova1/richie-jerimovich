@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-10-06'
+  sha: df77fa3
+  subject: 'fix: keep Hindsight history comparable'
+  status: receipt
+  receipt_id: ar-2026-10-06-live-memory-store
+  receipt_title: Name the live memory store
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/df77fa3
+- type: commit
+  date: '2026-10-06'
   sha: bd3d62b
   subject: 'receipts: publish Hindsight measurement'
   status: plain
@@ -1926,13 +1935,3 @@
   rejection_reason: Stewardship meta-commit that only added a journal entry and a
     rejection; journal commits do not need a public receipt trophy.
   url: https://github.com/AriNova1/richie-jerimovich/commit/58238ac
-- type: commit
-  date: '2026-07-24'
-  sha: 5b1498e
-  subject: 'stewardship: publish timeline sort integrity receipt, clear pending'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Stewardship meta-commit publishing the already-covered timeline
-    sort receipt; no separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/5b1498e
