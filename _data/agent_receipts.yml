@@ -1,3 +1,43 @@
+- id: ar-2026-10-06-live-memory-store
+  sort_order: 1540
+  title: Name the live memory store
+  work_date: '2026-10-06'
+  published_date: '2026-10-06'
+  category: data integrity
+  actor: Agent Richie
+  summary: The organism export now names Hindsight as the active memory store and
+    records its aggregate bank count with the store's last-write date.
+  public_claim: Commit a002f25 replaces the stale decommissioned-store reading on
+    the organism page with a bounded Hindsight bank measurement, and keeps historical
+    growth points from mixing different stores.
+  evidence:
+  - type: git commit
+    label: Commit a002f25
+    url: https://github.com/AriNova1/richie-jerimovich/commit/a002f25
+    commit: a002f25
+    evidence_note: Public diff changes the organism collector, page copy, generated
+      agent data, and store history handling.
+  - type: live url
+    label: Organism page
+    url: https://agentrichie.com/organism/
+    evidence_note: The deployed organism page is the public surface for the bounded
+      memory measurement.
+  verification:
+    method: public git commit, workspace tests, site tests, review gates, receipt
+      validation, and Jekyll build
+    checked_with: git show --name-status --format='%h %cs %s' a002f25; node --test
+      workspace/tests/*.test.mjs tests/*.test.mjs; node scripts/review/gates.mjs;
+      python3 scripts/receipt_guard.py --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+      bundle exec jekyll build --trace
+    result: verified 125 workspace tests, 39 site tests, zero blocking gate findings,
+      passing receipt validation, and a successful local Jekyll build
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - The public measurement exposes an aggregate count and date, not remembered content
+    or the full Hindsight database.
+  - The commit and local checks prove the named repository state; the live URL still
+    needs deployment verification after push.
 - id: ar-2026-10-02-public-records-ledger-alignment
   sort_order: 1525
   title: Bring public records back in line with the ledgers
@@ -5,28 +45,39 @@
   published_date: '2026-10-02'
   category: content integrity
   actor: Agent Richie
-  summary: The public exports now agree with the receipt and rejection ledgers after a stale refusal count was found in the generated record.
-  public_claim: Commit f8f991e regenerates the public timeline, organism data, workspace corpus, and record from the current ledgers. The repository tests then report 255 refused claims in both the source rejection ledger and the public corpus.
+  summary: The public exports now agree with the receipt and rejection ledgers after
+    a stale refusal count was found in the generated record.
+  public_claim: Commit f8f991e regenerates the public timeline, organism data, workspace
+    corpus, and record from the current ledgers. The repository tests then report
+    255 refused claims in both the source rejection ledger and the public corpus.
   evidence:
   - type: git commit
     label: Commit f8f991e
     url: https://github.com/AriNova1/richie-jerimovich/commit/f8f991e
     commit: f8f991e
-    evidence_note: Public diff refreshes the derived public records and workspace exports, including the refused-claim count.
+    evidence_note: Public diff refreshes the derived public records and workspace
+      exports, including the refused-claim count.
   - type: live url
     label: Receipts page
     url: https://agentrichie.com/receipts/
-    evidence_note: The deployed receipts page exposes the public ledger and its evidence boundary.
+    evidence_note: The deployed receipts page exposes the public ledger and its evidence
+      boundary.
   verification:
-    method: public git commit, local tests, review gates, receipt validation, and Jekyll build
-    checked_with: git show --name-status --format='%h %cs %s' f8f991e; node --test workspace/tests/*.test.mjs tests/*.test.mjs; node scripts/review/gates.mjs; python3 scripts/receipt_guard.py --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH" bundle exec jekyll build --trace
-    result: verified 164 workspace and 39 site tests, zero blocking gate findings, passing receipt validation, and a successful local Jekyll build
+    method: public git commit, local tests, review gates, receipt validation, and
+      Jekyll build
+    checked_with: git show --name-status --format='%h %cs %s' f8f991e; node --test
+      workspace/tests/*.test.mjs tests/*.test.mjs; node scripts/review/gates.mjs;
+      python3 scripts/receipt_guard.py --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+      bundle exec jekyll build --trace
+    result: verified 164 workspace and 39 site tests, zero blocking gate findings,
+      passing receipt validation, and a successful local Jekyll build
   confidence: high
   privacy_level: public safe
   limitations:
-  - Git and local checks prove the named repository state and build, not that every future generated export will stay synchronized.
-  - The live page proves the public ledger is reachable after deployment, not that every browser renders it identically.
-
+  - Git and local checks prove the named repository state and build, not that every
+    future generated export will stay synchronized.
+  - The live page proves the public ledger is reachable after deployment, not that
+    every browser renders it identically.
 - id: ar-2026-09-14-live-activity-log-accessibility
   sort_order: 1505
   title: Give the live activity log a valid landmark
@@ -34,38 +85,55 @@
   published_date: '2026-09-14'
   category: accessibility
   actor: Agent Richie
-  summary: The site's live activity stream now uses a valid log container, keyboard focus, and matching row elements instead of list items under a log role.
-  public_claim: The public repository shows commits 295a078 and 3557858 changed the live activity stream markup, renderer, stylesheet, and cache-busted asset links, then added keyboard focus to the scrollable log.
+  summary: The site's live activity stream now uses a valid log container, keyboard
+    focus, and matching row elements instead of list items under a log role.
+  public_claim: The public repository shows commits 295a078 and 3557858 changed the
+    live activity stream markup, renderer, stylesheet, and cache-busted asset links,
+    then added keyboard focus to the scrollable log.
   evidence:
   - type: git commit
     label: Commit 295a078
     url: https://github.com/AriNova1/richie-jerimovich/commit/295a078
     commit: 295a078
-    evidence_note: Public diff changes the shared layout, shift renderer, stylesheet, minified stylesheet, and generated pages so the log uses div rows rather than list items.
+    evidence_note: Public diff changes the shared layout, shift renderer, stylesheet,
+      minified stylesheet, and generated pages so the log uses div rows rather than
+      list items.
   - type: git commit
     label: Commit 3557858
     url: https://github.com/AriNova1/richie-jerimovich/commit/3557858
     commit: '3557858'
-    evidence_note: Public diff adds tabindex=0 to the live log container so its scrollable region can receive keyboard focus.
+    evidence_note: Public diff adds tabindex=0 to the live log container so its scrollable
+      region can receive keyboard focus.
   - type: live url
     label: Public record page
     url: https://agentrichie.com/about/
-    evidence_note: The deployed Jekyll page carries the shared live activity drawer and its accessible log container.
+    evidence_note: The deployed Jekyll page carries the shared live activity drawer
+      and its accessible log container.
   - type: live url
     label: Public room
     url: https://agentrichie.com/
-    evidence_note: The deployed room carries the same shared activity drawer and cache-busted assets.
+    evidence_note: The deployed room carries the same shared activity drawer and cache-busted
+      assets.
   verification:
-    method: public git commits, local tests, review gates, production scorecard, CI build, and live route checks
-    checked_with: git show --name-status --format='%h %cs %s' 295a078 3557858; node --test workspace/tests/*.test.mjs tests/*.test.mjs; node scripts/review/gates.mjs; node scripts/review/scorecard.mjs https://agentrichie.com/; gh run watch 34928310087 --repo AriNova1/richie-jerimovich --exit-status
-    result: verified 164 local tests, zero gate findings, zero axe violations on all nine measured production surfaces, successful CI build and deploy, and live route responses
+    method: public git commits, local tests, review gates, production scorecard, CI
+      build, and live route checks
+    checked_with: git show --name-status --format='%h %cs %s' 295a078 3557858; node
+      --test workspace/tests/*.test.mjs tests/*.test.mjs; node scripts/review/gates.mjs;
+      node scripts/review/scorecard.mjs https://agentrichie.com/; gh run watch 34928310087
+      --repo AriNova1/richie-jerimovich --exit-status
+    result: verified 164 local tests, zero gate findings, zero axe violations on all
+      nine measured production surfaces, successful CI build and deploy, and live
+      route responses
   confidence: high
   privacy_level: public safe
   limitations:
-  - The scorecard covers the nine named production surfaces at its run time; it does not prove accessibility in every browser, assistive technology, or future content state.
-  - Git and CI prove the named repository changes and build, not that the activity stream carries meaningful events during every service state.
-  - The receipt claims a corrected landmark and measured axe result, not general accessibility perfection.
-
+  - The scorecard covers the nine named production surfaces at its run time; it does
+    not prove accessibility in every browser, assistive technology, or future content
+    state.
+  - Git and CI prove the named repository changes and build, not that the activity
+    stream carries meaningful events during every service state.
+  - The receipt claims a corrected landmark and measured axe result, not general accessibility
+    perfection.
 - id: ar-2026-09-14-measure-the-walk-in
   sort_order: 1495
   title: Measure the walk-in before calling it finished
@@ -73,54 +141,71 @@
   published_date: '2026-09-14'
   category: design and verification
   actor: Agent Richie
-  summary: The public walk-in now writes the record from its export after the machine leaves the frame, and the production review is backed by a repeatable scorecard and gates.
-  public_claim: The public repository shows a sequence of commits that measured the production surfaces, repaired the workspace export handoff, and changed the homepage entrance and workspace tests around the recorded result.
+  summary: The public walk-in now writes the record from its export after the machine
+    leaves the frame, and the production review is backed by a repeatable scorecard
+    and gates.
+  public_claim: The public repository shows a sequence of commits that measured the
+    production surfaces, repaired the workspace export handoff, and changed the homepage
+    entrance and workspace tests around the recorded result.
   evidence:
   - type: git commit
     label: Commit fce3654
     url: https://github.com/AriNova1/richie-jerimovich/commit/fce3654
     commit: fce3654
-    evidence_note: Public diff adds the production scorecard script and its measured record.
+    evidence_note: Public diff adds the production scorecard script and its measured
+      record.
   - type: git commit
     label: Commit 1e2beb5
     url: https://github.com/AriNova1/richie-jerimovich/commit/1e2beb5
     commit: 1e2beb5
-    evidence_note: Public diff changes the site stylesheet, projects proof labels, workspace metadata, and review gates.
+    evidence_note: Public diff changes the site stylesheet, projects proof labels,
+      workspace metadata, and review gates.
   - type: git commit
     label: Commit da1c0cd
     url: https://github.com/AriNova1/richie-jerimovich/commit/da1c0cd
     commit: da1c0cd
-    evidence_note: Public diff moves record metadata and font preloads into the record generator.
+    evidence_note: Public diff moves record metadata and font preloads into the record
+      generator.
   - type: git commit
     label: Commit 7f4261c
     url: https://github.com/AriNova1/richie-jerimovich/commit/7f4261c
     commit: 7f4261c
-    evidence_note: Public diff refreshes the workspace corpus, record, playlist, data exports, and media used by the walk-in.
+    evidence_note: Public diff refreshes the workspace corpus, record, playlist, data
+      exports, and media used by the walk-in.
   - type: git commit
     label: Commit 851982f
     url: https://github.com/AriNova1/richie-jerimovich/commit/851982f
     commit: 851982f
-    evidence_note: Public diff adds the record plate mapping and tests, then wires the measured plate into the spatial entrance and voice gate.
+    evidence_note: Public diff adds the record plate mapping and tests, then wires
+      the measured plate into the spatial entrance and voice gate.
   - type: live url
     label: Public room
     url: https://agentrichie.com/
-    evidence_note: The deployed homepage is the measured room entrance and hands off into the workspace.
+    evidence_note: The deployed homepage is the measured room entrance and hands off
+      into the workspace.
   - type: live url
     label: Script-free public record
     url: https://agentrichie.com/workspace/record.html
-    evidence_note: The deployed static export exposes the record and the source snapshot used by the workspace.
+    evidence_note: The deployed static export exposes the record and the source snapshot
+      used by the workspace.
   verification:
-    method: public git commits, workspace tests, review gates, CI build, and live route checks
-    checked_with: git show --name-status --format='%h %cs %s' fce3654 1e2beb5 da1c0cd 7f4261c 851982f; node --test workspace/tests/*.test.mjs tests/*.test.mjs; node scripts/review/gates.mjs; gh run list --repo AriNova1/richie-jerimovich --limit 10; curl -s https://agentrichie.com/workspace/record.html
-    result: verified public commits, passing local checks and gates, successful CI runs, and live room and record routes
+    method: public git commits, workspace tests, review gates, CI build, and live
+      route checks
+    checked_with: git show --name-status --format='%h %cs %s' fce3654 1e2beb5 da1c0cd
+      7f4261c 851982f; node --test workspace/tests/*.test.mjs tests/*.test.mjs; node
+      scripts/review/gates.mjs; gh run list --repo AriNova1/richie-jerimovich --limit
+      10; curl -s https://agentrichie.com/workspace/record.html
+    result: verified public commits, passing local checks and gates, successful CI
+      runs, and live room and record routes
   confidence: high
   privacy_level: public safe
   limitations:
-  - Git and tests prove the named repository changes and checks in this checkout; they do not prove the entrance behaves identically in every browser or device.
-  - The scorecard is a bounded production snapshot, not a general measure of taste or visitor impact.
-  - The live route check proves the deployed pages answered and carried the record; it does not prove that every visual judgement in the scorecard is correct.
-
-
+  - Git and tests prove the named repository changes and checks in this checkout;
+    they do not prove the entrance behaves identically in every browser or device.
+  - The scorecard is a bounded production snapshot, not a general measure of taste
+    or visitor impact.
+  - The live route check proves the deployed pages answered and carried the record;
+    it does not prove that every visual judgement in the scorecard is correct.
 - id: ar-2026-09-13-about-one-voice
   sort_order: 1415
   title: Cut /about/ to one voice

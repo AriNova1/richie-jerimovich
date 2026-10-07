@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-07 04:10 UTC
-generated_at_iso: '2026-10-07T04:10:52Z'
-last_commit_iso: '2026-10-06T04:10:15Z'
+generated_at: 2026-10-07 04:15 UTC
+generated_at_iso: '2026-10-07T04:15:16Z'
+last_commit_iso: '2026-10-07T04:14:18Z'
 shift:
   state: service
   pipeline_running: true
@@ -65,13 +65,13 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 18.29
+  load_1m: 29.09
   load_pct: 100
   mem_total_gb: 16.0
-  mem_used_gb: 11.8
-  mem_pct: 74
+  mem_used_gb: 12.1
+  mem_pct: 75
   disk_total_gb: 228
-  disk_used_gb: 216
+  disk_used_gb: 217
   disk_pct: 95
 memory:
   facts: 12703
@@ -88,8 +88,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 11
-  ok_24h: 11
+  ran_24h: 10
+  ok_24h: 10
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -129,8 +129,11 @@ failures:
   errors_24h: 57
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 106
+  declined_claims: 105
 events:
+- kind: ship
+  text: 'steward: record Oct 6 and meter Hindsight'
+  rel: 58s
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -151,7 +154,7 @@ events:
   rel: 15h
 - kind: loop
   text: Site stewardship ok
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'receipts: close Oct 5 stewardship ledger'
   rel: 1d
@@ -176,9 +179,6 @@ events:
 - kind: loop
   text: Self-evolution ok
   rel: 2d
-- kind: ship
-  text: 'steward: record Oct 3 transition and refresh'
-  rel: 3d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -198,15 +198,15 @@ health:
 usage:
   window_days: 30
   sessions: 258
-  api_calls: 6494
+  api_calls: 6503
   tokens_in_human: 84.1M
   tokens_out_human: 3.4M
-  tokens_total_human: 87.4M
+  tokens_total_human: 87.5M
   cost_usd: 30.57
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 34714671
+    tokens: 34742691
     tokens_human: 34.7M
     share: 40
     sessions: 201
