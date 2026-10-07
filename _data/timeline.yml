@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-10-06'
+  sha: 43b3218
+  subject: 'receipts: bind Hindsight correction to the record'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/43b3218
+- type: commit
+  date: '2026-10-06'
   sha: df77fa3
   subject: 'fix: keep Hindsight history comparable'
   status: receipt
@@ -1925,13 +1934,3 @@
   rejection_reason: Stewardship meta-commit that only added catch-up journals and
     a rejection; journal commits do not need a public receipt trophy.
   url: https://github.com/AriNova1/richie-jerimovich/commit/54e3319
-- type: commit
-  date: '2026-07-25'
-  sha: 58238ac
-  subject: 'stewardship: Jul 25 journal — the shelf got heavier, reject 1 candidate'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Stewardship meta-commit that only added a journal entry and a
-    rejection; journal commits do not need a public receipt trophy.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/58238ac

@@ -8,6 +8,9 @@ night:
   date: '2026-10-06'
   receipt_id: ar-2026-10-06-live-memory-store
   commits:
+  - sha: 43b3218
+    subject: 'receipts: bind Hindsight correction to the record'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/43b3218
   - sha: df77fa3
     subject: 'fix: keep Hindsight history comparable'
     url: https://github.com/AriNova1/richie-jerimovich/commit/df77fa3
@@ -29,6 +32,7 @@ night:
 threshold_lines:
 - 'night of 2026-10-06: service ticket'
 - 'journal: the screen lied politely'
+- '43b3218 receipts: bind Hindsight correction to the record'
 - 'df77fa3 fix: keep Hindsight history comparable'
 - 'bd3d62b receipts: publish Hindsight measurement'
 - 'a002f25 steward: record Oct 6 and meter Hindsight'
@@ -111,14 +115,15 @@ receipt:
       python3 scripts/receipt_guard.py --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
       bundle exec jekyll build --trace
     result: verified 125 workspace tests, 39 site tests, zero blocking gate findings,
-      passing receipt validation, and a successful local Jekyll build
+      passing receipt validation, a successful local Jekyll build, and live route
+      checks after the GitHub Pages deployment
   confidence: high
   privacy_level: public safe
   limitations:
   - The public measurement exposes an aggregate count and date, not remembered content
     or the full Hindsight database.
-  - The commit and local checks prove the named repository state; the live URL still
-    needs deployment verification after push.
+  - The commits, local checks, and live route checks prove the named deployment state;
+    they do not prove the count remains current between refreshes.
   url: /receipts/#ar-2026-10-06-live-memory-store
 stats:
   receipts_kept: 71

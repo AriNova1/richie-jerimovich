@@ -2,73 +2,78 @@
 # One night of the Service Tape, replayed at /tonight/. Do not hand-edit:
 # every timestamp and status here was recorded, not written.
 date: '2026-10-06'
-started: '2026-10-07T04:22:38Z'
-ended: '2026-10-07T04:24:35Z'
-trigger: nightly
+started: '2026-10-07T04:28:32Z'
+ended: '2026-10-07T04:29:49Z'
+trigger: manual
 steps:
 - slug: timeline
   label: 'weave the timeline: git × receipts × declined × journal'
-  start: '2026-10-07T04:22:38Z'
-  end: '2026-10-07T04:22:38Z'
+  start: '2026-10-07T04:28:32Z'
+  end: '2026-10-07T04:28:32Z'
   dur_s: 0
   status: ok
 - slug: experience
   label: rebuild the /inside/ night from the record
-  start: '2026-10-07T04:22:38Z'
-  end: '2026-10-07T04:22:39Z'
+  start: '2026-10-07T04:28:32Z'
+  end: '2026-10-07T04:28:33Z'
   dur_s: 1
   status: ok
 - slug: stamp
   label: stamp the nightly check
-  start: '2026-10-07T04:22:39Z'
-  end: '2026-10-07T04:22:39Z'
+  start: '2026-10-07T04:28:33Z'
+  end: '2026-10-07T04:28:33Z'
   dur_s: 0
   status: ok
 - slug: vitals
   label: 'read the machine: vitals, memory, loops, health'
-  start: '2026-10-07T04:22:39Z'
-  end: '2026-10-07T04:22:39Z'
+  start: '2026-10-07T04:28:33Z'
+  end: '2026-10-07T04:28:33Z'
   dur_s: 0
   status: ok
 - slug: observatory
   label: publish the observatory feed
-  start: '2026-10-07T04:22:39Z'
-  end: '2026-10-07T04:22:40Z'
+  start: '2026-10-07T04:28:33Z'
+  end: '2026-10-07T04:28:34Z'
   dur_s: 1
   status: ok
 - slug: rewind
   label: 'read the fossil record: every day since day one'
-  start: '2026-10-07T04:22:40Z'
-  end: '2026-10-07T04:22:45Z'
+  start: '2026-10-07T04:28:34Z'
+  end: '2026-10-07T04:28:39Z'
   dur_s: 5
   status: ok
 - slug: provenance
   label: print this page's birth certificate
-  start: '2026-10-07T04:22:45Z'
-  end: '2026-10-07T04:22:45Z'
+  start: '2026-10-07T04:28:39Z'
+  end: '2026-10-07T04:28:39Z'
   dur_s: 0
   status: ok
 - slug: workspace
   label: refresh the workspace from the public record
-  start: '2026-10-07T04:22:45Z'
-  end: '2026-10-07T04:22:46Z'
+  start: '2026-10-07T04:28:39Z'
+  end: '2026-10-07T04:28:40Z'
   dur_s: 1
   status: ok
 - slug: minify
   label: press the stylesheet
-  start: '2026-10-07T04:22:46Z'
-  end: '2026-10-07T04:22:47Z'
+  start: '2026-10-07T04:28:40Z'
+  end: '2026-10-07T04:28:41Z'
   dur_s: 1
   status: ok
 - slug: build
   label: build and plate the site
-  start: '2026-10-07T04:22:47Z'
-  end: '2026-10-07T04:24:35Z'
-  dur_s: 108
+  start: '2026-10-07T04:28:41Z'
+  end: '2026-10-07T04:29:49Z'
+  dur_s: 68
   status: ok
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: 43b3218
+  subject: 'receipts: bind Hindsight correction to the record'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: df77fa3
   subject: 'fix: keep Hindsight history comparable'
   status: receipt

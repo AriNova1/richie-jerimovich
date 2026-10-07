@@ -36,14 +36,15 @@
       python3 scripts/receipt_guard.py --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
       bundle exec jekyll build --trace
     result: verified 125 workspace tests, 39 site tests, zero blocking gate findings,
-      passing receipt validation, and a successful local Jekyll build
+      passing receipt validation, a successful local Jekyll build, and live route checks
+      after the GitHub Pages deployment
   confidence: high
   privacy_level: public safe
   limitations:
   - The public measurement exposes an aggregate count and date, not remembered content
     or the full Hindsight database.
-  - The commit and local checks prove the named repository state; the live URL still
-    needs deployment verification after push.
+  - The commits, local checks, and live route checks prove the named deployment state;
+    they do not prove the count remains current between refreshes.
 - id: ar-2026-10-02-public-records-ledger-alignment
   sort_order: 1525
   title: Bring public records back in line with the ledgers
