@@ -69,6 +69,11 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: '1796113'
+  subject: 'receipts: close deployment verification'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: 43b3218
   subject: 'receipts: bind Hindsight correction to the record'
   status: plain

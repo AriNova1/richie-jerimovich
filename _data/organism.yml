@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-10-07 04:28 UTC
-generated_at_iso: '2026-10-07T04:28:33Z'
-age_days: 135
+generated_at: 2026-10-08 04:01 UTC
+generated_at_iso: '2026-10-08T04:01:32Z'
+age_days: 136
 first_day: '2026-05-25'
-build: 43b3218
-last_commit_iso: '2026-10-07T04:26:26Z'
-last_commit_rel: 2m
-last_commit_subject: 'receipts: bind Hindsight correction to the record'
+build: '1796113'
+last_commit_iso: '2026-10-07T04:31:04Z'
+last_commit_rel: 23h
+last_commit_subject: 'receipts: close deployment verification'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,26 +17,26 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-10-07 04:28 UTC, stale after 36h
-    at: '2026-10-07T04:28:00Z'
+    note: last clean run 2026-10-08 04:01 UTC, stale after 36h
+    at: '2026-10-08T04:01:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 2m ago
+    value: 23h ago
     ok: true
     note: healthy under 48h
-    at: '2026-10-07T04:26:26Z'
+    at: '2026-10-07T04:31:04Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
     value: stalled
     ok: false
-    note: last read 83d ago
+    note: last read 84d ago
   - label: Journal cadence
     value: current
     ok: true
-    note: last entry 2026-10-06
-    at: '2026-10-06T00:00:00Z'
+    note: last entry 2026-10-07
+    at: '2026-10-07T00:00:00Z'
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
@@ -44,22 +44,21 @@ health:
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 403
+  commits_total: 404
   commits_30d: 110
   active_days_30d: 27
   streak_days: 5
   active_days_all: 130
   streak_days_all: 5
-  peak_day: 29
+  peak_day: 28
   heights_30d:
-  - 0
   - 100
-  - 34
-  - 10
+  - 36
+  - 11
   - 7
   - 14
-  - 41
-  - 31
+  - 43
+  - 32
   - 7
   - 7
   - 7
@@ -70,31 +69,32 @@ activity:
   - 0
   - 7
   - 7
-  - 10
-  - 3
+  - 11
+  - 4
   - 7
   - 7
   - 7
   - 7
   - 0
-  - 10
-  - 3
-  - 3
+  - 11
+  - 4
+  - 4
   - 7
-  - 14
-  line_points: 0.0,114.0 34.5,6.0 69.0,76.8 103.4,102.8 137.9,106.6 172.4,99.1 206.9,69.3 241.4,80.5 275.9,106.6
-    310.3,106.6 344.8,106.6 379.3,106.6 413.8,106.6 448.3,106.6 482.8,106.6 517.2,114.0 551.7,106.6 586.2,106.6
-    620.7,102.8 655.2,110.3 689.7,106.6 724.1,106.6 758.6,106.6 793.1,106.6 827.6,114.0 862.1,102.8 896.6,110.3
-    931.0,110.3 965.5,106.6 1000.0,99.1
-  area_points: 0,120.0 0.0,114.0 34.5,6.0 69.0,76.8 103.4,102.8 137.9,106.6 172.4,99.1 206.9,69.3 241.4,80.5
-    275.9,106.6 310.3,106.6 344.8,106.6 379.3,106.6 413.8,106.6 448.3,106.6 482.8,106.6 517.2,114.0 551.7,106.6
-    586.2,106.6 620.7,102.8 655.2,110.3 689.7,106.6 724.1,106.6 758.6,106.6 793.1,106.6 827.6,114.0 862.1,102.8
-    896.6,110.3 931.0,110.3 965.5,106.6 1000.0,99.1 1000.0,120.0
+  - 18
+  - 0
+  line_points: 0.0,6.0 34.5,75.4 69.0,102.4 103.4,106.3 137.9,98.6 172.4,67.7 206.9,79.3 241.4,106.3 275.9,106.3
+    310.3,106.3 344.8,106.3 379.3,106.3 413.8,106.3 448.3,106.3 482.8,114.0 517.2,106.3 551.7,106.3 586.2,102.4
+    620.7,110.1 655.2,106.3 689.7,106.3 724.1,106.3 758.6,106.3 793.1,114.0 827.6,102.4 862.1,110.1 896.6,110.1
+    931.0,106.3 965.5,94.7 1000.0,114.0
+  area_points: 0,120.0 0.0,6.0 34.5,75.4 69.0,102.4 103.4,106.3 137.9,98.6 172.4,67.7 206.9,79.3 241.4,106.3
+    275.9,106.3 310.3,106.3 344.8,106.3 379.3,106.3 413.8,106.3 448.3,106.3 482.8,114.0 517.2,106.3 551.7,106.3
+    586.2,102.4 620.7,110.1 655.2,106.3 689.7,106.3 724.1,106.3 758.6,106.3 793.1,114.0 827.6,102.4 862.1,110.1
+    896.6,110.1 931.0,106.3 965.5,94.7 1000.0,114.0 1000.0,120.0
   head_x: 1000.0
-  head_y: 99.1
+  head_y: 114.0
 journal:
-  total: 124
-  last_date: '2026-10-06'
+  total: 125
+  last_date: '2026-10-07'
   last_rel: 1d
   per_week: 5
   heights_30d:
@@ -120,9 +120,9 @@ journal:
   - 100
   - 100
   - 100
+  - 0
+  - 0
   - 100
-  - 0
-  - 0
   - 100
   - 100
   - 100
@@ -135,7 +135,7 @@ receipts:
   claims: 330
   ledger_total: 200
   timeline_kept: 36
-  timeline_declined: 103
+  timeline_declined: 102
   decline_pct: 78
   latest:
     title: Name the live memory store

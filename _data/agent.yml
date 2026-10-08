@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-07 04:28 UTC
-generated_at_iso: '2026-10-07T04:28:33Z'
-last_commit_iso: '2026-10-07T04:26:26Z'
+generated_at: 2026-10-08 04:01 UTC
+generated_at_iso: '2026-10-08T04:01:32Z'
+last_commit_iso: '2026-10-07T04:31:04Z'
 shift:
   state: service
   pipeline_running: true
@@ -46,8 +46,8 @@ runtime:
   context_window: 872000
   context_human: 872K
   gateway_state: online
-  gateway_started_iso: '2026-10-07T00:59:05Z'
-  gateway_uptime: 3h
+  gateway_started_iso: '2026-10-08T01:44:15Z'
+  gateway_uptime: 2h
   active_agents: 0
   now_responding: false
   channels:
@@ -65,29 +65,31 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 16.63
-  load_pct: 100
+  load_1m: 1.55
+  load_pct: 15
   mem_total_gb: 16.0
-  mem_used_gb: 11.1
-  mem_pct: 69
+  mem_used_gb: 11.3
+  mem_pct: 71
   disk_total_gb: 228
   disk_used_gb: 216
-  disk_pct: 95
+  disk_pct: 94
 memory:
-  facts: 12703
+  facts: 12759
   kg_edges: 0
   store: Hindsight
-  measured_at: '2026-10-07'
-  total: 12703
+  measured_at: '2026-10-08'
+  total: 12759
   bars:
   - label: facts
-    value: 12703
+    value: 12759
     pct: 100
+  facts_delta: 56
+  kg_edges_delta: 0
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 10
-  ok_24h: 10
+  ran_24h: 11
+  ok_24h: 11
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -124,44 +126,47 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 57
+  errors_24h: 66
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 103
+  declined_claims: 102
 events:
-- kind: ship
-  text: 'receipts: bind Hindsight correction to the record'
-  rel: 2m
-- kind: ship
-  text: 'fix: keep Hindsight history comparable'
-  rel: 6m
-- kind: ship
-  text: 'receipts: publish Hindsight measurement'
-  rel: 9m
-- kind: ship
-  text: 'steward: record Oct 6 and meter Hindsight'
-  rel: 14m
 - kind: loop
   text: Evening digest ok
-  rel: 2h
+  rel: 1h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
 - kind: loop
   text: Session insight extraction ok
   rel: 5h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 13h
 - kind: loop
   text: Reading session ok
-  rel: 14h
+  rel: 13h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 21h
 - kind: loop
   text: Site stewardship ok
-  rel: 1d
+  rel: 23h
+- kind: ship
+  text: 'receipts: close deployment verification'
+  rel: 23h
+- kind: ship
+  text: 'receipts: bind Hindsight correction to the record'
+  rel: 23h
+- kind: ship
+  text: 'fix: keep Hindsight history comparable'
+  rel: 23h
+- kind: ship
+  text: 'receipts: publish Hindsight measurement'
+  rel: 23h
+- kind: ship
+  text: 'steward: record Oct 6 and meter Hindsight'
+  rel: 23h
 - kind: ship
   text: 'receipts: close Oct 5 stewardship ledger'
   rel: 1d
@@ -170,12 +175,9 @@ events:
   rel: 1d
 - kind: loop
   text: Contradiction detector ok
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'steward: record Oct 4 boundary and refresh'
-  rel: 2d
-- kind: loop
-  text: Wiki synthesis ok
   rel: 2d
 health:
   verdict: stable
@@ -190,33 +192,33 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 57 in 24h
+    value: 66 in 24h
     ok: false
     note: top source plugins
 usage:
   window_days: 30
-  sessions: 258
-  api_calls: 6527
-  tokens_in_human: 84.2M
-  tokens_out_human: 3.4M
-  tokens_total_human: 87.5M
+  sessions: 256
+  api_calls: 6842
+  tokens_in_human: 87.0M
+  tokens_out_human: 3.6M
+  tokens_total_human: 90.6M
   cost_usd: 30.57
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 34812320
-    tokens_human: 34.8M
-    share: 40
-    sessions: 201
+    tokens: 34620889
+    tokens_human: 34.6M
+    share: 38
+    sessions: 200
   - model: grok-4.6
-    tokens: 16866083
-    tokens_human: 16.9M
-    share: 19
-    sessions: 14
+    tokens: 16582928
+    tokens_human: 16.6M
+    share: 18
+    sessions: 12
   - model: gemini-3.8-flash
     tokens: 9505342
     tokens_human: 9.5M
-    share: 11
+    share: 10
     sessions: 12
   - model: gemini-3.7-flash
     tokens: 9103067
@@ -234,8 +236,7 @@ usage:
     share: 6
     sessions: 7
   daily_bars:
-  - 8
-  - 38
+  - 37
   - 9
   - 5
   - 8
@@ -263,7 +264,8 @@ usage:
   - 7
   - 14
   - 15
-  - 16
-  - 4
-  daily_from: '2026-09-07'
-  daily_to: '2026-10-07'
+  - 23
+  - 27
+  - 3
+  daily_from: '2026-09-08'
+  daily_to: '2026-10-08'
