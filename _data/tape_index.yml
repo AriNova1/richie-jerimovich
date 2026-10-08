@@ -5,7 +5,7 @@
   steps_ok: 10
   steps_total: 10
   receipts_kept: 0
-  claims_declined: 0
+  claims_declined: 1
   journal_title: The proof had to get smaller
   health_verdict: stable
 - date: '2026-10-06'

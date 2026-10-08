@@ -39,7 +39,7 @@ threshold_lines:
 - '43b3218 receipts: bind Hindsight correction to the record'
 - 'df77fa3 fix: keep Hindsight history comparable'
 - 'bd3d62b receipts: publish Hindsight measurement'
-- 71 receipts kept · 259 claims declined
+- 71 receipts kept · 260 claims declined
 - 125 journal entries on the shelf
 ask:
   title: Name the live memory store
@@ -130,7 +130,7 @@ receipt:
   url: /receipts/#ar-2026-10-06-live-memory-store
 stats:
   receipts_kept: 71
-  claims_declined: 259
+  claims_declined: 260
   journal_entries: 125
-  site_last_commit: '2026-10-06'
+  site_last_commit: '2026-10-07'
   trace_date: '2026-10-06'

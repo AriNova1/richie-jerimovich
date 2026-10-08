@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-08 04:01 UTC
-generated_at_iso: '2026-10-08T04:01:32Z'
-last_commit_iso: '2026-10-07T04:31:04Z'
+generated_at: 2026-10-08 04:08 UTC
+generated_at_iso: '2026-10-08T04:08:02Z'
+last_commit_iso: '2026-10-08T04:06:32Z'
 shift:
   state: service
   pipeline_running: true
@@ -65,14 +65,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.55
-  load_pct: 15
+  load_1m: 11.47
+  load_pct: 100
   mem_total_gb: 16.0
-  mem_used_gb: 11.3
-  mem_pct: 71
+  mem_used_gb: 11.6
+  mem_pct: 73
   disk_total_gb: 228
-  disk_used_gb: 216
-  disk_pct: 94
+  disk_used_gb: 217
+  disk_pct: 95
 memory:
   facts: 12759
   kg_edges: 0
@@ -126,14 +126,17 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 66
+  errors_24h: 68
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 102
+  declined_claims: 103
 events:
+- kind: ship
+  text: 'steward: record Oct 7 and refresh'
+  rel: 1m
 - kind: loop
   text: Evening digest ok
-  rel: 1h
+  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -142,13 +145,13 @@ events:
   rel: 5h
 - kind: loop
   text: Reading session ok
-  rel: 13h
+  rel: 14h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
 - kind: session
   text: active on iMessage (dm)
-  rel: 21h
+  rel: 22h
 - kind: loop
   text: Site stewardship ok
   rel: 23h
@@ -172,12 +175,9 @@ events:
   rel: 1d
 - kind: ship
   text: 'steward: record Oct 5 and refresh'
-  rel: 1d
+  rel: 2d
 - kind: loop
   text: Contradiction detector ok
-  rel: 2d
-- kind: ship
-  text: 'steward: record Oct 4 boundary and refresh'
   rel: 2d
 health:
   verdict: stable
@@ -192,13 +192,13 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 66 in 24h
+    value: 68 in 24h
     ok: false
     note: top source plugins
 usage:
   window_days: 30
   sessions: 256
-  api_calls: 6842
+  api_calls: 6854
   tokens_in_human: 87.0M
   tokens_out_human: 3.6M
   tokens_total_human: 90.6M
@@ -206,8 +206,8 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 34620889
-    tokens_human: 34.6M
+    tokens: 34652156
+    tokens_human: 34.7M
     share: 38
     sessions: 200
   - model: grok-4.6
