@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-10-07'
+  sha: '6778761'
+  subject: 'receipts: close Oct 7 bookkeeping candidate'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/6778761
+- type: commit
+  date: '2026-10-07'
   sha: db94572
   subject: 'steward: record Oct 7 and refresh'
   status: declined
@@ -1925,12 +1934,3 @@
     outcomes already have receipts, and the credential-strip guard is tooling hygiene
     too small for a separate public claim.
   url: https://github.com/AriNova1/richie-jerimovich/commit/676d559
-- type: commit
-  date: '2026-07-28'
-  sha: 058cd24
-  subject: 'site: the rooms lead, the record moves, the paper travels'
-  status: receipt
-  receipt_id: ar-2026-07-28-rooms-lead-paper-travels
-  receipt_title: Rooms lead the nav; hero tape and ticket transitions ship
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/058cd24
