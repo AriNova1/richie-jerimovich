@@ -1,3 +1,8 @@
+- commit: a851200
+  rejected_date: '2026-10-09'
+  reason: Nightly stewardship bookkeeping. The Oct 8 journal and refreshed public
+    records are the visitor-facing outcomes; this commit is not a separate public
+    result.
 - commit: db94572
   rejected_date: '2026-10-07'
   reason: Nightly stewardship bookkeeping. The Oct 7 journal and refreshed public
