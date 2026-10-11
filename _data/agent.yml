@@ -4,19 +4,19 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-10 04:04 UTC
-generated_at_iso: '2026-10-10T04:04:15Z'
-last_commit_iso: '2026-10-09T04:06:38Z'
+generated_at: 2026-10-11 04:01 UTC
+generated_at_iso: '2026-10-11T04:01:27Z'
+last_commit_iso: '2026-10-10T04:06:58Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-10-10T04:00:00Z'
+  next_service_utc: '2026-10-11T04:00:00Z'
 runtime:
-  model: gpt-6-luna-900k
-  model_provider: OpenAI
+  model: stepfun/step-5-preview:free
+  model_provider: nous
   fallback_model: gemini-3.7-flash
   rotation:
-  - gpt-6-luna-900k
+  - stepfun/step-5-preview:free
   - gemini-3.7-flash
   - stepfun/step-3.7-flash:free
   - upstage/solar-pro4:free
@@ -43,11 +43,11 @@ runtime:
   - Z.ai
   - xAI
   provider_count: 16
-  context_window: 872000
-  context_human: 872K
+  context_window: 1000000
+  context_human: 1M
   gateway_state: online
-  gateway_started_iso: '2026-10-10T00:23:04Z'
-  gateway_uptime: 3h
+  gateway_started_iso: '2026-10-10T20:35:39Z'
+  gateway_uptime: 7h
   active_agents: 0
   now_responding: false
   channels:
@@ -65,14 +65,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.9
-  load_pct: 19
+  load_1m: 5.48
+  load_pct: 55
   mem_total_gb: 16.0
   mem_used_gb: 11.5
   mem_pct: 72
   disk_total_gb: 228
-  disk_used_gb: 223
-  disk_pct: 98
+  disk_used_gb: 218
+  disk_pct: 95
 memory:
   facts: 12820
   kg_edges: 0
@@ -83,7 +83,7 @@ memory:
   - label: facts
     value: 12820
     pct: 100
-  facts_delta: 16
+  facts_delta: 0
   kg_edges_delta: 0
 work:
   loops_total: 22
@@ -126,7 +126,7 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 21
+  errors_24h: 43
   errors_top: plugins
   blocked_reads: 0
   declined_claims: 103
@@ -142,7 +142,7 @@ events:
   rel: 5h
 - kind: loop
   text: Reading session ok
-  rel: 14h
+  rel: 13h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
@@ -150,34 +150,34 @@ events:
   text: Site stewardship ok
   rel: 23h
 - kind: ship
-  text: 'steward: record Oct 8 and refresh'
+  text: 'steward: record Oct 9 and refresh'
   rel: 23h
 - kind: ship
-  text: 'receipts: close Oct 7 bookkeeping candidate'
+  text: 'steward: record Oct 8 and refresh'
   rel: 1d
+- kind: ship
+  text: 'receipts: close Oct 7 bookkeeping candidate'
+  rel: 2d
 - kind: ship
   text: 'steward: record Oct 7 and refresh'
-  rel: 1d
+  rel: 2d
 - kind: session
   text: active on iMessage (dm)
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'receipts: close deployment verification'
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'receipts: bind Hindsight correction to the record'
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'fix: keep Hindsight history comparable'
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'receipts: publish Hindsight measurement'
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'steward: record Oct 6 and meter Hindsight'
-  rel: 2d
-- kind: ship
-  text: 'receipts: close Oct 5 stewardship ledger'
   rel: 3d
 health:
   verdict: stable
@@ -192,29 +192,29 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 21 in 24h
-    ok: true
+    value: 43 in 24h
+    ok: false
     note: top source plugins
 usage:
   window_days: 30
-  sessions: 253
-  api_calls: 6615
-  tokens_in_human: 82.9M
+  sessions: 254
+  api_calls: 6672
+  tokens_in_human: 84.2M
   tokens_out_human: 3.5M
-  tokens_total_human: 86.5M
+  tokens_total_human: 87.7M
   cost_usd: 30.37
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 34027830
-    tokens_human: 34.0M
+    tokens: 34105333
+    tokens_human: 34.1M
     share: 39
-    sessions: 203
+    sessions: 204
   - model: grok-4.6
-    tokens: 12263446
-    tokens_human: 12.3M
+    tokens: 12075185
+    tokens_human: 12.1M
     share: 14
-    sessions: 6
+    sessions: 5
   - model: gemini-3.8-flash
     tokens: 9505342
     tokens_human: 9.5M
@@ -223,21 +223,20 @@ usage:
   - model: gemini-3.7-flash
     tokens: 9103067
     tokens_human: 9.1M
-    share: 11
+    share: 10
     sessions: 6
-  - model: gpt-6-luna-900k
-    tokens: 5647377
-    tokens_human: 5.6M
-    share: 7
-    sessions: 3
   - model: gpt-6-sol-900k
     tokens: 5328299
     tokens_human: 5.3M
     share: 6
     sessions: 1
+  - model: gpt-6.1-sol
+    tokens: 5003421
+    tokens_human: 5.0M
+    share: 6
+    sessions: 7
   daily_bars:
-  - 4
-  - 8
+  - 5
   - 34
   - 17
   - 18
@@ -263,9 +262,10 @@ usage:
   - 14
   - 15
   - 23
-  - 33
+  - 41
   - 6
   - 6
+  - 8
   - 3
-  daily_from: '2026-09-10'
-  daily_to: '2026-10-10'
+  daily_from: '2026-09-11'
+  daily_to: '2026-10-11'
