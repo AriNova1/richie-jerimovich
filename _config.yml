@@ -63,6 +63,10 @@ exclude:
   - mil-film-dailies/
   - mil-launch-film/
   - trader-desk
+  # Private nested repo (own .git, dashboard served locally on :4361), 9 GB of
+  # data. Jekyll was copying all of it into _site/ on every build, doubling the
+  # disk cost and putting a private vault one deploy-path away from public.
+  - betting
   # Source image for hero JPGs, not served to the browser; keep outside assets/
   # to avoid shipping 1.4MB to _site/. Real output files: richie-hero-*.avif/jpg.
   - assets/richie-kitchen-server-hero.png
