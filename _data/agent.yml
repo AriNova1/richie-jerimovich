@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-12 04:01 UTC
-generated_at_iso: '2026-10-12T04:01:41Z'
-last_commit_iso: '2026-10-11T04:01:48Z'
+generated_at: 2026-10-12 04:06 UTC
+generated_at_iso: '2026-10-12T04:06:50Z'
+last_commit_iso: '2026-10-12T04:04:08Z'
 shift:
   state: service
   pipeline_running: true
@@ -47,7 +47,7 @@ runtime:
   context_human: 1M
   gateway_state: online
   gateway_started_iso: '2026-10-11T06:05:10Z'
-  gateway_uptime: 21h
+  gateway_uptime: 22h
   active_agents: 0
   now_responding: false
   channels:
@@ -65,10 +65,10 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 4.38
-  load_pct: 44
+  load_1m: 5.58
+  load_pct: 56
   mem_total_gb: 16.0
-  mem_used_gb: 11.0
+  mem_used_gb: 11.1
   mem_pct: 69
   disk_total_gb: 228
   disk_used_gb: 223
@@ -88,8 +88,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 16
-  ok_24h: 13
+  ran_24h: 15
+  ok_24h: 12
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -124,16 +124,19 @@ work:
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 81
+  success_pct: 80
 failures:
   errors_24h: 9
   errors_top: asyncio
   blocked_reads: 0
-  declined_claims: 103
+  declined_claims: 104
 events:
+- kind: ship
+  text: 'steward: record Oct 11 and close receipt gap'
+  rel: 2m
 - kind: loop
   text: Evening digest ok
-  rel: 1h
+  rel: 2h
 - kind: loop
   text: Wiki synthesis ok
   rel: 2h
@@ -157,27 +160,24 @@ events:
   rel: 18h
 - kind: loop
   text: Self-evolution ok
-  rel: 19h
+  rel: 20h
 - kind: loop
   text: Site stewardship ok
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'steward: record Oct 10 and refresh'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'steward: record Oct 9 and refresh'
   rel: 1d
 - kind: ship
   text: 'steward: record Oct 8 and refresh'
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'receipts: close Oct 7 bookkeeping candidate'
   rel: 3d
 - kind: ship
   text: 'steward: record Oct 7 and refresh'
-  rel: 3d
-- kind: session
-  text: active on iMessage (dm)
   rel: 4d
 health:
   verdict: stable
@@ -198,17 +198,17 @@ health:
 usage:
   window_days: 30
   sessions: 258
-  api_calls: 6919
-  tokens_in_human: 85.7M
+  api_calls: 6936
+  tokens_in_human: 85.8M
   tokens_out_human: 3.6M
   tokens_total_human: 89.4M
   cost_usd: 30.37
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 34374881
+    tokens: 34424430
     tokens_human: 34.4M
-    share: 38
+    share: 39
     sessions: 208
   - model: grok-4.6
     tokens: 12075185
