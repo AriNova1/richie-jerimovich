@@ -69,6 +69,11 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: c745e21
+  subject: 'receipts: reject Oct 11 bookkeeping candidate'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: 6e0da4e
   subject: 'steward: record Oct 11 and close receipt gap'
   status: declined
