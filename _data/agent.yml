@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-14 04:01 UTC
-generated_at_iso: '2026-10-14T04:01:03Z'
-last_commit_iso: '2026-10-13T04:04:41Z'
+generated_at: 2026-10-14 04:02 UTC
+generated_at_iso: '2026-10-14T04:02:30Z'
+last_commit_iso: '2026-10-14T04:02:24Z'
 shift:
   state: service
   pipeline_running: true
@@ -65,11 +65,11 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 4.89
-  load_pct: 49
+  load_1m: 3.86
+  load_pct: 39
   mem_total_gb: 16.0
-  mem_used_gb: 12.2
-  mem_pct: 76
+  mem_used_gb: 12.3
+  mem_pct: 77
   disk_total_gb: 228
   disk_used_gb: 219
   disk_pct: 96
@@ -131,9 +131,15 @@ failures:
   blocked_reads: 0
   declined_claims: 104
 events:
+- kind: ship
+  text: 'receipts: reject Oct 13 bookkeeping candidate'
+  rel: 6s
+- kind: ship
+  text: 'steward: record Oct 13 and refresh'
+  rel: 21s
 - kind: loop
   text: Evening digest ok
-  rel: 1h
+  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -173,12 +179,6 @@ events:
 - kind: loop
   text: Deep writing workshop ok
   rel: 2d
-- kind: loop
-  text: Communication doctrine ok
-  rel: 2d
-- kind: loop
-  text: Self-evolution ok
-  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -198,15 +198,15 @@ health:
 usage:
   window_days: 30
   sessions: 262
-  api_calls: 6907
+  api_calls: 6921
   tokens_in_human: 82.6M
   tokens_out_human: 3.7M
-  tokens_total_human: 86.3M
+  tokens_total_human: 86.4M
   cost_usd: 30.37
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 30614901
+    tokens: 30649579
     tokens_human: 30.6M
     share: 35
     sessions: 207

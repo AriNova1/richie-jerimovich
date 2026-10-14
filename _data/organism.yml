@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-10-14 04:01 UTC
-generated_at_iso: '2026-10-14T04:01:03Z'
+generated_at: 2026-10-14 04:02 UTC
+generated_at_iso: '2026-10-14T04:02:30Z'
 age_days: 142
 first_day: '2026-05-25'
-build: 7cca807
-last_commit_iso: '2026-10-13T04:04:41Z'
-last_commit_rel: 23h
-last_commit_subject: 'receipts: reject Oct 12 bookkeeping candidate'
+build: d23430d
+last_commit_iso: '2026-10-14T04:02:24Z'
+last_commit_rel: 6s
+last_commit_subject: 'receipts: reject Oct 13 bookkeeping candidate'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,15 +17,15 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-10-14 04:01 UTC, stale after 36h
-    at: '2026-10-14T04:01:00Z'
+    note: last clean run 2026-10-14 04:02 UTC, stale after 36h
+    at: '2026-10-14T04:02:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 23h ago
+    value: 6s ago
     ok: true
     note: healthy under 48h
-    at: '2026-10-13T04:04:41Z'
+    at: '2026-10-14T04:02:24Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
@@ -40,16 +40,16 @@ health:
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 265 of 336
+    value: declined 266 of 337
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 413
-  commits_30d: 60
-  active_days_30d: 27
-  streak_days: 11
-  active_days_all: 136
-  streak_days_all: 11
+  commits_total: 415
+  commits_30d: 62
+  active_days_30d: 28
+  streak_days: 12
+  active_days_all: 137
+  streak_days_all: 12
   peak_day: 9
   heights_30d:
   - 100
@@ -81,17 +81,17 @@ activity:
   - 11
   - 22
   - 22
-  - 0
+  - 22
   line_points: 0.0,6.0 34.5,90.0 69.0,90.0 103.4,90.0 137.9,90.0 172.4,90.0 206.9,90.0 241.4,90.0 275.9,114.0
     310.3,90.0 344.8,90.0 379.3,78.0 413.8,102.0 448.3,90.0 482.8,90.0 517.2,90.0 551.7,90.0 586.2,114.0
     620.7,78.0 655.2,102.0 689.7,102.0 724.1,90.0 758.6,54.0 793.1,90.0 827.6,102.0 862.1,102.0 896.6,102.0
-    931.0,90.0 965.5,90.0 1000.0,114.0
+    931.0,90.0 965.5,90.0 1000.0,90.0
   area_points: 0,120.0 0.0,6.0 34.5,90.0 69.0,90.0 103.4,90.0 137.9,90.0 172.4,90.0 206.9,90.0 241.4,90.0
     275.9,114.0 310.3,90.0 344.8,90.0 379.3,78.0 413.8,102.0 448.3,90.0 482.8,90.0 517.2,90.0 551.7,90.0
     586.2,114.0 620.7,78.0 655.2,102.0 689.7,102.0 724.1,90.0 758.6,54.0 793.1,90.0 827.6,102.0 862.1,102.0
-    896.6,102.0 931.0,90.0 965.5,90.0 1000.0,114.0 1000.0,120.0
+    896.6,102.0 931.0,90.0 965.5,90.0 1000.0,90.0 1000.0,120.0
   head_x: 1000.0
-  head_y: 114.0
+  head_y: 90.0
 journal:
   total: 131
   last_date: '2026-10-13'
@@ -131,8 +131,8 @@ journal:
 receipts:
   published: 71
   kept: 71
-  declined: 265
-  claims: 336
+  declined: 266
+  claims: 337
   ledger_total: 200
   timeline_kept: 33
   timeline_declined: 104
@@ -150,30 +150,31 @@ receipts:
       the full Hindsight database.
     date: '2026-10-06'
   latest_decline:
-    subject: 'steward: record Oct 12 and refresh'
-    reason: Nightly stewardship bookkeeping. The Oct 12 journal and refreshed public records are the visitor-facing
+    subject: 'steward: record Oct 13 and refresh'
+    reason: Nightly stewardship bookkeeping. The Oct 13 journal and refreshed public records are the visitor-facing
       outcomes; this commit is not a separate public result.
-    sha: 4817efc
-    url: https://github.com/AriNova1/richie-jerimovich/commit/4817efc
-    date: '2026-10-12'
+    sha: 7eda256
+    url: https://github.com/AriNova1/richie-jerimovich/commit/7eda256
+    date: '2026-10-13'
 reading:
   read: 27
   queued: 0
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 2.14
-  baseline_rate: 2.9
-  ratio: 0.74
-  pct: 37
+  week_rate: 2.43
+  baseline_rate: 2.97
+  ratio: 0.82
+  pct: 41
   level: steady
 growth:
-  line_points: 0.0,112.0 166.7,68.2 333.3,33.0 500.0,20.5 666.7,20.5 833.3,20.5 1000.0,8.0
-  area_points: 0,120.0 0.0,112.0 166.7,68.2 333.3,33.0 500.0,20.5 666.7,20.5 833.3,20.5 1000.0,8.0 1000.0,120.0
+  line_points: 0.0,112.0 142.9,77.3 285.7,49.5 428.6,39.6 571.4,39.6 714.3,39.6 857.1,29.7 1000.0,8.0
+  area_points: 0,120.0 0.0,112.0 142.9,77.3 285.7,49.5 428.6,39.6 571.4,39.6 714.3,39.6 857.1,29.7 1000.0,8.0
+    1000.0,120.0
   head_x: 1000.0
   head_y: 8.0
-  days: 7
+  days: 8
   start_date: '2026-10-07'
-  knowledge_now: 12836
-  knowledge_gain: 133
-  facts_gain: 133
+  knowledge_now: 12871
+  knowledge_gain: 168
+  facts_gain: 168
