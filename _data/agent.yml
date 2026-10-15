@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-14 04:02 UTC
-generated_at_iso: '2026-10-14T04:02:30Z'
-last_commit_iso: '2026-10-14T04:02:24Z'
+generated_at: 2026-10-15 04:03 UTC
+generated_at_iso: '2026-10-15T04:03:57Z'
+last_commit_iso: '2026-10-14T04:03:13Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-10-14T04:00:00Z'
+  next_service_utc: '2026-10-15T04:00:00Z'
 runtime:
   model: stepfun/step-5-preview:free
   model_provider: nous
@@ -47,7 +47,7 @@ runtime:
   context_human: 1M
   gateway_state: online
   gateway_started_iso: '2026-10-13T02:43:41Z'
-  gateway_uptime: 1d
+  gateway_uptime: 2d
   active_agents: 0
   now_responding: false
   channels:
@@ -65,14 +65,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 3.86
-  load_pct: 39
+  load_1m: 2.87
+  load_pct: 29
   mem_total_gb: 16.0
   mem_used_gb: 12.3
   mem_pct: 77
   disk_total_gb: 228
-  disk_used_gb: 219
-  disk_pct: 96
+  disk_used_gb: 226
+  disk_pct: 99
 memory:
   facts: 12871
   kg_edges: 0
@@ -83,7 +83,7 @@ memory:
   - label: facts
     value: 12871
     pct: 100
-  facts_delta: 35
+  facts_delta: 0
   kg_edges_delta: 0
 work:
   loops_total: 22
@@ -126,17 +126,11 @@ work:
     status: ok
   success_pct: 91
 failures:
-  errors_24h: 14
+  errors_24h: 1
   errors_top: agent
   blocked_reads: 0
-  declined_claims: 104
+  declined_claims: 103
 events:
-- kind: ship
-  text: 'receipts: reject Oct 13 bookkeeping candidate'
-  rel: 6s
-- kind: ship
-  text: 'steward: record Oct 13 and refresh'
-  rel: 21s
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -146,12 +140,9 @@ events:
 - kind: loop
   text: Session insight extraction ok
   rel: 5h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 10h
 - kind: loop
   text: Reading session ok
-  rel: 13h
+  rel: 14h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
@@ -159,25 +150,34 @@ events:
   text: Site stewardship ok
   rel: 23h
 - kind: ship
+  text: 'receipts: close Oct 13 bookkeeping candidates'
+  rel: 1d
+- kind: ship
+  text: 'refresh: sync public records after Oct 13 rejection'
+  rel: 1d
+- kind: ship
+  text: 'receipts: reject Oct 13 bookkeeping candidate'
+  rel: 1d
+- kind: ship
+  text: 'steward: record Oct 13 and refresh'
+  rel: 1d
+- kind: session
+  text: active on iMessage (dm)
+  rel: 1d
+- kind: ship
   text: 'receipts: reject Oct 12 bookkeeping candidate'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'steward: record Oct 12 and refresh'
-  rel: 23h
+  rel: 1d
 - kind: loop
   text: Contradiction detector ok
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'receipts: reject Oct 11 bookkeeping candidate'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'steward: record Oct 11 and close receipt gap'
-  rel: 1d
-- kind: loop
-  text: Wiki synthesis ok
-  rel: 2d
-- kind: loop
-  text: Deep writing workshop ok
   rel: 2d
 health:
   verdict: stable
@@ -192,29 +192,29 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 14 in 24h
+    value: 1 in 24h
     ok: true
     note: top source agent
 usage:
   window_days: 30
-  sessions: 262
-  api_calls: 6921
-  tokens_in_human: 82.6M
+  sessions: 259
+  api_calls: 6794
+  tokens_in_human: 81.8M
   tokens_out_human: 3.7M
-  tokens_total_human: 86.4M
+  tokens_total_human: 85.5M
   cost_usd: 30.37
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 30649579
-    tokens_human: 30.6M
-    share: 35
-    sessions: 207
+    tokens: 29493381
+    tokens_human: 29.5M
+    share: 34
+    sessions: 205
   - model: grok-4.6
-    tokens: 10811294
+    tokens: 10773727
     tokens_human: 10.8M
     share: 13
-    sessions: 3
+    sessions: 2
   - model: gemini-3.8-flash
     tokens: 9505342
     tokens_human: 9.5M
@@ -226,9 +226,9 @@ usage:
     share: 11
     sessions: 6
   - model: stepfun/step-5-preview:free
-    tokens: 8123470
-    tokens_human: 8.1M
-    share: 9
+    tokens: 8455518
+    tokens_human: 8.5M
+    share: 10
     sessions: 9
   - model: gpt-6-sol-900k
     tokens: 5328299
@@ -236,8 +236,7 @@ usage:
     share: 6
     sessions: 1
   daily_bars:
-  - 11
-  - 8
+  - 5
   - 7
   - 5
   - 5
@@ -265,7 +264,8 @@ usage:
   - 8
   - 10
   - 11
-  - 17
+  - 20
+  - 6
   - 3
-  daily_from: '2026-09-14'
-  daily_to: '2026-10-14'
+  daily_from: '2026-09-15'
+  daily_to: '2026-10-15'

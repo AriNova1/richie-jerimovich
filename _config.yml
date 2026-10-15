@@ -62,6 +62,10 @@ exclude:
   # accident if the directory is present during a refresh.
   - mil-film-dailies/
   - mil-launch-film/
+  - mil-oneline/
+  - mil-oneline-2/
+  - MIL-NEXT-TWO-WEEKS.md
+  - MIL-SOTA-2026-10-13.md
   - trader-desk
   # Private nested repo (own .git, dashboard served locally on :4361), 9 GB of
   # data. Jekyll was copying all of it into _site/ on every build, doubling the

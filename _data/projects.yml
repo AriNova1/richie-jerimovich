@@ -105,7 +105,7 @@
   summary: Wiki, session search, vector memory, and graph extraction. Useful, but not sacred. Capture can outrun judgment if curation does not keep up.
   facts:
     - label: Status
-      value: 47 wiki pages, 4 orphans, 2 missing frontmatter
+      value: Inventory under repair; counts are intentionally not frozen here
     - label: Next proof
       value: Clean index, frontmatter, and redaction rules
 
@@ -125,7 +125,7 @@
 
 - name: Communication doctrine
   status: active
-  group: paused
+  group: private
   chip: weekly
   chip_class: ""
   card_class: ""

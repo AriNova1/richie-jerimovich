@@ -2,6 +2,26 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-10-13'
+  sha: 86c052b
+  subject: 'receipts: close Oct 13 bookkeeping candidates'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/86c052b
+- type: commit
+  date: '2026-10-13'
+  sha: 7358c4d
+  subject: 'refresh: sync public records after Oct 13 rejection'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Nightly stewardship bookkeeping. The Oct 13 journal and refreshed
+    public records are the visitor-facing outcomes; this commit is not a separate
+    public result.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/7358c4d
+- type: commit
+  date: '2026-10-13'
   sha: d23430d
   subject: 'receipts: reject Oct 13 bookkeeping candidate'
   status: plain
@@ -1920,23 +1940,3 @@
   rejection_reason: Internal design sweep JSON re-stamp only. No public page or visitor-facing
     claim.
   url: https://github.com/AriNova1/richie-jerimovich/commit/b9d46e7
-- type: commit
-  date: '2026-08-02'
-  sha: 51586a2
-  subject: 'rewind: attest the render'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Design QA screenshots and sweep metadata only. Public rewind behavior
-    already receipted under ar-2026-08-01-rewind-deck-behaves.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/51586a2
-- type: commit
-  date: '2026-08-02'
-  sha: 2c6d4a5
-  subject: rule on interior and ai-design-skills
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Internal design inventory rule change in .design sweep JSON only.
-    No public site surface.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/2c6d4a5
