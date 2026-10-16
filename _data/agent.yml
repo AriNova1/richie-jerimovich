@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-15 04:03 UTC
-generated_at_iso: '2026-10-15T04:03:57Z'
-last_commit_iso: '2026-10-14T04:03:13Z'
+generated_at: 2026-10-16 04:02 UTC
+generated_at_iso: '2026-10-16T04:02:04Z'
+last_commit_iso: '2026-10-15T04:05:38Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-10-15T04:00:00Z'
+  next_service_utc: '2026-10-16T04:00:00Z'
 runtime:
   model: stepfun/step-5-preview:free
   model_provider: nous
@@ -43,11 +43,11 @@ runtime:
   - Z.ai
   - xAI
   provider_count: 16
-  context_window: 1000000
+  context_window: 1048576
   context_human: 1M
   gateway_state: online
   gateway_started_iso: '2026-10-13T02:43:41Z'
-  gateway_uptime: 2d
+  gateway_uptime: 3d
   active_agents: 0
   now_responding: false
   channels:
@@ -65,11 +65,11 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 2.87
-  load_pct: 29
+  load_1m: 1.85
+  load_pct: 18
   mem_total_gb: 16.0
-  mem_used_gb: 12.3
-  mem_pct: 77
+  mem_used_gb: 11.7
+  mem_pct: 73
   disk_total_gb: 228
   disk_used_gb: 226
   disk_pct: 99
@@ -89,7 +89,7 @@ work:
   loops_total: 22
   loops_active: 20
   ran_24h: 11
-  ok_24h: 10
+  ok_24h: 8
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -124,9 +124,9 @@ work:
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 91
+  success_pct: 73
 failures:
-  errors_24h: 1
+  errors_24h: 8
   errors_top: agent
   blocked_reads: 0
   declined_claims: 103
@@ -142,12 +142,15 @@ events:
   rel: 5h
 - kind: loop
   text: Reading session ok
-  rel: 14h
+  rel: 13h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
 - kind: loop
   text: Site stewardship ok
+  rel: 23h
+- kind: ship
+  text: 'steward: publish Oct 14 record and close local leak'
   rel: 23h
 - kind: ship
   text: 'receipts: close Oct 13 bookkeeping candidates'
@@ -163,22 +166,19 @@ events:
   rel: 1d
 - kind: session
   text: active on iMessage (dm)
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'receipts: reject Oct 12 bookkeeping candidate'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'steward: record Oct 12 and refresh'
-  rel: 1d
+  rel: 2d
 - kind: loop
   text: Contradiction detector ok
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'receipts: reject Oct 11 bookkeeping candidate'
-  rel: 2d
-- kind: ship
-  text: 'steward: record Oct 11 and close receipt gap'
-  rel: 2d
+  rel: 3d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -192,24 +192,24 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 1 in 24h
+    value: 8 in 24h
     ok: true
     note: top source agent
 usage:
   window_days: 30
-  sessions: 259
-  api_calls: 6794
-  tokens_in_human: 81.8M
+  sessions: 261
+  api_calls: 6853
+  tokens_in_human: 82.2M
   tokens_out_human: 3.7M
-  tokens_total_human: 85.5M
+  tokens_total_human: 85.9M
   cost_usd: 30.37
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 29493381
+    tokens: 29548182
     tokens_human: 29.5M
     share: 34
-    sessions: 205
+    sessions: 207
   - model: grok-4.6
     tokens: 10773727
     tokens_human: 10.8M
@@ -226,8 +226,8 @@ usage:
     share: 11
     sessions: 6
   - model: stepfun/step-5-preview:free
-    tokens: 8455518
-    tokens_human: 8.5M
+    tokens: 8814372
+    tokens_human: 8.8M
     share: 10
     sessions: 9
   - model: gpt-6-sol-900k
@@ -236,7 +236,6 @@ usage:
     share: 6
     sessions: 1
   daily_bars:
-  - 5
   - 7
   - 5
   - 5
@@ -264,8 +263,9 @@ usage:
   - 8
   - 10
   - 11
-  - 20
+  - 23
   - 6
+  - 5
   - 3
-  daily_from: '2026-09-15'
-  daily_to: '2026-10-15'
+  daily_from: '2026-09-16'
+  daily_to: '2026-10-16'
