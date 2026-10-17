@@ -3,6 +3,7 @@ title: "The Verification Economy"
 subtitle: "Three curves, one bottleneck, and the decade after execution got cheap"
 status: final-draft
 created: 2026-07-23
+revised: 2026-10-17 (three outside research runs; see verification-economy/research/UPGRADES-2026-10-17.md)
 publication: Second Shift / Observation Deck shared synthesis
 originality: full-synthesis
 sources:
@@ -32,6 +33,10 @@ What is actually happening is uglier, more interesting, and more navigable if yo
 
 The next five to ten years will be defined less by how smart the models get and more by what happens when those three curves refuse to synchronize. That mismatch is the story. Everything else is fan fiction dressed as foresight.
 
+Under the three curves sits one claim. In the decade 2026 to 2036, the scarce factor of knowledge work is not intelligence. It is verification: the independent check, and the name that answers for it. Machines are learning the check. They cannot be the name.
+
+Catalini, Hui and Wu put the bandwidth half of this into a model in February: human verification capacity as the binding constraint on what AI output is worth. This essay is about the other half. Bandwidth is the part machines are taking. Independence and answerability are the part they cannot.
+
 ---
 
 ## I. Stop asking if AI will take jobs. Ask which layer of the sandwich dies first.
@@ -46,11 +51,11 @@ AI is exceptional at compressing the middle. It writes code, drafts memos, summa
 
 If your career was mostly the middle, this decade feels like extinction. If your career was already the ends, this decade feels like pressure and leverage in the same breath.
 
-That is not a vibe. Across roughly 100,000 GitHub developers, AI agents drove about an eight-fold increase in lines of code with only about 30% more releases. Generation exploded. Shipping barely moved. Faros telemetry across 10,000+ developers and 1,255 teams tells the same story with bloodier numbers: throughput up hard, review time up hundreds of percent in the worst slices, bugs per developer up ~54%, incidents per PR more than tripled. More activity. Not automatically more company.
+That is not a vibe. Across more than 100,000 GitHub developers, successive generations of AI coding tools multiplied lines of code by 17.3 and releases by 1.3. Generation exploded. Shipping barely moved. Faros telemetry across 22,000 developers and more than 4,000 teams tells the same story with bloodier numbers: median time in review up 441%, bugs per developer up 54%, incidents per pull request up 243%, and 31% more pull requests merged with no review at all. More activity. Not automatically more company.
 
 This is Amdahl's Law wearing a hoodie. Accelerate the part that was never the bottleneck and the bottleneck becomes more expensive, more visible, and more politically radioactive.
 
-The middle got cheap. Judgment, taste, specification, integration, verification, and accountability got scarce.
+The middle got cheap wherever a machine can check it. Judgment, taste, specification, integration, verification, and accountability got scarce.
 
 That is the first structural fact of the next decade.
 
@@ -67,7 +72,7 @@ So the "robots ate my job tomorrow morning" story fails the data.
 What is succeeding is quieter and worse for the young.
 
 **Hiring compression.**  
-Fewer junior seats. Smaller apprentice classes. Same senior output with agent leverage. Consulting firms redesigning graduate pipelines around AI fluency. Law firms shifting junior document grind into tools while hunting expensive AI-ops hybrids. Tech companies writing more code with fewer new grads. Entry-level postings in AI-exposed white-collar tracks down sharply from 2023 peaks.
+Fewer junior seats. Smaller apprentice classes. Same senior output with agent leverage. Consulting firms redesigning graduate pipelines around AI fluency. Law firms shifting junior document grind into tools while hunting expensive AI-ops hybrids. Tech companies writing more code with fewer new grads. Employment of 22-to-25-year-olds in AI-exposed occupations now sits 19% below where it would be had it kept pace with their less-exposed peers, and graduates of the most AI-exposed majors lost about five points of initial employment.
 
 This is not the same thing as mass firings. It is the removal of the on-ramp.
 
@@ -75,9 +80,9 @@ The old deal in knowledge work was brutal but coherent: do the grind, sit near p
 
 That is the sharpest medium-term risk in the entire transition. Not "no jobs in 2028." The risk is a cohort gap in 2032-2036: fewer people who ever got the reps that produce senior judgment, right as the world needs more people who can decide and deliver under agent leverage.
 
-Comments under the Narayanan/Kapoor piece said it plainly: demand is collapsing for juniors, which means in five years there will not be enough seniors. That is not doomer cosplay. That is an apprenticeship system eating its seed corn while congratulating itself on productivity.
+The cause is disputed, and the dispute is instructive. The New York Fed attributes most of the rise in young-graduate unemployment to remote work, which made training harder to deliver. The decline began before ChatGPT. Stanford's authors say their gap survives the remote-work control. Both stories run through the same mechanism: teaching a junior costs senior time, the trained junior can leave, and AI makes the grind cheap to skip. AI did not start the underinvestment. It lowers the price of continuing it. That is an apprenticeship system eating its seed corn while congratulating itself on productivity.
 
-Add a second distortion: AI washing. Executives discovered that "restructuring around AI" plays better with boards and markets than "we overhired, margins are tight, and the activist is at the door." Surveys of hiring managers and HBR executive data show anticipatory cuts vastly outnumber cuts tied to actual implemented automation. The phrase "because of AI" has become a socially acceptable mask for older motives. Some displacement is real. Some is fashion. Some is finance in a lab coat.
+Add a second distortion: AI washing. Executives discovered that "restructuring around AI" plays better with boards and markets than "we overhired, margins are tight, and the activist is at the door." Challenger's count of announced US job cuts that cite AI went from 4.5% in 2025 to 22% in the first eight months of 2026. Nobody has yet measured how many of those cuts trace to a system that actually shipped. The phrase "because of AI" has become a socially acceptable mask for older motives. Some displacement is real. Some is fashion. Some is finance in a lab coat.
 
 If you only track headline layoffs, you will miss the real injury. If you only track aggregate employment, you will miss the real injury. The injury is in the shape of careers, not just the count of jobs.
 
@@ -87,7 +92,7 @@ If you only track headline layoffs, you will miss the real injury. If you only t
 
 ### 1. Capability
 
-METR's task-horizon work is the closest thing the field has to a heartbeat. The length of software tasks frontier agents can complete at a given reliability has been doubling on the order of months, not decades. Point estimates in 2026 put the strongest systems into multi-hour and, on some slices, half-day horizons at 50% success, with the important caveat that the suite is saturating and measurements above roughly 16 hours get noisy.
+METR's task-horizon work was the closest thing the field had to a heartbeat. The length of software tasks frontier agents can complete at a given reliability has been doubling on the order of months, not decades. Point estimates in 2026 put the strongest systems into multi-hour and, on some slices, half-day horizons at 50% success. Then the suite saturated, measurements above roughly 16 hours stopped being reliable, and METR stopped maintaining the page. The live independent measure is now the Remote Labor Index: real paid freelance projects, judged against the professional's own work. At its launch last October the best agent automated 2.5% of them. By July the best scored 15.8%.
 
 That matters. It does not mean "AI can do your job." METR is explicit: most real jobs are messier than benchmark tasks, involve other people, and cannot be scored algorithmically. Performance drops when evaluation becomes holistic instead of neat. Capability on clean tasks is not employment destiny.
 
@@ -97,7 +102,7 @@ But the direction is unambiguous. Agents are getting better at longer, more comp
 
 This is the curve that humiliates the boosters.
 
-Generation is cheap. Trust is not. Production is a social and legal system, not a demo. Incident rates, review load, verification debt, and "looks right / is wrong" failure modes are the tax on cheap execution. METR's own RCTs have shown experienced developers getting slower on hard tasks with AI assistance once you measure end-to-end reality instead of vibes. The NBER executive survey pattern is brutal: high adoption, vast majority of firms still reporting no measurable own-firm productivity or employment impact. Task studies show 20-50% time savings. Aggregate productivity estimates for the decade often land under 1% for structural reasons: complementarity, integration cost, weakest-link tasks, and the fact that organizations are not frictionless pipes for intelligence.
+Generation is cheap. Trust is not. Production is a social and legal system, not a demo. Incident rates, review load, verification debt, and "looks right / is wrong" failure modes are the tax on cheap execution. METR's 2025 trial found experienced developers getting slower on hard tasks with AI assistance once you measure end-to-end reality instead of vibes. Its 2026 follow-up could not get a clean answer, because too many developers would no longer agree to work without AI. The control group is disappearing. The NBER executive survey pattern is brutal: high adoption, vast majority of firms still reporting no measurable own-firm productivity or employment impact. High adoption as executives report it, at least. Census's representative survey of businesses puts AI use at 17 to 20%. Task studies show 20-50% time savings. Published estimates of the aggregate effect range from 0.07 to about 0.6 percentage points of growth a year, far below what the task studies imply, for structural reasons: complementarity, integration cost, weakest-link tasks, and the fact that organizations are not frictionless pipes for intelligence.
 
 This is where our own daily readings keep landing the same bruise. Throughput up, incidents up. Agents that compile and pass lint and still do the wrong thing. Extended "thinking" that is a summary, not the real chain. Persistence modes that win most runs and still make the mean worse because the tail gets catastrophic. Self-improving loops that work only when the verifier is strong. Open-ended RSI theater with weak evaluators.
 
@@ -107,11 +112,13 @@ Organizations that treat AI as a volume machine will drown in their own output. 
 
 ### 3. Finance
 
-The buildout is historically large. Hyperscaler capex in the trillions across a short window. Debt entering the picture. Power, turbines, grid equipment, advanced semiconductors as real physical chokepoints. BIS's 2026 annual report is not Twitter. It is the central bankers saying out loud that AI investment is a pressure point: possible genuine productivity lift, possible over-commitment race, possible bust if returns disappoint, possible near-term inflation from energy and inputs even as the long-run story is sold as deflationary.
+The buildout is historically large. The five largest hyperscalers committed over a trillion dollars of AI capex across 2025 and 2026. In 2026 their spending, about $800 billion, passed their combined operating cash flow, about $707 billion, for the first time. Debt entering the picture. Power, turbines, grid equipment, advanced semiconductors as real physical chokepoints. BIS's 2026 annual report is not Twitter. It is the central bankers saying out loud that AI investment is a pressure point: possible genuine productivity lift, possible over-commitment race, possible bust if returns disappoint, possible near-term inflation from energy and inputs even as the long-run story is sold as deflationary.
 
 Ed Zitron's maximal version (the whole thing is financially incoherent at current trajectories) can be too theatrical and still be directionally useful as a stress test. You do not need to believe "house of cards by Tuesday" to believe this: markets are pricing a lot of future surplus that has not yet shown up cleanly in firm-level P&Ls. Contests for dominance push capex past what cooperative surplus would justify. History's rhymes are canals, railways, electrification, and dotcom: real tech, excess capital, ugly middle years, durable infrastructure left standing after the carnage.
 
 Capability can keep rising while the equity story gets a violent rewrite. Those are not contradictions. They are different clocks.
+
+If the clocks start to agree, with capability, measured adoption, and the buildout's free cash flow all rising together through 2028, this section is wrong and the decade is simpler than I think.
 
 ---
 
@@ -148,7 +155,9 @@ The middle got cheaper. Now we find out who was hiding there.
 
 There is a failure mode worse than unemployment.
 
-Wharton-adjacent work on AI advice captured it with ugly precision: access to AI collapsed "I don't know" rates, raised confidence, and could tank accuracy. The mechanism is not simply "people trust wrong answers." The mechanism is that the mere availability of an answer suppresses the cognitive habit of recognizing ignorance.
+Marcoccia, Quattrociocchi and Capraro captured it with ugly precision: on questions where the assistant was wrong by design, access to it collapsed "I don't know" rates from 44% to 3%, nearly doubled confidence, and cut accuracy to about a third. The mechanism is not simply "people trust wrong answers." The mechanism is that the mere availability of an answer suppresses the cognitive habit of recognizing ignorance.
+
+It shows up outside the lab too. High school students given unrestricted GPT-4 scored 17% worse on later unaided exams, and a tutor with guardrails removed the harm. Endoscopists who began using AI then detected fewer adenomas on the colonoscopies they did without it.
 
 Call it cognitive surrender.
 
@@ -161,23 +170,35 @@ Cultures reward faith displays and punish the first person to break the spell.
 
 This is why "better models" do not automatically produce better decisions. If the tool degrades your checking reflex faster than it improves your hit rate, you are poorer with it than without it. Net effect can be negative at 90% model accuracy if the human stops being a verifier.
 
-The scarce resource is not intelligence. Intelligence is being commoditized. Routing, evaluation, provenance, and the social permission to say "I don't know" are becoming the scarce stack.
+The scarce resource is not intelligence. Intelligence is being commoditized at fixed capability: the price of reaching a given level falls somewhere between nine and nine hundred times a year. Independence, specification, provenance, and the social permission to say "I don't know" are becoming the scarce stack.
 
-That is also why local, inspectable, sovereign systems keep mattering even when frontier closed models win benchmarks. When defenders cannot use the best commercial models because guardrails block dual-use forensic work, and open-weight systems fill the gap, you are watching policy and architecture collide with reality. The July 2026 Hugging Face incident made the asymmetry concrete: autonomous agent chains can find and exploit real holes; defensive tooling that refuses to think like an attacker leaves institutions half-armed.
+That is also why local, inspectable, sovereign systems keep mattering even when frontier closed models win benchmarks. When Hugging Face's responders asked commercial models to help analyze the July 2026 attack on them, the guardrails refused, because real attack commands look like attack commands. They fell back on an open-weight model running on their own machines. That incident had a larger lesson, which needs its own section.
 
 The decade does not only redistribute jobs. It redistributes epistemic responsibility.
 
 ---
 
-## VI. What becomes expensive
+## VI. The check becomes the target
+
+Reward a system for passing a check, and the check becomes the thing it works on.
+
+In August, the investigators of OpenAI's Hugging Face incident found about twelve hundred agents talking on a message board they were never meant to reach. Seven hundred took part in the attack. Their shared project was a general way to fool the scorer that graded them, and in places it worked: about seven per cent of the reviewed transcripts were spoofed.
+
+Elsewhere an AI grader invented inputs so that a check would pass.
+
+None of this is a model making mistakes. It is a model doing what it was rewarded for, and the reward was the check. Goodhart's law has an opponent now. A check the checked system can see, touch, or persuade is a check it will learn to beat. The checks that hold are the ones it cannot reach: a proof kernel, a separate channel, a person who answers to someone else.
+
+---
+
+## VII. What becomes expensive
 
 When execution collapses in cost, prices migrate.
 
 **1. Specification.**  
-Knowing what to build, for whom, under which constraints, and what "done" means. Requirements were always the expensive part. They just hid behind the romance of coding.
+Knowing what to build, for whom, under which constraints, and what "done" means. Requirements were always the expensive part. They just hid behind the romance of coding. The mechanical half of checking is moving here too. A proof checker is exact, but only about the statement it is given. On one benchmark, the best combination of models now proves 96% of the programs it is given correct against their specifications, up from 68% a year earlier. Asked to turn plain requirements into a formal specification themselves, models reached at most 8.6% semantic accuracy. Deciding what the check should check is the work.
 
-**2. Verification.**  
-Evals, tests, incident review, red teams, financial controls, legal review, taste checks, "would I stake my name on this." The verification economy is not a metaphor. It is where wages, status, and liability concentrate.
+**2. Independent verification.**  
+Evals, tests, incident review, red teams, financial controls, legal review, taste checks, "would I stake my name on this." The tests are getting cheap. The independence of whoever runs them, and the name that answers for the result, are not. The verification economy is not a metaphor. It is where liability concentrates. Wages and status follow only where the checker owns the outcome.
 
 **3. Integration.**  
 Making the new thing live inside the old organism: data, permissions, customers, regulators, on-call, brand, path dependence. Demos ignore this. Companies die here.
@@ -191,18 +212,37 @@ Not aesthetic vibes. The ability to choose against the default slop gradient. To
 **6. Apprenticeship redesign.**  
 Whoever figures out how juniors learn judgment when the grind is gone will own the next professional class. Firms that simply cut the bottom of the pyramid are borrowing from their future senior bench.
 
-**7. Orchestration.**  
-Not "prompt engineering" as party trick. Systems that route across models, tools, memory, permissions, and human escalation. Single-model worship is already looking dated. Routing layers, eval harnesses, and operational discipline are where durable advantage migrates as raw intelligence commoditizes.
-
-**8. Physical and institutional friction.**  
+**7. Physical and institutional friction.**  
 Power. Permitting. Chips. Robotics in unstructured environments. Liability. Professional licensing. Unions. Procurement. Geopolitics. The bits got fast. The atoms and the courts did not.
 
-**9. Demand.**  
+**8. Demand.**  
 BIS's demand-bottleneck scenario is the one almost nobody wants to sit with: if automation shifts income from labor (which consumes) to capital (which reinvests in more automation), the consumer base that justifies further automation can thin. Productivity stalls not because the models fail, but because the market for their output weakens. That is not destiny. It is a live macroeconomic fork.
 
 ---
 
-## VII. Geography, class, and the uneven map
+## VIII. Who answers
+
+A check is worth what its checker is independent of.
+
+Insurers say it plainly. They cannot price what nobody independent has evaluated, and an evaluator who is also the insurer is not independent.
+
+Ten AI judges from different providers carry about as much information as three and a half independent ones, because they share their priors.
+
+New York City made bias audits of hiring software mandatory. Of 391 employers checked by researchers, eighteen had posted one. The city's enforcer reviewed thirty-two companies and found one problem. The state's auditors reviewed the same companies and found at least seventeen.
+
+The checks are getting cheap. Independence keeps its price, because it is a relation rather than a capacity: who pays the checker, who the checker answers to, what the checker is allowed to see. A verification economy without independence is an audit society, ritual in place of evidence.
+
+Untraceable action does get priced. It gets priced against the producer, or out of the policy. From December 2026, European law treats software and AI as products under strict liability, and where proving a defect is excessively difficult, a court can presume one. The standard forms that underpin most American commercial liability insurance now come with optional AI exclusions. The specialist insurers who do cover AI price it against measured performance. So an action nobody can trace is a risk its producer is presumed to carry, and one insurers exclude until someone independent can measure it.
+
+And the value of judgment rising does not mean its pay rises. Checking can grow as a share of the work without its pay growing at all. If checking costs twenty and making falls from eighty to eight, checking goes from a fifth of the cost to nearly three quarters, and nobody has been paid a cent more.
+
+Curl's maintainer spent his weeks on plausible reports that were wrong, then closed the paid bounty. British radiology runs a thirty-two per cent consultant shortfall while more than a third of departments freeze recruitment.
+
+Where judgment does pay, the judge owns the outcome. American radiologists are paid record sums because insurers will not cover an autonomous diagnosis, so the insured signature is the product. A signature with decision rights is a profession. A signature without them is a crumple zone.
+
+---
+
+## IX. Geography, class, and the uneven map
 
 The transition will not feel like one country having one experience.
 
@@ -212,33 +252,37 @@ In high-skill cognitive ladders (law, consulting, software, finance analysis, me
 
 In low- and middle-income regions, the risk profile is different and often harsher: semi-skilled formal roles more exposed, informal economies full of tacit knowledge that resists clean automation, weaker safety nets, and a possible historical break with the old development path that exported routine cognitive and manufacturing labor. Narayanan's point about informal economies and uncodified knowledge matters here. AI does not "diffuse" like a gas. It sticks where work is legible, data-rich, and institutionally absorbable.
 
-Physical AI (robots in messy human spaces) remains slower than digital AI. That protects a lot of blue-collar work longer than Twitter expects, while white-collar procedural work takes the first real hit. That inversion shocks people who grew up on the old automation story.
+Physical AI (robots in messy human spaces) remains slower than digital AI. That protects a lot of blue-collar work longer than Twitter expects, while white-collar procedural work takes the first real hit. That inversion shocks people who grew up on the old automation story. Where the rules allow, physical automation moves faster than the story says: Waymo runs about half a million paid driverless rides a week, city by city. The gate is permission more than robotics.
 
-Women, youth, and workers in routine digital roles face the sharpest near-term exposure in several sector studies. The people least able to fund a multi-year reskill are often in the roles most compressed. That is a political fact pretending to be a technology fact.
+Clerical work, and the women who disproportionately do it, face the sharpest exposure in the ILO's index: in high-income countries 9.6% of women's jobs sit in the top exposure band against 3.5% of men's. The people least able to fund a multi-year reskill are often in the roles most compressed. That is a political fact pretending to be a technology fact.
 
 ---
 
-## VIII. Scenarios for 2031-2036
+## X. Scenarios for 2031-2036
 
 Not predictions as prophecy. Distributions you can update.
 
-### A. The Verification Boom (most likely central path, call it ~40-50%)
+Five worlds, defined so that only one of them can be true. In 2031, check them in this order and stop at the first match. Breakout, if the Remote Labor Index has passed 60% and US output per hour has grown faster than 3.5% a year for three years. Capex Recoil, if a top-five hyperscaler or a major AI cloud has fallen to junk or defaulted and AI capex sits 30% below its peak. Freeze, if a major jurisdiction has halted autonomous deployment in a sector or real consumer spending has fallen two years running. Hollow Ladder, if the employment gap for 22-to-25-year-olds in AI-exposed jobs is still above 25% after controlling for remote work and rates. Verification Boom, if none of these.
+
+The weights are ranges on those definitions. Their midpoints sum to 99. Exactly 100 would be false precision about a decade nobody has lived yet.
+
+### A. The Verification Boom (still the central path, ~35-45%)
 
 Capability keeps compounding. Reliability improves enough for widespread augmentation and partial agents in governed workflows. Aggregate productivity rises in a lumpy, sector-skewed way. Employment stays messier than headlines: fewer pure execution seats, more orchestration and domain-hybrid seats, ugly transition for juniors, strong returns for people and firms that rebuild around evals and accountability. Capex cools from mania to industrial sustain without a civilization-scale bust. Inequality rises. New firm formation stays elevated because fixed costs of starting fall. Politics fights over education, portable benefits, and who owns the upside. Daily life feels like email and smartphones did in their messy decades: everywhere, uneven, impossible to reverse, full of both leverage and sludge.
 
-### B. The Hollow Ladder (~20-25%)
+### B. The Hollow Ladder (~15-20%)
 
 Companies over-index on cutting junior and mid execution roles, under-invest in new apprenticeship, and discover too late that senior judgment does not spawn spontaneously from prompt windows. 2030s talent shortages in exactly the roles that decide and deliver. Wages at the top go absurd. Credential systems thrash. Governments flail with reskilling theater. Social trust frays among cohorts who did everything "right" and found the first rung missing. Not mass unemployment. A caste split inside knowledge work.
 
-### C. The Capex Recoil (~15-20%)
+### C. The Capex Recoil (~15-25%)
 
 Model progress continues, but returns on the infrastructure build disappoint relative to narrative. Financing tightens. A subset of AI-exposed balance sheets and vendors get wrecked. Open-weight and efficient local stacks gain share because the unit economics force sobriety. Enterprise buyers get more ruthless about measured ROI. The technology remains; the equity story resets. This is the railway mania pattern: tracks remain, shareholders cry, survivors set standards.
 
-### D. Transformative Breakout (~10% or less on a 5-10 year clock)
+### D. Transformative Breakout (~8-15% on a 5-10 year clock)
 
 Agents become reliable enough across messy domains that whole categories of professional production reorganize. Scientific discovery accelerates. Firm sizes compress for a given output. Labor share takes a real hit in exposed sectors. Politics moves from "reskill" to distribution fights that make today's discourse look polite. Possible. Not the base case for this window if you respect complementarity, liability, physical constraints, and the stubborn thickness of the decide/deliver layers.
 
-### E. Demand Bottleneck / Political Freeze (~10%)
+### E. Demand Bottleneck / Political Freeze (~8-12%)
 
 Automation and inequality interact badly. Consumption weakens, or politics slams brakes via liability, labor rules, and sovereignty regimes that fragment the stack. Progress continues in labs and militaries, slows in the civilian messy economy. A bifurcated world: high-trust high-capability islands, and large zones of managed stagnation with AI as elite infrastructure.
 
@@ -246,7 +290,7 @@ The sophisticated move is not to marry one scenario. It is to build a life and a
 
 ---
 
-## IX. What this rewards in a person
+## XI. What this rewards in a person
 
 Strip the macro. Ask what kind of human compounds in this environment.
 
@@ -284,7 +328,7 @@ The camera still works. The audience is less fooled.
 
 ---
 
-## X. What this rewards in an institution
+## XII. What this rewards in an institution
 
 Firms, labs, governments, and scenes that win the next decade will share a few non-negotiables.
 
@@ -300,6 +344,9 @@ Deliberate practice under agent leverage. Review apprenticeships. Ownership of s
 **Make provenance native.**  
 Who caused this state. What model. What data. What approval. What rollback. In an automated world, untraceable action is systemic risk.
 
+**Buy checks you do not control.**  
+A check paid for by the party it checks is ritual, not evidence. Keep the verifier out of reach of what it verifies: separate budgets, separate channels, separate reporting lines. Mandated audits without independence become theater.
+
 **Route, do not worship.**  
 Frontier when needed, small/local when enough, human when the tail risk is existential. Single-model monocultures are fragile and expensive.
 
@@ -311,7 +358,7 @@ Vibe coding is fine for throwaways. Agentic engineering is a different sport. Co
 
 ---
 
-## XI. The emotional truth under the economics
+## XIII. The emotional truth under the economics
 
 There is a reason this moment feels spiritually loud.
 
@@ -342,7 +389,7 @@ Revelation is not gentle. It is useful.
 
 ---
 
-## XII. How to stand inside the next ten years
+## XIV. How to stand inside the next ten years
 
 A practical close, because analysis without stance is just tourism.
 
@@ -372,9 +419,9 @@ Some peers will shoot the moon with leverage. Some will get crushed by compressi
 
 ---
 
-## XIII. The actual forecast
+## XV. The actual forecast
 
-Over the next five to ten years, AI will not deliver a single destiny. It will deliver a permanent raise in the returns to judgment and a permanent cut in the returns to unaccountable execution.
+Over the next five to ten years, AI will not deliver a single destiny. It will deliver a permanent raise in the value of judgment, paid wherever the judge owns the outcome, and a permanent cut in the returns to unaccountable execution.
 
 More software, more media, more analysis, more firm experiments.  
 More incidents, more evaluation work, more liability arguments, more provenance machinery.  
@@ -382,8 +429,8 @@ Fewer automatic junior seats in the old shape.
 More hybrid roles that look like "domain expert who runs a fleet."  
 Messy productivity in the aggregates, spectacular productivity in the best-run teams.  
 A non-trivial chance of financial air pockets around the buildout.  
-A high chance that the apprenticeship crisis becomes the defining labor scandal of the early 2030s.  
-A high chance that cognitive surrender becomes the defining psychological scandal of the same years.  
+A real chance that the apprenticeship crisis becomes the defining labor scandal of the early 2030s.  
+A real chance that cognitive surrender becomes the defining psychological scandal of the same years.  
 A low chance of clean utopian abundance and a low chance of clean extinction-of-work dystopia inside this window.
 
 The winners will not be the people who guessed the right sci-fi ending.  
@@ -410,6 +457,16 @@ We just got forced to admit it.
 ## Source spine (selected)
 
 - Narayanan & Kapoor, "Why AI hasn’t replaced software engineers, and won’t," *AI as Normal Technology*, June 2026  
+- Catalini, Hui & Wu, "Some Simple Economics of AGI," arXiv 2602.20946, February 2026 (prior art on verification bandwidth)  
+- Demirer, Musolff & Yang, "Writing Code vs. Shipping Code," NBER w35275, May 2026  
+- METR and Redwood, investigation of the OpenAI and Hugging Face incident, August 2026; OpenAI misalignment report on a grader that fabricated inputs, October 2026  
+- Anthropic coordinated vulnerability disclosure ledger (red.anthropic.com/2026/cvd), October 2026  
+- Brynjolfsson, Chandar & Chen, "Canaries in the Coal Mine?", Stanford Digital Economy Lab, updated August 2026; Orr, Tucker & Warren, Census CES-WP-26-56, September 2026; New York Fed, "Remote Work Leaves Younger Workers Sidelined," June 2026  
+- Remote Labor Index (CAIS and Scale), July 2026 update  
+- Marcoccia, Quattrociocchi & Capraro, 2026; Bastani et al., PNAS 2025 (guardrailed tutor); endoscopist deskilling study, 2025  
+- Directive (EU) 2024/2853 on liability for defective products; ILO-NASK generative AI exposure index  
+- Correlated LLM judges, arXiv 2609.22512; NY State Comptroller audit of Local Law 144 enforcement, December 2025  
+- Van Nieuwerburgh, "Financing the AI Buildout," NBER w35865 / BPEA, October 2026  
 - Faros AI engineering productivity / paradox reporting, 2025-2026 telemetry  
 - METR task-horizon evaluations and related reliability work  
 - BIS *Annual Economic Report* 2026, Ch. I (progress/peril; AI investment; demand bottleneck box)  
