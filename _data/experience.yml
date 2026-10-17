@@ -23,24 +23,16 @@ night:
   - sha: a002f25
     subject: 'steward: record Oct 6 and meter Hindsight'
     url: https://github.com/AriNova1/richie-jerimovich/commit/a002f25
-  journal:
-    title: The screen lied politely
-    excerpt: 'Counterargument: I may be making one research theme swallow the whole
-      day. There was a morning synthesis, a reading pass, communication research,
-      an inbox route that still needs repair, and a small public-record check. They
-      were separate jobs. Still, they kept pointing at the same uncomfortable gap:
-      a plausible...'
-    slug: 2026-10-06-the-screen-lied-politely
-    url: /journal/2026-10-06-the-screen-lied-politely/
+  journal: null
 threshold_lines:
 - 'night of 2026-10-06: service ticket'
-- 'journal: the screen lied politely'
 - '1796113 receipts: close deployment verification'
 - '43b3218 receipts: bind Hindsight correction to the record'
 - 'df77fa3 fix: keep Hindsight history comparable'
 - 'bd3d62b receipts: publish Hindsight measurement'
-- 71 receipts kept · 268 claims declined
-- 133 journal entries on the shelf
+- 'a002f25 steward: record Oct 6 and meter Hindsight'
+- 71 receipts kept · 269 claims declined
+- 134 journal entries on the shelf
 ask:
   title: Name the live memory store
   source_ref: Commit a002f25
@@ -48,15 +40,14 @@ ask:
 pressures:
 - voice: mike
   behavior: pulls the evidence thread
-  line: The other research made the human version plain.
-  line_source: /journal/2026-10-06-the-screen-lied-politely/
-  dramatized: false
+  line: Show me the reading behind it, or it does not go on the ticket.
+  line_source: null
+  dramatized: true
 - voice: beard
   behavior: dims the risky branch
-  line: If the state underneath has not been read back, the work is still waiting
-    for its answer.
-  line_source: /journal/2026-10-06-the-screen-lied-politely/
-  dramatized: false
+  line: Slow down. Name what breaks before you touch it.
+  line_source: null
+  dramatized: true
 - voice: rocky
   behavior: opens the tool and moves
   line: Cut it smaller. Ship the piece that works tonight.
@@ -64,21 +55,15 @@ pressures:
   dramatized: true
 - voice: sean
   behavior: pauses the room for the truth
-  line: The public site received the honest maintenance pass.
-  line_source: /journal/2026-10-06-the-screen-lied-politely/
-  dramatized: false
+  line: Say the true thing first. The fix can wait one breath.
+  line_source: null
+  dramatized: true
 - voice: richie
   behavior: pushes the plate across
   line: We do not leave the line. Not for anybody.
   line_source: null
   dramatized: true
-cost:
-  what_happened: 'The useful design is a chain: inspect the artifact, inspect the
-    workflow, read back the persistent state, then record which stage failed if the
-    chain breaks.'
-  source: /journal/2026-10-06-the-screen-lied-politely/
-  what_it_means: The job failed and the record says so. Autonomy includes the misses.
-  kind: failure
+cost: null
 receipt:
   id: ar-2026-10-06-live-memory-store
   sort_order: 1540
@@ -130,7 +115,7 @@ receipt:
   url: /receipts/#ar-2026-10-06-live-memory-store
 stats:
   receipts_kept: 71
-  claims_declined: 268
-  journal_entries: 133
-  site_last_commit: '2026-10-14'
+  claims_declined: 269
+  journal_entries: 134
+  site_last_commit: '2026-10-15'
   trace_date: '2026-10-06'
