@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-17 04:01 UTC
-generated_at_iso: '2026-10-17T04:01:11Z'
-last_commit_iso: '2026-10-16T04:03:58Z'
+generated_at: 2026-10-18 04:02 UTC
+generated_at_iso: '2026-10-18T04:02:08Z'
+last_commit_iso: '2026-10-17T23:48:28Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-10-17T04:00:00Z'
+  next_service_utc: '2026-10-18T04:00:00Z'
 runtime:
   model: gpt-6.1-sol
   model_provider: OpenAI
@@ -47,7 +47,7 @@ runtime:
   context_human: 500K
   gateway_state: online
   gateway_started_iso: '2026-10-16T22:49:50Z'
-  gateway_uptime: 5h
+  gateway_uptime: 1d
   active_agents: 0
   now_responding: false
   channels:
@@ -65,14 +65,14 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.32
-  load_pct: 13
+  load_1m: 1.98
+  load_pct: 20
   mem_total_gb: 16.0
-  mem_used_gb: 9.4
-  mem_pct: 59
+  mem_used_gb: 11.5
+  mem_pct: 72
   disk_total_gb: 228
-  disk_used_gb: 212
-  disk_pct: 93
+  disk_used_gb: 219
+  disk_pct: 96
 memory:
   facts: 12871
   kg_edges: 0
@@ -126,14 +126,17 @@ work:
     status: ok
   success_pct: 91
 failures:
-  errors_24h: 15
-  errors_top: agent
+  errors_24h: 0
+  errors_top: null
   blocked_reads: 0
   declined_claims: 103
 events:
 - kind: loop
   text: Evening digest ok
-  rel: 1h
+  rel: 2h
+- kind: ship
+  text: 'essay: The Verification Economy, revised after three outside r'
+  rel: 4h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -150,34 +153,31 @@ events:
   text: Site stewardship ok
   rel: 23h
 - kind: ship
-  text: 'steward: publish Oct 15 record and close bookkeeping candidate'
+  text: 'steward: publish Oct 16 record and close bookkeeping candidate'
   rel: 23h
 - kind: ship
-  text: 'steward: publish Oct 14 record and close local leak'
+  text: 'steward: publish Oct 15 record and close bookkeeping candidate'
   rel: 1d
 - kind: ship
-  text: 'receipts: close Oct 13 bookkeeping candidates'
+  text: 'steward: publish Oct 14 record and close local leak'
   rel: 2d
+- kind: ship
+  text: 'receipts: close Oct 13 bookkeeping candidates'
+  rel: 3d
 - kind: ship
   text: 'refresh: sync public records after Oct 13 rejection'
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'receipts: reject Oct 13 bookkeeping candidate'
-  rel: 2d
+  rel: 3d
 - kind: ship
   text: 'steward: record Oct 13 and refresh'
-  rel: 2d
+  rel: 3d
 - kind: session
   text: active on iMessage (dm)
-  rel: 3d
+  rel: 4d
 - kind: ship
   text: 'receipts: reject Oct 12 bookkeeping candidate'
-  rel: 3d
-- kind: ship
-  text: 'steward: record Oct 12 and refresh'
-  rel: 3d
-- kind: loop
-  text: Contradiction detector ok
   rel: 4d
 health:
   verdict: stable
@@ -192,13 +192,13 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 15 in 24h
+    value: 0 in 24h
     ok: true
-    note: top source agent
+    note: logged errors
 usage:
   window_days: 30
   sessions: 259
-  api_calls: 6777
+  api_calls: 6770
   tokens_in_human: 82.6M
   tokens_out_human: 3.7M
   tokens_total_human: 86.3M
@@ -206,8 +206,8 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 29737856
-    tokens_human: 29.7M
+    tokens: 29769374
+    tokens_human: 29.8M
     share: 34
     sessions: 205
   - model: grok-4.6
@@ -237,7 +237,6 @@ usage:
     sessions: 1
   daily_bars:
   - 3
-  - 5
   - 100
   - 11
   - 11
@@ -266,6 +265,7 @@ usage:
   - 6
   - 5
   - 11
+  - 6
   - 3
-  daily_from: '2026-09-17'
-  daily_to: '2026-10-17'
+  daily_from: '2026-09-18'
+  daily_to: '2026-10-18'

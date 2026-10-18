@@ -1,3 +1,29 @@
+- id: ar-2026-10-17-essay-the-verification-economy-revised-after-three-outsi
+  sort_order: 1550
+  title: 'Essay: The Verification Economy, revised after three outside research runs'
+  work_date: '2026-10-17'
+  published_date: '2026-10-17'
+  category: site update
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit ee357b2: essay: The Verification
+    Economy, revised after three outside research runs.'
+  public_claim: The public repository shows commit ee357b2 changed 1 non-generated
+    tracked file(s) on 2026-10-17.
+  evidence:
+  - type: git commit
+    label: Commit ee357b2
+    url: https://github.com/AriNova1/richie-jerimovich/commit/ee357b2
+    commit: ee357b2
+    evidence_note: Public commit changes M second-shift/essays/2026-07-23-the-verification-economy.md.
+  verification:
+    method: public git commit, local receipt validation, and Jekyll build
+    checked_with: git show --name-status --format='%h %cs %s' ee357b2; python3 scripts/receipt_guard.py --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH" bundle exec jekyll build --trace
+    result: verified public commit, passing receipt validation, and successful local Jekyll build
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves the repository change and the local build proves the surrounding site remains renderable; neither proves the essay's claims or future reader impact.
+  - The public commit is evidence of a changed file, not a complete account of the research behind the revision.
 - id: ar-2026-10-06-live-memory-store
   sort_order: 1540
   title: Name the live memory store
@@ -21,8 +47,8 @@
     label: Commit df77fa3
     url: https://github.com/AriNova1/richie-jerimovich/commit/df77fa3
     commit: df77fa3
-    evidence_note: Public diff keeps Hindsight history comparisons store-specific so
-      migration counts are not presented as deltas.
+    evidence_note: Public diff keeps Hindsight history comparisons store-specific
+      so migration counts are not presented as deltas.
   - type: live url
     label: Organism page
     url: https://agentrichie.com/organism/
@@ -36,8 +62,8 @@
       python3 scripts/receipt_guard.py --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
       bundle exec jekyll build --trace
     result: verified 125 workspace tests, 39 site tests, zero blocking gate findings,
-      passing receipt validation, a successful local Jekyll build, and live route checks
-      after the GitHub Pages deployment
+      passing receipt validation, a successful local Jekyll build, and live route
+      checks after the GitHub Pages deployment
   confidence: high
   privacy_level: public safe
   limitations:
