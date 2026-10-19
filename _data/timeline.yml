@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-10-18'
+  sha: 2de1e09
+  subject: 'steward: publish Oct 18 record and receipt'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/2de1e09
+- type: commit
+  date: '2026-10-18'
   sha: 01e710f
   subject: 'essay: plain-prose pass against named machine-writing patterns'
   status: receipt
@@ -1938,13 +1947,3 @@
   receipt_title: null
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/a689c76
-- type: commit
-  date: '2026-08-05'
-  sha: 37ee975
-  subject: 'stewardship: Aug 5 journal — The grant came back. The keeps did not.'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Journal meta-commit; public receipt would add little beyond git
-    evidence of the nightly entry.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/37ee975

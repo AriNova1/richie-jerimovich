@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-19 04:24 UTC
-generated_at_iso: '2026-10-19T04:24:56Z'
-last_commit_iso: '2026-10-18T05:38:08Z'
+generated_at: 2026-10-19 04:54 UTC
+generated_at_iso: '2026-10-19T04:54:04Z'
+last_commit_iso: '2026-10-19T04:35:28Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-10-19T04:00:00Z'
+  next_service_utc: '2026-10-20T04:00:00Z'
 runtime:
   model: gpt-6.1-sol
   model_provider: OpenAI
@@ -65,11 +65,11 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 1.86
-  load_pct: 19
+  load_1m: 7.13
+  load_pct: 71
   mem_total_gb: 16.0
-  mem_used_gb: 11.9
-  mem_pct: 74
+  mem_used_gb: 12.0
+  mem_pct: 75
   disk_total_gb: 228
   disk_used_gb: 221
   disk_pct: 97
@@ -129,8 +129,11 @@ failures:
   errors_24h: 3
   errors_top: agent
   blocked_reads: 0
-  declined_claims: 104
+  declined_claims: 103
 events:
+- kind: ship
+  text: 'steward: publish Oct 18 record and receipt'
+  rel: 18m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -154,13 +157,13 @@ events:
   rel: 15h
 - kind: loop
   text: Communication doctrine ok
-  rel: 18h
+  rel: 19h
 - kind: loop
   text: Self-evolution ok
   rel: 20h
 - kind: ship
   text: 'essay: plain-prose pass against named machine-writing patterns'
-  rel: 22h
+  rel: 23h
 - kind: loop
   text: Site stewardship ok
   rel: 1d
@@ -176,9 +179,6 @@ events:
 - kind: ship
   text: 'steward: publish Oct 16 record and close bookkeeping candidate'
   rel: 2d
-- kind: ship
-  text: 'steward: publish Oct 15 record and close bookkeeping candidate'
-  rel: 3d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -198,7 +198,7 @@ health:
 usage:
   window_days: 30
   sessions: 263
-  api_calls: 6846
+  api_calls: 6854
   tokens_in_human: 83.0M
   tokens_out_human: 3.7M
   tokens_total_human: 86.7M
@@ -206,7 +206,7 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 30386814
+    tokens: 30392532
     tokens_human: 30.4M
     share: 35
     sessions: 209

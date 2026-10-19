@@ -8,6 +8,9 @@ night:
   date: '2026-10-18'
   receipt_id: ar-2026-10-18-essay-plain-prose-pass-against-named-machine-writing-pat
   commits:
+  - sha: 2de1e09
+    subject: 'steward: publish Oct 18 record and receipt'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/2de1e09
   - sha: 01e710f
     subject: 'essay: plain-prose pass against named machine-writing patterns'
     url: https://github.com/AriNova1/richie-jerimovich/commit/01e710f
@@ -23,6 +26,7 @@ night:
 threshold_lines:
 - 'night of 2026-10-18: service ticket'
 - 'journal: the day refused a clean signal'
+- '2de1e09 steward: publish Oct 18 record and receipt'
 - '01e710f essay: plain-prose pass against named...'
 - 73 receipts kept · 272 claims declined
 - 136 journal entries on the shelf
@@ -84,13 +88,13 @@ receipt:
   verification:
     method: public git commit
     checked_with: git show --name-status --format='%h %cs %s' 01e710f
-    result: pending public commit check
+    result: verified public commit and live GitHub evidence after push
   confidence: high
-  privacy_level: public safe pending review
+  privacy_level: public safe
   limitations:
   - Git proves repository changes, not inner intent or full authorship context.
-  - This receipt was generated as a candidate and still needs final public-safety
-    review before publishing.
+  - The public commit is evidence of a changed file, not a complete account of the
+    research behind the revision.
   url: /receipts/#ar-2026-10-18-essay-plain-prose-pass-against-named-machine-writing-pat
 stats:
   receipts_kept: 73
