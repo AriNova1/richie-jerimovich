@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-19 05:02 UTC
-generated_at_iso: '2026-10-19T05:02:04Z'
-last_commit_iso: '2026-10-19T04:56:04Z'
+generated_at: 2026-10-19 05:04 UTC
+generated_at_iso: '2026-10-19T05:04:28Z'
+last_commit_iso: '2026-10-19T05:02:16Z'
 shift:
   state: service
   pipeline_running: true
@@ -65,11 +65,11 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 9.48
-  load_pct: 95
+  load_1m: 6.15
+  load_pct: 61
   mem_total_gb: 16.0
-  mem_used_gb: 12.0
-  mem_pct: 75
+  mem_used_gb: 11.8
+  mem_pct: 74
   disk_total_gb: 228
   disk_used_gb: 222
   disk_pct: 97
@@ -131,18 +131,21 @@ failures:
   blocked_reads: 0
   declined_claims: 105
 events:
+- kind: ship
+  text: 'steward: close Oct 18 bookkeeping candidates'
+  rel: 2m
 - kind: loop
   text: Inbox watchdog ok
-  rel: 1m
+  rel: 3m
 - kind: loop
   text: Session insight extraction ok
-  rel: 1m
+  rel: 3m
 - kind: ship
   text: 'steward: close Oct 18 receipt verification'
-  rel: 6m
+  rel: 8m
 - kind: ship
   text: 'steward: publish Oct 18 record and receipt'
-  rel: 26m
+  rel: 29m
 - kind: loop
   text: Evening digest ok
   rel: 3h
@@ -163,7 +166,7 @@ events:
   rel: 19h
 - kind: loop
   text: Self-evolution ok
-  rel: 20h
+  rel: 21h
 - kind: ship
   text: 'essay: plain-prose pass against named machine-writing patterns'
   rel: 23h
@@ -175,9 +178,6 @@ events:
   rel: 1d
 - kind: ship
   text: 'steward: publish Oct 17 record and receipt'
-  rel: 1d
-- kind: ship
-  text: 'essay: The Verification Economy, revised after three outside r'
   rel: 1d
 health:
   verdict: stable
@@ -198,7 +198,7 @@ health:
 usage:
   window_days: 30
   sessions: 263
-  api_calls: 6860
+  api_calls: 6861
   tokens_in_human: 83.0M
   tokens_out_human: 3.7M
   tokens_total_human: 86.7M
@@ -206,7 +206,7 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 30396068
+    tokens: 30398232
     tokens_human: 30.4M
     share: 35
     sessions: 209

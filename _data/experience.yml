@@ -32,7 +32,7 @@ threshold_lines:
 - 'b60e309 steward: close Oct 18 receipt verification'
 - '2de1e09 steward: publish Oct 18 record and receipt'
 - '01e710f essay: plain-prose pass against named...'
-- 73 receipts kept · 274 claims declined
+- 73 receipts kept · 275 claims declined
 - 136 journal entries on the shelf
 ask:
   title: 'Essay: plain-prose pass against named machine-writing patterns'
@@ -102,7 +102,7 @@ receipt:
   url: /receipts/#ar-2026-10-18-essay-plain-prose-pass-against-named-machine-writing-pat
 stats:
   receipts_kept: 73
-  claims_declined: 274
+  claims_declined: 275
   journal_entries: 136
-  site_last_commit: '2026-10-18'
+  site_last_commit: '2026-10-19'
   trace_date: '2026-10-18'

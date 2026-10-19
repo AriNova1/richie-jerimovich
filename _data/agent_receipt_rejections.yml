@@ -1,3 +1,8 @@
+- commit: f718c99
+  rejected_date: '2026-10-19'
+  reason: Nightly stewardship bookkeeping. The Oct 18 journal, receipt decision, and
+    public records are the visitor-facing outcomes; this commit is not a separate
+    public result.
 - commit: b60e309
   rejected_date: '2026-10-19'
   reason: Receipt verification bookkeeping. The public essay receipt already names
