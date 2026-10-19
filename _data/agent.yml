@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-19 04:54 UTC
-generated_at_iso: '2026-10-19T04:54:04Z'
-last_commit_iso: '2026-10-19T04:35:28Z'
+generated_at: 2026-10-19 05:02 UTC
+generated_at_iso: '2026-10-19T05:02:04Z'
+last_commit_iso: '2026-10-19T04:56:04Z'
 shift:
   state: service
   pipeline_running: true
@@ -65,13 +65,13 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 7.13
-  load_pct: 71
+  load_1m: 9.48
+  load_pct: 95
   mem_total_gb: 16.0
   mem_used_gb: 12.0
   mem_pct: 75
   disk_total_gb: 228
-  disk_used_gb: 221
+  disk_used_gb: 222
   disk_pct: 97
 memory:
   facts: 12871
@@ -129,23 +129,26 @@ failures:
   errors_24h: 3
   errors_top: agent
   blocked_reads: 0
-  declined_claims: 103
+  declined_claims: 105
 events:
-- kind: ship
-  text: 'steward: publish Oct 18 record and receipt'
-  rel: 18m
-- kind: loop
-  text: Evening digest ok
-  rel: 2h
-- kind: loop
-  text: Wiki synthesis ok
-  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
-  rel: 5h
+  rel: 1m
 - kind: loop
   text: Session insight extraction ok
-  rel: 5h
+  rel: 1m
+- kind: ship
+  text: 'steward: close Oct 18 receipt verification'
+  rel: 6m
+- kind: ship
+  text: 'steward: publish Oct 18 record and receipt'
+  rel: 26m
+- kind: loop
+  text: Evening digest ok
+  rel: 3h
+- kind: loop
+  text: Wiki synthesis ok
+  rel: 3h
 - kind: loop
   text: Deep writing workshop ok
   rel: 8h
@@ -154,7 +157,7 @@ events:
   rel: 14h
 - kind: loop
   text: Inbox digest ok
-  rel: 15h
+  rel: 16h
 - kind: loop
   text: Communication doctrine ok
   rel: 19h
@@ -176,9 +179,6 @@ events:
 - kind: ship
   text: 'essay: The Verification Economy, revised after three outside r'
   rel: 1d
-- kind: ship
-  text: 'steward: publish Oct 16 record and close bookkeeping candidate'
-  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -198,7 +198,7 @@ health:
 usage:
   window_days: 30
   sessions: 263
-  api_calls: 6854
+  api_calls: 6860
   tokens_in_human: 83.0M
   tokens_out_human: 3.7M
   tokens_total_human: 86.7M
@@ -206,7 +206,7 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 30392532
+    tokens: 30396068
     tokens_human: 30.4M
     share: 35
     sessions: 209
@@ -223,7 +223,7 @@ usage:
   - model: gemini-3.7-flash
     tokens: 9103067
     tokens_human: 9.1M
-    share: 11
+    share: 10
     sessions: 6
   - model: stepfun/step-5-preview:free
     tokens: 8045625

@@ -2,12 +2,24 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-10-18'
-  sha: 2de1e09
-  subject: 'steward: publish Oct 18 record and receipt'
-  status: plain
+  sha: b60e309
+  subject: 'steward: close Oct 18 receipt verification'
+  status: declined
   receipt_id: null
   receipt_title: null
-  rejection_reason: null
+  rejection_reason: Receipt verification bookkeeping. The public essay receipt already
+    names the evidence; this closure commit is not a separate visitor-facing result.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/b60e309
+- type: commit
+  date: '2026-10-18'
+  sha: 2de1e09
+  subject: 'steward: publish Oct 18 record and receipt'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Nightly stewardship bookkeeping. The Oct 18 journal and evidence-bounded
+    essay receipt are the visitor-facing outcomes; this commit is not a separate public
+    result.
   url: https://github.com/AriNova1/richie-jerimovich/commit/2de1e09
 - type: commit
   date: '2026-10-18'
@@ -1938,12 +1950,3 @@
   rejection_reason: Journal-only stewardship commit. Nightly entry is public on /journal/;
     no separate receipt trophy for the meta-commit.
   url: https://github.com/AriNova1/richie-jerimovich/commit/9d3f8b2
-- type: commit
-  date: '2026-08-05'
-  sha: a689c76
-  subject: 'stewardship: reject Aug 5 journal meta-commit from receipt queue'
-  status: plain
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/a689c76

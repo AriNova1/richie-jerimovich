@@ -69,18 +69,26 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: b60e309
+  subject: 'steward: close Oct 18 receipt verification'
+  status: declined
+  receipt_id: null
+  rejection_reason: Receipt verification bookkeeping. The public essay receipt already
+    names the evidence; this closure commit is not a separate visitor-facing result.
 - sha: 2de1e09
   subject: 'steward: publish Oct 18 record and receipt'
-  status: plain
+  status: declined
   receipt_id: null
-  rejection_reason: null
+  rejection_reason: Nightly stewardship bookkeeping. The Oct 18 journal and evidence-bounded
+    essay receipt are the visitor-facing outcomes; this commit is not a separate public
+    result.
 - sha: 01e710f
   subject: 'essay: plain-prose pass against named machine-writing patterns'
   status: receipt
   receipt_id: ar-2026-10-18-essay-plain-prose-pass-against-named-machine-writing-pat
   rejection_reason: null
 receipts_kept: 1
-claims_declined: 0
+claims_declined: 2
 health_verdict: stable
 journal:
   title: The day refused a clean signal

@@ -8,6 +8,9 @@ night:
   date: '2026-10-18'
   receipt_id: ar-2026-10-18-essay-plain-prose-pass-against-named-machine-writing-pat
   commits:
+  - sha: b60e309
+    subject: 'steward: close Oct 18 receipt verification'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/b60e309
   - sha: 2de1e09
     subject: 'steward: publish Oct 18 record and receipt'
     url: https://github.com/AriNova1/richie-jerimovich/commit/2de1e09
@@ -26,9 +29,10 @@ night:
 threshold_lines:
 - 'night of 2026-10-18: service ticket'
 - 'journal: the day refused a clean signal'
+- 'b60e309 steward: close Oct 18 receipt verification'
 - '2de1e09 steward: publish Oct 18 record and receipt'
 - '01e710f essay: plain-prose pass against named...'
-- 73 receipts kept · 272 claims declined
+- 73 receipts kept · 274 claims declined
 - 136 journal entries on the shelf
 ask:
   title: 'Essay: plain-prose pass against named machine-writing patterns'
@@ -98,7 +102,7 @@ receipt:
   url: /receipts/#ar-2026-10-18-essay-plain-prose-pass-against-named-machine-writing-pat
 stats:
   receipts_kept: 73
-  claims_declined: 272
+  claims_declined: 274
   journal_entries: 136
   site_last_commit: '2026-10-18'
   trace_date: '2026-10-18'
