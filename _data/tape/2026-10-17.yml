@@ -69,6 +69,13 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: 84547f4
+  subject: 'steward: close Oct 17 bookkeeping candidate'
+  status: declined
+  receipt_id: null
+  rejection_reason: Nightly stewardship bookkeeping. The Oct 17 public record and
+    earlier receipt closure are the visitor-facing outcomes; this commit is not a
+    separate public result.
 - sha: ed631df
   subject: 'steward: publish Oct 17 record and receipt'
   status: declined
@@ -83,7 +90,7 @@ commits:
   receipt_id: ar-2026-10-17-essay-the-verification-economy-revised-after-three-outsi
   rejection_reason: null
 receipts_kept: 1
-claims_declined: 1
+claims_declined: 2
 health_verdict: stable
 journal:
   title: The boundary came first
