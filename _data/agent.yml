@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-19 05:04 UTC
-generated_at_iso: '2026-10-19T05:04:28Z'
-last_commit_iso: '2026-10-19T05:02:16Z'
+generated_at: 2026-10-20 04:01 UTC
+generated_at_iso: '2026-10-20T04:01:13Z'
+last_commit_iso: '2026-10-19T05:04:39Z'
 shift:
   state: service
   pipeline_running: true
@@ -47,7 +47,7 @@ runtime:
   context_human: 500K
   gateway_state: online
   gateway_started_iso: '2026-10-16T22:49:50Z'
-  gateway_uptime: 2d
+  gateway_uptime: 3d
   active_agents: 0
   now_responding: false
   channels:
@@ -65,31 +65,31 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 6.15
-  load_pct: 61
+  load_1m: 4.48
+  load_pct: 45
   mem_total_gb: 16.0
-  mem_used_gb: 11.8
-  mem_pct: 74
+  mem_used_gb: 12.1
+  mem_pct: 75
   disk_total_gb: 228
-  disk_used_gb: 222
-  disk_pct: 97
+  disk_used_gb: 217
+  disk_pct: 95
 memory:
-  facts: 12871
+  facts: 12917
   kg_edges: 0
   store: Hindsight
-  measured_at: '2026-10-13'
-  total: 12871
+  measured_at: '2026-10-20'
+  total: 12917
   bars:
   - label: facts
-    value: 12871
+    value: 12917
     pct: 100
-  facts_delta: 0
+  facts_delta: 46
   kg_edges_delta: 0
 work:
   loops_total: 22
   loops_active: 20
   ran_24h: 15
-  ok_24h: 14
+  ok_24h: 15
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -124,60 +124,60 @@ work:
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 93
+  success_pct: 100
 failures:
-  errors_24h: 3
-  errors_top: agent
+  errors_24h: 0
+  errors_top: null
   blocked_reads: 0
-  declined_claims: 105
+  declined_claims: 106
 events:
-- kind: ship
-  text: 'steward: close Oct 18 bookkeeping candidates'
-  rel: 2m
-- kind: loop
-  text: Inbox watchdog ok
-  rel: 3m
-- kind: loop
-  text: Session insight extraction ok
-  rel: 3m
-- kind: ship
-  text: 'steward: close Oct 18 receipt verification'
-  rel: 8m
-- kind: ship
-  text: 'steward: publish Oct 18 record and receipt'
-  rel: 29m
 - kind: loop
   text: Evening digest ok
-  rel: 3h
+  rel: 1h
 - kind: loop
-  text: Wiki synthesis ok
-  rel: 3h
+  text: Inbox watchdog ok
+  rel: 5h
 - kind: loop
-  text: Deep writing workshop ok
-  rel: 8h
+  text: Session insight extraction ok
+  rel: 5h
 - kind: loop
   text: Reading session ok
+  rel: 13h
+- kind: loop
+  text: Contradiction detector ok
   rel: 14h
 - kind: loop
   text: Inbox digest ok
-  rel: 16h
-- kind: loop
-  text: Communication doctrine ok
-  rel: 19h
-- kind: loop
-  text: Self-evolution ok
-  rel: 21h
-- kind: ship
-  text: 'essay: plain-prose pass against named machine-writing patterns'
-  rel: 23h
+  rel: 15h
 - kind: loop
   text: Site stewardship ok
+  rel: 22h
+- kind: ship
+  text: 'steward: record Oct 18 bookkeeping rejection'
+  rel: 22h
+- kind: ship
+  text: 'steward: close Oct 18 bookkeeping candidates'
+  rel: 22h
+- kind: ship
+  text: 'steward: close Oct 18 receipt verification'
+  rel: 23h
+- kind: ship
+  text: 'steward: publish Oct 18 record and receipt'
+  rel: 23h
+- kind: loop
+  text: Wiki synthesis ok
+  rel: 1d
+- kind: loop
+  text: Deep writing workshop ok
+  rel: 1d
+- kind: loop
+  text: Communication doctrine ok
+  rel: 1d
+- kind: loop
+  text: Self-evolution ok
   rel: 1d
 - kind: ship
-  text: 'steward: close Oct 17 bookkeeping candidate'
-  rel: 1d
-- kind: ship
-  text: 'steward: publish Oct 17 record and receipt'
+  text: 'essay: plain-prose pass against named machine-writing patterns'
   rel: 1d
 health:
   verdict: stable
@@ -192,56 +192,55 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 3 in 24h
+    value: 0 in 24h
     ok: true
-    note: top source agent
+    note: logged errors
 usage:
   window_days: 30
-  sessions: 263
-  api_calls: 6861
-  tokens_in_human: 83.0M
+  sessions: 259
+  api_calls: 6710
+  tokens_in_human: 72.5M
   tokens_out_human: 3.7M
-  tokens_total_human: 86.7M
-  cost_usd: 30.09
+  tokens_total_human: 76.2M
+  cost_usd: 18.19
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 30398232
-    tokens_human: 30.4M
-    share: 35
-    sessions: 209
-  - model: grok-4.6
-    tokens: 10773727
-    tokens_human: 10.8M
-    share: 12
-    sessions: 2
+    tokens: 31339296
+    tokens_human: 31.3M
+    share: 41
+    sessions: 212
   - model: gemini-3.8-flash
     tokens: 9505342
     tokens_human: 9.5M
-    share: 11
+    share: 12
     sessions: 12
   - model: gemini-3.7-flash
-    tokens: 9103067
-    tokens_human: 9.1M
-    share: 10
-    sessions: 6
+    tokens: 8596682
+    tokens_human: 8.6M
+    share: 11
+    sessions: 5
   - model: stepfun/step-5-preview:free
     tokens: 8045625
     tokens_human: 8.0M
-    share: 9
+    share: 11
     sessions: 8
   - model: gpt-6.1-sol
-    tokens: 6240528
-    tokens_human: 6.2M
+    tokens: 7720236
+    tokens_human: 7.7M
+    share: 10
+    sessions: 10
+  - model: gpt-6-sol-900k
+    tokens: 5328299
+    tokens_human: 5.3M
     share: 7
-    sessions: 9
+    sessions: 1
   daily_bars:
-  - 95
-  - 12
+  - 10
   - 11
   - 78
   - 11
-  - 16
+  - 17
   - 6
   - 18
   - 50
@@ -260,12 +259,13 @@ usage:
   - 8
   - 10
   - 11
-  - 26
+  - 32
   - 6
   - 5
   - 11
   - 6
   - 11
+  - 11
   - 3
-  daily_from: '2026-09-19'
-  daily_to: '2026-10-19'
+  daily_from: '2026-09-20'
+  daily_to: '2026-10-20'

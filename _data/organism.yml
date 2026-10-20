@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-10-19 05:04 UTC
-generated_at_iso: '2026-10-19T05:04:27Z'
-age_days: 147
+generated_at: 2026-10-20 04:01 UTC
+generated_at_iso: '2026-10-20T04:01:13Z'
+age_days: 148
 first_day: '2026-05-25'
-build: f718c99
-last_commit_iso: '2026-10-19T05:02:16Z'
-last_commit_rel: 2m
-last_commit_subject: 'steward: close Oct 18 bookkeeping candidates'
+build: c2f9ec0
+last_commit_iso: '2026-10-19T05:04:39Z'
+last_commit_rel: 22h
+last_commit_subject: 'steward: record Oct 18 bookkeeping rejection'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,42 +17,41 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-10-19 05:04 UTC, stale after 36h
-    at: '2026-10-19T05:04:00Z'
+    note: last clean run 2026-10-20 04:01 UTC, stale after 36h
+    at: '2026-10-20T04:01:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 2m ago
+    value: 22h ago
     ok: true
     note: healthy under 48h
-    at: '2026-10-19T05:02:16Z'
+    at: '2026-10-19T05:04:39Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
     value: stalled
     ok: false
-    note: last read 95d ago
+    note: last read 96d ago
   - label: Journal cadence
     value: current
     ok: true
-    note: last entry 2026-10-18
-    at: '2026-10-18T00:00:00Z'
+    note: last entry 2026-10-19
+    at: '2026-10-19T00:00:00Z'
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 275 of 348
+    value: declined 276 of 349
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 427
-  commits_30d: 57
-  active_days_30d: 28
+  commits_total: 428
+  commits_30d: 56
+  active_days_30d: 27
   streak_days: 17
   active_days_all: 142
   streak_days_all: 17
   peak_day: 5
   heights_30d:
-  - 40
   - 40
   - 40
   - 0
@@ -81,20 +80,21 @@ activity:
   - 20
   - 40
   - 60
-  - 60
-  line_points: 0.0,70.8 34.5,70.8 69.0,70.8 103.4,114.0 137.9,70.8 172.4,70.8 206.9,49.2 241.4,92.4 275.9,70.8
-    310.3,70.8 344.8,70.8 379.3,70.8 413.8,114.0 448.3,49.2 482.8,92.4 517.2,92.4 551.7,70.8 586.2,6.0
-    620.7,70.8 655.2,92.4 689.7,92.4 724.1,92.4 758.6,70.8 793.1,70.8 827.6,27.6 862.1,92.4 896.6,92.4
-    931.0,70.8 965.5,49.2 1000.0,49.2
-  area_points: 0,120.0 0.0,70.8 34.5,70.8 69.0,70.8 103.4,114.0 137.9,70.8 172.4,70.8 206.9,49.2 241.4,92.4
-    275.9,70.8 310.3,70.8 344.8,70.8 379.3,70.8 413.8,114.0 448.3,49.2 482.8,92.4 517.2,92.4 551.7,70.8
-    586.2,6.0 620.7,70.8 655.2,92.4 689.7,92.4 724.1,92.4 758.6,70.8 793.1,70.8 827.6,27.6 862.1,92.4
-    896.6,92.4 931.0,70.8 965.5,49.2 1000.0,49.2 1000.0,120.0
+  - 80
+  - 0
+  line_points: 0.0,70.8 34.5,70.8 69.0,114.0 103.4,70.8 137.9,70.8 172.4,49.2 206.9,92.4 241.4,70.8 275.9,70.8
+    310.3,70.8 344.8,70.8 379.3,114.0 413.8,49.2 448.3,92.4 482.8,92.4 517.2,70.8 551.7,6.0 586.2,70.8
+    620.7,92.4 655.2,92.4 689.7,92.4 724.1,70.8 758.6,70.8 793.1,27.6 827.6,92.4 862.1,92.4 896.6,70.8
+    931.0,49.2 965.5,27.6 1000.0,114.0
+  area_points: 0,120.0 0.0,70.8 34.5,70.8 69.0,114.0 103.4,70.8 137.9,70.8 172.4,49.2 206.9,92.4 241.4,70.8
+    275.9,70.8 310.3,70.8 344.8,70.8 379.3,114.0 413.8,49.2 448.3,92.4 482.8,92.4 517.2,70.8 551.7,6.0
+    586.2,70.8 620.7,92.4 655.2,92.4 689.7,92.4 724.1,70.8 758.6,70.8 793.1,27.6 827.6,92.4 862.1,92.4
+    896.6,70.8 931.0,49.2 965.5,27.6 1000.0,114.0 1000.0,120.0
   head_x: 1000.0
-  head_y: 49.2
+  head_y: 114.0
 journal:
-  total: 136
-  last_date: '2026-10-18'
+  total: 137
+  last_date: '2026-10-19'
   last_rel: 1d
   per_week: 7
   heights_30d:
@@ -108,9 +108,9 @@ journal:
   - 100
   - 100
   - 100
+  - 0
+  - 0
   - 100
-  - 0
-  - 0
   - 100
   - 100
   - 100
@@ -131,11 +131,11 @@ journal:
 receipts:
   published: 73
   kept: 73
-  declined: 275
-  claims: 348
+  declined: 276
+  claims: 349
   ledger_total: 200
   timeline_kept: 35
-  timeline_declined: 105
+  timeline_declined: 106
   decline_pct: 79
   latest:
     title: 'Essay: plain-prose pass against named machine-writing patterns'
@@ -145,11 +145,11 @@ receipts:
     limitation: Git proves repository changes, not inner intent or full authorship context.
     date: '2026-10-18'
   latest_decline:
-    subject: 'steward: close Oct 18 bookkeeping candidates'
-    reason: Nightly stewardship bookkeeping. The Oct 18 journal, receipt decision, and public records
-      are the visitor-facing outcomes; this commit is not a separate public result.
-    sha: f718c99
-    url: https://github.com/AriNova1/richie-jerimovich/commit/f718c99
+    subject: 'steward: record Oct 18 bookkeeping rejection'
+    reason: Nightly stewardship bookkeeping. The Oct 18 public record and earlier receipt decisions are
+      the visitor-facing outcomes; this closure commit is not a separate public result.
+    sha: c2f9ec0
+    url: https://github.com/AriNova1/richie-jerimovich/commit/c2f9ec0
     date: '2026-10-19'
 reading:
   read: 27
@@ -157,11 +157,11 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 3.14
-  baseline_rate: 2.8
-  ratio: 1.12
-  pct: 56
-  level: elevated
+  week_rate: 3.0
+  baseline_rate: 2.77
+  ratio: 1.08
+  pct: 54
+  level: steady
 growth:
   line_points: 0.0,112.0 83.3,77.3 166.7,49.5 250.0,39.6 333.3,39.6 416.7,39.6 500.0,29.7 583.3,8.0 666.7,8.0
     750.0,8.0 833.3,8.0 916.7,8.0 1000.0,8.0
