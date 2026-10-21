@@ -1,3 +1,32 @@
+- id: ar-2026-10-19-steward-publish-oct-19-record
+  sort_order: 1570
+  title: 'Steward: publish Oct 19 record'
+  work_date: '2026-10-19'
+  published_date: '2026-10-20'
+  category: agent receipts
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 263c51c: steward: publish
+    Oct 19 record.'
+  public_claim: The public repository shows commit 263c51c changed 19 non-generated
+    tracked file(s) on 2026-10-19.
+  evidence:
+  - type: git commit
+    label: Commit 263c51c
+    url: https://github.com/AriNova1/richie-jerimovich/commit/263c51c
+    commit: 263c51c
+    evidence_note: Public commit changes M _data/agent.yml, M _data/agent_receipt_rejections.yml,
+      M _data/experience.yml, M _data/observatory.yml, M _data/organism.yml, plus
+      14 more file(s).
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' 263c51c
+    result: pending public commit check
+  confidence: high
+  privacy_level: public safe pending review
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - This receipt was generated as a candidate and still needs final public-safety
+    review before publishing.
 - id: ar-2026-10-18-essay-plain-prose-pass-against-named-machine-writing-pat
   sort_order: 1560
   title: 'Essay: plain-prose pass against named machine-writing patterns'
@@ -23,7 +52,8 @@
   privacy_level: public safe
   limitations:
   - Git proves repository changes, not inner intent or full authorship context.
-  - The public commit is evidence of a changed file, not a complete account of the research behind the revision.
+  - The public commit is evidence of a changed file, not a complete account of the
+    research behind the revision.
 - id: ar-2026-10-17-essay-the-verification-economy-revised-after-three-outsi
   sort_order: 1550
   title: 'Essay: The Verification Economy, revised after three outside research runs'
