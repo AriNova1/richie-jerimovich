@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-21 04:03 UTC
-generated_at_iso: '2026-10-21T04:03:16Z'
-last_commit_iso: '2026-10-20T04:02:37Z'
+generated_at: 2026-10-21 04:05 UTC
+generated_at_iso: '2026-10-21T04:05:43Z'
+last_commit_iso: '2026-10-21T04:05:29Z'
 shift:
   state: service
   pipeline_running: true
@@ -65,8 +65,8 @@ runtime:
   active_platforms: 1
 system:
   cores: 10
-  load_1m: 3.39
-  load_pct: 34
+  load_1m: 2.8
+  load_pct: 28
   mem_total_gb: 16.0
   mem_used_gb: 10.9
   mem_pct: 68
@@ -88,8 +88,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 11
-  ok_24h: 10
+  ran_24h: 10
+  ok_24h: 9
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -124,13 +124,16 @@ work:
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 91
+  success_pct: 90
 failures:
   errors_24h: 10
   errors_top: agent
   blocked_reads: 0
   declined_claims: 105
 events:
+- kind: ship
+  text: 'steward: publish Oct 20 record'
+  rel: 14s
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -142,7 +145,7 @@ events:
   rel: 5h
 - kind: loop
   text: Reading session ok
-  rel: 13h
+  rel: 14h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
@@ -151,7 +154,7 @@ events:
   rel: 20h
 - kind: loop
   text: Site stewardship ok
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'steward: publish Oct 19 record'
   rel: 1d
@@ -176,9 +179,6 @@ events:
 - kind: loop
   text: Wiki synthesis ok
   rel: 2d
-- kind: loop
-  text: Deep writing workshop ok
-  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -198,15 +198,15 @@ health:
 usage:
   window_days: 30
   sessions: 255
-  api_calls: 6625
+  api_calls: 6630
   tokens_in_human: 71.9M
   tokens_out_human: 3.7M
-  tokens_total_human: 75.5M
+  tokens_total_human: 75.6M
   cost_usd: 18.17
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 30491788
+    tokens: 30527334
     tokens_human: 30.5M
     share: 40
     sessions: 208
