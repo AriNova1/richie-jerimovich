@@ -1,3 +1,7 @@
+- commit: '6597262'
+  rejected_date: '2026-10-20'
+  reason: Receipt bookkeeping. The Oct 20 public journal and ledgers are already recorded;
+    this closure commit is not a separate visitor-facing result.
 - commit: 5390dc1
   rejected_date: '2026-10-20'
   reason: Receipt bookkeeping. The Oct 20 journal and published receipt are the visitor-facing
