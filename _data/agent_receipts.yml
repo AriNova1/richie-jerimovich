@@ -1,3 +1,32 @@
+- id: ar-2026-10-21-steward-publish-oct-21-record
+  sort_order: 1590
+  title: 'Steward: publish Oct 21 record'
+  work_date: '2026-10-21'
+  published_date: '2026-10-21'
+  category: journal integrity
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 5aad66c: steward: publish
+    Oct 21 record.'
+  public_claim: The public repository shows commit 5aad66c changed 16 non-generated
+    tracked file(s) on 2026-10-21.
+  evidence:
+  - type: git commit
+    label: Commit 5aad66c
+    url: https://github.com/AriNova1/richie-jerimovich/commit/5aad66c
+    commit: 5aad66c
+    evidence_note: Public commit changes M _data/agent.yml, M _data/experience.yml,
+      M _data/observatory.yml, M _data/organism.yml, M _data/organism_history.yml,
+      plus 11 more file(s).
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' 5aad66c
+    result: pending public commit check
+  confidence: high
+  privacy_level: public safe pending review
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - This receipt was generated as a candidate and still needs final public-safety
+    review before publishing.
 - id: ar-2026-10-20-steward-publish-oct-20-record
   sort_order: 1580
   title: 'Steward: publish Oct 20 record'
