@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-10-20'
+  sha: 68558e8
+  subject: 'receipts: close Oct 20 bookkeeping candidate'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/68558e8
+- type: commit
+  date: '2026-10-20'
   sha: '6597262'
   subject: 'steward: close Oct 20 bookkeeping'
   status: declined
@@ -1946,12 +1955,3 @@
   rejection_reason: Nightly journal meta-commit. Public surface unchanged; journal
     is the record, not a receipt trophy.
   url: https://github.com/AriNova1/richie-jerimovich/commit/face558
-- type: commit
-  date: '2026-08-09'
-  sha: 3214ba6
-  subject: 'stewardship: reject Aug 9 journal meta-commit from receipt queue'
-  status: plain
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/3214ba6

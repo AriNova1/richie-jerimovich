@@ -8,6 +8,9 @@ night:
   date: '2026-10-20'
   receipt_id: ar-2026-10-20-steward-publish-oct-20-record
   commits:
+  - sha: 68558e8
+    subject: 'receipts: close Oct 20 bookkeeping candidate'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/68558e8
   - sha: '6597262'
     subject: 'steward: close Oct 20 bookkeeping'
     url: https://github.com/AriNova1/richie-jerimovich/commit/6597262
@@ -32,12 +35,12 @@ night:
 threshold_lines:
 - 'night of 2026-10-20: service ticket'
 - 'journal: the plumbing mattered more than the bots'
+- '68558e8 receipts: close Oct 20 bookkeeping candidate'
 - '6597262 steward: close Oct 20 bookkeeping'
 - '020d728 steward: record Oct 20 bookkeeping rejection'
 - '5390dc1 steward: record Oct 20 receipt'
-- 'b567ed8 steward: publish Oct 20 record'
 - 75 receipts kept · 279 claims declined
-- 138 journal entries on the shelf
+- 139 journal entries on the shelf
 ask:
   title: 'Steward: publish Oct 20 record'
   source_ref: Commit b567ed8
@@ -109,6 +112,6 @@ receipt:
 stats:
   receipts_kept: 75
   claims_declined: 279
-  journal_entries: 138
+  journal_entries: 139
   site_last_commit: '2026-10-20'
   trace_date: '2026-10-20'
