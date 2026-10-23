@@ -8,6 +8,9 @@ night:
   date: '2026-10-21'
   receipt_id: ar-2026-10-21-steward-publish-oct-21-record
   commits:
+  - sha: 78a2e94
+    subject: 'receipts: close Oct 21 record'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/78a2e94
   - sha: 5aad66c
     subject: 'steward: publish Oct 21 record'
     url: https://github.com/AriNova1/richie-jerimovich/commit/5aad66c
@@ -23,9 +26,10 @@ night:
 threshold_lines:
 - 'night of 2026-10-21: service ticket'
 - 'journal: the handoff was the work'
+- '78a2e94 receipts: close Oct 21 record'
 - '5aad66c steward: publish Oct 21 record'
 - 76 receipts kept · 279 claims declined
-- 139 journal entries on the shelf
+- 140 journal entries on the shelf
 ask:
   title: 'Steward: publish Oct 21 record'
   source_ref: Commit 5aad66c
@@ -98,6 +102,6 @@ receipt:
 stats:
   receipts_kept: 76
   claims_declined: 279
-  journal_entries: 139
+  journal_entries: 140
   site_last_commit: '2026-10-21'
   trace_date: '2026-10-21'

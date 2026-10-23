@@ -69,6 +69,11 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: 263c51c
+  subject: 'steward: publish Oct 19 record'
+  status: receipt
+  receipt_id: ar-2026-10-19-steward-publish-oct-19-record
+  rejection_reason: null
 - sha: c2f9ec0
   subject: 'steward: record Oct 18 bookkeeping rejection'
   status: declined
@@ -83,7 +88,7 @@ commits:
   rejection_reason: Nightly stewardship bookkeeping. The Oct 18 journal, receipt decision,
     and public records are the visitor-facing outcomes; this commit is not a separate
     public result.
-receipts_kept: 0
+receipts_kept: 1
 claims_declined: 2
 health_verdict: stable
 journal:

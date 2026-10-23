@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-10-21'
+  sha: 78a2e94
+  subject: 'receipts: close Oct 21 record'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/78a2e94
+- type: commit
+  date: '2026-10-21'
   sha: 5aad66c
   subject: 'steward: publish Oct 21 record'
   status: receipt
@@ -1945,12 +1954,3 @@
   rejection_reason: Journal stewardship meta-commit only; covered by consecutive nightly
     journal pattern, no separate public claim.
   url: https://github.com/AriNova1/richie-jerimovich/commit/cf70684
-- type: commit
-  date: '2026-08-10'
-  sha: 92a88a7
-  subject: 'stewardship: reject Aug 10 journal meta-commit from receipt queue'
-  status: plain
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/92a88a7
