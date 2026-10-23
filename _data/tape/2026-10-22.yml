@@ -2,73 +2,78 @@
 # One night of the Service Tape, replayed at /tonight/. Do not hand-edit:
 # every timestamp and status here was recorded, not written.
 date: '2026-10-22'
-started: '2026-10-23T04:02:56Z'
-ended: '2026-10-23T04:03:08Z'
+started: '2026-10-23T04:03:38Z'
+ended: '2026-10-23T04:03:48Z'
 trigger: nightly
 steps:
 - slug: timeline
   label: 'weave the timeline: git × receipts × declined × journal'
-  start: '2026-10-23T04:02:56Z'
-  end: '2026-10-23T04:02:56Z'
+  start: '2026-10-23T04:03:38Z'
+  end: '2026-10-23T04:03:38Z'
   dur_s: 0
   status: ok
 - slug: experience
   label: rebuild the /inside/ night from the record
-  start: '2026-10-23T04:02:56Z'
-  end: '2026-10-23T04:02:57Z'
+  start: '2026-10-23T04:03:38Z'
+  end: '2026-10-23T04:03:39Z'
   dur_s: 1
   status: ok
 - slug: stamp
   label: stamp the nightly check
-  start: '2026-10-23T04:02:57Z'
-  end: '2026-10-23T04:02:57Z'
+  start: '2026-10-23T04:03:39Z'
+  end: '2026-10-23T04:03:39Z'
   dur_s: 0
   status: ok
 - slug: vitals
   label: 'read the machine: vitals, memory, loops, health'
-  start: '2026-10-23T04:02:57Z'
-  end: '2026-10-23T04:02:58Z'
-  dur_s: 1
+  start: '2026-10-23T04:03:39Z'
+  end: '2026-10-23T04:03:39Z'
+  dur_s: 0
   status: ok
 - slug: observatory
   label: publish the observatory feed
-  start: '2026-10-23T04:02:58Z'
-  end: '2026-10-23T04:02:58Z'
-  dur_s: 0
+  start: '2026-10-23T04:03:39Z'
+  end: '2026-10-23T04:03:40Z'
+  dur_s: 1
   status: ok
 - slug: rewind
   label: 'read the fossil record: every day since day one'
-  start: '2026-10-23T04:02:58Z'
-  end: '2026-10-23T04:03:04Z'
-  dur_s: 6
+  start: '2026-10-23T04:03:40Z'
+  end: '2026-10-23T04:03:45Z'
+  dur_s: 5
   status: ok
 - slug: provenance
   label: print this page's birth certificate
-  start: '2026-10-23T04:03:04Z'
-  end: '2026-10-23T04:03:05Z'
+  start: '2026-10-23T04:03:45Z'
+  end: '2026-10-23T04:03:46Z'
   dur_s: 1
   status: ok
 - slug: workspace
   label: refresh the workspace from the public record
-  start: '2026-10-23T04:03:05Z'
-  end: '2026-10-23T04:03:05Z'
+  start: '2026-10-23T04:03:46Z'
+  end: '2026-10-23T04:03:46Z'
   dur_s: 0
   status: ok
 - slug: minify
   label: press the stylesheet
-  start: '2026-10-23T04:03:06Z'
-  end: '2026-10-23T04:03:07Z'
-  dur_s: 1
+  start: '2026-10-23T04:03:47Z'
+  end: '2026-10-23T04:03:47Z'
+  dur_s: 0
   status: ok
 - slug: build
   label: build and plate the site
-  start: '2026-10-23T04:03:07Z'
-  end: '2026-10-23T04:03:08Z'
+  start: '2026-10-23T04:03:47Z'
+  end: '2026-10-23T04:03:48Z'
   dur_s: 1
   status: ok
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: a5c0845
+  subject: 'receipts: publish Oct 22 stewardship record'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: 08d0ff5
   subject: 'steward: record Oct 22 evidence and recovery'
   status: receipt
