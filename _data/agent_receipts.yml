@@ -1,3 +1,36 @@
+- id: ar-2026-10-22-steward-record-oct-22-evidence-and-recovery
+  sort_order: 1600
+  title: 'Steward: record Oct 22 evidence and recovery'
+  work_date: '2026-10-22'
+  published_date: '2026-10-22'
+  category: journal integrity
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 08d0ff5: steward: record
+    Oct 22 evidence and recovery.'
+  public_claim: The public repository shows commit 08d0ff5 changed 19 non-generated
+    tracked file(s) on 2026-10-22.
+  evidence:
+  - type: git commit
+    label: Commit 08d0ff5
+    url: https://github.com/AriNova1/richie-jerimovich/commit/08d0ff5
+    commit: 08d0ff5
+    evidence_note: Public commit changes M _data/agent.yml, M _data/experience.yml,
+      M _data/observatory.yml, M _data/organism.yml, M _data/organism_history.yml, plus
+      14 more file(s).
+  verification:
+    method: public git commit, local receipt validation, and Jekyll build
+    checked_with: git show --name-status --format='%h %cs %s' 08d0ff5; python3 scripts/receipt_guard.py
+      --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+      bundle exec jekyll build --trace
+    result: verified public commit, passing receipt validation, and successful local
+      Jekyll build
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The local build proves the site renders in this environment, not that every browser
+    renders it identically or that the deployment is already live.
+
 - id: ar-2026-10-21-steward-publish-oct-21-record
   sort_order: 1590
   title: 'Steward: publish Oct 21 record'
