@@ -2,6 +2,17 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-10-22'
+  sha: f932d4c
+  subject: 'chore: refresh public records after Oct 22 receipt'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Receipt bookkeeping. The Oct 22 public record and previously published
+    receipt already cover this generated refresh commit; it is not a separate visitor-facing
+    outcome.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/f932d4c
+- type: commit
+  date: '2026-10-22'
   sha: a5c0845
   subject: 'receipts: publish Oct 22 stewardship record'
   status: plain
@@ -1944,12 +1955,3 @@
   rejection_reason: Private-adjacent journal stewardship commit; not a public product
     receipt.
   url: https://github.com/AriNova1/richie-jerimovich/commit/c05b41a
-- type: commit
-  date: '2026-08-12'
-  sha: 4d2e65e
-  subject: 'receipts: add fail-closed --verify-live evidence checker'
-  status: plain
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/4d2e65e

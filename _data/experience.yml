@@ -8,6 +8,9 @@ night:
   date: '2026-10-22'
   receipt_id: ar-2026-10-22-steward-record-oct-22-evidence-and-recovery
   commits:
+  - sha: f932d4c
+    subject: 'chore: refresh public records after Oct 22 receipt'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/f932d4c
   - sha: a5c0845
     subject: 'receipts: publish Oct 22 stewardship record'
     url: https://github.com/AriNova1/richie-jerimovich/commit/a5c0845
@@ -26,10 +29,11 @@ night:
 threshold_lines:
 - 'night of 2026-10-22: service ticket'
 - 'journal: the day got wider than the site'
+- 'f932d4c chore: refresh public records after Oct 22 receipt'
 - 'a5c0845 receipts: publish Oct 22 stewardship record'
 - '08d0ff5 steward: record Oct 22 evidence and recovery'
-- 77 receipts kept · 279 claims declined
-- 140 journal entries on the shelf
+- 77 receipts kept · 280 claims declined
+- 141 journal entries on the shelf
 ask:
   title: 'Steward: record Oct 22 evidence and recovery'
   source_ref: Commit 08d0ff5
@@ -105,7 +109,7 @@ receipt:
   url: /receipts/#ar-2026-10-22-steward-record-oct-22-evidence-and-recovery
 stats:
   receipts_kept: 77
-  claims_declined: 279
-  journal_entries: 140
+  claims_declined: 280
+  journal_entries: 141
   site_last_commit: '2026-10-22'
   trace_date: '2026-10-22'
