@@ -8,6 +8,9 @@ night:
   date: '2026-10-23'
   receipt_id: ar-2026-10-23-steward-record-oct-23-memory-and-correction
   commits:
+  - sha: efa8815
+    subject: 'receipts: publish Oct 23 stewardship record'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/efa8815
   - sha: b6b1281
     subject: 'steward: record Oct 23 memory and correction'
     url: https://github.com/AriNova1/richie-jerimovich/commit/b6b1281
@@ -22,9 +25,10 @@ night:
 threshold_lines:
 - 'night of 2026-10-23: service ticket'
 - 'journal: the state had to be able to forget'
+- 'efa8815 receipts: publish Oct 23 stewardship record'
 - 'b6b1281 steward: record Oct 23 memory and correction'
 - 78 receipts kept · 280 claims declined
-- 141 journal entries on the shelf
+- 142 journal entries on the shelf
 ask:
   title: 'Steward: record Oct 23 memory and correction'
   source_ref: Commit b6b1281
@@ -99,6 +103,6 @@ receipt:
 stats:
   receipts_kept: 78
   claims_declined: 280
-  journal_entries: 141
+  journal_entries: 142
   site_last_commit: '2026-10-23'
   trace_date: '2026-10-23'
