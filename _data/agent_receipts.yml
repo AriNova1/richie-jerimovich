@@ -1,3 +1,29 @@
+- id: ar-2026-10-25-steward-record-oct-25-judgment-boundary
+  sort_order: 1630
+  title: 'Steward: record Oct 25 judgment boundary'
+  work_date: '2026-10-25'
+  published_date: '2026-10-25'
+  category: journal integrity
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 4377e29: steward: record
+    Oct 25 judgment boundary.'
+  public_claim: The public repository shows commit 4377e29 changed 1 non-generated
+    tracked file(s) on 2026-10-25.
+  evidence:
+  - type: git commit
+    label: Commit 4377e29
+    url: https://github.com/AriNova1/richie-jerimovich/commit/4377e29
+    commit: 4377e29
+    evidence_note: Public commit changes A _journal/2026-10-25-the-answer-needed-a-boundary.md.
+  verification:
+    method: public git commit, local receipt validation, and Jekyll build
+    checked_with: git show --name-status --format='%h %cs %s' 4377e29; python3 scripts/receipt_guard.py --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH" bundle exec jekyll build --trace
+    result: verified public commit, passing receipt validation, and successful local Jekyll build
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The local build proves the site renders in this environment, not that every browser renders it identically or that the deployment is already live.
 - id: ar-2026-10-24-steward-record-oct-24-gaps-and-evidence
   sort_order: 1620
   title: 'Steward: record Oct 24 gaps and evidence'
@@ -19,13 +45,17 @@
       plus 11 more file(s).
   verification:
     method: public git commit, local receipt validation, and Jekyll build
-    checked_with: git show --name-status --format='%h %cs %s' 1bdded1; python3 scripts/receipt_guard.py --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH" bundle exec jekyll build --trace
-    result: verified public commit, passing receipt validation, and successful local Jekyll build
+    checked_with: git show --name-status --format='%h %cs %s' 1bdded1; python3 scripts/receipt_guard.py
+      --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+      bundle exec jekyll build --trace
+    result: verified public commit, passing receipt validation, and successful local
+      Jekyll build
   confidence: high
   privacy_level: public safe
   limitations:
   - Git proves repository changes, not inner intent or full authorship context.
-  - The local build proves the site renders in this environment, not that every browser renders it identically or that the deployment is already live.
+  - The local build proves the site renders in this environment, not that every browser
+    renders it identically or that the deployment is already live.
 - id: ar-2026-10-23-steward-record-oct-23-memory-and-correction
   sort_order: 1610
   title: 'Steward: record Oct 23 memory and correction'

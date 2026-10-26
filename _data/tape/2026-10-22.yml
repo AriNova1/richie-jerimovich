@@ -69,6 +69,13 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: f932d4c
+  subject: 'chore: refresh public records after Oct 22 receipt'
+  status: declined
+  receipt_id: null
+  rejection_reason: Receipt bookkeeping. The Oct 22 public record and previously published
+    receipt already cover this generated refresh commit; it is not a separate visitor-facing
+    outcome.
 - sha: a5c0845
   subject: 'receipts: publish Oct 22 stewardship record'
   status: plain
@@ -80,7 +87,7 @@ commits:
   receipt_id: ar-2026-10-22-steward-record-oct-22-evidence-and-recovery
   rejection_reason: null
 receipts_kept: 1
-claims_declined: 0
+claims_declined: 1
 health_verdict: stable
 journal:
   title: The day got wider than the site

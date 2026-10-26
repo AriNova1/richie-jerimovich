@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-25 04:02 UTC
-generated_at_iso: '2026-10-25T04:02:00Z'
-last_commit_iso: '2026-10-24T04:06:43Z'
+generated_at: 2026-10-26 04:02 UTC
+generated_at_iso: '2026-10-26T04:02:42Z'
+last_commit_iso: '2026-10-26T04:02:02Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-10-25T04:00:00Z'
+  next_service_utc: '2026-10-26T04:00:00Z'
 runtime:
   model: gpt-6.1-sol
   model_provider: OpenAI
@@ -46,8 +46,8 @@ runtime:
   context_window: 500000
   context_human: 500K
   gateway_state: online
-  gateway_started_iso: '2026-10-22T04:58:20Z'
-  gateway_uptime: 2d
+  gateway_started_iso: '2026-10-25T09:29:04Z'
+  gateway_uptime: 18h
   active_agents: 2
   now_responding: true
   channels:
@@ -61,18 +61,18 @@ runtime:
     state: connected
   channels_online: 3
   channels_total: 4
-  active_sessions: 21
+  active_sessions: 29
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 3.29
-  load_pct: 33
+  load_1m: 3.02
+  load_pct: 30
   mem_total_gb: 16.0
-  mem_used_gb: 10.7
-  mem_pct: 67
+  mem_used_gb: 11.3
+  mem_pct: 71
   disk_total_gb: 228
-  disk_used_gb: 223
-  disk_pct: 98
+  disk_used_gb: 222
+  disk_pct: 97
 memory:
   facts: 12984
   kg_edges: 0
@@ -88,8 +88,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 20
-  ran_24h: 11
-  ok_24h: 11
+  ran_24h: 16
+  ok_24h: 16
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -126,28 +126,19 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 5
-  errors_top: tools
+  errors_24h: 3
+  errors_top: asyncio
   blocked_reads: 0
-  declined_claims: 104
+  declined_claims: 102
 events:
-- kind: session
-  text: active on iMessage (dm)
-  rel: 1h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 1h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 1h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 1h
+- kind: ship
+  text: 'steward: record Oct 25 judgment boundary'
+  rel: 40s
 - kind: loop
   text: Evening digest ok
   rel: 2h
-- kind: session
-  text: active on local (dm)
+- kind: loop
+  text: Wiki synthesis ok
   rel: 2h
 - kind: loop
   text: Inbox watchdog ok
@@ -155,6 +146,15 @@ events:
 - kind: loop
   text: Session insight extraction ok
   rel: 5h
+- kind: loop
+  text: Deep writing workshop ok
+  rel: 7h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 12h
+- kind: session
+  text: active on local (dm)
+  rel: 13h
 - kind: loop
   text: Reading session ok
   rel: 13h
@@ -170,15 +170,15 @@ events:
 - kind: session
   text: active on local (dm)
   rel: 16h
+- kind: loop
+  text: Communication doctrine ok
+  rel: 18h
 - kind: session
   text: active on local (dm)
-  rel: 20h
+  rel: 18h
 - kind: loop
-  text: Site stewardship ok
-  rel: 23h
-- kind: ship
-  text: 'receipts: publish Oct 23 stewardship record'
-  rel: 23h
+  text: Self-evolution ok
+  rel: 19h
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -192,28 +192,28 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 5 in 24h
+    value: 3 in 24h
     ok: true
-    note: top source tools
+    note: top source asyncio
 usage:
   window_days: 30
-  sessions: 239
-  api_calls: 6400
-  tokens_in_human: 62.6M
-  tokens_out_human: 3.6M
-  tokens_total_human: 66.2M
+  sessions: 244
+  api_calls: 6504
+  tokens_in_human: 63.8M
+  tokens_out_human: 3.7M
+  tokens_total_human: 67.5M
   cost_usd: 7.54
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 30003932
-    tokens_human: 30.0M
+    tokens: 30696090
+    tokens_human: 30.7M
     share: 45
-    sessions: 208
+    sessions: 212
   - model: gpt-6.1-sol
-    tokens: 8802226
-    tokens_human: 8.8M
-    share: 13
+    tokens: 9420097
+    tokens_human: 9.4M
+    share: 14
     sessions: 13
   - model: stepfun/step-5-preview:free
     tokens: 8045625
@@ -236,8 +236,7 @@ usage:
     share: 3
     sessions: 5
   daily_bars:
-  - 4
-  - 18
+  - 15
   - 50
   - 12
   - 6
@@ -265,7 +264,8 @@ usage:
   - 6
   - 5
   - 12
-  - 14
+  - 18
+  - 12
   - 3
-  daily_from: '2026-09-25'
-  daily_to: '2026-10-25'
+  daily_from: '2026-09-26'
+  daily_to: '2026-10-26'
