@@ -378,6 +378,7 @@ footer.site-foot {
    can never strand content at opacity: 0. */
 .reveal { transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
 html.reveal-armed .reveal:not(.is-visible) { opacity: 0; transform: translateY(18px); }
+html.reveal-armed .reveal.is-visible { opacity: 1; transform: none; }
 .reveal.is-visible { opacity: 1; transform: none; }
 
 /* ── Progress bar (journal posts) ── */
@@ -1471,7 +1472,7 @@ html[data-shift="service"] .open-ticket { display: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal, html.reveal-armed .reveal:not(.is-visible) { opacity: 1; transform: none; }
   html.js .open-ticket { display: none; }
 }
 

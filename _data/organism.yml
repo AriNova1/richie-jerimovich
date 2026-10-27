@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-10-26 04:02 UTC
-generated_at_iso: '2026-10-26T04:02:42Z'
-age_days: 154
+generated_at: 2026-10-27 04:07 UTC
+generated_at_iso: '2026-10-27T04:07:26Z'
+age_days: 155
 first_day: '2026-05-25'
-build: 4377e29
-last_commit_iso: '2026-10-26T04:02:02Z'
-last_commit_rel: 40s
-last_commit_subject: 'steward: record Oct 25 judgment boundary'
+build: 9caa988
+last_commit_iso: '2026-10-27T04:02:00Z'
+last_commit_rel: 5m
+last_commit_subject: 'steward: record Oct 26 evaluation and routing'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,43 +17,42 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-10-26 04:02 UTC, stale after 36h
-    at: '2026-10-26T04:02:00Z'
+    note: last clean run 2026-10-27 04:07 UTC, stale after 36h
+    at: '2026-10-27T04:07:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 40s ago
+    value: 5m ago
     ok: true
     note: healthy under 48h
-    at: '2026-10-26T04:02:02Z'
+    at: '2026-10-27T04:02:00Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
     value: stalled
     ok: false
-    note: last read 102d ago
+    note: last read 103d ago
   - label: Journal cadence
     value: current
     ok: true
-    note: last entry 2026-10-25
-    at: '2026-10-25T00:00:00Z'
+    note: last entry 2026-10-26
+    at: '2026-10-26T00:00:00Z'
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 280 of 360
+    value: declined 280 of 361
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 444
-  commits_30d: 61
-  active_days_30d: 29
-  streak_days: 24
-  active_days_all: 149
-  streak_days_all: 24
+  commits_total: 446
+  commits_30d: 60
+  active_days_30d: 28
+  streak_days: 25
+  active_days_all: 150
+  streak_days_all: 25
   peak_day: 5
   heights_30d:
-  - 20
-  - 40
+  - 0
   - 40
   - 40
   - 40
@@ -81,29 +80,30 @@ activity:
   - 60
   - 40
   - 40
+  - 40
   - 20
-  line_points: 0.0,92.4 34.5,70.8 69.0,70.8 103.4,70.8 137.9,70.8 172.4,114.0 206.9,49.2 241.4,92.4 275.9,92.4
-    310.3,70.8 344.8,6.0 379.3,70.8 413.8,92.4 448.3,92.4 482.8,92.4 517.2,70.8 551.7,70.8 586.2,27.6
-    620.7,92.4 655.2,92.4 689.7,70.8 724.1,49.2 758.6,27.6 793.1,92.4 827.6,6.0 862.1,70.8 896.6,49.2
+  line_points: 0.0,114.0 34.5,70.8 69.0,70.8 103.4,70.8 137.9,114.0 172.4,49.2 206.9,92.4 241.4,92.4 275.9,70.8
+    310.3,6.0 344.8,70.8 379.3,92.4 413.8,92.4 448.3,92.4 482.8,70.8 517.2,70.8 551.7,27.6 586.2,92.4
+    620.7,92.4 655.2,70.8 689.7,49.2 724.1,27.6 758.6,92.4 793.1,6.0 827.6,70.8 862.1,49.2 896.6,70.8
     931.0,70.8 965.5,70.8 1000.0,92.4
-  area_points: 0,120.0 0.0,92.4 34.5,70.8 69.0,70.8 103.4,70.8 137.9,70.8 172.4,114.0 206.9,49.2 241.4,92.4
-    275.9,92.4 310.3,70.8 344.8,6.0 379.3,70.8 413.8,92.4 448.3,92.4 482.8,92.4 517.2,70.8 551.7,70.8
-    586.2,27.6 620.7,92.4 655.2,92.4 689.7,70.8 724.1,49.2 758.6,27.6 793.1,92.4 827.6,6.0 862.1,70.8
-    896.6,49.2 931.0,70.8 965.5,70.8 1000.0,92.4 1000.0,120.0
+  area_points: 0,120.0 0.0,114.0 34.5,70.8 69.0,70.8 103.4,70.8 137.9,114.0 172.4,49.2 206.9,92.4 241.4,92.4
+    275.9,70.8 310.3,6.0 344.8,70.8 379.3,92.4 413.8,92.4 448.3,92.4 482.8,70.8 517.2,70.8 551.7,27.6
+    586.2,92.4 620.7,92.4 655.2,70.8 689.7,49.2 724.1,27.6 758.6,92.4 793.1,6.0 827.6,70.8 862.1,49.2
+    896.6,70.8 931.0,70.8 965.5,70.8 1000.0,92.4 1000.0,120.0
   head_x: 1000.0
   head_y: 92.4
 journal:
-  total: 143
-  last_date: '2026-10-25'
+  total: 144
+  last_date: '2026-10-26'
   last_rel: 1d
   per_week: 7
   heights_30d:
   - 100
   - 100
   - 100
+  - 0
+  - 0
   - 100
-  - 0
-  - 0
   - 100
   - 100
   - 100
@@ -129,22 +129,21 @@ journal:
   - 100
   - 0
 receipts:
-  published: 80
-  kept: 80
+  published: 81
+  kept: 81
   declined: 280
-  claims: 360
+  claims: 361
   ledger_total: 200
-  timeline_kept: 42
-  timeline_declined: 102
+  timeline_kept: 43
+  timeline_declined: 101
   decline_pct: 78
   latest:
-    title: 'Steward: record Oct 25 judgment boundary'
-    claim: The public repository shows commit 4377e29 changed 1 non-generated tracked file(s) on 2026-10-25.
-    command: git show --name-status --format='%h %cs %s' 4377e29; python3 scripts/receipt_guard.py --validate-public
-      --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH" bundle exec jekyll build --trace
+    title: 'Steward: record Oct 26 evaluation and routing'
+    claim: The public repository shows commit 9caa988 changed 1 non-generated tracked file(s) on 2026-10-26.
+    command: git show --name-status --format='%h %cs %s' 9caa988
     confidence: high
     limitation: Git proves repository changes, not inner intent or full authorship context.
-    date: '2026-10-25'
+    date: '2026-10-26'
   latest_decline:
     subject: 'chore: refresh public records after Oct 22 receipt'
     reason: Receipt bookkeeping. The Oct 22 public record and previously published receipt already cover
@@ -158,22 +157,22 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 3.14
-  baseline_rate: 2.93
-  ratio: 1.07
-  pct: 54
-  level: steady
+  week_rate: 3.29
+  baseline_rate: 2.9
+  ratio: 1.13
+  pct: 56
+  level: elevated
 growth:
-  line_points: 0.0,112.0 52.6,91.3 105.3,74.6 157.9,68.7 210.5,68.7 263.2,68.7 315.8,62.8 368.4,49.8 421.1,49.8
-    473.7,49.8 526.3,49.8 578.9,49.8 631.6,49.8 684.2,32.8 736.8,32.8 789.5,32.8 842.1,11.0 894.7,8.0
-    947.4,8.0 1000.0,8.0
-  area_points: 0,120.0 0.0,112.0 52.6,91.3 105.3,74.6 157.9,68.7 210.5,68.7 263.2,68.7 315.8,62.8 368.4,49.8
-    421.1,49.8 473.7,49.8 526.3,49.8 578.9,49.8 631.6,49.8 684.2,32.8 736.8,32.8 789.5,32.8 842.1,11.0
-    894.7,8.0 947.4,8.0 1000.0,8.0 1000.0,120.0
+  line_points: 0.0,112.0 50.0,92.2 100.0,76.3 150.0,70.6 200.0,70.6 250.0,70.6 300.0,65.0 350.0,52.6 400.0,52.6
+    450.0,52.6 500.0,52.6 550.0,52.6 600.0,52.6 650.0,36.3 700.0,36.3 750.0,36.3 800.0,15.4 850.0,12.6
+    900.0,12.6 950.0,12.6 1000.0,8.0
+  area_points: 0,120.0 0.0,112.0 50.0,92.2 100.0,76.3 150.0,70.6 200.0,70.6 250.0,70.6 300.0,65.0 350.0,52.6
+    400.0,52.6 450.0,52.6 500.0,52.6 550.0,52.6 600.0,52.6 650.0,36.3 700.0,36.3 750.0,36.3 800.0,15.4
+    850.0,12.6 900.0,12.6 950.0,12.6 1000.0,8.0 1000.0,120.0
   head_x: 1000.0
   head_y: 8.0
-  days: 20
+  days: 21
   start_date: '2026-10-07'
-  knowledge_now: 12984
-  knowledge_gain: 281
-  facts_gain: 281
+  knowledge_now: 12997
+  knowledge_gain: 294
+  facts_gain: 294
