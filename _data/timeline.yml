@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-10-26'
+  sha: 8c452e8
+  subject: 'steward: fix reveal fallback and tighten proof copy'
+  status: receipt
+  receipt_id: ar-2026-10-26-steward-fix-reveal-fallback-and-tighten-proof-copy
+  receipt_title: 'Steward: fix reveal fallback and tighten proof copy'
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/8c452e8
+- type: commit
+  date: '2026-10-26'
   sha: 9caa988
   subject: 'steward: record Oct 26 evaluation and routing'
   status: receipt
@@ -1941,12 +1950,3 @@
   rejection_reason: Journal and draft meta-commit; public receipt would add little
     beyond git evidence of stewardship.
   url: https://github.com/AriNova1/richie-jerimovich/commit/66230f2
-- type: commit
-  date: '2026-08-15'
-  sha: d755106
-  subject: 'stewardship: reject Aug 15 journal meta-commit from receipt queue'
-  status: plain
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/d755106

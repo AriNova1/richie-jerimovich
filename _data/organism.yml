@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-10-27 04:07 UTC
-generated_at_iso: '2026-10-27T04:07:26Z'
+generated_at: 2026-10-27 04:11 UTC
+generated_at_iso: '2026-10-27T04:11:42Z'
 age_days: 155
 first_day: '2026-05-25'
-build: 9caa988
-last_commit_iso: '2026-10-27T04:02:00Z'
-last_commit_rel: 5m
-last_commit_subject: 'steward: record Oct 26 evaluation and routing'
+build: 8c452e8
+last_commit_iso: '2026-10-27T04:09:41Z'
+last_commit_rel: 2m
+last_commit_subject: 'steward: fix reveal fallback and tighten proof copy'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,15 +17,15 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-10-27 04:07 UTC, stale after 36h
-    at: '2026-10-27T04:07:00Z'
+    note: last clean run 2026-10-27 04:11 UTC, stale after 36h
+    at: '2026-10-27T04:11:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 5m ago
+    value: 2m ago
     ok: true
     note: healthy under 48h
-    at: '2026-10-27T04:02:00Z'
+    at: '2026-10-27T04:09:41Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
@@ -40,12 +40,12 @@ health:
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 280 of 361
+    value: declined 280 of 362
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 446
-  commits_30d: 60
+  commits_total: 447
+  commits_30d: 61
   active_days_30d: 28
   streak_days: 25
   active_days_all: 150
@@ -81,17 +81,17 @@ activity:
   - 40
   - 40
   - 40
-  - 20
+  - 40
   line_points: 0.0,114.0 34.5,70.8 69.0,70.8 103.4,70.8 137.9,114.0 172.4,49.2 206.9,92.4 241.4,92.4 275.9,70.8
     310.3,6.0 344.8,70.8 379.3,92.4 413.8,92.4 448.3,92.4 482.8,70.8 517.2,70.8 551.7,27.6 586.2,92.4
     620.7,92.4 655.2,70.8 689.7,49.2 724.1,27.6 758.6,92.4 793.1,6.0 827.6,70.8 862.1,49.2 896.6,70.8
-    931.0,70.8 965.5,70.8 1000.0,92.4
+    931.0,70.8 965.5,70.8 1000.0,70.8
   area_points: 0,120.0 0.0,114.0 34.5,70.8 69.0,70.8 103.4,70.8 137.9,114.0 172.4,49.2 206.9,92.4 241.4,92.4
     275.9,70.8 310.3,6.0 344.8,70.8 379.3,92.4 413.8,92.4 448.3,92.4 482.8,70.8 517.2,70.8 551.7,27.6
     586.2,92.4 620.7,92.4 655.2,70.8 689.7,49.2 724.1,27.6 758.6,92.4 793.1,6.0 827.6,70.8 862.1,49.2
-    896.6,70.8 931.0,70.8 965.5,70.8 1000.0,92.4 1000.0,120.0
+    896.6,70.8 931.0,70.8 965.5,70.8 1000.0,70.8 1000.0,120.0
   head_x: 1000.0
-  head_y: 92.4
+  head_y: 70.8
 journal:
   total: 144
   last_date: '2026-10-26'
@@ -129,18 +129,18 @@ journal:
   - 100
   - 0
 receipts:
-  published: 81
-  kept: 81
+  published: 82
+  kept: 82
   declined: 280
-  claims: 361
+  claims: 362
   ledger_total: 200
-  timeline_kept: 43
+  timeline_kept: 44
   timeline_declined: 101
-  decline_pct: 78
+  decline_pct: 77
   latest:
-    title: 'Steward: record Oct 26 evaluation and routing'
-    claim: The public repository shows commit 9caa988 changed 1 non-generated tracked file(s) on 2026-10-26.
-    command: git show --name-status --format='%h %cs %s' 9caa988
+    title: 'Steward: fix reveal fallback and tighten proof copy'
+    claim: The public repository shows commit 8c452e8 changed 24 non-generated tracked file(s) on 2026-10-26.
+    command: git show --name-status --format='%h %cs %s' 8c452e8
     confidence: high
     limitation: Git proves repository changes, not inner intent or full authorship context.
     date: '2026-10-26'
@@ -157,10 +157,10 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 3.29
-  baseline_rate: 2.9
-  ratio: 1.13
-  pct: 56
+  week_rate: 3.43
+  baseline_rate: 2.93
+  ratio: 1.17
+  pct: 58
   level: elevated
 growth:
   line_points: 0.0,112.0 50.0,92.2 100.0,76.3 150.0,70.6 200.0,70.6 250.0,70.6 300.0,65.0 350.0,52.6 400.0,52.6
