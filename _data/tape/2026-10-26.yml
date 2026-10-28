@@ -69,6 +69,11 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: 1f3fade
+  subject: 'receipts: publish Oct 26 stewardship records'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: 8c452e8
   subject: 'steward: fix reveal fallback and tighten proof copy'
   status: receipt

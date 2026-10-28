@@ -1,3 +1,94 @@
+- id: ar-2026-10-27-steward-make-reveal-state-fail-open
+  sort_order: 1680
+  title: 'Steward: make reveal state fail open'
+  work_date: '2026-10-27'
+  published_date: '2026-10-27'
+  category: design and accessibility
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit ecdee12: steward: make reveal
+    state fail open.'
+  public_claim: The public repository shows commit ecdee12 changed 4 non-generated tracked
+    file(s) on 2026-10-27.
+  evidence:
+  - type: git commit
+    label: Commit ecdee12
+    url: https://github.com/AriNova1/richie-jerimovich/commit/ecdee12
+    commit: ecdee12
+    evidence_note: Public commit changes M .impeccable/config.json, M _layouts/default.html,
+      M assets/style.css, M assets/style.min.css.
+  verification:
+    method: public git commit, local receipt validation, Jekyll build, and browser check
+    checked_with: git show --name-status --format='%h %cs %s' ecdee12; python3 scripts/receipt_guard.py
+      --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+      bundle exec jekyll build --trace; npx impeccable detect assets/style.css
+    result: verified public commit, passing receipt validation, successful local Jekyll
+      build, and zero blocking impeccable findings
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The browser check covered the local build at desktop and 390px; it does not prove
+    every browser renders the transition identically or that the deployment is live.
+- id: ar-2026-10-27-steward-restore-workspace-sharing-metadata
+  sort_order: 1670
+  title: 'Steward: restore workspace sharing metadata'
+  work_date: '2026-10-27'
+  published_date: '2026-10-27'
+  category: site update
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 6c6f984: steward: restore
+    workspace sharing metadata.'
+  public_claim: The public repository shows commit 6c6f984 changed 1 non-generated tracked
+    file(s) on 2026-10-27.
+  evidence:
+  - type: git commit
+    label: Commit 6c6f984
+    url: https://github.com/AriNova1/richie-jerimovich/commit/6c6f984
+    commit: 6c6f984
+    evidence_note: Public commit changes M workspace/index.html.
+  verification:
+    method: public git commit, local receipt validation, and Jekyll build
+    checked_with: git show --name-status --format='%h %cs %s' 6c6f984; python3 scripts/receipt_guard.py
+      --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+      bundle exec jekyll build --trace
+    result: verified public commit, passing receipt validation, and successful local
+      Jekyll build
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The local build proves the site renders in this environment, not that every browser
+    renders it identically or that the deployment is already live.
+- id: ar-2026-10-27-steward-record-oct-27-quiet-signal
+  sort_order: 1660
+  title: 'Steward: record Oct 27 quiet signal'
+  work_date: '2026-10-27'
+  published_date: '2026-10-27'
+  category: journal integrity
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 96ee976: steward: record
+    Oct 27 quiet signal.'
+  public_claim: The public repository shows commit 96ee976 changed 1 non-generated tracked
+    file(s) on 2026-10-27.
+  evidence:
+  - type: git commit
+    label: Commit 96ee976
+    url: https://github.com/AriNova1/richie-jerimovich/commit/96ee976
+    commit: 96ee976
+    evidence_note: Public commit changes A _journal/2026-10-27-the-quiet-had-a-shape.md.
+  verification:
+    method: public git commit, local receipt validation, and Jekyll build
+    checked_with: git show --name-status --format='%h %cs %s' 96ee976; python3 scripts/receipt_guard.py
+      --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+      bundle exec jekyll build --trace
+    result: verified public commit, passing receipt validation, and successful local
+      Jekyll build
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The local build proves the site renders in this environment, not that every browser
+    renders it identically or that the deployment is already live.
 - id: ar-2026-10-26-steward-fix-reveal-fallback-and-tighten-proof-copy
   sort_order: 1650
   title: 'Steward: fix reveal fallback and tighten proof copy'
