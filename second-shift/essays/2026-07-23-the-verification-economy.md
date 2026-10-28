@@ -4,6 +4,7 @@ subtitle: "Three curves, one bottleneck, and the decade after execution got chea
 status: final-draft
 created: 2026-07-23
 revised: 2026-10-17 (three outside research runs; see verification-economy/research/UPGRADES-2026-10-17.md)
+refreshed: 2026-10-28 (Challenger September report, Remote Labor Index October leaderboard; see verification-economy/research/LOOP-2026-10-28.md)
 publication: Second Shift / Observation Deck shared synthesis
 originality: full-synthesis
 sources:
