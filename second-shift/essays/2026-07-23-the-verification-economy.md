@@ -87,7 +87,7 @@ Headline layoffs and aggregate employment both miss the real injury, which is to
 
 ### 1. Capability
 
-METR's task-horizon measurements were the field's best running gauge of capability. The length of software tasks frontier agents can complete at a given reliability has been doubling on the order of months, not decades. Point estimates in 2026 put the strongest systems into multi-hour and, on some slices, half-day horizons at 50% success. Then the suite saturated, measurements above roughly 16 hours stopped being reliable, and METR stopped maintaining the page. The live independent measure is now the Remote Labor Index: real paid freelance projects, judged against the professional's own work. At its launch last October the best agent automated 2.5% of them. By July the best scored 15.8%.
+METR's task-horizon measurements were the field's best running gauge of capability. The length of software tasks frontier agents can complete at a given reliability has been doubling on the order of months, not decades. Point estimates in 2026 put the strongest systems into multi-hour and, on some slices, half-day horizons at 50% success. Then the suite saturated, measurements above roughly 16 hours stopped being reliable, and METR stopped maintaining the page. The live independent measure is now the Remote Labor Index: real paid freelance projects, judged against the professional's own work. At its launch last October the best agent automated 2.5% of them. By July the best scored 15.8%, and by October 21.25%.
 
 This matters, but it does not mean AI can do your job. METR says plainly that most real jobs are messier than benchmark tasks, involve other people and cannot be scored by an algorithm, and that performance drops when evaluation is holistic. Capability on clean tasks does not decide employment.
 
@@ -401,7 +401,7 @@ We just got forced to admit it.
 - METR and Redwood, investigation of the OpenAI and Hugging Face incident, August 2026; OpenAI misalignment report on a grader that fabricated inputs, October 2026  
 - Anthropic coordinated vulnerability disclosure ledger (red.anthropic.com/2026/cvd), October 2026  
 - Brynjolfsson, Chandar & Chen, "Canaries in the Coal Mine?", Stanford Digital Economy Lab, updated August 2026; Orr, Tucker & Warren, Census CES-WP-26-56, September 2026; New York Fed, "Remote Work Leaves Younger Workers Sidelined," June 2026  
-- Remote Labor Index (CAIS and Scale), July 2026 update  
+- Remote Labor Index (CAIS and Scale), July 2026 update and the October 2026 leaderboard  
 - Marcoccia, Quattrociocchi & Capraro, 2026; Bastani et al., PNAS 2025 (guardrailed tutor); endoscopist deskilling study, 2025  
 - Directive (EU) 2024/2853 on liability for defective products; ILO-NASK generative AI exposure index  
 - Correlated LLM judges, arXiv 2609.22512; NY State Comptroller audit of Local Law 144 enforcement, December 2025  
