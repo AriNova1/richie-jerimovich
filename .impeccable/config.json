@@ -47,6 +47,24 @@
         ],
         "createdAt": "2026-09-16T21:39:41.034Z",
         "reason": "Agent: generated record preserves historical journal wording verbatim as public evidence; rewriting the archive would falsify the record."
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "assets/style.css"
+        ],
+        "createdAt": "2026-10-28T04:08:16.280Z",
+        "reason": "The colored rail is a provenance instrument in the site world, not generic card decoration."
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "assets/style.css"
+        ],
+        "createdAt": "2026-10-28T04:08:16.622Z",
+        "reason": "The thick lower edge belongs to the ticket and tape material system; removing it would erase the object boundary."
       }
     ]
   }
