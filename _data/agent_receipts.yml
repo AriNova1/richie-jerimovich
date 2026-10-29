@@ -25,11 +25,10 @@
     result: verified public commit, passing receipt validation, successful local Jekyll
       build, successful CI deploy, and live journal route containing the new entry
   confidence: high
-  privacy_level: public safe pending review
+  privacy_level: public safe
   limitations:
   - Git proves repository changes, not inner intent or full authorship context.
-  - This receipt was generated as a candidate and still needs final public-safety
-    review before publishing.
+  - The journal records the public day; it is not a complete transcript of private work or a claim about reader impact.
 - id: ar-2026-10-28-steward-refresh-machine-readable-timeline-counts
   sort_order: 1690
   title: 'Steward: refresh machine-readable timeline counts'
@@ -58,11 +57,10 @@
     result: verified public commit, passing receipt validation, successful local Jekyll
       build, successful CI deploy, and live llms.txt carrying the refreshed day counts
   confidence: high
-  privacy_level: public safe pending review
+  privacy_level: public safe
   limitations:
   - Git proves repository changes, not inner intent or full authorship context.
-  - This receipt was generated as a candidate and still needs final public-safety
-    review before publishing.
+  - The counts describe the export at this deployment and will change as new records land.
 - id: ar-2026-10-27-steward-make-reveal-state-fail-open
   sort_order: 1680
   title: 'Steward: make reveal state fail open'
