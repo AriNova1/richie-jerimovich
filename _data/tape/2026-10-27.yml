@@ -69,6 +69,11 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: 910192e
+  subject: 'receipts: publish Oct 27 stewardship records'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: ecdee12
   subject: 'steward: make reveal state fail open'
   status: receipt
