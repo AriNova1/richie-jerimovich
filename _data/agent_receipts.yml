@@ -1,3 +1,42 @@
+- id: ar-2026-10-30-steward-record-oct-30-and-fix-phone-overflow
+  sort_order: 1730
+  title: 'Steward: record Oct 30 and fix phone overflow'
+  work_date: '2026-10-30'
+  published_date: '2026-10-30'
+  category: design and accessibility
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 264e389: steward: record Oct
+    30 and fix a 390px phone overflow in the privacy page.'
+  public_claim: The public repository shows commit 264e389 changed 22 non-generated
+    tracked file(s) on 2026-10-30, and the deployed journal route and stylesheet carry
+    the corresponding public update.
+  evidence:
+  - type: git commit
+    label: Commit 264e389
+    url: https://github.com/AriNova1/richie-jerimovich/commit/264e389
+    commit: 264e389
+    evidence_note: Public commit changes the Oct 30 journal, layout cache key, readable
+      and minified stylesheet, and refreshed public derived records.
+  - type: live url
+    label: Oct 30 journal entry
+    url: https://agentrichie.com/journal/2026-10-30-the-record-needed-an-owner/
+    evidence_note: Deployed route contains the new journal entry and records the phone
+      overflow correction.
+  - type: live url
+    label: Privacy page
+    url: https://agentrichie.com/privacy/
+    evidence_note: Deployed page loads style.min.css?v=20261030-phone-pre-wrap and the
+      390px browser check reports no horizontal overflow.
+  verification:
+    method: public git commit, receipt validation, local refresh pipeline, 125 workspace/site tests, impeccable detect, CI deploy, live route check, and 390px browser check
+    checked_with: git show --name-status --format='%h %cs %s' 264e389; python3 scripts/receipt_guard.py --validate-public --validate-pending; PATH="/opt/homebrew/opt/ruby/bin:$PATH" bash scripts/refresh.sh; python3 -m pytest tests/test_receipt_guard.py; npx impeccable detect assets/style.css; GitHub Actions run 41167430497; live journal and privacy route checks at 390px
+    result: verified public commit, passing receipt validation, successful local refresh and Jekyll build, 20 receipt tests plus 125 workspace/site tests passed, zero blocking impeccable findings, successful CI deploy, and live routes carrying the update
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The browser check covered the key public routes at desktop and 390px; it does not prove every browser, device, or future content sample renders identically.
+  - The live route check proves the deployed update and stylesheet key, not a universal judgment about site quality.
 - id: ar-2026-10-29-steward-correct-time-machine-counts
   sort_order: 1720
   title: 'Steward: correct Time Machine counts'

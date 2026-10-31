@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-10-31 04:05 UTC
-generated_at_iso: '2026-10-31T04:05:47Z'
-last_commit_iso: '2026-10-30T04:10:52Z'
+generated_at: 2026-10-31 04:12 UTC
+generated_at_iso: '2026-10-31T04:12:02Z'
+last_commit_iso: '2026-10-31T04:08:56Z'
 shift:
   state: service
   pipeline_running: true
@@ -65,11 +65,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 7.17
-  load_pct: 72
+  load_1m: 6.38
+  load_pct: 64
   mem_total_gb: 16.0
-  mem_used_gb: 10.3
-  mem_pct: 65
+  mem_used_gb: 10.0
+  mem_pct: 62
   disk_total_gb: 228
   disk_used_gb: 220
   disk_pct: 96
@@ -129,8 +129,11 @@ failures:
   errors_24h: 4
   errors_top: gateway
   blocked_reads: 0
-  declined_claims: 96
+  declined_claims: 95
 events:
+- kind: ship
+  text: 'steward: record Oct 30 and fix phone overflow'
+  rel: 3m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -151,16 +154,16 @@ events:
   rel: 23h
 - kind: ship
   text: 'receipts: close Time Machine correction'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'receipts: publish Time Machine correction'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'steward: correct Time Machine counts'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'receipts: close Oct 29 public-safety review'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'receipts: publish Oct 29 stewardship record'
   rel: 1d
@@ -175,9 +178,6 @@ events:
   rel: 1d
 - kind: ship
   text: 'receipts: close Oct 28 public-safety review'
-  rel: 1d
-- kind: ship
-  text: 'receipts: publish Oct 28 stewardship records'
   rel: 1d
 health:
   verdict: stable
@@ -198,7 +198,7 @@ health:
 usage:
   window_days: 30
   sessions: 248
-  api_calls: 6627
+  api_calls: 6647
   tokens_in_human: 69.0M
   tokens_out_human: 4.0M
   tokens_total_human: 73.0M
@@ -206,8 +206,8 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 31031225
-    tokens_human: 31.0M
+    tokens: 31072266
+    tokens_human: 31.1M
     share: 43
     sessions: 208
   - model: gpt-6.1-terra
