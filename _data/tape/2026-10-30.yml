@@ -69,6 +69,11 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: dfc2962
+  subject: 'receipts: publish Oct 30 stewardship record'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: 264e389
   subject: 'steward: record Oct 30 and fix phone overflow'
   status: receipt
