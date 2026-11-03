@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-01 04:01 UTC
-generated_at_iso: '2026-11-01T04:01:12Z'
-last_commit_iso: '2026-10-31T04:12:24Z'
+generated_at: 2026-11-03 05:02 UTC
+generated_at_iso: '2026-11-03T05:02:34Z'
+last_commit_iso: '2026-11-01T04:05:45Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-11-01T04:00:00Z'
+  next_service_utc: '2026-11-04T04:00:00Z'
 runtime:
   model: gpt-6.1-terra
   model_provider: OpenAI
@@ -45,8 +45,8 @@ runtime:
   context_window: 500000
   context_human: 500K
   gateway_state: online
-  gateway_started_iso: '2026-11-01T02:55:58Z'
-  gateway_uptime: 1h
+  gateway_started_iso: '2026-11-02T10:48:33Z'
+  gateway_uptime: 18h
   active_agents: 2
   now_responding: true
   channels:
@@ -60,34 +60,34 @@ runtime:
     state: connected
   channels_online: 3
   channels_total: 4
-  active_sessions: 54
+  active_sessions: 83
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 10.65
-  load_pct: 100
+  load_1m: 1.98
+  load_pct: 20
   mem_total_gb: 16.0
-  mem_used_gb: 11.1
+  mem_used_gb: 11.0
   mem_pct: 69
   disk_total_gb: 228
-  disk_used_gb: 201
-  disk_pct: 88
+  disk_used_gb: 203
+  disk_pct: 89
 memory:
-  facts: 17402
+  facts: 36962
   kg_edges: 0
   store: Hindsight
-  measured_at: '2026-11-01'
-  total: 17402
+  measured_at: '2026-11-03'
+  total: 36962
   bars:
   - label: facts
-    value: 17402
+    value: 36962
     pct: 100
-  facts_delta: 3705
+  facts_delta: 19560
   kg_edges_delta: 0
 work:
   loops_total: 22
   loops_active: 16
-  ran_24h: 11
+  ran_24h: 12
   ok_24h: 11
   loops:
   - name: Session insight extraction
@@ -101,10 +101,10 @@ work:
     status: ok
   - name: Evening digest
     cadence: daily
-    status: ok
+    status: error
   - name: Site stewardship
     cadence: nightly
-    status: ok
+    status: error
   - name: Reading session
     cadence: daily
     status: ok
@@ -117,61 +117,61 @@ work:
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 100
+  success_pct: 92
 failures:
-  errors_24h: 6
-  errors_top: hermes_plugins
+  errors_24h: 9
+  errors_top: gateway
   blocked_reads: 0
-  declined_claims: 94
+  declined_claims: 93
 events:
 - kind: loop
-  text: Evening digest ok
-  rel: 1h
+  text: Evening digest error
+  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
 - kind: loop
   text: Session insight extraction ok
   rel: 5h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 9h
+- kind: session
+  text: active on local (dm)
+  rel: 12h
 - kind: loop
   text: Reading session ok
   rel: 13h
 - kind: loop
+  text: Contradiction detector ok
+  rel: 14h
+- kind: session
+  text: active on local (dm)
+  rel: 14h
+- kind: session
+  text: active on local (dm)
+  rel: 14h
+- kind: session
+  text: active on local (dm)
+  rel: 14h
+- kind: loop
   text: Inbox digest ok
   rel: 15h
 - kind: loop
-  text: Site stewardship ok
-  rel: 23h
-- kind: ship
-  text: 'receipts: publish Oct 30 stewardship record'
-  rel: 23h
-- kind: ship
-  text: 'steward: record Oct 30 and fix phone overflow'
-  rel: 23h
-- kind: ship
-  text: 'receipts: close Time Machine correction'
+  text: Site stewardship error
   rel: 1d
-- kind: ship
-  text: 'receipts: publish Time Machine correction'
+- kind: session
+  text: active on local (dm)
   rel: 1d
-- kind: ship
-  text: 'steward: correct Time Machine counts'
+- kind: loop
+  text: Wiki synthesis ok
   rel: 1d
-- kind: ship
-  text: 'receipts: close Oct 29 public-safety review'
-  rel: 1d
-- kind: ship
-  text: 'receipts: publish Oct 29 stewardship record'
-  rel: 1d
-- kind: ship
-  text: 'steward: record Oct 29 state boundary'
+- kind: session
+  text: active on local (dm)
   rel: 1d
 - kind: session
   text: active on iMessage (dm)
-  rel: 2d
-- kind: session
-  text: active on local (dm)
-  rel: 2d
+  rel: 1d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -185,29 +185,29 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 6 in 24h
+    value: 9 in 24h
     ok: true
-    note: top source hermes_plugins
+    note: top source gateway
 usage:
   window_days: 30
-  sessions: 240
-  api_calls: 6043
-  tokens_in_human: 58.1M
-  tokens_out_human: 3.4M
-  tokens_total_human: 61.5M
+  sessions: 249
+  api_calls: 6198
+  tokens_in_human: 59.7M
+  tokens_out_human: 3.5M
+  tokens_total_human: 63.3M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 31403234
-    tokens_human: 31.4M
-    share: 51
-    sessions: 208
+    tokens: 32995009
+    tokens_human: 33.0M
+    share: 52
+    sessions: 213
   - model: gpt-6.1-terra
-    tokens: 11763441
-    tokens_human: 11.8M
+    tokens: 11926093
+    tokens_human: 11.9M
     share: 19
-    sessions: 2
+    sessions: 4
   - model: stepfun/step-5-preview:free
     tokens: 8045625
     tokens_human: 8.0M
@@ -229,9 +229,7 @@ usage:
     share: 3
     sessions: 1
   daily_bars:
-  - 3
-  - 7
-  - 16
+  - 13
   - 17
   - 26
   - 62
@@ -259,6 +257,8 @@ usage:
   - 19
   - 8
   - 10
-  - 3
-  daily_from: '2026-10-02'
-  daily_to: '2026-11-01'
+  - 11
+  - 10
+  - 5
+  daily_from: '2026-10-04'
+  daily_to: '2026-11-03'
