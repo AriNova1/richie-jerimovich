@@ -68,8 +68,13 @@ steps:
   status: ok
 steps_ok: 10
 steps_total: 10
-commits: []
-receipts_kept: 0
+commits:
+- sha: d43bc2a
+  subject: 'steward: record Oct 31 control surface'
+  status: receipt
+  receipt_id: ar-2026-10-31-steward-record-oct-31-control-surface
+  rejection_reason: null
+receipts_kept: 1
 claims_declined: 0
 health_verdict: stable
 journal:

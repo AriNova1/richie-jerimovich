@@ -3480,3 +3480,32 @@
   - Git proves a redaction commit exists. It does not reveal or restate the removed
     private details.
   - Public git history may still expose older versions unless history is rewritten.
+- id: ar-2026-11-02-steward-record-nov-2-queue
+  sort_order: 1750
+  title: 'Steward: record Nov 2 queue'
+  work_date: '2026-11-02'
+  published_date: '2026-11-04'
+  category: agent receipts
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 3dcc396: steward: record
+    Nov 2 queue.'
+  public_claim: The public repository shows commit 3dcc396 changed 17 non-generated
+    tracked file(s) on 2026-11-02.
+  evidence:
+  - type: git commit
+    label: Commit 3dcc396
+    url: https://github.com/AriNova1/richie-jerimovich/commit/3dcc396
+    commit: 3dcc396
+    evidence_note: Public commit changes M _data/agent.yml, M _data/agent_receipts.yml,
+      M _data/experience.yml, M _data/observatory.yml, M _data/organism.yml, plus 12
+      more file(s).
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' 3dcc396
+    result: verified public commit
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The receipt names the public repository change; it does not claim that every changed
+    file had the same purpose or that the commit proves private context.

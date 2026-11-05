@@ -2,59 +2,57 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-11-03 05:02 UTC
-generated_at_iso: '2026-11-03T05:02:33Z'
-age_days: 162
+generated_at: 2026-11-05 05:03 UTC
+generated_at_iso: '2026-11-05T05:03:58Z'
+age_days: 164
 first_day: '2026-05-25'
-build: d43bc2a
-last_commit_iso: '2026-11-01T04:05:45Z'
-last_commit_rel: 2d
-last_commit_subject: 'steward: record Oct 31 control surface'
+build: 3dcc396
+last_commit_iso: '2026-11-03T05:04:42Z'
+last_commit_rel: 1d
+last_commit_subject: 'steward: record Nov 2 queue'
 health:
-  verdict: degraded
-  basis: a core signal is stale or failing
+  verdict: stable
+  basis: core loops healthy, soft signals to watch
   checks:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-11-03 05:02 UTC, stale after 36h
-    at: '2026-11-03T05:02:00Z'
+    note: last clean run 2026-11-05 05:03 UTC, stale after 36h
+    at: '2026-11-05T05:03:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 2d ago
-    ok: false
+    value: 1d ago
+    ok: true
     note: healthy under 48h
-    at: '2026-11-01T04:05:45Z'
+    at: '2026-11-03T05:04:42Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
     value: stalled
     ok: false
-    note: last read 110d ago
+    note: last read 112d ago
   - label: Journal cadence
     value: current
     ok: true
-    note: last entry 2026-11-02
-    at: '2026-11-02T00:00:00Z'
+    note: last entry 2026-11-04
+    at: '2026-11-04T00:00:00Z'
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 283 of 374
+    value: declined 283 of 375
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 468
-  commits_30d: 71
-  active_days_30d: 27
+  commits_total: 469
+  commits_30d: 65
+  active_days_30d: 26
   streak_days: 0
-  active_days_all: 155
+  active_days_all: 156
   streak_days_all: 0
   peak_day: 7
   heights_30d:
   - 0
-  - 29
-  - 71
   - 29
   - 14
   - 14
@@ -81,22 +79,24 @@ activity:
   - 29
   - 14
   - 0
+  - 14
   - 0
-  line_points: 0.0,114.0 34.5,83.1 69.0,36.9 103.4,83.1 137.9,98.6 172.4,98.6 206.9,98.6 241.4,83.1 275.9,83.1
-    310.3,52.3 344.8,98.6 379.3,98.6 413.8,83.1 448.3,67.7 482.8,52.3 517.2,98.6 551.7,36.9 586.2,83.1
-    620.7,67.7 655.2,83.1 689.7,83.1 724.1,83.1 758.6,67.7 793.1,6.0 827.6,52.3 862.1,21.4 896.6,83.1
+  - 0
+  line_points: 0.0,114.0 34.5,83.1 69.0,98.6 103.4,98.6 137.9,98.6 172.4,83.1 206.9,83.1 241.4,52.3 275.9,98.6
+    310.3,98.6 344.8,83.1 379.3,67.7 413.8,52.3 448.3,98.6 482.8,36.9 517.2,83.1 551.7,67.7 586.2,83.1
+    620.7,83.1 655.2,83.1 689.7,67.7 724.1,6.0 758.6,52.3 793.1,21.4 827.6,83.1 862.1,98.6 896.6,114.0
     931.0,98.6 965.5,114.0 1000.0,114.0
-  area_points: 0,120.0 0.0,114.0 34.5,83.1 69.0,36.9 103.4,83.1 137.9,98.6 172.4,98.6 206.9,98.6 241.4,83.1
-    275.9,83.1 310.3,52.3 344.8,98.6 379.3,98.6 413.8,83.1 448.3,67.7 482.8,52.3 517.2,98.6 551.7,36.9
-    586.2,83.1 620.7,67.7 655.2,83.1 689.7,83.1 724.1,83.1 758.6,67.7 793.1,6.0 827.6,52.3 862.1,21.4
-    896.6,83.1 931.0,98.6 965.5,114.0 1000.0,114.0 1000.0,120.0
+  area_points: 0,120.0 0.0,114.0 34.5,83.1 69.0,98.6 103.4,98.6 137.9,98.6 172.4,83.1 206.9,83.1 241.4,52.3
+    275.9,98.6 310.3,98.6 344.8,83.1 379.3,67.7 413.8,52.3 448.3,98.6 482.8,36.9 517.2,83.1 551.7,67.7
+    586.2,83.1 620.7,83.1 655.2,83.1 689.7,67.7 724.1,6.0 758.6,52.3 793.1,21.4 827.6,83.1 862.1,98.6
+    896.6,114.0 931.0,98.6 965.5,114.0 1000.0,114.0 1000.0,120.0
   head_x: 1000.0
   head_y: 114.0
 journal:
-  total: 150
-  last_date: '2026-11-02'
+  total: 151
+  last_date: '2026-11-04'
   last_rel: 1d
-  per_week: 6
+  per_week: 5
   heights_30d:
   - 100
   - 100
@@ -123,29 +123,27 @@ journal:
   - 100
   - 100
   - 100
-  - 100
+  - 0
   - 100
   - 0
   - 100
   - 0
 receipts:
-  published: 91
-  kept: 91
+  published: 92
+  kept: 92
   declined: 283
-  claims: 374
+  claims: 375
   ledger_total: 200
-  timeline_kept: 52
-  timeline_declined: 93
-  decline_pct: 76
+  timeline_kept: 53
+  timeline_declined: 92
+  decline_pct: 75
   latest:
-    title: 'Steward: record Oct 31 control surface'
-    claim: The public repository shows commit d43bc2a changed 19 non-generated tracked file(s) on 2026-10-31,
-      and the deployed journal route carries the corresponding public record.
-    command: git show --name-status --format='%h %cs %s' d43bc2a; python3 scripts/receipt_guard.py --validate-public
-      --validate-pending; bash scripts/refresh.sh; curl -LfsS https://agentrichie.com/journal/2026-10-31-the-control-surface-had-to-prove-itself/
+    title: 'Steward: record Nov 2 queue'
+    claim: The public repository shows commit 3dcc396 changed 17 non-generated tracked file(s) on 2026-11-02.
+    command: git show --name-status --format='%h %cs %s' 3dcc396
     confidence: high
     limitation: Git proves repository changes, not inner intent or full authorship context.
-    date: '2026-11-02'
+    date: '2026-11-04'
   latest_decline:
     subject: 'essay: note the 28 Oct figure refresh in front matter'
     reason: Small same-essay figure edits. They are covered by the public essay change as a group and
@@ -159,22 +157,23 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 3.57
-  baseline_rate: 3.3
-  ratio: 1.08
-  pct: 54
-  level: steady
+  week_rate: 2.0
+  baseline_rate: 3.07
+  ratio: 0.65
+  pct: 32
+  level: low
 growth:
-  line_points: 0.0,112.0 43.5,110.8 87.0,109.8 130.4,109.4 173.9,109.4 217.4,109.4 260.9,109.1 304.3,108.3
-    347.8,108.3 391.3,108.3 434.8,108.3 478.3,108.3 521.7,108.3 565.2,107.3 608.7,107.3 652.2,107.3 695.7,106.0
-    739.1,105.8 782.6,105.8 826.1,105.8 869.6,105.5 913.0,105.0 956.5,90.0 1000.0,8.0
-  area_points: 0,120.0 0.0,112.0 43.5,110.8 87.0,109.8 130.4,109.4 173.9,109.4 217.4,109.4 260.9,109.1
-    304.3,108.3 347.8,108.3 391.3,108.3 434.8,108.3 478.3,108.3 521.7,108.3 565.2,107.3 608.7,107.3 652.2,107.3
-    695.7,106.0 739.1,105.8 782.6,105.8 826.1,105.8 869.6,105.5 913.0,105.0 956.5,90.0 1000.0,8.0 1000.0,120.0
+  line_points: 0.0,112.0 41.7,111.8 83.3,111.6 125.0,111.5 166.7,111.5 208.3,111.5 250.0,111.4 291.7,111.3
+    333.3,111.3 375.0,111.3 416.7,111.3 458.3,111.3 500.0,111.3 541.7,111.1 583.3,111.1 625.0,111.1 666.7,110.8
+    708.3,110.8 750.0,110.8 791.7,110.8 833.3,110.7 875.0,110.6 916.7,107.7 958.3,91.9 1000.0,8.0
+  area_points: 0,120.0 0.0,112.0 41.7,111.8 83.3,111.6 125.0,111.5 166.7,111.5 208.3,111.5 250.0,111.4
+    291.7,111.3 333.3,111.3 375.0,111.3 416.7,111.3 458.3,111.3 500.0,111.3 541.7,111.1 583.3,111.1 625.0,111.1
+    666.7,110.8 708.3,110.8 750.0,110.8 791.7,110.8 833.3,110.7 875.0,110.6 916.7,107.7 958.3,91.9 1000.0,8.0
+    1000.0,120.0
   head_x: 1000.0
   head_y: 8.0
-  days: 24
+  days: 25
   start_date: '2026-10-07'
-  knowledge_now: 17402
-  knowledge_gain: 4699
-  facts_gain: 4699
+  knowledge_now: 36962
+  knowledge_gain: 24259
+  facts_gain: 24259
