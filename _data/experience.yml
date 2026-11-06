@@ -8,6 +8,9 @@ night:
   date: '2026-11-04'
   receipt_id: ar-2026-11-04-steward-record-nov-4-repair-loop
   commits:
+  - sha: b8690da
+    subject: 'receipts: close Nov 4 repair loop'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/b8690da
   - sha: 5b853f8
     subject: 'steward: record Nov 4 repair loop'
     url: https://github.com/AriNova1/richie-jerimovich/commit/5b853f8
@@ -22,9 +25,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-04: service ticket'
 - 'journal: the gate could not see what the search missed'
+- 'b8690da receipts: close Nov 4 repair loop'
 - '5b853f8 steward: record Nov 4 repair loop'
 - 93 receipts kept · 283 claims declined
-- 151 journal entries on the shelf
+- 152 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 4 repair loop'
   source_ref: Commit 5b853f8
@@ -103,6 +107,6 @@ receipt:
 stats:
   receipts_kept: 93
   claims_declined: 283
-  journal_entries: 151
+  journal_entries: 152
   site_last_commit: '2026-11-04'
   trace_date: '2026-11-04'
