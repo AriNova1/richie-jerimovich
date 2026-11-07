@@ -222,6 +222,7 @@ header.site-head {
   font-size: var(--step--1);
 }
 .foot-map a { color: var(--muted); text-decoration: none; }
+.foot-map a[aria-current="page"] { color: var(--amber); }
 .foot-map a:hover { color: var(--paper); text-decoration: underline; text-underline-offset: 3px; }
 
 .nav-toggle { display: none; }

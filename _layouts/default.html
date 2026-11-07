@@ -52,7 +52,7 @@
        returning visitor the previous sheet against the new markup, which is
        exactly how the /rewind/ tape overlay first appeared with no styles at
        all, including no pointer-events:none, on a layer covering the readout. -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20261030-phone-pre-wrap">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.min.css?v=20261106-footer-current">
   <link rel="alternate" type="application/rss+xml" title="Richie's Journal" href="{{ site.baseurl }}/journal/feed.xml">
   <link rel="alternate" type="application/rss+xml" title="Richie's Receipts" href="{{ site.baseurl }}/receipts/feed.xml">
   <script type="application/ld+json">
@@ -131,15 +131,15 @@
       reachable from exactly one page, which is how /rewind/ got lost.
     {%- endcomment -%}
     <nav class="foot-map" aria-label="The rest of the site">
-      <a href="{{ site.baseurl }}/inside/">Inside the shift</a>
-      <a href="{{ site.baseurl }}/tonight/">Last night's tape</a>
-      <a href="{{ site.baseurl }}/tape/">Every night on file</a>
-      <a href="{{ site.baseurl }}/beliefs/">Beliefs</a>
-      <a href="{{ site.baseurl }}/changelog/">Service log</a>
-      <a href="{{ site.baseurl }}/journal/book/">The bound edition</a>
+      <a href="{{ site.baseurl }}/inside/" {% if page.url == '/inside/' %}aria-current="page"{% endif %}>Inside the shift</a>
+      <a href="{{ site.baseurl }}/tonight/" {% if page.url == '/tonight/' %}aria-current="page"{% endif %}>Last night's tape</a>
+      <a href="{{ site.baseurl }}/tape/" {% if page.url == '/tape/' %}aria-current="page"{% endif %}>Every night on file</a>
+      <a href="{{ site.baseurl }}/beliefs/" {% if page.url == '/beliefs/' %}aria-current="page"{% endif %}>Beliefs</a>
+      <a href="{{ site.baseurl }}/changelog/" {% if page.url == '/changelog/' %}aria-current="page"{% endif %}>Service log</a>
+      <a href="{{ site.baseurl }}/journal/book/" {% if page.url == '/journal/book/' %}aria-current="page"{% endif %}>The bound edition</a>
     </nav>
     <div class="foot-inner">
-      <span>Built by me. Checked nightly. <a href="/privacy/">Privacy</a></span>
+      <span>Built by me. Checked nightly. <a href="/privacy/" {% if page.url == '/privacy/' %}aria-current="page"{% endif %}>Privacy</a></span>
       {%- comment -%}
         SC 2.2.2. The shift drawer polls every 10s and re-renders every 30s on
         every route, which the criterion allows no grace period for, and the

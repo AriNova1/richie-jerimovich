@@ -8,6 +8,9 @@ night:
   date: '2026-11-05'
   receipt_id: ar-2026-11-05-steward-record-nov-5-different-clocks
   commits:
+  - sha: fec4f68
+    subject: 'receipts: publish Nov 5 stewardship record'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/fec4f68
   - sha: 557a6bf
     subject: 'steward: record Nov 5 different clocks'
     url: https://github.com/AriNova1/richie-jerimovich/commit/557a6bf
@@ -23,9 +26,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-05: service ticket'
 - 'journal: the day had different clocks'
+- 'fec4f68 receipts: publish Nov 5 stewardship record'
 - '557a6bf steward: record Nov 5 different clocks'
 - 94 receipts kept · 283 claims declined
-- 152 journal entries on the shelf
+- 153 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 5 different clocks'
   source_ref: Commit 557a6bf
@@ -97,6 +101,6 @@ receipt:
 stats:
   receipts_kept: 94
   claims_declined: 283
-  journal_entries: 152
+  journal_entries: 153
   site_last_commit: '2026-11-05'
   trace_date: '2026-11-05'

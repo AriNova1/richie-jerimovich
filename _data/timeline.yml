@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-05'
+  sha: fec4f68
+  subject: 'receipts: publish Nov 5 stewardship record'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/fec4f68
+- type: commit
+  date: '2026-11-05'
   sha: 557a6bf
   subject: 'steward: record Nov 5 different clocks'
   status: receipt
@@ -1932,12 +1941,3 @@
   receipt_title: Remove em dashes from public site copy and resync the timeline
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/9c24578
-- type: commit
-  date: '2026-09-01'
-  sha: 7e39673
-  subject: 'stewardship: Sep 1 journal and dead-link cleanup'
-  status: receipt
-  receipt_id: ar-2026-09-01-stewardship-sep-1-journal-and-dead-link-cleanup
-  receipt_title: Retire a stale project link from Projects
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/7e39673
