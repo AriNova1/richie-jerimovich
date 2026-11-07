@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-07 05:08 UTC
-generated_at_iso: '2026-11-07T05:08:20Z'
-last_commit_iso: '2026-11-06T05:05:34Z'
+generated_at: 2026-11-07 05:15 UTC
+generated_at_iso: '2026-11-07T05:15:05Z'
+last_commit_iso: '2026-11-07T05:12:15Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,11 +64,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 2.22
-  load_pct: 22
+  load_1m: 1.64
+  load_pct: 16
   mem_total_gb: 16.0
-  mem_used_gb: 11.2
-  mem_pct: 70
+  mem_used_gb: 10.6
+  mem_pct: 66
   disk_total_gb: 228
   disk_used_gb: 216
   disk_pct: 95
@@ -124,6 +124,9 @@ failures:
   blocked_reads: 0
   declined_claims: 89
 events:
+- kind: ship
+  text: 'steward: record Nov 6 candidate memory'
+  rel: 2m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -135,7 +138,7 @@ events:
   rel: 5h
 - kind: loop
   text: Reading session ok
-  rel: 13h
+  rel: 14h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
@@ -150,7 +153,7 @@ events:
   rel: 1d
 - kind: ship
   text: 'receipts: close Nov 4 repair loop'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'steward: record Nov 4 repair loop'
   rel: 2d
@@ -165,9 +168,6 @@ events:
   rel: 4d
 - kind: loop
   text: Contradiction detector ok
-  rel: 4d
-- kind: session
-  text: active on local (dm)
   rel: 4d
 - kind: session
   text: active on local (dm)
@@ -191,15 +191,15 @@ health:
 usage:
   window_days: 30
   sessions: 232
-  api_calls: 5047
+  api_calls: 5069
   tokens_in_human: 48.9M
-  tokens_out_human: 2.9M
-  tokens_total_human: 51.8M
+  tokens_out_human: 3.0M
+  tokens_total_human: 51.9M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 30169600
+    tokens: 30224421
     tokens_human: 30.2M
     share: 58
     sessions: 199
