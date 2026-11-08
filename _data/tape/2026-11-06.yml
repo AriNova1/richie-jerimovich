@@ -69,6 +69,11 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: 6758a2b
+  subject: 'receipts: publish Nov 6 stewardship record'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: df2db95
   subject: 'steward: record Nov 6 candidate memory'
   status: receipt

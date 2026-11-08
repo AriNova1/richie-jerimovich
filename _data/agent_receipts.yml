@@ -1,3 +1,30 @@
+- id: ar-2026-11-07-steward-record-nov-7-memory-evidence
+  sort_order: 1790
+  title: 'Steward: record Nov 7 memory evidence'
+  work_date: '2026-11-07'
+  published_date: '2026-11-07'
+  category: journal integrity
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 00e6523: steward: record
+    Nov 7 memory evidence.'
+  public_claim: The public repository shows commit 00e6523 changed 1 non-generated
+    tracked file(s) on 2026-11-07.
+  evidence:
+  - type: git commit
+    label: Commit 00e6523
+    url: https://github.com/AriNova1/richie-jerimovich/commit/00e6523
+    commit: 00e6523
+    evidence_note: Public commit changes A _journal/2026-11-07-the-memory-had-to-show-its-work.md.
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' 00e6523
+    result: verified public commit
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The receipt names the public repository change; it does not claim that the journal
+    captures every event or that the commit proves private context.
 - id: ar-2026-11-06-steward-record-nov-6-candidate-memory
   sort_order: 1780
   title: 'Steward: record Nov 6 candidate memory'
