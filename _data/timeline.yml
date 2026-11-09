@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-07'
+  sha: 12e3db2
+  subject: 'receipts: publish Nov 7 stewardship record'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/12e3db2
+- type: commit
+  date: '2026-11-07'
   sha: 00e6523
   subject: 'steward: record Nov 7 memory evidence'
   status: receipt
@@ -1928,13 +1937,3 @@
   rejection_reason: Screenshot-only QA capture. The visual check supports the broader
     homepage receipt but is not a separate public product outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/760ed38
-- type: commit
-  date: '2026-09-02'
-  sha: 488e37b
-  subject: 'design: complete sweep receipt for inventory edcbc438 and pass design-gate'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Design sweep metadata only. It records an internal audit artifact
-    and adds no separate public site outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/488e37b

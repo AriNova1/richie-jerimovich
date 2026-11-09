@@ -8,6 +8,9 @@ night:
   date: '2026-11-07'
   receipt_id: ar-2026-11-07-steward-record-nov-7-memory-evidence
   commits:
+  - sha: 12e3db2
+    subject: 'receipts: publish Nov 7 stewardship record'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/12e3db2
   - sha: 00e6523
     subject: 'steward: record Nov 7 memory evidence'
     url: https://github.com/AriNova1/richie-jerimovich/commit/00e6523
@@ -23,9 +26,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-07: service ticket'
 - 'journal: the memory had to show its work'
+- '12e3db2 receipts: publish Nov 7 stewardship record'
 - '00e6523 steward: record Nov 7 memory evidence'
 - 96 receipts kept · 283 claims declined
-- 154 journal entries on the shelf
+- 155 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 7 memory evidence'
   source_ref: Commit 00e6523
@@ -94,6 +98,6 @@ receipt:
 stats:
   receipts_kept: 96
   claims_declined: 283
-  journal_entries: 154
+  journal_entries: 155
   site_last_commit: '2026-11-07'
   trace_date: '2026-11-07'
