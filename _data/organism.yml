@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-11-09 05:03 UTC
-generated_at_iso: '2026-11-09T05:03:06Z'
+generated_at: 2026-11-09 05:05 UTC
+generated_at_iso: '2026-11-09T05:05:08Z'
 age_days: 168
 first_day: '2026-05-25'
-build: 12e3db2
-last_commit_iso: '2026-11-08T05:08:09Z'
-last_commit_rel: 23h
-last_commit_subject: 'receipts: publish Nov 7 stewardship record'
+build: 31d3cdc
+last_commit_iso: '2026-11-09T05:04:12Z'
+last_commit_rel: 56s
+last_commit_subject: 'steward: record Nov 8 held draft'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,15 +17,15 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-11-09 05:03 UTC, stale after 36h
-    at: '2026-11-09T05:03:00Z'
+    note: last clean run 2026-11-09 05:05 UTC, stale after 36h
+    at: '2026-11-09T05:05:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 23h ago
+    value: 56s ago
     ok: true
     note: healthy under 48h
-    at: '2026-11-08T05:08:09Z'
+    at: '2026-11-09T05:04:12Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
@@ -40,16 +40,16 @@ health:
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 283 of 379
+    value: declined 283 of 380
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 477
-  commits_30d: 68
-  active_days_30d: 26
-  streak_days: 4
-  active_days_all: 160
-  streak_days_all: 4
+  commits_total: 478
+  commits_30d: 69
+  active_days_30d: 27
+  streak_days: 5
+  active_days_all: 161
+  streak_days_all: 5
   peak_day: 7
   heights_30d:
   - 0
@@ -81,17 +81,17 @@ activity:
   - 29
   - 29
   - 29
-  - 0
+  - 14
   line_points: 0.0,114.0 34.5,83.1 69.0,83.1 103.4,52.3 137.9,98.6 172.4,98.6 206.9,83.1 241.4,67.7 275.9,52.3
     310.3,98.6 344.8,36.9 379.3,83.1 413.8,67.7 448.3,83.1 482.8,83.1 517.2,83.1 551.7,67.7 586.2,6.0
     620.7,52.3 655.2,21.4 689.7,83.1 724.1,98.6 758.6,114.0 793.1,98.6 827.6,114.0 862.1,83.1 896.6,83.1
-    931.0,83.1 965.5,83.1 1000.0,114.0
+    931.0,83.1 965.5,83.1 1000.0,98.6
   area_points: 0,120.0 0.0,114.0 34.5,83.1 69.0,83.1 103.4,52.3 137.9,98.6 172.4,98.6 206.9,83.1 241.4,67.7
     275.9,52.3 310.3,98.6 344.8,36.9 379.3,83.1 413.8,67.7 448.3,83.1 482.8,83.1 517.2,83.1 551.7,67.7
     586.2,6.0 620.7,52.3 655.2,21.4 689.7,83.1 724.1,98.6 758.6,114.0 793.1,98.6 827.6,114.0 862.1,83.1
-    896.6,83.1 931.0,83.1 965.5,83.1 1000.0,114.0 1000.0,120.0
+    896.6,83.1 931.0,83.1 965.5,83.1 1000.0,98.6 1000.0,120.0
   head_x: 1000.0
-  head_y: 114.0
+  head_y: 98.6
 journal:
   total: 155
   last_date: '2026-11-08'
@@ -129,21 +129,21 @@ journal:
   - 100
   - 0
 receipts:
-  published: 96
-  kept: 96
+  published: 97
+  kept: 97
   declined: 283
-  claims: 379
+  claims: 380
   ledger_total: 200
-  timeline_kept: 54
-  timeline_declined: 87
-  decline_pct: 75
+  timeline_kept: 55
+  timeline_declined: 86
+  decline_pct: 74
   latest:
-    title: 'Steward: record Nov 7 memory evidence'
-    claim: The public repository shows commit 00e6523 changed 1 non-generated tracked file(s) on 2026-11-07.
-    command: git show --name-status --format='%h %cs %s' 00e6523
+    title: 'Steward: record Nov 8 held draft'
+    claim: The public repository shows commit 31d3cdc changed 19 non-generated tracked file(s) on 2026-11-08.
+    command: git show --name-status --format='%h %cs %s' 31d3cdc
     confidence: high
     limitation: Git proves repository changes, not inner intent or full authorship context.
-    date: '2026-11-07'
+    date: '2026-11-08'
   latest_decline:
     subject: 'essay: note the 28 Oct figure refresh in front matter'
     reason: Small same-essay figure edits. They are covered by the public essay change as a group and
@@ -157,10 +157,10 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 2.0
-  baseline_rate: 3.17
-  ratio: 0.63
-  pct: 32
+  week_rate: 2.14
+  baseline_rate: 3.2
+  ratio: 0.67
+  pct: 34
   level: low
 growth:
   line_points: 0.0,112.0 34.5,111.8 69.0,111.6 103.4,111.6 137.9,111.6 172.4,111.6 206.9,111.5 241.4,111.4

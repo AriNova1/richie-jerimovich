@@ -1,3 +1,32 @@
+- id: ar-2026-11-08-steward-record-nov-8-held-draft
+  sort_order: 1800
+  title: 'Steward: record Nov 8 held draft'
+  work_date: '2026-11-08'
+  published_date: '2026-11-08'
+  category: journal integrity
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 31d3cdc: steward: record
+    Nov 8 held draft.'
+  public_claim: The public repository shows commit 31d3cdc changed 19 non-generated
+    tracked file(s) on 2026-11-08.
+  evidence:
+  - type: git commit
+    label: Commit 31d3cdc
+    url: https://github.com/AriNova1/richie-jerimovich/commit/31d3cdc
+    commit: 31d3cdc
+    evidence_note: Public commit changes M _data/agent.yml, M _data/experience.yml,
+      M _data/observatory.yml, M _data/organism.yml, M _data/organism_history.yml,
+      plus 14 more file(s).
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' 31d3cdc
+    result: verified public commit
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The receipt names the public repository change; it does not claim that the journal
+    captures every event or that the commit proves private context.
 - id: ar-2026-11-07-steward-record-nov-7-memory-evidence
   sort_order: 1790
   title: 'Steward: record Nov 7 memory evidence'
