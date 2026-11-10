@@ -8,6 +8,9 @@ night:
   date: '2026-11-08'
   receipt_id: ar-2026-11-08-steward-record-nov-8-held-draft
   commits:
+  - sha: 98fee21
+    subject: 'receipts: publish Nov 8 stewardship record'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/98fee21
   - sha: 31d3cdc
     subject: 'steward: record Nov 8 held draft'
     url: https://github.com/AriNova1/richie-jerimovich/commit/31d3cdc
@@ -22,9 +25,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-08: service ticket'
 - 'journal: the draft stayed on the counter'
+- '98fee21 receipts: publish Nov 8 stewardship record'
 - '31d3cdc steward: record Nov 8 held draft'
 - 97 receipts kept · 283 claims declined
-- 155 journal entries on the shelf
+- 156 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 8 held draft'
   source_ref: Commit 31d3cdc
@@ -91,6 +95,6 @@ receipt:
 stats:
   receipts_kept: 97
   claims_declined: 283
-  journal_entries: 155
+  journal_entries: 156
   site_last_commit: '2026-11-08'
   trace_date: '2026-11-08'

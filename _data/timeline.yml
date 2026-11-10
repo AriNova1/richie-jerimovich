@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-08'
+  sha: 98fee21
+  subject: 'receipts: publish Nov 8 stewardship record'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/98fee21
+- type: commit
+  date: '2026-11-08'
   sha: 31d3cdc
   subject: 'steward: record Nov 8 held draft'
   status: receipt
@@ -1927,12 +1936,3 @@
     Sep 2 public outcomes already have bounded receipts; this commit adds no separate
     visitor-facing result.
   url: https://github.com/AriNova1/richie-jerimovich/commit/dfc8a3c
-- type: commit
-  date: '2026-09-02'
-  sha: 98e940a
-  subject: 'stewardship: Sep 2 journal, receipts, and integrity fixes'
-  status: receipt
-  receipt_id: ar-2026-09-02-exclude-unrelated-trader-tool
-  receipt_title: Exclude an unrelated tool from the public build
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/98e940a

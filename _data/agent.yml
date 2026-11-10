@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-09 05:05 UTC
-generated_at_iso: '2026-11-09T05:05:09Z'
-last_commit_iso: '2026-11-09T05:04:12Z'
+generated_at: 2026-11-10 05:03 UTC
+generated_at_iso: '2026-11-10T05:03:25Z'
+last_commit_iso: '2026-11-09T05:05:44Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-11-10T04:00:00Z'
+  next_service_utc: '2026-11-11T04:00:00Z'
 runtime:
   model: gpt-6.1-terra
   model_provider: OpenAI
@@ -46,7 +46,7 @@ runtime:
   context_human: 500K
   gateway_state: online
   gateway_started_iso: '2026-11-07T08:43:30Z'
-  gateway_uptime: 1d
+  gateway_uptime: 2d
   active_agents: 2
   now_responding: true
   channels:
@@ -60,35 +60,35 @@ runtime:
     state: connected
   channels_online: 3
   channels_total: 4
-  active_sessions: 87
+  active_sessions: 98
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.72
-  load_pct: 17
+  load_1m: 2.1
+  load_pct: 21
   mem_total_gb: 16.0
-  mem_used_gb: 10.1
-  mem_pct: 63
+  mem_used_gb: 10.4
+  mem_pct: 65
   disk_total_gb: 228
-  disk_used_gb: 220
+  disk_used_gb: 219
   disk_pct: 96
 memory:
-  facts: 42566
+  facts: 43124
   kg_edges: 0
   store: Hindsight
-  measured_at: '2026-11-09'
-  total: 42566
+  measured_at: '2026-11-10'
+  total: 43124
   bars:
   - label: facts
-    value: 42566
+    value: 43124
     pct: 100
-  facts_delta: 461
+  facts_delta: 558
   kg_edges_delta: 0
 work:
   loops_total: 22
   loops_active: 16
-  ran_24h: 12
-  ok_24h: 12
+  ran_24h: 13
+  ok_24h: 13
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -119,56 +119,56 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 6
-  errors_top: hermes_plugins
+  errors_24h: 11
+  errors_top: telegram
   blocked_reads: 0
   declined_claims: 86
 events:
-- kind: ship
-  text: 'steward: record Nov 8 held draft'
-  rel: 57s
 - kind: loop
   text: Evening digest ok
   rel: 2h
-- kind: loop
-  text: Wiki synthesis ok
-  rel: 2h
+- kind: session
+  text: active on iMessage (dm)
+  rel: 3h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
 - kind: loop
   text: Session insight extraction ok
   rel: 5h
-- kind: loop
-  text: Deep writing workshop ok
-  rel: 7h
+- kind: session
+  text: active on local (dm)
+  rel: 5h
+- kind: session
+  text: active on local (dm)
+  rel: 12h
 - kind: loop
   text: Reading session ok
   rel: 13h
 - kind: loop
+  text: Contradiction detector ok
+  rel: 14h
+- kind: session
+  text: active on local (dm)
+  rel: 14h
+- kind: session
+  text: active on local (dm)
+  rel: 14h
+- kind: session
+  text: active on local (dm)
+  rel: 14h
+- kind: loop
   text: Inbox digest ok
   rel: 15h
-- kind: session
-  text: active on iMessage (dm)
-  rel: 18h
 - kind: loop
   text: Site stewardship ok
   rel: 23h
 - kind: ship
-  text: 'receipts: publish Nov 7 stewardship record'
+  text: 'receipts: publish Nov 8 stewardship record'
   rel: 23h
 - kind: ship
-  text: 'steward: record Nov 7 memory evidence'
+  text: 'steward: record Nov 8 held draft'
   rel: 23h
-- kind: session
-  text: active on local (dm)
-  rel: 1d
-- kind: session
-  text: active on local (dm)
-  rel: 1d
-- kind: session
-  text: active on local (dm)
-  rel: 1d
 - kind: session
   text: active on local (dm)
   rel: 1d
@@ -185,29 +185,29 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 6 in 24h
+    value: 11 in 24h
     ok: true
-    note: top source hermes_plugins
+    note: top source telegram
 usage:
   window_days: 30
-  sessions: 233
-  api_calls: 5180
-  tokens_in_human: 49.9M
-  tokens_out_human: 3.0M
-  tokens_total_human: 52.9M
+  sessions: 234
+  api_calls: 5268
+  tokens_in_human: 50.6M
+  tokens_out_human: 3.1M
+  tokens_total_human: 53.7M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 31200409
-    tokens_human: 31.2M
-    share: 59
-    sessions: 199
+    tokens: 32098343
+    tokens_human: 32.1M
+    share: 60
+    sessions: 200
   - model: gpt-6.1-terra
-    tokens: 12019970
-    tokens_human: 12.0M
+    tokens: 12110696
+    tokens_human: 12.1M
     share: 23
-    sessions: 5
+    sessions: 6
   - model: gpt-6.1-sol
     tokens: 4591190
     tokens_human: 4.6M
@@ -219,18 +219,17 @@ usage:
     share: 4
     sessions: 1
   - model: stepfun/step-5-preview:free
-    tokens: 1683644
-    tokens_human: 1.7M
+    tokens: 1434519
+    tokens_human: 1.4M
     share: 3
-    sessions: 7
+    sessions: 6
   - model: minimax/minimax-m3.1-flash
     tokens: 1358182
     tokens_human: 1.4M
     share: 3
     sessions: 10
   daily_bars:
-  - 7
-  - 12
+  - 9
   - 13
   - 36
   - 7
@@ -259,6 +258,7 @@ usage:
   - 8
   - 10
   - 12
-  - 3
-  daily_from: '2026-10-10'
-  daily_to: '2026-11-09'
+  - 12
+  - 5
+  daily_from: '2026-10-11'
+  daily_to: '2026-11-10'
