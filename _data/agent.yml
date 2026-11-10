@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-10 05:03 UTC
-generated_at_iso: '2026-11-10T05:03:25Z'
-last_commit_iso: '2026-11-09T05:05:44Z'
+generated_at: 2026-11-10 05:07 UTC
+generated_at_iso: '2026-11-10T05:07:07Z'
+last_commit_iso: '2026-11-10T05:05:44Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,11 +64,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 2.1
-  load_pct: 21
+  load_1m: 1.22
+  load_pct: 12
   mem_total_gb: 16.0
-  mem_used_gb: 10.4
-  mem_pct: 65
+  mem_used_gb: 10.8
+  mem_pct: 68
   disk_total_gb: 228
   disk_used_gb: 219
   disk_pct: 96
@@ -122,8 +122,11 @@ failures:
   errors_24h: 11
   errors_top: telegram
   blocked_reads: 0
-  declined_claims: 86
+  declined_claims: 85
 events:
+- kind: ship
+  text: 'steward: record Nov 9 signal pass'
+  rel: 1m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -144,7 +147,7 @@ events:
   rel: 12h
 - kind: loop
   text: Reading session ok
-  rel: 13h
+  rel: 14h
 - kind: loop
   text: Contradiction detector ok
   rel: 14h
@@ -165,12 +168,9 @@ events:
   rel: 23h
 - kind: ship
   text: 'receipts: publish Nov 8 stewardship record'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'steward: record Nov 8 held draft'
-  rel: 23h
-- kind: session
-  text: active on local (dm)
   rel: 1d
 health:
   verdict: stable
@@ -191,16 +191,16 @@ health:
 usage:
   window_days: 30
   sessions: 234
-  api_calls: 5268
-  tokens_in_human: 50.6M
+  api_calls: 5286
+  tokens_in_human: 50.7M
   tokens_out_human: 3.1M
-  tokens_total_human: 53.7M
+  tokens_total_human: 53.8M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32098343
-    tokens_human: 32.1M
+    tokens: 32175770
+    tokens_human: 32.2M
     share: 60
     sessions: 200
   - model: gpt-6.1-terra
@@ -259,6 +259,6 @@ usage:
   - 10
   - 12
   - 12
-  - 5
+  - 6
   daily_from: '2026-10-11'
   daily_to: '2026-11-10'
