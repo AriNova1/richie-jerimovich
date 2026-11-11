@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-11 05:05 UTC
-generated_at_iso: '2026-11-11T05:05:09Z'
-last_commit_iso: '2026-11-11T05:03:48Z'
+generated_at: 2026-11-11 05:15 UTC
+generated_at_iso: '2026-11-11T05:15:18Z'
+last_commit_iso: '2026-11-11T05:12:27Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,8 +64,8 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.24
-  load_pct: 12
+  load_1m: 1.78
+  load_pct: 18
   mem_total_gb: 16.0
   mem_used_gb: 9.9
   mem_pct: 62
@@ -87,8 +87,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 16
-  ran_24h: 9
-  ok_24h: 9
+  ran_24h: 8
+  ok_24h: 8
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -125,8 +125,14 @@ failures:
   declined_claims: 84
 events:
 - kind: ship
+  text: 'seo: add homepage schema links'
+  rel: 2m
+- kind: ship
+  text: 'receipts: publish Nov 10 stewardship record'
+  rel: 9m
+- kind: ship
   text: 'steward: record Nov 10 boundary check'
-  rel: 1m
+  rel: 11m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -138,19 +144,19 @@ events:
   rel: 5h
 - kind: loop
   text: Reading session ok
-  rel: 13h
+  rel: 14h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
 - kind: loop
   text: Site stewardship ok
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'receipts: publish Nov 9 stewardship record'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'steward: record Nov 9 signal pass'
-  rel: 23h
+  rel: 1d
 - kind: session
   text: active on iMessage (dm)
   rel: 1d
@@ -162,12 +168,6 @@ events:
   rel: 1d
 - kind: loop
   text: Contradiction detector ok
-  rel: 1d
-- kind: session
-  text: active on local (dm)
-  rel: 1d
-- kind: session
-  text: active on local (dm)
   rel: 1d
 - kind: session
   text: active on local (dm)
@@ -191,15 +191,15 @@ health:
 usage:
   window_days: 30
   sessions: 228
-  api_calls: 5248
-  tokens_in_human: 50.6M
+  api_calls: 5288
+  tokens_in_human: 50.7M
   tokens_out_human: 3.1M
   tokens_total_human: 53.7M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32097994
+    tokens: 32149192
     tokens_human: 32.1M
     share: 60
     sessions: 194

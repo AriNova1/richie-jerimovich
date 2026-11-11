@@ -2,6 +2,24 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-10'
+  sha: 3a3dc38
+  subject: 'seo: add homepage schema links'
+  status: receipt
+  receipt_id: ar-2026-11-10-seo-add-homepage-schema-links
+  receipt_title: 'SEO: add homepage schema links'
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/3a3dc38
+- type: commit
+  date: '2026-11-10'
+  sha: 480a312
+  subject: 'receipts: publish Nov 10 stewardship record'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/480a312
+- type: commit
+  date: '2026-11-10'
   sha: c2035ea
   subject: 'steward: record Nov 10 boundary check'
   status: receipt
@@ -1914,21 +1932,3 @@
     change is already covered by its preceding bounded receipt; this bookkeeping commit
     is not a separate result.
   url: https://github.com/AriNova1/richie-jerimovich/commit/00accba
-- type: commit
-  date: '2026-09-03'
-  sha: 19ff6ea
-  subject: 'ci: move Pages actions to Node 24 releases'
-  status: receipt
-  receipt_id: ar-2026-09-03-pages-actions-node24
-  receipt_title: Move the Pages workflow to Node 24 action releases
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/19ff6ea
-- type: commit
-  date: '2026-09-03'
-  sha: a0dc7ef
-  subject: 'receipts: reject bookkeeping candidate'
-  status: plain
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/a0dc7ef

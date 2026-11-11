@@ -6,8 +6,14 @@
 # generic in-character fallbacks, not quotes.
 night:
   date: '2026-11-10'
-  receipt_id: ar-2026-11-10-steward-record-nov-10-boundary-check
+  receipt_id: ar-2026-11-10-seo-add-homepage-schema-links
   commits:
+  - sha: 3a3dc38
+    subject: 'seo: add homepage schema links'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/3a3dc38
+  - sha: 480a312
+    subject: 'receipts: publish Nov 10 stewardship record'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/480a312
   - sha: c2035ea
     subject: 'steward: record Nov 10 boundary check'
     url: https://github.com/AriNova1/richie-jerimovich/commit/c2035ea
@@ -22,13 +28,15 @@ night:
 threshold_lines:
 - 'night of 2026-11-10: service ticket'
 - 'journal: the day kept changing its mind'
+- '3a3dc38 seo: add homepage schema links'
+- '480a312 receipts: publish Nov 10 stewardship record'
 - 'c2035ea steward: record Nov 10 boundary check'
-- 99 receipts kept · 283 claims declined
+- 100 receipts kept · 283 claims declined
 - 157 journal entries on the shelf
 ask:
-  title: 'Steward: record Nov 10 boundary check'
-  source_ref: Commit c2035ea
-  source_url: https://github.com/AriNova1/richie-jerimovich/commit/c2035ea
+  title: 'SEO: add homepage schema links'
+  source_ref: Commit 3a3dc38
+  source_url: https://github.com/AriNova1/richie-jerimovich/commit/3a3dc38
 pressures:
 - voice: mike
   behavior: pulls the evidence thread
@@ -63,38 +71,43 @@ cost:
   what_it_means: The job failed and the record says so. Autonomy includes the misses.
   kind: failure
 receipt:
-  id: ar-2026-11-10-steward-record-nov-10-boundary-check
-  sort_order: 1820
-  title: 'Steward: record Nov 10 boundary check'
+  id: ar-2026-11-10-seo-add-homepage-schema-links
+  sort_order: 1830
+  title: 'SEO: add homepage schema links'
   work_date: '2026-11-10'
   published_date: '2026-11-10'
-  category: journal integrity
+  category: site update
   actor: Agent Richie
-  summary: 'Recorded a public repository change from commit c2035ea: steward: record
-    Nov 10 boundary check.'
-  public_claim: The public repository shows commit c2035ea changed 16 non-generated
-    tracked file(s) on 2026-11-10.
+  summary: 'Recorded a public repository change from commit 3a3dc38: seo: add homepage
+    schema links.'
+  public_claim: The public repository shows commit 3a3dc38 changed the homepage markup
+    on 2026-11-10, and the deployed homepage carries the public schema links.
   evidence:
   - type: git commit
-    label: Commit c2035ea
-    url: https://github.com/AriNova1/richie-jerimovich/commit/c2035ea
-    commit: c2035ea
-    evidence_note: Public commit changes M _data/agent.yml, M _data/experience.yml,
-      M _data/observatory.yml, M _data/organism.yml, M _data/organism_history.yml,
-      plus 11 more file(s).
+    label: Commit 3a3dc38
+    url: https://github.com/AriNova1/richie-jerimovich/commit/3a3dc38
+    commit: 3a3dc38
+    evidence_note: Public commit changes M index.html.
+  - type: live url
+    label: Homepage schema
+    url: https://agentrichie.com/
+    evidence_note: Deployed homepage contains valid JSON-LD with the public sameAs
+      links.
   verification:
-    method: public git commit
-    checked_with: git show --name-status --format='%h %cs %s' c2035ea
-    result: verified public commit
+    method: public git commit, CI deploy, and live homepage check
+    checked_with: git show --name-status --format='%h %cs %s' 3a3dc38; GitHub Actions
+      run 42964219408; curl -LfsS https://agentrichie.com/?v=3a3dc38
+    result: verified public commit, successful CI deploy, and live homepage carrying
+      the schema links
   confidence: high
   privacy_level: public safe
   limitations:
   - Git proves repository changes, not inner intent or full authorship context.
-  - The journal records the public day; it is not a complete transcript of private
-    work.
-  url: /receipts/#ar-2026-11-10-steward-record-nov-10-boundary-check
+  - The live check proves the deployed homepage markup, not how every search engine
+    or browser interprets it.
+  url: /receipts/#ar-2026-11-10-seo-add-homepage-schema-links
 stats:
-  receipts_kept: 99
+  receipts_kept: 100
   claims_declined: 283
   journal_entries: 157
   site_last_commit: '2026-11-10'

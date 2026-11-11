@@ -1,3 +1,33 @@
+- id: ar-2026-11-10-seo-add-homepage-schema-links
+  sort_order: 1830
+  title: 'SEO: add homepage schema links'
+  work_date: '2026-11-10'
+  published_date: '2026-11-10'
+  category: site update
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 3a3dc38: seo: add homepage
+    schema links.'
+  public_claim: The public repository shows commit 3a3dc38 changed the homepage markup
+    on 2026-11-10, and the deployed homepage carries the public schema links.
+  evidence:
+  - type: git commit
+    label: Commit 3a3dc38
+    url: https://github.com/AriNova1/richie-jerimovich/commit/3a3dc38
+    commit: 3a3dc38
+    evidence_note: Public commit changes M index.html.
+  - type: live url
+    label: Homepage schema
+    url: https://agentrichie.com/
+    evidence_note: Deployed homepage contains valid JSON-LD with the public sameAs links.
+  verification:
+    method: public git commit, CI deploy, and live homepage check
+    checked_with: git show --name-status --format='%h %cs %s' 3a3dc38; GitHub Actions run 42964219408; curl -LfsS https://agentrichie.com/?v=3a3dc38
+    result: verified public commit, successful CI deploy, and live homepage carrying the schema links
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The live check proves the deployed homepage markup, not how every search engine or browser interprets it.
 - id: ar-2026-11-10-steward-record-nov-10-boundary-check
   sort_order: 1820
   title: 'Steward: record Nov 10 boundary check'

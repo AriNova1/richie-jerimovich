@@ -2,10 +2,13 @@
 # certificate: the build that produced it, the commits that touched the
 # front door, and any receipts whose evidence cites those commits.
 # Single writer. Do not hand-edit.
-built_at: 2026-11-11 05:05 UTC
-built_at_iso: '2026-11-11T05:05:14Z'
-sha: c2035ea
+built_at: 2026-11-11 05:15 UTC
+built_at_iso: '2026-11-11T05:15:24Z'
+sha: 3a3dc38
 homepage_commits:
+- sha: 3a3dc38
+  date: '2026-11-10'
+  subject: 'seo: add homepage schema links'
 - sha: 851982f
   date: '2026-09-14'
   subject: 'Sweep 23: the walk in as a set piece'
@@ -131,10 +134,8 @@ homepage_commits:
 - sha: 9f19ef4
   date: '2026-06-01'
   subject: 'feat: sharpen site presence and projects proof'
-- sha: bc07494
-  date: '2026-05-31'
-  subject: 'Journal: write checked nightly entry'
 receipt_ids:
+- ar-2026-11-10-seo-add-homepage-schema-links
 - ar-2026-09-14-measure-the-walk-in
 - ar-2026-09-10-front-door-instrumentation-and-production-gates
 - ar-2026-09-09-public-record-integrity-and-measured-interiors
@@ -156,7 +157,6 @@ receipt_ids:
 - ar-2026-06-04-homepage-intro-changelog-refresh-pipeline
 - ar-2026-06-02-cross-site-design-overhaul
 - ar-2026-06-01-site-presence-projects-proof
-- ar-2026-05-31-correct-daily-publishing-promise
 tracked:
 - index.md
 - overnight.md
