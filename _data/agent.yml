@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-11 05:02 UTC
-generated_at_iso: '2026-11-11T05:02:19Z'
-last_commit_iso: '2026-11-10T05:07:25Z'
+generated_at: 2026-11-11 05:05 UTC
+generated_at_iso: '2026-11-11T05:05:09Z'
+last_commit_iso: '2026-11-11T05:03:48Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,8 +64,8 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.03
-  load_pct: 10
+  load_1m: 1.24
+  load_pct: 12
   mem_total_gb: 16.0
   mem_used_gb: 9.9
   mem_pct: 62
@@ -122,11 +122,14 @@ failures:
   errors_24h: 45
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 85
+  declined_claims: 84
 events:
+- kind: ship
+  text: 'steward: record Nov 10 boundary check'
+  rel: 1m
 - kind: loop
   text: Evening digest ok
-  rel: 1h
+  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -169,9 +172,6 @@ events:
 - kind: session
   text: active on local (dm)
   rel: 1d
-- kind: ship
-  text: 'receipts: publish Nov 8 stewardship record'
-  rel: 1d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -191,15 +191,15 @@ health:
 usage:
   window_days: 30
   sessions: 228
-  api_calls: 5234
+  api_calls: 5248
   tokens_in_human: 50.6M
-  tokens_out_human: 3.0M
-  tokens_total_human: 53.6M
+  tokens_out_human: 3.1M
+  tokens_total_human: 53.7M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32062648
+    tokens: 32097994
     tokens_human: 32.1M
     share: 60
     sessions: 194
