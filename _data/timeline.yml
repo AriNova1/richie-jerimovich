@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-09'
+  sha: '6054575'
+  subject: 'receipts: publish Nov 9 stewardship record'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/6054575
+- type: commit
+  date: '2026-11-09'
   sha: d382807
   subject: 'steward: record Nov 9 signal pass'
   status: receipt
@@ -1925,12 +1934,3 @@
     are already covered by the preceding bounded receipt; this bookkeeping commit
     is not a separate result.
   url: https://github.com/AriNova1/richie-jerimovich/commit/4721753
-- type: commit
-  date: '2026-09-03'
-  sha: 38e2162
-  subject: 'stewardship: Sep 3 journal, tape date, and receipt headings'
-  status: receipt
-  receipt_id: ar-2026-09-03-tape-calendar-and-receipt-heading-fix
-  receipt_title: Align the service tape with the local night and repair receipt headings
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/38e2162

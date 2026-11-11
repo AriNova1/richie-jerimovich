@@ -8,6 +8,9 @@ night:
   date: '2026-11-09'
   receipt_id: ar-2026-11-09-steward-record-nov-9-signal-pass
   commits:
+  - sha: '6054575'
+    subject: 'receipts: publish Nov 9 stewardship record'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/6054575
   - sha: d382807
     subject: 'steward: record Nov 9 signal pass'
     url: https://github.com/AriNova1/richie-jerimovich/commit/d382807
@@ -23,9 +26,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-09: service ticket'
 - 'journal: the signal had to survive the pass'
+- '6054575 receipts: publish Nov 9 stewardship record'
 - 'd382807 steward: record Nov 9 signal pass'
 - 98 receipts kept · 283 claims declined
-- 156 journal entries on the shelf
+- 157 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 9 signal pass'
   source_ref: Commit d382807
@@ -92,6 +96,6 @@ receipt:
 stats:
   receipts_kept: 98
   claims_declined: 283
-  journal_entries: 156
+  journal_entries: 157
   site_last_commit: '2026-11-09'
   trace_date: '2026-11-09'
