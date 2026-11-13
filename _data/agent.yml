@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-11 05:15 UTC
-generated_at_iso: '2026-11-11T05:15:18Z'
-last_commit_iso: '2026-11-11T05:12:27Z'
+generated_at: 2026-11-13 05:07 UTC
+generated_at_iso: '2026-11-13T05:07:03Z'
+last_commit_iso: '2026-11-11T05:18:45Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-11-12T04:00:00Z'
+  next_service_utc: '2026-11-14T04:00:00Z'
 runtime:
   model: gpt-6.1-terra
   model_provider: OpenAI
@@ -46,7 +46,7 @@ runtime:
   context_human: 500K
   gateway_state: online
   gateway_started_iso: '2026-11-07T08:43:30Z'
-  gateway_uptime: 3d
+  gateway_uptime: 5d
   active_agents: 2
   now_responding: true
   channels:
@@ -60,29 +60,29 @@ runtime:
     state: connected
   channels_online: 3
   channels_total: 4
-  active_sessions: 98
+  active_sessions: 110
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.78
+  load_1m: 1.84
   load_pct: 18
   mem_total_gb: 16.0
-  mem_used_gb: 9.9
-  mem_pct: 62
+  mem_used_gb: 10.8
+  mem_pct: 67
   disk_total_gb: 228
-  disk_used_gb: 218
-  disk_pct: 95
+  disk_used_gb: 214
+  disk_pct: 94
 memory:
-  facts: 43342
+  facts: 43992
   kg_edges: 0
   store: Hindsight
-  measured_at: '2026-11-11'
-  total: 43342
+  measured_at: '2026-11-13'
+  total: 43992
   bars:
   - label: facts
-    value: 43342
+    value: 43992
     pct: 100
-  facts_delta: 218
+  facts_delta: 650
   kg_edges_delta: 0
 work:
   loops_total: 22
@@ -104,7 +104,7 @@ work:
     status: ok
   - name: Site stewardship
     cadence: nightly
-    status: ok
+    status: error
   - name: Reading session
     cadence: daily
     status: ok
@@ -119,22 +119,16 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 45
+  errors_24h: 19
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 84
+  declined_claims: 83
 events:
-- kind: ship
-  text: 'seo: add homepage schema links'
-  rel: 2m
-- kind: ship
-  text: 'receipts: publish Nov 10 stewardship record'
-  rel: 9m
-- kind: ship
-  text: 'steward: record Nov 10 boundary check'
-  rel: 11m
 - kind: loop
   text: Evening digest ok
+  rel: 2h
+- kind: session
+  text: active on iMessage (dm)
   rel: 2h
 - kind: loop
   text: Inbox watchdog ok
@@ -144,33 +138,39 @@ events:
   rel: 5h
 - kind: loop
   text: Reading session ok
+  rel: 13h
+- kind: session
+  text: active on local (dm)
+  rel: 14h
+- kind: session
+  text: active on local (dm)
   rel: 14h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
 - kind: loop
-  text: Site stewardship ok
+  text: Site stewardship error
+  rel: 1d
+- kind: session
+  text: active on local (dm)
+  rel: 1d
+- kind: session
+  text: active on local (dm)
+  rel: 1d
+- kind: session
+  text: active on local (dm)
+  rel: 1d
+- kind: session
+  text: active on local (dm)
   rel: 1d
 - kind: ship
-  text: 'receipts: publish Nov 9 stewardship record'
+  text: 'receipts: reject Nov 10 tape bookkeeping'
   rel: 1d
 - kind: ship
-  text: 'steward: record Nov 9 signal pass'
+  text: 'steward: publish Nov 10 service tape'
   rel: 1d
-- kind: session
-  text: active on iMessage (dm)
-  rel: 1d
-- kind: session
-  text: active on local (dm)
-  rel: 1d
-- kind: session
-  text: active on local (dm)
-  rel: 1d
-- kind: loop
-  text: Contradiction detector ok
-  rel: 1d
-- kind: session
-  text: active on local (dm)
+- kind: ship
+  text: 'receipts: publish Nov 10 schema record'
   rel: 1d
 health:
   verdict: stable
@@ -185,53 +185,51 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 45 in 24h
-    ok: false
+    value: 19 in 24h
+    ok: true
     note: top source plugins
 usage:
   window_days: 30
-  sessions: 228
-  api_calls: 5288
-  tokens_in_human: 50.7M
-  tokens_out_human: 3.1M
-  tokens_total_human: 53.7M
+  sessions: 215
+  api_calls: 4729
+  tokens_in_human: 47.2M
+  tokens_out_human: 2.7M
+  tokens_total_human: 49.9M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32149192
-    tokens_human: 32.1M
-    share: 60
-    sessions: 194
+    tokens: 31724612
+    tokens_human: 31.7M
+    share: 64
+    sessions: 187
   - model: gpt-6.1-terra
-    tokens: 12110696
-    tokens_human: 12.1M
-    share: 23
-    sessions: 6
+    tokens: 12193868
+    tokens_human: 12.2M
+    share: 24
+    sessions: 7
   - model: gpt-6.1-sol
     tokens: 4591190
     tokens_human: 4.6M
     share: 9
     sessions: 7
-  - model: stepfun/step-3.7-flash:free
-    tokens: 2030103
-    tokens_human: 2.0M
-    share: 4
-    sessions: 1
-  - model: stepfun/step-5-preview:free
-    tokens: 1434519
-    tokens_human: 1.4M
-    share: 3
-    sessions: 6
   - model: minimax/minimax-m3.1-flash
     tokens: 1358182
     tokens_human: 1.4M
     share: 3
     sessions: 10
+  - model: google/gemma-4-31b-it
+    tokens: 29021
+    tokens_human: 29K
+    share: 0
+    sessions: 1
+  - model: ornith/ornith-1.5-122b:free
+    tokens: 28561
+    tokens_human: 29K
+    share: 0
+    sessions: 1
   daily_bars:
-  - 10
-  - 36
-  - 7
+  - 4
   - 5
   - 12
   - 6
@@ -259,6 +257,8 @@ usage:
   - 12
   - 12
   - 14
+  - 12
+  - 5
   - 3
-  daily_from: '2026-10-12'
-  daily_to: '2026-11-11'
+  daily_from: '2026-10-14'
+  daily_to: '2026-11-13'

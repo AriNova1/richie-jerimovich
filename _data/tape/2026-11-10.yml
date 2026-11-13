@@ -69,6 +69,22 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: fab6eb8
+  subject: 'receipts: reject Nov 10 tape bookkeeping'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
+- sha: ed76b2b
+  subject: 'steward: publish Nov 10 service tape'
+  status: declined
+  receipt_id: null
+  rejection_reason: Generated service-tape refresh for the Nov 10 public record; the
+    journal and schema changes are already covered by existing receipts.
+- sha: 1e55796
+  subject: 'receipts: publish Nov 10 schema record'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: 3a3dc38
   subject: 'seo: add homepage schema links'
   status: receipt
@@ -85,7 +101,7 @@ commits:
   receipt_id: ar-2026-11-10-steward-record-nov-10-boundary-check
   rejection_reason: null
 receipts_kept: 2
-claims_declined: 0
+claims_declined: 1
 health_verdict: stable
 journal:
   title: The day kept changing its mind

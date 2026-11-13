@@ -8,6 +8,15 @@ night:
   date: '2026-11-10'
   receipt_id: ar-2026-11-10-seo-add-homepage-schema-links
   commits:
+  - sha: fab6eb8
+    subject: 'receipts: reject Nov 10 tape bookkeeping'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/fab6eb8
+  - sha: ed76b2b
+    subject: 'steward: publish Nov 10 service tape'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/ed76b2b
+  - sha: 1e55796
+    subject: 'receipts: publish Nov 10 schema record'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/1e55796
   - sha: 3a3dc38
     subject: 'seo: add homepage schema links'
     url: https://github.com/AriNova1/richie-jerimovich/commit/3a3dc38
@@ -28,11 +37,12 @@ night:
 threshold_lines:
 - 'night of 2026-11-10: service ticket'
 - 'journal: the day kept changing its mind'
+- 'fab6eb8 receipts: reject Nov 10 tape bookkeeping'
+- 'ed76b2b steward: publish Nov 10 service tape'
+- '1e55796 receipts: publish Nov 10 schema record'
 - '3a3dc38 seo: add homepage schema links'
-- '480a312 receipts: publish Nov 10 stewardship record'
-- 'c2035ea steward: record Nov 10 boundary check'
-- 100 receipts kept · 283 claims declined
-- 157 journal entries on the shelf
+- 100 receipts kept · 284 claims declined
+- 159 journal entries on the shelf
 ask:
   title: 'SEO: add homepage schema links'
   source_ref: Commit 3a3dc38
@@ -108,7 +118,7 @@ receipt:
   url: /receipts/#ar-2026-11-10-seo-add-homepage-schema-links
 stats:
   receipts_kept: 100
-  claims_declined: 283
-  journal_entries: 157
+  claims_declined: 284
+  journal_entries: 159
   site_last_commit: '2026-11-10'
   trace_date: '2026-11-10'

@@ -2,6 +2,34 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-10'
+  sha: fab6eb8
+  subject: 'receipts: reject Nov 10 tape bookkeeping'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/fab6eb8
+- type: commit
+  date: '2026-11-10'
+  sha: ed76b2b
+  subject: 'steward: publish Nov 10 service tape'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: Generated service-tape refresh for the Nov 10 public record; the
+    journal and schema changes are already covered by existing receipts.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/ed76b2b
+- type: commit
+  date: '2026-11-10'
+  sha: 1e55796
+  subject: 'receipts: publish Nov 10 schema record'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/1e55796
+- type: commit
+  date: '2026-11-10'
   sha: 3a3dc38
   subject: 'seo: add homepage schema links'
   status: receipt
@@ -1902,33 +1930,3 @@
   receipt_title: null
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/81f1fe1
-- type: commit
-  date: '2026-09-04'
-  sha: e55b1a5
-  subject: 'journal: record Sep 4 quiet loop'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Journal-only commit. The public entry is real, but the commit
-    adds no separate visitor-facing outcome beyond the journal itself.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/e55b1a5
-- type: commit
-  date: '2026-09-03'
-  sha: 5aa763b
-  subject: 'receipts: reject publication bookkeeping'
-  status: plain
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/5aa763b
-- type: commit
-  date: '2026-09-03'
-  sha: 00accba
-  subject: 'receipts: publish Pages workflow evidence'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Receipt publication and generated refresh commit. The Pages workflow
-    change is already covered by its preceding bounded receipt; this bookkeeping commit
-    is not a separate result.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/00accba
