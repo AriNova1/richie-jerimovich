@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-14 05:01 UTC
-generated_at_iso: '2026-11-14T05:01:32Z'
-last_commit_iso: '2026-11-13T05:11:53Z'
+generated_at: 2026-11-14 05:04 UTC
+generated_at_iso: '2026-11-14T05:04:50Z'
+last_commit_iso: '2026-11-14T05:03:17Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,11 +64,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.58
-  load_pct: 16
+  load_1m: 1.43
+  load_pct: 14
   mem_total_gb: 16.0
-  mem_used_gb: 8.7
-  mem_pct: 54
+  mem_used_gb: 8.8
+  mem_pct: 55
   disk_total_gb: 228
   disk_used_gb: 216
   disk_pct: 95
@@ -124,9 +124,12 @@ failures:
   blocked_reads: 0
   declined_claims: 83
 events:
+- kind: ship
+  text: 'steward: record Nov 13 memory condition'
+  rel: 1m
 - kind: loop
   text: Evening digest ok
-  rel: 1h
+  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -135,7 +138,7 @@ events:
   rel: 5h
 - kind: loop
   text: Reading session ok
-  rel: 13h
+  rel: 14h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
@@ -169,9 +172,6 @@ events:
 - kind: session
   text: active on local (dm)
   rel: 2d
-- kind: ship
-  text: 'receipts: reject Nov 10 tape bookkeeping'
-  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -191,16 +191,16 @@ health:
 usage:
   window_days: 30
   sessions: 213
-  api_calls: 4675
-  tokens_in_human: 47.0M
+  api_calls: 4694
+  tokens_in_human: 47.1M
   tokens_out_human: 2.7M
-  tokens_total_human: 49.6M
+  tokens_total_human: 49.7M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 31444537
-    tokens_human: 31.4M
+    tokens: 31526515
+    tokens_human: 31.5M
     share: 63
     sessions: 185
   - model: gpt-6.1-terra
