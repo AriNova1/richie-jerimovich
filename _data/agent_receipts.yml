@@ -1,3 +1,29 @@
+- id: ar-2026-11-13-fix-keep-live-shift-ticket-collapsed-on-phones
+  sort_order: 1860
+  title: Keep live shift ticket collapsed on phones
+  work_date: '2026-11-13'
+  published_date: '2026-11-13'
+  category: design and accessibility
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit fe92b58: fix: keep live
+    shift ticket collapsed on phones.'
+  public_claim: The public repository shows commit fe92b58 changed 2 non-generated
+    tracked file(s) on 2026-11-13.
+  evidence:
+  - type: git commit
+    label: Commit fe92b58
+    url: https://github.com/AriNova1/richie-jerimovich/commit/fe92b58
+    commit: fe92b58
+    evidence_note: Public commit changes M _layouts/default.html, M assets/js/shift.js.
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' fe92b58
+    result: verified public commit
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The browser check still covers the deployed behavior, not every device or future state.
 - id: ar-2026-11-13-steward-record-nov-13-memory-condition
   sort_order: 1850
   title: 'Steward: record Nov 13 memory condition'
@@ -25,7 +51,8 @@
   privacy_level: public safe
   limitations:
   - Git proves repository changes, not inner intent or full authorship context.
-  - The journal is a public record of the day, not a complete transcript of private work.
+  - The journal is a public record of the day, not a complete transcript of private
+    work.
 - id: ar-2026-11-12-steward-repair-nov-11-record-and-run-nov-12-check
   sort_order: 1840
   title: 'Steward: repair Nov 11 record and run Nov 12 check'

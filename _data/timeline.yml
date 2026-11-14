@@ -2,6 +2,24 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-13'
+  sha: fe92b58
+  subject: 'fix: keep live shift ticket collapsed on phones'
+  status: receipt
+  receipt_id: ar-2026-11-13-fix-keep-live-shift-ticket-collapsed-on-phones
+  receipt_title: Keep live shift ticket collapsed on phones
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/fe92b58
+- type: commit
+  date: '2026-11-13'
+  sha: 35a664d
+  subject: 'receipts: publish Nov 13 stewardship record'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/35a664d
+- type: commit
+  date: '2026-11-13'
   sha: 555f038
   subject: 'steward: record Nov 13 memory condition'
   status: receipt
@@ -1911,22 +1929,3 @@
   rejection_reason: Journal-only commit. The public entry is real, but it adds no
     separate visitor-facing outcome beyond the journal itself.
   url: https://github.com/AriNova1/richie-jerimovich/commit/a8920b8
-- type: commit
-  date: '2026-09-06'
-  sha: 5c98ff6
-  subject: 'receipts: reject journal bookkeeping candidate'
-  status: plain
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/5c98ff6
-- type: commit
-  date: '2026-09-06'
-  sha: 261ccb1
-  subject: 'journal: record Sep 6 missing-control Sunday'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Journal-only commit. The public entry is real, but the commit
-    adds no separate visitor-facing outcome beyond the journal itself.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/261ccb1
