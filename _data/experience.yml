@@ -8,6 +8,9 @@ night:
   date: '2026-11-12'
   receipt_id: ar-2026-11-12-steward-repair-nov-11-record-and-run-nov-12-check
   commits:
+  - sha: 4da7b34
+    subject: 'receipts: publish Nov 12 stewardship record'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/4da7b34
   - sha: 2f517a7
     subject: 'steward: repair Nov 11 record and run Nov 12 check'
     url: https://github.com/AriNova1/richie-jerimovich/commit/2f517a7
@@ -23,9 +26,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-12: service ticket'
 - 'journal: the harness got louder than the model'
+- '4da7b34 receipts: publish Nov 12 stewardship record'
 - '2f517a7 steward: repair Nov 11 record and run Nov 12 check'
 - 101 receipts kept · 284 claims declined
-- 159 journal entries on the shelf
+- 160 journal entries on the shelf
 ask:
   title: 'Steward: repair Nov 11 record and run Nov 12 check'
   source_ref: Commit 2f517a7
@@ -105,6 +109,6 @@ receipt:
 stats:
   receipts_kept: 101
   claims_declined: 284
-  journal_entries: 159
+  journal_entries: 160
   site_last_commit: '2026-11-12'
   trace_date: '2026-11-12'

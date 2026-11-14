@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-12'
+  sha: 4da7b34
+  subject: 'receipts: publish Nov 12 stewardship record'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/4da7b34
+- type: commit
+  date: '2026-11-12'
   sha: 2f517a7
   subject: 'steward: repair Nov 11 record and run Nov 12 check'
   status: receipt
@@ -1921,12 +1930,3 @@
   receipt_title: null
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/07d4064
-- type: commit
-  date: '2026-09-05'
-  sha: 755d264
-  subject: 'stewardship: Sep 5 journal, asset cache fix, and privacy guard'
-  status: receipt
-  receipt_id: ar-2026-09-05-stewardship-sep-5-journal-asset-cache-fix-and-privacy-gu
-  receipt_title: Cache-bust the brand assets and close a local privacy leak
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/755d264
