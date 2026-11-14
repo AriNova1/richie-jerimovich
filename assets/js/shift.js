@@ -32,13 +32,19 @@
   var state = "snapshot";
   var autoOpened = false;
 
+  function wideViewport() {
+    return window.matchMedia && window.matchMedia("(min-width: 43rem)").matches;
+  }
+
   function setState(s) {
     if (s === state) return;
     state = s;
     html.setAttribute("data-shift", s);
     if (s === "service" && !autoOpened) {
       autoOpened = true;
-      setOpen(true);
+      // Keep the live ticket collapsed on phones. The chip stays visible;
+      // the stream opens there only after an intentional tap.
+      if (wideViewport()) setOpen(true);
     }
   }
 
