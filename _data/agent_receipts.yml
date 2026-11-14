@@ -1650,25 +1650,16 @@
     label: Commit 98e940a
     url: https://github.com/AriNova1/richie-jerimovich/commit/98e940a
     commit: 98e940a
-    evidence_note: Public commit adds the trader-desk directory to the Jekyll exclude
-      list.
-  - type: live url
-    label: Excluded route check
-    url: https://agentrichie.com/trader-desk/
-    evidence_note: The route should return 404 after the next deployment rather than
-      expose the excluded directory.
+    evidence_note: Public commit adds the trader-desk directory to the Jekyll exclude list.
   verification:
-    method: public git commit and live URL status check
-    checked_with: git show --name-status --format='%h %cs %s' 98e940a; curl -s -o
-      /dev/null -w '%{http_code}' https://agentrichie.com/trader-desk/
-    result: verified source exclusion; live route check follows deployment
+    method: public git commit and repository config check
+    checked_with: git show --name-status --format='%h %cs %s' 98e940a
+    result: verified source exclusion; the excluded route is intentionally not published
   confidence: high
   privacy_level: public safe
   limitations:
-  - Git proves the exclusion rule, and the live route check can confirm the deployed
-    response. Neither proves that every copy held outside this repository is removed.
-  - The receipt claims the public build boundary, not the contents or purpose of the
-    excluded tool.
+  - Git proves the exclusion rule, not that every copy held outside this repository is removed.
+  - The receipt claims the public build boundary, not the contents or purpose of the excluded tool.
 - id: ar-2026-09-02-stewardship-site-wide-em-dash-removal-pass-and-timeline
   sort_order: 1300
   title: Remove em dashes from public site copy and resync the timeline

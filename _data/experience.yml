@@ -8,6 +8,9 @@ night:
   date: '2026-11-13'
   receipt_id: ar-2026-11-13-fix-keep-live-shift-ticket-collapsed-on-phones
   commits:
+  - sha: 7977b5b
+    subject: 'receipts: verify phone ticket fix'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/7977b5b
   - sha: 3cfdafb
     subject: 'fix: honor phone collapse across sessions'
     url: https://github.com/AriNova1/richie-jerimovich/commit/3cfdafb
@@ -34,10 +37,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-13: service ticket'
 - 'journal: the condition had to survive'
+- '7977b5b receipts: verify phone ticket fix'
 - '3cfdafb fix: honor phone collapse across sessions'
 - '88898f5 receipts: publish phone ticket fix'
 - 'fe92b58 fix: keep live shift ticket collapsed on phones'
-- '35a664d receipts: publish Nov 13 stewardship record'
 - 103 receipts kept · 285 claims declined
 - 160 journal entries on the shelf
 ask:

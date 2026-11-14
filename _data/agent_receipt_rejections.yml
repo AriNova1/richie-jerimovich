@@ -1,3 +1,7 @@
+- commit: 3cfdafb
+  rejected_date: '2026-11-13'
+  reason: Follow-up correction to the phone ticket fix; merged into the existing receipt
+    for the same public outcome.
 - commit: ed76b2b
   rejected_date: '2026-11-10'
   reason: Generated service-tape refresh for the Nov 10 public record; the journal

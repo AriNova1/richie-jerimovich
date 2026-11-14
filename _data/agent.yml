@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-14 05:17 UTC
-generated_at_iso: '2026-11-14T05:17:19Z'
-last_commit_iso: '2026-11-14T05:13:00Z'
+generated_at: 2026-11-14 05:24 UTC
+generated_at_iso: '2026-11-14T05:24:12Z'
+last_commit_iso: '2026-11-14T05:17:34Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,11 +64,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.09
-  load_pct: 11
+  load_1m: 0.89
+  load_pct: 9
   mem_total_gb: 16.0
-  mem_used_gb: 8.8
-  mem_pct: 55
+  mem_used_gb: 8.5
+  mem_pct: 53
   disk_total_gb: 228
   disk_used_gb: 216
   disk_pct: 95
@@ -125,20 +125,23 @@ failures:
   declined_claims: 81
 events:
 - kind: ship
-  text: 'fix: honor phone collapse across sessions'
-  rel: 4m
-- kind: ship
-  text: 'receipts: publish phone ticket fix'
+  text: 'receipts: verify phone ticket fix'
   rel: 6m
 - kind: ship
+  text: 'fix: honor phone collapse across sessions'
+  rel: 11m
+- kind: ship
+  text: 'receipts: publish phone ticket fix'
+  rel: 13m
+- kind: ship
   text: 'fix: keep live shift ticket collapsed on phones'
-  rel: 9m
+  rel: 16m
 - kind: ship
   text: 'receipts: publish Nov 13 stewardship record'
-  rel: 12m
+  rel: 19m
 - kind: ship
   text: 'steward: record Nov 13 memory condition'
-  rel: 14m
+  rel: 20m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -169,9 +172,6 @@ events:
 - kind: session
   text: active on local (dm)
   rel: 1d
-- kind: session
-  text: active on local (dm)
-  rel: 1d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -191,7 +191,7 @@ health:
 usage:
   window_days: 30
   sessions: 213
-  api_calls: 4738
+  api_calls: 4750
   tokens_in_human: 47.1M
   tokens_out_human: 2.7M
   tokens_total_human: 49.8M
@@ -199,7 +199,7 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 31584824
+    tokens: 31619799
     tokens_human: 31.6M
     share: 63
     sessions: 185

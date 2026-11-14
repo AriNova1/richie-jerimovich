@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-13'
+  sha: 7977b5b
+  subject: 'receipts: verify phone ticket fix'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/7977b5b
+- type: commit
+  date: '2026-11-13'
   sha: 3cfdafb
   subject: 'fix: honor phone collapse across sessions'
   status: receipt
@@ -1919,12 +1928,3 @@
     is already covered by the broader receipt; this bookkeeping commit is not a separate
     public outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/770307d
-- type: commit
-  date: '2026-09-08'
-  sha: 879314f
-  subject: 'stewardship: Sep 8 journal, receipts, and workspace test fix'
-  status: receipt
-  receipt_id: ar-2026-09-08-launch-photoreal-room-entrance-and-complete-richie-works
-  receipt_title: Add the photoreal workspace entrance
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/879314f
