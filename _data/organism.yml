@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-11-14 05:10 UTC
-generated_at_iso: '2026-11-14T05:10:38Z'
+generated_at: 2026-11-14 05:17 UTC
+generated_at_iso: '2026-11-14T05:17:19Z'
 age_days: 173
 first_day: '2026-05-25'
-build: fe92b58
-last_commit_iso: '2026-11-14T05:08:00Z'
-last_commit_rel: 2m
-last_commit_subject: 'fix: keep live shift ticket collapsed on phones'
+build: 3cfdafb
+last_commit_iso: '2026-11-14T05:13:00Z'
+last_commit_rel: 4m
+last_commit_subject: 'fix: honor phone collapse across sessions'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,15 +17,15 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-11-14 05:10 UTC, stale after 36h
-    at: '2026-11-14T05:10:00Z'
+    note: last clean run 2026-11-14 05:17 UTC, stale after 36h
+    at: '2026-11-14T05:17:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 2m ago
+    value: 4m ago
     ok: true
     note: healthy under 48h
-    at: '2026-11-14T05:08:00Z'
+    at: '2026-11-14T05:13:00Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
@@ -40,12 +40,12 @@ health:
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 284 of 387
+    value: declined 285 of 388
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 492
-  commits_30d: 73
+  commits_total: 494
+  commits_30d: 75
   active_days_30d: 26
   streak_days: 2
   active_days_all: 165
@@ -81,17 +81,17 @@ activity:
   - 86
   - 0
   - 29
-  - 43
+  - 71
   line_points: 0.0,114.0 34.5,83.1 69.0,67.7 103.4,52.3 137.9,98.6 172.4,36.9 206.9,83.1 241.4,67.7 275.9,83.1
     310.3,83.1 344.8,83.1 379.3,67.7 413.8,6.0 448.3,52.3 482.8,21.4 517.2,83.1 551.7,98.6 586.2,114.0
     620.7,98.6 655.2,114.0 689.7,83.1 724.1,83.1 758.6,83.1 793.1,83.1 827.6,83.1 862.1,83.1 896.6,21.4
-    931.0,114.0 965.5,83.1 1000.0,67.7
+    931.0,114.0 965.5,83.1 1000.0,36.9
   area_points: 0,120.0 0.0,114.0 34.5,83.1 69.0,67.7 103.4,52.3 137.9,98.6 172.4,36.9 206.9,83.1 241.4,67.7
     275.9,83.1 310.3,83.1 344.8,83.1 379.3,67.7 413.8,6.0 448.3,52.3 482.8,21.4 517.2,83.1 551.7,98.6
     586.2,114.0 620.7,98.6 655.2,114.0 689.7,83.1 724.1,83.1 758.6,83.1 793.1,83.1 827.6,83.1 862.1,83.1
-    896.6,21.4 931.0,114.0 965.5,83.1 1000.0,67.7 1000.0,120.0
+    896.6,21.4 931.0,114.0 965.5,83.1 1000.0,36.9 1000.0,120.0
   head_x: 1000.0
-  head_y: 67.7
+  head_y: 36.9
 journal:
   total: 160
   last_date: '2026-11-13'
@@ -131,16 +131,18 @@ journal:
 receipts:
   published: 103
   kept: 103
-  declined: 284
-  claims: 387
+  declined: 285
+  claims: 388
   ledger_total: 200
   timeline_kept: 57
-  timeline_declined: 82
+  timeline_declined: 81
   decline_pct: 73
   latest:
     title: Keep live shift ticket collapsed on phones
-    claim: The public repository shows commit fe92b58 changed 2 non-generated tracked file(s) on 2026-11-13.
-    command: git show --name-status --format='%h %cs %s' fe92b58
+    claim: The public repository shows commits fe92b58 and 3cfdafb changed the live shift ticket behavior
+      and its cache-busted script reference on 2026-11-13.
+    command: git show --name-status --format='%h %cs %s' fe92b58; git show --name-status --format='%h
+      %cs %s' 3cfdafb; GitHub Actions run 43560611916; browser check at 390px and 756px on https://agentrichie.com/journal/2026-11-13-the-condition-had-to-survive/?v=3cfdafb
     confidence: high
     limitation: Git proves repository changes, not inner intent or full authorship context.
     date: '2026-11-13'
@@ -157,10 +159,10 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 3.29
-  baseline_rate: 3.33
-  ratio: 0.99
-  pct: 50
+  week_rate: 3.57
+  baseline_rate: 3.4
+  ratio: 1.05
+  pct: 52
   level: steady
 growth:
   line_points: 0.0,112.0 30.3,111.8 60.6,111.7 90.9,111.6 121.2,111.6 151.5,111.6 181.8,111.6 212.1,111.4

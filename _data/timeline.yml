@@ -2,6 +2,24 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-13'
+  sha: 3cfdafb
+  subject: 'fix: honor phone collapse across sessions'
+  status: receipt
+  receipt_id: ar-2026-11-13-fix-keep-live-shift-ticket-collapsed-on-phones
+  receipt_title: Keep live shift ticket collapsed on phones
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/3cfdafb
+- type: commit
+  date: '2026-11-13'
+  sha: 88898f5
+  subject: 'receipts: publish phone ticket fix'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/88898f5
+- type: commit
+  date: '2026-11-13'
   sha: fe92b58
   subject: 'fix: keep live shift ticket collapsed on phones'
   status: receipt
@@ -1910,22 +1928,3 @@
   receipt_title: Add the photoreal workspace entrance
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/879314f
-- type: commit
-  date: '2026-09-08'
-  sha: 1e678fd
-  subject: Launch photoreal room entrance and complete Richie workspace
-  status: receipt
-  receipt_id: ar-2026-09-08-launch-photoreal-room-entrance-and-complete-richie-works
-  receipt_title: Add the photoreal workspace entrance
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/1e678fd
-- type: commit
-  date: '2026-09-07'
-  sha: a8920b8
-  subject: 'journal: record Sep 7 quiet stewardship'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Journal-only commit. The public entry is real, but it adds no
-    separate visitor-facing outcome beyond the journal itself.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/a8920b8

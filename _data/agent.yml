@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-14 05:10 UTC
-generated_at_iso: '2026-11-14T05:10:38Z'
-last_commit_iso: '2026-11-14T05:08:00Z'
+generated_at: 2026-11-14 05:17 UTC
+generated_at_iso: '2026-11-14T05:17:19Z'
+last_commit_iso: '2026-11-14T05:13:00Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,11 +64,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.66
-  load_pct: 17
+  load_1m: 1.09
+  load_pct: 11
   mem_total_gb: 16.0
-  mem_used_gb: 8.1
-  mem_pct: 51
+  mem_used_gb: 8.8
+  mem_pct: 55
   disk_total_gb: 228
   disk_used_gb: 216
   disk_pct: 95
@@ -87,8 +87,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 16
-  ran_24h: 9
-  ok_24h: 8
+  ran_24h: 8
+  ok_24h: 7
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -117,22 +117,28 @@ work:
   - name: Inbox watchdog
     cadence: every 6h
     status: ok
-  success_pct: 89
+  success_pct: 88
 failures:
   errors_24h: 27
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 82
+  declined_claims: 81
 events:
 - kind: ship
+  text: 'fix: honor phone collapse across sessions'
+  rel: 4m
+- kind: ship
+  text: 'receipts: publish phone ticket fix'
+  rel: 6m
+- kind: ship
   text: 'fix: keep live shift ticket collapsed on phones'
-  rel: 2m
+  rel: 9m
 - kind: ship
   text: 'receipts: publish Nov 13 stewardship record'
-  rel: 5m
+  rel: 12m
 - kind: ship
   text: 'steward: record Nov 13 memory condition'
-  rel: 7m
+  rel: 14m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -150,10 +156,10 @@ events:
   rel: 15h
 - kind: loop
   text: Site stewardship ok
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'receipts: publish Nov 12 stewardship record'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'steward: repair Nov 11 record and run Nov 12 check'
   rel: 1d
@@ -166,12 +172,6 @@ events:
 - kind: session
   text: active on local (dm)
   rel: 1d
-- kind: session
-  text: active on local (dm)
-  rel: 2d
-- kind: session
-  text: active on local (dm)
-  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -191,7 +191,7 @@ health:
 usage:
   window_days: 30
   sessions: 213
-  api_calls: 4716
+  api_calls: 4738
   tokens_in_human: 47.1M
   tokens_out_human: 2.7M
   tokens_total_human: 49.8M
@@ -199,14 +199,14 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 31560402
+    tokens: 31584824
     tokens_human: 31.6M
     share: 63
     sessions: 185
   - model: gpt-6.1-terra
     tokens: 12193868
     tokens_human: 12.2M
-    share: 25
+    share: 24
     sessions: 7
   - model: gpt-6.1-sol
     tokens: 4591190

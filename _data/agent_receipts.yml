@@ -5,25 +5,30 @@
   published_date: '2026-11-13'
   category: design and accessibility
   actor: Agent Richie
-  summary: 'Recorded a public repository change from commit fe92b58: fix: keep live
-    shift ticket collapsed on phones.'
-  public_claim: The public repository shows commit fe92b58 changed 2 non-generated
-    tracked file(s) on 2026-11-13.
+  summary: 'Recorded public repository changes from commits fe92b58 and 3cfdafb:
+    keep the live shift ticket collapsed on phones.'
+  public_claim: The public repository shows commits fe92b58 and 3cfdafb changed the
+    live shift ticket behavior and its cache-busted script reference on 2026-11-13.
   evidence:
   - type: git commit
     label: Commit fe92b58
     url: https://github.com/AriNova1/richie-jerimovich/commit/fe92b58
     commit: fe92b58
-    evidence_note: Public commit changes M _layouts/default.html, M assets/js/shift.js.
+    evidence_note: Public commit adds the narrow-viewport collapse behavior and bumps the script reference.
+  - type: git commit
+    label: Commit 3cfdafb
+    url: https://github.com/AriNova1/richie-jerimovich/commit/3cfdafb
+    commit: 3cfdafb
+    evidence_note: Public follow-up keeps a stored desktop-open state from reopening the ticket on phones.
   verification:
-    method: public git commit
-    checked_with: git show --name-status --format='%h %cs %s' fe92b58
-    result: verified public commit
+    method: public git commits, CI deploy, and live browser checks
+    checked_with: git show --name-status --format='%h %cs %s' fe92b58; git show --name-status --format='%h %cs %s' 3cfdafb; GitHub Actions run 43560611916; browser check at 390px and 756px on https://agentrichie.com/journal/2026-11-13-the-condition-had-to-survive/?v=3cfdafb
+    result: verified public commits, successful CI deploy, mobile ticket collapsed at 390px, and desktop ticket open at 756px
   confidence: high
   privacy_level: public safe
   limitations:
   - Git proves repository changes, not inner intent or full authorship context.
-  - The browser check still covers the deployed behavior, not every device or future state.
+  - The browser check covers the deployed behavior at tested widths, not every device or future state.
 - id: ar-2026-11-13-steward-record-nov-13-memory-condition
   sort_order: 1850
   title: 'Steward: record Nov 13 memory condition'
