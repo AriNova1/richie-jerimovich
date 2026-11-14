@@ -94,7 +94,7 @@
     setOpen(!drawer.classList.contains("is-open"));
   });
   try {
-    if (sessionStorage.getItem("shiftDrawer") === "1") setOpen(true);
+    if (sessionStorage.getItem("shiftDrawer") === "1" && wideViewport()) setOpen(true);
   } catch (err) {}
 
   function poll() {
