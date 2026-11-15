@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-15 05:03 UTC
-generated_at_iso: '2026-11-15T05:03:42Z'
-last_commit_iso: '2026-11-14T05:26:16Z'
+generated_at: 2026-11-15 05:07 UTC
+generated_at_iso: '2026-11-15T05:07:41Z'
+last_commit_iso: '2026-11-15T05:04:53Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,14 +64,14 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.53
-  load_pct: 15
+  load_1m: 1.78
+  load_pct: 18
   mem_total_gb: 16.0
-  mem_used_gb: 11.3
-  mem_pct: 71
+  mem_used_gb: 10.5
+  mem_pct: 66
   disk_total_gb: 228
-  disk_used_gb: 215
-  disk_pct: 94
+  disk_used_gb: 210
+  disk_pct: 92
 memory:
   facts: 44559
   kg_edges: 0
@@ -122,8 +122,11 @@ failures:
   errors_24h: 23
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 80
+  declined_claims: 79
 events:
+- kind: ship
+  text: 'steward: record Nov 14 control boundary reading'
+  rel: 2m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -141,7 +144,7 @@ events:
   rel: 11h
 - kind: loop
   text: Reading session ok
-  rel: 13h
+  rel: 14h
 - kind: session
   text: active on local (dm)
   rel: 14h
@@ -169,9 +172,6 @@ events:
 - kind: ship
   text: 'fix: keep live shift ticket collapsed on phones'
   rel: 23h
-- kind: ship
-  text: 'receipts: publish Nov 13 stewardship record'
-  rel: 23h
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -191,16 +191,16 @@ health:
 usage:
   window_days: 30
   sessions: 213
-  api_calls: 4792
+  api_calls: 4811
   tokens_in_human: 47.3M
   tokens_out_human: 2.7M
-  tokens_total_human: 50.0M
+  tokens_total_human: 50.1M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 31740093
-    tokens_human: 31.7M
+    tokens: 31781062
+    tokens_human: 31.8M
     share: 63
     sessions: 183
   - model: gpt-6.1-terra
