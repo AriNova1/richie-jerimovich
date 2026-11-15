@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-13'
+  sha: 19dec73
+  subject: 'receipts: close intentional excluded-route check'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/19dec73
+- type: commit
+  date: '2026-11-13'
   sha: 7977b5b
   subject: 'receipts: verify phone ticket fix'
   status: plain
@@ -1917,14 +1926,3 @@
   rejection_reason: Generated public-record refresh. It updates derived files from
     already published source and adds no separate visitor-facing outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/134921f
-- type: commit
-  date: '2026-09-08'
-  sha: 770307d
-  subject: 'receipts: merge Sep 8 workspace follow-up evidence'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Receipt merge and generated refresh commit. The workspace follow-up
-    is already covered by the broader receipt; this bookkeeping commit is not a separate
-    public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/770307d
