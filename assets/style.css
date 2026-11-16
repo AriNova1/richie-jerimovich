@@ -71,10 +71,10 @@
   --amber-ink: #101010;
   --amber-soft: rgba(240, 192, 64, 0.14);
   --burn: #d97b28;
-  /* The same burnt orange, darkened for the cream ticket. #d97b28 clears 11:1
-     on the dark ground and 2.55:1 on #f1e9d7, so one token was doing two jobs
-     and failing one of them. Measured, not eyeballed: this is 4.80:1. */
-  --burn-on-paper: #9a5316;
+  /* The same burnt orange, darkened for the cream ticket. The paper has a
+     gradient edge, so the token is measured against that edge too: #86460f
+     clears 5.01:1 at the darkest sampled paper background. */
+  --burn-on-paper: #86460f;
   /* Amber is the system's accent and it clears 11:1 on the dark ground. On
      the cream ticket it is 1.42:1, which is not a colour, it is an absence. */
   --amber-on-paper: #7d5f10;
