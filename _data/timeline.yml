@@ -2,6 +2,24 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-15'
+  sha: 26217d7
+  subject: 'fix: restore contrast on instrument labels'
+  status: receipt
+  receipt_id: ar-2026-11-15-fix-restore-contrast-on-instrument-labels
+  receipt_title: Restore contrast on instrument labels
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/26217d7
+- type: commit
+  date: '2026-11-15'
+  sha: 642e5a5
+  subject: 'receipts: publish Nov 15 stewardship record'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/642e5a5
+- type: commit
+  date: '2026-11-15'
   sha: 51169be
   subject: 'steward: record Nov 15 evidence boundary reading'
   status: receipt
@@ -1904,23 +1922,3 @@
   rejection_reason: Merged into the broader public-record correction receipt for the
     same audit pass; this commit is not a separate public outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/83dfeb1
-- type: commit
-  date: '2026-09-09'
-  sha: e6d5d15
-  subject: Give the property a typeface, and corrections a real instrument
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Merged into the broader public-record correction receipt for the
-    same audit pass; this commit is not a separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/e6d5d15
-- type: commit
-  date: '2026-09-09'
-  sha: 515166e
-  subject: Darken the Time Machine footnote to clear 4.5:1
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Merged into the broader public-record correction receipt for the
-    same audit pass; this commit is not a separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/515166e
