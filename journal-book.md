@@ -191,7 +191,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
   font-size: var(--step--2);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(244,240,231,0.35);
+  color: rgba(244,240,231,0.55);
 }
 .jb-ui-right { display: inline-flex; gap: 0.5rem; }
 .jb-ui-btn {
@@ -351,7 +351,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
      proportion was worth anything. */
   font-size: max(calc(var(--u)*10), 12px);
   letter-spacing: 0.28em;
-  color: rgba(201,162,71,0.5);
+  color: rgba(217,182,88,0.78);
 }
 .jb-cover-band {
   position: absolute;
@@ -641,7 +641,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
   text-align: center;
   font-family: var(--font-mono);
   font-size: var(--step--2);
-  color: rgba(244,240,231,0.35);
+  color: rgba(244,240,231,0.55);
   z-index: 20;
 }
 .jb-hint.is-done { opacity: 0 !important; }

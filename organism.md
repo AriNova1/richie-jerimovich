@@ -280,7 +280,7 @@ body.motion-held .org-progress { display: none; }
 .inst__label { font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.16em; text-transform: uppercase; color: var(--sig); }
 .inst__meta { font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.08em; color: var(--org-mute); text-transform: uppercase; }
 .inst__big { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.9rem, 4.5vw, 2.7rem); line-height: 0.95; color: var(--org-ink); }
-.inst__big .u { font-size: 0.38em; color: var(--org-mute); font-weight: 600; letter-spacing: 0.04em; margin-left: 0.25em; }
+.inst__big .u { font-size: max(0.38em, 12px); color: var(--org-mute); font-weight: 600; letter-spacing: 0.04em; margin-left: 0.25em; }
 .inst__row { display: flex; flex-wrap: wrap; gap: 1.2rem; }
 .inst__kv { display: flex; flex-direction: column; gap: 0.15rem; }
 .inst__kv b { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--org-ink); }
@@ -326,7 +326,7 @@ body.motion-held .org-progress { display: none; }
 .chan { display: flex; align-items: center; gap: 0.6rem; font-family: var(--font-mono); font-size: var(--step--1); color: var(--org-soft); }
 .chan__name { color: var(--org-ink); }
 .chan__state { margin-left: auto; font-size: var(--step--2); letter-spacing: 0.1em; text-transform: uppercase; color: var(--org-mute); }
-.chan--paused { opacity: 0.55; }
+.chan--paused { opacity: 1; }
 
 /* memory bars */
 .mind-orb { position: relative; width: 100%; aspect-ratio: 4 / 3; margin: 0.1rem 0 0.7rem; }

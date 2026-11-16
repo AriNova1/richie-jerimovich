@@ -337,7 +337,7 @@ footer.site-foot {
   padding: 0.28rem 0.5rem; border: 1.5px solid currentColor; border-radius: 3px;
   transform: rotate(-2.2deg); opacity: 0.85;
 }
-.stamp-ok { color: #2e7d43; }
+.stamp-ok { color: #15572b; }
 .stamp-warn { color: var(--burn); }
 .stamp-alarm { color: var(--alarm); }
 .stamp-ink { color: var(--ticket-ink-soft); }
