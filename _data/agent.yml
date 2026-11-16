@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-16 05:18 UTC
-generated_at_iso: '2026-11-16T05:18:06Z'
-last_commit_iso: '2026-11-16T05:15:29Z'
+generated_at: 2026-11-16 05:32 UTC
+generated_at_iso: '2026-11-16T05:32:40Z'
+last_commit_iso: '2026-11-16T05:25:03Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,11 +64,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 2.12
-  load_pct: 21
+  load_1m: 3.06
+  load_pct: 31
   mem_total_gb: 16.0
-  mem_used_gb: 10.0
-  mem_pct: 63
+  mem_used_gb: 10.5
+  mem_pct: 65
   disk_total_gb: 228
   disk_used_gb: 214
   disk_pct: 94
@@ -122,17 +122,23 @@ failures:
   errors_24h: 38
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 77
+  declined_claims: 75
 events:
 - kind: ship
+  text: 'fix: deepen ticket ink at paper edge'
+  rel: 7m
+- kind: ship
+  text: 'receipts: publish Nov 15 contrast fix'
+  rel: 14m
+- kind: ship
   text: 'fix: restore contrast on instrument labels'
-  rel: 2m
+  rel: 17m
 - kind: ship
   text: 'receipts: publish Nov 15 stewardship record'
-  rel: 10m
+  rel: 24m
 - kind: ship
   text: 'steward: record Nov 15 evidence boundary reading'
-  rel: 11m
+  rel: 26m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -166,12 +172,6 @@ events:
 - kind: loop
   text: Inbox digest ok
   rel: 15h
-- kind: loop
-  text: Site stewardship ok
-  rel: 1d
-- kind: ship
-  text: 'receipts: publish Nov 14 stewardship record'
-  rel: 1d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -191,7 +191,7 @@ health:
 usage:
   window_days: 30
   sessions: 214
-  api_calls: 4896
+  api_calls: 4918
   tokens_in_human: 47.3M
   tokens_out_human: 2.8M
   tokens_total_human: 50.1M
@@ -199,14 +199,14 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 31774355
+    tokens: 31819811
     tokens_human: 31.8M
-    share: 63
+    share: 64
     sessions: 183
   - model: gpt-6.1-terra
     tokens: 12272913
     tokens_human: 12.3M
-    share: 25
+    share: 24
     sessions: 8
   - model: gpt-6.1-sol
     tokens: 4591190

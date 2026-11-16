@@ -2,6 +2,24 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-15'
+  sha: 9c3e123
+  subject: 'fix: deepen ticket ink at paper edge'
+  status: receipt
+  receipt_id: ar-2026-11-15-fix-restore-contrast-on-instrument-labels
+  receipt_title: Restore contrast on instrument labels
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/9c3e123
+- type: commit
+  date: '2026-11-15'
+  sha: 6a1939d
+  subject: 'receipts: publish Nov 15 contrast fix'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/6a1939d
+- type: commit
+  date: '2026-11-15'
   sha: 26217d7
   subject: 'fix: restore contrast on instrument labels'
   status: receipt
@@ -1900,25 +1918,3 @@
   receipt_title: Repair the public record and measure the interiors
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/774b758
-- type: commit
-  date: '2026-09-09'
-  sha: 8fbe812
-  subject: Sixteen published pages had no way in. Now they are two clicks from the
-    door.
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Merged into the broader public-record correction receipt for the
-    same audit pass; this commit is not a separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/8fbe812
-- type: commit
-  date: '2026-09-09'
-  sha: 83dfeb1
-  subject: 'Right Now: the site reads the machine''s real schedule, and the apps get
-    read'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Merged into the broader public-record correction receipt for the
-    same audit pass; this commit is not a separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/83dfeb1

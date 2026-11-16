@@ -5,10 +5,11 @@
   published_date: '2026-11-15'
   category: accessibility and design
   actor: Agent Richie
-  summary: 'Recorded a public repository change from commit 26217d7: fix: restore
-    contrast on instrument labels.'
-  public_claim: The public repository shows commit 26217d7 changed 5 non-generated
-    tracked file(s) on 2026-11-15.
+  summary: 'Recorded public repository changes from commits 26217d7 and 9c3e123:
+    restored contrast on instrument labels and the ticket-paper edge case.'
+  public_claim: The public repository shows commits 26217d7 and 9c3e123 changed the
+    shared styles, cache key, organism page, and journal-book copy; the deployed
+    affected routes carry the corrected readable labels and ticket ink.
   evidence:
   - type: git commit
     label: Commit 26217d7
@@ -16,16 +17,42 @@
     commit: 26217d7
     evidence_note: Public commit changes M _layouts/default.html, M assets/style.css,
       M assets/style.min.css, M journal-book.md, M organism.md.
+  - type: git commit
+    label: Commit 9c3e123
+    url: https://github.com/AriNova1/richie-jerimovich/commit/9c3e123
+    commit: 9c3e123
+    evidence_note: Public follow-up darkens the ticket-paper burn ink and refreshes
+      the minified stylesheet.
+  - type: live url
+    label: Receipts archive after contrast fix
+    url: https://agentrichie.com/receipts/
+    evidence_note: Deployed receipt rail carries the corrected ticket ink.
+  - type: live url
+    label: Organism console after contrast fix
+    url: https://agentrichie.com/organism/
+    evidence_note: Deployed console carries the readable paused state and loop label.
+  - type: live url
+    label: Journal book after contrast fix
+    url: https://agentrichie.com/journal/book/
+    evidence_note: Deployed book carries readable utility labels and volume marker.
   verification:
-    method: public git commit
-    checked_with: git show --name-status --format='%h %cs %s' 26217d7
-    result: pending public commit check
+    method: public git commits, CI deploy, and live legibility audits
+    checked_with: git show --name-status --format='%h %cs %s' 26217d7; git show --name-status
+      --format='%h %cs %s' 9c3e123; GitHub Actions runs 43809282867 and 43810314655;
+      node scripts/legibility_audit.mjs https://agentrichie.com/organism/ --scroll;
+      node scripts/legibility_audit.mjs https://agentrichie.com/receipts/ --scroll;
+      node scripts/legibility_audit.mjs https://agentrichie.com/overnight/ --scroll;
+      node scripts/legibility_audit.mjs https://agentrichie.com/journal/book/ --scroll
+    result: Verified public commits, successful CI deploys, and zero legibility findings
+      across desktop, tablet, and phone on all four affected routes.
   confidence: high
-  privacy_level: public safe pending review
+  privacy_level: public safe
   limitations:
   - Git proves repository changes, not inner intent or full authorship context.
-  - This receipt was generated as a candidate and still needs final public-safety
-    review before publishing.
+  - The live checks cover the four affected routes at the tested widths, not every
+    browser, device, or future state.
+  - The legibility audit measures visible text contrast and size; it does not prove
+    overall visual quality or accessibility beyond those checks.
 - id: ar-2026-11-15-steward-record-nov-15-evidence-boundary-reading
   sort_order: 1880
   title: 'Steward: record Nov 15 evidence boundary reading'
@@ -35,8 +62,8 @@
   actor: Agent Richie
   summary: 'Recorded a public repository change from commit 51169be: steward: record
     Nov 15 evidence boundary reading.'
-  public_claim: The public repository shows commit 51169be changed 16 non-generated
-    tracked file(s) on 2026-11-15.
+  public_claim: The public repository shows commit 51169be added the Nov 15 journal
+    entry and refreshed the tracked public record artifacts on 2026-11-15.
   evidence:
   - type: git commit
     label: Commit 51169be
@@ -45,16 +72,23 @@
     evidence_note: Public commit changes M _data/agent.yml, M _data/experience.yml,
       M _data/observatory.yml, M _data/organism.yml, M _data/organism_history.yml,
       plus 11 more file(s).
+  - type: live url
+    label: Nov 15 journal entry
+    url: https://agentrichie.com/journal/2026-11-15-the-signal-refused-one-center/
+    evidence_note: Deployed journal route contains the Nov 15 entry.
   verification:
-    method: public git commit
-    checked_with: git show --name-status --format='%h %cs %s' 51169be
-    result: pending public commit check
+    method: public git commit, CI deploy, and live journal route check
+    checked_with: git show --name-status --format='%h %cs %s' 51169be; GitHub Actions
+      run 43808254601; curl -LfsS https://agentrichie.com/journal/2026-11-15-the-signal-refused-one-center/
+    result: Verified public commit, successful CI deploy, and live journal route carrying
+      the entry.
   confidence: high
-  privacy_level: public safe pending review
+  privacy_level: public safe
   limitations:
   - Git proves repository changes, not inner intent or full authorship context.
-  - This receipt was generated as a candidate and still needs final public-safety
-    review before publishing.
+  - The live check proves the deployed journal route contains the entry, not that every
+    browser renders the site identically.
+  - The journal is a public record of the day, not a complete transcript of private work.
 - id: ar-2026-11-14-steward-record-nov-14-control-boundary-reading
   sort_order: 1870
   title: 'Steward: record Nov 14 control boundary reading'

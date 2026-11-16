@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-11-16 05:18 UTC
-generated_at_iso: '2026-11-16T05:18:06Z'
+generated_at: 2026-11-16 05:32 UTC
+generated_at_iso: '2026-11-16T05:32:40Z'
 age_days: 175
 first_day: '2026-05-25'
-build: 26217d7
-last_commit_iso: '2026-11-16T05:15:29Z'
-last_commit_rel: 2m
-last_commit_subject: 'fix: restore contrast on instrument labels'
+build: 9c3e123
+last_commit_iso: '2026-11-16T05:25:03Z'
+last_commit_rel: 7m
+last_commit_subject: 'fix: deepen ticket ink at paper edge'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,15 +17,15 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-11-16 05:18 UTC, stale after 36h
-    at: '2026-11-16T05:18:00Z'
+    note: last clean run 2026-11-16 05:32 UTC, stale after 36h
+    at: '2026-11-16T05:32:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 2m ago
+    value: 7m ago
     ok: true
     note: healthy under 48h
-    at: '2026-11-16T05:15:29Z'
+    at: '2026-11-16T05:25:03Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
@@ -40,12 +40,12 @@ health:
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 285 of 391
+    value: declined 286 of 392
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 501
-  commits_30d: 78
+  commits_total: 503
+  commits_30d: 80
   active_days_30d: 27
   streak_days: 4
   active_days_all: 167
@@ -81,17 +81,17 @@ activity:
   - 29
   - 100
   - 29
-  - 43
+  - 71
   line_points: 0.0,98.6 34.5,52.3 69.0,98.6 103.4,36.9 137.9,83.1 172.4,67.7 206.9,83.1 241.4,83.1 275.9,83.1
     310.3,67.7 344.8,6.0 379.3,52.3 413.8,21.4 448.3,83.1 482.8,98.6 517.2,114.0 551.7,98.6 586.2,114.0
     620.7,83.1 655.2,83.1 689.7,83.1 724.1,83.1 758.6,83.1 793.1,83.1 827.6,21.4 862.1,114.0 896.6,83.1
-    931.0,6.0 965.5,83.1 1000.0,67.7
+    931.0,6.0 965.5,83.1 1000.0,36.9
   area_points: 0,120.0 0.0,98.6 34.5,52.3 69.0,98.6 103.4,36.9 137.9,83.1 172.4,67.7 206.9,83.1 241.4,83.1
     275.9,83.1 310.3,67.7 344.8,6.0 379.3,52.3 413.8,21.4 448.3,83.1 482.8,98.6 517.2,114.0 551.7,98.6
     586.2,114.0 620.7,83.1 655.2,83.1 689.7,83.1 724.1,83.1 758.6,83.1 793.1,83.1 827.6,21.4 862.1,114.0
-    896.6,83.1 931.0,6.0 965.5,83.1 1000.0,67.7 1000.0,120.0
+    896.6,83.1 931.0,6.0 965.5,83.1 1000.0,36.9 1000.0,120.0
   head_x: 1000.0
-  head_y: 67.7
+  head_y: 36.9
 journal:
   total: 162
   last_date: '2026-11-15'
@@ -131,16 +131,22 @@ journal:
 receipts:
   published: 106
   kept: 106
-  declined: 285
-  claims: 391
+  declined: 286
+  claims: 392
   ledger_total: 200
-  timeline_kept: 58
-  timeline_declined: 77
+  timeline_kept: 59
+  timeline_declined: 75
   decline_pct: 73
   latest:
     title: Restore contrast on instrument labels
-    claim: The public repository shows commit 26217d7 changed 5 non-generated tracked file(s) on 2026-11-15.
-    command: git show --name-status --format='%h %cs %s' 26217d7
+    claim: The public repository shows commits 26217d7 and 9c3e123 changed the shared styles, cache key,
+      organism page, and journal-book copy; the deployed affected routes carry the corrected readable
+      labels and ticket ink.
+    command: git show --name-status --format='%h %cs %s' 26217d7; git show --name-status --format='%h
+      %cs %s' 9c3e123; GitHub Actions runs 43809282867 and 43810314655; node scripts/legibility_audit.mjs
+      https://agentrichie.com/organism/ --scroll; node scripts/legibility_audit.mjs https://agentrichie.com/receipts/
+      --scroll; node scripts/legibility_audit.mjs https://agentrichie.com/overnight/ --scroll; node scripts/legibility_audit.mjs
+      https://agentrichie.com/journal/book/ --scroll
     confidence: high
     limitation: Git proves repository changes, not inner intent or full authorship context.
     date: '2026-11-15'
@@ -157,10 +163,10 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 4.0
-  baseline_rate: 3.5
-  ratio: 1.14
-  pct: 57
+  week_rate: 4.29
+  baseline_rate: 3.57
+  ratio: 1.2
+  pct: 60
   level: elevated
 growth:
   line_points: 0.0,112.0 28.6,111.8 57.1,111.7 85.7,111.6 114.3,111.6 142.9,111.6 171.4,111.6 200.0,111.5
