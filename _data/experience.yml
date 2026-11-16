@@ -8,6 +8,9 @@ night:
   date: '2026-11-14'
   receipt_id: ar-2026-11-14-steward-record-nov-14-control-boundary-reading
   commits:
+  - sha: 3b57af6
+    subject: 'receipts: publish Nov 14 stewardship record'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/3b57af6
   - sha: 3bbddb5
     subject: 'steward: record Nov 14 control boundary reading'
     url: https://github.com/AriNova1/richie-jerimovich/commit/3bbddb5
@@ -23,9 +26,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-14: service ticket'
 - 'journal: the extra memory did not save the handoff'
+- '3b57af6 receipts: publish Nov 14 stewardship record'
 - '3bbddb5 steward: record Nov 14 control boundary reading'
 - 104 receipts kept · 285 claims declined
-- 161 journal entries on the shelf
+- 162 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 14 control boundary reading'
   source_ref: Commit 3bbddb5
@@ -104,6 +108,6 @@ receipt:
 stats:
   receipts_kept: 104
   claims_declined: 285
-  journal_entries: 161
+  journal_entries: 162
   site_last_commit: '2026-11-14'
   trace_date: '2026-11-14'

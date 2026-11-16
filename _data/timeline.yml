@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-14'
+  sha: 3b57af6
+  subject: 'receipts: publish Nov 14 stewardship record'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/3b57af6
+- type: commit
+  date: '2026-11-14'
   sha: 3bbddb5
   subject: 'steward: record Nov 14 control boundary reading'
   status: receipt
@@ -1916,12 +1925,3 @@
   receipt_title: Repair the public record and measure the interiors
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/c20d8f2
-- type: commit
-  date: '2026-09-08'
-  sha: abb2f99
-  subject: 'receipts: reject generated refresh candidate'
-  status: plain
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/abb2f99

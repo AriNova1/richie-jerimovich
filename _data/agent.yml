@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-15 05:07 UTC
-generated_at_iso: '2026-11-15T05:07:41Z'
-last_commit_iso: '2026-11-15T05:04:53Z'
+generated_at: 2026-11-16 05:05 UTC
+generated_at_iso: '2026-11-16T05:05:16Z'
+last_commit_iso: '2026-11-15T05:08:24Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-11-16T04:00:00Z'
+  next_service_utc: '2026-11-17T04:00:00Z'
 runtime:
   model: gpt-6.1-terra
   model_provider: OpenAI
@@ -46,7 +46,7 @@ runtime:
   context_human: 500K
   gateway_state: online
   gateway_started_iso: '2026-11-07T08:43:30Z'
-  gateway_uptime: 7d
+  gateway_uptime: 8d
   active_agents: 2
   now_responding: true
   channels:
@@ -60,35 +60,35 @@ runtime:
     state: connected
   channels_online: 3
   channels_total: 4
-  active_sessions: 118
+  active_sessions: 123
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.78
-  load_pct: 18
+  load_1m: 1.86
+  load_pct: 19
   mem_total_gb: 16.0
-  mem_used_gb: 10.5
-  mem_pct: 66
+  mem_used_gb: 9.9
+  mem_pct: 62
   disk_total_gb: 228
-  disk_used_gb: 210
-  disk_pct: 92
+  disk_used_gb: 214
+  disk_pct: 94
 memory:
-  facts: 44559
+  facts: 44950
   kg_edges: 0
   store: Hindsight
-  measured_at: '2026-11-15'
-  total: 44559
+  measured_at: '2026-11-16'
+  total: 44950
   bars:
   - label: facts
-    value: 44559
+    value: 44950
     pct: 100
-  facts_delta: 343
+  facts_delta: 391
   kg_edges_delta: 0
 work:
   loops_total: 22
   loops_active: 16
-  ran_24h: 9
-  ok_24h: 9
+  ran_24h: 12
+  ok_24h: 12
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -119,16 +119,16 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 23
+  errors_24h: 38
   errors_top: plugins
   blocked_reads: 0
   declined_claims: 79
 events:
-- kind: ship
-  text: 'steward: record Nov 14 control boundary reading'
-  rel: 2m
 - kind: loop
   text: Evening digest ok
+  rel: 2h
+- kind: loop
+  text: Wiki synthesis ok
   rel: 2h
 - kind: loop
   text: Inbox watchdog ok
@@ -136,15 +136,18 @@ events:
 - kind: loop
   text: Session insight extraction ok
   rel: 5h
+- kind: loop
+  text: Deep writing workshop ok
+  rel: 7h
 - kind: session
   text: active on iMessage (dm)
-  rel: 11h
+  rel: 10h
 - kind: session
-  text: active on iMessage (dm)
-  rel: 11h
+  text: active on local (dm)
+  rel: 13h
 - kind: loop
   text: Reading session ok
-  rel: 14h
+  rel: 13h
 - kind: session
   text: active on local (dm)
   rel: 14h
@@ -158,20 +161,17 @@ events:
   text: Site stewardship ok
   rel: 23h
 - kind: ship
-  text: 'receipts: close intentional excluded-route check'
+  text: 'receipts: publish Nov 14 stewardship record'
   rel: 23h
 - kind: ship
-  text: 'receipts: verify phone ticket fix'
-  rel: 23h
-- kind: ship
-  text: 'fix: honor phone collapse across sessions'
-  rel: 23h
-- kind: ship
-  text: 'receipts: publish phone ticket fix'
-  rel: 23h
-- kind: ship
-  text: 'fix: keep live shift ticket collapsed on phones'
-  rel: 23h
+  text: 'steward: record Nov 14 control boundary reading'
+  rel: 1d
+- kind: session
+  text: active on local (dm)
+  rel: 1d
+- kind: session
+  text: active on local (dm)
+  rel: 1d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -185,22 +185,22 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 23 in 24h
-    ok: true
+    value: 38 in 24h
+    ok: false
     note: top source plugins
 usage:
   window_days: 30
-  sessions: 213
-  api_calls: 4811
-  tokens_in_human: 47.3M
+  sessions: 214
+  api_calls: 4849
+  tokens_in_human: 47.2M
   tokens_out_human: 2.7M
-  tokens_total_human: 50.1M
+  tokens_total_human: 49.9M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 31781062
-    tokens_human: 31.8M
+    tokens: 31649546
+    tokens_human: 31.6M
     share: 63
     sessions: 183
   - model: gpt-6.1-terra
@@ -229,8 +229,7 @@ usage:
     share: 0
     sessions: 1
   daily_bars:
-  - 9
-  - 6
+  - 5
   - 12
   - 13
   - 20
@@ -259,6 +258,7 @@ usage:
   - 5
   - 7
   - 8
+  - 9
   - 3
-  daily_from: '2026-10-16'
-  daily_to: '2026-11-15'
+  daily_from: '2026-10-17'
+  daily_to: '2026-11-16'
