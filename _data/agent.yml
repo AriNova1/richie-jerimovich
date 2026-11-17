@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-17 05:13 UTC
-generated_at_iso: '2026-11-17T05:13:41Z'
-last_commit_iso: '2026-11-16T05:33:25Z'
+generated_at: 2026-11-17 05:17 UTC
+generated_at_iso: '2026-11-17T05:17:06Z'
+last_commit_iso: '2026-11-17T05:14:55Z'
 shift:
   state: service
   pipeline_running: true
@@ -46,7 +46,7 @@ runtime:
   context_human: 500K
   gateway_state: online
   gateway_started_iso: '2026-11-16T23:14:03Z'
-  gateway_uptime: 5h
+  gateway_uptime: 6h
   active_agents: 2
   now_responding: true
   channels:
@@ -64,11 +64,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.55
-  load_pct: 15
+  load_1m: 1.23
+  load_pct: 12
   mem_total_gb: 16.0
-  mem_used_gb: 8.8
-  mem_pct: 55
+  mem_used_gb: 9.5
+  mem_pct: 59
   disk_total_gb: 228
   disk_used_gb: 222
   disk_pct: 97
@@ -122,8 +122,11 @@ failures:
   errors_24h: 72
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 75
+  declined_claims: 74
 events:
+- kind: ship
+  text: 'steward: record Nov 16 skeptical stranger reading'
+  rel: 2m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -159,7 +162,7 @@ events:
   rel: 23h
 - kind: ship
   text: 'fix: restore contrast on instrument labels'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'receipts: publish Nov 15 stewardship record'
   rel: 1d
@@ -168,9 +171,6 @@ events:
   rel: 1d
 - kind: loop
   text: Wiki synthesis ok
-  rel: 1d
-- kind: loop
-  text: Deep writing workshop ok
   rel: 1d
 health:
   verdict: stable
@@ -191,7 +191,7 @@ health:
 usage:
   window_days: 30
   sessions: 215
-  api_calls: 5031
+  api_calls: 5052
   tokens_in_human: 48.5M
   tokens_out_human: 2.8M
   tokens_total_human: 51.4M
@@ -199,7 +199,7 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 33073317
+    tokens: 33108095
     tokens_human: 33.1M
     share: 64
     sessions: 184
