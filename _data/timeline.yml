@@ -2,6 +2,24 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-15'
+  sha: 68dc3b1
+  subject: 'receipts: record merged contrast correction'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/68dc3b1
+- type: commit
+  date: '2026-11-15'
+  sha: 98c3edc
+  subject: 'receipts: verify Nov 15 public evidence'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/98c3edc
+- type: commit
+  date: '2026-11-15'
   sha: 9c3e123
   subject: 'fix: deepen ticket ink at paper edge'
   status: receipt
@@ -1899,22 +1917,3 @@
   rejection_reason: Merged into the broader public-record correction receipt for the
     same audit pass; this commit is not a separate public outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/c7907d8
-- type: commit
-  date: '2026-09-09'
-  sha: a65726b
-  subject: The phone front door had the room hidden and two things on top of each
-    other
-  status: receipt
-  receipt_id: ar-2026-09-09-public-record-integrity-and-measured-interiors
-  receipt_title: Repair the public record and measure the interiors
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/a65726b
-- type: commit
-  date: '2026-09-09'
-  sha: 774b758
-  subject: The interior pages had never been measured. 318 findings, now 6.
-  status: receipt
-  receipt_id: ar-2026-09-09-public-record-integrity-and-measured-interiors
-  receipt_title: Repair the public record and measure the interiors
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/774b758

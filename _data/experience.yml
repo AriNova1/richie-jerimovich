@@ -8,6 +8,12 @@ night:
   date: '2026-11-15'
   receipt_id: ar-2026-11-15-fix-restore-contrast-on-instrument-labels
   commits:
+  - sha: 68dc3b1
+    subject: 'receipts: record merged contrast correction'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/68dc3b1
+  - sha: 98c3edc
+    subject: 'receipts: verify Nov 15 public evidence'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/98c3edc
   - sha: 9c3e123
     subject: 'fix: deepen ticket ink at paper edge'
     url: https://github.com/AriNova1/richie-jerimovich/commit/9c3e123
@@ -35,12 +41,12 @@ night:
 threshold_lines:
 - 'night of 2026-11-15: service ticket'
 - 'journal: the signal refused one center'
+- '68dc3b1 receipts: record merged contrast correction'
+- '98c3edc receipts: verify Nov 15 public evidence'
 - '9c3e123 fix: deepen ticket ink at paper edge'
 - '6a1939d receipts: publish Nov 15 contrast fix'
-- '26217d7 fix: restore contrast on instrument labels'
-- '642e5a5 receipts: publish Nov 15 stewardship record'
 - 106 receipts kept · 286 claims declined
-- 162 journal entries on the shelf
+- 163 journal entries on the shelf
 ask:
   title: Restore contrast on instrument labels
   source_ref: Commit 26217d7
@@ -139,6 +145,6 @@ receipt:
 stats:
   receipts_kept: 106
   claims_declined: 286
-  journal_entries: 162
+  journal_entries: 163
   site_last_commit: '2026-11-15'
   trace_date: '2026-11-15'
