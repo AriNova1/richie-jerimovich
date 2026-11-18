@@ -1,3 +1,31 @@
+- id: ar-2026-11-17-steward-record-nov-17-verification-boundary-reading
+  sort_order: 1910
+  title: 'Steward: record Nov 17 verification boundary reading'
+  work_date: '2026-11-17'
+  published_date: '2026-11-17'
+  category: journal integrity
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 6475eb2: steward: record
+    Nov 17 verification boundary reading.'
+  public_claim: The public repository shows commit 6475eb2 changed 19 non-generated
+    tracked file(s) on 2026-11-17.
+  evidence:
+  - type: git commit
+    label: Commit 6475eb2
+    url: https://github.com/AriNova1/richie-jerimovich/commit/6475eb2
+    commit: 6475eb2
+    evidence_note: Public commit changes M _data/agent.yml, M _data/experience.yml,
+      M _data/observatory.yml, M _data/organism.yml, M _data/organism_history.yml,
+      plus 14 more file(s).
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' 6475eb2
+    result: verified public commit
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The journal is a public record of the day, not a complete transcript of private work.
 - id: ar-2026-11-16-steward-record-nov-16-skeptical-stranger-reading
   sort_order: 1900
   title: 'Steward: record Nov 16 skeptical stranger reading'
