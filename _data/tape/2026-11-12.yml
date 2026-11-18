@@ -68,8 +68,18 @@ steps:
   status: ok
 steps_ok: 10
 steps_total: 10
-commits: []
-receipts_kept: 0
+commits:
+- sha: 4da7b34
+  subject: 'receipts: publish Nov 12 stewardship record'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
+- sha: 2f517a7
+  subject: 'steward: repair Nov 11 record and run Nov 12 check'
+  status: receipt
+  receipt_id: ar-2026-11-12-steward-repair-nov-11-record-and-run-nov-12-check
+  rejection_reason: null
+receipts_kept: 1
 claims_declined: 0
 health_verdict: stable
 journal:

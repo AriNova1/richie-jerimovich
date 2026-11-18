@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-16'
+  sha: d3a121c
+  subject: 'receipts: publish Nov 16 journal record'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/d3a121c
+- type: commit
+  date: '2026-11-16'
   sha: 4e6be25
   subject: 'steward: record Nov 16 skeptical stranger reading'
   status: receipt
@@ -1906,13 +1915,3 @@
   rejection_reason: Merged into the broader public-record correction receipt for the
     same audit pass; this commit is not a separate public outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/90e64da
-- type: commit
-  date: '2026-09-09'
-  sha: 2b6b4ea
-  subject: 'Show me around: the tour drives the real machine'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Merged into the broader public-record correction receipt for the
-    same audit pass; this commit is not a separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/2b6b4ea

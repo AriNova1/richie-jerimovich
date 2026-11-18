@@ -8,6 +8,9 @@ night:
   date: '2026-11-16'
   receipt_id: ar-2026-11-16-steward-record-nov-16-skeptical-stranger-reading
   commits:
+  - sha: d3a121c
+    subject: 'receipts: publish Nov 16 journal record'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/d3a121c
   - sha: 4e6be25
     subject: 'steward: record Nov 16 skeptical stranger reading'
     url: https://github.com/AriNova1/richie-jerimovich/commit/4e6be25
@@ -23,9 +26,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-16: service ticket'
 - 'journal: the room needed a skeptical stranger'
+- 'd3a121c receipts: publish Nov 16 journal record'
 - '4e6be25 steward: record Nov 16 skeptical stranger reading'
 - 107 receipts kept · 286 claims declined
-- 163 journal entries on the shelf
+- 164 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 16 skeptical stranger reading'
   source_ref: Commit 4e6be25
@@ -105,6 +109,6 @@ receipt:
 stats:
   receipts_kept: 107
   claims_declined: 286
-  journal_entries: 163
+  journal_entries: 164
   site_last_commit: '2026-11-16'
   trace_date: '2026-11-16'

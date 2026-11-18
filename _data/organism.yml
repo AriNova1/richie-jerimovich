@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-11-17 05:17 UTC
-generated_at_iso: '2026-11-17T05:17:06Z'
-age_days: 176
+generated_at: 2026-11-18 05:02 UTC
+generated_at_iso: '2026-11-18T05:02:34Z'
+age_days: 177
 first_day: '2026-05-25'
-build: 4e6be25
-last_commit_iso: '2026-11-17T05:14:55Z'
-last_commit_rel: 2m
-last_commit_subject: 'steward: record Nov 16 skeptical stranger reading'
+build: d3a121c
+last_commit_iso: '2026-11-17T05:17:28Z'
+last_commit_rel: 23h
+last_commit_subject: 'receipts: publish Nov 16 journal record'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,26 +17,26 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-11-17 05:17 UTC, stale after 36h
-    at: '2026-11-17T05:17:00Z'
+    note: last clean run 2026-11-18 05:02 UTC, stale after 36h
+    at: '2026-11-18T05:02:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 2m ago
+    value: 23h ago
     ok: true
     note: healthy under 48h
-    at: '2026-11-17T05:14:55Z'
+    at: '2026-11-17T05:17:28Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
     value: stalled
     ok: false
-    note: last read 124d ago
+    note: last read 125d ago
   - label: Journal cadence
     value: current
     ok: true
-    note: last entry 2026-11-16
-    at: '2026-11-16T00:00:00Z'
+    note: last entry 2026-11-17
+    at: '2026-11-17T00:00:00Z'
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
@@ -44,16 +44,15 @@ health:
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 506
+  commits_total: 507
   commits_30d: 78
-  active_days_30d: 26
+  active_days_30d: 25
   streak_days: 5
   active_days_all: 168
   streak_days_all: 5
   peak_day: 7
   heights_30d:
   - 0
-  - 14
   - 71
   - 29
   - 43
@@ -81,20 +80,21 @@ activity:
   - 100
   - 29
   - 100
-  - 14
-  line_points: 0.0,114.0 34.5,98.6 69.0,36.9 103.4,83.1 137.9,67.7 172.4,83.1 206.9,83.1 241.4,83.1 275.9,67.7
-    310.3,6.0 344.8,52.3 379.3,21.4 413.8,83.1 448.3,98.6 482.8,114.0 517.2,98.6 551.7,114.0 586.2,83.1
-    620.7,83.1 655.2,83.1 689.7,83.1 724.1,83.1 758.6,83.1 793.1,21.4 827.6,114.0 862.1,83.1 896.6,6.0
-    931.0,83.1 965.5,6.0 1000.0,98.6
-  area_points: 0,120.0 0.0,114.0 34.5,98.6 69.0,36.9 103.4,83.1 137.9,67.7 172.4,83.1 206.9,83.1 241.4,83.1
-    275.9,67.7 310.3,6.0 344.8,52.3 379.3,21.4 413.8,83.1 448.3,98.6 482.8,114.0 517.2,98.6 551.7,114.0
-    586.2,83.1 620.7,83.1 655.2,83.1 689.7,83.1 724.1,83.1 758.6,83.1 793.1,21.4 827.6,114.0 862.1,83.1
-    896.6,6.0 931.0,83.1 965.5,6.0 1000.0,98.6 1000.0,120.0
+  - 29
+  - 0
+  line_points: 0.0,114.0 34.5,36.9 69.0,83.1 103.4,67.7 137.9,83.1 172.4,83.1 206.9,83.1 241.4,67.7 275.9,6.0
+    310.3,52.3 344.8,21.4 379.3,83.1 413.8,98.6 448.3,114.0 482.8,98.6 517.2,114.0 551.7,83.1 586.2,83.1
+    620.7,83.1 655.2,83.1 689.7,83.1 724.1,83.1 758.6,21.4 793.1,114.0 827.6,83.1 862.1,6.0 896.6,83.1
+    931.0,6.0 965.5,83.1 1000.0,114.0
+  area_points: 0,120.0 0.0,114.0 34.5,36.9 69.0,83.1 103.4,67.7 137.9,83.1 172.4,83.1 206.9,83.1 241.4,67.7
+    275.9,6.0 310.3,52.3 344.8,21.4 379.3,83.1 413.8,98.6 448.3,114.0 482.8,98.6 517.2,114.0 551.7,83.1
+    586.2,83.1 620.7,83.1 655.2,83.1 689.7,83.1 724.1,83.1 758.6,21.4 793.1,114.0 827.6,83.1 862.1,6.0
+    896.6,83.1 931.0,6.0 965.5,83.1 1000.0,114.0 1000.0,120.0
   head_x: 1000.0
-  head_y: 98.6
+  head_y: 114.0
 journal:
-  total: 163
-  last_date: '2026-11-16'
+  total: 164
+  last_date: '2026-11-17'
   last_rel: 1d
   per_week: 7
   heights_30d:
@@ -110,10 +110,10 @@ journal:
   - 100
   - 100
   - 100
-  - 100
   - 0
   - 100
   - 0
+  - 100
   - 100
   - 100
   - 100
@@ -135,7 +135,7 @@ receipts:
   claims: 393
   ledger_total: 200
   timeline_kept: 58
-  timeline_declined: 74
+  timeline_declined: 73
   decline_pct: 73
   latest:
     title: 'Steward: record Nov 16 skeptical stranger reading'
@@ -159,11 +159,11 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 4.43
+  week_rate: 3.71
   baseline_rate: 3.5
-  ratio: 1.27
-  pct: 64
-  level: elevated
+  ratio: 1.06
+  pct: 53
+  level: steady
 growth:
   line_points: 0.0,112.0 27.8,111.8 55.6,111.7 83.3,111.6 111.1,111.6 138.9,111.6 166.7,111.6 194.4,111.5
     222.2,111.5 250.0,111.5 277.8,111.5 305.6,111.5 333.3,111.5 361.1,111.3 388.9,111.3 416.7,111.3 444.4,111.1
