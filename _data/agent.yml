@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-18 05:02 UTC
-generated_at_iso: '2026-11-18T05:02:34Z'
-last_commit_iso: '2026-11-17T05:17:28Z'
+generated_at: 2026-11-19 05:04 UTC
+generated_at_iso: '2026-11-19T05:04:32Z'
+last_commit_iso: '2026-11-18T05:06:35Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-11-19T04:00:00Z'
+  next_service_utc: '2026-11-20T04:00:00Z'
 runtime:
   model: gpt-6.1-terra
   model_provider: OpenAI
@@ -45,8 +45,8 @@ runtime:
   context_window: 500000
   context_human: 500K
   gateway_state: online
-  gateway_started_iso: '2026-11-16T23:14:03Z'
-  gateway_uptime: 1d
+  gateway_started_iso: '2026-11-18T23:09:14Z'
+  gateway_uptime: 5h
   active_agents: 2
   now_responding: true
   channels:
@@ -64,25 +64,25 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.61
-  load_pct: 16
+  load_1m: 2.12
+  load_pct: 21
   mem_total_gb: 16.0
-  mem_used_gb: 9.1
-  mem_pct: 57
+  mem_used_gb: 8.7
+  mem_pct: 54
   disk_total_gb: 228
-  disk_used_gb: 217
-  disk_pct: 95
+  disk_used_gb: 223
+  disk_pct: 98
 memory:
-  facts: 45856
+  facts: 46198
   kg_edges: 0
   store: Hindsight
-  measured_at: '2026-11-18'
-  total: 45856
+  measured_at: '2026-11-19'
+  total: 46198
   bars:
   - label: facts
-    value: 45856
+    value: 46198
     pct: 100
-  facts_delta: 363
+  facts_delta: 342
   kg_edges_delta: 0
 work:
   loops_total: 22
@@ -119,14 +119,14 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 17
+  errors_24h: 22
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 73
+  declined_claims: 71
 events:
 - kind: loop
   text: Evening digest ok
-  rel: 1h
+  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -143,35 +143,35 @@ events:
   text: Site stewardship ok
   rel: 23h
 - kind: ship
-  text: 'receipts: publish Nov 16 journal record'
+  text: 'receipts: publish Nov 17 verification boundary reading'
   rel: 23h
+- kind: ship
+  text: 'steward: record Nov 17 verification boundary reading'
+  rel: 23h
+- kind: ship
+  text: 'receipts: publish Nov 16 journal record'
+  rel: 1d
 - kind: ship
   text: 'steward: record Nov 16 skeptical stranger reading'
-  rel: 23h
+  rel: 1d
 - kind: loop
   text: Contradiction detector ok
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'receipts: record merged contrast correction'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'receipts: verify Nov 15 public evidence'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'fix: deepen ticket ink at paper edge'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'receipts: publish Nov 15 contrast fix'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'fix: restore contrast on instrument labels'
-  rel: 1d
-- kind: ship
-  text: 'receipts: publish Nov 15 stewardship record'
-  rel: 1d
-- kind: ship
-  text: 'steward: record Nov 15 evidence boundary reading'
-  rel: 1d
+  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -185,29 +185,29 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 17 in 24h
+    value: 22 in 24h
     ok: true
     note: top source plugins
 usage:
   window_days: 30
-  sessions: 208
-  api_calls: 4985
-  tokens_in_human: 47.7M
+  sessions: 214
+  api_calls: 4974
+  tokens_in_human: 47.5M
   tokens_out_human: 2.8M
-  tokens_total_human: 50.5M
+  tokens_total_human: 50.3M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32252976
-    tokens_human: 32.3M
-    share: 64
-    sessions: 178
+    tokens: 31937773
+    tokens_human: 31.9M
+    share: 63
+    sessions: 173
   - model: gpt-6.1-terra
-    tokens: 12272913
-    tokens_human: 12.3M
-    share: 24
-    sessions: 8
+    tokens: 12401579
+    tokens_human: 12.4M
+    share: 25
+    sessions: 19
   - model: gpt-6.1-sol
     tokens: 4562222
     tokens_human: 4.6M
@@ -229,8 +229,7 @@ usage:
     share: 0
     sessions: 1
   daily_bars:
-  - 10
-  - 20
+  - 18
   - 7
   - 6
   - 13
@@ -259,6 +258,7 @@ usage:
   - 9
   - 12
   - 14
+  - 9
   - 3
-  daily_from: '2026-10-19'
-  daily_to: '2026-11-18'
+  daily_from: '2026-10-20'
+  daily_to: '2026-11-19'

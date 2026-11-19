@@ -68,8 +68,18 @@ steps:
   status: ok
 steps_ok: 10
 steps_total: 10
-commits: []
-receipts_kept: 0
+commits:
+- sha: 6ec2929
+  subject: 'receipts: publish Nov 17 verification boundary reading'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
+- sha: 6475eb2
+  subject: 'steward: record Nov 17 verification boundary reading'
+  status: receipt
+  receipt_id: ar-2026-11-17-steward-record-nov-17-verification-boundary-reading
+  rejection_reason: null
+receipts_kept: 1
 claims_declined: 0
 health_verdict: stable
 journal:
