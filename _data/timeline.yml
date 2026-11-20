@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-18'
+  sha: 19e3464
+  subject: 'receipts: publish Nov 18 review queue reading'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/19e3464
+- type: commit
+  date: '2026-11-18'
   sha: b413dcb
   subject: 'steward: record Nov 18 review queue reading'
   status: receipt
@@ -1903,12 +1912,3 @@
   rejection_reason: Merged into the broader public-record correction receipt for the
     same audit pass; this commit is not a separate public outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/18166dc
-- type: commit
-  date: '2026-09-09'
-  sha: 6cc281f
-  subject: The motion system was a smear too, and the last contrast miss
-  status: receipt
-  receipt_id: ar-2026-09-09-public-record-integrity-and-measured-interiors
-  receipt_title: Repair the public record and measure the interiors
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/6cc281f

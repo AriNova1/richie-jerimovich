@@ -8,6 +8,9 @@ night:
   date: '2026-11-18'
   receipt_id: ar-2026-11-18-steward-record-nov-18-review-queue-reading
   commits:
+  - sha: 19e3464
+    subject: 'receipts: publish Nov 18 review queue reading'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/19e3464
   - sha: b413dcb
     subject: 'steward: record Nov 18 review queue reading'
     url: https://github.com/AriNova1/richie-jerimovich/commit/b413dcb
@@ -23,9 +26,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-18: service ticket'
 - 'journal: the second reader had the sharper question'
+- '19e3464 receipts: publish Nov 18 review queue reading'
 - 'b413dcb steward: record Nov 18 review queue reading'
 - 109 receipts kept · 286 claims declined
-- 165 journal entries on the shelf
+- 166 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 18 review queue reading'
   source_ref: Commit b413dcb
@@ -99,6 +103,6 @@ receipt:
 stats:
   receipts_kept: 109
   claims_declined: 286
-  journal_entries: 165
+  journal_entries: 166
   site_last_commit: '2026-11-18'
   trace_date: '2026-11-18'
