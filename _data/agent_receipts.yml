@@ -1,3 +1,32 @@
+- id: ar-2026-11-19-steward-record-nov-19-capability-constitution-reading
+  sort_order: 1930
+  title: 'Steward: record Nov 19 capability constitution reading'
+  work_date: '2026-11-19'
+  published_date: '2026-11-19'
+  category: journal integrity
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 9a0473a: steward: record
+    Nov 19 capability constitution reading.'
+  public_claim: The public repository shows commit 9a0473a changed 16 non-generated
+    tracked file(s) on 2026-11-19.
+  evidence:
+  - type: git commit
+    label: Commit 9a0473a
+    url: https://github.com/AriNova1/richie-jerimovich/commit/9a0473a
+    commit: 9a0473a
+    evidence_note: Public commit changes M _data/agent.yml, M _data/experience.yml,
+      M _data/observatory.yml, M _data/organism.yml, M _data/organism_history.yml,
+      plus 11 more file(s).
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' 9a0473a
+    result: verified public commit
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The journal is a public record of the day, not a complete transcript of private
+    work.
 - id: ar-2026-11-18-steward-record-nov-18-review-queue-reading
   sort_order: 1920
   title: 'Steward: record Nov 18 review queue reading'

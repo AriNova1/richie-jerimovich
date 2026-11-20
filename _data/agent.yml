@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-20 05:01 UTC
-generated_at_iso: '2026-11-20T05:01:58Z'
-last_commit_iso: '2026-11-19T05:15:14Z'
+generated_at: 2026-11-20 05:04 UTC
+generated_at_iso: '2026-11-20T05:04:19Z'
+last_commit_iso: '2026-11-20T05:02:46Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,8 +64,8 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.62
-  load_pct: 16
+  load_1m: 1.74
+  load_pct: 17
   mem_total_gb: 16.0
   mem_used_gb: 9.8
   mem_pct: 61
@@ -122,14 +122,17 @@ failures:
   errors_24h: 35
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 70
+  declined_claims: 69
 events:
+- kind: ship
+  text: 'steward: record Nov 19 capability constitution reading'
+  rel: 1m
 - kind: session
   text: active on iMessage (dm)
   rel: 1h
 - kind: loop
   text: Evening digest ok
-  rel: 1h
+  rel: 2h
 - kind: session
   text: active on local (dm)
   rel: 2h
@@ -169,9 +172,6 @@ events:
 - kind: session
   text: active on local (dm)
   rel: 1d
-- kind: session
-  text: active on local (dm)
-  rel: 1d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -191,7 +191,7 @@ health:
 usage:
   window_days: 30
   sessions: 213
-  api_calls: 4975
+  api_calls: 4987
   tokens_in_human: 46.1M
   tokens_out_human: 2.8M
   tokens_total_human: 48.9M
@@ -199,8 +199,8 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32132718
-    tokens_human: 32.1M
+    tokens: 32160918
+    tokens_human: 32.2M
     share: 66
     sessions: 171
   - model: gpt-6.1-terra
