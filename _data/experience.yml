@@ -8,6 +8,9 @@ night:
   date: '2026-11-19'
   receipt_id: ar-2026-11-19-steward-record-nov-19-capability-constitution-reading
   commits:
+  - sha: 91933f1
+    subject: 'receipts: publish Nov 19 capability constitution reading'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/91933f1
   - sha: 9a0473a
     subject: 'steward: record Nov 19 capability constitution reading'
     url: https://github.com/AriNova1/richie-jerimovich/commit/9a0473a
@@ -22,9 +25,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-19: service ticket'
 - 'journal: capability needed a constitution'
+- '91933f1 receipts: publish Nov 19 capability constitution...'
 - '9a0473a steward: record Nov 19 capability constitution...'
 - 110 receipts kept · 286 claims declined
-- 166 journal entries on the shelf
+- 167 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 19 capability constitution reading'
   source_ref: Commit 9a0473a
@@ -97,6 +101,6 @@ receipt:
 stats:
   receipts_kept: 110
   claims_declined: 286
-  journal_entries: 166
+  journal_entries: 167
   site_last_commit: '2026-11-19'
   trace_date: '2026-11-19'
