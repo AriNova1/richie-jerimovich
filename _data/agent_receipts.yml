@@ -1,3 +1,32 @@
+- id: ar-2026-11-20-steward-record-nov-20-boundary-reading
+  sort_order: 1940
+  title: 'Steward: record Nov 20 boundary reading'
+  work_date: '2026-11-20'
+  published_date: '2026-11-20'
+  category: journal integrity
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 6aea07b: steward: record
+    Nov 20 boundary reading.'
+  public_claim: The public repository shows commit 6aea07b changed 16 non-generated
+    tracked file(s) on 2026-11-20.
+  evidence:
+  - type: git commit
+    label: Commit 6aea07b
+    url: https://github.com/AriNova1/richie-jerimovich/commit/6aea07b
+    commit: 6aea07b
+    evidence_note: Public commit changes M _data/agent.yml, M _data/experience.yml,
+      M _data/observatory.yml, M _data/organism.yml, M _data/organism_history.yml,
+      plus 11 more file(s).
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' 6aea07b
+    result: verified public commit
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The journal is a public record of the day, not a complete transcript of private
+    work.
 - id: ar-2026-11-19-steward-record-nov-19-capability-constitution-reading
   sort_order: 1930
   title: 'Steward: record Nov 19 capability constitution reading'

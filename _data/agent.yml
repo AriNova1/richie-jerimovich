@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-21 05:02 UTC
-generated_at_iso: '2026-11-21T05:02:11Z'
-last_commit_iso: '2026-11-20T05:04:35Z'
+generated_at: 2026-11-21 05:04 UTC
+generated_at_iso: '2026-11-21T05:04:01Z'
+last_commit_iso: '2026-11-21T05:02:47Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,14 +64,14 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 2.42
-  load_pct: 24
+  load_1m: 3.96
+  load_pct: 40
   mem_total_gb: 16.0
-  mem_used_gb: 9.9
-  mem_pct: 62
+  mem_used_gb: 9.5
+  mem_pct: 59
   disk_total_gb: 228
-  disk_used_gb: 221
-  disk_pct: 97
+  disk_used_gb: 223
+  disk_pct: 98
 memory:
   facts: 46905
   kg_edges: 0
@@ -122,11 +122,14 @@ failures:
   errors_24h: 33
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 68
+  declined_claims: 67
 events:
+- kind: ship
+  text: 'steward: record Nov 20 boundary reading'
+  rel: 1m
 - kind: loop
   text: Evening digest ok
-  rel: 1h
+  rel: 2h
 - kind: loop
   text: Inbox watchdog ok
   rel: 5h
@@ -147,7 +150,7 @@ events:
   rel: 23h
 - kind: ship
   text: 'steward: record Nov 19 capability constitution reading'
-  rel: 23h
+  rel: 1d
 - kind: session
   text: active on iMessage (dm)
   rel: 1d
@@ -166,9 +169,6 @@ events:
 - kind: ship
   text: 'steward: record Nov 18 review queue reading'
   rel: 1d
-- kind: session
-  text: active on local (dm)
-  rel: 2d
 - kind: session
   text: active on local (dm)
   rel: 2d
@@ -191,15 +191,15 @@ health:
 usage:
   window_days: 30
   sessions: 211
-  api_calls: 5002
-  tokens_in_human: 46.0M
+  api_calls: 5010
+  tokens_in_human: 46.1M
   tokens_out_human: 2.8M
-  tokens_total_human: 48.8M
+  tokens_total_human: 48.9M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32065148
+    tokens: 32113700
     tokens_human: 32.1M
     share: 66
     sessions: 169
