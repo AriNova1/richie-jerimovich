@@ -1,3 +1,32 @@
+- id: ar-2026-11-21-steward-record-nov-21-accountable-change-reading
+  sort_order: 1950
+  title: 'Steward: record Nov 21 accountable-change reading'
+  work_date: '2026-11-21'
+  published_date: '2026-11-21'
+  category: journal integrity
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 2874ed6: steward: record
+    Nov 21 accountable-change reading.'
+  public_claim: The public repository shows commit 2874ed6 changed 16 non-generated
+    tracked file(s) on 2026-11-21.
+  evidence:
+  - type: git commit
+    label: Commit 2874ed6
+    url: https://github.com/AriNova1/richie-jerimovich/commit/2874ed6
+    commit: 2874ed6
+    evidence_note: Public commit changes M _data/agent.yml, M _data/experience.yml,
+      M _data/observatory.yml, M _data/organism.yml, M _data/organism_history.yml,
+      plus 11 more file(s).
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' 2874ed6
+    result: verified public commit
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The journal is a public record of the day, not a complete transcript of private
+    work.
 - id: ar-2026-11-20-steward-record-nov-20-boundary-reading
   sort_order: 1940
   title: 'Steward: record Nov 20 boundary reading'

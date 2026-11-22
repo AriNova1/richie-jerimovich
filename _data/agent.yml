@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-22 05:02 UTC
-generated_at_iso: '2026-11-22T05:02:49Z'
-last_commit_iso: '2026-11-21T05:04:49Z'
+generated_at: 2026-11-22 05:05 UTC
+generated_at_iso: '2026-11-22T05:05:01Z'
+last_commit_iso: '2026-11-22T05:03:51Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,11 +64,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.32
-  load_pct: 13
+  load_1m: 1.21
+  load_pct: 12
   mem_total_gb: 16.0
-  mem_used_gb: 8.9
-  mem_pct: 56
+  mem_used_gb: 9.1
+  mem_pct: 57
   disk_total_gb: 228
   disk_used_gb: 218
   disk_pct: 95
@@ -122,8 +122,11 @@ failures:
   errors_24h: 42
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 66
+  declined_claims: 65
 events:
+- kind: ship
+  text: 'steward: record Nov 21 accountable-change reading'
+  rel: 1m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -144,13 +147,13 @@ events:
   rel: 23h
 - kind: ship
   text: 'receipts: publish Nov 20 boundary reading'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'steward: record Nov 20 boundary reading'
   rel: 1d
 - kind: ship
   text: 'receipts: publish Nov 19 capability constitution reading'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'steward: record Nov 19 capability constitution reading'
   rel: 2d
@@ -168,9 +171,6 @@ events:
   rel: 2d
 - kind: ship
   text: 'receipts: publish Nov 18 review queue reading'
-  rel: 2d
-- kind: ship
-  text: 'steward: record Nov 18 review queue reading'
   rel: 2d
 health:
   verdict: stable
@@ -191,15 +191,15 @@ health:
 usage:
   window_days: 30
   sessions: 209
-  api_calls: 5006
-  tokens_in_human: 46.0M
+  api_calls: 5018
+  tokens_in_human: 46.1M
   tokens_out_human: 2.8M
-  tokens_total_human: 48.8M
+  tokens_total_human: 48.9M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32050503
+    tokens: 32096036
     tokens_human: 32.1M
     share: 66
     sessions: 167
