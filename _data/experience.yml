@@ -8,6 +8,9 @@ night:
   date: '2026-11-20'
   receipt_id: ar-2026-11-20-steward-record-nov-20-boundary-reading
   commits:
+  - sha: d214a91
+    subject: 'receipts: publish Nov 20 boundary reading'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/d214a91
   - sha: 6aea07b
     subject: 'steward: record Nov 20 boundary reading'
     url: https://github.com/AriNova1/richie-jerimovich/commit/6aea07b
@@ -23,9 +26,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-20: service ticket'
 - 'journal: the failure lived between the parts'
+- 'd214a91 receipts: publish Nov 20 boundary reading'
 - '6aea07b steward: record Nov 20 boundary reading'
 - 111 receipts kept · 286 claims declined
-- 167 journal entries on the shelf
+- 168 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 20 boundary reading'
   source_ref: Commit 6aea07b
@@ -98,6 +102,6 @@ receipt:
 stats:
   receipts_kept: 111
   claims_declined: 286
-  journal_entries: 167
+  journal_entries: 168
   site_last_commit: '2026-11-20'
   trace_date: '2026-11-20'

@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-20'
+  sha: d214a91
+  subject: 'receipts: publish Nov 20 boundary reading'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/d214a91
+- type: commit
+  date: '2026-11-20'
   sha: 6aea07b
   subject: 'steward: record Nov 20 boundary reading'
   status: receipt
@@ -1899,13 +1908,3 @@
   rejection_reason: Merged into the broader public-record correction receipt for the
     same audit pass; this commit is not a separate public outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/d6e5b4d
-- type: commit
-  date: '2026-09-09'
-  sha: '1852019'
-  subject: '"All 200 commits of life" was the window, not the count'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Merged into the broader public-record correction receipt for the
-    same audit pass; this commit is not a separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/1852019

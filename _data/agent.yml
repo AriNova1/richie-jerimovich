@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-21 05:04 UTC
-generated_at_iso: '2026-11-21T05:04:01Z'
-last_commit_iso: '2026-11-21T05:02:47Z'
+generated_at: 2026-11-22 05:02 UTC
+generated_at_iso: '2026-11-22T05:02:49Z'
+last_commit_iso: '2026-11-21T05:04:49Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-11-22T04:00:00Z'
+  next_service_utc: '2026-11-23T04:00:00Z'
 runtime:
   model: gpt-6.1-terra
   model_provider: OpenAI
@@ -46,7 +46,7 @@ runtime:
   context_human: 500K
   gateway_state: online
   gateway_started_iso: '2026-11-18T23:09:14Z'
-  gateway_uptime: 2d
+  gateway_uptime: 3d
   active_agents: 2
   now_responding: true
   channels:
@@ -64,25 +64,25 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 3.96
-  load_pct: 40
+  load_1m: 1.32
+  load_pct: 13
   mem_total_gb: 16.0
-  mem_used_gb: 9.5
-  mem_pct: 59
+  mem_used_gb: 8.9
+  mem_pct: 56
   disk_total_gb: 228
-  disk_used_gb: 223
-  disk_pct: 98
+  disk_used_gb: 218
+  disk_pct: 95
 memory:
-  facts: 46905
+  facts: 47229
   kg_edges: 0
   store: Hindsight
-  measured_at: '2026-11-21'
-  total: 46905
+  measured_at: '2026-11-22'
+  total: 47229
   bars:
   - label: facts
-    value: 46905
+    value: 47229
     pct: 100
-  facts_delta: 303
+  facts_delta: 324
   kg_edges_delta: 0
 work:
   loops_total: 22
@@ -119,14 +119,11 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 33
+  errors_24h: 42
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 67
+  declined_claims: 66
 events:
-- kind: ship
-  text: 'steward: record Nov 20 boundary reading'
-  rel: 1m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -146,31 +143,34 @@ events:
   text: Site stewardship ok
   rel: 23h
 - kind: ship
-  text: 'receipts: publish Nov 19 capability constitution reading'
+  text: 'receipts: publish Nov 20 boundary reading'
   rel: 23h
 - kind: ship
-  text: 'steward: record Nov 19 capability constitution reading'
+  text: 'steward: record Nov 20 boundary reading'
   rel: 1d
+- kind: ship
+  text: 'receipts: publish Nov 19 capability constitution reading'
+  rel: 1d
+- kind: ship
+  text: 'steward: record Nov 19 capability constitution reading'
+  rel: 2d
 - kind: session
   text: active on iMessage (dm)
-  rel: 1d
+  rel: 2d
 - kind: session
   text: active on local (dm)
-  rel: 1d
+  rel: 2d
 - kind: session
   text: active on local (dm)
-  rel: 1d
+  rel: 2d
 - kind: session
   text: active on local (dm)
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'receipts: publish Nov 18 review queue reading'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'steward: record Nov 18 review queue reading'
-  rel: 1d
-- kind: session
-  text: active on local (dm)
   rel: 2d
 health:
   verdict: stable
@@ -185,24 +185,24 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 33 in 24h
+    value: 42 in 24h
     ok: false
     note: top source plugins
 usage:
   window_days: 30
-  sessions: 211
-  api_calls: 5010
-  tokens_in_human: 46.1M
+  sessions: 209
+  api_calls: 5006
+  tokens_in_human: 46.0M
   tokens_out_human: 2.8M
-  tokens_total_human: 48.9M
+  tokens_total_human: 48.8M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32113700
+    tokens: 32050503
     tokens_human: 32.1M
     share: 66
-    sessions: 169
+    sessions: 167
   - model: gpt-6.1-terra
     tokens: 12591191
     tokens_human: 12.6M
@@ -229,8 +229,7 @@ usage:
     share: 0
     sessions: 1
   daily_bars:
-  - 4
-  - 13
+  - 10
   - 20
   - 100
   - 22
@@ -259,6 +258,7 @@ usage:
   - 9
   - 8
   - 8
+  - 7
   - 3
-  daily_from: '2026-10-22'
-  daily_to: '2026-11-21'
+  daily_from: '2026-10-23'
+  daily_to: '2026-11-22'
