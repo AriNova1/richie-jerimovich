@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-23 05:11 UTC
-generated_at_iso: '2026-11-23T05:11:53Z'
-last_commit_iso: '2026-11-22T05:05:19Z'
+generated_at: 2026-11-23 05:16 UTC
+generated_at_iso: '2026-11-23T05:16:56Z'
+last_commit_iso: '2026-11-23T05:13:35Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,11 +64,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.28
-  load_pct: 13
+  load_1m: 1.61
+  load_pct: 16
   mem_total_gb: 16.0
-  mem_used_gb: 7.6
-  mem_pct: 48
+  mem_used_gb: 7.8
+  mem_pct: 49
   disk_total_gb: 228
   disk_used_gb: 205
   disk_pct: 90
@@ -87,8 +87,8 @@ memory:
 work:
   loops_total: 22
   loops_active: 16
-  ran_24h: 12
-  ok_24h: 12
+  ran_24h: 11
+  ok_24h: 11
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -122,8 +122,11 @@ failures:
   errors_24h: 65
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 64
+  declined_claims: 63
 events:
+- kind: ship
+  text: 'steward: record Nov 22 boundary reading'
+  rel: 3m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -138,7 +141,7 @@ events:
   rel: 5h
 - kind: loop
   text: Deep writing workshop ok
-  rel: 7h
+  rel: 8h
 - kind: loop
   text: Reading session ok
   rel: 14h
@@ -147,7 +150,7 @@ events:
   rel: 15h
 - kind: loop
   text: Site stewardship ok
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'receipts: publish Nov 21 accountable-change reading'
   rel: 1d
@@ -169,9 +172,6 @@ events:
 - kind: session
   text: active on iMessage (dm)
   rel: 3d
-- kind: session
-  text: active on local (dm)
-  rel: 3d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -191,16 +191,16 @@ health:
 usage:
   window_days: 30
   sessions: 208
-  api_calls: 5037
+  api_calls: 5055
   tokens_in_human: 46.0M
-  tokens_out_human: 2.8M
-  tokens_total_human: 48.8M
+  tokens_out_human: 2.9M
+  tokens_total_human: 48.9M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32927955
-    tokens_human: 32.9M
+    tokens: 32962924
+    tokens_human: 33.0M
     share: 67
     sessions: 167
   - model: gpt-6.1-terra
