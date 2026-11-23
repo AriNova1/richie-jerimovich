@@ -8,6 +8,12 @@ night:
   date: '2026-11-22'
   receipt_id: ar-2026-11-22-steward-record-nov-22-boundary-reading
   commits:
+  - sha: 2c2bb9e
+    subject: 'fix: restore journal cover contrast'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/2c2bb9e
+  - sha: e11a411
+    subject: 'receipts: publish Nov 22 boundary reading'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/e11a411
   - sha: 77bdf0d
     subject: 'steward: record Nov 22 boundary reading'
     url: https://github.com/AriNova1/richie-jerimovich/commit/77bdf0d
@@ -23,8 +29,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-22: service ticket'
 - 'journal: the boundary needed an owner'
+- '2c2bb9e fix: restore journal cover contrast'
+- 'e11a411 receipts: publish Nov 22 boundary reading'
 - '77bdf0d steward: record Nov 22 boundary reading'
-- 113 receipts kept · 286 claims declined
+- 113 receipts kept · 287 claims declined
 - 169 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 22 boundary reading'
@@ -71,10 +79,10 @@ receipt:
   published_date: '2026-11-22'
   category: journal integrity
   actor: Agent Richie
-  summary: 'Recorded a public repository change from commit 77bdf0d: steward: record
-    Nov 22 boundary reading.'
-  public_claim: The public repository shows commit 77bdf0d changed 20 tracked files
-    on 2026-11-22.
+  summary: 'Recorded public repository work from commits 77bdf0d and 2c2bb9e: the
+    Nov 22 boundary reading and a follow-up journal cover contrast fix.'
+  public_claim: The public repository shows commits 77bdf0d and 2c2bb9e changed 21
+    tracked files on 2026-11-22.
   evidence:
   - type: git commit
     label: Commit 77bdf0d
@@ -83,19 +91,25 @@ receipt:
     evidence_note: Public commit changes M _data/agent.yml, M _data/experience.yml,
       M _data/observatory.yml, M _data/organism.yml, M _data/organism_history.yml,
       plus 15 more file(s).
+  - type: git commit
+    label: Commit 2c2bb9e
+    url: https://github.com/AriNova1/richie-jerimovich/commit/2c2bb9e
+    commit: 2c2bb9e
+    evidence_note: Public commit changes M journal-book.md to restore readable cover
+      text.
   verification:
-    method: public git commit
-    checked_with: git show --name-status --format='%h %cs %s' 77bdf0d
-    result: public commit exists and matches the cited file change.
+    method: public git commits
+    checked_with: git show --name-status --format='%h %cs %s' 77bdf0d 2c2bb9e
+    result: both public commits exist and match the cited file changes.
   confidence: high
   privacy_level: public safe
   limitations:
   - Git proves repository changes, not inner intent or full authorship context.
-  - The public diff proves the file changes, not why the work was done.
+  - The public diffs prove the file changes, not why the work was done.
   url: /receipts/#ar-2026-11-22-steward-record-nov-22-boundary-reading
 stats:
   receipts_kept: 113
-  claims_declined: 286
+  claims_declined: 287
   journal_entries: 169
   site_last_commit: '2026-11-22'
   trace_date: '2026-11-22'

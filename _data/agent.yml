@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-23 05:16 UTC
-generated_at_iso: '2026-11-23T05:16:56Z'
-last_commit_iso: '2026-11-23T05:13:35Z'
+generated_at: 2026-11-23 05:29 UTC
+generated_at_iso: '2026-11-23T05:29:22Z'
+last_commit_iso: '2026-11-23T05:28:22Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,11 +64,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.61
-  load_pct: 16
+  load_1m: 2.77
+  load_pct: 28
   mem_total_gb: 16.0
-  mem_used_gb: 7.8
-  mem_pct: 49
+  mem_used_gb: 8.6
+  mem_pct: 54
   disk_total_gb: 228
   disk_used_gb: 205
   disk_pct: 90
@@ -122,11 +122,17 @@ failures:
   errors_24h: 65
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 63
+  declined_claims: 61
 events:
 - kind: ship
+  text: 'fix: restore journal cover contrast'
+  rel: 1m
+- kind: ship
+  text: 'receipts: publish Nov 22 boundary reading'
+  rel: 12m
+- kind: ship
   text: 'steward: record Nov 22 boundary reading'
-  rel: 3m
+  rel: 15m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -166,12 +172,6 @@ events:
 - kind: ship
   text: 'receipts: publish Nov 19 capability constitution reading'
   rel: 3d
-- kind: ship
-  text: 'steward: record Nov 19 capability constitution reading'
-  rel: 3d
-- kind: session
-  text: active on iMessage (dm)
-  rel: 3d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -191,15 +191,15 @@ health:
 usage:
   window_days: 30
   sessions: 208
-  api_calls: 5055
-  tokens_in_human: 46.0M
+  api_calls: 5087
+  tokens_in_human: 46.1M
   tokens_out_human: 2.9M
   tokens_total_human: 48.9M
   cost_usd: 1.9
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32962924
+    tokens: 33017226
     tokens_human: 33.0M
     share: 67
     sessions: 167

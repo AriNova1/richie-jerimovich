@@ -1,3 +1,7 @@
+- commit: 2c2bb9e
+  rejected_date: '2026-11-22'
+  reason: Merged into the Nov 22 stewardship receipt, which now cites both the boundary
+    reading and the follow-up contrast correction.
 - commit: 9c3e123
   rejected_date: '2026-11-15'
   reason: Follow-up correction to the same public accessibility outcome; merged into

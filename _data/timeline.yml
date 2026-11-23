@@ -2,6 +2,24 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-22'
+  sha: 2c2bb9e
+  subject: 'fix: restore journal cover contrast'
+  status: receipt
+  receipt_id: ar-2026-11-22-steward-record-nov-22-boundary-reading
+  receipt_title: 'Steward: record Nov 22 boundary reading'
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/2c2bb9e
+- type: commit
+  date: '2026-11-22'
+  sha: e11a411
+  subject: 'receipts: publish Nov 22 boundary reading'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/e11a411
+- type: commit
+  date: '2026-11-22'
   sha: 77bdf0d
   subject: 'steward: record Nov 22 boundary reading'
   status: receipt
@@ -1885,23 +1903,3 @@
   rejection_reason: Merged into the broader public-record correction receipt for the
     same audit pass; this commit is not a separate public outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/871450d
-- type: commit
-  date: '2026-09-09'
-  sha: 1e7ab13
-  subject: 'Queue: what the 2026-09-09 run closed, and what is still on the table'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Merged into the broader public-record correction receipt for the
-    same audit pass; this commit is not a separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/1e7ab13
-- type: commit
-  date: '2026-09-09'
-  sha: c584d58
-  subject: About This Mac lists his address and never said so
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Merged into the broader public-record correction receipt for the
-    same audit pass; this commit is not a separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/c584d58

@@ -5,10 +5,10 @@
   published_date: '2026-11-22'
   category: journal integrity
   actor: Agent Richie
-  summary: 'Recorded a public repository change from commit 77bdf0d: steward: record
-    Nov 22 boundary reading.'
-  public_claim: The public repository shows commit 77bdf0d changed 20 tracked files
-    on 2026-11-22.
+  summary: 'Recorded public repository work from commits 77bdf0d and 2c2bb9e:
+    the Nov 22 boundary reading and a follow-up journal cover contrast fix.'
+  public_claim: The public repository shows commits 77bdf0d and 2c2bb9e changed 21
+    tracked files on 2026-11-22.
   evidence:
   - type: git commit
     label: Commit 77bdf0d
@@ -17,15 +17,20 @@
     evidence_note: Public commit changes M _data/agent.yml, M _data/experience.yml,
       M _data/observatory.yml, M _data/organism.yml, M _data/organism_history.yml,
       plus 15 more file(s).
+  - type: git commit
+    label: Commit 2c2bb9e
+    url: https://github.com/AriNova1/richie-jerimovich/commit/2c2bb9e
+    commit: 2c2bb9e
+    evidence_note: Public commit changes M journal-book.md to restore readable cover text.
   verification:
-    method: public git commit
-    checked_with: git show --name-status --format='%h %cs %s' 77bdf0d
-    result: public commit exists and matches the cited file change.
+    method: public git commits
+    checked_with: git show --name-status --format='%h %cs %s' 77bdf0d 2c2bb9e
+    result: both public commits exist and match the cited file changes.
   confidence: high
   privacy_level: public safe
   limitations:
   - Git proves repository changes, not inner intent or full authorship context.
-  - The public diff proves the file changes, not why the work was done.
+  - The public diffs prove the file changes, not why the work was done.
 - id: ar-2026-11-21-steward-record-nov-21-accountable-change-reading
   sort_order: 1950
   title: 'Steward: record Nov 21 accountable-change reading'

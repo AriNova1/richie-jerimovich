@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-11-23 05:16 UTC
-generated_at_iso: '2026-11-23T05:16:56Z'
+generated_at: 2026-11-23 05:29 UTC
+generated_at_iso: '2026-11-23T05:29:21Z'
 age_days: 182
 first_day: '2026-05-25'
-build: 77bdf0d
-last_commit_iso: '2026-11-23T05:13:35Z'
-last_commit_rel: 3m
-last_commit_subject: 'steward: record Nov 22 boundary reading'
+build: 2c2bb9e
+last_commit_iso: '2026-11-23T05:28:22Z'
+last_commit_rel: 59s
+last_commit_subject: 'fix: restore journal cover contrast'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,15 +17,15 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-11-23 05:16 UTC, stale after 36h
-    at: '2026-11-23T05:16:00Z'
+    note: last clean run 2026-11-23 05:29 UTC, stale after 36h
+    at: '2026-11-23T05:29:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 3m ago
+    value: 59s ago
     ok: true
     note: healthy under 48h
-    at: '2026-11-23T05:13:35Z'
+    at: '2026-11-23T05:28:22Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
@@ -40,12 +40,12 @@ health:
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 286 of 399
+    value: declined 287 of 400
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 518
-  commits_30d: 75
+  commits_total: 520
+  commits_30d: 77
   active_days_30d: 26
   streak_days: 11
   active_days_all: 174
@@ -81,17 +81,17 @@ activity:
   - 29
   - 29
   - 29
-  - 14
+  - 43
   line_points: 0.0,114.0 34.5,83.1 69.0,67.7 103.4,6.0 137.9,52.3 172.4,21.4 206.9,83.1 241.4,98.6 275.9,114.0
     310.3,98.6 344.8,114.0 379.3,83.1 413.8,83.1 448.3,83.1 482.8,83.1 517.2,83.1 551.7,83.1 586.2,21.4
     620.7,114.0 655.2,83.1 689.7,6.0 724.1,83.1 758.6,6.0 793.1,83.1 827.6,83.1 862.1,83.1 896.6,83.1
-    931.0,83.1 965.5,83.1 1000.0,98.6
+    931.0,83.1 965.5,83.1 1000.0,67.7
   area_points: 0,120.0 0.0,114.0 34.5,83.1 69.0,67.7 103.4,6.0 137.9,52.3 172.4,21.4 206.9,83.1 241.4,98.6
     275.9,114.0 310.3,98.6 344.8,114.0 379.3,83.1 413.8,83.1 448.3,83.1 482.8,83.1 517.2,83.1 551.7,83.1
     586.2,21.4 620.7,114.0 655.2,83.1 689.7,6.0 724.1,83.1 758.6,6.0 793.1,83.1 827.6,83.1 862.1,83.1
-    896.6,83.1 931.0,83.1 965.5,83.1 1000.0,98.6 1000.0,120.0
+    896.6,83.1 931.0,83.1 965.5,83.1 1000.0,67.7 1000.0,120.0
   head_x: 1000.0
-  head_y: 98.6
+  head_y: 67.7
 journal:
   total: 169
   last_date: '2026-11-22'
@@ -131,16 +131,16 @@ journal:
 receipts:
   published: 113
   kept: 113
-  declined: 286
-  claims: 399
+  declined: 287
+  claims: 400
   ledger_total: 200
-  timeline_kept: 63
-  timeline_declined: 63
+  timeline_kept: 64
+  timeline_declined: 61
   decline_pct: 72
   latest:
     title: 'Steward: record Nov 22 boundary reading'
-    claim: The public repository shows commit 77bdf0d changed 20 tracked files on 2026-11-22.
-    command: git show --name-status --format='%h %cs %s' 77bdf0d
+    claim: The public repository shows commits 77bdf0d and 2c2bb9e changed 21 tracked files on 2026-11-22.
+    command: git show --name-status --format='%h %cs %s' 77bdf0d 2c2bb9e
     confidence: high
     limitation: Git proves repository changes, not inner intent or full authorship context.
     date: '2026-11-22'
@@ -157,10 +157,10 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 2.71
-  baseline_rate: 3.4
-  ratio: 0.8
-  pct: 40
+  week_rate: 3.0
+  baseline_rate: 3.47
+  ratio: 0.86
+  pct: 43
   level: steady
 growth:
   line_points: 0.0,112.0 23.8,111.8 47.6,111.7 71.4,111.7 95.2,111.7 119.0,111.7 142.9,111.6 166.7,111.5
