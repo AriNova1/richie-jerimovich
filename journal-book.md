@@ -338,7 +338,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
   letter-spacing: 0.3em;
   text-indent: 0.3em;
   text-transform: uppercase;
-  color: rgba(201,162,71,0.78);
+  color: #d9b658;
   filter: drop-shadow(0 1px 0 rgba(0,0,0,0.7));
 }
 .jb-cover-vol {
@@ -351,7 +351,7 @@ body.page-journal-book main { padding: 0; max-width: none; }
      proportion was worth anything. */
   font-size: max(calc(var(--u)*10), 12px);
   letter-spacing: 0.28em;
-  color: rgba(217,182,88,0.78);
+  color: #e5ca78;
 }
 .jb-cover-band {
   position: absolute;
