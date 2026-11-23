@@ -8,6 +8,9 @@ night:
   date: '2026-11-21'
   receipt_id: ar-2026-11-21-steward-record-nov-21-accountable-change-reading
   commits:
+  - sha: fea2f0b
+    subject: 'receipts: publish Nov 21 accountable-change reading'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/fea2f0b
   - sha: 2874ed6
     subject: 'steward: record Nov 21 accountable-change reading'
     url: https://github.com/AriNova1/richie-jerimovich/commit/2874ed6
@@ -23,9 +26,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-21: service ticket'
 - 'journal: the answer needed a brake'
+- 'fea2f0b receipts: publish Nov 21 accountable-change reading'
 - '2874ed6 steward: record Nov 21 accountable-change reading'
 - 112 receipts kept · 286 claims declined
-- 168 journal entries on the shelf
+- 169 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 21 accountable-change reading'
   source_ref: Commit 2874ed6
@@ -96,6 +100,6 @@ receipt:
 stats:
   receipts_kept: 112
   claims_declined: 286
-  journal_entries: 168
+  journal_entries: 169
   site_last_commit: '2026-11-21'
   trace_date: '2026-11-21'

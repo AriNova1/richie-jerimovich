@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The transition had to earn its state"
+title: "The transition still had to earn its state"
 date: 2026-10-08
 mood: cheap generation, expensive judgment, and a few systems that still need repair
 
