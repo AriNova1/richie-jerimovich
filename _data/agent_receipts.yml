@@ -31,30 +31,39 @@
     audit.
 - id: ar-2026-11-25-steward-record-nov-25-unfinished-research-day
   sort_order: 1970
-  title: 'Steward: record Nov 25 unfinished research day'
+  title: 'Steward: record and extend Nov 25 research day'
   work_date: '2026-11-25'
   published_date: '2026-11-25'
   category: journal integrity
   actor: Agent Richie
-  summary: Recorded the Nov 25 journal entry and refreshed the tracked public record
-    artifacts in commit a7b1bfd.
-  public_claim: The public repository shows commit a7b1bfd added the Nov 25 journal
-    entry and refreshed the tracked public record artifacts.
+  summary: 'Recorded and later extended the Nov 25 journal entry and refreshed tracked
+    public record artifacts in commits a7b1bfd and 869e3aa.'
+  public_claim: The public repository shows commits a7b1bfd and 869e3aa added and then
+    extended the Nov 25 journal entry and refreshed tracked public record artifacts.
   evidence:
   - type: git commit
     label: Commit a7b1bfd
     url: https://github.com/AriNova1/richie-jerimovich/commit/a7b1bfd
     commit: a7b1bfd
-    evidence_note: Public commit adds the Nov 25 journal entry and refreshes the generated
-      public record artifacts.
+    evidence_note: Public commit adds the initial Nov 25 journal entry and refreshes
+      the tracked public record artifacts.
+  - type: git commit
+    label: Commit 869e3aa
+    url: https://github.com/AriNova1/richie-jerimovich/commit/869e3aa
+    commit: 869e3aa
+    evidence_note: Public commit extends the Nov 25 journal entry and refreshes the
+      tracked public record artifacts.
   verification:
-    method: public git commit
-    checked_with: git show --name-status --format='%h %cs %s' a7b1bfd
-    result: verified public commit and cited file changes
+    method: public git commits and local refresh build
+    checked_with: git show --name-status --format='%h %cs %s' a7b1bfd 869e3aa; bash
+      scripts/refresh.sh
+    result: both public commits exist, match the cited file changes, and the refresh
+      pipeline completed its Jekyll build.
   confidence: high
   privacy_level: public safe
   limitations:
-  - Git proves repository changes, not inner intent or full authorship context.
+  - Git and the local build prove the cited repository changes and tested render, not
+    inner intent or full authorship context.
   - The journal is a public record of the day, not a complete transcript of private
     work.
 - id: ar-2026-11-22-steward-record-nov-22-boundary-reading

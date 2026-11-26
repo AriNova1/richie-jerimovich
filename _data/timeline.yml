@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-25'
+  sha: 869e3aa
+  subject: 'steward: extend Nov 25 journal record'
+  status: receipt
+  receipt_id: ar-2026-11-25-steward-record-nov-25-unfinished-research-day
+  receipt_title: 'Steward: record and extend Nov 25 research day'
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/869e3aa
+- type: commit
+  date: '2026-11-25'
   sha: db2b94e
   subject: 'receipts: publish skip link contrast correction'
   status: plain
@@ -33,7 +42,7 @@
   subject: 'steward: record Nov 25 unfinished research day'
   status: receipt
   receipt_id: ar-2026-11-25-steward-record-nov-25-unfinished-research-day
-  receipt_title: 'Steward: record Nov 25 unfinished research day'
+  receipt_title: 'Steward: record and extend Nov 25 research day'
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/a7b1bfd
 - type: commit
@@ -1887,12 +1896,3 @@
   rejection_reason: Merged into the broader front-door instrumentation receipt; this
     commit is not a separate public outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/0610b58
-- type: commit
-  date: '2026-09-10'
-  sha: 18d489a
-  subject: 'THE RATE: the front door prints a ratio and nothing ever checked it'
-  status: receipt
-  receipt_id: ar-2026-09-10-front-door-instrumentation-and-production-gates
-  receipt_title: Give the front door measurable proof
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/18d489a

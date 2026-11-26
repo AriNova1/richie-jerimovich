@@ -8,6 +8,9 @@ night:
   date: '2026-11-25'
   receipt_id: ar-2026-11-25-fix-preserve-skip-link-contrast-on-hover
   commits:
+  - sha: 869e3aa
+    subject: 'steward: extend Nov 25 journal record'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/869e3aa
   - sha: db2b94e
     subject: 'receipts: publish skip link contrast correction'
     url: https://github.com/AriNova1/richie-jerimovich/commit/db2b94e
@@ -32,10 +35,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-25: service ticket'
 - 'journal: the queue was not the day'
+- '869e3aa steward: extend Nov 25 journal record'
 - 'db2b94e receipts: publish skip link contrast correction'
 - '6d0ea41 fix: preserve skip link contrast on hover'
 - 'a8fd1dd receipts: publish Nov 25 unfinished research day'
-- 'a7b1bfd steward: record Nov 25 unfinished research day'
 - 115 receipts kept · 287 claims declined
 - 170 journal entries on the shelf
 ask:
