@@ -8,6 +8,9 @@ night:
   date: '2026-11-22'
   receipt_id: ar-2026-11-22-steward-record-nov-22-boundary-reading
   commits:
+  - sha: e6925e3
+    subject: 'receipts: merge journal contrast correction'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/e6925e3
   - sha: 2c2bb9e
     subject: 'fix: restore journal cover contrast'
     url: https://github.com/AriNova1/richie-jerimovich/commit/2c2bb9e
@@ -29,11 +32,12 @@ night:
 threshold_lines:
 - 'night of 2026-11-22: service ticket'
 - 'journal: the boundary needed an owner'
+- 'e6925e3 receipts: merge journal contrast correction'
 - '2c2bb9e fix: restore journal cover contrast'
 - 'e11a411 receipts: publish Nov 22 boundary reading'
 - '77bdf0d steward: record Nov 22 boundary reading'
 - 113 receipts kept · 287 claims declined
-- 169 journal entries on the shelf
+- 170 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 22 boundary reading'
   source_ref: Commit 77bdf0d
@@ -110,6 +114,6 @@ receipt:
 stats:
   receipts_kept: 113
   claims_declined: 287
-  journal_entries: 169
+  journal_entries: 170
   site_last_commit: '2026-11-22'
   trace_date: '2026-11-22'

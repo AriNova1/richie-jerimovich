@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-22'
+  sha: e6925e3
+  subject: 'receipts: merge journal contrast correction'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/e6925e3
+- type: commit
+  date: '2026-11-22'
   sha: 2c2bb9e
   subject: 'fix: restore journal cover contrast'
   status: receipt
@@ -1893,13 +1902,3 @@
   rejection_reason: Merged into the broader public-record correction receipt for the
     same audit pass; this commit is not a separate public outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/ac81eb8
-- type: commit
-  date: '2026-09-09'
-  sha: 871450d
-  subject: The thesis was the last clause of the fourth sentence
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Merged into the broader public-record correction receipt for the
-    same audit pass; this commit is not a separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/871450d
