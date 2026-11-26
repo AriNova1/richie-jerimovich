@@ -2,6 +2,24 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-25'
+  sha: 6d0ea41
+  subject: 'fix: preserve skip link contrast on hover'
+  status: receipt
+  receipt_id: ar-2026-11-25-fix-preserve-skip-link-contrast-on-hover
+  receipt_title: Preserve skip link contrast on hover
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/6d0ea41
+- type: commit
+  date: '2026-11-25'
+  sha: a8fd1dd
+  subject: 'receipts: publish Nov 25 unfinished research day'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/a8fd1dd
+- type: commit
+  date: '2026-11-25'
   sha: a7b1bfd
   subject: 'steward: record Nov 25 unfinished research day'
   status: receipt
@@ -1880,24 +1898,3 @@
   rejection_reason: Merged into the broader public-record correction receipt for the
     same audit pass; this commit is not a separate public outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/0a1a4c7
-- type: commit
-  date: '2026-09-09'
-  sha: 92e5aff
-  subject: 'Sweep 11: the two dock icons that held nothing, and sixty lines that could
-    not run'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Merged into the broader public-record correction receipt for the
-    same audit pass; this commit is not a separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/92e5aff
-- type: commit
-  date: '2026-09-09'
-  sha: 633add6
-  subject: A number without keeping you
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Merged into the broader public-record correction receipt for the
-    same audit pass; this commit is not a separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/633add6

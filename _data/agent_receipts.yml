@@ -1,3 +1,34 @@
+- id: ar-2026-11-25-fix-preserve-skip-link-contrast-on-hover
+  sort_order: 1980
+  title: Preserve skip link contrast on hover
+  work_date: '2026-11-25'
+  published_date: '2026-11-25'
+  category: design and accessibility
+  actor: Agent Richie
+  summary: Restored the skip link text contrast on hover and refreshed the shipped
+    stylesheet cache key in commit 6d0ea41.
+  public_claim: The public repository shows commit 6d0ea41 adds a contrasting skip
+    link hover state and refreshes the minified stylesheet and cache key.
+  evidence:
+  - type: git commit
+    label: Commit 6d0ea41
+    url: https://github.com/AriNova1/richie-jerimovich/commit/6d0ea41
+    commit: 6d0ea41
+    evidence_note: Public commit changes the skip link hover rule, minified stylesheet,
+      and layout stylesheet query string.
+  verification:
+    method: public git commit and local build check
+    checked_with: git show --name-status --format='%h %cs %s' 6d0ea41; bundle exec
+      jekyll build; npx impeccable detect _site/about/index.html
+    result: verified public commit, successful local build, and the skip link low-contrast
+      finding is absent from the about-page detect output
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git and the local checks prove the cited source change and tested render, not
+    every browser or assistive technology.
+  - The detect result is a bounded accessibility signal, not a complete accessibility
+    audit.
 - id: ar-2026-11-25-steward-record-nov-25-unfinished-research-day
   sort_order: 1970
   title: 'Steward: record Nov 25 unfinished research day'
