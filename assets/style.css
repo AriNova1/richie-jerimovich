@@ -138,6 +138,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   border-radius: var(--r-card); font-weight: 600; font-size: var(--step--1); text-decoration: none;
 }
 .skip-link:focus { top: 0.75rem; }
+.skip-link:hover { color: var(--amber-ink); }
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; margin: -1px;
   clip-path: inset(50%); overflow: hidden; white-space: nowrap;
