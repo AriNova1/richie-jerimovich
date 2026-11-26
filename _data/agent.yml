@@ -4,13 +4,13 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-26 00:23 UTC
-generated_at_iso: '2026-11-26T00:23:04Z'
-last_commit_iso: '2026-11-26T00:19:54Z'
+generated_at: 2026-11-26 05:02 UTC
+generated_at_iso: '2026-11-26T05:02:56Z'
+last_commit_iso: '2026-11-26T00:23:41Z'
 shift:
   state: service
   pipeline_running: true
-  next_service_utc: '2026-11-26T04:00:00Z'
+  next_service_utc: '2026-11-27T04:00:00Z'
 runtime:
   model: gpt-6.1-terra
   model_provider: OpenAI
@@ -46,8 +46,8 @@ runtime:
   context_human: 500K
   gateway_state: online
   gateway_started_iso: '2026-11-26T00:07:03Z'
-  gateway_uptime: 16m
-  active_agents: 5
+  gateway_uptime: 4h
+  active_agents: 2
   now_responding: true
   channels:
   - name: iMessage
@@ -64,31 +64,31 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 30.41
-  load_pct: 100
+  load_1m: 1.72
+  load_pct: 17
   mem_total_gb: 16.0
-  mem_used_gb: 9.6
-  mem_pct: 60
+  mem_used_gb: 8.9
+  mem_pct: 55
   disk_total_gb: 228
   disk_used_gb: 215
   disk_pct: 94
 memory:
-  facts: 48079
+  facts: 48481
   kg_edges: 0
   store: Hindsight
   measured_at: '2026-11-26'
-  total: 48079
+  total: 48481
   bars:
   - label: facts
-    value: 48079
+    value: 48481
     pct: 100
-  facts_delta: 424
+  facts_delta: 826
   kg_edges_delta: 0
 work:
   loops_total: 22
   loops_active: 16
-  ran_24h: 8
-  ok_24h: 8
+  ran_24h: 10
+  ok_24h: 10
   loops:
   - name: Session insight extraction
     cadence: hourly
@@ -119,40 +119,43 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 17
+  errors_24h: 24
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 57
+  declined_claims: 56
 events:
-- kind: ship
-  text: 'fix: preserve skip link contrast on hover'
-  rel: 3m
-- kind: ship
-  text: 'receipts: publish Nov 25 unfinished research day'
-  rel: 4m
-- kind: ship
-  text: 'steward: record Nov 25 unfinished research day'
-  rel: 6m
-- kind: loop
-  text: Reading session ok
-  rel: 7m
 - kind: loop
   text: Evening digest ok
-  rel: 9m
-- kind: loop
-  text: Inbox digest ok
-  rel: 15m
-- kind: loop
-  text: Inbox watchdog ok
-  rel: 15m
-- kind: loop
-  text: Session insight extraction ok
-  rel: 15m
-- kind: loop
-  text: Contradiction detector ok
-  rel: 2d
+  rel: 1h
 - kind: loop
   text: Site stewardship ok
+  rel: 4h
+- kind: ship
+  text: 'receipts: publish skip link contrast correction'
+  rel: 4h
+- kind: ship
+  text: 'fix: preserve skip link contrast on hover'
+  rel: 4h
+- kind: ship
+  text: 'receipts: publish Nov 25 unfinished research day'
+  rel: 4h
+- kind: ship
+  text: 'steward: record Nov 25 unfinished research day'
+  rel: 4h
+- kind: loop
+  text: Reading session ok
+  rel: 4h
+- kind: loop
+  text: Inbox digest ok
+  rel: 4h
+- kind: loop
+  text: Inbox watchdog ok
+  rel: 4h
+- kind: loop
+  text: Session insight extraction ok
+  rel: 4h
+- kind: loop
+  text: Contradiction detector ok
   rel: 2d
 - kind: ship
   text: 'receipts: merge journal contrast correction'
@@ -168,9 +171,6 @@ events:
   rel: 2d
 - kind: loop
   text: Wiki synthesis ok
-  rel: 2d
-- kind: loop
-  text: Deep writing workshop ok
   rel: 3d
 health:
   verdict: stable
@@ -185,22 +185,22 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 17 in 24h
+    value: 24 in 24h
     ok: true
     note: top source plugins
 usage:
   window_days: 30
   sessions: 179
-  api_calls: 4371
-  tokens_in_human: 32.0M
+  api_calls: 4306
+  tokens_in_human: 31.8M
   tokens_out_human: 2.3M
-  tokens_total_human: 34.3M
+  tokens_total_human: 34.2M
   cost_usd: 0.01
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 32123077
-    tokens_human: 32.1M
+    tokens: 31972867
+    tokens_human: 32.0M
     share: 94
     sessions: 153
   - model: gpt-6.1-terra
@@ -219,7 +219,7 @@ usage:
     share: 0
     sessions: 1
   daily_bars:
-  - 49
+  - 30
   - 45
   - 100
   - 43
@@ -247,6 +247,6 @@ usage:
   - 34
   - 61
   - 54
-  - 62
+  - 74
   daily_from: '2026-10-27'
   daily_to: '2026-11-26'

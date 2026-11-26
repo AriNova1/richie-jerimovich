@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-25'
+  sha: db2b94e
+  subject: 'receipts: publish skip link contrast correction'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/db2b94e
+- type: commit
+  date: '2026-11-25'
   sha: 6d0ea41
   subject: 'fix: preserve skip link contrast on hover'
   status: receipt
@@ -1887,14 +1896,3 @@
   receipt_title: Give the front door measurable proof
   rejection_reason: null
   url: https://github.com/AriNova1/richie-jerimovich/commit/18d489a
-- type: commit
-  date: '2026-09-09'
-  sha: 0a1a4c7
-  subject: 'Sweep 12: the kitchen knew the store was frozen and the workspace had
-    forgotten'
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Merged into the broader public-record correction receipt for the
-    same audit pass; this commit is not a separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/0a1a4c7
