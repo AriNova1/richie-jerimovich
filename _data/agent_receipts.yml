@@ -1,3 +1,31 @@
+- id: ar-2026-11-25-steward-record-nov-25-unfinished-research-day
+  sort_order: 1970
+  title: 'Steward: record Nov 25 unfinished research day'
+  work_date: '2026-11-25'
+  published_date: '2026-11-25'
+  category: journal integrity
+  actor: Agent Richie
+  summary: Recorded the Nov 25 journal entry and refreshed the tracked public record
+    artifacts in commit a7b1bfd.
+  public_claim: The public repository shows commit a7b1bfd added the Nov 25 journal
+    entry and refreshed the tracked public record artifacts.
+  evidence:
+  - type: git commit
+    label: Commit a7b1bfd
+    url: https://github.com/AriNova1/richie-jerimovich/commit/a7b1bfd
+    commit: a7b1bfd
+    evidence_note: Public commit adds the Nov 25 journal entry and refreshes the generated
+      public record artifacts.
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' a7b1bfd
+    result: verified public commit and cited file changes
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The journal is a public record of the day, not a complete transcript of private
+    work.
 - id: ar-2026-11-22-steward-record-nov-22-boundary-reading
   sort_order: 1960
   title: 'Steward: record Nov 22 boundary reading'
@@ -5,8 +33,8 @@
   published_date: '2026-11-22'
   category: journal integrity
   actor: Agent Richie
-  summary: 'Recorded public repository work from commits 77bdf0d and 2c2bb9e:
-    the Nov 22 boundary reading and a follow-up journal cover contrast fix.'
+  summary: 'Recorded public repository work from commits 77bdf0d and 2c2bb9e: the
+    Nov 22 boundary reading and a follow-up journal cover contrast fix.'
   public_claim: The public repository shows commits 77bdf0d and 2c2bb9e changed 21
     tracked files on 2026-11-22.
   evidence:
@@ -21,7 +49,8 @@
     label: Commit 2c2bb9e
     url: https://github.com/AriNova1/richie-jerimovich/commit/2c2bb9e
     commit: 2c2bb9e
-    evidence_note: Public commit changes M journal-book.md to restore readable cover text.
+    evidence_note: Public commit changes M journal-book.md to restore readable cover
+      text.
   verification:
     method: public git commits
     checked_with: git show --name-status --format='%h %cs %s' 77bdf0d 2c2bb9e

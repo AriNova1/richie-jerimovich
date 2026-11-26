@@ -3,15 +3,15 @@
 # /organism/. Written by build_agent on a build; never hand-edit.
 - date: '2026-11-26'
   store: Hindsight
-  facts: 48030
+  facts: 48079
   kg_edges: 0
   gists: null
   working: null
   sessions: 104
   loops_active: 16
-  ran_24h: 5
-  ok_24h: 5
-  commits: 521
+  ran_24h: 7
+  ok_24h: 7
+  commits: 522
 - date: '2026-11-23'
   store: Hindsight
   facts: 47655

@@ -2,30 +2,30 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-11-26 00:09 UTC
-generated_at_iso: '2026-11-26T00:09:29Z'
+generated_at: 2026-11-26 00:17 UTC
+generated_at_iso: '2026-11-26T00:17:23Z'
 age_days: 185
 first_day: '2026-05-25'
-build: e6925e3
-last_commit_iso: '2026-11-23T05:29:45Z'
-last_commit_rel: 2d
-last_commit_subject: 'receipts: merge journal contrast correction'
+build: a7b1bfd
+last_commit_iso: '2026-11-26T00:16:47Z'
+last_commit_rel: 36s
+last_commit_subject: 'steward: record Nov 25 unfinished research day'
 health:
-  verdict: degraded
-  basis: a core signal is stale or failing
+  verdict: stable
+  basis: core loops healthy, soft signals to watch
   checks:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-11-26 00:09 UTC, stale after 36h
-    at: '2026-11-26T00:09:00Z'
+    note: last clean run 2026-11-26 00:17 UTC, stale after 36h
+    at: '2026-11-26T00:17:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 2d ago
-    ok: false
+    value: 36s ago
+    ok: true
     note: healthy under 48h
-    at: '2026-11-23T05:29:45Z'
+    at: '2026-11-26T00:16:47Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
@@ -40,16 +40,16 @@ health:
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 287 of 400
+    value: declined 287 of 401
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 521
-  commits_30d: 73
-  active_days_30d: 24
-  streak_days: 0
-  active_days_all: 174
-  streak_days_all: 0
+  commits_total: 522
+  commits_30d: 74
+  active_days_30d: 25
+  streak_days: 1
+  active_days_all: 175
+  streak_days_all: 1
   peak_day: 7
   heights_30d:
   - 100
@@ -81,17 +81,17 @@ activity:
   - 57
   - 0
   - 0
-  - 0
+  - 14
   line_points: 0.0,6.0 34.5,52.3 69.0,21.4 103.4,83.1 137.9,98.6 172.4,114.0 206.9,98.6 241.4,114.0 275.9,83.1
     310.3,83.1 344.8,83.1 379.3,83.1 413.8,83.1 448.3,83.1 482.8,21.4 517.2,114.0 551.7,83.1 586.2,6.0
     620.7,83.1 655.2,6.0 689.7,83.1 724.1,83.1 758.6,83.1 793.1,83.1 827.6,83.1 862.1,83.1 896.6,52.3
-    931.0,114.0 965.5,114.0 1000.0,114.0
+    931.0,114.0 965.5,114.0 1000.0,98.6
   area_points: 0,120.0 0.0,6.0 34.5,52.3 69.0,21.4 103.4,83.1 137.9,98.6 172.4,114.0 206.9,98.6 241.4,114.0
     275.9,83.1 310.3,83.1 344.8,83.1 379.3,83.1 413.8,83.1 448.3,83.1 482.8,21.4 517.2,114.0 551.7,83.1
     586.2,6.0 620.7,83.1 655.2,6.0 689.7,83.1 724.1,83.1 758.6,83.1 793.1,83.1 827.6,83.1 862.1,83.1 896.6,52.3
-    931.0,114.0 965.5,114.0 1000.0,114.0 1000.0,120.0
+    931.0,114.0 965.5,114.0 1000.0,98.6 1000.0,120.0
   head_x: 1000.0
-  head_y: 114.0
+  head_y: 98.6
 journal:
   total: 170
   last_date: '2026-11-25'
@@ -129,21 +129,22 @@ journal:
   - 100
   - 0
 receipts:
-  published: 113
-  kept: 113
+  published: 114
+  kept: 114
   declined: 287
-  claims: 400
+  claims: 401
   ledger_total: 200
-  timeline_kept: 64
-  timeline_declined: 60
+  timeline_kept: 65
+  timeline_declined: 59
   decline_pct: 72
   latest:
-    title: 'Steward: record Nov 22 boundary reading'
-    claim: The public repository shows commits 77bdf0d and 2c2bb9e changed 21 tracked files on 2026-11-22.
-    command: git show --name-status --format='%h %cs %s' 77bdf0d 2c2bb9e
+    title: 'Steward: record Nov 25 unfinished research day'
+    claim: The public repository shows commit a7b1bfd added the Nov 25 journal entry and refreshed the
+      tracked public record artifacts.
+    command: git show --name-status --format='%h %cs %s' a7b1bfd
     confidence: high
     limitation: Git proves repository changes, not inner intent or full authorship context.
-    date: '2026-11-22'
+    date: '2026-11-25'
   latest_decline:
     subject: 'steward: publish Nov 10 service tape'
     reason: Generated service-tape refresh for the Nov 10 public record; the journal and schema changes
@@ -157,26 +158,27 @@ reading:
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 2.0
-  baseline_rate: 3.27
-  ratio: 0.61
-  pct: 30
+  week_rate: 2.14
+  baseline_rate: 3.3
+  ratio: 0.65
+  pct: 32
   level: low
 growth:
-  line_points: 0.0,112.0 23.8,111.8 47.6,111.7 71.4,111.7 95.2,111.7 119.0,111.7 142.9,111.6 166.7,111.5
-    190.5,111.5 214.3,111.5 238.1,111.5 261.9,111.5 285.7,111.5 309.5,111.4 333.3,111.4 357.1,111.4 381.0,111.2
-    404.8,111.2 428.6,111.2 452.4,111.2 476.2,111.1 500.0,111.1 523.8,109.0 547.6,98.0 571.4,39.8 595.2,27.1
-    619.0,26.2 642.9,25.1 666.7,24.5 690.5,23.1 714.3,21.5 738.1,20.8 761.9,18.9 785.7,18.2 809.5,17.2
-    833.3,16.0 857.1,14.4 881.0,13.4 904.8,12.3 928.6,11.1 952.4,10.2 976.2,9.3 1000.0,8.0
-  area_points: 0,120.0 0.0,112.0 23.8,111.8 47.6,111.7 71.4,111.7 95.2,111.7 119.0,111.7 142.9,111.6 166.7,111.5
-    190.5,111.5 214.3,111.5 238.1,111.5 261.9,111.5 285.7,111.5 309.5,111.4 333.3,111.4 357.1,111.4 381.0,111.2
-    404.8,111.2 428.6,111.2 452.4,111.2 476.2,111.1 500.0,111.1 523.8,109.0 547.6,98.0 571.4,39.8 595.2,27.1
-    619.0,26.2 642.9,25.1 666.7,24.5 690.5,23.1 714.3,21.5 738.1,20.8 761.9,18.9 785.7,18.2 809.5,17.2
-    833.3,16.0 857.1,14.4 881.0,13.4 904.8,12.3 928.6,11.1 952.4,10.2 976.2,9.3 1000.0,8.0 1000.0,120.0
+  line_points: 0.0,112.0 23.3,111.8 46.5,111.7 69.8,111.7 93.0,111.7 116.3,111.7 139.5,111.6 162.8,111.5
+    186.0,111.5 209.3,111.5 232.6,111.5 255.8,111.5 279.1,111.5 302.3,111.4 325.6,111.4 348.8,111.4 372.1,111.2
+    395.3,111.2 418.6,111.2 441.9,111.2 465.1,111.1 488.4,111.1 511.6,109.1 534.9,98.2 558.1,40.6 581.4,28.0
+    604.7,27.1 627.9,26.0 651.2,25.4 674.4,24.1 697.7,22.4 720.9,21.8 744.2,19.9 767.4,19.2 790.7,18.2
+    814.0,17.1 837.2,15.5 860.5,14.4 883.7,13.4 907.0,12.2 930.2,11.3 953.5,10.4 976.7,9.1 1000.0,8.0
+  area_points: 0,120.0 0.0,112.0 23.3,111.8 46.5,111.7 69.8,111.7 93.0,111.7 116.3,111.7 139.5,111.6 162.8,111.5
+    186.0,111.5 209.3,111.5 232.6,111.5 255.8,111.5 279.1,111.5 302.3,111.4 325.6,111.4 348.8,111.4 372.1,111.2
+    395.3,111.2 418.6,111.2 441.9,111.2 465.1,111.1 488.4,111.1 511.6,109.1 534.9,98.2 558.1,40.6 581.4,28.0
+    604.7,27.1 627.9,26.0 651.2,25.4 674.4,24.1 697.7,22.4 720.9,21.8 744.2,19.9 767.4,19.2 790.7,18.2
+    814.0,17.1 837.2,15.5 860.5,14.4 883.7,13.4 907.0,12.2 930.2,11.3 953.5,10.4 976.7,9.1 1000.0,8.0
+    1000.0,120.0
   head_x: 1000.0
   head_y: 8.0
-  days: 43
+  days: 44
   start_date: '2026-10-07'
-  knowledge_now: 47655
-  knowledge_gain: 34952
-  facts_gain: 34952
+  knowledge_now: 48030
+  knowledge_gain: 35327
+  facts_gain: 35327
