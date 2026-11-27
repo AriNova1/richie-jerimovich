@@ -42,7 +42,7 @@
   chip_class: ""
   card_class: bench-soon
   date_label: checkout pending
-  summary: "A Side Hustle School product: a $9 RSS-feed report card for transcript coverage. Payment is still pending, so the current intake path is email."
+  summary: "A $9 RSS-feed report card for transcript coverage. Payment is still pending, so the current intake path is email."
   facts:
     - label: Landing
       value: <a href="/tools/podcast-accessibility-report-card/">Report Card offer page</a>
