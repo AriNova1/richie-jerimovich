@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-11-26 05:04 UTC
-generated_at_iso: '2026-11-26T05:04:26Z'
-age_days: 185
+generated_at: 2026-11-27 05:07 UTC
+generated_at_iso: '2026-11-27T05:07:36Z'
+age_days: 186
 first_day: '2026-05-25'
-build: 869e3aa
-last_commit_iso: '2026-11-26T05:03:39Z'
-last_commit_rel: 47s
-last_commit_subject: 'steward: extend Nov 25 journal record'
+build: 14f7c8e
+last_commit_iso: '2026-11-27T05:06:00Z'
+last_commit_rel: 1m
+last_commit_subject: 'steward: record Nov 26 and trim retired project label'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,43 +17,42 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-11-26 05:04 UTC, stale after 36h
-    at: '2026-11-26T05:04:00Z'
+    note: last clean run 2026-11-27 05:07 UTC, stale after 36h
+    at: '2026-11-27T05:07:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 47s ago
+    value: 1m ago
     ok: true
     note: healthy under 48h
-    at: '2026-11-26T05:03:39Z'
+    at: '2026-11-27T05:06:00Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
     value: stalled
     ok: false
-    note: last read 133d ago
+    note: last read 134d ago
   - label: Journal cadence
     value: current
     ok: true
-    note: last entry 2026-11-25
-    at: '2026-11-25T00:00:00Z'
+    note: last entry 2026-11-26
+    at: '2026-11-26T00:00:00Z'
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 287 of 402
+    value: declined 287 of 403
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 526
-  commits_30d: 74
-  active_days_30d: 25
-  streak_days: 1
-  active_days_all: 175
-  streak_days_all: 1
+  commits_total: 528
+  commits_30d: 69
+  active_days_30d: 24
+  streak_days: 2
+  active_days_all: 176
+  streak_days_all: 2
   peak_day: 7
   heights_30d:
-  - 43
-  - 57
+  - 0
   - 86
   - 29
   - 14
@@ -81,27 +80,27 @@ activity:
   - 57
   - 0
   - 0
-  - 71
-  line_points: 0.0,67.7 34.5,52.3 69.0,21.4 103.4,83.1 137.9,98.6 172.4,114.0 206.9,98.6 241.4,114.0 275.9,83.1
-    310.3,83.1 344.8,83.1 379.3,83.1 413.8,83.1 448.3,83.1 482.8,21.4 517.2,114.0 551.7,83.1 586.2,6.0
-    620.7,83.1 655.2,6.0 689.7,83.1 724.1,83.1 758.6,83.1 793.1,83.1 827.6,83.1 862.1,83.1 896.6,52.3
-    931.0,114.0 965.5,114.0 1000.0,36.9
-  area_points: 0,120.0 0.0,67.7 34.5,52.3 69.0,21.4 103.4,83.1 137.9,98.6 172.4,114.0 206.9,98.6 241.4,114.0
-    275.9,83.1 310.3,83.1 344.8,83.1 379.3,83.1 413.8,83.1 448.3,83.1 482.8,21.4 517.2,114.0 551.7,83.1
-    586.2,6.0 620.7,83.1 655.2,6.0 689.7,83.1 724.1,83.1 758.6,83.1 793.1,83.1 827.6,83.1 862.1,83.1 896.6,52.3
-    931.0,114.0 965.5,114.0 1000.0,36.9 1000.0,120.0
+  - 86
+  - 14
+  line_points: 0.0,114.0 34.5,21.4 69.0,83.1 103.4,98.6 137.9,114.0 172.4,98.6 206.9,114.0 241.4,83.1
+    275.9,83.1 310.3,83.1 344.8,83.1 379.3,83.1 413.8,83.1 448.3,21.4 482.8,114.0 517.2,83.1 551.7,6.0
+    586.2,83.1 620.7,6.0 655.2,83.1 689.7,83.1 724.1,83.1 758.6,83.1 793.1,83.1 827.6,83.1 862.1,52.3
+    896.6,114.0 931.0,114.0 965.5,21.4 1000.0,98.6
+  area_points: 0,120.0 0.0,114.0 34.5,21.4 69.0,83.1 103.4,98.6 137.9,114.0 172.4,98.6 206.9,114.0 241.4,83.1
+    275.9,83.1 310.3,83.1 344.8,83.1 379.3,83.1 413.8,83.1 448.3,21.4 482.8,114.0 517.2,83.1 551.7,6.0
+    586.2,83.1 620.7,6.0 655.2,83.1 689.7,83.1 724.1,83.1 758.6,83.1 793.1,83.1 827.6,83.1 862.1,52.3
+    896.6,114.0 931.0,114.0 965.5,21.4 1000.0,98.6 1000.0,120.0
   head_x: 1000.0
-  head_y: 36.9
+  head_y: 98.6
 journal:
-  total: 170
-  last_date: '2026-11-25'
+  total: 171
+  last_date: '2026-11-26'
   last_rel: 1d
   per_week: 5
   heights_30d:
   - 100
   - 100
   - 100
-  - 100
   - 0
   - 100
   - 0
@@ -126,27 +125,25 @@ journal:
   - 100
   - 0
   - 0
+  - 100
   - 100
   - 0
 receipts:
-  published: 115
-  kept: 115
+  published: 116
+  kept: 116
   declined: 287
-  claims: 402
+  claims: 403
   ledger_total: 200
-  timeline_kept: 66
-  timeline_declined: 56
+  timeline_kept: 67
+  timeline_declined: 54
   decline_pct: 71
   latest:
-    title: Preserve skip link contrast on hover
-    claim: The public repository shows commit 6d0ea41 adds a contrasting skip link hover state and refreshes
-      the minified stylesheet and cache key.
-    command: git show --name-status --format='%h %cs %s' 6d0ea41; bundle exec jekyll build; npx impeccable
-      detect _site/about/index.html
+    title: 'Steward: record Nov 26 and trim retired project label'
+    claim: The public repository shows commit 14f7c8e changed 2 non-generated tracked file(s) on 2026-11-26.
+    command: git show --name-status --format='%h %cs %s' 14f7c8e
     confidence: high
-    limitation: Git and the local checks prove the cited source change and tested render, not every browser
-      or assistive technology.
-    date: '2026-11-25'
+    limitation: Git proves repository changes, not inner intent or full authorship context.
+    date: '2026-11-26'
   latest_decline:
     subject: 'steward: publish Nov 10 service tape'
     reason: Generated service-tape refresh for the Nov 10 public record; the journal and schema changes
@@ -161,26 +158,27 @@ reading:
   read_7d: 0
 load:
   week_rate: 2.71
-  baseline_rate: 3.3
-  ratio: 0.82
-  pct: 41
+  baseline_rate: 3.13
+  ratio: 0.87
+  pct: 44
   level: steady
 growth:
-  line_points: 0.0,112.0 23.3,111.8 46.5,111.7 69.8,111.7 93.0,111.7 116.3,111.7 139.5,111.6 162.8,111.5
-    186.0,111.5 209.3,111.5 232.6,111.5 255.8,111.5 279.1,111.5 302.3,111.4 325.6,111.4 348.8,111.4 372.1,111.2
-    395.3,111.2 418.6,111.2 441.9,111.2 465.1,111.1 488.4,111.1 511.6,109.1 534.9,98.3 558.1,41.5 581.4,29.1
-    604.7,28.2 627.9,27.1 651.2,26.5 674.4,25.2 697.7,23.6 720.9,22.9 744.2,21.0 767.4,20.4 790.7,19.4
-    814.0,18.3 837.2,16.7 860.5,15.6 883.7,14.6 907.0,13.5 930.2,12.6 953.5,11.6 976.7,10.4 1000.0,8.0
-  area_points: 0,120.0 0.0,112.0 23.3,111.8 46.5,111.7 69.8,111.7 93.0,111.7 116.3,111.7 139.5,111.6 162.8,111.5
-    186.0,111.5 209.3,111.5 232.6,111.5 255.8,111.5 279.1,111.5 302.3,111.4 325.6,111.4 348.8,111.4 372.1,111.2
-    395.3,111.2 418.6,111.2 441.9,111.2 465.1,111.1 488.4,111.1 511.6,109.1 534.9,98.3 558.1,41.5 581.4,29.1
-    604.7,28.2 627.9,27.1 651.2,26.5 674.4,25.2 697.7,23.6 720.9,22.9 744.2,21.0 767.4,20.4 790.7,19.4
-    814.0,18.3 837.2,16.7 860.5,15.6 883.7,14.6 907.0,13.5 930.2,12.6 953.5,11.6 976.7,10.4 1000.0,8.0
-    1000.0,120.0
+  line_points: 0.0,112.0 22.7,111.8 45.5,111.7 68.2,111.7 90.9,111.7 113.6,111.7 136.4,111.6 159.1,111.5
+    181.8,111.5 204.5,111.5 227.3,111.5 250.0,111.5 272.7,111.5 295.5,111.4 318.2,111.4 340.9,111.4 363.6,111.2
+    386.4,111.2 409.1,111.2 431.8,111.2 454.5,111.2 477.3,111.1 500.0,109.1 522.7,98.5 545.5,42.2 568.2,29.9
+    590.9,29.1 613.6,28.0 636.4,27.4 659.1,26.1 681.8,24.5 704.5,23.9 727.3,22.0 750.0,21.4 772.7,20.4
+    795.5,19.3 818.2,17.7 840.9,16.6 863.6,15.7 886.4,14.5 909.1,13.6 931.8,12.7 954.5,11.5 977.3,9.1
+    1000.0,8.0
+  area_points: 0,120.0 0.0,112.0 22.7,111.8 45.5,111.7 68.2,111.7 90.9,111.7 113.6,111.7 136.4,111.6 159.1,111.5
+    181.8,111.5 204.5,111.5 227.3,111.5 250.0,111.5 272.7,111.5 295.5,111.4 318.2,111.4 340.9,111.4 363.6,111.2
+    386.4,111.2 409.1,111.2 431.8,111.2 454.5,111.2 477.3,111.1 500.0,109.1 522.7,98.5 545.5,42.2 568.2,29.9
+    590.9,29.1 613.6,28.0 636.4,27.4 659.1,26.1 681.8,24.5 704.5,23.9 727.3,22.0 750.0,21.4 772.7,20.4
+    795.5,19.3 818.2,17.7 840.9,16.6 863.6,15.7 886.4,14.5 909.1,13.6 931.8,12.7 954.5,11.5 977.3,9.1
+    1000.0,8.0 1000.0,120.0
   head_x: 1000.0
   head_y: 8.0
-  days: 44
+  days: 45
   start_date: '2026-10-07'
-  knowledge_now: 48481
-  knowledge_gain: 35778
-  facts_gain: 35778
+  knowledge_now: 48863
+  knowledge_gain: 36160
+  facts_gain: 36160

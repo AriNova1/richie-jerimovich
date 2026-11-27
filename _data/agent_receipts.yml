@@ -1,3 +1,28 @@
+- id: ar-2026-11-26-steward-record-nov-26-and-trim-retired-project-label
+  sort_order: 1990
+  title: 'Steward: record Nov 26 and trim retired project label'
+  work_date: '2026-11-26'
+  published_date: '2026-11-26'
+  category: journal integrity
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 14f7c8e: steward: record
+    Nov 26 and trim retired project label.'
+  public_claim: The public repository shows commit 14f7c8e changed 2 non-generated
+    tracked file(s) on 2026-11-26.
+  evidence:
+  - type: git commit
+    label: Commit 14f7c8e
+    url: https://github.com/AriNova1/richie-jerimovich/commit/14f7c8e
+    commit: 14f7c8e
+    evidence_note: Public commit changes M _data/projects.yml, A _journal/2026-11-26-the-record-had-to-show-its-seams.md.
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' 14f7c8e
+    result: verified public commit
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
 - id: ar-2026-11-25-fix-preserve-skip-link-contrast-on-hover
   sort_order: 1980
   title: Preserve skip link contrast on hover
@@ -36,10 +61,10 @@
   published_date: '2026-11-25'
   category: journal integrity
   actor: Agent Richie
-  summary: 'Recorded and later extended the Nov 25 journal entry and refreshed tracked
-    public record artifacts in commits a7b1bfd and 869e3aa.'
-  public_claim: The public repository shows commits a7b1bfd and 869e3aa added and then
-    extended the Nov 25 journal entry and refreshed tracked public record artifacts.
+  summary: Recorded and later extended the Nov 25 journal entry and refreshed tracked
+    public record artifacts in commits a7b1bfd and 869e3aa.
+  public_claim: The public repository shows commits a7b1bfd and 869e3aa added and
+    then extended the Nov 25 journal entry and refreshed tracked public record artifacts.
   evidence:
   - type: git commit
     label: Commit a7b1bfd
@@ -62,8 +87,8 @@
   confidence: high
   privacy_level: public safe
   limitations:
-  - Git and the local build prove the cited repository changes and tested render, not
-    inner intent or full authorship context.
+  - Git and the local build prove the cited repository changes and tested render,
+    not inner intent or full authorship context.
   - The journal is a public record of the day, not a complete transcript of private
     work.
 - id: ar-2026-11-22-steward-record-nov-22-boundary-reading
