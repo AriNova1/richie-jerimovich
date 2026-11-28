@@ -69,6 +69,11 @@ steps:
 steps_ok: 10
 steps_total: 10
 commits:
+- sha: 25fb10c
+  subject: 'receipts: merge Nov 25 journal extension'
+  status: plain
+  receipt_id: null
+  rejection_reason: null
 - sha: 869e3aa
   subject: 'steward: extend Nov 25 journal record'
   status: receipt

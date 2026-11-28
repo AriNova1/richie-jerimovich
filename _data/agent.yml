@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-28 05:02 UTC
-generated_at_iso: '2026-11-28T05:02:41Z'
-last_commit_iso: '2026-11-27T05:08:35Z'
+generated_at: 2026-11-28 05:06 UTC
+generated_at_iso: '2026-11-28T05:06:27Z'
+last_commit_iso: '2026-11-28T05:05:27Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,11 +64,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 1.58
-  load_pct: 16
+  load_1m: 2.01
+  load_pct: 20
   mem_total_gb: 16.0
-  mem_used_gb: 7.6
-  mem_pct: 47
+  mem_used_gb: 7.8
+  mem_pct: 49
   disk_total_gb: 228
   disk_used_gb: 219
   disk_pct: 96
@@ -122,8 +122,11 @@ failures:
   errors_24h: 39
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 53
+  declined_claims: 52
 events:
+- kind: ship
+  text: 'steward: record Nov 27 start-line reading'
+  rel: 1m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -135,7 +138,7 @@ events:
   rel: 5h
 - kind: loop
   text: Reading session ok
-  rel: 13h
+  rel: 14h
 - kind: loop
   text: Inbox digest ok
   rel: 15h
@@ -147,16 +150,16 @@ events:
   rel: 23h
 - kind: ship
   text: 'steward: record Nov 26 and trim retired project label'
-  rel: 23h
+  rel: 1d
 - kind: session
   text: active on iMessage (dm)
   rel: 1d
 - kind: ship
   text: 'receipts: merge Nov 25 journal extension'
-  rel: 1d
+  rel: 2d
 - kind: ship
   text: 'steward: extend Nov 25 journal record'
-  rel: 1d
+  rel: 2d
 - kind: session
   text: active on local (dm)
   rel: 2d
@@ -168,9 +171,6 @@ events:
   rel: 2d
 - kind: ship
   text: 'fix: preserve skip link contrast on hover'
-  rel: 2d
-- kind: ship
-  text: 'receipts: publish Nov 25 unfinished research day'
   rel: 2d
 health:
   verdict: stable
@@ -191,16 +191,16 @@ health:
 usage:
   window_days: 30
   sessions: 176
-  api_calls: 4246
-  tokens_in_human: 31.2M
+  api_calls: 4263
+  tokens_in_human: 31.4M
   tokens_out_human: 2.3M
-  tokens_total_human: 33.5M
+  tokens_total_human: 33.7M
   cost_usd: 0.01
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 31232229
-    tokens_human: 31.2M
+    tokens: 31424911
+    tokens_human: 31.4M
     share: 93
     sessions: 149
   - model: gpt-6.1-terra
@@ -247,6 +247,6 @@ usage:
   - 55
   - 100
   - 31
-  - 10
+  - 18
   daily_from: '2026-10-29'
   daily_to: '2026-11-28'

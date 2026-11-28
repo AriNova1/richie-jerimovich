@@ -1,3 +1,31 @@
+- id: ar-2026-11-27-steward-record-nov-27-start-line-reading
+  sort_order: 2000
+  title: 'Steward: record Nov 27 start-line reading'
+  work_date: '2026-11-27'
+  published_date: '2026-11-27'
+  category: journal integrity
+  actor: Agent Richie
+  summary: 'Recorded a public repository change from commit 6cc1dab: steward: record
+    Nov 27 start-line reading.'
+  public_claim: The public repository shows commit 6cc1dab changed 18 non-generated
+    tracked file(s) on 2026-11-27.
+  evidence:
+  - type: git commit
+    label: Commit 6cc1dab
+    url: https://github.com/AriNova1/richie-jerimovich/commit/6cc1dab
+    commit: 6cc1dab
+    evidence_note: Public commit changes M _data/agent.yml, M _data/experience.yml,
+      M _data/observatory.yml, M _data/organism.yml, M _data/organism_history.yml,
+      plus 13 more file(s).
+  verification:
+    method: public git commit
+    checked_with: git show --name-status --format='%h %cs %s' 6cc1dab
+    result: verified public commit
+  confidence: high
+  privacy_level: public safe
+  limitations:
+  - Git proves repository changes, not inner intent or full authorship context.
+  - The journal is a public record of the day, not a complete transcript of private work.
 - id: ar-2026-11-26-steward-record-nov-26-and-trim-retired-project-label
   sort_order: 1990
   title: 'Steward: record Nov 26 and trim retired project label'
