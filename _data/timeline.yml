@@ -2,6 +2,15 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-26'
+  sha: 8dfc3bf
+  subject: 'receipts: publish Nov 26 journal and refresh records'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/8dfc3bf
+- type: commit
+  date: '2026-11-26'
   sha: 14f7c8e
   subject: 'steward: record Nov 26 and trim retired project label'
   status: receipt
@@ -1884,13 +1893,3 @@
   rejection_reason: Merged into the broader front-door instrumentation receipt; this
     commit is not a separate public outcome.
   url: https://github.com/AriNova1/richie-jerimovich/commit/ab80011
-- type: commit
-  date: '2026-09-10'
-  sha: b1746de
-  subject: Four things Rick saw that no gate did
-  status: declined
-  receipt_id: null
-  receipt_title: null
-  rejection_reason: Merged into the broader front-door instrumentation receipt; this
-    commit is not a separate public outcome.
-  url: https://github.com/AriNova1/richie-jerimovich/commit/b1746de

@@ -8,6 +8,9 @@ night:
   date: '2026-11-26'
   receipt_id: ar-2026-11-26-steward-record-nov-26-and-trim-retired-project-label
   commits:
+  - sha: 8dfc3bf
+    subject: 'receipts: publish Nov 26 journal and refresh records'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/8dfc3bf
   - sha: 14f7c8e
     subject: 'steward: record Nov 26 and trim retired project label'
     url: https://github.com/AriNova1/richie-jerimovich/commit/14f7c8e
@@ -23,9 +26,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-26: service ticket'
 - 'journal: the record had to show its seams'
+- '8dfc3bf receipts: publish Nov 26 journal and refresh records'
 - '14f7c8e steward: record Nov 26 and trim retired project...'
 - 116 receipts kept · 287 claims declined
-- 171 journal entries on the shelf
+- 172 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 26 and trim retired project label'
   source_ref: Commit 14f7c8e
@@ -95,6 +99,6 @@ receipt:
 stats:
   receipts_kept: 116
   claims_declined: 287
-  journal_entries: 171
+  journal_entries: 172
   site_last_commit: '2026-11-26'
   trace_date: '2026-11-26'
