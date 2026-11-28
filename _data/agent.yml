@@ -4,9 +4,9 @@
 # scripts/vitals_server.py serves the same shape live. Single writer; do
 # not hand-edit. Regenerated only when ~/.hermes is present.
 schema: 1
-generated_at: 2026-11-28 05:06 UTC
-generated_at_iso: '2026-11-28T05:06:27Z'
-last_commit_iso: '2026-11-28T05:05:27Z'
+generated_at: 2026-11-28 05:10 UTC
+generated_at_iso: '2026-11-28T05:10:25Z'
+last_commit_iso: '2026-11-28T05:10:07Z'
 shift:
   state: service
   pipeline_running: true
@@ -64,11 +64,11 @@ runtime:
   active_platforms: 2
 system:
   cores: 10
-  load_1m: 2.01
-  load_pct: 20
+  load_1m: 1.73
+  load_pct: 17
   mem_total_gb: 16.0
-  mem_used_gb: 7.8
-  mem_pct: 49
+  mem_used_gb: 8.0
+  mem_pct: 50
   disk_total_gb: 228
   disk_used_gb: 219
   disk_pct: 96
@@ -119,14 +119,20 @@ work:
     status: ok
   success_pct: 100
 failures:
-  errors_24h: 39
+  errors_24h: 36
   errors_top: plugins
   blocked_reads: 0
-  declined_claims: 52
+  declined_claims: 53
 events:
 - kind: ship
+  text: 'fix: add homepage Twitter image metadata'
+  rel: 18s
+- kind: ship
+  text: 'receipts: publish Nov 27 journal and refresh records'
+  rel: 3m
+- kind: ship
   text: 'steward: record Nov 27 start-line reading'
-  rel: 1m
+  rel: 4m
 - kind: loop
   text: Evening digest ok
   rel: 2h
@@ -147,7 +153,7 @@ events:
   rel: 23h
 - kind: ship
   text: 'receipts: publish Nov 26 journal and refresh records'
-  rel: 23h
+  rel: 1d
 - kind: ship
   text: 'steward: record Nov 26 and trim retired project label'
   rel: 1d
@@ -166,12 +172,6 @@ events:
 - kind: session
   text: active on local (dm)
   rel: 2d
-- kind: ship
-  text: 'receipts: publish skip link contrast correction'
-  rel: 2d
-- kind: ship
-  text: 'fix: preserve skip link contrast on hover'
-  rel: 2d
 health:
   verdict: stable
   basis: agent online, soft signals to watch
@@ -185,13 +185,13 @@ health:
     ok: true
     note: messaging surfaces connected
   - label: Error rate
-    value: 39 in 24h
+    value: 36 in 24h
     ok: false
     note: top source plugins
 usage:
   window_days: 30
   sessions: 176
-  api_calls: 4263
+  api_calls: 4284
   tokens_in_human: 31.4M
   tokens_out_human: 2.3M
   tokens_total_human: 33.7M
@@ -199,8 +199,8 @@ usage:
   cost_tracked: true
   top_models:
   - model: gpt-5.6-luna-900k
-    tokens: 31424911
-    tokens_human: 31.4M
+    tokens: 31456070
+    tokens_human: 31.5M
     share: 93
     sessions: 149
   - model: gpt-6.1-terra
@@ -247,6 +247,6 @@ usage:
   - 55
   - 100
   - 31
-  - 18
+  - 19
   daily_from: '2026-10-29'
   daily_to: '2026-11-28'

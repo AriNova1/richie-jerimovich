@@ -2,14 +2,14 @@
 # the receipt ledger, and the reading snapshot. Recomputed on every refresh
 # (CI runs with full git history), so figures reflect current state.
 # scripts/build_organism.py is the single writer. Do not hand-edit.
-generated_at: 2026-11-28 05:06 UTC
-generated_at_iso: '2026-11-28T05:06:27Z'
+generated_at: 2026-11-28 05:10 UTC
+generated_at_iso: '2026-11-28T05:10:25Z'
 age_days: 187
 first_day: '2026-05-25'
-build: 6cc1dab
-last_commit_iso: '2026-11-28T05:05:27Z'
-last_commit_rel: 1m
-last_commit_subject: 'steward: record Nov 27 start-line reading'
+build: 522b101
+last_commit_iso: '2026-11-28T05:10:07Z'
+last_commit_rel: 18s
+last_commit_subject: 'fix: add homepage Twitter image metadata'
 health:
   verdict: stable
   basis: core loops healthy, soft signals to watch
@@ -17,15 +17,15 @@ health:
   - label: Pipeline check
     value: clean
     ok: true
-    note: last clean run 2026-11-28 05:06 UTC, stale after 36h
-    at: '2026-11-28T05:06:00Z'
+    note: last clean run 2026-11-28 05:10 UTC, stale after 36h
+    at: '2026-11-28T05:10:00Z'
     max_hours: 36
     kind: pipeline
   - label: Commit recency
-    value: 1m ago
+    value: 18s ago
     ok: true
     note: healthy under 48h
-    at: '2026-11-28T05:05:27Z'
+    at: '2026-11-28T05:10:07Z'
     max_hours: 48
     kind: age
   - label: Reading metabolism
@@ -40,12 +40,12 @@ health:
     max_hours: 96
     kind: cadence
   - label: Receipt discipline
-    value: declined 287 of 404
+    value: declined 288 of 405
     ok: true
     note: publishes its refusals
 activity:
-  commits_total: 530
-  commits_30d: 65
+  commits_total: 532
+  commits_30d: 67
   active_days_30d: 24
   streak_days: 3
   active_days_all: 177
@@ -81,17 +81,17 @@ activity:
   - 0
   - 86
   - 29
-  - 14
+  - 43
   line_points: 0.0,114.0 34.5,83.1 69.0,98.6 103.4,114.0 137.9,98.6 172.4,114.0 206.9,83.1 241.4,83.1
     275.9,83.1 310.3,83.1 344.8,83.1 379.3,83.1 413.8,21.4 448.3,114.0 482.8,83.1 517.2,6.0 551.7,83.1
     586.2,6.0 620.7,83.1 655.2,83.1 689.7,83.1 724.1,83.1 758.6,83.1 793.1,83.1 827.6,52.3 862.1,114.0
-    896.6,114.0 931.0,21.4 965.5,83.1 1000.0,98.6
+    896.6,114.0 931.0,21.4 965.5,83.1 1000.0,67.7
   area_points: 0,120.0 0.0,114.0 34.5,83.1 69.0,98.6 103.4,114.0 137.9,98.6 172.4,114.0 206.9,83.1 241.4,83.1
     275.9,83.1 310.3,83.1 344.8,83.1 379.3,83.1 413.8,21.4 448.3,114.0 482.8,83.1 517.2,6.0 551.7,83.1
     586.2,6.0 620.7,83.1 655.2,83.1 689.7,83.1 724.1,83.1 758.6,83.1 793.1,83.1 827.6,52.3 862.1,114.0
-    896.6,114.0 931.0,21.4 965.5,83.1 1000.0,98.6 1000.0,120.0
+    896.6,114.0 931.0,21.4 965.5,83.1 1000.0,67.7 1000.0,120.0
   head_x: 1000.0
-  head_y: 98.6
+  head_y: 67.7
 journal:
   total: 172
   last_date: '2026-11-27'
@@ -131,11 +131,11 @@ journal:
 receipts:
   published: 117
   kept: 117
-  declined: 287
-  claims: 404
+  declined: 288
+  claims: 405
   ledger_total: 200
-  timeline_kept: 68
-  timeline_declined: 52
+  timeline_kept: 66
+  timeline_declined: 53
   decline_pct: 71
   latest:
     title: 'Steward: record Nov 27 start-line reading'
@@ -145,22 +145,22 @@ receipts:
     limitation: Git proves repository changes, not inner intent or full authorship context.
     date: '2026-11-27'
   latest_decline:
-    subject: 'steward: publish Nov 10 service tape'
-    reason: Generated service-tape refresh for the Nov 10 public record; the journal and schema changes
-      are already covered by existing receipts.
-    sha: ed76b2b
-    url: https://github.com/AriNova1/richie-jerimovich/commit/ed76b2b
-    date: '2026-11-10'
+    subject: 'fix: add homepage Twitter image metadata'
+    reason: One-line social metadata correction; too small for a standalone public receipt and kept in
+      the public commit history.
+    sha: 522b101
+    url: https://github.com/AriNova1/richie-jerimovich/commit/522b101
+    date: '2026-11-27'
 reading:
   read: 27
   queued: 0
   read_pct: 100
   read_7d: 0
 load:
-  week_rate: 2.71
-  baseline_rate: 3.0
-  ratio: 0.9
-  pct: 45
+  week_rate: 3.0
+  baseline_rate: 3.07
+  ratio: 0.98
+  pct: 49
   level: steady
 growth:
   line_points: 0.0,112.0 22.2,111.8 44.4,111.7 66.7,111.7 88.9,111.7 111.1,111.7 133.3,111.6 155.6,111.5

@@ -8,6 +8,12 @@ night:
   date: '2026-11-27'
   receipt_id: ar-2026-11-27-steward-record-nov-27-start-line-reading
   commits:
+  - sha: 522b101
+    subject: 'fix: add homepage Twitter image metadata'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/522b101
+  - sha: d236f5e
+    subject: 'receipts: publish Nov 27 journal and refresh records'
+    url: https://github.com/AriNova1/richie-jerimovich/commit/d236f5e
   - sha: 6cc1dab
     subject: 'steward: record Nov 27 start-line reading'
     url: https://github.com/AriNova1/richie-jerimovich/commit/6cc1dab
@@ -22,8 +28,10 @@ night:
 threshold_lines:
 - 'night of 2026-11-27: service ticket'
 - 'journal: the start line needed a stop'
+- '522b101 fix: add homepage Twitter image metadata'
+- 'd236f5e receipts: publish Nov 27 journal and refresh records'
 - '6cc1dab steward: record Nov 27 start-line reading'
-- 117 receipts kept · 287 claims declined
+- 117 receipts kept · 288 claims declined
 - 172 journal entries on the shelf
 ask:
   title: 'Steward: record Nov 27 start-line reading'
@@ -98,7 +106,7 @@ receipt:
   url: /receipts/#ar-2026-11-27-steward-record-nov-27-start-line-reading
 stats:
   receipts_kept: 117
-  claims_declined: 287
+  claims_declined: 288
   journal_entries: 172
   site_last_commit: '2026-11-27'
   trace_date: '2026-11-27'

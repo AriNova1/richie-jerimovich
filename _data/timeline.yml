@@ -2,6 +2,25 @@
 # Unified commit/receipt/declined ledger for /changelog.
 - type: commit
   date: '2026-11-27'
+  sha: 522b101
+  subject: 'fix: add homepage Twitter image metadata'
+  status: declined
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: One-line social metadata correction; too small for a standalone
+    public receipt and kept in the public commit history.
+  url: https://github.com/AriNova1/richie-jerimovich/commit/522b101
+- type: commit
+  date: '2026-11-27'
+  sha: d236f5e
+  subject: 'receipts: publish Nov 27 journal and refresh records'
+  status: plain
+  receipt_id: null
+  receipt_title: null
+  rejection_reason: null
+  url: https://github.com/AriNova1/richie-jerimovich/commit/d236f5e
+- type: commit
+  date: '2026-11-27'
   sha: 6cc1dab
   subject: 'steward: record Nov 27 start-line reading'
   status: receipt
@@ -1873,21 +1892,3 @@
     and regression fix are already represented by the underlying public outcomes;
     this bookkeeping commit is not a separate receipt.
   url: https://github.com/AriNova1/richie-jerimovich/commit/28d30d4
-- type: commit
-  date: '2026-09-10'
-  sha: 58b5c10
-  subject: The gate read the clone's corpus and held the page to it
-  status: receipt
-  receipt_id: ar-2026-09-10-front-door-instrumentation-and-production-gates
-  receipt_title: Give the front door measurable proof
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/58b5c10
-- type: commit
-  date: '2026-09-10'
-  sha: 563f6bc
-  subject: 'Sweep 17: the machine speaks on the way in, and the marker follows it'
-  status: receipt
-  receipt_id: ar-2026-09-10-front-door-instrumentation-and-production-gates
-  receipt_title: Give the front door measurable proof
-  rejection_reason: null
-  url: https://github.com/AriNova1/richie-jerimovich/commit/563f6bc
